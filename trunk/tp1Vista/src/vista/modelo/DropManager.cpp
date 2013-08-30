@@ -16,9 +16,9 @@ DropManager::DropManager() {
 	DropeableFactory * factory3 = new DropeableFactory("JONY");
 	this->inicioCadena = NULL;
 	this->ultimo = NULL;
-	this->agregarEslabon(new EslabonCreacion (factory1, cuerpo));
-	this->agregarEslabon(new EslabonCreacion (factory2, cuerpo2));
-	this->agregarEslabon(new EslabonCreacion (factory3, cuerpo3));
+	this->agregarEslabon(new EslabonCreacion (factory1, cuerpo,1));
+	this->agregarEslabon(new EslabonCreacion (factory2, cuerpo2,1));
+	this->agregarEslabon(new EslabonCreacion (factory3, cuerpo3,1));
 
 }
 

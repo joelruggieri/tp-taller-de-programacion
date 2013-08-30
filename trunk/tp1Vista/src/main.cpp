@@ -15,8 +15,9 @@ int main() {
 	delete drop1;
 
 	drop1= manager.drag(30,30);
-	cout << "Crea un item: " << drop1->getModelo() << " En ("<< drop1->getPosX() <<","<< drop1->getPosY() << ")"<<endl;
-	delete drop1;
+	if(drop1 == NULL){
+		cout << "Supera la cantidad de items de una fabrica" << endl;
+	}
 
 	drop1 = manager.drag(200,200);
 	if(drop1 == NULL){

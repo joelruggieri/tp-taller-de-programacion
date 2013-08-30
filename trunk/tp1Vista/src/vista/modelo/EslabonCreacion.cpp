@@ -9,10 +9,11 @@
 #include <iostream>
 using namespace std;
 
-EslabonCreacion::EslabonCreacion(DropeableFactory * factory, Cuerpo cuerpo) {
+EslabonCreacion::EslabonCreacion(DropeableFactory * factory, Cuerpo cuerpo, int maxItems) {
 	this->factory = factory;
 	this->siguiente = NULL;
 	this->cuerpo = cuerpo;
+	this->itemsDisponibles  = maxItems;
 }
 
 EslabonCreacion::~EslabonCreacion() {
@@ -27,7 +28,12 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 
 Dropeable * EslabonCreacion::antender(float posX, float posY) {
 	if(this->cuerpo.isAdentro(posX, posY)){
-		return this->factory->crear(posX, posY);
+		if(this->itemsDisponibles >0){
+			this->itemsDisponibles--;
+			return this->factory->crear(posX, posY);
+		} else {
+			return NULL;
+		}
 	}
 	if(this->siguiente != NULL){
 		return this->siguiente->antender(posX, posY);
