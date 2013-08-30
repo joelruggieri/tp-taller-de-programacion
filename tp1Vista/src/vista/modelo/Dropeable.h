@@ -17,6 +17,7 @@ private:
 	string modelo;
 public:
 	Dropeable(string modelo);
+	Dropeable(string modelo, float, float);
 	virtual ~Dropeable();
 
 	float getPosX() const;

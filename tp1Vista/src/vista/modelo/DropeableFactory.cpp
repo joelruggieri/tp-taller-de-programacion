@@ -15,6 +15,6 @@ DropeableFactory::DropeableFactory(string etiqueta) {
 	 this->etiqueta = etiqueta;
 }
 
-Dropeable* DropeableFactory::crear() {
-	return new Dropeable(this->etiqueta);
+Dropeable* DropeableFactory::crear(float x, float y) {
+	return new Dropeable(this->etiqueta, x, y);
 }

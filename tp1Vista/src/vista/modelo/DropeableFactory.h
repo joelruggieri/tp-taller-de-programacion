@@ -15,7 +15,7 @@ private:
 public:
 	DropeableFactory(string etiqueta);
 	virtual ~DropeableFactory();
-	Dropeable * crear();
+	Dropeable * crear(float, float);
 };
 
 #endif /* DROPEABLEFACTORY_H_ */

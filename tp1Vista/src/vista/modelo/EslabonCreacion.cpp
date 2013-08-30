@@ -27,7 +27,7 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 
 Dropeable * EslabonCreacion::antender(float posX, float posY) {
 	if(this->cuerpo.isAdentro(posX, posY)){
-		return this->factory->crear();
+		return this->factory->crear(posX, posY);
 	}
 	if(this->siguiente != NULL){
 		return this->siguiente->antender(posX, posY);
