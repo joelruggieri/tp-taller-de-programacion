@@ -9,6 +9,14 @@
 
 Dropeable::Dropeable(string modelo) {
 	this->modelo = modelo;
+	this->posX = 0;
+	this->posY=0;
+}
+
+Dropeable::Dropeable(string modelo, float x, float y) {
+	this->modelo = modelo;
+	this->posX = x;
+	this->posY = y;
 }
 
 Dropeable::~Dropeable() {
