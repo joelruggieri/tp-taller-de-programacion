@@ -18,8 +18,9 @@ private:
 	EslabonCreacion * siguiente;
 	DropeableFactory * factory;
 	Cuerpo cuerpo;
+	int itemsDisponibles;
 public:
-	EslabonCreacion(DropeableFactory * factory, Cuerpo cuerpo);
+	EslabonCreacion(DropeableFactory * factory, Cuerpo cuerpo, int maxCreacion);
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
 	Dropeable * antender(float posX, float posY);
