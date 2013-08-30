@@ -12,7 +12,6 @@
 class DropeableFactory {
 private:
 public:
-	DropeableFactory();
 	virtual ~DropeableFactory();
 	virtual Dropeable * crear()=0;
 };
