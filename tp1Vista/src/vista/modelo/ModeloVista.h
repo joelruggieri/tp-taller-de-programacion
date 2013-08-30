@@ -10,10 +10,8 @@
 #include "Cuerpo.h"
 #include "Dropeable.h"
 #include "DropeableFactory.h"
-#include "DropeableFactoryA.h"
-#include "DropeableFactoryB.h"
 #include "EslabonCreacion.h"
-
+#include "DropManager.h"
 
 
 
