@@ -9,6 +9,12 @@
 
 
 DropeableFactory::~DropeableFactory() {
-	// TODO Auto-generated destructor stub
 }
 
+DropeableFactory::DropeableFactory(string etiqueta) {
+	 this->etiqueta = etiqueta;
+}
+
+Dropeable* DropeableFactory::crear() {
+	return new Dropeable(this->etiqueta);
+}
