@@ -13,6 +13,7 @@ DropManager::DropManager() {
 }
 
 Dropeable* DropManager::drag(float x, float y) {
+	return NULL;
 }
 
 DropManager::~DropManager() {
