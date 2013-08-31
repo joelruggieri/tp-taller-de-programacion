@@ -10,6 +10,7 @@
 #include "tests/ZonaCreacionTests.h"
 #include "tests/DropeableFactoryTests.h"
 #include "tests/EslabonCreacionTests.h"
+#include "tests/ZonaTableroTests.h"
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

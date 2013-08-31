@@ -7,8 +7,8 @@
 
 #ifndef ZONAJUEGO_H_
 #define ZONAJUEGO_H_
-
 #include "ZonaDragAndDrop.h"
+#include "Dropeable.h"
 
 class ZonaJuego: public ZonaDragAndDrop {
 private:

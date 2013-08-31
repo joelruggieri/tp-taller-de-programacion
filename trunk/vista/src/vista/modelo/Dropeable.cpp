@@ -9,36 +9,24 @@
 
 Dropeable::Dropeable(string modelo) {
 	this->modelo = modelo;
-	this->posX = 0;
-	this->posY=0;
+	Cuerpo c(0,0,0,0);
+	this->cuerpo = c;
 }
 
-Dropeable::Dropeable(string modelo, float x, float y) {
+Dropeable::Dropeable(string modelo, Cuerpo cuerpo) {
 	this->modelo = modelo;
-	this->posX = x;
-	this->posY = y;
+	this->cuerpo = cuerpo;
 }
 
 Dropeable::~Dropeable() {
 	// TODO Auto-generated destructor stub
 }
 
-float Dropeable::getPosX() const {
-	return this->posX;
-}
 
-void Dropeable::setPosX(float posX) {
-	this->posX = posX;
-}
-
-float Dropeable::getPosY() const {
-	return this->posY;
-}
-
-void Dropeable::setPosY(float posY) {
-	this->posY = posY;
-}
-
-string Dropeable::getModelo() {
+const string Dropeable::getModelo() {
 	return this->modelo;
+}
+
+const Cuerpo Dropeable::getCuerpo(){
+	return this->cuerpo;
 }

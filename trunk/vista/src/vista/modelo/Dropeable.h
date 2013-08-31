@@ -8,23 +8,20 @@
 #ifndef DROPEABLE_H_
 #define DROPEABLE_H_
 #include <string>
+#include "Cuerpo.h"
 using namespace std;
 
 class Dropeable {
 private:
-	float posX;
-	float posY;
+	Cuerpo cuerpo;
 	string modelo;
+
 public:
 	Dropeable(string modelo);
-	Dropeable(string modelo, float, float);
+	Dropeable(string modelo, Cuerpo cuerpo);
 	virtual ~Dropeable();
-
-	float getPosX() const;
-	void setPosX(float posX);
-	float getPosY() const;
-	void setPosY(float posY);
-	string getModelo();
+	const string getModelo();
+	const Cuerpo getCuerpo();
 };
 
 #endif /* DROPEABLE_H_ */

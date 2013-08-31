@@ -9,11 +9,14 @@
 #define ZONATABLERO_H_
 
 #include "ZonaDragAndDrop.h"
+#include <list>
+#include "Dropeable.h"
 
 class ZonaTablero: public ZonaDragAndDrop {
 private:
-	   bool dropTemplate(Dropeable * dragueable);
-	   Dropeable * dragTemplate(float x, float y);
+	list<Dropeable*> dropeables;
+	bool dropTemplate(Dropeable * dragueable);
+	Dropeable * dragTemplate(float x, float y);
 public:
 	ZonaTablero(Cuerpo cuerpo);
 	virtual ~ZonaTablero();

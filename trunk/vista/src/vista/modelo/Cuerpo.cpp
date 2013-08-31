@@ -38,4 +38,10 @@ bool Cuerpo::isAdentro(float posX, float posY) {
 
 bool Cuerpo::isAdentro1D(float pos, float posCentro, float ancho) {
 	return (pos <= (posCentro + ancho/2)) && (pos >= posCentro - ancho/2);
+
+}
+
+bool Cuerpo::isAdentro(const Cuerpo& cuerpo){
+	// si el centro del cuerpo esta dentro de este, entonces esta dentro.
+	 return isAdentro(cuerpo.posX,cuerpo.posY);
 }
