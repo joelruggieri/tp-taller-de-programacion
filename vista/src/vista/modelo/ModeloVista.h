@@ -11,7 +11,6 @@
 #include "Dropeable.h"
 #include "DropeableFactory.h"
 #include "EslabonCreacion.h"
-#include "DropManager.h"
 
 
 

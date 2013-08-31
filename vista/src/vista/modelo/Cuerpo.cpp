@@ -7,14 +7,14 @@
 
 #include "Cuerpo.h"
 
-Cuerpo::Cuerpo(float posX,float posY,float alto,float ancho) {
+Cuerpo::Cuerpo(float posX,float posY,float ancho,float alto) {
 	this->posX = posX;
 	this->posY = posY;
 	this->alto = alto;
 	this->ancho = ancho;
 
 }
-Cuerpo::Cuerpo(Cuerpo& other){
+Cuerpo::Cuerpo(const Cuerpo& other){
 	this->posX = other.posX;
 	this->posY = other.posY;
 	this->alto = other.alto;

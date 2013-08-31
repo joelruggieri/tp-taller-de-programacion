@@ -14,8 +14,8 @@ private:
 	bool isAdentro1D(float pos, float posCentro, float ancho);
 public:
 	bool isAdentro(float posX,float posY );
-	Cuerpo(float posX,float posY,float alto,float ancho);
-	Cuerpo(Cuerpo& other);
+	Cuerpo(float posX,float posY,float ancho,float alto);
+	Cuerpo(const Cuerpo& other);
 	Cuerpo();
 	virtual ~Cuerpo();
 };

@@ -14,8 +14,10 @@ class ZonaJuego: public ZonaDragAndDrop {
 private:
 	ZonaDragAndDrop * zonaTablero;
 	ZonaDragAndDrop * zonaCreacion;
+	bool dropTemplate(Dropeable * dragueable);
+	Dropeable * dragTemplate(float x, float y);
 public:
-	ZonaJuego(Cuerpo cuerpo);
+	ZonaJuego();
 	virtual ~ZonaJuego();
 };
 
