@@ -14,7 +14,7 @@ class ZonaDragAndDrop {
 private:
 	Cuerpo cuerpo;
 protected:
-	   virtual void dropTemplate(Dropeable * dragueable) = 0;
+	   virtual bool dropTemplate(Dropeable * dragueable) = 0;
 	   virtual Dropeable * dragTemplate(float x, float y) = 0;
 public:
 	ZonaDragAndDrop(Cuerpo espacio);

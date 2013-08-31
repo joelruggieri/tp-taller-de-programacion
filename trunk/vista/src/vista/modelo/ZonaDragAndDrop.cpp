@@ -16,8 +16,7 @@ ZonaDragAndDrop::~ZonaDragAndDrop() {
 
 bool ZonaDragAndDrop::drop(Dropeable* dragueable) {
 	if (this->cuerpo.isAdentro(dragueable->getPosX(),dragueable->getPosY())){
-		this->dropTemplate(dragueable);
-		return true;
+		return this->dropTemplate(dragueable);
 	}
 	return false;
 }
