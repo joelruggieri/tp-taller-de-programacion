@@ -14,9 +14,14 @@ public:
 	Objeto(float x, float y);
 	virtual ~Objeto();
 
-	float getPosX();
+	float getPosX() const;
 
-	float getPosY();
+	float getPosY() const;
+
+	void setPosX(float posX);
+
+	void setPosY(float posY);
+	bool operator == (const Objeto &p) const;
 
 private:
 	float posX;
