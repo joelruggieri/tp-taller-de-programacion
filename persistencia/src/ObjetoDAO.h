@@ -9,12 +9,15 @@
 #define OBJETODAO_H_
 
 #include "Objeto.h"
+#include <list>
+#include <string>
 
 class ObjetoDAO {
 public:
 	ObjetoDAO();
 	virtual ~ObjetoDAO();
 	bool guardar(Objeto *objeto);
+	std::list<Objeto*> obtenerTodos();
 };
 
 #endif /* OBJETODAO_H_ */

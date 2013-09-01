@@ -21,10 +21,23 @@ Objeto::~Objeto() {
 	// TODO Auto-generated destructor stub
 }
 
-float Objeto::getPosX() {
+float Objeto::getPosX() const {
 	return posX;
 }
 
-float Objeto::getPosY() {
+float Objeto::getPosY() const {
 	return posY;
+}
+
+void Objeto::setPosX(float posX) {
+	this->posX = posX;
+}
+
+void Objeto::setPosY(float posY) {
+	this->posY = posY;
+}
+
+bool Objeto::operator == (const Objeto &p) const
+{
+    return this->posX == p.posX && this->posY == p.posY;
 }
