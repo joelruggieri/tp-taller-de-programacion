@@ -9,25 +9,26 @@
 #include <iostream>
 using namespace std;
 
-EslabonCreacion::EslabonCreacion(DropeableFactory * factory, Cuerpo cuerpo, int maxItems) {
+EslabonCreacion::EslabonCreacion(ViewFiguraFactory * factory, Figura * cuerpo, int maxItems){
 	this->factory = factory;
 	this->siguiente = NULL;
 	this->cuerpo = cuerpo;
 	this->itemsDisponibles  = maxItems;
 }
-
+//
 EslabonCreacion::~EslabonCreacion() {
 	if(this->siguiente != NULL)
 	delete this->siguiente;
 	delete factory;
+	delete this->cuerpo;
 }
-
+//
 void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 	this->siguiente = sig;
 }
-
-Dropeable * EslabonCreacion::antender(float posX, float posY) {
-	if(this->cuerpo.isAdentro(posX, posY)){
+//
+FiguraView * EslabonCreacion::antender(float posX, float posY) {
+	if(this->cuerpo->contacto(posX, posY)){
 		if(this->itemsDisponibles >0){
 			this->itemsDisponibles--;
 			return this->factory->crear(posX, posY);
@@ -41,4 +42,7 @@ Dropeable * EslabonCreacion::antender(float posX, float posY) {
 	return NULL;
 }
 
-
+//void EslabonCreacion::invalidar(Dropeable* drop) {
+//	this->itemsDisponibles++;
+//	delete drop;
+//}

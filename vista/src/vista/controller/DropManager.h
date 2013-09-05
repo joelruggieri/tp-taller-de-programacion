@@ -9,12 +9,34 @@
 
 #ifndef DROPMANAGER_H_
 #define DROPMANAGER_H_
-#include "../modelo/Dropeable.h"
+#include "src/figuraFactory/FiguraFactory.h"
+#include "../vista/figura/FiguraView.h"
+#include "zonaDragAndDrop/ZonaDragAndDrop.h"
+#include <list>
+
+using namespace std;
+
+class FiguraView;
+class CuadradoView;
+class CirculoView;
+class TrianguloView;
+
 class DropManager {
+private:
+	ZonaDragAndDrop * zona;
+	FiguraFactory * figurasFactory;
+	void dropear(FiguraView* view, Figura* figura);
+
 public:
 	DropManager();
-	Dropeable * drag(float x, float y);
-	virtual ~DropManager();
+	~DropManager();
+	void dropNuevaFigura(CuadradoView*);
+	void dropNuevaFigura(CirculoView*);
+	void dropNuevaFigura(TrianguloView*);
+	void dropFigura(FiguraView*);
+	FiguraView* drag(float, float);
 };
 
 #endif /* DROPMANAGER_H_ */
+
+
