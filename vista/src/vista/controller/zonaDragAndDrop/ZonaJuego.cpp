@@ -11,6 +11,8 @@
 #include <list>
 using namespace std;
 
+
+
 ZonaJuego::ZonaJuego() :
 //		ZonaDragAndDrop(Cuerpo(0, 0, 140, 100,0)) {
 		ZonaDragAndDrop(new Cuadrado()) { //TODO UN CUADRADO INMENSO PONDRIA ACA.
