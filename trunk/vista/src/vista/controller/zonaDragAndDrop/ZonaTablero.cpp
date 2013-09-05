@@ -7,12 +7,17 @@
 
 #include "ZonaTablero.h"
 
-//ZonaTablero::ZonaTablero(Cuerpo cuerpo):ZonaDragAndDrop(cuerpo) {
-//
-//}
-//
-bool ZonaTablero::dropTemplate(FiguraView* dragueable) {
-	this->figuras.push_back(dragueable);
+//TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
+ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y):ZonaDragAndDrop(new Cuadrado()) {
+	this->mapa = mapa;
+}
+
+bool ZonaTablero::dropTemplate(FiguraView* view) {
+	if(view->getModelo() == NULL){
+		return false;
+	}
+	this->figuras.push_back(view);
+	this->mapa->addFigura(view->getModelo());
 	return true;
 }
 

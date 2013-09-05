@@ -20,7 +20,7 @@ private:
 	Mapa * mapa;
 	list<FiguraView*> figuras;
 public:
-	ZonaTablero(Mapa *);
+	ZonaTablero(Mapa *, float, float);
 	virtual ~ZonaTablero();
 
 };
