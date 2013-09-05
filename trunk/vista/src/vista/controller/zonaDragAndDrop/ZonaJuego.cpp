@@ -16,7 +16,10 @@ using namespace std;
 ZonaJuego::ZonaJuego() :
 //		ZonaDragAndDrop(Cuerpo(0, 0, 140, 100,0)) {
 		ZonaDragAndDrop(new Cuadrado()) { //TODO UN CUADRADO INMENSO PONDRIA ACA.
-//	this->zonaTablero = new ZonaTablero(Cuerpo(10, 0, 100, 100, 0));
+
+
+
+	//	this->zonaTablero = new ZonaTablero(Cuerpo(10, 0, 100, 100, 0));
 //	this->zonaCreacion = new ZonaCreacion(Cuerpo(120, 0, 20, 100, 0));
 	this->zonaTablero = new ZonaTablero(new Mapa(),60,60);
 	list <ViewFiguraFactory*> *factories = new list<ViewFiguraFactory*>();
