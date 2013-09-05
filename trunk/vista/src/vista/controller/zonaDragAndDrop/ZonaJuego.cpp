@@ -24,6 +24,7 @@ ZonaJuego::ZonaJuego() :
 	this->zonaTablero = new ZonaTablero(new Mapa(),60,60);
 	list <ViewFiguraFactory*> *factories = new list<ViewFiguraFactory*>();
 	this->zonaCreacion = new ZonaCreacion(factories);
+	cout << "error" << endl ;
 	delete factories;
 }
 
