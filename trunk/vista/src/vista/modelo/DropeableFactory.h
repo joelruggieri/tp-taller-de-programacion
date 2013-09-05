@@ -9,6 +9,8 @@
 #define DROPEABLEFACTORY_H_
 #include "Dropeable.h"
 #include <string>
+using namespace std;
+
 class DropeableFactory {
 private:
 	string etiqueta;

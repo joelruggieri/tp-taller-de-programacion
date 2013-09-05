@@ -8,22 +8,23 @@
 #ifndef ESLABONCREACION_H_
 #define ESLABONCREACION_H_
 
-#include "Dropeable.h"
-#include "DropeableFactory.h"
-#include "Cuerpo.h"
+#include "../../vista/figura/FiguraView.h"
+#include "../viewFactory/ViewFiguraFactory.h"
+#include "src/figura/Figura.h"
 using namespace std;
 
 class EslabonCreacion {
 private:
 	EslabonCreacion * siguiente;
-	DropeableFactory * factory;
-	Cuerpo cuerpo;
+	ViewFiguraFactory * factory;
+	Figura * cuerpo;
 	int itemsDisponibles;
 public:
-	EslabonCreacion(DropeableFactory * factory, Cuerpo cuerpo, int maxCreacion);
+	EslabonCreacion(ViewFiguraFactory * factory, Figura *cuerpo, int maxCreacion);
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
-	Dropeable * antender(float posX, float posY);
+	FiguraView * antender(float posX, float posY);
+//	void invalidar(Dropeable*);
 };
 
 #endif /* ESLABONCREACION_H_ */

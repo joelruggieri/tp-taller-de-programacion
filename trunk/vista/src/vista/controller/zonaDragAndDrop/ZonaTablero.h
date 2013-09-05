@@ -10,15 +10,17 @@
 
 #include "ZonaDragAndDrop.h"
 #include <list>
-#include "Dropeable.h"
+#include "src/figura/Mapa.h"
+#include "../../vista/figura/FiguraView.h"
 
 class ZonaTablero: public ZonaDragAndDrop {
 private:
-	list<Dropeable*> dropeables;
-	bool dropTemplate(Dropeable * dragueable);
-	Dropeable * dragTemplate(float x, float y);
+	bool dropTemplate(FiguraView * dragueable);
+	FiguraView * dragTemplate(float x, float y);
+	Mapa * mapa;
+	list<FiguraView*> figuras;
 public:
-	ZonaTablero(Cuerpo cuerpo);
+	ZonaTablero(Mapa *);
 	virtual ~ZonaTablero();
 
 };

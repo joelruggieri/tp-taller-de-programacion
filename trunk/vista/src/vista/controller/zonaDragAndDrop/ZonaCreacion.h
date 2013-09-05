@@ -10,15 +10,19 @@
 
 #include "ZonaDragAndDrop.h"
 #include "EslabonCreacion.h"
+#include "src/figura/Cuadrado.h"
+#include "../viewFactory/ViewFiguraFactory.h"
+#include <list>
+using namespace std;
 
 class ZonaCreacion: public ZonaDragAndDrop {
 private:
 	EslabonCreacion * inicioCadena;
 	EslabonCreacion * ultimo;
-	bool dropTemplate(Dropeable * dragueable);
-	Dropeable * dragTemplate(float x, float y);
+	bool dropTemplate(FiguraView * dragueable);
+	FiguraView * dragTemplate(float x, float y);
 public:
-	ZonaCreacion(Cuerpo cuerpo);
+	ZonaCreacion(list<ViewFiguraFactory*> *);
 	virtual ~ZonaCreacion();
 	void agregarEslabon(EslabonCreacion* eslabon);
 };
