@@ -23,6 +23,9 @@ void FiguraView::drop(DropManager* manager) {
 FiguraView::FiguraView() {
 	this->modelo = NULL;
 }
+void FiguraView::dibujarse(){
+
+}
 
 /********************************************************
  * CUADRADOVIEW
@@ -72,3 +75,5 @@ CirculoView::CirculoView() {
 CirculoView::~CirculoView() {
 }
 
+FiguraView::~FiguraView() {
+}

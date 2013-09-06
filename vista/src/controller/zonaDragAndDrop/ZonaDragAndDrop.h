@@ -8,7 +8,10 @@
 #ifndef ZONADRAGANDDROP_H_
 #define ZONADRAGANDDROP_H_
 
+#include "src/figura/Figura.h"
 #include "src/figura/Cuadrado.h"
+//#include "../../modelo/figura/Figura.h"
+//#include "../../modelo/figura/Cuadrado.h"
 
 #include <list>
 using namespace std;
@@ -21,6 +24,7 @@ private:
 protected:
 	   virtual bool dropTemplate(FiguraView * figura) = 0;
 	   virtual FiguraView * dragTemplate(float x, float y) = 0;
+	   void setCuerpo(Cuadrado * cuerpo);
 public:
 	ZonaDragAndDrop(Cuadrado* cuadrado);
 	virtual ~ZonaDragAndDrop();

@@ -8,6 +8,7 @@
 #ifndef FIGURAVIEW_H_
 #define FIGURAVIEW_H_
 #include "src/figura/Figura.h"
+//#include "../../modelo/figura/Figura.h"
 #include <iostream>
 #include "../View.h"
 using namespace std;
@@ -24,6 +25,7 @@ public:
 	Figura * getModelo();
 	void setModelo(Figura* modelo);
 	void drop(DropManager* manager);
+	void dibujarse();
 };
 
 class CuadradoView: public FiguraView {

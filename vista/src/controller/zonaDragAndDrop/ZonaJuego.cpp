@@ -10,21 +10,27 @@
 #include "ZonaCreacion.h"
 #include <list>
 #include <iostream>
+#include "../viewFactory/ViewCirculoFactory.h"
+#include "../viewFactory/ViewCuadradoFactory.h"
+#include "../viewFactory/ViewTrianguloFactory.h"
 using namespace std;
 
 
 
-ZonaJuego::ZonaJuego() :
-//		ZonaDragAndDrop(Cuerpo(0, 0, 140, 100,0)) {
-		ZonaDragAndDrop(new Cuadrado()) { //TODO UN CUADRADO INMENSO PONDRIA ACA.
+ZonaJuego::ZonaJuego() : ZonaDragAndDrop(new Cuadrado(70,400,140,800)) {
+	// 5 margen izq
+	// 100 tablero
+	// 10 entre los dos paneles
+	// 20 la zona creacion
+	// 5 margen izquierdo
 
 
-
-	//	this->zonaTablero = new ZonaTablero(Cuerpo(10, 0, 100, 100, 0));
-//	this->zonaCreacion = new ZonaCreacion(Cuerpo(120, 0, 20, 100, 0));
-	this->zonaTablero = new ZonaTablero(new Mapa(),60,60);
+	this->zonaTablero = new ZonaTablero(new Mapa(),55,55);
 	list <ViewFiguraFactory*> *factories = new list<ViewFiguraFactory*>();
-	this->zonaCreacion = new ZonaCreacion(factories);
+	factories->push_back(new ViewCirculoFactory());
+	factories->push_back(new ViewCuadradoFactory());
+	factories->push_back(new ViewTrianguloFactory());
+	this->zonaCreacion = new ZonaCreacion(factories,135,5);
 	delete factories;
 }
 

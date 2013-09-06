@@ -9,7 +9,7 @@
 #define FIGURA_H_
 
 class Figura {
-private:
+protected:
 	float x;
 	float y;
 	float rotacion;
@@ -18,6 +18,8 @@ public:
 	virtual ~Figura();
 	virtual bool contacto(float, float)= 0;
 	virtual bool contieneCentro(Figura* figura) = 0;
+	float getX() const;
+	float getY() const;
 };
 
 #endif /* FIGURA_H_ */

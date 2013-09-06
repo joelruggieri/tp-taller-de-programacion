@@ -7,8 +7,7 @@
 
 #include "Mapa.h"
 
-Mapa::Mapa() {
-	// TODO Auto-generated constructor stub
+Mapa::Mapa():Cuadrado(50,50,100,100) {
 
 }
 
