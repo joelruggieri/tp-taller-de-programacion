@@ -7,9 +7,43 @@
 
 #include "ViewFiguraFactory.h"
 
-ViewFiguraFactory::ViewFiguraFactory() {
-	// TODO Auto-generated constructor stub
+ViewFiguraFactory::ViewFiguraFactory(float ancho, float alto) {
+	this->x = x;
+	this->y = y;
+	this->ancho = ancho;
+	this->alto = alto;
+}
 
+float ViewFiguraFactory::getAlto() const {
+	return alto;
+}
+
+void ViewFiguraFactory::setAlto(float alto) {
+	this->alto = alto;
+}
+
+float ViewFiguraFactory::getAncho() const {
+	return ancho;
+}
+
+void ViewFiguraFactory::setAncho(float ancho) {
+	this->ancho = ancho;
+}
+
+float ViewFiguraFactory::getX() const {
+	return x;
+}
+
+void ViewFiguraFactory::setX(float x) {
+	this->x = x;
+}
+
+float ViewFiguraFactory::getY() const {
+	return y;
+}
+
+void ViewFiguraFactory::setY(float y) {
+	this->y = y;
 }
 
 ViewFiguraFactory::~ViewFiguraFactory() {

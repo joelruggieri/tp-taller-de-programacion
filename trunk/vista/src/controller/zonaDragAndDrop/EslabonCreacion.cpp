@@ -29,12 +29,12 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 //
 FiguraView * EslabonCreacion::antender(float posX, float posY) {
 	if(this->cuerpo->contacto(posX, posY)){
-		if(this->itemsDisponibles >0){
+//		if(this->itemsDisponibles >0){
 			this->itemsDisponibles--;
 			return this->factory->crear(posX, posY);
-		} else {
-			return NULL;
-		}
+//		} else {
+//			return NULL;
+//		}
 	}
 	if(this->siguiente != NULL){
 		return this->siguiente->antender(posX, posY);

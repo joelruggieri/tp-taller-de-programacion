@@ -9,6 +9,7 @@
 
 #ifndef DROPMANAGER_H_
 #define DROPMANAGER_H_
+//#include "../modelo/figuraFactory/FiguraFactory.h"
 #include "src/figuraFactory/FiguraFactory.h"
 #include "../vista/figura/FiguraView.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"

@@ -10,6 +10,7 @@
 
 #include "../../vista/figura/FiguraView.h"
 #include "../viewFactory/ViewFiguraFactory.h"
+//#include "../../modelo/figura/Figura.h"
 #include "src/figura/Figura.h"
 using namespace std;
 

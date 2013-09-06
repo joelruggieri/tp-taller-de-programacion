@@ -11,11 +11,14 @@
 #include "Figura.h"
 
 class Cuadrado: public Figura {
+private:
+	float x,y,ancho,alto;
 public:
-	Cuadrado();
+	Cuadrado(float, float, float, float);
 	virtual ~Cuadrado();
 	bool contacto(float,float);
 	bool contieneCentro(Figura* cuadrado);
+	bool isAdentro1D(float pos, float posCentro, float ancho);
 };
 
 #endif /* CUADRADO_H_ */

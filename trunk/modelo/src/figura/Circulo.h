@@ -1,5 +1,5 @@
 /*
- * Criculo.h
+ * Circulo.h
  *
  *  Created on: 04/09/2013
  *      Author: jonathan
@@ -10,11 +10,14 @@
 
 #include "Figura.h"
 
-class Criculo: public Figura {
+class Circulo: public Figura {
+private:
+	float x,y,radio;
 public:
-	Criculo();
-	virtual ~Criculo();
+	Circulo(float, float, float);
+	virtual ~Circulo();
 	bool contacto(float,float);
+	bool contieneCentro(Figura* cuadrado);
 };
 
 #endif /* CRICULO_H_ */

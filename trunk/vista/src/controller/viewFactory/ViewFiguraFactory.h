@@ -10,10 +10,20 @@
 #include "../../vista/figura/FiguraView.h"
 
 class ViewFiguraFactory {
+private:
+	float x, y, ancho, alto;
 public:
-	ViewFiguraFactory();
+	ViewFiguraFactory(float ancho, float alto);
 	virtual ~ViewFiguraFactory();
-	virtual FiguraView * crear(float, float);
+	virtual FiguraView * crear(float, float)=0;
+	float getAlto() const;
+	void setAlto(float alto);
+	float getAncho() const;
+	void setAncho(float ancho);
+	float getX() const;
+	void setX(float x);
+	float getY() const;
+	void setY(float y);
 };
 
 #endif /* VIEWFIGURAFACTORY_H_ */

@@ -8,7 +8,7 @@
 #include "ZonaTablero.h"
 
 //TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
-ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y):ZonaDragAndDrop(new Cuadrado()) {
+ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y):ZonaDragAndDrop(new Cuadrado(x,y,100,100)) {
 	this->mapa = mapa;
 }
 
@@ -17,7 +17,7 @@ bool ZonaTablero::dropTemplate(FiguraView* view) {
 		return false;
 	}
 	this->figuras.push_back(view);
-	this->mapa->addFigura(view->getModelo());
+//	this->mapa->addFigura(view->getModelo());
 	return true;
 }
 
