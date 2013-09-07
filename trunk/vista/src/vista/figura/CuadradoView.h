@@ -12,7 +12,7 @@
 
 class CuadradoView: public FiguraView {
 private:
-	void dropTemplate(DragAndDropManager*);
+	void dropTemplate(DropManager*);
 public:
 	CuadradoView();
 	virtual ~CuadradoView();

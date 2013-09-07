@@ -18,5 +18,6 @@ ViewCuadradoFactory::~ViewCuadradoFactory() {
 }
 
 FiguraView* ViewCuadradoFactory::crear(float float1, float float2) {
-//	return new CuadradoView();
+
+	return new CuadradoView();
 }

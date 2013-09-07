@@ -12,7 +12,7 @@
 
 class CirculoView: public FiguraView {
 private:
-	void dropTemplate(DragAndDropManager*);
+	void dropTemplate(DropManager*);
 public:
 	CirculoView();
 	virtual ~CirculoView();

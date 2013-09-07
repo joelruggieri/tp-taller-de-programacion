@@ -14,12 +14,16 @@
 #include "../vista/figura/FiguraView.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
 #include "ClickController.h"
-#include "DragAndDropManager.h"
+#include "../vista/figura/FiguraView.h"
+#include "../vista/figura/RomboView.h"
+#include "../vista/figura/CuadradoView.h"
+#include "../vista/figura/CirculoView.h"
+#include "../vista/figura/TrianguloView.h"
 #include <list>
 
 using namespace std;
 
-class DropManager: public ClickController, public DragAndDropManager {
+class DropManager: public ClickController {
 private:
 	ZonaDragAndDrop * zona;
 	FiguraFactory * figurasFactory;

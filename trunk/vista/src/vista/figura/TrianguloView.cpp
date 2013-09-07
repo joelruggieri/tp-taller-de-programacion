@@ -6,9 +6,9 @@
  */
 
 #include "TrianguloView.h"
-#include "../../controller/DragAndDropManager.h"
+#include "../../controller/DropManager.h"
 
-void TrianguloView::dropTemplate(DragAndDropManager* manager) {
+void TrianguloView::dropTemplate(DropManager* manager) {
 	manager->dropNuevaFigura(this);
 }
 
