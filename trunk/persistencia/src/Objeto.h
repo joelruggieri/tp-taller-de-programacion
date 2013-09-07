@@ -8,6 +8,7 @@
 #ifndef OBJETO_H_
 #define OBJETO_H_
 
+
 class Objeto {
 public:
 	Objeto();

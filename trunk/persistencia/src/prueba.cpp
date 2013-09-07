@@ -11,7 +11,7 @@
 #include <iostream>
 
 int main(int argc, char **argv){
-	Objeto *objeto1 = new Objeto(3.5, 6.5);
+	/*Objeto *objeto1 = new Objeto(3.5, 6.5);
 	Objeto *objeto2 = new Objeto(2.5, 2.5);
 	Objeto *objeto3 = new Objeto(1.1, 2.5);
 	ObjetoDAO *dao = new ObjetoDAO();
@@ -34,7 +34,7 @@ int main(int argc, char **argv){
 	for (iter = objetos.begin(); iter != objetos.end(); ++iter){
 		Objeto *objeto = *iter;
 		delete objeto;
-	}
+	}*/
 
 	return 0;
 }
