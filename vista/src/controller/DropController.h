@@ -23,23 +23,15 @@
 
 using namespace std;
 
-class DropController: public MouseEventController {
-private:
-	ZonaDragAndDrop * zona;
-	FiguraFactory * figurasFactory;
-	void dropear(FiguraView* view, Figura* figura);
-	FiguraView * figuraDrag;
+class DropController{
+
 public:
-	DropController();
-	~DropController();
-	void dropNuevaFigura(CuadradoView*);
-	void dropNuevaFigura(CirculoView*);
-	void dropNuevaFigura(TrianguloView*);
-	void dropNuevaFigura(RomboView*);
-	void dropFigura(FiguraView*);
-	bool clickDown(float,float);
-	bool clickUp(float, float);
-	bool mouseMotion(float, float);
+	virtual ~DropController();
+	virtual void dropNuevaFigura(CuadradoView*) = 0;
+	virtual void dropNuevaFigura(CirculoView*) = 0;
+	virtual void dropNuevaFigura(TrianguloView*) = 0;
+	virtual void dropNuevaFigura(RomboView*)= 0;
+	virtual void dropFigura(FiguraView*) = 0;
 };
 
 #endif /* DropController_H_ */
