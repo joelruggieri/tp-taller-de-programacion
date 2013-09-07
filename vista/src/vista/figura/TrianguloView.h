@@ -12,7 +12,7 @@
 
 class TrianguloView: public FiguraView {
 private:
-	void dropTemplate(DragAndDropManager*);
+	void dropTemplate(DropManager*);
 public:
 	TrianguloView();
 	virtual ~TrianguloView();
