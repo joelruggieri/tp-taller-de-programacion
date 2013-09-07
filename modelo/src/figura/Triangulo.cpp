@@ -12,6 +12,12 @@ Triangulo::Triangulo() {
 
 }
 
+Triangulo::Triangulo(float x, float y){
+	this->x = x;
+	this->y= y;
+	this->rotacion = 0;
+}
+
 Triangulo::~Triangulo() {
 	// TODO Auto-generated destructor stub
 }
