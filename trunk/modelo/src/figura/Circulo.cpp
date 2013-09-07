@@ -7,6 +7,10 @@
 
 #include "Circulo.h"
 
+Circulo::Circulo(){
+	// TODO Auto-generated constructor stub
+}
+
 Circulo::Circulo(float x, float y, float radio) {
 	this->x = x;
 	this->y = y;

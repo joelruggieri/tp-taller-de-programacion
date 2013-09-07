@@ -7,6 +7,10 @@
 
 #include "Cuadrado.h"
 
+Cuadrado::Cuadrado(){
+
+}
+
 Cuadrado::Cuadrado(float x, float y, float ancho, float alto) {
 	this->x = x;
 	this->y = y;
