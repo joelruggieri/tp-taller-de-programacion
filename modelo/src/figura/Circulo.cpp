@@ -14,6 +14,14 @@ Circulo::Circulo(float x, float y, float radio) {
 
 }
 
+float Circulo::getRadio() const {
+	return radio;
+}
+
+void Circulo::setRadio(float radio){
+	this->radio = radio;
+}
+
 Circulo::~Circulo() {
 	// TODO Auto-generated destructor stub
 }
