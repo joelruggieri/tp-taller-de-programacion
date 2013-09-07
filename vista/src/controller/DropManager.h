@@ -13,7 +13,7 @@
 #include "src/figuraFactory/FiguraFactory.h"
 #include "../vista/figura/FiguraView.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
-#include "ClickController.h"
+#include "MouseEventController.h"
 #include "../vista/figura/FiguraView.h"
 #include "../vista/figura/RomboView.h"
 #include "../vista/figura/CuadradoView.h"
@@ -23,12 +23,12 @@
 
 using namespace std;
 
-class DropManager: public ClickController {
+class DropManager: public MouseEventController {
 private:
 	ZonaDragAndDrop * zona;
 	FiguraFactory * figurasFactory;
 	void dropear(FiguraView* view, Figura* figura);
-
+	FiguraView * figuraDrag;
 public:
 	DropManager();
 	~DropManager();
@@ -37,7 +37,10 @@ public:
 	void dropNuevaFigura(TrianguloView*);
 	void dropNuevaFigura(RomboView*);
 	void dropFigura(FiguraView*);
-	FiguraView* drag(float, float);
+//	FiguraView* drag(float, float);
+	bool clickDown(float,float);
+	bool clickUp(float, float);
+	bool mouseMotion(float, float);
 };
 
 #endif /* DROPMANAGER_H_ */

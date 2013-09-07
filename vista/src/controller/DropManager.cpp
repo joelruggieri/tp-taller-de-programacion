@@ -12,6 +12,7 @@
 DropManager::DropManager() {
 	this->zona = new ZonaJuego();
 	this->figurasFactory = new FiguraFactory();
+	this->figuraDrag = NULL;
 }
 
 DropManager::~DropManager() {
@@ -45,6 +46,27 @@ void DropManager::dropFigura(FiguraView* view) {
 	}
 }
 
-FiguraView* DropManager::drag(float x, float y) {
-	return this->zona->drag(x,y);
+//FiguraView* DropManager::drag(float x, float y) {
+//	return ;
+//}
+
+bool DropManager::clickDown(float x, float y) {
+	this->figuraDrag == NULL ? this->zona->drag(x,y) : NULL;
+	return true;
+}
+
+bool DropManager::clickUp(float x, float y) {
+	if(this->figuraDrag != NULL){
+		this->figuraDrag->drop(this);
+		this->figuraDrag = NULL;
+	}
+	return true;
+}
+
+bool DropManager::mouseMotion(float corrimientoX, float corrimientoY) {
+	if(this->figuraDrag != NULL){
+		//TODO MANEJAR EL DRAG;
+	}
+	// consume el evento
+	return false;
 }
