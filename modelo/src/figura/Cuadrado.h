@@ -12,7 +12,7 @@
 
 class Cuadrado: public Figura {
 private:
-	float x,y,ancho,alto;
+	float ancho,alto;
 public:
 	Cuadrado(float, float, float, float);
 	virtual ~Cuadrado();
