@@ -12,6 +12,7 @@
 
 class Triangulo: public Figura {
 public:
+	Triangulo(float,float);
 	Triangulo();
 	virtual ~Triangulo();
 	bool contacto(float,float);
