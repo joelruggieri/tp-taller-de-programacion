@@ -12,7 +12,7 @@
 
 class RomboView: public FiguraView {
 private:
-	void dropTemplate(DropManager*);
+	void dropTemplate(DropController*);
 public:
 	RomboView();
 	virtual ~RomboView();

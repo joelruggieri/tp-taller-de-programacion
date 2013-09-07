@@ -1,5 +1,5 @@
 /*
- * DropManager.h
+ * DropController.h
  *
  *  Created on: 30/08/2013
  *      Author: jonathan
@@ -7,8 +7,8 @@
  *      TODO ESTE TIPO DEBERÍA HACER LOS PIXELS DE LA PANTALLA NO DEBERÍAN LLEGAR A LAS ZONAS.
  */
 
-#ifndef DROPMANAGER_H_
-#define DROPMANAGER_H_
+#ifndef DropController_H_
+#define DropController_H_
 //#include "../modelo/figuraFactory/FiguraFactory.h"
 #include "src/figuraFactory/FiguraFactory.h"
 #include "../vista/figura/FiguraView.h"
@@ -23,26 +23,25 @@
 
 using namespace std;
 
-class DropManager: public MouseEventController {
+class DropController: public MouseEventController {
 private:
 	ZonaDragAndDrop * zona;
 	FiguraFactory * figurasFactory;
 	void dropear(FiguraView* view, Figura* figura);
 	FiguraView * figuraDrag;
 public:
-	DropManager();
-	~DropManager();
+	DropController();
+	~DropController();
 	void dropNuevaFigura(CuadradoView*);
 	void dropNuevaFigura(CirculoView*);
 	void dropNuevaFigura(TrianguloView*);
 	void dropNuevaFigura(RomboView*);
 	void dropFigura(FiguraView*);
-//	FiguraView* drag(float, float);
 	bool clickDown(float,float);
 	bool clickUp(float, float);
 	bool mouseMotion(float, float);
 };
 
-#endif /* DROPMANAGER_H_ */
+#endif /* DropController_H_ */
 
 

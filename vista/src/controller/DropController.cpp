@@ -1,24 +1,24 @@
 /*
- * DropManager.cpp
+ * DropController.cpp
  *
  *  Created on: 30/08/2013
  *      Author: jonathan
  */
 
-#include "DropManager.h"
+#include "DropController.h"
 #include "zonaDragAndDrop/ZonaJuego.h"
 #include "../vista/figura/FiguraView.h"
 
-DropManager::DropManager() {
+DropController::DropController() {
 	this->zona = new ZonaJuego();
 	this->figurasFactory = new FiguraFactory();
 	this->figuraDrag = NULL;
 }
 
-DropManager::~DropManager() {
+DropController::~DropController() {
 }
 
-void DropManager::dropear(FiguraView* view, Figura* figura) {
+void DropController::dropear(FiguraView* view, Figura* figura) {
 	view->setModelo(figura);
 	if (!zona->drop(view)) {
 		delete figura;
@@ -26,19 +26,19 @@ void DropManager::dropear(FiguraView* view, Figura* figura) {
 	}
 }
 
-void DropManager::dropNuevaFigura(CirculoView* view) {
+void DropController::dropNuevaFigura(CirculoView* view) {
 	dropear(view, this->figurasFactory->crearCirculo());
 }
 
-void DropManager::dropNuevaFigura(TrianguloView* view) {
+void DropController::dropNuevaFigura(TrianguloView* view) {
 	dropear(view, this->figurasFactory->crearTriangulo());
 }
 
-void DropManager::dropNuevaFigura(CuadradoView* view) {
+void DropController::dropNuevaFigura(CuadradoView* view) {
 	dropear(view, this->figurasFactory->crearCuadrado());
 }
 
-void DropManager::dropFigura(FiguraView* view) {
+void DropController::dropFigura(FiguraView* view) {
 	if(!this->zona->drop(view)){
 		delete view->getModelo();
 		delete view;
@@ -46,16 +46,12 @@ void DropManager::dropFigura(FiguraView* view) {
 	}
 }
 
-//FiguraView* DropManager::drag(float x, float y) {
-//	return ;
-//}
-
-bool DropManager::clickDown(float x, float y) {
+bool DropController::clickDown(float x, float y) {
 	this->figuraDrag == NULL ? this->zona->drag(x,y) : NULL;
 	return true;
 }
 
-bool DropManager::clickUp(float x, float y) {
+bool DropController::clickUp(float x, float y) {
 	if(this->figuraDrag != NULL){
 		this->figuraDrag->drop(this);
 		this->figuraDrag = NULL;
@@ -63,7 +59,7 @@ bool DropManager::clickUp(float x, float y) {
 	return true;
 }
 
-bool DropManager::mouseMotion(float corrimientoX, float corrimientoY) {
+bool DropController::mouseMotion(float corrimientoX, float corrimientoY) {
 	if(this->figuraDrag != NULL){
 		//TODO MANEJAR EL DRAG;
 	}

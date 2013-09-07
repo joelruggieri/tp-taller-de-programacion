@@ -1,7 +1,7 @@
 #include "FiguraView.h"
 
 #include <iostream>
-#include "../../controller/DropManager.h"
+#include "../../controller/DropController.h"
 /********************************************************
  * FIGURAVIEW
  ********************************************************/
@@ -13,7 +13,7 @@ void FiguraView::setModelo(Figura* modelo) {
 	this->modelo = modelo;
 }
 
-void FiguraView::drop(DropManager* manager) {
+void FiguraView::drop(DropController* manager) {
 	if (this->getModelo() != NULL) {
 		manager->dropFigura(this);
 	} else {
