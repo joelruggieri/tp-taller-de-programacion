@@ -24,6 +24,7 @@ public:
 #endif /* ZONAJUEGOTESTS_H_ */
 
 
+
 TEST_F(ZonaJuegoTests, drag) {
 
 	//clickea en una zona vacia
