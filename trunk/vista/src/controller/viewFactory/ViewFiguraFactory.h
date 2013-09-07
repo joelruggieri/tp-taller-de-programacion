@@ -11,7 +11,7 @@
 
 class ViewFiguraFactory {
 private:
-	float x, y, ancho, alto;
+	float ancho, alto;
 public:
 	ViewFiguraFactory(float ancho, float alto);
 	virtual ~ViewFiguraFactory();
@@ -20,10 +20,6 @@ public:
 	void setAlto(float alto);
 	float getAncho() const;
 	void setAncho(float ancho);
-	float getX() const;
-	void setX(float x);
-	float getY() const;
-	void setY(float y);
 };
 
 #endif /* VIEWFIGURAFACTORY_H_ */
