@@ -13,18 +13,18 @@
 #include "../View.h"
 using namespace std;
 
-class DropManager;
+class DropController;
 class FiguraView: public View {
 private:
 	Figura * modelo;
 protected:
-	virtual void dropTemplate(DropManager*) = 0;
+	virtual void dropTemplate(DropController*) = 0;
 public:
 	FiguraView();
 	virtual ~FiguraView();
 	Figura * getModelo();
 	void setModelo(Figura* modelo);
-	void drop(DropManager* manager);
+	void drop(DropController* manager);
 	void dibujarse();
 };
 

@@ -6,9 +6,9 @@
  */
 
 #include "CirculoView.h"
-#include "../../controller/DropManager.h"
+#include "../../controller/DropController.h"
 
-void CirculoView::dropTemplate(DropManager* manager) {
+void CirculoView::dropTemplate(DropController* manager) {
 	manager->dropNuevaFigura(this);
 }
 

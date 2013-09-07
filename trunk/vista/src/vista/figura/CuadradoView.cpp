@@ -6,9 +6,9 @@
  */
 
 #include "CuadradoView.h"
-#include "../../controller/DropManager.h"
+#include "../../controller/DropController.h"
 
-void CuadradoView::dropTemplate(DropManager* manager) {
+void CuadradoView::dropTemplate(DropController* manager) {
 	manager->dropNuevaFigura(this);
 }
 

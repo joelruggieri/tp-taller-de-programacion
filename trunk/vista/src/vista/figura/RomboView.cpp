@@ -6,7 +6,7 @@
  */
 
 #include "RomboView.h"
-#include "../../controller/DropManager.h"
+#include "../../controller/DropController.h"
 
 RomboView::RomboView() {
 	// TODO Auto-generated constructor stub
@@ -17,6 +17,6 @@ RomboView::~RomboView() {
 	// TODO Auto-generated destructor stub
 }
 
-void RomboView::dropTemplate(DropManager* manager) {
+void RomboView::dropTemplate(DropController* manager) {
 	manager->dropNuevaFigura(this);
 }
