@@ -12,7 +12,7 @@
 
 class Circulo: public Figura {
 private:
-	float x,y,radio;
+	float radio;
 public:
 	Circulo(float, float, float);
 	virtual ~Circulo();
