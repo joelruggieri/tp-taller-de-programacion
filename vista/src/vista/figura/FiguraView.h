@@ -13,43 +13,19 @@
 #include "../View.h"
 using namespace std;
 
-class DropManager;
+class DragAndDropManager;
 class FiguraView: public View {
 private:
 	Figura * modelo;
 protected:
-	virtual void dropTemplate(DropManager*) = 0;
+	virtual void dropTemplate(DragAndDropManager*) = 0;
 public:
 	FiguraView();
 	virtual ~FiguraView();
 	Figura * getModelo();
 	void setModelo(Figura* modelo);
-	void drop(DropManager* manager);
+	void drop(DragAndDropManager* manager);
 	void dibujarse();
 };
 
-class CuadradoView: public FiguraView {
-private:
-	void dropTemplate(DropManager*);
-public:
-	CuadradoView();
-	virtual ~CuadradoView();
-
-};
-
-class TrianguloView: public FiguraView {
-private:
-	void dropTemplate(DropManager*);
-public:
-	TrianguloView();
-	virtual ~TrianguloView();
-};
-
-class CirculoView: public FiguraView {
-private:
-	void dropTemplate(DropManager*);
-public:
-	CirculoView();
-	virtual ~CirculoView();
-};
 #endif /* FIGURAVIEW_H_ */

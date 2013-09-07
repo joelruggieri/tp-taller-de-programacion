@@ -6,6 +6,7 @@
  */
 
 #include "ViewCirculoFactory.h"
+#include "../../vista/figura/CirculoView.h"
 
 ViewCirculoFactory::ViewCirculoFactory(): ViewFiguraFactory(10,10) {
 
