@@ -14,6 +14,22 @@ float Figura::getY() const {
 	return y;
 }
 
+float Figura::getRotacion() const {
+	return rotacion;
+}
+
+void Figura::setX(float x){
+	this->x = x;
+}
+
+void Figura::setY(float y){
+	this->y = y;
+}
+
+void Figura::setRotacion(float rotation){
+	this->rotacion = rotation;
+}
+
 Figura::Figura() {
 	x= 0;
 	y=0;

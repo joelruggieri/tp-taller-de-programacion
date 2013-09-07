@@ -18,6 +18,8 @@ public:
 	virtual ~Circulo();
 	bool contacto(float,float);
 	bool contieneCentro(Figura* cuadrado);
+	float getRadio() const;
+	void setRadio(float radio);
 };
 
 #endif /* CRICULO_H_ */

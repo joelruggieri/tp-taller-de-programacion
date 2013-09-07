@@ -20,6 +20,10 @@ public:
 	virtual bool contieneCentro(Figura* figura) = 0;
 	float getX() const;
 	float getY() const;
+	float getRotacion() const;
+	void setX(float x);
+	void setY(float y);
+	void setRotacion(float rotation);
 };
 
 #endif /* FIGURA_H_ */

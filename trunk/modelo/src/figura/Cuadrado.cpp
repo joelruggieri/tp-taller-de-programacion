@@ -14,6 +14,25 @@ Cuadrado::Cuadrado(float x, float y, float ancho, float alto) {
 	this->alto = alto;
 }
 
+void Cuadrado::setAlto(float alto){
+	this->alto = alto;
+
+}
+
+void Cuadrado::setAncho(float ancho){
+	this->ancho = ancho;
+
+}
+
+float Cuadrado::getAlto() const{
+	return alto;
+
+}
+
+float Cuadrado::getAncho() const{
+	return ancho;
+
+}
 Cuadrado::~Cuadrado() {
 	// TODO Auto-generated destructor stub
 }
