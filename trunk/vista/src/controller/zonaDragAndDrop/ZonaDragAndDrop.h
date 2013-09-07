@@ -10,13 +10,10 @@
 
 #include "src/figura/Figura.h"
 #include "src/figura/Cuadrado.h"
-//#include "../../modelo/figura/Figura.h"
-//#include "../../modelo/figura/Cuadrado.h"
-
+#include "../../vista/figura/FiguraView.h"
 #include <list>
 using namespace std;
 
-class FiguraView;
 class ZonaDragAndDrop {
 private:
 	Cuadrado *cuerpo;

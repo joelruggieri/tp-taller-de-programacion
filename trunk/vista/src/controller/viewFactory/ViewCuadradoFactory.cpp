@@ -6,7 +6,8 @@
  */
 
 #include "ViewCuadradoFactory.h"
-#include "../../vista/figura/FiguraView.h"
+#include "../../vista/figura/CuadradoView.h"
+
 ViewCuadradoFactory::ViewCuadradoFactory(): ViewFiguraFactory(10,10) {
 	// TODO Auto-generated constructor stub
 
@@ -17,5 +18,5 @@ ViewCuadradoFactory::~ViewCuadradoFactory() {
 }
 
 FiguraView* ViewCuadradoFactory::crear(float float1, float float2) {
-	return new CuadradoView();
+//	return new CuadradoView();
 }

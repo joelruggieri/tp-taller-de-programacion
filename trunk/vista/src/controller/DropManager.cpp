@@ -39,7 +39,9 @@ void DropManager::dropNuevaFigura(CuadradoView* view) {
 
 void DropManager::dropFigura(FiguraView* view) {
 	if(!this->zona->drop(view)){
+		delete view->getModelo();
 		delete view;
+		//TODO FALTA REMOVER EL MODELO
 	}
 }
 

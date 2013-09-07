@@ -6,7 +6,7 @@
  */
 
 #include "ViewTrianguloFactory.h"
-
+#include "../../vista/figura/TrianguloView.h"
 ViewTrianguloFactory::ViewTrianguloFactory(): ViewFiguraFactory(10,10) {
 	// TODO Auto-generated constructor stub
 
