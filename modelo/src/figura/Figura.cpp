@@ -33,6 +33,7 @@ void Figura::setRotacion(float rotation){
 Figura::Figura() {
 	x= 0;
 	y=0;
+	rotacion = 0;
 }
 
 Figura::~Figura() {

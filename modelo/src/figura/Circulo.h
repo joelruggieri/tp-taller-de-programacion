@@ -14,6 +14,7 @@ class Circulo: public Figura {
 private:
 	float radio;
 public:
+	Circulo();
 	Circulo(float, float, float);
 	virtual ~Circulo();
 	bool contacto(float,float);
