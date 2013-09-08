@@ -17,7 +17,6 @@
 #include "src/ObjetoDAO.h"
 #include <list>
 
-#include "src/Logger.h"
 
 class figuras_test: public testing::Test {
 protected:
@@ -31,7 +30,7 @@ public:
 
 #endif /* FIGURAS_TEST_H_ */
 
-TEST_F(figuras_test, test_cuadrados) {
+TEST_F(figuras_test, test_triangulos) {
 	Triangulo *triangulo = new Triangulo(3.5, 6.5);
 	dao->guardar(triangulo);
 
@@ -42,6 +41,19 @@ TEST_F(figuras_test, test_cuadrados) {
 	EXPECT_EQ(triangulo2->getY(), triangulo->getY());
 	EXPECT_EQ(triangulo2->getRotacion(), triangulo->getRotacion());
 
-//	Logger *l = new Logger("test");
-//	l->error("Prueba del logger");
+
+}
+
+TEST_F(figuras_test, test_cuadrados) {
+	Cuadrado *cuadrado = new Cuadrado(1,1,2,2);
+	dao->guardar(cuadrado);
+
+	std::list<Figura*> Figuras = dao->obtenerTodos();
+	std::list<Figura*>::iterator iter = Figuras.begin();
+	Cuadrado *cuadrado2 = (Cuadrado*) *iter;
+	EXPECT_EQ(cuadrado2->getAlto(), cuadrado->getAlto());
+	EXPECT_EQ(cuadrado2->getAncho(), cuadrado->getAncho());
+	EXPECT_EQ(cuadrado2->getRotacion(), cuadrado->getRotacion());
+
+
 }
