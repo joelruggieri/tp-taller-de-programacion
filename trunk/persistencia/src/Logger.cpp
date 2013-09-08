@@ -30,17 +30,17 @@ Logger::~Logger() {
 
 void Logger::error(std::string mensaje) {
 	if (nivel >= 1)
-		archivo << fecha() << "[ERROR] " << ": " << mensaje;
+		archivo << fecha() << " [ERROR] " << ": " << mensaje;
 }
 
 void Logger::warning(std::string mensaje) {
 	if (nivel >= 2)
-		archivo << fecha() << "[WARN] " << ": " << mensaje;
+		archivo << fecha() << " [WARN] " << ": " << mensaje;
 }
 
 void Logger::debug(std::string mensaje) {
 	if (nivel >= 3)
-		archivo << fecha() << "[DEBUG] " << ": " << mensaje;
+		archivo << fecha() << " [DEBUG] " << ": " << mensaje;
 }
 
 void Logger::setNivel(int nivel) {
