@@ -14,7 +14,6 @@ class Cuadrado: public Figura {
 private:
 	float ancho,alto;
 public:
-	Cuadrado();
 	Cuadrado(float, float, float, float);
 	virtual ~Cuadrado();
 	bool contacto(float,float);

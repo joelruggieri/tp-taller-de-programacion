@@ -1,61 +1,63 @@
-///*
-// * ZonaCreacionTests.h
-// *
-// *  Created on: 31/08/2013
-// *      Author: jonathan
-// */
-//
-//#ifndef ZONACREACIONTESTS_H_
-//#define ZONACREACIONTESTS_H_
-//#include "gtest/gtest.h"
-//#include "src/vista/modelo/ZonaCreacion.h"
-//class ZonaCreacionTests : public testing::Test {
-//public:
-//	  virtual void SetUp()
-//	  {
-//	  }
-//
-//};
-//
-//#endif /* ZONACREACIONTESTS_H_ */
-//TEST_F(ZonaCreacionTests, clickYCreacion) {
-//	ZonaCreacion zona(Cuerpo(150,150,300,300));
-//	Dropeable * drop1= zona.drag(30,30);
-//	EXPECT_EQ("A", drop1->getModelo());
-//	delete drop1;
-//	drop1= zona.drag(95,30);
-//	EXPECT_EQ("B", drop1->getModelo());
-//	delete drop1;
-//
-//	drop1= zona.drag(160,55);
-//	EXPECT_EQ("JONY", drop1->getModelo());
-//	delete drop1;
-//
-//	drop1= zona.drag(30,30);
-//	EXPECT_EQ(NULL, drop1);
-//
-//	drop1 = zona.drag(200,200);
-//	EXPECT_EQ(NULL, drop1);
-//}
-//
-//
-//TEST_F(ZonaCreacionTests, crearConScroll) {
-//	ZonaCreacion zona(Cuerpo(150,150,300,300,0));
-//	zona.setScrollY(25);
-//	Dropeable * drop1= zona.drag(30,5);
-//	EXPECT_EQ("A", drop1->getModelo());
-//	delete drop1;
-//	drop1= zona.drag(95,5);
-//	EXPECT_EQ("B", drop1->getModelo());
-//	delete drop1;
-//
-//	drop1= zona.drag(160,30);
-//	EXPECT_EQ("JONY", drop1->getModelo());
-//	delete drop1;
-//
-//	drop1= zona.drag(30,5);
-//	EXPECT_EQ(NULL, drop1);
-//
-//	drop1 = zona.drag(200,175);
-//	EXPECT_EQ(NULL, drop1);
-//}
+/*
+ * ZonaCreacionTests.h
+ *
+ *  Created on: 31/08/2013
+ *      Author: jonathan
+ */
+
+#ifndef ZONACREACIONTESTS_H_
+#define ZONACREACIONTESTS_H_
+#include "gtest/gtest.h"
+#include "src/controller/zonaDragAndDrop/ZonaCreacion.h"
+#include "src/controller/viewFactory/ViewCuadradoFactory.h"
+#include "src/controller/viewFactory/ViewCirculoFactory.h"
+#include "src/controller/viewFactory/ViewTrianguloFactory.h"
+#include <list>
+using namespace std;
+
+class ZonaCreacionTests : public testing::Test {
+protected:
+	list<ViewFiguraFactory*> factories;
+public:
+	  virtual void SetUp()
+	  {
+		  factories.push_back(new ViewCuadradoFactory());
+		  factories.push_back(new ViewCuadradoFactory);
+		  factories.push_back(new ViewTrianguloFactory());
+
+	  }
+	  virtual void TearDown(){
+
+	  }
+};
+
+#endif /* ZONACREACIONTESTS_H_ */
+TEST_F(ZonaCreacionTests, clickYCreacion) {
+
+	ZonaCreacion zona(&(this->factories), 5.0, 0);
+	FiguraView* vista = zona.drag(6.0, 10);
+	// las posiciona automaticamente cada 2 del borde.
+
+	EXPECT_FALSE(vista == NULL);
+	delete vista;
+}
+
+TEST_F(ZonaCreacionTests, clickEnLugarFalso) {
+
+	ZonaCreacion zona(&(this->factories), 5.0, 0);
+	FiguraView* vista = zona.drag(6.0, 0);
+	// las posiciona automaticamente cada 2 del borde.
+
+	EXPECT_TRUE(vista == NULL);
+	delete vista;
+}
+
+TEST_F(ZonaCreacionTests, clickSegunda) {
+
+	ZonaCreacion zona(&(this->factories), 5.0, 0);
+	FiguraView* vista = zona.drag(6.0, 13);
+	// las posiciona automaticamente cada 2 del borde.
+
+	EXPECT_FALSE(vista == NULL);
+	delete vista;
+}

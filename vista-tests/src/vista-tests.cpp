@@ -8,6 +8,7 @@
 
 #include "gtest/gtest.h"
 #include "tests/ZonaCreacionTests.h"
+#include "tests/ZonaTableroTests.h"
 #include "tests/DropeableFactoryTests.h"
 #include "tests/EslabonCreacionTests.h"
 #include "tests/ZonaJuegoTests.h"

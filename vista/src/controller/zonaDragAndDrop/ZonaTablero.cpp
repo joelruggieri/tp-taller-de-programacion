@@ -24,6 +24,7 @@ bool ZonaTablero::dropTemplate(FiguraView* view) {
 FiguraView* ZonaTablero::dragTemplate(float x, float y) {
 	std::list<FiguraView*>::const_iterator iterator;
 	FiguraView* result = NULL;
+	//TODO ACA SI ANDA MAL HABRÍA QUE HACER UNA DIVISION DE ARBOL PARA IR UBICANDO BINARIO.
 	for (iterator = figuras.begin(); iterator != figuras.end(); ++iterator) {
 	    Figura * c =(*iterator)->getModelo();
 	    if(c->contacto(x,y)){

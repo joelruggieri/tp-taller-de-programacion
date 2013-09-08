@@ -10,7 +10,6 @@
 
 #include "ZonaDragAndDrop.h"
 #include <list>
-//#include "../../modelo/figura/Mapa.h"
 #include "src/figura/Mapa.h"
 #include "../../vista/figura/FiguraView.h"
 
