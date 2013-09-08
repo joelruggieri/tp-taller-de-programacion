@@ -6,7 +6,8 @@
  */
 
 #include "gtest/gtest.h"
-#include "figuras_test.h"
+#include "tests/figuras_test.h"
+#include "tests/logger_test.h"
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
