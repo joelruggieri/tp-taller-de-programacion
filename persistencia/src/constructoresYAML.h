@@ -40,21 +40,19 @@ struct convert<Cuadrado> {
 		Node node;
 		node.push_back(objeto.getX());
 		node.push_back(objeto.getY());
-		node.push_back(objeto.getRotacion());
 		node.push_back(objeto.getAncho());
 		node.push_back(objeto.getAlto());
 		return node;
 	}
 
 	static bool decode(const Node& node, Cuadrado& objeto) {
-		if (!node.IsSequence() || node.size() != 5)
+		if (!node.IsSequence() || node.size() != 4)
 			return false;
 
 		objeto.setX(node[0].as<float>());
 		objeto.setY(node[1].as<float>());
-		objeto.setRotacion(node[2].as<float>());
-		objeto.setAncho(node[3].as<float>());
-		objeto.setAlto(node[4].as<float>());
+		objeto.setAncho(node[2].as<float>());
+		objeto.setAlto(node[3].as<float>());
 		return true;
 	}
 };
