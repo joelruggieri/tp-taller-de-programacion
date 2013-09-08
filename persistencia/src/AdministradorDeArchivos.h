@@ -9,11 +9,11 @@
 #define ADMINISTRADORDEARCHIVOS_H_
 
 #include <string>
+#include <list>
+#include <yaml-cpp/yaml.h>
 #include "src/figura/Triangulo.h"
 #include "src/figura/Cuadrado.h"
 #include "src/figura/Circulo.h"
-#include <list>
-#include <yaml-cpp/yaml.h>
 
 class AdministradorDeArchivos {
 public:
