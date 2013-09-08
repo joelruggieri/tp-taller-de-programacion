@@ -14,7 +14,7 @@ class TrianguloView: public FiguraView {
 private:
 	void dropTemplate(DropController*);
 public:
-	TrianguloView();
+	TrianguloView(int x, int y, int w, int h);
 	virtual ~TrianguloView();
 	void dibujarse(SDL_Renderer*);
 };

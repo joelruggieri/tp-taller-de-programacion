@@ -25,6 +25,7 @@ public:
 	void setScrollY(float scrollY);
 	list<Figura*> getFiguras();
 	void dibujarse(SDL_Renderer *);
+	FiguraView * drag(float, float);
 };
 
 #endif /* ZONAJUEGO_H_ */

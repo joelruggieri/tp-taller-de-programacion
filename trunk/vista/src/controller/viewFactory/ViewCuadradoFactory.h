@@ -14,7 +14,8 @@ class ViewCuadradoFactory: public ViewFiguraFactory {
 public:
 	ViewCuadradoFactory();
 	virtual ~ViewCuadradoFactory();
-	FiguraView * crear(float, float);
+	FiguraView * crear(int, int,int,int);
+	FiguraView * crearVistaPropia(int,int,int,int);
 };
 
 #endif /* VIEWCUADRADOFACTORY_H_ */

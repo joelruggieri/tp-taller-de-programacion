@@ -14,7 +14,8 @@ class ViewTrianguloFactory: public ViewFiguraFactory {
 public:
 	ViewTrianguloFactory();
 	virtual ~ViewTrianguloFactory();
-	FiguraView * crear(float, float);
+	FiguraView * crear(int, int, int, int);
+	FiguraView * crearVistaPropia(int,int,int,int);
 };
 
 #endif /* VIEWTRIANGULOFACTORY_H_ */

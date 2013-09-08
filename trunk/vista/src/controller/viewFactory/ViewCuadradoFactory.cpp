@@ -8,7 +8,7 @@
 #include "ViewCuadradoFactory.h"
 #include "../../vista/figura/CuadradoView.h"
 
-ViewCuadradoFactory::ViewCuadradoFactory(): ViewFiguraFactory(10,10) {
+ViewCuadradoFactory::ViewCuadradoFactory(){
 	// TODO Auto-generated constructor stub
 
 }
@@ -17,7 +17,12 @@ ViewCuadradoFactory::~ViewCuadradoFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* ViewCuadradoFactory::crear(float float1, float float2) {
+FiguraView* ViewCuadradoFactory::crear(int x, int y, int w, int h) {
 
-	return new CuadradoView();
+	return new CuadradoView(x,y,w,h);
+}
+
+FiguraView* ViewCuadradoFactory::crearVistaPropia(int x, int y,
+		int w, int h) {
+	return new CuadradoView(x,y,w,h);
 }

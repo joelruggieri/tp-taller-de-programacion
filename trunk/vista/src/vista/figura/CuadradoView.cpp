@@ -12,7 +12,7 @@ void CuadradoView::dropTemplate(DropController* manager) {
 	manager->dropNuevaFigura(this);
 }
 
-CuadradoView::CuadradoView() {
+CuadradoView::CuadradoView(int x, int y, int w, int h):FiguraView(x, y, w, h) {
 
 }
 
@@ -20,5 +20,11 @@ CuadradoView::~CuadradoView() {
 
 }
 
-void CuadradoView::dibujarse(SDL_Renderer*) {
+void CuadradoView::dibujarse(SDL_Renderer* renderer) {
+	SDL_Rect dest;
+	dest.x= this->getX();
+	dest.y=this->getY();
+	dest.w=this->getW();
+	dest.h= this->getH();
+	SDL_RenderDrawRect(renderer, &dest);
 }

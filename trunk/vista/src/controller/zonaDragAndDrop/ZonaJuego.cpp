@@ -18,7 +18,7 @@ using namespace std;
 
 
 
-ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas) : ZonaDragAndDrop(new Cuadrado(70,400,140,800)) {
+ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas) : ZonaDragAndDrop(new Cuadrado(75,50,150,100)) {
 	// 5 margen izq
 	// 100 tablero
 	// 10 entre los dos paneles
@@ -31,7 +31,7 @@ ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas) : ZonaDragAndDrop(new Cuadrado(7
 	factories->push_back(new ViewCirculoFactory());
 	factories->push_back(new ViewCuadradoFactory());
 	factories->push_back(new ViewTrianguloFactory());
-	this->zonaCreacion = new ZonaCreacion(factories,135,5);
+	this->zonaCreacion = new ZonaCreacion(factories,135,5,new Canvas(300,0,300,100,fondoCanvas));
 	delete factories;
 }
 
@@ -69,4 +69,8 @@ void ZonaJuego::setScrollY(float scrollY) {
 void ZonaJuego::dibujarse(SDL_Renderer* renderer) {
 	this->zonaTablero->dibujarse(renderer);
 	this->zonaCreacion->dibujarse(renderer);
+}
+
+FiguraView* ZonaJuego::drag(float x, float y) {
+	return this->dragTemplate(x,y);
 }

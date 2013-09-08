@@ -12,7 +12,7 @@ void TrianguloView::dropTemplate(DropController* manager) {
 	manager->dropNuevaFigura(this);
 }
 
-TrianguloView::TrianguloView() {
+TrianguloView::TrianguloView(int x, int y, int w, int h): FiguraView(x, y, w, h) {
 
 }
 

@@ -12,7 +12,7 @@ void CirculoView::dropTemplate(DropController* manager) {
 	manager->dropNuevaFigura(this);
 }
 
-CirculoView::CirculoView() {
+CirculoView::CirculoView(int x, int y, int w, int h):FiguraView(x, y, w, h) {
 
 }
 
