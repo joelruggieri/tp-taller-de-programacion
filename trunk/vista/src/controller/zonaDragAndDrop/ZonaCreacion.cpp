@@ -7,7 +7,6 @@
 
 #include "ZonaCreacion.h"
 #include "src/figura/Cuadrado.h"
-//#include "../../modelo/figura/Cuadrado.h"
 
 ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior) :
 		ZonaDragAndDrop(NULL) {
@@ -15,7 +14,7 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float 
 	float ancho = ANCHO_VIEW_DEF *2;
 	//50% de margen alrededor de todo el panel
 	float xInicial = x;
-	float yInicial = margenSuperior +  ANCHO_VIEW_DEF / 2;
+	float yInicial = margenSuperior +  ANCHO_VIEW_DEF ;
 	float y = yInicial;
 	std::list<ViewFiguraFactory*>::const_iterator iterator;
 	this->inicioCadena = NULL;

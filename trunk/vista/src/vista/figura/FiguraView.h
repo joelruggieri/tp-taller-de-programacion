@@ -8,7 +8,6 @@
 #ifndef FIGURAVIEW_H_
 #define FIGURAVIEW_H_
 #include "src/figura/Figura.h"
-//#include "../../modelo/figura/Figura.h"
 #include <iostream>
 #include "../View.h"
 using namespace std;

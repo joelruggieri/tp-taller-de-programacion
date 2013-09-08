@@ -26,16 +26,15 @@ public:
 
 
 TEST_F(ZonaJuegoTests, drag) {
-
 	//clickea en una zona vacia
-	FiguraView* drag = zona->drag(0, 0);
+	FiguraView* drag = zona->drag(0, 5);
 	EXPECT_EQ(NULL, drag);
 	//clickea en una factory
-	drag = zona->drag(132, 14);
+	drag = zona->drag(132, 19);
 	EXPECT_TRUE(NULL!= drag);
 	delete drag;
 	//clickea en la segunda factory
-	drag = zona->drag(137, 21);
+	drag = zona->drag(137, 26);
 	EXPECT_TRUE(NULL!= drag);
 	delete drag;
 
