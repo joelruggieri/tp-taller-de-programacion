@@ -15,6 +15,13 @@ Cuadrado::Cuadrado(float x, float y, float ancho, float alto) {
 	this->alto = alto;
 }
 
+Cuadrado::Cuadrado() {
+	this->x = 0;
+	this->y = 0;
+	this->ancho = 1;
+	this->alto = 1;
+}
+
 void Cuadrado::setAlto(float alto){
 	this->alto = alto;
 
