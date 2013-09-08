@@ -19,3 +19,6 @@ TrianguloView::TrianguloView() {
 TrianguloView::~TrianguloView() {
 
 }
+
+void TrianguloView::dibujarse(SDL_Renderer*) {
+}

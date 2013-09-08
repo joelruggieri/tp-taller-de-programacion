@@ -19,7 +19,7 @@ namespace std {
 
 class Boton:  public Dibujable, public Resizeable, public Seleccionable {
 public:
-	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render): Dibujable(x,y,h,w,textura,render)
+	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render): Dibujable()
 	{
 
 	}

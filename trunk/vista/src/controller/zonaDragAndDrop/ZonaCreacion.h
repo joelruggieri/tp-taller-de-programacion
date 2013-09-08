@@ -26,6 +26,7 @@ public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior);
 	virtual ~ZonaCreacion();
 	void agregarEslabon(EslabonCreacion* eslabon);
+	void dibujarse(SDL_Renderer *);
 };
 
 #endif /* ZONACREACION_H_ */

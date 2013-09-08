@@ -12,22 +12,13 @@
 #include <iostream>
 #include "Posicionable.h"
 
-namespace std {
 
-class Dibujable : virtual public Posicionable {
+class Dibujable{
 
 public:
-	Dibujable(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render);
-//	{
-//		this->imagen = textura;
-//		this->render = render;
-//	}
+	Dibujable();
 	virtual ~Dibujable();
-	void Dibujarse();
-protected:
-	SDL_Texture* imagen;
-	SDL_Renderer* render ;
+	virtual void dibujarse(SDL_Renderer *) = 0;
 };
 
-} /* namespace std */
 #endif /* DIBUJABLE_H_ */

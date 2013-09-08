@@ -27,9 +27,6 @@ FiguraView::FiguraView() {
 FiguraView::~FiguraView(){
 
 }
-void FiguraView::dibujarse(){
-
-}
 
 
 

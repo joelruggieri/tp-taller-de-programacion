@@ -20,7 +20,7 @@ class Background : public Dibujable, public Resizeable {
 	SDL_Texture* imagen;
 	SDL_Renderer* render ;*/
 public:
-	Background(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render):Dibujable(x,y,h,w,textura,render)
+	Background(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render):Dibujable()
 	{
 
 	}

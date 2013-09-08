@@ -14,7 +14,7 @@ namespace std {
 
 class Dragueable : public Dibujable, public Seleccionable {
 public:
-	Dragueable(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) : Dibujable(x,y,h,w,textura,render)
+	Dragueable(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) : Dibujable()
 	{
 
 	}

@@ -11,7 +11,7 @@
 #include "../vista/figura/FiguraView.h"
 
 DragAndDropController::DragAndDropController() {
-	this->zona = new ZonaJuego();
+//	this->zona = new ZonaJuego();
 	this->figurasFactory = new FiguraFactory();
 	this->figuraDrag = NULL;
 }
@@ -48,8 +48,8 @@ void DragAndDropController::dropFigura(FiguraView* view) {
 }
 
 bool DragAndDropController::clickDown(float x, float y) {
-	this->figuraDrag == NULL ? this->zona->drag(x,y) : NULL;
-	return true;
+	this->figuraDrag = this->figuraDrag == NULL ? this->zona->drag(x,y) : NULL;
+	return false;
 }
 
 bool DragAndDropController::clickUp(float x, float y) {

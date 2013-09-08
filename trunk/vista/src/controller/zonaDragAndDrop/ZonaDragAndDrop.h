@@ -11,10 +11,11 @@
 #include "src/figura/Figura.h"
 #include "src/figura/Cuadrado.h"
 #include "../../vista/figura/FiguraView.h"
+#include "../../vista/Dibujable.h"
 #include <list>
 using namespace std;
 
-class ZonaDragAndDrop {
+class ZonaDragAndDrop: public Dibujable {
 private:
 	Cuadrado *cuerpo;
 	float scrollY;
@@ -32,6 +33,7 @@ public:
 	float getScrollY() const;
 	void setScrollY(float );
 	list<FiguraView *> getFiguras();
+	virtual void dibujarse(SDL_Renderer *) = 0;
 };
 
 #endif /* ZONADRAGANDDROP_H_ */

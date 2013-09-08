@@ -13,11 +13,12 @@
 #include "../viewFactory/ViewCirculoFactory.h"
 #include "../viewFactory/ViewCuadradoFactory.h"
 #include "../viewFactory/ViewTrianguloFactory.h"
+#include "../../vista/Canvas.h"
 using namespace std;
 
 
 
-ZonaJuego::ZonaJuego() : ZonaDragAndDrop(new Cuadrado(70,400,140,800)) {
+ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas) : ZonaDragAndDrop(new Cuadrado(70,400,140,800)) {
 	// 5 margen izq
 	// 100 tablero
 	// 10 entre los dos paneles
@@ -25,7 +26,7 @@ ZonaJuego::ZonaJuego() : ZonaDragAndDrop(new Cuadrado(70,400,140,800)) {
 	// 5 margen izquierdo
 
 
-	this->zonaTablero = new ZonaTablero(new Mapa(),55,55);
+	this->zonaTablero = new ZonaTablero(new Mapa(),55,55, new Canvas(0,0, 300, 300,fondoCanvas));
 	list <ViewFiguraFactory*> *factories = new list<ViewFiguraFactory*>();
 	factories->push_back(new ViewCirculoFactory());
 	factories->push_back(new ViewCuadradoFactory());
@@ -63,4 +64,9 @@ float ZonaJuego::getScrollY() const {
 
 void ZonaJuego::setScrollY(float scrollY) {
 	this->zonaCreacion->setScrollY(scrollY);
+}
+
+void ZonaJuego::dibujarse(SDL_Renderer* renderer) {
+	this->zonaTablero->dibujarse(renderer);
+	this->zonaCreacion->dibujarse(renderer);
 }
