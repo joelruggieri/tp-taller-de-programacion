@@ -6,12 +6,11 @@
  */
 
 #include "AdministradorDeArchivos.h"
-#include <yaml-cpp/yaml.h>
 #include <iostream>
 #include <fstream>
 
 #include "constructoresYAML.h"
-
+#include "yaml-cpp/yaml.h"
 
 AdministradorDeArchivos::AdministradorDeArchivos(std::string nombre) {
 	this->nombre = nombre;
@@ -72,4 +71,3 @@ std::list<Figura*> AdministradorDeArchivos::obtenerTodos() {
 	}
 	return lista;
 }
-
