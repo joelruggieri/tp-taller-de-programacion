@@ -24,7 +24,7 @@ public:
 	Figura * getModelo();
 	void setModelo(Figura* modelo);
 	void drop(DropController* manager);
-	void dibujarse();
+	virtual void dibujarse(SDL_Renderer*)=0;
 };
 
 #endif /* FIGURAVIEW_H_ */

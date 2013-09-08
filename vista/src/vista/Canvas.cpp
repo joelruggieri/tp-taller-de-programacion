@@ -6,16 +6,15 @@
  */
 
 #include "Canvas.h"
+#include "SDL2/SDL.h"
 
-namespace std {
-
-SDL_Texture* cargarTexture (char* file, SDL_Renderer* ren){
-	SDL_Texture* texture = IMG_LoadTexture(ren, file );
-
-	if (texture == NULL) cout << "IMG_Load error: " << IMG_GetError() <<endl;
-
-	return texture;
-}
+//SDL_Texture* cargarTexture (char* file, SDL_Renderer* ren){
+////	SDL_Texture* texture = IMG_LoadTexture(ren, file );
+//
+////	if (texture == NULL) cout << "IMG_Load error: " << IMG_GetError() <<endl;
+//
+//	return texture;
+//}
 
 //Canvas::Canvas(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) {
 //	this->x = x;
@@ -59,9 +58,24 @@ return newCoord + oldCoord;
 
 int Canvas::ModificarFondo(char* rutaNueva)
 {
-	this->imagen = cargarTexture(rutaNueva,this->render);
+//	this->imagen = cargarTexture(rutaNueva,this->render);
 	return 0;
 }
 
 
-} /* namespace std */
+void Canvas::dibujarse(SDL_Renderer * renderer){
+	SDL_Rect dest;
+	dest.h = this->h;
+	dest.w = this->w;
+	dest.x = this->x;
+	dest.y = this->y;
+	SDL_RenderCopy(renderer,this->imagenCanvas,NULL,&dest);
+}
+
+Canvas::Canvas(int x, int y, int h, int w, SDL_Texture* textura) {
+	this->x = x;
+	this->y = y;
+	this->h = h;
+	this->w = w;
+	this->imagenCanvas = textura;
+}

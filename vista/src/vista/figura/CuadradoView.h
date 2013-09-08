@@ -16,7 +16,7 @@ private:
 public:
 	CuadradoView();
 	virtual ~CuadradoView();
-
+	void dibujarse(SDL_Renderer*);
 };
 
 #endif /* CUADRADOVIEW_H_ */

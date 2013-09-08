@@ -19,3 +19,6 @@ CirculoView::CirculoView() {
 CirculoView::~CirculoView() {
 
 }
+
+void CirculoView::dibujarse(SDL_Renderer*) {
+}

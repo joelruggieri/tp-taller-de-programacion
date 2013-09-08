@@ -12,17 +12,19 @@
 #include <list>
 #include "src/figura/Mapa.h"
 #include "../../vista/figura/FiguraView.h"
+#include "../../vista/Dibujable.h"
 
-class ZonaTablero: public ZonaDragAndDrop {
+class ZonaTablero: public ZonaDragAndDrop{
 private:
 	bool dropTemplate(FiguraView * dragueable);
 	FiguraView * dragTemplate(float x, float y);
 	Mapa * mapa;
 	list<FiguraView*> figuras;
+	Dibujable * fondo;
 public:
-	ZonaTablero(Mapa *, float, float);
+	ZonaTablero(Mapa *, float, float, Dibujable *);
 	virtual ~ZonaTablero();
-
+	void dibujarse(SDL_Renderer *);
 };
 
 #endif /* ZONATABLERO_H_ */

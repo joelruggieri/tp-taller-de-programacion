@@ -19,3 +19,6 @@ CuadradoView::CuadradoView() {
 CuadradoView::~CuadradoView() {
 
 }
+
+void CuadradoView::dibujarse(SDL_Renderer*) {
+}

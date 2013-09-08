@@ -8,8 +8,9 @@
 #include "ZonaTablero.h"
 
 //TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
-ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y):ZonaDragAndDrop(new Cuadrado(x,y,100,100)) {
+ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y, Dibujable * fondo):ZonaDragAndDrop(new Cuadrado(x,y,100,100)) {
 	this->mapa = mapa;
+	this->fondo = fondo;
 }
 
 bool ZonaTablero::dropTemplate(FiguraView* view) {
@@ -47,3 +48,6 @@ ZonaTablero::~ZonaTablero() {
 	delete this->mapa;
 }
 
+void ZonaTablero::dibujarse(SDL_Renderer* renderer) {
+	this->fondo->dibujarse(renderer);
+}

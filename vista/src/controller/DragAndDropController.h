@@ -15,8 +15,9 @@
 #include "../vista/figura/CuadradoView.h"
 #include "../vista/figura/CirculoView.h"
 #include "../vista/figura/TrianguloView.h"
+#include "mouseEventController/MouseEventController.h"
 #include "DropController.h"
-class DragAndDropController: public DropController {
+class DragAndDropController: public DropController, public MouseEventController {
 private:
 	ZonaDragAndDrop * zona;
 	FiguraFactory * figurasFactory;

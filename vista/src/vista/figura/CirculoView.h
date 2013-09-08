@@ -16,7 +16,7 @@ private:
 public:
 	CirculoView();
 	virtual ~CirculoView();
-
+	void dibujarse(SDL_Renderer*);
 };
 
 #endif /* CIRCULOVIEW_H_ */

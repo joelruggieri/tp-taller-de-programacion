@@ -16,7 +16,7 @@ private:
 public:
 	TrianguloView();
 	virtual ~TrianguloView();
-
+	void dibujarse(SDL_Renderer*);
 };
 
 #endif /* CUADRADOVIEW_H_ */

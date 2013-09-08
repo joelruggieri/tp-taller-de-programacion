@@ -55,3 +55,6 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 		this->ultimo = eslabon;
 	}
 }
+
+void ZonaCreacion::dibujarse(SDL_Renderer*) {
+}

@@ -7,8 +7,12 @@
 //============================================================================
 
 #include <iostream>
+#include "src/controller/MainController.h"
 using namespace std;
 
 int main() {
+	MainController contr;
+	contr.run();
+
 	return 0;
 }
