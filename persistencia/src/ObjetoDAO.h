@@ -8,26 +8,24 @@
 #ifndef OBJETODAO_H_
 #define OBJETODAO_H_
 
-#include "Objeto.h"
 #include <list>
 #include <string>
 #include "src/figura/Circulo.h"
 #include "src/figura/Triangulo.h"
 #include "src/figura/Cuadrado.h"
 #include "src/figura/Figura.h"
-#include <yaml-cpp/yaml.h>
+#include "AdministradorDeArchivos.h"
 
 class ObjetoDAO {
-private:
-	bool guardarCirculo(Circulo* circulo);
-	bool guardarCuadrado(Cuadrado* cuadrado);
-	bool guardarTriangulo(Triangulo* triangulo);
-
 public:
 	ObjetoDAO();
 	virtual ~ObjetoDAO();
-	bool guardar(Figura *objeto);
+	bool guardar(Circulo *objeto);
+	bool guardar(Cuadrado *objeto);
+	bool guardar(Triangulo *objeto);
 	std::list<Figura*> obtenerTodos();
+private:
+	AdministradorDeArchivos archivo;
 };
 
 #endif /* OBJETODAO_H_ */
