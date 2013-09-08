@@ -7,7 +7,7 @@
 
 #include "ViewTrianguloFactory.h"
 #include "../../vista/figura/TrianguloView.h"
-ViewTrianguloFactory::ViewTrianguloFactory(): ViewFiguraFactory(10,10) {
+ViewTrianguloFactory::ViewTrianguloFactory() {
 	// TODO Auto-generated constructor stub
 
 }
@@ -16,6 +16,11 @@ ViewTrianguloFactory::~ViewTrianguloFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* ViewTrianguloFactory::crear(float float1, float float2) {
-	return new TrianguloView();
+FiguraView* ViewTrianguloFactory::crear(int x, int y, int w, int h) {
+	return new TrianguloView(x,y,w,h);
+}
+
+FiguraView* ViewTrianguloFactory::crearVistaPropia(int x, int y, int w,
+		int h) {
+	return new TrianguloView(x,y,w,h);
 }

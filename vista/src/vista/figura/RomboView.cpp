@@ -8,7 +8,7 @@
 #include "RomboView.h"
 #include "../../controller/DropController.h"
 
-RomboView::RomboView() {
+RomboView::RomboView(int x, int y, int w, int h):FiguraView(x, y, w, h) {
 	// TODO Auto-generated constructor stub
 
 }

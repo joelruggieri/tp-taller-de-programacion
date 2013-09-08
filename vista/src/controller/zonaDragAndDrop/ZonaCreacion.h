@@ -19,11 +19,12 @@ private:
 	EslabonCreacion * inicioCadena;
 	EslabonCreacion * ultimo;
 	static const int ANCHO_VIEW_DEF = 10;
-
+	Dibujable * fondo;
 	bool dropTemplate(FiguraView * dragueable);
 	FiguraView * dragTemplate(float x, float y);
+	list<Dibujable* > vistasFactories;
 public:
-	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior);
+	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior,Dibujable *);
 	virtual ~ZonaCreacion();
 	void agregarEslabon(EslabonCreacion* eslabon);
 	void dibujarse(SDL_Renderer *);

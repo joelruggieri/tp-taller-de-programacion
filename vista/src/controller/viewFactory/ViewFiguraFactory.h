@@ -11,11 +11,11 @@
 
 class ViewFiguraFactory {
 private:
-	float ancho, alto;
 public:
-	ViewFiguraFactory(float ancho, float alto);
+	ViewFiguraFactory();
 	virtual ~ViewFiguraFactory();
-	virtual FiguraView * crear(float, float)=0;
+	virtual FiguraView * crear(int,int,int,int)=0;
+	virtual FiguraView * crearVistaPropia(int,int,int,int) = 0;
 	float getAlto() const;
 	void setAlto(float alto);
 	float getAncho() const;

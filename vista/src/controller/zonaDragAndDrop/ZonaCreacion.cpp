@@ -8,7 +8,7 @@
 #include "ZonaCreacion.h"
 #include "src/figura/Cuadrado.h"
 
-ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior) :
+ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior, Dibujable * fondo) :
 		ZonaDragAndDrop(NULL) {
 	//TODO ADAPTAR TAMANIO DE LA ZONA SEGUN LA CANTIDAD DE FACTORIES QUE VENGAN.
 	float ancho = ANCHO_VIEW_DEF *2;
@@ -16,6 +16,7 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float 
 	float xInicial = x;
 	float yInicial = margenSuperior +  ANCHO_VIEW_DEF ;
 	float y = yInicial;
+	this->fondo = fondo;
 	std::list<ViewFiguraFactory*>::const_iterator iterator;
 	this->inicioCadena = NULL;
 	this->ultimo = NULL;
@@ -44,6 +45,7 @@ FiguraView* ZonaCreacion::dragTemplate(float x, float y) {
 
 ZonaCreacion::~ZonaCreacion() {
 	delete this->inicioCadena;
+	delete this->fondo;
 }
 
 void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
@@ -56,5 +58,7 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 	}
 }
 
-void ZonaCreacion::dibujarse(SDL_Renderer*) {
+void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
+	this->fondo->dibujarse(renderer);
+	this->inicioCadena->dibujarse(renderer);
 }

@@ -7,25 +7,7 @@
 
 #include "ViewFiguraFactory.h"
 
-ViewFiguraFactory::ViewFiguraFactory(float ancho, float alto) {
-	this->ancho = ancho;
-	this->alto = alto;
-}
-
-float ViewFiguraFactory::getAlto() const {
-	return alto;
-}
-
-void ViewFiguraFactory::setAlto(float alto) {
-	this->alto = alto;
-}
-
-float ViewFiguraFactory::getAncho() const {
-	return ancho;
-}
-
-void ViewFiguraFactory::setAncho(float ancho) {
-	this->ancho = ancho;
+ViewFiguraFactory::ViewFiguraFactory() {
 }
 
 ViewFiguraFactory::~ViewFiguraFactory() {

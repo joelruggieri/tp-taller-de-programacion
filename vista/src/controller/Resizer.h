@@ -11,6 +11,7 @@
 class Resizer {
 public:
 	static Resizer* Instance(int x, int y);
+	static Resizer* Instance();
 	int resizearDistanciaX(int valor);
 	int resizearDistanciaY(int valor);
 	void setearResizer(int xNuevo, int yNuevo);

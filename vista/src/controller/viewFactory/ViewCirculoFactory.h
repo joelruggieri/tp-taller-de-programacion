@@ -14,7 +14,8 @@ class ViewCirculoFactory: public ViewFiguraFactory {
 public:
 	ViewCirculoFactory();
 	virtual ~ViewCirculoFactory();
-	FiguraView * crear(float, float);
+	FiguraView * crear(int,int,int,int);
+	FiguraView * crearVistaPropia(int,int,int,int);
 };
 
 #endif /* VIEWCIRCULOFACTORY_H_ */

@@ -10,22 +10,23 @@
 
 #include "../../vista/figura/FiguraView.h"
 #include "../viewFactory/ViewFiguraFactory.h"
-//#include "../../modelo/figura/Figura.h"
-#include "src/figura/Figura.h"
+#include "src/figura/Cuadrado.h"
 using namespace std;
 
 class EslabonCreacion {
 private:
 	EslabonCreacion * siguiente;
 	ViewFiguraFactory * factory;
-	Figura * cuerpo;
+	Dibujable * vista;
+	Cuadrado * cuerpo;
 	int itemsDisponibles;
 public:
-	EslabonCreacion(ViewFiguraFactory * factory, Figura *cuerpo, int maxCreacion);
+	EslabonCreacion(ViewFiguraFactory * factory, Cuadrado *cuerpo, int maxCreacion);
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
 	FiguraView * antender(float posX, float posY);
-//	void invalidar(Dropeable*);
+	void dibujarse(SDL_Renderer *);
+	//	void invalidar(Dropeable*);
 };
 
 #endif /* ESLABONCREACION_H_ */

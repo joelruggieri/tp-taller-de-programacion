@@ -14,7 +14,7 @@ class CuadradoView: public FiguraView {
 private:
 	void dropTemplate(DropController*);
 public:
-	CuadradoView();
+	CuadradoView(int x, int y, int w, int h);
 	virtual ~CuadradoView();
 	void dibujarse(SDL_Renderer*);
 };

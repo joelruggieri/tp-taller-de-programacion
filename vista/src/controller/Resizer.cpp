@@ -6,6 +6,8 @@
  */
 
 #include "Resizer.h"
+#include <iostream>
+using namespace std;
 
 Resizer* Resizer::pinstance = 0;// Inicializar el puntero
 Resizer* Resizer::Instance (int x, int y)
@@ -16,6 +18,17 @@ Resizer* Resizer::Instance (int x, int y)
   }
   return pinstance; // Retornamos la dirección de la instancia
 }
+
+Resizer* Resizer::Instance ()
+{
+	if(pinstance == 0){
+		//TODO LANZAR EXCEPTION
+		cout<< "ERROR"<<endl;
+	}
+  return pinstance; // Retornamos la dirección de la instancia
+}
+
+
 
 int Resizer::resizearDistanciaX(int valor) {
 	float valorFloat = (float) valor ;

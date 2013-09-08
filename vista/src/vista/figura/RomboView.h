@@ -14,7 +14,7 @@ class RomboView: public FiguraView {
 private:
 	void dropTemplate(DropController*);
 public:
-	RomboView();
+	RomboView(int x, int y, int w, int h);
 	virtual ~RomboView();
 };
 
