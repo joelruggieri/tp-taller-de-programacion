@@ -26,5 +26,5 @@ void CuadradoView::dibujarse(SDL_Renderer* renderer) {
 	dest.y=this->getY();
 	dest.w=this->getW();
 	dest.h= this->getH();
-	SDL_RenderDrawRect(renderer, &dest);
+	SDL_RenderFillRect(renderer, &dest);
 }
