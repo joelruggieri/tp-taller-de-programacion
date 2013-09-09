@@ -10,23 +10,24 @@
 
 class Resizer {
 public:
-	static Resizer* Instance(int x, int y);
+	static Resizer* Instance(int x, int y, float xLogico, float yLogico);
 	static Resizer* Instance();
 	int resizearDistanciaX(int valor);
 	int resizearDistanciaY(int valor);
 	void setearResizer(int xNuevo, int yNuevo);
-
+	int resizearDistanciaLogicaX(int valor);
+	int resizearDistanciaLogicaY(int valor);
 	//Resizer();
 	//virtual ~Resizer();
 protected:
-	Resizer(int x, int y);
+	Resizer(int x, int y,float xLogico, float yLogico);
 	Resizer(const Resizer & ) ;
 	Resizer &operator= (const Resizer & ) ;
 
 
 private:
 	int xViejo, yViejo, xNuevo, yNuevo ;
-	float  relacionX,relacionY;// valores de la pantalla
+	float  relacionX,relacionY, xLogico, yLogico, relacionXLogica, relacionYLogica;// valores de la pantalla
 
 
 	static Resizer* pinstance;
