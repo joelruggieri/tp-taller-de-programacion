@@ -19,7 +19,7 @@ private:
 	bool dropTemplate(FiguraView * dragueable);
 	FiguraView * dragTemplate(float x, float y);
 public:
-	ZonaJuego(SDL_Texture * texturaCanvas);
+	ZonaJuego(SDL_Texture * texturaCanvas, SDL_Renderer * renderer);
 	virtual ~ZonaJuego();
 	float getScrollY() const;
 	void setScrollY(float scrollY);

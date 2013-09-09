@@ -8,7 +8,7 @@
 #include "RomboView.h"
 #include "../../controller/DropController.h"
 
-RomboView::RomboView(int x, int y, int w, int h):FiguraView(x, y, w, h) {
+RomboView::RomboView(int x, int y, int w, int h,SDL_Texture * textura):FiguraView(x, y, w, h, textura) {
 	// TODO Auto-generated constructor stub
 
 }

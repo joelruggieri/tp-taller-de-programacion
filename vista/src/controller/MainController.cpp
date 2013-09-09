@@ -35,7 +35,7 @@ int MainController::run() {
 
 	SDL_Renderer* render = SDL_CreateRenderer(ventana,-1, SDL_RENDERER_ACCELERATED);
 	SDL_Texture* canvasTexture = this->cargarTexture("resource/Fondo4.jpg", render);
-	ZonaJuego * zona = new ZonaJuego(canvasTexture);
+	ZonaJuego * zona = new ZonaJuego(canvasTexture, render);
 	zona->dibujarse(render);
 	SDL_RenderPresent(render);
 	SDL_Delay(4000);

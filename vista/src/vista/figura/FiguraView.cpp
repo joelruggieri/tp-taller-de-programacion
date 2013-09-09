@@ -20,11 +20,22 @@ void FiguraView::drop(DropController* manager) {
 		this->dropTemplate(manager);
 	}
 }
-FiguraView::FiguraView(int x, int y, int w, int h ): View(x,y,w,h) {
+FiguraView::FiguraView(int x, int y, int w, int h,SDL_Texture* textura ): View(x,y,w,h) {
 	this->modelo = NULL;
+	this->textura = textura;
 }
 
 FiguraView::~FiguraView(){
 
+}
+
+
+void FiguraView::dibujarse(SDL_Renderer * renderer){
+	SDL_Rect dest;
+	dest.h = this->getH();
+	dest.w = this->getW();
+	dest.x = this->getX();
+	dest.y = this->getY();
+	SDL_RenderCopy(renderer,this->textura,NULL,&dest);
 }
 

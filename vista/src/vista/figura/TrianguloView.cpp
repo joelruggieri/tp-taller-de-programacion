@@ -12,7 +12,7 @@ void TrianguloView::dropTemplate(DropController* manager) {
 	manager->dropNuevaFigura(this);
 }
 
-TrianguloView::TrianguloView(int x, int y, int w, int h): FiguraView(x, y, w, h) {
+TrianguloView::TrianguloView(int x, int y, int w, int h, SDL_Texture * textura): FiguraView(x, y, w, h, textura) {
 
 }
 
@@ -20,5 +20,3 @@ TrianguloView::~TrianguloView() {
 
 }
 
-void TrianguloView::dibujarse(SDL_Renderer*) {
-}

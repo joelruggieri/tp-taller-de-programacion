@@ -9,14 +9,14 @@
 #define CUADRADOVIEW_H_
 
 #include "FiguraView.h"
+#include "SDL2/SDL.h"
 
 class CuadradoView: public FiguraView {
 private:
 	void dropTemplate(DropController*);
 public:
-	CuadradoView(int x, int y, int w, int h);
+	CuadradoView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~CuadradoView();
-	void dibujarse(SDL_Renderer*);
 };
 
 #endif /* CUADRADOVIEW_H_ */

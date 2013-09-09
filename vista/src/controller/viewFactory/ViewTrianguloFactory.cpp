@@ -7,7 +7,7 @@
 
 #include "ViewTrianguloFactory.h"
 #include "../../vista/figura/TrianguloView.h"
-ViewTrianguloFactory::ViewTrianguloFactory() {
+ViewTrianguloFactory::ViewTrianguloFactory(SDL_Renderer * renderer): ViewFiguraFactory("resource/triangulo.jpg", renderer){
 	// TODO Auto-generated constructor stub
 
 }
@@ -17,10 +17,10 @@ ViewTrianguloFactory::~ViewTrianguloFactory() {
 }
 
 FiguraView* ViewTrianguloFactory::crear(int x, int y, int w, int h) {
-	return new TrianguloView(x,y,w,h);
+	return new TrianguloView(x,y,w,h, this->textura);
 }
 
 FiguraView* ViewTrianguloFactory::crearVistaPropia(int x, int y, int w,
 		int h) {
-	return new TrianguloView(x,y,w,h);
+	return new TrianguloView(x,y,w,h, this->textura);
 }
