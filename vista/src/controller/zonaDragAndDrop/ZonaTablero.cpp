@@ -10,7 +10,7 @@
 #include "../../vista/Canvas.h"
 
 //TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
-ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFondo):ZonaDragAndDrop(new Cuadrado(x,y,100,100)) {
+ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,100,100)) {
 	this->mapa = mapa;
 	Resizer * instance = Resizer::Instance();
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
@@ -21,7 +21,7 @@ ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFon
 	this->fondo = new Canvas(xC,yC,wC,hC,imagenFondo);
 }
 
-bool ZonaTablero::dropTemplate(FiguraView* view) {
+bool ZonaTablero::agregarTemplate(FiguraView* view) {
 	if(view->getModelo() == NULL){
 		return false;
 	}
@@ -30,7 +30,7 @@ bool ZonaTablero::dropTemplate(FiguraView* view) {
 	return true;
 }
 
-FiguraView* ZonaTablero::dragTemplate(float x, float y) {
+bool ZonaTablero::clickTemplate(float x, float y) {
 	std::list<FiguraView*>::const_iterator iterator;
 	FiguraView* result = NULL;
 	//TODO ACA SI ANDA MAL HABRÍA QUE HACER UNA DIVISION DE ARBOL PARA IR UBICANDO BINARIO.
@@ -43,7 +43,10 @@ FiguraView* ZonaTablero::dragTemplate(float x, float y) {
 	}
 	if(result != NULL){
 		figuras.remove(result);
+		result->click(x,y);
+		//TODO DARLE CLICK A LA FIGURA Y NO REMOVERLA, TIENE QUE HACERLO EL CONTROLLER DE DRAG AND DROP
 	}
+
 	return result;
 }
 
@@ -58,4 +61,10 @@ ZonaTablero::~ZonaTablero() {
 
 void ZonaTablero::dibujarse(SDL_Renderer* renderer) {
 	this->fondo->dibujarse(renderer);
+}
+
+bool ZonaTablero::removerFigura(FiguraView* figura) {
+	int unsigned cantInicial = this->figuras.size();
+	this->figuras.remove(figura);
+	return cantInicial != figuras.size();
 }

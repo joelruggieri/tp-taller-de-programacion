@@ -1,5 +1,5 @@
 /*
- * ZonaDragAndDrop.h
+ * Zona.h
  *
  *  Created on: 30/08/2013
  *      Author: jonathan
@@ -15,22 +15,26 @@
 #include <list>
 using namespace std;
 
-class ZonaDragAndDrop: public Dibujable {
+class Zona: public Dibujable {
 private:
 	Cuadrado *cuerpo;
 	float scrollY;
 protected:
-	virtual bool dropTemplate(FiguraView * figura) = 0;
-	virtual FiguraView * dragTemplate(float x, float y) = 0;
+	virtual bool agregarTemplate(FiguraView * figura) = 0;
+	// clickea en el area y retorna true si hubo alguna accion.
+	virtual bool clickTemplate(float x, float y) = 0;
 	void setCuerpo(Cuadrado * cuerpo);
 
 public:
-	ZonaDragAndDrop(Cuadrado* cuadrado);
-	virtual ~ZonaDragAndDrop();
+	Zona(Cuadrado* cuadrado);
+	virtual ~Zona();
 	//retorna true si se hizo cargo de la peticion.
-	bool drop(FiguraView*);
-	// crea una vista.
-	FiguraView * drag(float, float);
+	bool agregarFigura(FiguraView*);
+	//retorna true si se hizo cargo de la peticion.
+	virtual bool removerFigura(FiguraView*) = 0;
+
+	// clickea en el area y retorna true si hubo alguna accion.
+	bool click(int, int);
 	float getScrollY() const;
 	void setScrollY(float);
 	list<FiguraView *> getFiguras();

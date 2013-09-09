@@ -9,7 +9,6 @@
 
 #ifndef DropController_H_
 #define DropController_H_
-//#include "../modelo/figuraFactory/FiguraFactory.h"
 #include "src/figuraFactory/FiguraFactory.h"
 #include "../vista/figura/FiguraView.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
@@ -26,12 +25,15 @@ using namespace std;
 class DropController{
 
 public:
-	virtual ~DropController();
+	virtual ~DropController(){
+
+	}
 	virtual void dropNuevaFigura(CuadradoView*) = 0;
 	virtual void dropNuevaFigura(CirculoView*) = 0;
 	virtual void dropNuevaFigura(TrianguloView*) = 0;
 	virtual void dropNuevaFigura(RomboView*)= 0;
 	virtual void dropFigura(FiguraView*) = 0;
+	virtual void drag(FiguraView *, float,float) = 0;
 };
 
 #endif /* DropController_H_ */

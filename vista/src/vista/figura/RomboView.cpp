@@ -8,7 +8,7 @@
 #include "RomboView.h"
 #include "../../controller/DropController.h"
 
-RomboView::RomboView(int x, int y, int w, int h,SDL_Texture * textura):FiguraView(x, y, w, h, textura) {
+RomboView::RomboView(int x, int y, int w, int h,SDL_Texture * textura,DropController * controller):FiguraView(x, y, w, h, textura, controller) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -17,6 +17,6 @@ RomboView::~RomboView() {
 	// TODO Auto-generated destructor stub
 }
 
-void RomboView::dropTemplate(DropController* manager) {
-	manager->dropNuevaFigura(this);
+void RomboView::dropTemplate() {
+	controller->dropNuevaFigura(this);
 }

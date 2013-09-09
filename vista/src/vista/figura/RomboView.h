@@ -13,9 +13,9 @@
 
 class RomboView: public FiguraView {
 private:
-	void dropTemplate(DropController*);
+	void dropTemplate();
 public:
-	RomboView(int x, int y, int w, int h, SDL_Texture * textura);
+	RomboView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
 	virtual ~RomboView();
 };
 

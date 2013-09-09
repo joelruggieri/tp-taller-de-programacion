@@ -19,14 +19,16 @@ private:
 	Figura * modelo;
 	SDL_Texture * textura;
 protected:
-	virtual void dropTemplate(DropController*) = 0;
+	DropController * controller;
+	virtual void dropTemplate() = 0;
 public:
-	FiguraView(int x, int y, int w, int h, SDL_Texture* textura);
+	FiguraView(int x, int y, int w, int h, SDL_Texture* textura, DropController * controller);
 	virtual ~FiguraView();
 	Figura * getModelo();
 	void setModelo(Figura* modelo);
-	void drop(DropController* manager);
+	void drop();
 	void dibujarse(SDL_Renderer*);
+	void click(float x, float y);
 };
 
 #endif /* FIGURAVIEW_H_ */
