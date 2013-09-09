@@ -9,14 +9,13 @@
 #define TRIANGULOVIEW_H_
 
 #include "FiguraView.h"
-
+#include "SDL2/SDL.h"
 class TrianguloView: public FiguraView {
 private:
 	void dropTemplate(DropController*);
 public:
-	TrianguloView(int x, int y, int w, int h);
+	TrianguloView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~TrianguloView();
-	void dibujarse(SDL_Renderer*);
 };
 
 #endif /* CUADRADOVIEW_H_ */

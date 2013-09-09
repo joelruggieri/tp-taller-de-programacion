@@ -12,7 +12,7 @@
 
 class ViewTrianguloFactory: public ViewFiguraFactory {
 public:
-	ViewTrianguloFactory();
+	ViewTrianguloFactory(SDL_Renderer * renderer);
 	virtual ~ViewTrianguloFactory();
 	FiguraView * crear(int, int, int, int);
 	FiguraView * crearVistaPropia(int,int,int,int);

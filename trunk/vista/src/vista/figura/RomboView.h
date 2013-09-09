@@ -9,12 +9,13 @@
 #define ROMBOVIEW_H_
 
 #include "FiguraView.h"
+#include "SDL2/SDL.h"
 
 class RomboView: public FiguraView {
 private:
 	void dropTemplate(DropController*);
 public:
-	RomboView(int x, int y, int w, int h);
+	RomboView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~RomboView();
 };
 

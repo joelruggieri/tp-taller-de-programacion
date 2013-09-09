@@ -19,7 +19,7 @@ using namespace std;
 
 
 
-ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas) : ZonaDragAndDrop(new Cuadrado(75,50,150,100)) {
+ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas, SDL_Renderer * renderer) : ZonaDragAndDrop(new Cuadrado(75,50,150,100)) {
 	// 5 margen izq
 	// 100 tablero
 	// 10 entre los dos paneles
@@ -29,10 +29,14 @@ ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas) : ZonaDragAndDrop(new Cuadrado(7
 
 	this->zonaTablero = new ZonaTablero(new Mapa(),50,50, fondoCanvas);
 	list <ViewFiguraFactory*> factories;
-	factories.push_back(new ViewCuadradoFactory());
-	factories.push_back(new ViewCuadradoFactory());
-	factories.push_back(new ViewCuadradoFactory());
-
+	factories.push_back(new ViewCuadradoFactory(renderer));
+	factories.push_back(new ViewTrianguloFactory(renderer));
+	factories.push_back(new ViewCirculoFactory(renderer));
+	factories.push_back(new ViewCuadradoFactory(renderer));
+	factories.push_back(new ViewCuadradoFactory(renderer));
+	factories.push_back(new ViewTrianguloFactory(renderer));
+	factories.push_back(new ViewCuadradoFactory(renderer));
+	factories.push_back(new ViewCirculoFactory(renderer));
 	this->zonaCreacion = new ZonaCreacion(&factories,110,0,fondoCanvas);
 }
 

@@ -9,14 +9,14 @@
 #define CIRCULOVIEW_H_
 
 #include "FiguraView.h"
+#include "SDL2/SDL.h"
 
 class CirculoView: public FiguraView {
 private:
 	void dropTemplate(DropController*);
 public:
-	CirculoView(int x, int y, int w, int h);
+	CirculoView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~CirculoView();
-	void dibujarse(SDL_Renderer*);
 };
 
 #endif /* CIRCULOVIEW_H_ */

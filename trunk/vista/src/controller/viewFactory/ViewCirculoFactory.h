@@ -9,10 +9,10 @@
 #define VIEWCIRCULOFACTORY_H_
 
 #include "ViewFiguraFactory.h"
-
+#include "SDL2/SDL.h"
 class ViewCirculoFactory: public ViewFiguraFactory {
 public:
-	ViewCirculoFactory();
+	ViewCirculoFactory(SDL_Renderer * renderer);
 	virtual ~ViewCirculoFactory();
 	FiguraView * crear(int,int,int,int);
 	FiguraView * crearVistaPropia(int,int,int,int);
