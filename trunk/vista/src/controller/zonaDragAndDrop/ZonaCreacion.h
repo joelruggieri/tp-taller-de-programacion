@@ -23,8 +23,10 @@ private:
 	bool dropTemplate(FiguraView * dragueable);
 	FiguraView * dragTemplate(float x, float y);
 	list<Dibujable* > vistasFactories;
+	void inicializar(list<ViewFiguraFactory*> *, float x, float margenSuperior);
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior,Dibujable *);
+	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior, SDL_Texture *);
 	virtual ~ZonaCreacion();
 	void agregarEslabon(EslabonCreacion* eslabon);
 	void dibujarse(SDL_Renderer *);

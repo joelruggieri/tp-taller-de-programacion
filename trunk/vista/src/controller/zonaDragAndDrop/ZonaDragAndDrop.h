@@ -20,9 +20,10 @@ private:
 	Cuadrado *cuerpo;
 	float scrollY;
 protected:
-	   virtual bool dropTemplate(FiguraView * figura) = 0;
-	   virtual FiguraView * dragTemplate(float x, float y) = 0;
-	   void setCuerpo(Cuadrado * cuerpo);
+	virtual bool dropTemplate(FiguraView * figura) = 0;
+	virtual FiguraView * dragTemplate(float x, float y) = 0;
+	void setCuerpo(Cuadrado * cuerpo);
+
 public:
 	ZonaDragAndDrop(Cuadrado* cuadrado);
 	virtual ~ZonaDragAndDrop();
@@ -31,9 +32,10 @@ public:
 	// crea una vista.
 	FiguraView * drag(float, float);
 	float getScrollY() const;
-	void setScrollY(float );
+	void setScrollY(float);
 	list<FiguraView *> getFiguras();
 	virtual void dibujarse(SDL_Renderer *) = 0;
+	Cuadrado*& getCuerpo();
 };
 
 #endif /* ZONADRAGANDDROP_H_ */

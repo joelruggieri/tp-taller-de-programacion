@@ -36,5 +36,12 @@ Figura::Figura() {
 	rotacion = 0;
 }
 
+Figura::Figura(float x, float y) {
+	this->x = x;
+	this->y = y;
+	rotacion = 0;
+}
+
+
 Figura::~Figura() {
 }

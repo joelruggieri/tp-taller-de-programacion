@@ -10,13 +10,11 @@
 #include "SDL2/SDL_image.h"
 #include "SDL2/SDL.h"
 #include <iostream>
-#include "Dibujable.h"
+#include "View.h"
 #include "Resizeable.h"
 
 
-class Canvas: public Dibujable{
-	int x,y,w,h;
-
+class Canvas: public View{
 	 SDL_Texture* imagenCanvas;
 	 /* SDL_Renderer* render ;*/
 public:

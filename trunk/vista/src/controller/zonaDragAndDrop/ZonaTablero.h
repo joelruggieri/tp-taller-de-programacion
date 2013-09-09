@@ -22,7 +22,7 @@ private:
 	list<FiguraView*> figuras;
 	Dibujable * fondo;
 public:
-	ZonaTablero(Mapa *, float, float, Dibujable *);
+	ZonaTablero(Mapa *, float, float, SDL_Texture *);
 	virtual ~ZonaTablero();
 	void dibujarse(SDL_Renderer *);
 };

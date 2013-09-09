@@ -51,3 +51,7 @@ FiguraView * ZonaDragAndDrop::drag(float x, float y) {
 void ZonaDragAndDrop::setCuerpo(Cuadrado* cuerpo) {
 	this->cuerpo = cuerpo;
 }
+
+Cuadrado*& ZonaDragAndDrop::getCuerpo() {
+	return cuerpo;
+}

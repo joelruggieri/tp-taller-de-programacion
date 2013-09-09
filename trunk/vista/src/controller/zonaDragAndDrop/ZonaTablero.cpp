@@ -6,11 +6,19 @@
  */
 
 #include "ZonaTablero.h"
+#include "../Resizer.h"
+#include "../../vista/Canvas.h"
 
 //TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
-ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y, Dibujable * fondo):ZonaDragAndDrop(new Cuadrado(x,y,100,100)) {
+ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFondo):ZonaDragAndDrop(new Cuadrado(x,y,100,100)) {
 	this->mapa = mapa;
-	this->fondo = fondo;
+	Resizer * instance = Resizer::Instance();
+	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
+	int xC = instance->resizearDistanciaLogicaX(x);
+	int yC =instance->resizearDistanciaLogicaY(y);
+	int wC = instance->resizearDistanciaLogicaX(100);
+	int hC =instance->resizearDistanciaLogicaY(100);
+	this->fondo = new Canvas(xC,yC,wC,hC,imagenFondo);
 }
 
 bool ZonaTablero::dropTemplate(FiguraView* view) {

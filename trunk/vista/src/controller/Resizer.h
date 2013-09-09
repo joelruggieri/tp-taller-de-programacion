@@ -15,8 +15,10 @@ public:
 	int resizearDistanciaX(int valor);
 	int resizearDistanciaY(int valor);
 	void setearResizer(int xNuevo, int yNuevo);
-	int resizearDistanciaLogicaX(int valor);
-	int resizearDistanciaLogicaY(int valor);
+	int resizearDistanciaLogicaX(float valor);
+	int resizearDistanciaLogicaY(float valor);
+	float resizearDistanciaPixelX(int valor);
+	float resizearDistanciaPixelY(int valor);
 	//Resizer();
 	//virtual ~Resizer();
 protected:
