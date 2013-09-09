@@ -1,5 +1,5 @@
 /*
- * ZonaDragAndDrop.cpp
+ * Zona.cpp
  *
  *  Created on: 30/08/2013
  *      Author: jonathan
@@ -9,49 +9,45 @@
 #include "../../vista/figura/FiguraView.h"
 
 
-ZonaDragAndDrop::ZonaDragAndDrop(Cuadrado * cuerpo) {
+Zona::Zona(Cuadrado * cuerpo) {
 	this->cuerpo = cuerpo;
 	this->scrollY = 0;
 }
 
-ZonaDragAndDrop::~ZonaDragAndDrop() {
+Zona::~Zona() {
 }
 
 
 //TODO: Si hay scroll lo almacena con la posicion cambiada.
-bool ZonaDragAndDrop::drop(FiguraView* vista) {
+bool Zona::agregarFigura(FiguraView* vista) {
 
 	if (this->cuerpo->contieneCentro(vista->getModelo())) {
-		return this->dropTemplate(vista);
+		return this->agregarTemplate(vista);
 	}
 	return false;
 }
 
-float ZonaDragAndDrop::getScrollY() const {
+float Zona::getScrollY() const {
 	return scrollY;
 }
 
-void ZonaDragAndDrop::setScrollY(float scrollY) {
+void Zona::setScrollY(float scrollY) {
 	this->scrollY = scrollY;
 }
 
-//TODO :Si hay scroll lo devuelve con la posicion cambiada.
-FiguraView * ZonaDragAndDrop::drag(float x, float y) {
-	FiguraView * drop  = NULL;
+//TODO :Si hay scroll lo devuelve con la posicion cambiada y adapta la posicion algo del modelo.
+bool Zona::click(int x, int y) {
+	bool drop  = NULL;
 	if (this->cuerpo->contacto(x, y)) {
-		drop = this->dragTemplate(x,y);
+		drop = this->clickTemplate(x,y);
 	}
-//	if(drop != NULL){
-//		drop->getCuerpo()->setPosY(
-//				drop->getCuerpo()->getPosY() - this->scrollY);
-//	}
 	return drop;
 }
 
-void ZonaDragAndDrop::setCuerpo(Cuadrado* cuerpo) {
+void Zona::setCuerpo(Cuadrado* cuerpo) {
 	this->cuerpo = cuerpo;
 }
 
-Cuadrado*& ZonaDragAndDrop::getCuerpo() {
+Cuadrado*& Zona::getCuerpo() {
 	return cuerpo;
 }

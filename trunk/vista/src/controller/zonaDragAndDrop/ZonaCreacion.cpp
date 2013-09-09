@@ -10,13 +10,13 @@
 #include "../Resizer.h"
 #include "../../vista/Canvas.h"
 ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior, Dibujable * fondo) :
-		ZonaDragAndDrop(NULL) {
+		Zona(NULL) {
 	this->fondo = fondo;
 	this->inicializar(factories, x, margenSuperior);
 }
 
 ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior, SDL_Texture* textura) :
-		ZonaDragAndDrop(NULL) {
+		Zona(NULL) {
 	this->inicializar(factories, x, margenSuperior);
 	Resizer * instance = Resizer::Instance();
 	const Cuadrado* cuerpo0 = this->getCuerpo();
@@ -51,12 +51,12 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x, fl
 	float alto = (y - margenSuperior) + ANCHO_VIEW_DEF;
 	this->setCuerpo(new Cuadrado(x,(margenSuperior + alto) / 2, ancho, alto));
 }
-bool ZonaCreacion::dropTemplate(FiguraView* dragueable) {
+bool ZonaCreacion::agregarTemplate(FiguraView* dragueable) {
 	return false;
 
 }
 
-FiguraView* ZonaCreacion::dragTemplate(float x, float y) {
+bool ZonaCreacion::clickTemplate(float x, float y) {
 	return this->inicioCadena->atender(x, y);
 }
 
@@ -78,4 +78,8 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
 	this->fondo->dibujarse(renderer);
 	this->inicioCadena->dibujarse(renderer);
+}
+
+bool ZonaCreacion::removerFigura(FiguraView* figura) {
+	return false;
 }

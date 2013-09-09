@@ -7,8 +7,9 @@
 
 #include "ViewFiguraFactory.h"
 
-ViewFiguraFactory::ViewFiguraFactory(string path,SDL_Renderer* ren) {
+ViewFiguraFactory::ViewFiguraFactory(string path,SDL_Renderer* ren,DropController * controller) {
 	this->textura = this->cargarTexture(path,ren);
+	this->controller = controller;
 
 }
 

@@ -8,7 +8,7 @@
 #include "ViewCirculoFactory.h"
 #include "../../vista/figura/CirculoView.h"
 
-ViewCirculoFactory::ViewCirculoFactory(SDL_Renderer * renderer): ViewFiguraFactory("resource/circulo.jpg", renderer) {
+ViewCirculoFactory::ViewCirculoFactory(SDL_Renderer * renderer,DropController * controller): ViewFiguraFactory("resource/circulo.jpg", renderer, controller) {
 
 }
 
@@ -17,10 +17,10 @@ ViewCirculoFactory::~ViewCirculoFactory() {
 }
 
 FiguraView* ViewCirculoFactory::crear(int x, int y, int w, int h) {
-	return new CirculoView(x, y, w, h, this->textura);
+	return new CirculoView(x, y, w, h, this->textura, this->controller);
 }
 
 FiguraView* ViewCirculoFactory::crearVistaPropia(int x, int y, int w,
 		int h) {
-	return new CirculoView(x,y,w,h, this->textura);
+	return new CirculoView(x,y,w,h, this->textura, this->controller);
 }

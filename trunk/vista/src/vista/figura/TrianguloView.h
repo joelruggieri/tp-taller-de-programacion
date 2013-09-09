@@ -12,9 +12,9 @@
 #include "SDL2/SDL.h"
 class TrianguloView: public FiguraView {
 private:
-	void dropTemplate(DropController*);
+	void dropTemplate();
 public:
-	TrianguloView(int x, int y, int w, int h, SDL_Texture * textura);
+	TrianguloView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
 	virtual ~TrianguloView();
 };
 

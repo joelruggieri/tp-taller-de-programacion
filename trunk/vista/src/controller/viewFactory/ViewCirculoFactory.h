@@ -12,7 +12,7 @@
 #include "SDL2/SDL.h"
 class ViewCirculoFactory: public ViewFiguraFactory {
 public:
-	ViewCirculoFactory(SDL_Renderer * renderer);
+	ViewCirculoFactory(SDL_Renderer * renderer,DropController * controller);
 	virtual ~ViewCirculoFactory();
 	FiguraView * crear(int,int,int,int);
 	FiguraView * crearVistaPropia(int,int,int,int);

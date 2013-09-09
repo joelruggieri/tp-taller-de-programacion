@@ -7,11 +7,10 @@
 
 #include "DragAndDropController.h"
 
-#include "zonaDragAndDrop/ZonaJuego.h"
 #include "../vista/figura/FiguraView.h"
 
-DragAndDropController::DragAndDropController() {
-//	this->zona = new ZonaJuego();
+DragAndDropController::DragAndDropController(Zona *zonaJuego) {
+	this->zona = zonaJuego;
 	this->figurasFactory = new FiguraFactory();
 	this->figuraDrag = NULL;
 }
@@ -21,7 +20,7 @@ DragAndDropController::~DragAndDropController() {
 
 void DragAndDropController::dropear(FiguraView* view, Figura* figura) {
 	view->setModelo(figura);
-	if (!zona->drop(view)) {
+	if (!zona->agregarFigura(view)) {
 		delete figura;
 		delete view;
 	}
@@ -40,7 +39,7 @@ void DragAndDropController::dropNuevaFigura(CuadradoView* view) {
 }
 
 void DragAndDropController::dropFigura(FiguraView* view) {
-	if(!this->zona->drop(view)){
+	if(!this->zona->agregarFigura(view)){
 		delete view->getModelo();
 		delete view;
 		//TODO FALTA REMOVER EL MODELO
@@ -48,16 +47,25 @@ void DragAndDropController::dropFigura(FiguraView* view) {
 }
 
 bool DragAndDropController::clickDown(float x, float y) {
-	this->figuraDrag = this->figuraDrag == NULL ? this->zona->drag(x,y) : NULL;
+	this->zona->click(x,y);
 	return false;
 }
 
 bool DragAndDropController::clickUp(float x, float y) {
 	if(this->figuraDrag != NULL){
-		this->figuraDrag->drop(this);
+		//TODO ESTO DEBERÍA ACTUALIZAR LA POSICION DE LA IMAGEN, EN EL DROP SE DEBERÍA IMPACTAR TAMBIEN EN EL MODELO
+		this->figuraDrag->drop();
 		this->figuraDrag = NULL;
 	}
 	return true;
+}
+
+void DragAndDropController::drag(FiguraView* figura, float x, float y) {
+	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA LA SIGUIENTE VISTA.
+	this->zona->removerFigura(figura);
+}
+
+void DragAndDropController::dropNuevaFigura(RomboView* figura) {
 }
 
 bool DragAndDropController::mouseMotion(float corrimientoX, float corrimientoY) {

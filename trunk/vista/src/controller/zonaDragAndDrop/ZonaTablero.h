@@ -14,10 +14,10 @@
 #include "../../vista/figura/FiguraView.h"
 #include "../../vista/Dibujable.h"
 
-class ZonaTablero: public ZonaDragAndDrop{
+class ZonaTablero: public Zona{
 private:
-	bool dropTemplate(FiguraView * dragueable);
-	FiguraView * dragTemplate(float x, float y);
+	bool agregarTemplate(FiguraView * dragueable);
+	bool clickTemplate(float x, float y);
 	Mapa * mapa;
 	list<FiguraView*> figuras;
 	Dibujable * fondo;
@@ -25,6 +25,7 @@ public:
 	ZonaTablero(Mapa *, float, float, SDL_Texture *);
 	virtual ~ZonaTablero();
 	void dibujarse(SDL_Renderer *);
+	bool removerFigura(FiguraView*);
 };
 
 #endif /* ZONATABLERO_H_ */

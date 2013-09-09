@@ -14,14 +14,14 @@
 #include <list>
 using namespace std;
 
-class ZonaCreacion: public ZonaDragAndDrop {
+class ZonaCreacion: public Zona {
 private:
 	EslabonCreacion * inicioCadena;
 	EslabonCreacion * ultimo;
 	static const int ANCHO_VIEW_DEF = 10;
 	Dibujable * fondo;
-	bool dropTemplate(FiguraView * dragueable);
-	FiguraView * dragTemplate(float x, float y);
+	bool agregarTemplate(FiguraView * dragueable);
+	bool clickTemplate(float x, float y);
 	list<Dibujable* > vistasFactories;
 	void inicializar(list<ViewFiguraFactory*> *, float x, float margenSuperior);
 public:
@@ -30,6 +30,7 @@ public:
 	virtual ~ZonaCreacion();
 	void agregarEslabon(EslabonCreacion* eslabon);
 	void dibujarse(SDL_Renderer *);
+	bool removerFigura(FiguraView*);
 };
 
 #endif /* ZONACREACION_H_ */

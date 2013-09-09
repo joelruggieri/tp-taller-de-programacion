@@ -8,11 +8,11 @@
 #include "TrianguloView.h"
 #include "../../controller/DropController.h"
 
-void TrianguloView::dropTemplate(DropController* manager) {
-	manager->dropNuevaFigura(this);
+void TrianguloView::dropTemplate() {
+	controller->dropNuevaFigura(this);
 }
 
-TrianguloView::TrianguloView(int x, int y, int w, int h, SDL_Texture * textura): FiguraView(x, y, w, h, textura) {
+TrianguloView::TrianguloView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller): FiguraView(x, y, w, h, textura, controller) {
 
 }
 

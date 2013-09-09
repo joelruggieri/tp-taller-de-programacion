@@ -8,11 +8,11 @@
 #include "CuadradoView.h"
 #include "../../controller/DropController.h"
 
-void CuadradoView::dropTemplate(DropController* manager) {
-	manager->dropNuevaFigura(this);
+void CuadradoView::dropTemplate() {
+	controller->dropNuevaFigura(this);
 }
 
-CuadradoView::CuadradoView(int x, int y, int w, int h, SDL_Texture * textura): FiguraView(x, y, w, h,textura) {
+CuadradoView::CuadradoView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller): FiguraView(x, y, w, h,textura, controller) {
 
 }
 

@@ -13,9 +13,9 @@
 
 class CirculoView: public FiguraView {
 private:
-	void dropTemplate(DropController*);
+	void dropTemplate();
 public:
-	CirculoView(int x, int y, int w, int h, SDL_Texture * textura);
+	CirculoView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
 	virtual ~CirculoView();
 };
 

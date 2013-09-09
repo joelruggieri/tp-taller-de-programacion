@@ -6,20 +6,30 @@
  */
 
 #include "ZonaJuego.h"
-#include "ZonaTablero.h"
-#include "ZonaCreacion.h"
+
+#include <src/figura/Cuadrado.h>
+#include <src/figura/Mapa.h>
 #include <list>
-#include <iostream>
+#include <new>
+
+#include "../DragAndDropController.h"
 #include "../viewFactory/ViewCirculoFactory.h"
 #include "../viewFactory/ViewCuadradoFactory.h"
 #include "../viewFactory/ViewTrianguloFactory.h"
-#include "../../vista/Canvas.h"
-#include "../Resizer.h"
+#include "ZonaCreacion.h"
+#include "ZonaDragAndDrop.h"
+#include "ZonaTablero.h"
+
+class FiguraView;
+class ViewFiguraFactory;
+struct SDL_Renderer;
+struct SDL_Texture;
+
 using namespace std;
 
 
 
-ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas, SDL_Renderer * renderer) : ZonaDragAndDrop(new Cuadrado(75,50,150,100)) {
+ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas, SDL_Renderer * renderer) : Zona(new Cuadrado(75,50,150,100)) {
 	// 5 margen izq
 	// 100 tablero
 	// 10 entre los dos paneles
@@ -29,31 +39,33 @@ ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas, SDL_Renderer * renderer) : ZonaD
 
 	this->zonaTablero = new ZonaTablero(new Mapa(),50,50, fondoCanvas);
 	list <ViewFiguraFactory*> factories;
-	factories.push_back(new ViewCuadradoFactory(renderer));
-	factories.push_back(new ViewTrianguloFactory(renderer));
-	factories.push_back(new ViewCirculoFactory(renderer));
-	factories.push_back(new ViewCuadradoFactory(renderer));
-	factories.push_back(new ViewCuadradoFactory(renderer));
-	factories.push_back(new ViewTrianguloFactory(renderer));
-	factories.push_back(new ViewCuadradoFactory(renderer));
-	factories.push_back(new ViewCirculoFactory(renderer));
+	//TODO VER DONDE ELIMINAR ESTE CONTROLLER, CAPAZ TIENE QUE VENIR COMO PARAMETRO CON LAS FACTORIES
+	DragAndDropController* dragAndDropController = new DragAndDropController(this);
+	factories.push_back(new ViewCuadradoFactory(renderer,dragAndDropController));
+	factories.push_back(new ViewTrianguloFactory(renderer,dragAndDropController));
+	factories.push_back(new ViewCirculoFactory(renderer,dragAndDropController));
+	factories.push_back(new ViewCuadradoFactory(renderer,dragAndDropController));
+	factories.push_back(new ViewCuadradoFactory(renderer,dragAndDropController));
+	factories.push_back(new ViewTrianguloFactory(renderer,dragAndDropController));
+	factories.push_back(new ViewCuadradoFactory(renderer,dragAndDropController));
+	factories.push_back(new ViewCirculoFactory(renderer,dragAndDropController));
 	this->zonaCreacion = new ZonaCreacion(&factories,110,0,fondoCanvas);
 }
 
-bool ZonaJuego::dropTemplate(FiguraView* dropeable) {
+bool ZonaJuego::agregarTemplate(FiguraView* dropeable) {
 	//SI ALGUNO DE LOS DOS PANELES DE LA ZONA PUEDE ATENDER SE ATIENDE.
-	bool result = this->zonaCreacion->drop(dropeable);
+	bool result = this->zonaCreacion->agregarFigura(dropeable);
 	if (!result) {
-		result = this->zonaTablero->drop(dropeable);
+		result = this->zonaTablero->agregarFigura(dropeable);
 	}
 	return result;
 }
 
-FiguraView* ZonaJuego::dragTemplate(float x, float y) {
+bool ZonaJuego::clickTemplate(float x, float y) {
 	//SI ALGUNO DE LOS DOS PANELES DE LA ZONA PUEDE ATENDER SE ATIENDE.
-	FiguraView * result = this->zonaCreacion->drag(x, y);
-	if (result == NULL) {
-		result = this->zonaTablero->drag(x, y);
+	bool result = this->zonaCreacion->click(x, y);
+	if (result == false) {
+		result = this->zonaTablero->click(x, y);
 	}
 	return result;
 }
@@ -76,6 +88,10 @@ void ZonaJuego::dibujarse(SDL_Renderer* renderer) {
 	this->zonaCreacion->dibujarse(renderer);
 }
 
-FiguraView* ZonaJuego::drag(float x, float y) {
-	return this->dragTemplate(x,y);
+bool ZonaJuego::click(int x, int y) {
+	return this->clickTemplate(x,y);
+}
+
+bool ZonaJuego::removerFigura(FiguraView* figura) {
+	return this->zonaCreacion->removerFigura(figura) || this->zonaTablero->removerFigura(figura);
 }
