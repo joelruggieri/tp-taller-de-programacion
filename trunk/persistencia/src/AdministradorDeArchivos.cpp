@@ -71,5 +71,6 @@ std::list<Figura*> AdministradorDeArchivos::obtenerTodos() {
 		Triangulo obj = triangulos[i].as<Triangulo>();
 		lista.push_back(new Triangulo(obj.getX(),obj.getY()));
 	}
+
 	return lista;
 }
