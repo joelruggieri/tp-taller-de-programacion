@@ -15,6 +15,7 @@ protected:
 	float rotacion;
 public:
 	Figura();
+	Figura(float x, float y);
 	virtual ~Figura();
 	virtual bool contacto(float, float)= 0;
 	virtual bool contieneCentro(Figura* figura) = 0;

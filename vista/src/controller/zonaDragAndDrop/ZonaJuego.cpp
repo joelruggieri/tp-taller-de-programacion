@@ -14,6 +14,7 @@
 #include "../viewFactory/ViewCuadradoFactory.h"
 #include "../viewFactory/ViewTrianguloFactory.h"
 #include "../../vista/Canvas.h"
+#include "../Resizer.h"
 using namespace std;
 
 
@@ -26,13 +27,13 @@ ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas) : ZonaDragAndDrop(new Cuadrado(7
 	// 5 margen izquierdo
 
 
-	this->zonaTablero = new ZonaTablero(new Mapa(),55,55, new Canvas(0,0, 300, 300,fondoCanvas));
-	list <ViewFiguraFactory*> *factories = new list<ViewFiguraFactory*>();
-	factories->push_back(new ViewCirculoFactory());
-	factories->push_back(new ViewCuadradoFactory());
-	factories->push_back(new ViewTrianguloFactory());
-	this->zonaCreacion = new ZonaCreacion(factories,135,5,new Canvas(300,0,300,100,fondoCanvas));
-	delete factories;
+	this->zonaTablero = new ZonaTablero(new Mapa(),50,50, fondoCanvas);
+	list <ViewFiguraFactory*> factories;
+	factories.push_back(new ViewCuadradoFactory());
+	factories.push_back(new ViewCuadradoFactory());
+	factories.push_back(new ViewCuadradoFactory());
+
+	this->zonaCreacion = new ZonaCreacion(&factories,110,0,fondoCanvas);
 }
 
 bool ZonaJuego::dropTemplate(FiguraView* dropeable) {

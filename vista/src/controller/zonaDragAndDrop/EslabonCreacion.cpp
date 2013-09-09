@@ -16,9 +16,9 @@ EslabonCreacion::EslabonCreacion(ViewFiguraFactory * factory, Cuadrado * cuerpo,
 	this->cuerpo = cuerpo;
 	this->itemsDisponibles  = maxItems;
 	//TODO: Adaptar posicion con resizer.
-	int x = Resizer::Instance()->resizearDistanciaX(cuerpo->getX());
-	int y =(400/120) * cuerpo->getY() ;
-	this->vista = this->factory->crearVistaPropia(x , y, (400/150) * this->cuerpo->getAncho(),(400/120)* this->cuerpo->getAlto());
+	Resizer * res = Resizer::Instance();
+	this->vista = this->factory->crearVistaPropia(res->resizearDistanciaLogicaX(cuerpo->getX()) , res->resizearDistanciaLogicaY(cuerpo->getY()), res->resizearDistanciaLogicaX( this->cuerpo->getAncho()),
+			res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
 }
 //
 EslabonCreacion::~EslabonCreacion() {
@@ -32,20 +32,20 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 	this->siguiente = sig;
 }
 //
-FiguraView * EslabonCreacion::antender(float posX, float posY) {
+FiguraView * EslabonCreacion::atender(float posX, float posY) {
 	if(this->cuerpo->contacto(posX, posY)){
 //		if(this->itemsDisponibles >0){
 			this->itemsDisponibles--;
 			//TODO LLAMAR AL ADAPTADOR DE COORDENADAS
-			int x = (400/150) * posX;
-			int y =(400/120) * posY;
-			return this->factory->crear(x, y,(400/150) * this->cuerpo->getAncho(),(400/120)* this->cuerpo->getAlto());
+			Resizer * res = Resizer::Instance();
+			return this->factory->crear(res->resizearDistanciaLogicaX(posX), res->resizearDistanciaLogicaY(posY),
+					res->resizearDistanciaLogicaX(this->cuerpo->getAncho()),res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
 //		} else {
 //			return NULL;
 //		}
 	}
 	if(this->siguiente != NULL){
-		return this->siguiente->antender(posX, posY);
+		return this->siguiente->atender(posX, posY);
 	}
 	return NULL;
 }

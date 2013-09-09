@@ -8,6 +8,7 @@
 #include "Resizer.h"
 #include <iostream>
 using namespace std;
+#include <cmath>
 
 Resizer* Resizer::pinstance = 0;// Inicializar el puntero
 Resizer* Resizer::Instance (int x, int y, float xLogico, float yLogico )
@@ -35,16 +36,28 @@ int Resizer::resizearDistanciaX(int valor) {
 	return (this->relacionX * valorFloat)  ;
 }
 
-int Resizer::resizearDistanciaLogicaX(int valor)
+int Resizer::resizearDistanciaLogicaX(float valor)
 {
 		float valorFloat = (float)valor;
-	return (this->relacionXLogica * valorFloat);
+	return round(this->relacionXLogica * valorFloat);
 }
 
-int Resizer::resizearDistanciaLogicaY(int valor)
+int Resizer::resizearDistanciaLogicaY(float valor)
 {
 	float valorFloat = (float)valor;
-	return (this->relacionYLogica * valorFloat);
+	return round(this->relacionYLogica * valorFloat);
+}
+
+float Resizer::resizearDistanciaPixelX(int valor)
+{
+		float valorFloat = (float)valor;
+	return (valorFloat / this->relacionXLogica);
+}
+
+float Resizer::resizearDistanciaPixelY(int valor)
+{
+	float valorFloat = (float)valor;
+	return (valorFloat / this->relacionYLogica);
 }
 
 
@@ -63,7 +76,7 @@ void Resizer::setearResizer(int xNuevo, int yNuevo) {
 
 
 int Resizer::resizearDistanciaY(int valor) {
-	return (this->relacionY * valor);
+	return round(this->relacionY * valor);
 }
 
 Resizer::Resizer(int x, int y,float xLogico, float yLogico)

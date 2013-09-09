@@ -20,36 +20,11 @@ void FiguraView::drop(DropController* manager) {
 		this->dropTemplate(manager);
 	}
 }
-FiguraView::FiguraView(int x, int y, int w, int h ) {
+FiguraView::FiguraView(int x, int y, int w, int h ): View(x,y,w,h) {
 	this->modelo = NULL;
-	this->x= x;
-	this->y= y;
-	this->w= w;
-	this->h= h;
 }
 
 FiguraView::~FiguraView(){
 
 }
 
-
-
-/********************************************************
- * CIRCULOVIEW
- ********************************************************/
-
-int FiguraView::getH() const {
-	return h;
-}
-
-int FiguraView::getW() const {
-	return w;
-}
-
-int FiguraView::getX() const {
-	return x;
-}
-
-int FiguraView::getY() const {
-	return y;
-}

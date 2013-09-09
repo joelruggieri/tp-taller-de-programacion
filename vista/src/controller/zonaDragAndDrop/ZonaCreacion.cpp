@@ -7,16 +7,34 @@
 
 #include "ZonaCreacion.h"
 #include "src/figura/Cuadrado.h"
-
+#include "../Resizer.h"
+#include "../../vista/Canvas.h"
 ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior, Dibujable * fondo) :
 		ZonaDragAndDrop(NULL) {
+	this->fondo = fondo;
+	this->inicializar(factories, x, margenSuperior);
+}
+
+ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior, SDL_Texture* textura) :
+		ZonaDragAndDrop(NULL) {
+	this->inicializar(factories, x, margenSuperior);
+	Resizer * instance = Resizer::Instance();
+	const Cuadrado* cuerpo0 = this->getCuerpo();
+	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
+	int xC = instance->resizearDistanciaLogicaX(cuerpo0->getX());
+	int yC =instance->resizearDistanciaLogicaY(50);
+	int wC = instance->resizearDistanciaLogicaX(cuerpo0->getAncho());
+	int hC =instance->resizearDistanciaLogicaY(100);
+	this->fondo = new Canvas(xC,yC,wC,hC,textura);
+}
+void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x, float margenSuperior) {
 	//TODO ADAPTAR TAMANIO DE LA ZONA SEGUN LA CANTIDAD DE FACTORIES QUE VENGAN.
 	float ancho = ANCHO_VIEW_DEF *2;
 	//50% de margen alrededor de todo el panel
 	float xInicial = x;
 	float yInicial = margenSuperior +  ANCHO_VIEW_DEF ;
 	float y = yInicial;
-	this->fondo = fondo;
+
 	std::list<ViewFiguraFactory*>::const_iterator iterator;
 	this->inicioCadena = NULL;
 	this->ultimo = NULL;
@@ -33,14 +51,13 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float 
 	float alto = (y - margenSuperior) + ANCHO_VIEW_DEF;
 	this->setCuerpo(new Cuadrado(x,(margenSuperior + alto) / 2, ancho, alto));
 }
-
 bool ZonaCreacion::dropTemplate(FiguraView* dragueable) {
 	return false;
 
 }
 
 FiguraView* ZonaCreacion::dragTemplate(float x, float y) {
-	return this->inicioCadena->antender(x, y);
+	return this->inicioCadena->atender(x, y);
 }
 
 ZonaCreacion::~ZonaCreacion() {

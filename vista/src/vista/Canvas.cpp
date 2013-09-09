@@ -65,17 +65,13 @@ int Canvas::ModificarFondo(char* rutaNueva)
 
 void Canvas::dibujarse(SDL_Renderer * renderer){
 	SDL_Rect dest;
-	dest.h = this->h;
-	dest.w = this->w;
-	dest.x = this->x;
-	dest.y = this->y;
+	dest.h = this->getH();
+	dest.w = this->getW();
+	dest.x = this->getX();
+	dest.y = this->getY();
 	SDL_RenderCopy(renderer,this->imagenCanvas,NULL,&dest);
 }
 
-Canvas::Canvas(int x, int y, int h, int w, SDL_Texture* textura) {
-	this->x = x;
-	this->y = y;
-	this->h = h;
-	this->w = w;
+Canvas::Canvas(int x, int y, int w, int h, SDL_Texture* textura): View(x,y,w,h) {
 	this->imagenCanvas = textura;
 }
