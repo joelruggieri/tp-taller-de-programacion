@@ -20,7 +20,6 @@ MainController::MainController() {
 }
 
 MainController::~MainController() {
-	delete this->dropController;
 }
 
 SDL_Texture* MainController::cargarTexture(const string &file,
@@ -50,6 +49,7 @@ int MainController::run() {
 	this->dropController->setZona(zona);
 	while(!terminar){
 		terminar = eventController.procesarEventos();
+		SDL_RenderClear(render);
 		zona->dibujarse(render);
 		vista.dibujarse(render);
 		SDL_RenderPresent(render);
