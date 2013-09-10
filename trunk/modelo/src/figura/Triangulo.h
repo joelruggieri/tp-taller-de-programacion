@@ -9,14 +9,20 @@
 #define TRIANGULO_H_
 
 #include "Figura.h"
-
 class Triangulo: public Figura {
+private:
+	float ancho,alto;
 public:
-	Triangulo(float,float);
 	Triangulo();
+	Triangulo(float, float, float, float);
 	virtual ~Triangulo();
 	bool contacto(float,float);
 	bool contieneCentro(Figura* cuadrado);
+	bool isAdentro1D(float pos, float posCentro, float ancho);
+	void setAncho(float ancho);
+	void setAlto (float alto);
+	float getAncho() const;
+	float getAlto() const;
 };
 
 #endif /* TRIANGULO_H_ */

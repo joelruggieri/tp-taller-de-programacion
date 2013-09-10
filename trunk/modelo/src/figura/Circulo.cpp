@@ -30,11 +30,17 @@ Circulo::~Circulo() {
 	// TODO Auto-generated destructor stub
 }
 
-bool Circulo::contacto(float float1, float float2) {
-	return true;
+bool Circulo::contacto(float x, float y) {
+	float cx = this->getX();
+	 float cy = this->getY();
+
+	 //Distancia al punto
+	 float SqrDist = (( cx - x ) * ( cx - x )) + (( cy - y ) * ( cy - y ));
+	 float SqrRadius = radio*radio;
+	 return (SqrDist <= SqrRadius);
 }
 
 bool Circulo::contieneCentro(Figura* cuadrado) {
-	return true;
+	return false;
 }
 

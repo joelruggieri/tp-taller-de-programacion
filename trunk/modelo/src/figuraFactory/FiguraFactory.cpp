@@ -22,10 +22,10 @@ FiguraFactory::~FiguraFactory() {
 Figura * FiguraFactory::crearCuadrado(float x,float y){
 	return new Cuadrado(x,y,10,10);
 }
-Figura* FiguraFactory::crearCirculo() {
-	return new Circulo(1,1,1);
+Figura* FiguraFactory::crearCirculo(float x, float y) {
+	return new Circulo(x,y,12);
 }
 
-Figura* FiguraFactory::crearTriangulo() {
-	return new Triangulo();
+Figura* FiguraFactory::crearTriangulo(float x,float y) {
+	return new Triangulo(x,y,10,10);
 }

@@ -14,8 +14,8 @@ public:
 	FiguraFactory();
 	virtual ~FiguraFactory();
 	Figura * crearCuadrado(float x,float y);
-	Figura * crearCirculo();
-	Figura * crearTriangulo();
+	Figura * crearCirculo(float x,float y);
+	Figura * crearTriangulo(float x,float y);
 };
 
 #endif /* FIGURAFACTORY_H_ */
