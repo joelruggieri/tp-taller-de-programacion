@@ -33,8 +33,8 @@ public:
 	//retorna true si se hizo cargo de la peticion.
 	virtual bool removerFigura(FiguraView*) = 0;
 
-	// clickea en el area y retorna true si hubo alguna accion.
-	bool click(int, int);
+	// puede estar recibiendo en unidades logicas.
+	virtual bool click(float, float);
 	float getScrollY() const;
 	void setScrollY(float);
 	list<FiguraView *> getFiguras();
@@ -43,3 +43,4 @@ public:
 };
 
 #endif /* ZONADRAGANDDROP_H_ */
+

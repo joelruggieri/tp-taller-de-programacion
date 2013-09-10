@@ -15,6 +15,7 @@ Zona::Zona(Cuadrado * cuerpo) {
 }
 
 Zona::~Zona() {
+	delete this->cuerpo;
 }
 
 
@@ -36,8 +37,8 @@ void Zona::setScrollY(float scrollY) {
 }
 
 //TODO :Si hay scroll lo devuelve con la posicion cambiada y adapta la posicion algo del modelo.
-bool Zona::click(int x, int y) {
-	bool drop  = NULL;
+bool Zona::click(float x, float y) {
+	bool drop  = false;
 	if (this->cuerpo->contacto(x, y)) {
 		drop = this->clickTemplate(x,y);
 	}

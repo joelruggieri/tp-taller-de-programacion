@@ -15,20 +15,20 @@
 #include "../vista/figura/TrianguloView.h"
 #include "DropController.h"
 #include "mouseEventController/MouseEventController.h"
-
+#include "../vista/Dragueable.h"
 
 class Figura;
 class FiguraFactory;
 class Zona;
 
-class DragAndDropController: public DropController, public MouseEventController {
+class DragAndDropController: public DropController, public MouseEventController, public Dragueable {
 private:
 	Zona * zona;
 	FiguraFactory * figurasFactory;
 	FiguraView * figuraDrag;
 	void dropear(FiguraView* view, Figura* figura);
 public:
-	DragAndDropController(Zona * zonaJuego);
+	DragAndDropController();
 	virtual ~DragAndDropController();
 	void dropNuevaFigura(CuadradoView*);
 	void dropNuevaFigura(CirculoView*);
@@ -39,5 +39,9 @@ public:
 	bool clickDown(float,float);
 	bool clickUp(float, float);
 	bool mouseMotion(float, float);
+	Zona* getZona();
+	void setZona(Zona* zona);
+	bool isDragging();
+	View* getDragueado();
 };
 #endif /* DRAGANDDROPCONTROLLER_H_ */

@@ -19,13 +19,13 @@ private:
 	bool agregarTemplate(FiguraView * dragueable);
 	bool clickTemplate(float x, float y);
 public:
-	ZonaJuego(SDL_Texture * texturaCanvas, SDL_Renderer * renderer);
+	ZonaJuego(Zona* zonaCreacion, Zona * zonaTablero, Cuadrado * dimensiones);
 	virtual ~ZonaJuego();
 	float getScrollY() const;
 	void setScrollY(float scrollY);
 	list<Figura*> getFiguras();
 	void dibujarse(SDL_Renderer *);
-	bool click(int, int);
+	bool click(float, float);
 	bool removerFigura(FiguraView*);
 };
 

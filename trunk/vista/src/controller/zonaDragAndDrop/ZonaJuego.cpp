@@ -6,50 +6,14 @@
  */
 
 #include "ZonaJuego.h"
-
-#include <src/figura/Cuadrado.h>
-#include <src/figura/Mapa.h>
-#include <list>
-#include <new>
-
-#include "../DragAndDropController.h"
-#include "../viewFactory/ViewCirculoFactory.h"
-#include "../viewFactory/ViewCuadradoFactory.h"
-#include "../viewFactory/ViewTrianguloFactory.h"
-#include "ZonaCreacion.h"
 #include "ZonaDragAndDrop.h"
-#include "ZonaTablero.h"
-
-class FiguraView;
-class ViewFiguraFactory;
-struct SDL_Renderer;
-struct SDL_Texture;
-
+#include "../Resizer.h"
 using namespace std;
 
 
-
-ZonaJuego::ZonaJuego(SDL_Texture * fondoCanvas, SDL_Renderer * renderer) : Zona(new Cuadrado(75,50,150,100)) {
-	// 5 margen izq
-	// 100 tablero
-	// 10 entre los dos paneles
-	// 20 la zona creacion
-	// 5 margen izquierdo
-
-
-	this->zonaTablero = new ZonaTablero(new Mapa(),50,50, fondoCanvas);
-	list <ViewFiguraFactory*> factories;
-	//TODO VER DONDE ELIMINAR ESTE CONTROLLER, CAPAZ TIENE QUE VENIR COMO PARAMETRO CON LAS FACTORIES
-	DragAndDropController* dragAndDropController = new DragAndDropController(this);
-	factories.push_back(new ViewCuadradoFactory(renderer,dragAndDropController));
-	factories.push_back(new ViewTrianguloFactory(renderer,dragAndDropController));
-	factories.push_back(new ViewCirculoFactory(renderer,dragAndDropController));
-	factories.push_back(new ViewCuadradoFactory(renderer,dragAndDropController));
-	factories.push_back(new ViewCuadradoFactory(renderer,dragAndDropController));
-	factories.push_back(new ViewTrianguloFactory(renderer,dragAndDropController));
-	factories.push_back(new ViewCuadradoFactory(renderer,dragAndDropController));
-	factories.push_back(new ViewCirculoFactory(renderer,dragAndDropController));
-	this->zonaCreacion = new ZonaCreacion(&factories,110,0,fondoCanvas);
+ZonaJuego::ZonaJuego(Zona* zonaCreacion, Zona * zonaTablero, Cuadrado * dimensiones) : Zona(dimensiones) {
+	this->zonaTablero = zonaTablero;
+	this->zonaCreacion = zonaCreacion;
 }
 
 bool ZonaJuego::agregarTemplate(FiguraView* dropeable) {
@@ -88,8 +52,10 @@ void ZonaJuego::dibujarse(SDL_Renderer* renderer) {
 	this->zonaCreacion->dibujarse(renderer);
 }
 
-bool ZonaJuego::click(int x, int y) {
-	return this->clickTemplate(x,y);
+bool ZonaJuego::click(float x, float y) {
+	Resizer* r = Resizer::Instance();
+	//LO QUE SE HACE ES CAPTURAR LA PROPAGACION DE CLICKS Y CAMBIAR A
+	return this->clickTemplate(r->resizearDistanciaPixelX(x),r->resizearDistanciaPixelY(y));
 }
 
 bool ZonaJuego::removerFigura(FiguraView* figura) {

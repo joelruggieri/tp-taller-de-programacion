@@ -32,14 +32,16 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 	this->siguiente = sig;
 }
 //
-FiguraView * EslabonCreacion::atender(float posX, float posY) {
+bool EslabonCreacion::atender(float posX, float posY) {
+
 	if(this->cuerpo->contacto(posX, posY)){
 //		if(this->itemsDisponibles >0){
 			this->itemsDisponibles--;
-			//TODO LLAMAR AL ADAPTADOR DE COORDENADAS
 			Resizer * res = Resizer::Instance();
-			return this->factory->crear(res->resizearDistanciaLogicaX(posX), res->resizearDistanciaLogicaY(posY),
+			FiguraView * view = this->factory->crear(res->resizearDistanciaLogicaX(posX), res->resizearDistanciaLogicaY(posY),
 					res->resizearDistanciaLogicaX(this->cuerpo->getAncho()),res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
+			view->click(res->resizearDistanciaLogicaX(posX),res->resizearDistanciaLogicaY(posY));
+			return true;
 //		} else {
 //			return NULL;
 //		}
@@ -47,7 +49,7 @@ FiguraView * EslabonCreacion::atender(float posX, float posY) {
 	if(this->siguiente != NULL){
 		return this->siguiente->atender(posX, posY);
 	}
-	return NULL;
+	return false;
 }
 
 

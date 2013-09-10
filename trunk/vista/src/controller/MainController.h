@@ -10,9 +10,14 @@
 #include <string>
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
+#include "zonaDragAndDrop/ZonaDragAndDrop.h"
+#include "DragAndDropController.h"
 using namespace std;
 
 class MainController {
+private:
+	Zona *crearZonaJuego(SDL_Renderer* render);
+	DragAndDropController * dropController;
 public:
 	MainController();
 	virtual ~MainController();

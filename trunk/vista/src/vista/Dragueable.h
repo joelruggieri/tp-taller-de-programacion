@@ -10,18 +10,13 @@
 #include "Dibujable.h"
 #include "Resizeable.h"
 #include "Seleccionable.h"
-namespace std {
+#include "View.h"
 
-class Dragueable : public Dibujable, public Seleccionable {
+class Dragueable{
 public:
-	Dragueable(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) : Dibujable()
-	{
-
-	}
 	virtual ~Dragueable();
-	bool Draguear(int nuevoX, int nuevoY);
-//	bool FueSeleccionado(int x, int y);
+	virtual bool isDragging() = 0;
+	virtual View * getDragueado() = 0;
 };
 
-} /* namespace std */
 #endif /* DRAGUEABLE_H_ */

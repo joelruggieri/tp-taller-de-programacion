@@ -42,12 +42,12 @@
 //	SDL_Texture *textTexture;
 //	char buf[256];
 //	SDL_Rect dst;
-//	SDL_Rect fondo;
+//	SDL_Rect canvas;
 //
-//	fondo.h = this->h;
-//	fondo.w = this->w;
-//	fondo.x = this->x;
-//	fondo.y = this->y;
+//	canvas.h = this->h;
+//	canvas.w = this->w;
+//	canvas.x = this->x;
+//	canvas.y = this->y;
 //
 //	snprintf(buf,256," ");
 //
@@ -65,7 +65,7 @@
 //	}
 //
 //	SDL_FreeSurface(textSurface);
-//	SDL_RenderCopy(render,this->imagen, NULL, &fondo);
+//	SDL_RenderCopy(render,this->imagen, NULL, &canvas);
 //	SDL_RenderCopy(render, textTexture, NULL, &dst);
 //}
 //
