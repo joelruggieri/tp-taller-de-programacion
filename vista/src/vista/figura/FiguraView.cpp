@@ -18,10 +18,10 @@ void FiguraView::setModelo(Figura* modelo) {
 
 void FiguraView::drop() {
 	if (this->getModelo() != NULL) {
-		cout<<"llamando al drop generico de figura";
+		cout<<"llamando al drop generico de figura"<<endl;
 		controller->dropFigura(this);
 	} else {
-		cout<<"llamando al drop especifico de figura";
+		cout<<"llamando al drop especifico de figura"<<endl;
 		this->dropTemplate();
 	}
 }
