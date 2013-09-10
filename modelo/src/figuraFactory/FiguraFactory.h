@@ -13,7 +13,7 @@ class FiguraFactory {
 public:
 	FiguraFactory();
 	virtual ~FiguraFactory();
-	Figura * crearCuadrado();
+	Figura * crearCuadrado(float x,float y);
 	Figura * crearCirculo();
 	Figura * crearTriangulo();
 };

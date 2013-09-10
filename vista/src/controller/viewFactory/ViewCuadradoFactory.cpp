@@ -18,7 +18,6 @@ ViewCuadradoFactory::~ViewCuadradoFactory() {
 }
 
 FiguraView* ViewCuadradoFactory::crear(int x, int y, int w, int h) {
-
 	return new CuadradoView(x,y,w,h, this->textura, this->controller);
 }
 

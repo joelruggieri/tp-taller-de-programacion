@@ -19,10 +19,9 @@ FiguraFactory::~FiguraFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-Figura* FiguraFactory::crearCuadrado() {
-	return new Cuadrado(1,1,1,1);
+Figura * FiguraFactory::crearCuadrado(float x,float y){
+	return new Cuadrado(x,y,10,10);
 }
-
 Figura* FiguraFactory::crearCirculo() {
 	return new Circulo(1,1,1);
 }

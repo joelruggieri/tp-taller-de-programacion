@@ -16,38 +16,26 @@
 //	return texture;
 //}
 
-//Canvas::Canvas(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) {
-//	this->x = x;
-//	this->y = y;
-//	this->w = w;
-//	this->h = h;
-//	this->render = render;
-//	this->imagen = textura;
-//
-//}
 
 Canvas::~Canvas() {
-	// TODO Auto-generated destructor stub
-}
-
-int CalcularNuevaCoordenada(int newCoord, int oldCoord)
-{
-
-return newCoord + oldCoord;
+	std::list<Dibujable*>::const_iterator it;
+	for (it = vistas.begin(); it != vistas.end(); ++it) {
+		delete (*it);
+	}
 }
 
 
-/*void Canvas::Dibujarse()
-{
-	SDL_Rect dst ;
-	dst.x = this->x;
-	dst.y = this->y;
-	dst.h = this->h;
-	dst.w = this->w;
-	SDL_RenderCopy(this->render, this->imagenCanvas,NULL,&dst);
-	return;
+void Canvas::remover(Dibujable* vista) {
+	this->vistas.remove(vista);
+}
 
-}*/
+void Canvas::agregar(Dibujable* vista) {
+	this->vistas.push_back(vista);
+}
+
+const list<Dibujable*>& Canvas::getDibujables() const {
+	return vistas;
+}
 
 /*void Canvas::Resizear(int x, int y)
 {
@@ -70,6 +58,11 @@ void Canvas::dibujarse(SDL_Renderer * renderer){
 	dest.x = this->getX();
 	dest.y = this->getY();
 	SDL_RenderCopy(renderer,this->imagenCanvas,NULL,&dest);
+	std::list<Dibujable*>::const_iterator it;
+	for (it = vistas.begin(); it != vistas.end(); ++it) {
+		(*it)->dibujarse(renderer);
+	}
+
 }
 
 Canvas::Canvas(int x, int y, int w, int h, SDL_Texture* textura): View(x,y,w,h) {

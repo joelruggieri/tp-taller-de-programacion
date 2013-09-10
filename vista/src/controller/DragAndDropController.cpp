@@ -8,19 +8,23 @@
 #include "DragAndDropController.h"
 
 #include "../vista/figura/FiguraView.h"
-
-DragAndDropController::DragAndDropController(Zona *zonaJuego) {
-	this->zona = zonaJuego;
+#include "Resizer.h"
+DragAndDropController::DragAndDropController() {
 	this->figurasFactory = new FiguraFactory();
 	this->figuraDrag = NULL;
+	this->zona = NULL;
 }
 
 DragAndDropController::~DragAndDropController() {
+	delete this->figurasFactory;
+	if (this->figuraDrag != NULL) {
+		delete this->figuraDrag;
+	}
 }
 
 void DragAndDropController::dropear(FiguraView* view, Figura* figura) {
 	view->setModelo(figura);
-	if (!zona->agregarFigura(view)) {
+	if (this->zona != NULL && !zona->agregarFigura(view)) {
 		delete figura;
 		delete view;
 	}
@@ -35,24 +39,27 @@ void DragAndDropController::dropNuevaFigura(TrianguloView* view) {
 }
 
 void DragAndDropController::dropNuevaFigura(CuadradoView* view) {
-	dropear(view, this->figurasFactory->crearCuadrado());
+	Resizer* r = Resizer::Instance();
+	dropear(view,
+			this->figurasFactory->crearCuadrado(
+					r->resizearDistanciaPixelX(view->getXCentro()),
+					r->resizearDistanciaPixelY(view->getYCentro())));
 }
 
 void DragAndDropController::dropFigura(FiguraView* view) {
-	if(!this->zona->agregarFigura(view)){
-		delete view->getModelo();
-		delete view;
-		//TODO FALTA REMOVER EL MODELO
-	}
+	this->dropear(view, view->getModelo());
 }
 
 bool DragAndDropController::clickDown(float x, float y) {
-	this->zona->click(x,y);
-	return false;
+	if (zona != NULL) {
+		this->zona->click(x, y);
+		return false;
+	}
+	return true;
 }
 
 bool DragAndDropController::clickUp(float x, float y) {
-	if(this->figuraDrag != NULL){
+	if (this->figuraDrag != NULL) {
 		//TODO ESTO DEBERÍA ACTUALIZAR LA POSICION DE LA IMAGEN, EN EL DROP SE DEBERÍA IMPACTAR TAMBIEN EN EL MODELO
 		this->figuraDrag->drop();
 		this->figuraDrag = NULL;
@@ -61,17 +68,38 @@ bool DragAndDropController::clickUp(float x, float y) {
 }
 
 void DragAndDropController::drag(FiguraView* figura, float x, float y) {
-	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA LA SIGUIENTE VISTA.
-	this->zona->removerFigura(figura);
+	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
+	if (zona != NULL) {
+		this->zona->removerFigura(figura);
+		this->figuraDrag = figura;
+	}
+
 }
 
 void DragAndDropController::dropNuevaFigura(RomboView* figura) {
 }
 
-bool DragAndDropController::mouseMotion(float corrimientoX, float corrimientoY) {
-	if(this->figuraDrag != NULL){
-		//TODO MANEJAR EL DRAG;
+Zona* DragAndDropController::getZona() {
+	return zona;
+}
+
+void DragAndDropController::setZona(Zona* zona) {
+	this->zona = zona;
+}
+
+bool DragAndDropController::mouseMotion(float corrimientoX,
+		float corrimientoY) {
+	if (this->figuraDrag != NULL) {
+		this->figuraDrag->desplazarCentroA(corrimientoX, corrimientoY);
 	}
 	// consume el evento
 	return false;
+}
+
+bool DragAndDropController::isDragging() {
+	return this->figuraDrag != NULL;
+}
+
+View* DragAndDropController::getDragueado() {
+	return this->figuraDrag;
 }
