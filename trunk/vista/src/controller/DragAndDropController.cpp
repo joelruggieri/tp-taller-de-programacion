@@ -9,6 +9,9 @@
 
 #include "../vista/figura/FiguraView.h"
 #include "Resizer.h"
+#include <iostream>
+using namespace std;
+
 DragAndDropController::DragAndDropController() {
 	this->figurasFactory = new FiguraFactory();
 	this->figuraDrag = NULL;
@@ -23,6 +26,7 @@ DragAndDropController::~DragAndDropController() {
 }
 
 void DragAndDropController::dropear(FiguraView* view, Figura* figura) {
+	cout<<"dropea figura controller"<<endl;
 	view->setModelo(figura);
 	if (this->zona != NULL && !zona->agregarFigura(view)) {
 		delete figura;
@@ -47,7 +51,11 @@ void DragAndDropController::dropNuevaFigura(CuadradoView* view) {
 }
 
 void DragAndDropController::dropFigura(FiguraView* view) {
-	this->dropear(view, view->getModelo());
+	Figura* modelo = view->getModelo();
+	Resizer * r =Resizer::Instance();
+	modelo->setX(r->resizearDistanciaPixelX(view->getXCentro()));
+	modelo->setY(r->resizearDistanciaPixelY(view->getYCentro()));
+	this->dropear(view, modelo);
 }
 
 bool DragAndDropController::clickDown(float x, float y) {
@@ -69,11 +77,11 @@ bool DragAndDropController::clickUp(float x, float y) {
 
 void DragAndDropController::drag(FiguraView* figura, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
+	cout<<"draguea figura controller"<<endl;
 	if (zona != NULL) {
 		this->zona->removerFigura(figura);
 		this->figuraDrag = figura;
 	}
-
 }
 
 void DragAndDropController::dropNuevaFigura(RomboView* figura) {

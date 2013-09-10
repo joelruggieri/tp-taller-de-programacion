@@ -21,6 +21,7 @@ ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFon
 }
 
 bool ZonaTablero::agregarTemplate(FiguraView* view) {
+	cout<<"recibe figura tablero"<<endl;
 	if(view->getModelo() == NULL){
 		return false;
 	}
@@ -45,6 +46,7 @@ bool ZonaTablero::clickTemplate(float x, float y) {
 	}
 	if(result != NULL){
 		result->click(x,y);
+		cout<<"clickea figura tablero"<<endl;
 		return true;
 	}
 
