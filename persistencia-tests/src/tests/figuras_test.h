@@ -20,7 +20,6 @@
 
 class figuras_test: public testing::Test {
 protected:
-	AdministradorDeArchivos *archivo;
 	ObjetoDAO *dao;
 public:
 	virtual void SetUp() {

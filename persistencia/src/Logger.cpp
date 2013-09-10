@@ -46,3 +46,8 @@ void Logger::debug(std::string mensaje) {
 void Logger::setNivel(int nivel) {
 	this->nivel = nivel;
 }
+
+void Logger::borrar() {
+	archivo.close();
+	archivo.open(nombre.c_str(),std::ofstream::trunc);
+}
