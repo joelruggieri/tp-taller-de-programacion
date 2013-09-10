@@ -2,8 +2,11 @@
 
 #include <iostream>
 #include "../../controller/DropController.h"
+using namespace std;
+
 /********************************************************
  * FIGURAVIEW
+
  ********************************************************/
 Figura* FiguraView::getModelo() {
 	return this->modelo;
@@ -15,8 +18,10 @@ void FiguraView::setModelo(Figura* modelo) {
 
 void FiguraView::drop() {
 	if (this->getModelo() != NULL) {
+		cout<<"llamando al drop generico de figura";
 		controller->dropFigura(this);
 	} else {
+		cout<<"llamando al drop especifico de figura";
 		this->dropTemplate();
 	}
 }
