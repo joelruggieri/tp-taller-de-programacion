@@ -13,9 +13,9 @@
 
 //Niveles del logger:
 //	0 - No loguea nada
-//	1 - Error
-//	2 - Warning
-//	3 - Debug
+//	1 - Solo Error
+//	2 - Error y Warning
+//	3 - Error, Warning y Debug
 
 class Logger {
 public:
@@ -25,6 +25,7 @@ public:
 	void warning(std::string mensaje);
 	void debug(std::string mensaje);
 	void setNivel(int nivel);
+	void borrar();
 private:
 	int nivel;
 	std::string nombre;

@@ -10,9 +10,6 @@
 #include <fstream>
 
 #include "constructoresYAML.h"
-#include "yaml-cpp/yaml.h"
-
-using namespace YAML;
 
 AdministradorDeArchivos::AdministradorDeArchivos(std::string nombre) {
 	this->nombre = nombre;

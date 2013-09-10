@@ -6,16 +6,6 @@
  */
 
 #include "ObjetoDAO.h"
-#include <yaml-cpp/yaml.h>
-#include <cstdio>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string.h>
-#include <assert.h>
-
-
-
 
 ObjetoDAO::ObjetoDAO(): archivo("config.yaml") {
 
