@@ -9,23 +9,19 @@
 #include "src/figura/Cuadrado.h"
 #include "../Resizer.h"
 #include "../../vista/Canvas.h"
-ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior, Dibujable * fondo) :
-		Zona(NULL) {
-	this->fondo = fondo;
-	this->inicializar(factories, x, margenSuperior);
-}
 
 ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float margenSuperior, SDL_Texture* textura) :
 		Zona(NULL) {
-	this->inicializar(factories, x, margenSuperior);
 	Resizer * instance = Resizer::Instance();
-	const Cuadrado* cuerpo0 = this->getCuerpo();
-	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
-	int xC = instance->resizearDistanciaLogicaX(cuerpo0->getX());
+	int xC = instance->resizearDistanciaLogicaX(x);
 	int yC =instance->resizearDistanciaLogicaY(50);
-	int wC = instance->resizearDistanciaLogicaX(cuerpo0->getAncho());
+	int wC = instance->resizearDistanciaLogicaX(ANCHO_VIEW_DEF *2);
 	int hC =instance->resizearDistanciaLogicaY(100);
-	this->fondo = new Canvas(xC,yC,wC,hC,textura);
+	this->canvas = new Canvas(xC,yC,wC,hC,textura);
+	this->canvas->setBorder(true);
+
+	this->inicializar(factories, x, margenSuperior);
+	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 }
 void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x, float margenSuperior) {
 	//TODO ADAPTAR TAMANIO DE LA ZONA SEGUN LA CANTIDAD DE FACTORIES QUE VENGAN.
@@ -40,16 +36,17 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x, fl
 	this->ultimo = NULL;
 	//por cada factory crea un eslabon.
 	for (iterator = factories->begin(); iterator != factories->end(); ++iterator) {
-		this->agregarEslabon(
-				new EslabonCreacion(*iterator,
-						new Cuadrado(xInicial, y, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF),
-						1));
+		EslabonCreacion* eslabon = new EslabonCreacion(*iterator,
+				new Cuadrado(xInicial, y, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF), 1);
+		this->agregarEslabon(eslabon);
+		this->canvas->agregar(eslabon->getFactoryView());
 		y += 12;
 	}
 
 	y = factories->size() > 0 ? y-12: y;
 	float alto = (y - margenSuperior) + ANCHO_VIEW_DEF;
 	this->setCuerpo(new Cuadrado(x,(margenSuperior + alto) / 2, ancho, alto));
+
 }
 bool ZonaCreacion::agregarTemplate(FiguraView* dragueable) {
 	return false;
@@ -62,7 +59,7 @@ bool ZonaCreacion::clickTemplate(float x, float y) {
 
 ZonaCreacion::~ZonaCreacion() {
 	delete this->inicioCadena;
-	delete this->fondo;
+	delete this->canvas;
 }
 
 void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
@@ -76,8 +73,7 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 }
 
 void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
-	this->fondo->dibujarse(renderer);
-	this->inicioCadena->dibujarse(renderer);
+	this->canvas->dibujarse(renderer);
 }
 
 bool ZonaCreacion::removerFigura(FiguraView* figura) {

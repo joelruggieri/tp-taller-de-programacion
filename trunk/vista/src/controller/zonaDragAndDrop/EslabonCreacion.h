@@ -25,7 +25,7 @@ public:
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
 	bool atender(float posX, float posY);
-	void dibujarse(SDL_Renderer *);
+	Dibujable * getFactoryView();
 	//	void invalidar(Dropeable*);
 };
 

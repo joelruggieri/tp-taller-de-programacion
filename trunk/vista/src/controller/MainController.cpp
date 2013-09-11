@@ -49,12 +49,12 @@ int MainController::run() {
 	this->dropController->setZona(zona);
 	while(!terminar){
 		terminar = eventController.procesarEventos();
+		SDL_SetRenderDrawColor(render,1,1,1,1);
 		SDL_RenderClear(render);
 		zona->dibujarse(render);
 		vista.dibujarse(render);
 		SDL_RenderPresent(render);
 	}
-
 		SDL_DestroyRenderer(render);
 		SDL_DestroyWindow(ventana);
 	//	SDL_Delay(4000);
