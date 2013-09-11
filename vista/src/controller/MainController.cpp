@@ -75,6 +75,8 @@ Zona* MainController::crearZonaJuego(SDL_Renderer* renderer) {
 	list<ViewFiguraFactory*> factories;
 	SDL_Texture* canvasTexture = this->cargarTexture("resource/Fondo4.jpg",
 			renderer);
+	SDL_Texture* herrTextura = this->cargarTexture("resource/fondoHerramientas.jpg",
+			renderer);
 	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
 	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
 	factories.push_back(new ViewCirculoFactory(renderer, dropController));
@@ -85,7 +87,7 @@ Zona* MainController::crearZonaJuego(SDL_Renderer* renderer) {
 	factories.push_back(new ViewCirculoFactory(renderer, dropController));
 
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
-			canvasTexture);
+			herrTextura);
 	Zona* zonaTablero = new ZonaTablero(new Mapa(),50,50, canvasTexture);
 	return new ZonaJuego(zonaCreacion, zonaTablero,
 			new Cuadrado(75, 50, 150, 100));
