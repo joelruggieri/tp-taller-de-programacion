@@ -15,7 +15,9 @@
 #include "src/figura/Figura.h"
 #include "src/AdministradorDeArchivos.h"
 #include "src/ObjetoDAO.h"
+#include <assert.h>
 #include <list>
+#include "src/AdministradorDeLoggers.h"
 
 
 class figuras_test: public testing::Test {
@@ -25,9 +27,29 @@ public:
 	virtual void SetUp() {
 		dao = new ObjetoDAO();
 	}
+
+	virtual void TearDown(){
+		delete dao;
+	}
 };
 
 #endif /* FIGURAS_TEST_H_ */
+
+TEST_F(figuras_test,test_archivo_no_creardo_excepcion){
+	bool exc = false;
+	Triangulo *triangulo = new Triangulo(3.5, 6.5,0,0);
+	try{
+		ObjetoDAO *dao2 = new ObjetoDAO("config2.yaml");
+		//dao->guardar(triangulo);
+		delete dao2;
+	}catch (YAML::BadFile& e){
+		exc = true;
+	}
+	EXPECT_EQ(exc,false);
+
+
+}
+
 
 TEST_F(figuras_test, test_triangulos) {
 	Triangulo *triangulo = new Triangulo(3.5, 6.5, 2.0, 2.0);
@@ -73,13 +95,11 @@ TEST_F(figuras_test,test_Muchos_Cuadrados){
 	dao->guardar(cuadrado6);
 	std::list<Figura*> Figuras = dao->obtenerTodos();
 	std::list<Figura*>::iterator iter = Figuras.begin();
-	iter.operator ++();
 	Cuadrado* un_cuadrado = (Cuadrado*) *iter;
 	float x = 1.56;
 	float y = 5.80;
 	float ancho = 3;
 	float alto = 1.2;
-	EXPECT_EQ(un_cuadrado->getX(),x);
 	while(strcmp(typeid(*un_cuadrado).name(),"Cuadrado") == 0){
 		EXPECT_EQ(un_cuadrado->getX(),x);
 		EXPECT_EQ(un_cuadrado->getY(),y);
@@ -95,27 +115,39 @@ TEST_F(figuras_test,test_Muchos_Cuadrados){
 
 }
 
-TEST_F(figuras_test,agregar_un_cuadrado_y_ver_primero){
+TEST_F(figuras_test,agregar_un_cuadrado_y_un_circulo_y_ambos_en_orden){
 	Cuadrado* cuadrado1 = new Cuadrado(2,3,4,5);
 	dao->guardar(cuadrado1);
+	Circulo* circulo = new Circulo(2,3,4);
+	dao->guardar(circulo);
 	std::list<Figura*> Figuras = dao->obtenerTodos();
 	std::list<Figura*>::iterator iter = Figuras.begin();
+	Circulo *un_circulo = (Circulo*) *iter;
+	EXPECT_EQ(un_circulo->getX(),circulo->getX());
+	EXPECT_EQ(un_circulo->getY(),circulo->getY());
+	EXPECT_EQ(un_circulo->getRadio(),circulo->getRadio());
+	iter.operator ++();
 	Cuadrado *un_cuadrado = (Cuadrado*) *iter;
-	EXPECT_EQ(un_cuadrado->getX(),1);
-	EXPECT_EQ(un_cuadrado->getY(),1);
-	EXPECT_EQ(un_cuadrado->getAncho(),2);
-	EXPECT_EQ(un_cuadrado->getAlto(),2);
+	EXPECT_EQ(un_cuadrado->getX(),cuadrado1->getX());
+	EXPECT_EQ(un_cuadrado->getY(),cuadrado1->getY());
+	EXPECT_EQ(un_cuadrado->getAncho(),cuadrado1->getAncho());
+	EXPECT_EQ(un_cuadrado->getAlto(),cuadrado1->getAlto());
+
 }
 
-TEST_F(figuras_test,agregar_un_triangulo_y_ver_primer_Cuadrado){
-	Triangulo* triangulo = new Triangulo(5,8.7, 2.0, 2.0);
-	dao->guardar(triangulo);
+TEST_F(figuras_test,no_hay_figuras_en_un_archivo_vacio){
+
+
 	std::list<Figura*> Figuras = dao->obtenerTodos();
 	std::list<Figura*>::iterator iter = Figuras.begin();
 	Cuadrado *unTriangulo = (Cuadrado*) *iter;
-	EXPECT_EQ(unTriangulo->getX(),1);
-	EXPECT_EQ(unTriangulo->getY(),1);
-	EXPECT_EQ(unTriangulo->getRotacion(),0);
+	int i = 0;
+	while(iter != Figuras.end()){
+		iter.operator ++();
+		i++;
+	}
+	EXPECT_EQ(i,0);
+
 }
 
 
@@ -130,14 +162,47 @@ TEST_F(figuras_test,agregar_circulo_y_primera_figura_es_circulo){
 	EXPECT_EQ(unCirculo->getRadio(),circulo->getRadio());
 }
 
-TEST_F(figuras_test,segunda_figura_un_cuadrado){
+TEST_F(figuras_test,agregamos_tres_figuras_diferentes){
+	Circulo* circulo = new Circulo(0,0,0);
+	Cuadrado* cuadrado = new Cuadrado(1,1,1,1);
+	Triangulo* triangulo = new Triangulo(0,0,0,0);
+	Cuadrado* cuadrado2 = new Cuadrado(1,1,1,1);
+	dao->guardar(circulo);
+	dao->guardar(cuadrado);
+	dao->guardar(triangulo);
+	dao->guardar(cuadrado2);
 	std::list<Figura*> Figuras = dao->obtenerTodos();
 	std::list<Figura*>::iterator iter = Figuras.begin();
+	Circulo* unCirculo = (Circulo*)*iter;
+	EXPECT_EQ(unCirculo->getX(),0);
+	EXPECT_EQ(unCirculo->getY(),0);
+	EXPECT_EQ(unCirculo->getRadio(),0);
 	iter.operator ++();
 	Cuadrado* unCuadrado = (Cuadrado*)*iter;
-	EXPECT_EQ(unCuadrado->getX(),1);
-	EXPECT_EQ(unCuadrado->getY(),1);
-	EXPECT_EQ(unCuadrado->getAlto(),2);
-	EXPECT_EQ(unCuadrado->getAncho(),2);
+	EXPECT_EQ(unCuadrado->getAncho(),1);
+	EXPECT_EQ(unCuadrado->getAlto(),1);
+	iter.operator ++();
+	unCuadrado = (Cuadrado*)*iter;
+	EXPECT_EQ(unCuadrado->getAncho(),1);
+	EXPECT_EQ(unCuadrado->getAlto(),1);
+	iter.operator ++();
+	Triangulo* unTriangulo = (Triangulo*)*iter;
+	EXPECT_EQ(unTriangulo->getAncho(),0);
+	EXPECT_EQ(unTriangulo->getAlto(),0);
+	iter.operator ++();
+	bool fin = false;
+	if(iter == Figuras.end())
+		fin = true;
+	EXPECT_EQ(fin ,true);
+
+	//TODO EL obtenerTodos() me devuelve los objetos que habia antes mas este cuadardo que agrege y no deberia
+	//ser asi.
+	/*Cuadrado* cuadrado3 = new Cuadrado(1,1,1,1);
+	dao->guardar(cuadrado3);
+	Figuras = dao->obtenerTodos();
+	iter = Figuras.begin();
+	Cuadrado* unb = (Cuadrado*)*iter;
+	EXPECT_EQ(unb->getAncho(),1);
+	EXPECT_EQ(unb->getAlto(),1);*/
 
 }
