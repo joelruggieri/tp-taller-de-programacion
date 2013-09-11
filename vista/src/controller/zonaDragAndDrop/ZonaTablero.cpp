@@ -18,6 +18,7 @@ ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFon
 	int wC = instance->resizearDistanciaLogicaX(100);
 	int hC =instance->resizearDistanciaLogicaY(100);
 	this->canvas = new Canvas(xC,yC,wC,hC,imagenFondo);
+	this->canvas->setBorder(true);
 }
 
 bool ZonaTablero::agregarTemplate(FiguraView* view) {

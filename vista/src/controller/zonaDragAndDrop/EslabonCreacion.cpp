@@ -16,9 +16,6 @@ EslabonCreacion::EslabonCreacion(ViewFiguraFactory * factory, Cuadrado * cuerpo,
 	this->cuerpo = cuerpo;
 	this->itemsDisponibles  = maxItems;
 	//TODO: Adaptar posicion con resizer.
-	Resizer * res = Resizer::Instance();
-	this->vista = this->factory->crearVistaPropia(res->resizearDistanciaLogicaX(cuerpo->getX()) , res->resizearDistanciaLogicaY(cuerpo->getY()), res->resizearDistanciaLogicaX( this->cuerpo->getAncho()),
-			res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
 }
 //
 EslabonCreacion::~EslabonCreacion() {
@@ -53,9 +50,8 @@ bool EslabonCreacion::atender(float posX, float posY) {
 }
 
 
-void EslabonCreacion::dibujarse(SDL_Renderer* renderer) {
-	this->vista->dibujarse(renderer);
-	if(this->siguiente != NULL){
-		return this->siguiente->dibujarse(renderer);
-	}
+Dibujable * EslabonCreacion::getFactoryView() {
+	Resizer * res = Resizer::Instance();
+	return this->factory->crearVistaPropia(res->resizearDistanciaLogicaX(cuerpo->getX()) , res->resizearDistanciaLogicaY(cuerpo->getY()), res->resizearDistanciaLogicaX( this->cuerpo->getAncho()),
+			res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
 }
