@@ -32,12 +32,12 @@ bool ZonaTablero::agregarTemplate(FiguraView* view) {
 }
 
 bool ZonaTablero::clickTemplate(float x, float y) {
-	std::list<Dibujable*>::const_iterator it;
+	std::list<Dibujable*>::reverse_iterator it;
 	FiguraView* result = NULL;
 	list<Dibujable*> figuras = canvas->getDibujables();
 	FiguraView* actual;
 	//TODO ACA SI ANDA MAL HABRÍA QUE HACER UNA DIVISION DE ARBOL PARA IR UBICANDO BINARIO.
-	for (it = figuras.begin(); it != figuras.end(); ++it) {
+	for (it = figuras.rbegin(); it != figuras.rend(); ++it) {
 	    actual = (FiguraView*)(*it);
 		Figura * c =actual->getModelo();
 	    if(c->contacto(x,y)){

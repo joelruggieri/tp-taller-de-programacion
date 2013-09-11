@@ -88,6 +88,8 @@ void DragAndDropController::dropNuevaFigura(CirculoView* view) {
 		if (zona != NULL) {
 			this->zona->removerFigura(figura);
 			this->figuraDrag = figura;
+
+			mouseMotion(Resizer::Instance()->resizearDistanciaLogicaX(x),Resizer::Instance()->resizearDistanciaLogicaY(y));
 		}
 	}
 
