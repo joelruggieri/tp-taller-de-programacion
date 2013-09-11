@@ -19,13 +19,14 @@
 class ObjetoDAO {
 public:
 	ObjetoDAO();
+	ObjetoDAO(std::string nombre_archivo);
 	virtual ~ObjetoDAO();
 	bool guardar(Circulo *objeto);
 	bool guardar(Cuadrado *objeto);
 	bool guardar(Triangulo *objeto);
 	std::list<Figura*> obtenerTodos();
 private:
-	AdministradorDeArchivos archivo;
+	AdministradorDeArchivos* archivo;
 };
 
 #endif /* OBJETODAO_H_ */

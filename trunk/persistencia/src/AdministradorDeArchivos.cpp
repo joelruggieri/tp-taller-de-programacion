@@ -14,7 +14,12 @@
 
 AdministradorDeArchivos::AdministradorDeArchivos(std::string nombre) {
 	this->nombre = nombre;
+	std::fstream fs;
+	const char * nom = nombre.c_str();
+	fs.open(nom, std::fstream::out);
+	fs.close();
 	nodoRaiz = YAML::LoadFile(nombre);
+
 }
 
 AdministradorDeArchivos::~AdministradorDeArchivos() {
@@ -88,6 +93,12 @@ std::list<Figura*> AdministradorDeArchivos::obtenerTodos() {
 			log.error(mensaje);
 		}
 	}
+
+
+	std::fstream fs;
+	const char * nom = nombre.c_str();
+	fs.open(nom, std::fstream::out);
+	fs.close();
 
 	return lista;
 }
