@@ -8,7 +8,8 @@
 #include "AdministradorDeArchivos.h"
 #include <iostream>
 #include <fstream>
-
+#include <yaml-cpp/exceptions.h>
+#include "AdministradorDeLoggers.h"
 #include "constructoresYAML.h"
 
 AdministradorDeArchivos::AdministradorDeArchivos(std::string nombre) {
@@ -52,21 +53,40 @@ std::list<Figura*> AdministradorDeArchivos::obtenerTodos() {
 	YAML::Node objetos = YAML::LoadFile(nombre);
 
 	YAML::Node circulos = objetos["Circulos"];
+	Logger &log = AdministradorDeLoggers::getLogger(ERROR);
 	for (std::size_t i = 0; i < circulos.size(); i++) {
-		Circulo obj = circulos[i].as<Circulo>();
-		lista.push_back(new Circulo(obj.getX(), obj.getY(),obj.getRadio()));
+		try {
+			Circulo obj = circulos[i].as<Circulo>();
+			lista.push_back(new Circulo(obj.getX(), obj.getY(), obj.getRadio()));
+		} catch (YAML::InvalidNode &exc) {
+			std::string mensaje = "Error al leer circulo ";
+			mensaje.append(exc.what());
+			log.error(mensaje);
+		}
 	}
 
 	YAML::Node cuadrados = objetos["Cuadrados"];
 	for (std::size_t i = 0; i < cuadrados.size(); i++) {
-		Cuadrado obj = cuadrados[i].as<Cuadrado>();
-		lista.push_back(new Cuadrado(obj.getX(), obj.getY(),obj.getAncho(),obj.getAlto()));
+		try {
+			Cuadrado obj = cuadrados[i].as<Cuadrado>();
+			lista.push_back( new Cuadrado(obj.getX(), obj.getY(), obj.getAncho(), obj.getAlto()));
+		} catch (YAML::InvalidNode &exc) {
+			std::string mensaje = "Error al leer cuadrado ";
+			mensaje.append(exc.what());
+			log.error(mensaje);
+		}
 	}
 
 	YAML::Node triangulos = objetos["Triangulos"];
 	for (std::size_t i = 0; i < triangulos.size(); i++) {
-		Triangulo obj = triangulos[i].as<Triangulo>();
-		lista.push_back(new Triangulo(obj.getX(),obj.getY()));
+		try {
+			Triangulo obj = triangulos[i].as<Triangulo>();
+			lista.push_back( new Triangulo(obj.getX(), obj.getY(), obj.getAncho(), obj.getAlto()));
+		} catch (YAML::InvalidNode &exc) {
+			std::string mensaje = "Error al leer Triangulo ";
+			mensaje.append(exc.what());
+			log.error(mensaje);
+		}
 	}
 
 	return lista;

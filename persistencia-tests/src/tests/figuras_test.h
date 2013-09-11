@@ -30,7 +30,7 @@ public:
 #endif /* FIGURAS_TEST_H_ */
 
 TEST_F(figuras_test, test_triangulos) {
-	Triangulo *triangulo = new Triangulo(3.5, 6.5);
+	Triangulo *triangulo = new Triangulo(3.5, 6.5, 2.0, 2.0);
 	dao->guardar(triangulo);
 
 	std::list<Figura*> Figuras = dao->obtenerTodos();
@@ -38,7 +38,8 @@ TEST_F(figuras_test, test_triangulos) {
 	Triangulo *triangulo2 = (Triangulo*) *iter;
 	EXPECT_EQ(triangulo2->getX(), triangulo->getX());
 	EXPECT_EQ(triangulo2->getY(), triangulo->getY());
-	EXPECT_EQ(triangulo2->getRotacion(), triangulo->getRotacion());
+	EXPECT_EQ(triangulo2->getAncho(), triangulo->getAncho());
+	EXPECT_EQ(triangulo2->getAlto(), triangulo->getAlto());
 
 
 }
@@ -107,7 +108,7 @@ TEST_F(figuras_test,agregar_un_cuadrado_y_ver_primero){
 }
 
 TEST_F(figuras_test,agregar_un_triangulo_y_ver_primer_Cuadrado){
-	Triangulo* triangulo = new Triangulo(5,8.7);
+	Triangulo* triangulo = new Triangulo(5,8.7, 2.0, 2.0);
 	dao->guardar(triangulo);
 	std::list<Figura*> Figuras = dao->obtenerTodos();
 	std::list<Figura*>::iterator iter = Figuras.begin();

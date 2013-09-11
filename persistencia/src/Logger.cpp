@@ -18,9 +18,8 @@ const std::string fecha() {
 	return buf;
 }
 
-Logger::Logger(std::string nombre) :
-		archivo(nombre.c_str()) {
-	nivel = 0;
+Logger::Logger(const char* nombre) :
+		archivo(nombre) {
 	this->nombre = nombre;
 }
 
@@ -29,25 +28,22 @@ Logger::~Logger() {
 }
 
 void Logger::error(std::string mensaje) {
-	if (nivel >= 1)
 		archivo << fecha() << " [ERROR] " << ": " << mensaje;
 }
 
 void Logger::warning(std::string mensaje) {
-	if (nivel >= 2)
 		archivo << fecha() << " [WARN] " << ": " << mensaje;
 }
 
 void Logger::debug(std::string mensaje) {
-	if (nivel >= 3)
 		archivo << fecha() << " [DEBUG] " << ": " << mensaje;
-}
-
-void Logger::setNivel(int nivel) {
-	this->nivel = nivel;
 }
 
 void Logger::borrar() {
 	archivo.close();
 	archivo.open(nombre.c_str(),std::ofstream::trunc);
+}
+
+Logger::Logger() {
+	this->nombre = "";
 }
