@@ -18,12 +18,10 @@ public:
 	virtual void SetUp() {
 
 	}
-	logger_test(): l("test.log") {}
 };
 
 #endif /* LOGGER_TEST_H_ */
 
 TEST_F(logger_test, test_logger) {
-	l.setNivel(3);
 	l.error("Prueba del logger");
 }
