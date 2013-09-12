@@ -12,6 +12,7 @@
 #include "tests/DropeableFactoryTests.h"
 #include "tests/EslabonCreacionTests.h"
 #include "tests/ZonaJuegoTests.h"
+#include "tests/RotacionTests.h"
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

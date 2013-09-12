@@ -17,7 +17,7 @@
 #include "mouseEventController/MouseEventController.h"
 #include "../vista/Dragueable.h"
 #include "../vista/Rotable.h"
-
+#include "../modelo/Rotacion.h"
 class Figura;
 class FiguraFactory;
 class Zona;
@@ -28,9 +28,8 @@ private:
 	FiguraFactory * figurasFactory;
 	FiguraView * figuraDrag;
 	FiguraView * figuraRotacion;
-	int xAnterior, yAnterior;
+	Rotacion * rot;
 	void dropear(FiguraView* view, Figura* figura);
-	void rotar(int x, int );
 public:
 	JuegoEventsController();
 	virtual ~JuegoEventsController();

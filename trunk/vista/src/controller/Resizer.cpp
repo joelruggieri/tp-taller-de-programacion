@@ -95,4 +95,6 @@ Resizer::Resizer(int x, int y,float xLogico, float yLogico)
 
 }
 
-
+int Resizer::getAltoPantalla() {
+	return this->yNuevo;
+}

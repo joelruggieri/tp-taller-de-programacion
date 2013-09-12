@@ -12,7 +12,7 @@ class Figura {
 protected:
 	float x;
 	float y;
-	float rotacion;
+	double rotacion;
 public:
 	Figura();
 	Figura(float x, float y);
@@ -21,10 +21,10 @@ public:
 	virtual bool contieneCentro(Figura* figura) = 0;
 	float getX() const;
 	float getY() const;
-	float getRotacion() const;
+	double getRotacion() const;
 	void setX(float x);
 	void setY(float y);
-	void setRotacion(float rotation);
+	void setRotacion(double rotation);
 };
 
 #endif /* FIGURA_H_ */
