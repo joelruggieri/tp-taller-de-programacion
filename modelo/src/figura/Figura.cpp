@@ -14,7 +14,7 @@ float Figura::getY() const {
 	return y;
 }
 
-float Figura::getRotacion() const {
+double Figura::getRotacion() const {
 	return rotacion;
 }
 
@@ -26,8 +26,14 @@ void Figura::setY(float y){
 	this->y = y;
 }
 
-void Figura::setRotacion(float rotation){
+void Figura::setRotacion(double rotation){
 	this->rotacion = rotation;
+	if(this->rotacion < 0){
+		this->rotacion =  this->rotacion * -1;
+		this->rotacion = 360 - (int)this->rotacion % 360;
+	} else if(this->rotacion > 360){
+		this->rotacion = (int)this->rotacion % 360;
+	}
 }
 
 Figura::Figura() {

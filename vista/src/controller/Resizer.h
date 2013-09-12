@@ -19,6 +19,7 @@ public:
 	int resizearDistanciaLogicaY(float valor);
 	float resizearDistanciaPixelX(int valor);
 	float resizearDistanciaPixelY(int valor);
+	int getAltoPantalla();
 	//Resizer();
 	//virtual ~Resizer();
 protected:

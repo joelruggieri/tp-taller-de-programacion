@@ -130,27 +130,16 @@ bool JuegoEventsController::mouseMotion(int corrimientoX,
 	if (this->figuraDrag != NULL) {
 		this->figuraDrag->desplazarCentroA(corrimientoX, corrimientoY);
 	}
+	Resizer* r = Resizer::Instance();
 	if(this->figuraRotacion != NULL){
-		this->rotar(corrimientoX, corrimientoY);
+		this->rot->rotar(corrimientoX, r->getAltoPantalla() - corrimientoY);
+		this->figuraRotacion->getModelo()->setRotacion(this->figuraRotacion->getModelo()->getRotacion() + this->rot->getAngulo());
+		cout<< "rotacion total "<< this->figuraRotacion->getModelo()->getRotacion() << endl;;
 	}
 	// consume el evento
 	return false;
 }
 
-void JuegoEventsController::rotar(int x, int y){
-	int orX = this->figuraRotacion->getXCentro();
-	int orY = this->figuraRotacion->getYCentro();
-	int xAntCorto= x - orX;
-	int yAntCorto= y - orY;
-
-	//calculo el angulo entre los dos:
-	float angle = acos((xAntCorto * this->xAnterior + yAntCorto * this->yAnterior)/(sqrt(xAnterior*xAnterior + yAnterior*yAnterior) *(sqrt(yAntCorto*yAntCorto + xAntCorto*xAntCorto))));
-	Figura* modelo = this->figuraRotacion->getModelo();
-	modelo->setRotacion(angle + modelo->getRotacion());
-	this->xAnterior = xAntCorto;
-	this->yAnterior = yAntCorto;
-
-}
 bool JuegoEventsController::isDragging() {
 	return this->figuraDrag != NULL;
 }
@@ -165,8 +154,8 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 			 if(view->getModelo() != NULL){
 				 this->zona->removerFigura(view);
 				 this->figuraRotacion = view;
-				 this->xAnterior = x - view->getXCentro();
-				 this->yAnterior = y - view->getYCentro();
+				 Resizer* r = Resizer::Instance();
+				 this->rot = new Rotacion(this->figuraRotacion->getXCentro(), r->getAltoPantalla() - this->figuraRotacion->getYCentro(), x,r->getAltoPantalla()- y,0);
 				 return false;
 			 } else {
 				 delete view;
@@ -181,6 +170,7 @@ bool JuegoEventsController::rightClickUp(int int1, int int2) {
 		//TODO ESTO DEBERÍA ACTUALIZAR LA POSICION DE LA IMAGEN, EN EL DROP SE DEBERÍA IMPACTAR TAMBIEN EN EL MODELO
 		this->zona->agregarFigura(this->figuraRotacion);
 		this->figuraRotacion= NULL;
+		delete this->rot;
 	}
 	return true;
 }

@@ -47,9 +47,10 @@ int MainController::run() {
 	GeneralEventController eventController;
 	eventController.addMouseController(this->dropController,1,1);
 	DraggingView vista(this->dropController);
-	RotationView vistaRotacion(this->dropController);
+	RotationView vistaRotacion(this->dropController, cargarTexture("resource/rotacion.png",render));
 	this->dropController->setZona(zona);
 	while(!terminar){
+		SDL_Delay(5);
 		terminar = eventController.procesarEventos();
 		SDL_SetRenderDrawColor(render,1,1,1,1);
 		SDL_RenderClear(render);
@@ -60,7 +61,7 @@ int MainController::run() {
 	}
 		SDL_DestroyRenderer(render);
 		SDL_DestroyWindow(ventana);
-	//	SDL_Delay(4000);
+	//
 	delete zona;
 
 	return 0;

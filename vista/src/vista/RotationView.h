@@ -12,9 +12,10 @@
 #include "SDL2/SDL.h"
 class RotationView : public Dibujable{
 	Rotable * rotado;
+	SDL_Texture * textura;
 public:
 
-	RotationView(Rotable *);
+	RotationView(Rotable *, SDL_Texture * textura);
 	virtual ~RotationView();
 	void dibujarse(SDL_Renderer *);
 };
