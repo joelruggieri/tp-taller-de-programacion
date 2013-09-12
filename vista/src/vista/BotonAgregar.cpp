@@ -57,11 +57,11 @@ fondo->ModificarFondo(rutaNueva);
 return 0;
 }
 
-void Boton::Resizear(int x , int y)
-{
-//	this->x = this->x + x;
-	this->y = this->y + y;
-}
+//void Boton::Resizear(int x , int y)
+//{
+////	this->x = this->x + x;
+//	this->y = this->y + y;
+//}
 
 
 
