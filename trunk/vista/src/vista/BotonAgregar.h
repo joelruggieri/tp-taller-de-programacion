@@ -14,15 +14,13 @@
 #include "Dibujable.h"
 #include "Resizeable.h"
 #include"Seleccionable.h"
-
+#include "Herramientas.h"
 namespace std {
 
-class Boton:  public Dibujable, public Resizeable, public Seleccionable {
+class Boton: public Herramientas {
 public:
-	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render): Dibujable()
-	{
+	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render);
 
-	}
 	void Resizear(int x, int y);
 
 };
