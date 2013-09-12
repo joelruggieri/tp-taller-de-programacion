@@ -39,6 +39,11 @@ void Logger::debug(std::string mensaje) {
 		archivo << fecha() << " [DEBUG] " << ": " << mensaje;
 }
 
+void Logger::fatal(std::string mensaje) {
+		archivo << fecha() << " [FATAL] " << ": " << mensaje;
+}
+
+
 void Logger::borrar() {
 	archivo.close();
 	archivo.open(nombre.c_str(),std::ofstream::trunc);

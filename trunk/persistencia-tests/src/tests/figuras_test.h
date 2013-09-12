@@ -195,14 +195,21 @@ TEST_F(figuras_test,agregamos_tres_figuras_diferentes){
 		fin = true;
 	EXPECT_EQ(fin ,true);
 
-	//TODO EL obtenerTodos() me devuelve los objetos que habia antes mas este cuadardo que agrege y no deberia
-	//ser asi.
-	/*Cuadrado* cuadrado3 = new Cuadrado(1,1,1,1);
+	Cuadrado* cuadrado3 = new Cuadrado(1,1,1,1);
 	dao->guardar(cuadrado3);
 	Figuras = dao->obtenerTodos();
 	iter = Figuras.begin();
-	Cuadrado* unb = (Cuadrado*)*iter;
-	EXPECT_EQ(unb->getAncho(),1);
-	EXPECT_EQ(unb->getAlto(),1);*/
+	int i = 0;
+	while (iter != Figuras.end()){
+		Cuadrado* unb = (Cuadrado*)*iter;
+		EXPECT_EQ(unb->getAncho(),1);
+		EXPECT_EQ(unb->getAlto(),1);
+		iter.operator ++();
+		i++;
+	}
+	EXPECT_EQ(i,1);
+	//TODO EL obtenerTodos() me devuelve los objetos que habia antes mas este cuadardo que agrege y no deberia
+	//ser asi.
+
 
 }
