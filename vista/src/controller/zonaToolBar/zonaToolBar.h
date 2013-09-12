@@ -8,10 +8,10 @@
 #ifndef ZONATOOLBAR_H_
 #define ZONATOOLBAR_H_
 #include <list>
-#include "../Vista/src/vista/Herramientas.h"
+#include "../../vista/Herramientas.h"
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
-#include "../Vista/src/vista/Dibujable.h"
+#include "../../vista/Dibujable.h"
 
 using namespace std;
 
