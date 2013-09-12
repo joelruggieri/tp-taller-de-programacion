@@ -28,6 +28,6 @@ void RotationView::dibujarse(SDL_Renderer* renderer) {
 		SDL_RenderFillRect(renderer,&dest);
 		rotado0->dibujarse(renderer);
 		FiguraView* rotacion= (FiguraView*) this->rotado->getRotado();
-//		cout << rotacion->getModelo()->getRotacion()<<endl;
+		cout << rotacion->getModelo()->getRotacion()<<endl;
 	}
 }
