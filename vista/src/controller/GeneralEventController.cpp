@@ -87,35 +87,33 @@ void GeneralEventController::rightClickDown(int x, int y) {
 }
 
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
-	int x, y;
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
 	SDL_Event evento;
-	x = y = 0;
 	SDL_PollEvent(&evento);
 	switch (evento.type) {
 	case SDL_QUIT:
 		return true;
 		break;
 	case SDL_MOUSEBUTTONDOWN:
-		if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(1)) {
-			this->botonAnterior = 1;
-			this->clickDown(x, y);
-
-		}
-		if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(3)) {
-			this->botonAnterior = 2;
-			this->rightClickDown(x, y);
+		switch (evento.button.button) {
+			case SDL_BUTTON_RIGHT:
+				this->rightClickDown(evento.button.x, evento.button.y);
+				break;
+			case SDL_BUTTON_LEFT:
+				this->clickDown(evento.button.x, evento.button.y);
+			break;
 		}
 		break;
 	case SDL_MOUSEBUTTONUP:
-		SDL_GetMouseState(&x, &y);
-		if(this->botonAnterior == 1){
-			this->clickUp(x, y);
-		}else if (this->botonAnterior == 2) {
-			this->rightClickUp(x, y);
+		switch (evento.button.button) {
+			case SDL_BUTTON_RIGHT:
+				this->rightClickUp(evento.button.x, evento.button.y);
+				break;
+			case SDL_BUTTON_LEFT:
+				this->clickUp(evento.button.x, evento.button.y);
+			break;
 		}
-		this->botonAnterior = 0;
 		break;
 	case SDL_MOUSEMOTION:
 		SDL_GetMouseState(&nuevaPosX, &nuevaPosY);
