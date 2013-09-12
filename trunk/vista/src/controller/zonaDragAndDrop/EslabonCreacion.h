@@ -24,7 +24,7 @@ public:
 	EslabonCreacion(ViewFiguraFactory * factory, Cuadrado *cuerpo, int maxCreacion);
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
-	bool atender(float posX, float posY);
+	FiguraView * atender(float posX, float posY);
 	Dibujable * getFactoryView();
 	//	void invalidar(Dropeable*);
 };

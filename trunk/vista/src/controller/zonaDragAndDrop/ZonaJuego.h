@@ -17,7 +17,7 @@ private:
 	Zona * zonaTablero;
 	Zona * zonaCreacion;
 	bool agregarTemplate(FiguraView * dragueable);
-	bool clickTemplate(float x, float y);
+	FiguraView * getFiguraTemplate(float x, float y);
 public:
 	ZonaJuego(Zona* zonaCreacion, Zona * zonaTablero, Cuadrado * dimensiones);
 	virtual ~ZonaJuego();
@@ -25,8 +25,8 @@ public:
 	void setScrollY(float scrollY);
 	list<Figura*> getFiguras();
 	void dibujarse(SDL_Renderer *);
-	bool click(float, float);
 	bool removerFigura(FiguraView*);
+	FiguraView * getVista(float x, float y);
 };
 
 #endif /* ZONAJUEGO_H_ */

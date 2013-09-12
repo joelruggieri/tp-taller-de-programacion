@@ -37,10 +37,10 @@ void Zona::setScrollY(float scrollY) {
 }
 
 //TODO :Si hay scroll lo devuelve con la posicion cambiada y adapta la posicion algo del modelo.
-bool Zona::click(float x, float y) {
-	bool drop  = false;
+FiguraView * Zona::getVista(float x, float y) {
+	FiguraView * drop  = NULL;
 	if (this->cuerpo->contacto(x, y)) {
-		drop = this->clickTemplate(x,y);
+		drop = this->getFiguraTemplate(x,y);
 	}
 	return drop;
 }

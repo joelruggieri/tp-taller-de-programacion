@@ -25,11 +25,11 @@ bool ZonaJuego::agregarTemplate(FiguraView* dropeable) {
 	return result;
 }
 
-bool ZonaJuego::clickTemplate(float x, float y) {
+FiguraView * ZonaJuego::getFiguraTemplate(float x, float y) {
 	//SI ALGUNO DE LOS DOS PANELES DE LA ZONA PUEDE ATENDER SE ATIENDE.
-	bool result = this->zonaCreacion->click(x, y);
-	if (result == false) {
-		result = this->zonaTablero->click(x, y);
+	FiguraView * result = this->zonaCreacion->getVista(x, y);
+	if (result == NULL) {
+		result = this->zonaTablero->getVista(x, y);
 	}
 	return result;
 }
@@ -52,10 +52,8 @@ void ZonaJuego::dibujarse(SDL_Renderer* renderer) {
 	this->zonaCreacion->dibujarse(renderer);
 }
 
-bool ZonaJuego::click(float x, float y) {
-	Resizer* r = Resizer::Instance();
-	//LO QUE SE HACE ES CAPTURAR LA PROPAGACION DE CLICKS Y CAMBIAR A
-	return this->clickTemplate(r->resizearDistanciaPixelX(x),r->resizearDistanciaPixelY(y));
+FiguraView * ZonaJuego::getVista(float x, float y) {
+	return this->getFiguraTemplate(x,y);
 }
 
 bool ZonaJuego::removerFigura(FiguraView* figura) {

@@ -22,7 +22,7 @@ private:
 protected:
 	virtual bool agregarTemplate(FiguraView * figura) = 0;
 	// clickea en el area y retorna true si hubo alguna accion.
-	virtual bool clickTemplate(float x, float y) = 0;
+	virtual FiguraView * getFiguraTemplate(float x, float y) = 0;
 	void setCuerpo(Cuadrado * cuerpo);
 
 public:
@@ -34,7 +34,7 @@ public:
 	virtual bool removerFigura(FiguraView*) = 0;
 
 	// puede estar recibiendo en unidades logicas.
-	virtual bool click(float, float);
+	virtual FiguraView * getVista(float, float);
 	float getScrollY() const;
 	void setScrollY(float);
 	list<FiguraView *> getFiguras();

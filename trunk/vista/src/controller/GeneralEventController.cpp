@@ -10,6 +10,7 @@
 #include "SDL2/SDL.h"
 
 GeneralEventController::GeneralEventController() {
+	this->botonAnterior= 0;
 }
 
 GeneralEventController::~GeneralEventController() {
@@ -63,6 +64,28 @@ void GeneralEventController::mouseMotion(int x, int y) {
 
 }
 
+void GeneralEventController::rightClickUp(int x, int y) {
+	this->mouseControllers.sort(comparar_prioridadClick);
+	list<MouseControllerPrioridades*>::iterator it;
+	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
+	bool continuarEvento = true;
+	for (it = this->mouseControllers.begin();
+			it != this->mouseControllers.end() && continuarEvento; ++it) {
+		continuarEvento = (*it)->getEventController()->rightClickUp(x, y);
+	}
+}
+
+void GeneralEventController::rightClickDown(int x, int y) {
+	this->mouseControllers.sort(comparar_prioridadClick);
+	list<MouseControllerPrioridades*>::iterator it;
+	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
+	bool continuarEvento = true;
+	for (it = this->mouseControllers.begin();
+			it != this->mouseControllers.end() && continuarEvento; ++it) {
+		continuarEvento = (*it)->getEventController()->rightClickDown(x, y);
+	}
+}
+
 bool GeneralEventController::procesarEventos() {
 	int x, y;
 	int nuevaPosX, nuevaPosY;
@@ -75,14 +98,24 @@ bool GeneralEventController::procesarEventos() {
 		return true;
 		break;
 	case SDL_MOUSEBUTTONDOWN:
-
 		if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(1)) {
+			this->botonAnterior = 1;
 			this->clickDown(x, y);
+
+		}
+		if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(3)) {
+			this->botonAnterior = 2;
+			this->rightClickDown(x, y);
 		}
 		break;
 	case SDL_MOUSEBUTTONUP:
 		SDL_GetMouseState(&x, &y);
-		this->clickUp(x, y);
+		if(this->botonAnterior == 1){
+			this->clickUp(x, y);
+		}else if (this->botonAnterior == 2) {
+			this->rightClickUp(x, y);
+		}
+		this->botonAnterior = 0;
 		break;
 	case SDL_MOUSEMOTION:
 		SDL_GetMouseState(&nuevaPosX, &nuevaPosY);
