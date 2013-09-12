@@ -10,8 +10,8 @@ using namespace std;
 
 
 
-CargadorDeTextures::CargadorDeTextures(SDL_Renderer* render, string rutaCasoError) {
-	this->rutaError = rutaCasoError;
+CargadorDeTextures::CargadorDeTextures(SDL_Renderer* render) {
+	this->rutaError = "resource/imagenError.jpg";
 	this->render = render;
 	return;
 

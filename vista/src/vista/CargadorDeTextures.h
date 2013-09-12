@@ -18,10 +18,10 @@ namespace std {
 
 class CargadorDeTextures {
 public:
-	CargadorDeTextures(SDL_Renderer* render, string rutaCasoError);
+	CargadorDeTextures(SDL_Renderer* render);
 	//virtual ~CargadorDeTextures();
 	SDL_Texture* cargarTexture(string ruta);
-	void destruirCargador();	//destruye el render
+	void destruirCargador();	//destruye todos los textures
 
 private:
 	int getCantTextures();	//para prueba fue
