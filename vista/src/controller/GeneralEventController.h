@@ -28,7 +28,7 @@ public:
 	virtual ~GeneralEventController();
 	void addMouseController(MouseEventController *, int prioridadClick, int prioridadMotion);
 	//TODO POR AHORA INDICA SI SALIR O NO DE LA APLICACION
-	bool procesarEventos();
+	bool procesarEventos(SDL_Window *);
 };
 
 #endif /* GENERALEVENTCONTROLLER_H_ */

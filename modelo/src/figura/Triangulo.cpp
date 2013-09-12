@@ -6,7 +6,7 @@
  */
 
 #include "Triangulo.h"
-
+#include <cmath>
 
 Triangulo::Triangulo(float x, float y, float ancho, float alto) {
 	this->x = x;
@@ -47,8 +47,22 @@ Triangulo::~Triangulo() {
 
 
 bool Triangulo::contacto(float posX, float posY) {
-	return this->isAdentro1D(posX, this->x, this->ancho)
-			&& this->isAdentro1D(posY, this->y, this->alto);
+	double xc = posX;
+	double yc= posY;
+	if(this->getRotacion() != 0){
+		//traslado al centro, roto el punto y pruebo el contacto.
+		xc = posX - this->x;
+		yc = posY - this->y;
+		//roto
+		double rotacionRad = this->getRotacion() *-3.14 /180.0;
+		xc = (posX - this->x) * cos(rotacionRad)- (posY - this->y) * sin(rotacionRad);
+		yc = (posX - this->x) * sin(rotacionRad)+ (posY - this->y) * cos(rotacionRad);
+		xc =xc + this->x;
+		yc=yc + this->y;
+	}
+
+	return this->isAdentro1D(xc, this->x, this->ancho)
+			&& this->isAdentro1D(yc, this->y, this->alto);
 }
 
 bool Triangulo::contieneCentro(Figura* cuadrado) {
