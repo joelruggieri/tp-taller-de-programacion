@@ -19,6 +19,12 @@ Rotacion::Rotacion(int x, int y, int x0, int y0, float anguloI) {
 	float norma = sqrt(this->x0 * this->x0 + this->y0 * this->y0);
 	this->x0 = this->x0 / norma;
 	this->y0 = this->y0 / norma;
+	if(isnan(this->x0) || isnan(this->y0)){
+		this->x0 = 1;
+		this->y0 = 0;
+//		cout<<"se dio el error" <<endl;
+	}
+
 	this->angulo = 0;
 	this->rotaciones = 0;
 }
@@ -32,7 +38,10 @@ double Rotacion::rotar(double x, double y) {
 	double norma2 = sqrt(xN * xN + yN * yN);
 	xN = xN / norma2;
 	yN = yN / norma2;
-    if(xN == this->x0 && this->y0 == yN){
+
+
+	if(isnan(xN) || isnan(yN)){
+//		cout<<"se dio el error" <<endl;
     	return 0;
     }
 	//calculo la componente z del producto vectorial entre ambos para saber la direccion.
@@ -45,6 +54,10 @@ double Rotacion::rotar(double x, double y) {
 	cout << "rotacion " << angulo<< endl;
 	this->x0 = xN;
 	this->y0 = yN;
+	if(isnan(angulo)){
+		angulo = 0;
+//		cout<<"se dio el error" <<endl;
+	}
 	return this->angulo;
 }
 
