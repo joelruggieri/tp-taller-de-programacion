@@ -86,7 +86,7 @@ void GeneralEventController::rightClickDown(int x, int y) {
 	}
 }
 
-bool GeneralEventController::procesarEventos() {
+bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int x, y;
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
@@ -124,18 +124,14 @@ bool GeneralEventController::procesarEventos() {
 	case SDL_WINDOWEVENT: {
 //			switch (evento.window.event) {
 //TODO IMPLEMENTAR RESIZE
-//        		case SDL_WINDOWEVENT_RESIZED:
-//        			cout << "Hubo un resize" << endl;
-//        			SDL_GetWindowSize(ventana,&tamNuevoX,&tamNuevoY);
-//
-//        			canvas->Resizear(tamNuevoX,  tamNuevoY);
-//        			canvas->Resizear(tamNuevoX - tamVentanaX, tamNuevoY - tamVentanaY);
-//        			boton->Resizear(tamNuevoX - tamVentanaX, tamNuevoY - tamVentanaY);
-//        			textBox->Resizear(tamNuevoX - tamVentanaX, tamNuevoY - tamVentanaY);
-//        			tamVentanaX = tamNuevoX ;
-//        			tamVentanaY = tamNuevoY;
-//        			//Resizeables tienen que resizear
-//        			break;
+        		case SDL_WINDOWEVENT_RESIZED:
+        			int tamNuevoX, tamNuevoY;
+        			SDL_GetWindowSize(ventana,&tamNuevoX,&tamNuevoY);
+        			if(tamNuevoX != tamNuevoY){
+        				SDL_SetWindowSize(ventana,tamNuevoX,tamNuevoX);
+        			}
+        			//Resizeables tienen que resizear
+        			break;
 //        		}
 		break;
 	}

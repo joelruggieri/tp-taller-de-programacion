@@ -23,7 +23,7 @@ Figura * FiguraFactory::crearCuadrado(float x,float y){
 	return new Cuadrado(x,y,10,10);
 }
 Figura* FiguraFactory::crearCirculo(float x, float y) {
-	return new Circulo(x,y,10);
+	return new Circulo(x,y,5);
 }
 
 Figura* FiguraFactory::crearTriangulo(float x,float y) {

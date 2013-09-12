@@ -38,7 +38,7 @@ int MainController::run() {
 	Resizer::Instance(800, 600, 120, 120);
 	bool terminar = false;
 	SDL_Init(SDL_INIT_VIDEO);
-	ventana = SDL_CreateWindow("Hola mundo", 400, 400, 800, 600,
+	ventana = SDL_CreateWindow("The Incredible Fail", 400, 400, 800, 600,
 			SDL_WINDOW_RESIZABLE);
 	SDL_Renderer* render = SDL_CreateRenderer(ventana, -1,
 			SDL_RENDERER_ACCELERATED);
@@ -51,7 +51,7 @@ int MainController::run() {
 	this->dropController->setZona(zona);
 	while(!terminar){
 		SDL_Delay(5);
-		terminar = eventController.procesarEventos();
+		terminar = eventController.procesarEventos(ventana);
 		SDL_SetRenderDrawColor(render,1,1,1,1);
 		SDL_RenderClear(render);
 		zona->dibujarse(render);
