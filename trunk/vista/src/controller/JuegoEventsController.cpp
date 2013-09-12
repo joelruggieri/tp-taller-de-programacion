@@ -80,7 +80,7 @@ void JuegoEventsController::dropFigura(FiguraView* view) {
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
-	if (zona != NULL) {
+	if (zona != NULL && this->figuraRotacion == NULL) {
 		Resizer* r = Resizer::Instance();
 		float lX = r->resizearDistanciaPixelX(x);
 		float lY = r->resizearDistanciaPixelY(y);
@@ -99,6 +99,9 @@ bool JuegoEventsController::clickUp(int x, int y) {
 		this->figuraDrag->drop();
 		this->figuraDrag = NULL;
 	}
+//	if(this->figuraRotacion != NULL){
+//		this->rightClickUp(x,y);
+//	}
 	return true;
 }
 
