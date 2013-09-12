@@ -21,7 +21,7 @@ private:
 	EslabonCreacion * ultimo;
 	static const int ANCHO_VIEW_DEF = 10;
 	bool agregarTemplate(FiguraView * dragueable);
-	bool clickTemplate(float x, float y);
+	FiguraView * getFiguraTemplate(float x, float y);
 	list<Dibujable* > vistasFactories;
 	void inicializar(list<ViewFiguraFactory*> *, float x, float margenSuperior);
 	Canvas * canvas;

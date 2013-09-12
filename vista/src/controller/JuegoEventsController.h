@@ -1,12 +1,12 @@
 /*
- * DragAndDropController.h
+ * JuegoEventsController.h
  *
  *  Created on: 07/09/2013
  *      Author: jonathan
  */
 
-#ifndef DRAGANDDROPCONTROLLER_H_
-#define DRAGANDDROPCONTROLLER_H_
+#ifndef JuegoEventsController_H_
+#define JuegoEventsController_H_
 
 #include "../vista/figura/CirculoView.h"
 #include "../vista/figura/CuadradoView.h"
@@ -16,32 +16,41 @@
 #include "DropController.h"
 #include "mouseEventController/MouseEventController.h"
 #include "../vista/Dragueable.h"
+#include "../vista/Rotable.h"
 
 class Figura;
 class FiguraFactory;
 class Zona;
 
-class DragAndDropController: public DropController, public MouseEventController, public Dragueable {
+class JuegoEventsController: public DropController, public MouseEventController, public Dragueable, public Rotable {
 private:
 	Zona * zona;
 	FiguraFactory * figurasFactory;
 	FiguraView * figuraDrag;
+	FiguraView * figuraRotacion;
+	int xAnterior, yAnterior;
 	void dropear(FiguraView* view, Figura* figura);
+	void rotar(int x, int );
 public:
-	DragAndDropController();
-	virtual ~DragAndDropController();
+	JuegoEventsController();
+	virtual ~JuegoEventsController();
 	void dropNuevaFigura(CuadradoView*);
 	void dropNuevaFigura(CirculoView*);
 	void dropNuevaFigura(TrianguloView*);
 	void dropNuevaFigura(RomboView*);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
-	bool clickDown(float,float);
-	bool clickUp(float, float);
-	bool mouseMotion(float, float);
+	bool clickDown(int,int);
+	bool clickUp(int, int);
+	bool mouseMotion(int, int);
+	bool rightClickDown(int,int);
+	bool rightClickUp(int,int);
 	Zona* getZona();
 	void setZona(Zona* zona);
 	bool isDragging();
 	View* getDragueado();
+	bool isRotando();
+	View* getRotado();
+
 };
-#endif /* DRAGANDDROPCONTROLLER_H_ */
+#endif /* JuegoEventsController_H_ */

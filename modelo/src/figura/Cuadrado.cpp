@@ -8,9 +8,7 @@
 #include "Cuadrado.h"
 
 
-Cuadrado::Cuadrado(float x, float y, float ancho, float alto) {
-	this->x = x;
-	this->y = y;
+Cuadrado::Cuadrado(float x, float y, float ancho, float alto): Figura(x,y) {
 	this->ancho = ancho;
 	this->alto = alto;
 }

@@ -17,7 +17,7 @@
 class ZonaTablero: public Zona{
 private:
 	bool agregarTemplate(FiguraView * dragueable);
-	bool clickTemplate(float x, float y);
+	FiguraView * getFiguraTemplate(float x, float y);
 	Mapa * mapa;
 	Canvas * canvas;
 public:

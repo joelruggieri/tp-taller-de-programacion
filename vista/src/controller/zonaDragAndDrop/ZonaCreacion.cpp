@@ -53,7 +53,7 @@ bool ZonaCreacion::agregarTemplate(FiguraView* dragueable) {
 
 }
 
-bool ZonaCreacion::clickTemplate(float x, float y) {
+FiguraView * ZonaCreacion::getFiguraTemplate(float x, float y) {
 	return this->inicioCadena->atender(x, y);
 }
 

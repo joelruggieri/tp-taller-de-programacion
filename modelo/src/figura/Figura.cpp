@@ -39,7 +39,7 @@ Figura::Figura() {
 Figura::Figura(float x, float y) {
 	this->x = x;
 	this->y = y;
-	rotacion = 0;
+	this->rotacion = 0;
 }
 
 

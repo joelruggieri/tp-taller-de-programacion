@@ -31,7 +31,7 @@ bool ZonaTablero::agregarTemplate(FiguraView* view) {
 	return true;
 }
 
-bool ZonaTablero::clickTemplate(float x, float y) {
+FiguraView * ZonaTablero::getFiguraTemplate(float x, float y) {
 	std::list<Dibujable*>::reverse_iterator it;
 	FiguraView* result = NULL;
 	list<Dibujable*> figuras = canvas->getDibujables();
@@ -45,13 +45,7 @@ bool ZonaTablero::clickTemplate(float x, float y) {
 	    	break;
 	    }
 	}
-	if(result != NULL){
-		result->click(x,y);
-		cout<<"clickea figura tablero"<<endl;
-		return true;
-	}
-
-	return false;
+	return result;
 }
 
 ZonaTablero::~ZonaTablero() {

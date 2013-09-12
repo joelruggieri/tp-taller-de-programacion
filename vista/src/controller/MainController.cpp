@@ -15,8 +15,9 @@
 #include "viewFactory/ViewTrianguloFactory.h"
 #include "GeneralEventController.h"
 #include "../vista/DraggingView.h"
+#include "../vista/RotationView.h"
 MainController::MainController() {
-	this->dropController = new DragAndDropController();
+	this->dropController = new JuegoEventsController();
 }
 
 MainController::~MainController() {
@@ -46,6 +47,7 @@ int MainController::run() {
 	GeneralEventController eventController;
 	eventController.addMouseController(this->dropController,1,1);
 	DraggingView vista(this->dropController);
+	RotationView vistaRotacion(this->dropController);
 	this->dropController->setZona(zona);
 	while(!terminar){
 		terminar = eventController.procesarEventos();
@@ -53,6 +55,7 @@ int MainController::run() {
 		SDL_RenderClear(render);
 		zona->dibujarse(render);
 		vista.dibujarse(render);
+		vistaRotacion.dibujarse(render);
 		SDL_RenderPresent(render);
 	}
 		SDL_DestroyRenderer(render);

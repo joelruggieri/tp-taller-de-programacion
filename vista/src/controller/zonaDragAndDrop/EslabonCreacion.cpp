@@ -29,7 +29,7 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 	this->siguiente = sig;
 }
 //
-bool EslabonCreacion::atender(float posX, float posY) {
+FiguraView * EslabonCreacion::atender(float posX, float posY) {
 
 	if(this->cuerpo->contacto(posX, posY)){
 //		if(this->itemsDisponibles >0){
@@ -37,8 +37,7 @@ bool EslabonCreacion::atender(float posX, float posY) {
 			Resizer * res = Resizer::Instance();
 			FiguraView * view = this->factory->crear(res->resizearDistanciaLogicaX(posX), res->resizearDistanciaLogicaY(posY),
 					res->resizearDistanciaLogicaX(this->cuerpo->getAncho()),res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
-			view->click(res->resizearDistanciaLogicaX(posX),res->resizearDistanciaLogicaY(posY));
-			return true;
+			return view;
 //		} else {
 //			return NULL;
 //		}
@@ -46,7 +45,7 @@ bool EslabonCreacion::atender(float posX, float posY) {
 	if(this->siguiente != NULL){
 		return this->siguiente->atender(posX, posY);
 	}
-	return false;
+	return NULL;
 }
 
 

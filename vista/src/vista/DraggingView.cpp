@@ -6,6 +6,9 @@
  */
 
 #include "DraggingView.h"
+#include "figura/FiguraView.h"
+#include <iostream>
+using namespace std;
 
 DraggingView::DraggingView(Dragueable * dragueable) {
 	this->dragueable= dragueable;

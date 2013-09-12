@@ -17,13 +17,16 @@ using namespace std;
 class GeneralEventController {
 private:
 	list<MouseControllerPrioridades *> mouseControllers;
+	void clickUp(int x, int y);
+	void clickDown(int x, int y);
+	void mouseMotion(int x, int y);
+	void rightClickUp(int x, int y);
+	void rightClickDown(int x, int y);
+	int botonAnterior;
 public:
 	GeneralEventController();
 	virtual ~GeneralEventController();
 	void addMouseController(MouseEventController *, int prioridadClick, int prioridadMotion);
-	void clickUp(int x, int y);
-	void clickDown(int x, int y);
-	void mouseMotion(int x, int y);
 	//TODO POR AHORA INDICA SI SALIR O NO DE LA APLICACION
 	bool procesarEventos();
 };

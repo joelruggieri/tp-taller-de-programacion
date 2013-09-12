@@ -13,10 +13,13 @@ public:
 	MouseEventController();
 	virtual ~MouseEventController();
 	//recibe un click en coordenadas pixels retorna true para propagar evento
-	virtual bool clickDown(float,float) = 0;
+	virtual bool clickDown(int,int) = 0;
 	//recibe el evento de soltar el mouse.
-	virtual bool clickUp(float, float)=0;
-	virtual bool mouseMotion(float, float)=0;
+	virtual bool clickUp(int, int)=0;
+	virtual bool rightClickDown(int,int) = 0;
+	//recibe el evento de soltar el mouse.
+	virtual bool rightClickUp(int, int)=0;
+	virtual bool mouseMotion(int, int)=0;
 
 };
 
