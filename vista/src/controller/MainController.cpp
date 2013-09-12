@@ -35,10 +35,10 @@ SDL_Texture* MainController::cargarTexture(const string &file,
 int MainController::run() {
 	SDL_Window *ventana = NULL;
 //	int draggin = false;
-	Resizer::Instance(800, 600, 120, 120);
+	Resizer::Instance(600, 600, 120, 120);
 	bool terminar = false;
 	SDL_Init(SDL_INIT_VIDEO);
-	ventana = SDL_CreateWindow("The Incredible Fail", 400, 400, 800, 600,
+	ventana = SDL_CreateWindow("The Incredible Fail", 400, 400, 600, 600,
 			SDL_WINDOW_RESIZABLE);
 	SDL_Renderer* render = SDL_CreateRenderer(ventana, -1,
 			SDL_RENDERER_ACCELERATED);
