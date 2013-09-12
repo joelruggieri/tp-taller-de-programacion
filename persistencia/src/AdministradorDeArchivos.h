@@ -24,6 +24,9 @@ public:
 	bool guardar(Cuadrado* objeto);
 	std::list<Figura*> obtenerTodos();
 private:
+	void obtenerCirculos(std::list<Figura*> &lista , YAML::Node objetos);
+	void obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos);
 	std::string nombre;
 	YAML::Node nodoRaiz;
 };
