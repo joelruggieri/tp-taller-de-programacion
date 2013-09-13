@@ -16,6 +16,7 @@
 #include "GeneralEventController.h"
 #include "../vista/DraggingView.h"
 #include "../vista/RotationView.h"
+#include "../vista/CargadorDeTextures.h"
 MainController::MainController() {
 	this->dropController = new JuegoEventsController();
 }
@@ -25,13 +26,21 @@ MainController::~MainController() {
 
 SDL_Texture* MainController::cargarTexture(const string &file,
 		SDL_Renderer* ren) {
-	SDL_Texture* texture = IMG_LoadTexture(ren, file.c_str());
-	if (texture == NULL)
-		cout << "IMG_Load error: " << IMG_GetError() << endl;
-
+	CargadorDeTextures * instance = CargadorDeTextures::Instance(ren);
+	SDL_Texture* texture = instance->cargarTexture(file);
 	return texture;
 }
 
+void taparHueco(SDL_Renderer * renderer){
+	SDL_Rect dest;
+	Resizer * r= Resizer::Instance();
+	dest.x = 0;
+	dest.y= r->resizearDistanciaLogicaY(100);
+	dest.w= r->resizearDistanciaLogicaX(120);
+	dest.h= r->resizearDistanciaLogicaY(20);
+	SDL_SetRenderDrawColor(renderer, 0,0,0,0);
+	SDL_RenderFillRect(renderer,&dest);
+}
 int MainController::run() {
 	SDL_Window *ventana = NULL;
 //	int draggin = false;
@@ -57,6 +66,7 @@ int MainController::run() {
 		zona->dibujarse(render);
 		vista.dibujarse(render);
 		vistaRotacion.dibujarse(render);
+		taparHueco(render);
 		SDL_RenderPresent(render);
 	}
 		SDL_DestroyRenderer(render);

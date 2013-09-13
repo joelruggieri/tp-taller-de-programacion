@@ -18,8 +18,8 @@ Scroll::Scroll(Figura * flechaSup, Figura* flechaInf,int velocidad, int max) {
 //	flechaSup->setRotacion(0);
 //	flechaInf->setRotacion(90);
 	this->figura->addFigura(flechaInf);
-	this->signado.insert(pair<Figura*,int>(flechaSup,- 1));
-	this->signado.insert(pair<Figura*,int>(flechaInf,1));
+	this->signado.insert(pair<Figura*,int>(flechaSup,1));
+	this->signado.insert(pair<Figura*,int>(flechaInf,-1));
 	this->posicion = max;
 	this->max = max;
 	this->velocidad = velocidad;

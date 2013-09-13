@@ -6,7 +6,27 @@
  */
 
 #include "CargadorDeTextures.h"
+#include <iostream>
 using namespace std;
+
+CargadorDeTextures* CargadorDeTextures::pinstance = 0;// Inicializar el puntero
+CargadorDeTextures* CargadorDeTextures::Instance (SDL_Renderer* render)
+{
+  if (pinstance == 0)  // ¿Es la primera llamada?
+  {
+    pinstance = new CargadorDeTextures(render); // Creamos la instancia
+  }
+  return pinstance; // Retornamos la dirección de la instancia
+}
+
+CargadorDeTextures* CargadorDeTextures::Instance ()
+{
+	if(pinstance == 0){
+		//TODO LANZAR EXCEPTION
+		cout<< "ERROR"<<endl;
+	}
+  return pinstance; // Retornamos la dirección de la instancia
+}
 
 
 
@@ -50,8 +70,8 @@ SDL_Texture* CargadorDeTextures::cargarTexture(string ruta)
 
 return texture; }
 
-void CargadorDeTextures::destruirCargador()
-{
+
+CargadorDeTextures::~CargadorDeTextures() {
 	map<string, SDL_Texture* >::const_iterator iter;
 	for(iter = this->Textures.begin(); iter != this->Textures.end(); ++iter)
 	{
@@ -59,8 +79,6 @@ void CargadorDeTextures::destruirCargador()
 
 	}
 	// SDL_DestroyRenderer(this->render); se destruye mas adelante ??
-
-
 }
 
 int CargadorDeTextures::getCantTextures()

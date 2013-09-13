@@ -13,26 +13,27 @@
 
 #include <utility>
 #include <string>
+using namespace std;
 
-namespace std {
 
 class CargadorDeTextures {
 public:
-	CargadorDeTextures(SDL_Renderer* render);
+	~CargadorDeTextures();
 	//virtual ~CargadorDeTextures();
 	SDL_Texture* cargarTexture(string ruta);
-	void destruirCargador();	//destruye todos los textures
-
+	static CargadorDeTextures* Instance();
+	static CargadorDeTextures* Instance (SDL_Renderer* render);
 private:
 	int getCantTextures();	//para prueba fue
 	map<string, SDL_Texture*> Textures;
 	SDL_Renderer* render ;
 	string rutaError;
+	static CargadorDeTextures* pinstance;
 
-
-
+protected:
+	CargadorDeTextures(SDL_Renderer*);
+	CargadorDeTextures(const CargadorDeTextures & ) ;
+	CargadorDeTextures &operator= (const CargadorDeTextures & ) ;
 
 };
-
-} /* namespace std */
 #endif /* CARGADORDETEXTURES_H_ */
