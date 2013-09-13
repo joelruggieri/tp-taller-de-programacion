@@ -17,7 +17,7 @@ public:
 	Triangulo(float, float, float, float);
 	virtual ~Triangulo();
 	bool contacto(float,float);
-	bool contieneCentro(Figura* cuadrado);
+	bool contieneCentro(Posicionable* cuadrado);
 	bool isAdentro1D(float pos, float posCentro, float ancho);
 	void setAncho(float ancho);
 	void setAlto (float alto);

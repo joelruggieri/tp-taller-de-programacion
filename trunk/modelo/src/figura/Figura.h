@@ -7,8 +7,9 @@
 
 #ifndef FIGURA_H_
 #define FIGURA_H_
+#include "../Posicionable.h"
 
-class Figura {
+class Figura: public Posicionable {
 protected:
 	float x;
 	float y;
@@ -18,7 +19,7 @@ public:
 	Figura(float x, float y);
 	virtual ~Figura();
 	virtual bool contacto(float, float)= 0;
-	virtual bool contieneCentro(Figura* figura) = 0;
+	virtual bool contieneCentro(Posicionable* figura) = 0;
 	float getX() const;
 	float getY() const;
 	double getRotacion() const;

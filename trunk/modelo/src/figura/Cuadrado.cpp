@@ -63,8 +63,8 @@ bool Cuadrado::contacto(float posX, float posY) {
 			&& this->isAdentro1D(yc, this->y, this->alto);
 }
 
-bool Cuadrado::contieneCentro(Figura* cuadrado) {
-	return this->contacto(cuadrado->getX(), cuadrado->getY());
+bool Cuadrado::contieneCentro(Posicionable* posicion) {
+	return this->contacto(posicion->getX(), posicion->getY());
 }
 bool Cuadrado::isAdentro1D(float pos, float posCentro, float ancho) {
 	return (pos <= (posCentro + ancho / 2)) && (pos >= posCentro - ancho / 2);

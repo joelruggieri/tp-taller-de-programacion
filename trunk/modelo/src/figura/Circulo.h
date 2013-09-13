@@ -18,7 +18,7 @@ public:
 	Circulo(float, float, float);
 	virtual ~Circulo();
 	bool contacto(float,float);
-	bool contieneCentro(Figura* cuadrado);
+	bool contieneCentro(Posicionable* cuadrado);
 	float getRadio() const;
 	void setRadio(float radio);
 };

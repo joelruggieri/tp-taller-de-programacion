@@ -65,7 +65,7 @@ bool Triangulo::contacto(float posX, float posY) {
 			&& this->isAdentro1D(yc, this->y, this->alto);
 }
 
-bool Triangulo::contieneCentro(Figura* cuadrado) {
+bool Triangulo::contieneCentro(Posicionable* cuadrado) {
 	return this->contacto(cuadrado->getX(), cuadrado->getY());
 }
 bool Triangulo::isAdentro1D(float pos, float posCentro, float ancho) {
