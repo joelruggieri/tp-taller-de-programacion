@@ -27,10 +27,12 @@ public:
 	zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture);
 	virtual ~zonaToolBar();
 	void agregarHerramienta(Herramientas* herramienta);
-
+	void dibujarse(SDL_Renderer *render);
+private:
 	SDL_Texture* fondo ;
 	int x,y,h,w;
-	void dibujarse(SDL_Renderer *render);
+	void agregarHerramientasAlToolBar(int x, int y, int w, int h);
+
 
 
 

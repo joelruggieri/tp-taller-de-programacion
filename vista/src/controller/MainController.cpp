@@ -17,6 +17,8 @@
 #include "../vista/DraggingView.h"
 #include "../vista/RotationView.h"
 #include "../vista/CargadorDeTextures.h"
+#include "zonaToolBar/zonaToolBar.h"
+
 MainController::MainController() {
 	this->dropController = new JuegoEventsController();
 }
@@ -52,7 +54,7 @@ int MainController::run() {
 	SDL_Renderer* render = SDL_CreateRenderer(ventana, -1,
 			SDL_RENDERER_ACCELERATED);
 	Zona * zona = crearZonaJuego(render);
-
+	zonaToolBar* toolBar = new zonaToolBar(0, 500 ,600, 100, cargarTexture("resource/fondoHerramientas.jpg", render ));
 	GeneralEventController eventController;
 	eventController.addMouseController(this->dropController,1,1);
 	DraggingView vista(this->dropController);
@@ -63,10 +65,12 @@ int MainController::run() {
 		terminar = eventController.procesarEventos(ventana);
 		SDL_SetRenderDrawColor(render,1,1,1,1);
 		SDL_RenderClear(render);
+
 		zona->dibujarse(render);
 		taparHueco(render);
 		vista.dibujarse(render);
 		vistaRotacion.dibujarse(render);
+		toolBar->dibujarse(render);
 		SDL_RenderPresent(render);
 	}
 		SDL_DestroyRenderer(render);
