@@ -21,6 +21,7 @@ public:
 	void warning(std::string mensaje);
 	void debug(std::string mensaje);
 	void fatal(std::string mensaje);
+	void info(std::string mensaje);
 	void setNivel(int nivel);
 	void borrar();
 private:
