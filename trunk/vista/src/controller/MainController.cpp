@@ -64,9 +64,9 @@ int MainController::run() {
 		SDL_SetRenderDrawColor(render,1,1,1,1);
 		SDL_RenderClear(render);
 		zona->dibujarse(render);
+		taparHueco(render);
 		vista.dibujarse(render);
 		vistaRotacion.dibujarse(render);
-		taparHueco(render);
 		SDL_RenderPresent(render);
 	}
 		SDL_DestroyRenderer(render);
@@ -102,7 +102,17 @@ Zona* MainController::crearZonaJuego(SDL_Renderer* renderer) {
 	factories.push_back(new ViewCirculoFactory(renderer, dropController));
 	factories.push_back(new ViewCirculoFactory(renderer, dropController));
 	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-
+	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
+	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
+	factories.push_back(new ViewCirculoFactory(renderer, dropController));
+	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
+	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
+	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
+	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
+	factories.push_back(new ViewCirculoFactory(renderer, dropController));
+	factories.push_back(new ViewCirculoFactory(renderer, dropController));
+	factories.push_back(new ViewCirculoFactory(renderer, dropController));
+	factories.push_back(new ViewCirculoFactory(renderer, dropController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
 			herrTextura);
 	Zona* zonaTablero = new ZonaTablero(new Mapa(),50,50, canvasTexture);

@@ -22,7 +22,7 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x,
 	int hC = instance->resizearDistanciaLogicaY(100);
 	this->canvas = new Canvas(xC, yC, wC, hC, textura);
 	this->canvas->setBorder(true);
-
+	this->scroll = NULL;
 	this->inicializar(factories, x, margenSuperior);
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 }
