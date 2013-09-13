@@ -9,9 +9,13 @@
 #define ZONATOOLBAR_H_
 #include <list>
 #include "../../vista/Herramientas.h"
+#include "../../vista/BotonAgregar.h"
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "../../vista/Dibujable.h"
+//#include "../../controller/Resizer.h"
+#include "../../vista/CargadorDeTextures.h"
+
 
 using namespace std;
 
