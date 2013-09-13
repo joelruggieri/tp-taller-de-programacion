@@ -22,6 +22,8 @@ public:
 	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render);
 
 	void Resizear(int x, int y);
+	virtual void ejecutar() = 0 ;
+
 
 };
 
@@ -45,6 +47,16 @@ public:
 		//constructor del boton salir
 	}
 
+
+};
+
+class BotonGuardar: public Boton
+{
+	BotonGuardar(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) : Boton(x,y,h,w,textura, render)
+	{
+
+	}
+	//TODO implementar la conexion con la persistencia
 
 };
 
