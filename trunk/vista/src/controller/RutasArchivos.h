@@ -1,0 +1,1 @@
+const string RUTA_FLECHA = "resource/flecha.jpg";
