@@ -10,18 +10,20 @@
 
 namespace std {
 
-//Boton::Boton(int x, int y, SDL_Texture* imagen, SDL_Renderer* renderer,int ancho, int alto) {
-//	// TODO Auto-generated constructor stub
-//	 this->imagen = imagen ;
-//	 this->render = renderer;
-//	 this->x = x;
-//	 this->y = y;
-//	 this->w = ancho;
-//	 this->h = alto ;
-//
-//	// SDL_QueryTexture(imagen, )
-//
-//}
+void BotonAgregar::ejecutar() {
+}
+
+Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura) {
+	// TODO Auto-generated constructor stub
+	 this->textura = textura ;
+	 this->x = x;
+	 this->y = y;
+	 this->w = w;
+	 this->h = h ;
+
+
+
+}
 
 
 
@@ -68,5 +70,22 @@ return 0;
 
 
 
+
+
+void std::BotonSalir::ejecutar() {
 }
 
+void std::BotonGuardar::ejecutar() {
+}
+
+void Boton::dibujarse(SDL_Renderer* render) {
+
+SDL_Rect dst ;
+dst.x = this->x;
+dst.y = this->y;
+dst.h = this->h;
+dst.w = this->w;
+SDL_RenderCopy(render, this->textura,NULL,&dst);
+return;
+}
+}

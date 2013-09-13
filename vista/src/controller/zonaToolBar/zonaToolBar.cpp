@@ -6,6 +6,8 @@
  */
 
 #include "zonaToolBar.h"
+#define anchoBoton 10
+#define altoBoton 10
 
 zonaToolBar::zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
 	this->fondo = texture ;
@@ -14,6 +16,14 @@ zonaToolBar::zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
 	this->y = y;
 	this->w = w;
 	this->h = h;
+	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
+	BotonAgregar* bAgregar = new BotonAgregar(x+100, y+20, anchoBoton, altoBoton, p1->cargarTexture("botonAgregar.jpg") );
+	BotonSalir* bSalir = new BotonSalir(x+130, y + 20, anchoBoton, altoBoton, p1->cargarTexture("botonSalir.jpg"));
+	this->agregarHerramienta(bAgregar);
+	this->agregarHerramienta(bSalir);
+
+
+//	this->agregarHerramienta(new
 
 
 

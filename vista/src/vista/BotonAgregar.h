@@ -18,10 +18,12 @@ namespace std {
 
 class Boton: public Herramientas {
 public:
-	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render);
-
+	Boton(int x, int y, int h, int w, SDL_Texture* textura);
+	void dibujarse(SDL_Renderer *);
 	void Resizear(int x, int y);
 	virtual void ejecutar() = 0 ;
+	int x,y,h,w;
+	SDL_Texture* textura;
 
 
 };
@@ -30,10 +32,11 @@ class BotonAgregar : public Boton {
 
 
 public:
-	BotonAgregar(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) : Boton(x,y,h,w,textura, render)
+	BotonAgregar(int x, int y, int h, int w, SDL_Texture* textura) : Boton(x,y,h,w,textura)
 	{
 
 	}
+	void ejecutar();
 	//virtual ~BotonAgregar();
 	int ModificarFondo(Canvas* fondo,char* rutaNueva);
 
@@ -41,22 +44,22 @@ public:
 
 class BotonSalir: public Boton {
 public:
-	BotonSalir(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) : Boton(x,y,h,w,textura, render)
+	BotonSalir(int x, int y, int h, int w, SDL_Texture* textura) : Boton(x,y,h,w,textura)
 	{
 		//constructor del boton salir
 	}
-
+	void ejecutar();
 
 };
 
 class BotonGuardar: public Boton
 {
-	BotonGuardar(int x, int y, int h, int w, SDL_Texture* textura, SDL_Renderer* render) : Boton(x,y,h,w,textura, render)
+	BotonGuardar(int x, int y, int h, int w, SDL_Texture* textura) : Boton(x,y,h,w,textura)
 	{
 
 	}
 	//TODO implementar la conexion con la persistencia
-
+	void ejecutar();
 };
 
 } /* namespace std */
