@@ -18,7 +18,7 @@ public:
 	Cuadrado(float, float, float, float);
 	virtual ~Cuadrado();
 	bool contacto(float,float);
-	bool contieneCentro(Figura* cuadrado);
+	bool contieneCentro(Posicionable* posicion);
 	bool isAdentro1D(float pos, float posCentro, float ancho);
 	void setAncho(float ancho);
 	void setAlto (float alto);

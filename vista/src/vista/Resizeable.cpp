@@ -7,7 +7,6 @@
 
 #include "Resizeable.h"
 
-namespace std {
 
 Resizeable::Resizeable() {
 	// TODO Auto-generated constructor stub
@@ -22,8 +21,4 @@ Resizeable::~Resizeable() {
 
 void Resizeable::Resizear(int x, int y)
 {
-	this->w = this->w + x;
-	this->h = this->h + y;
-
-}
 }

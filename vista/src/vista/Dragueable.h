@@ -9,7 +9,6 @@
 #define DRAGUEABLE_H_
 #include "Dibujable.h"
 #include "Resizeable.h"
-#include "Seleccionable.h"
 #include "View.h"
 
 class Dragueable{

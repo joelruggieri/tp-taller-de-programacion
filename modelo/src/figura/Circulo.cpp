@@ -40,7 +40,7 @@ bool Circulo::contacto(float x, float y) {
 	 return (SqrDist <= SqrRadius);
 }
 
-bool Circulo::contieneCentro(Figura* cuadrado) {
+bool Circulo::contieneCentro(Posicionable* cuadrado) {
 	return false;
 }
 

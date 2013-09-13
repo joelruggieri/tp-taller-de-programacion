@@ -13,7 +13,6 @@
 #include <iostream>
 #include "Dibujable.h"
 #include "Resizeable.h"
-#include"Seleccionable.h"
 #include "Herramientas.h"
 namespace std {
 
