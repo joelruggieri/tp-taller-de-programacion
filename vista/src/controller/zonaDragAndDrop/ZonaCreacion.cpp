@@ -20,6 +20,7 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x, float 
 	this->canvas = new Canvas(xC,yC,wC,hC,textura);
 	this->canvas->setBorder(true);
 
+
 	this->inicializar(factories, x, margenSuperior);
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 }
@@ -29,7 +30,7 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x, fl
 	//50% de margen alrededor de todo el panel
 	float xInicial = x;
 	float yInicial = margenSuperior +  ANCHO_VIEW_DEF ;
-	float y = yInicial;
+	float y = yInicial +1;
 
 	std::list<ViewFiguraFactory*>::const_iterator iterator;
 	this->inicioCadena = NULL;
@@ -46,7 +47,15 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x, fl
 	y = factories->size() > 0 ? y-12: y;
 	float alto = (y - margenSuperior) + ANCHO_VIEW_DEF;
 	this->setCuerpo(new Cuadrado(x,(margenSuperior + alto) / 2, ancho, alto));
-
+	//las primeras 100 unidades no tienen scroll, sino lo creo.
+	if(alto > 100){
+		this->scroll = new Scroll(new Cuadrado(x,2,ANCHO_VIEW_DEF *2,4),new Cuadrado(x,98,ANCHO_VIEW_DEF *2,4),2, alto-100);
+		list<Dibujable *>::iterator it;
+		list<Dibujable*> dibujables = this->canvas->getDibujables();
+		for (it = dibujables.begin(); it != dibujables.end(); ++it) {
+			this->scroll->addScrolleable((View*)(*it));
+		}
+	}
 }
 bool ZonaCreacion::agregarTemplate(FiguraView* dragueable) {
 	return false;
@@ -54,12 +63,20 @@ bool ZonaCreacion::agregarTemplate(FiguraView* dragueable) {
 }
 
 FiguraView * ZonaCreacion::getFiguraTemplate(float x, float y) {
-	return this->inicioCadena->atender(x, y);
+	float corrimiento = 0;
+	if(this->scroll != NULL){
+		corrimiento = this->scroll->getScroll();
+
+	}
+	return this->inicioCadena->atender(x, y + corrimiento);
 }
 
 ZonaCreacion::~ZonaCreacion() {
 	delete this->inicioCadena;
 	delete this->canvas;
+	if(this->scroll != NULL){
+		delete this->scroll;
+	}
 }
 
 void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
@@ -77,5 +94,12 @@ void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
 }
 
 bool ZonaCreacion::removerFigura(FiguraView* figura) {
+	return false;
+}
+
+bool ZonaCreacion::click(float x, float y) {
+	if(this->scroll != NULL){
+		return this->scroll->click(x,y);
+	}
 	return false;
 }

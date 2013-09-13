@@ -13,6 +13,7 @@
 #include "../viewFactory/ViewFiguraFactory.h"
 #include <list>
 #include "../../vista/Canvas.h"
+#include "../../modelo/Scroll.h"
 using namespace std;
 
 class ZonaCreacion: public Zona {
@@ -22,15 +23,16 @@ private:
 	static const int ANCHO_VIEW_DEF = 10;
 	bool agregarTemplate(FiguraView * dragueable);
 	FiguraView * getFiguraTemplate(float x, float y);
-	list<Dibujable* > vistasFactories;
 	void inicializar(list<ViewFiguraFactory*> *, float x, float margenSuperior);
 	Canvas * canvas;
+	Scroll * scroll;
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior, SDL_Texture *);
 	virtual ~ZonaCreacion();
 	void agregarEslabon(EslabonCreacion* eslabon);
 	void dibujarse(SDL_Renderer *);
 	bool removerFigura(FiguraView*);
+	bool click(float x, float y);
 };
 
 #endif /* ZONACREACION_H_ */

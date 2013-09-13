@@ -37,9 +37,9 @@ public:
 	virtual FiguraView * getVista(float, float);
 	float getScrollY() const;
 	void setScrollY(float);
-	list<FiguraView *> getFiguras();
 	virtual void dibujarse(SDL_Renderer *) = 0;
 	Cuadrado*& getCuerpo();
+	virtual bool click(float x, float y) = 0;
 };
 
 #endif /* ZONADRAGANDDROP_H_ */

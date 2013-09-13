@@ -160,3 +160,6 @@ void Canvas::setBorder(bool border) {
 	this->border = border;
 }
 
+const list<Dibujable*>& Canvas::getVistas() {
+	return (this->vistas);
+}

@@ -43,6 +43,7 @@ public:
 	const list<Dibujable*>& getDibujables() const;
 	bool isBorder() const;
 	void setBorder(bool border);
+	const list<Dibujable*>& getVistas();
 	typedef struct RGB{
 	    int r;
 	    int g;

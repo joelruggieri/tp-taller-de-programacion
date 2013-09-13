@@ -59,3 +59,7 @@ FiguraView * ZonaJuego::getVista(float x, float y) {
 bool ZonaJuego::removerFigura(FiguraView* figura) {
 	return this->zonaCreacion->removerFigura(figura) || this->zonaTablero->removerFigura(figura);
 }
+
+bool ZonaJuego::click(float x, float y) {
+	return this->zonaCreacion->click(x,y);
+}

@@ -23,10 +23,10 @@ public:
 	virtual ~ZonaJuego();
 	float getScrollY() const;
 	void setScrollY(float scrollY);
-	list<Figura*> getFiguras();
 	void dibujarse(SDL_Renderer *);
 	bool removerFigura(FiguraView*);
 	FiguraView * getVista(float x, float y);
+	bool click(float x, float y);
 };
 
 #endif /* ZONAJUEGO_H_ */
