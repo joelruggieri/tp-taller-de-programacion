@@ -43,6 +43,10 @@ void Logger::fatal(std::string mensaje) {
 		archivo << fecha() << " [FATAL] " << ": " << mensaje;
 }
 
+void Logger::info(std::string mensaje) {
+		archivo << fecha() << " [INFO] " << ": " << mensaje;
+}
+
 
 void Logger::borrar() {
 	archivo.close();
