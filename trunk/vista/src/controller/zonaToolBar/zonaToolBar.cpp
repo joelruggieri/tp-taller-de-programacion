@@ -24,9 +24,9 @@ zonaToolBar::zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
 void zonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
 	//TODO agregar el maldito y faltante textbox
-		BotonAgregar* bAgregar = new BotonAgregar(x+350, y+20, anchoBoton, altoBoton, p1->cargarTexture("botonAgregar.jpg") );
-		BotonSalir* bSalir = new BotonSalir(x+400, y + 20, anchoBoton, altoBoton, p1->cargarTexture("botonSalir.jpg"));
-		BotonGuardar* bGuardar = new BotonGuardar(x+450, y+ 20, anchoBoton, altoBoton, p1->cargarTexture("botonGuardar.jpg"));
+		BotonAgregar* bAgregar = new BotonAgregar(x+350, y+20, anchoBoton, altoBoton, p1->cargarTexture("resource/botonAgregar.png"));
+		BotonSalir* bSalir = new BotonSalir(x+400, y + 20, anchoBoton, altoBoton, p1->cargarTexture("resource/botonGuardar.png"));
+		BotonGuardar* bGuardar = new BotonGuardar(x+450, y+ 20, anchoBoton, altoBoton, p1->cargarTexture("resource/pelota.PNG"));
 		this->agregarHerramienta(bAgregar);
 		this->agregarHerramienta(bSalir);
 		this->agregarHerramienta(bGuardar);
