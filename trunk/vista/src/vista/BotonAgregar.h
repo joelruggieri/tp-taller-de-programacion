@@ -54,6 +54,7 @@ public:
 
 class BotonGuardar: public Boton
 {
+public:
 	BotonGuardar(int x, int y, int h, int w, SDL_Texture* textura) : Boton(x,y,h,w,textura)
 	{
 
