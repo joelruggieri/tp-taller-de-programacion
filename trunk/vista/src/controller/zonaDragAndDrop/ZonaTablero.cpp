@@ -64,3 +64,7 @@ bool ZonaTablero::removerFigura(FiguraView* figura) {
 	this->canvas->remover(figura);
 	return cantInicial != this->canvas->getDibujables().size();
 }
+
+bool ZonaTablero::click(float x, float y) {
+return false;
+}

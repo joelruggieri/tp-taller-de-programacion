@@ -25,6 +25,7 @@ public:
 	virtual ~ZonaTablero();
 	void dibujarse(SDL_Renderer *);
 	bool removerFigura(FiguraView*);
+	bool click(float x, float y);
 };
 
 #endif /* ZONATABLERO_H_ */

@@ -80,12 +80,13 @@ void JuegoEventsController::dropFigura(FiguraView* view) {
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
-	if (zona != NULL && this->figuraRotacion == NULL) {
-		Resizer* r = Resizer::Instance();
-		float lX = r->resizearDistanciaPixelX(x);
-		float lY = r->resizearDistanciaPixelY(y);
+	//prueba de hacer click en la zona
+	Resizer* r = Resizer::Instance();
+	float lX = r->resizearDistanciaPixelX(x);
+	float lY = r->resizearDistanciaPixelY(y);
+	if (zona != NULL && !zona->click(lX, lY) && this->figuraRotacion == NULL) {
 		FiguraView * view = this->zona->getVista(lX, lY);
-		if(view != NULL){
+		if (view != NULL) {
 			view->click(lX, lY);
 			return false;
 		}
@@ -128,16 +129,19 @@ void JuegoEventsController::setZona(Zona* zona) {
 	this->zona = zona;
 }
 
-bool JuegoEventsController::mouseMotion(int corrimientoX,
-		int corrimientoY) {
+bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 	if (this->figuraDrag != NULL) {
 		this->figuraDrag->desplazarCentroA(corrimientoX, corrimientoY);
 	}
 	Resizer* r = Resizer::Instance();
-	if(this->figuraRotacion != NULL){
+	if (this->figuraRotacion != NULL) {
 		this->rot->rotar(corrimientoX, r->getAltoPantalla() - corrimientoY);
-		this->figuraRotacion->getModelo()->setRotacion(this->figuraRotacion->getModelo()->getRotacion() + this->rot->getAngulo());
-		cout<< "rotacion total "<< this->figuraRotacion->getModelo()->getRotacion() << endl;;
+		this->figuraRotacion->getModelo()->setRotacion(
+				this->figuraRotacion->getModelo()->getRotacion()
+						+ this->rot->getAngulo());
+		cout << "rotacion total "
+				<< this->figuraRotacion->getModelo()->getRotacion() << endl;
+		;
 	}
 	// consume el evento
 	return false;
@@ -153,16 +157,19 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 		float lX = r->resizearDistanciaPixelX(x);
 		float lY = r->resizearDistanciaPixelY(y);
 		FiguraView * view = this->zona->getVista(lX, lY);
-		if(view != NULL){
-			 if(view->getModelo() != NULL){
-				 this->zona->removerFigura(view);
-				 this->figuraRotacion = view;
-				 Resizer* r = Resizer::Instance();
-				 this->rot = new Rotacion(this->figuraRotacion->getXCentro(), r->getAltoPantalla() - this->figuraRotacion->getYCentro(), x,r->getAltoPantalla()- y,0);
-				 return false;
-			 } else {
-				 delete view;
-			 }
+		if (view != NULL) {
+			if (view->getModelo() != NULL) {
+				this->zona->removerFigura(view);
+				this->figuraRotacion = view;
+				Resizer* r = Resizer::Instance();
+				this->rot = new Rotacion(this->figuraRotacion->getXCentro(),
+						r->getAltoPantalla()
+								- this->figuraRotacion->getYCentro(), x,
+						r->getAltoPantalla() - y, 0);
+				return false;
+			} else {
+				delete view;
+			}
 		}
 	}
 	return true;
@@ -172,7 +179,7 @@ bool JuegoEventsController::rightClickUp(int int1, int int2) {
 	if (this->figuraRotacion != NULL) {
 		//TODO ESTO DEBERÍA ACTUALIZAR LA POSICION DE LA IMAGEN, EN EL DROP SE DEBERÍA IMPACTAR TAMBIEN EN EL MODELO
 		this->zona->agregarFigura(this->figuraRotacion);
-		this->figuraRotacion= NULL;
+		this->figuraRotacion = NULL;
 		delete this->rot;
 	}
 	return true;
