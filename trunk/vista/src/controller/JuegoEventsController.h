@@ -29,6 +29,8 @@ private:
 	FiguraView * figuraDrag;
 	FiguraView * figuraRotacion;
 	Rotacion * rot;
+	float posStartDragX;
+	float posStartDragY;
 	void dropear(FiguraView* view, Figura* figura);
 public:
 	JuegoEventsController();

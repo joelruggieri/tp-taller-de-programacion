@@ -30,6 +30,8 @@ JuegoEventsController::JuegoEventsController() {
 	this->zona = NULL;
 	this->figuraRotacion = NULL;
 	this->rot = NULL;
+	this->posStartDragX = 0;
+	this->posStartDragY = 0;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -111,8 +113,12 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
 	cout << "draguea figura controller" << endl;
 	if (zona != NULL) {
+		if (!isDragging()){
+			this->posStartDragX = Resizer::Instance()->resizearDistanciaLogicaX(x);
+			this->posStartDragY = Resizer::Instance()->resizearDistanciaLogicaY(y);
+			this->figuraDrag = figura;
+		}
 		this->zona->removerFigura(figura);
-		this->figuraDrag = figura;
 
 		mouseMotion(Resizer::Instance()->resizearDistanciaLogicaX(x),
 				Resizer::Instance()->resizearDistanciaLogicaY(y));
@@ -131,8 +137,12 @@ void JuegoEventsController::setZona(Zona* zona) {
 }
 
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
-	if (this->figuraDrag != NULL) {
-		this->figuraDrag->desplazarCentroA(corrimientoX, corrimientoY);
+	if (this->figuraDrag != NULL ) {
+		float deltaX = this->figuraDrag->getXCentro() + corrimientoX - this->posStartDragX;
+		float deltaY = this->figuraDrag->getYCentro() + corrimientoY - this->posStartDragY;
+		this->figuraDrag->desplazarCentroA(deltaX , deltaY);
+		this->posStartDragX = corrimientoX;
+		this->posStartDragY = corrimientoY;
 	}
 	Resizer* r = Resizer::Instance();
 	if (this->figuraRotacion != NULL) {
