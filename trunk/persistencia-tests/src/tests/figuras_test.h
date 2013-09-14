@@ -37,7 +37,7 @@ public:
 
 TEST_F(figuras_test,test_archivo_no_creardo_excepcion){
 	bool exc = false;
-	Triangulo *triangulo = new Triangulo(3.5, 6.5,0,0);
+	//Triangulo *triangulo = new Triangulo(3.5, 6.5,0,0);
 	try{
 		ObjetoDAO *dao2 = new ObjetoDAO("config2.yaml");
 		//dao->guardar(triangulo);
@@ -140,7 +140,7 @@ TEST_F(figuras_test,no_hay_figuras_en_un_archivo_vacio){
 
 	std::list<Figura*> Figuras = dao->obtenerTodos();
 	std::list<Figura*>::iterator iter = Figuras.begin();
-	Cuadrado *unTriangulo = (Cuadrado*) *iter;
+	//Cuadrado *unTriangulo = (Cuadrado*) *iter;
 	int i = 0;
 	while(iter != Figuras.end()){
 		iter.operator ++();
