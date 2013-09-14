@@ -9,7 +9,6 @@
 #define CUADRADO_H_
 
 #include "Figura.h"
-
 class Cuadrado: public Figura {
 private:
 	float ancho,alto;
@@ -24,7 +23,7 @@ public:
 	void setAlto (float alto);
 	float getAncho() const;
 	float getAlto() const;
-
+	void acept(VisitorFigura*);
 };
 
 #endif /* CUADRADO_H_ */

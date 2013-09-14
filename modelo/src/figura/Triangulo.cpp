@@ -7,6 +7,7 @@
 
 #include "Triangulo.h"
 #include <cmath>
+#include "VisitorFigura.h"
 
 Triangulo::Triangulo(float x, float y, float ancho, float alto) {
 	this->x = x;
@@ -72,4 +73,8 @@ bool Triangulo::contieneCentro(Posicionable* cuadrado) {
 bool Triangulo::isAdentro1D(float pos, float posCentro, float ancho) {
 	return (pos <= (posCentro + ancho / 2)) && (pos >= posCentro - ancho / 2);
 
+}
+
+void Triangulo::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
 }

@@ -7,6 +7,7 @@
 
 #include "Cuadrado.h"
 #include <cmath>
+#include "VisitorFigura.h"
 
 Cuadrado::Cuadrado(float x, float y, float ancho, float alto): Figura(x,y) {
 	this->ancho = ancho;
@@ -71,3 +72,6 @@ bool Cuadrado::isAdentro1D(float pos, float posCentro, float ancho) {
 
 }
 
+void Cuadrado::acept(VisitorFigura* vis) {
+	vis->visit(this);
+}

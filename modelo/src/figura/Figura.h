@@ -8,6 +8,7 @@
 #ifndef FIGURA_H_
 #define FIGURA_H_
 #include "../Posicionable.h"
+#include "VisitorFigura.h"
 
 class Figura: public Posicionable {
 protected:
@@ -26,6 +27,7 @@ public:
 	void setX(float x);
 	void setY(float y);
 	void setRotacion(double rotation);
+	virtual void acept(VisitorFigura*) = 0;
 };
 
 #endif /* FIGURA_H_ */
