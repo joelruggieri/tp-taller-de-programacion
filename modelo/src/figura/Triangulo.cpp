@@ -22,22 +22,22 @@ Triangulo::Triangulo() {
 	this->alto = 1;
 }
 
-void Triangulo::setAlto(float alto){
+void Triangulo::setAlto(float alto) {
 	this->alto = alto;
 
 }
 
-void Triangulo::setAncho(float ancho){
+void Triangulo::setAncho(float ancho) {
 	this->ancho = ancho;
 
 }
 
-float Triangulo::getAlto() const{
+float Triangulo::getAlto() const {
 	return alto;
 
 }
 
-float Triangulo::getAncho() const{
+float Triangulo::getAncho() const {
 	return ancho;
 
 }
@@ -45,20 +45,21 @@ Triangulo::~Triangulo() {
 	// TODO Auto-generated destructor stub
 }
 
-
 bool Triangulo::contacto(float posX, float posY) {
 	double xc = posX;
-	double yc= posY;
-	if(this->getRotacion() != 0){
+	double yc = posY;
+	if (this->getRotacion() != 0) {
 		//traslado al centro, roto el punto y pruebo el contacto.
 		xc = posX - this->x;
 		yc = posY - this->y;
 		//roto
-		double rotacionRad = this->getRotacion() *-3.14 /180.0;
-		xc = (posX - this->x) * cos(rotacionRad)- (posY - this->y) * sin(rotacionRad);
-		yc = (posX - this->x) * sin(rotacionRad)+ (posY - this->y) * cos(rotacionRad);
-		xc =xc + this->x;
-		yc=yc + this->y;
+		double rotacionRad = this->getRotacion() * -3.14 / 180.0;
+		xc = (posX - this->x) * cos(rotacionRad)
+				- (posY - this->y) * sin(rotacionRad);
+		yc = (posX - this->x) * sin(rotacionRad)
+				+ (posY - this->y) * cos(rotacionRad);
+		xc = xc + this->x;
+		yc = yc + this->y;
 	}
 
 	return this->isAdentro1D(xc, this->x, this->ancho)

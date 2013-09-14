@@ -1,0 +1,73 @@
+/*
+ * FlechaScrollView.cpp
+ *
+ *  Created on: 13/09/2013
+ *      Author: jonathan
+ */
+
+#include "FlechaScrollView.h"
+
+FlechaScrollView::FlechaScrollView(int x, int y, int w, int h, SDL_Texture * flecha) :
+		View(x, y, w, h) {
+	inicializar(flecha, false);
+}
+void FlechaScrollView::inicializar(SDL_Texture* flecha, bool abajo) {
+	this->abajo = abajo;
+	this->textura = flecha;
+	this->presionado = false;
+}
+
+FlechaScrollView::FlechaScrollView(int x, int y, int w, int h, SDL_Texture* flecha,
+		bool abajo):View(x,y,w,h) {
+	inicializar(flecha,abajo);
+}
+
+bool FlechaScrollView::isAbajo() const {
+	return abajo;
+}
+
+void FlechaScrollView::setAbajo(bool abajo) {
+	this->abajo = abajo;
+}
+
+FlechaScrollView::~FlechaScrollView() {
+	// TODO Auto-generated destructor stub
+}
+
+bool FlechaScrollView::isPresionado() const {
+	return presionado;
+}
+
+void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
+	SDL_Rect dest;
+	int ancho = this->getW() * 0.3;
+	int alto = this->getH()*0.5;
+
+	dest.x = this->getX();
+	dest.y = this->getY();
+	dest.w = this->getW();
+	dest.h = this->getH();
+	//dibujo el fondo:
+	if(this->presionado){
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	} else {
+		SDL_SetRenderDrawColor(renderer, 0, 50, 0, 0);
+	}
+	SDL_RenderFillRect(renderer, &dest);
+	dest.x = dest.x + dest.w/2 - ancho/2;
+	dest.y = dest. y +(dest.h - alto) /2;
+	dest.h= alto;
+	dest.w = ancho;
+
+	if (this->abajo) {
+		SDL_RenderCopyEx(renderer, this->textura, NULL, &dest, 180, NULL,
+				SDL_FLIP_NONE);
+	} else {
+		SDL_RenderCopy(renderer, this->textura, NULL, &dest);
+	}
+
+}
+
+void FlechaScrollView::setPresionado(bool presionado) {
+	this->presionado = presionado;
+}

@@ -10,7 +10,7 @@
 #include "../controller/Resizer.h"
 using namespace std;
 Scroll::Scroll(Figura * flechaSup, Figura* flechaInf,int velocidad, int max) {
-
+	this->ultimoClick = 0;
 	float x = (flechaSup->getX() + flechaInf->getX())/2;
 	float y = (flechaSup->getY() + flechaInf->getY())/2;
 	this->figura = new FiguraCompuesta(x,y);
@@ -32,9 +32,11 @@ Scroll::~Scroll() {
 bool Scroll::click(float x, float y) {
 	Figura * fig = this->figura->getFiguraEn(x,y);
 	bool resultado = false;
+
 	if(fig != NULL){
 		int posAnterior = this->posicion;
-		int corrimiento = this->velocidad * this->signado.find(fig)->second;
+		int corrimiento = this->velocidad * this->signado.find(fig) ->second;
+		this->ultimoClick = corrimiento;
 		this->posicion = corrimiento + this->posicion;
 		resultado = true;
 		if(this->posicion > this->max){
@@ -48,7 +50,8 @@ bool Scroll::click(float x, float y) {
 		this->actualizarVistas(corrimiento);
 
 	}
-	cout<< "SCROL: " << this->posicion<< endl;
+	this->notifY();
+//	cout<< "SCROL: " << this->posicion<< endl;
 	return resultado;
 }
 
@@ -72,4 +75,9 @@ void Scroll::actualizarVistas(int corrimiento) {
 		vista = *it;
 		vista->desplazarCentroA(vista->getXCentro(), vista->getYCentro() + Resizer::Instance()->resizearDistanciaLogicaX(corrimiento));
 	}
+}
+
+
+int Scroll::getltimoClick() const {
+	return this->ultimoClick;
 }

@@ -1,5 +1,4 @@
 /*
- * ScrollView.h
  *
  *  Created on: 13/09/2013
  *      Author: jonathan
@@ -10,18 +9,22 @@
 
 #include "View.h"
 #include "SDL2/SDL.h"
-class ScrollView: public View {
+#include "FlechaScrollView.h"
+#include "../modelo/Observer.h"
+#include "../modelo/Observable.h"
+#include "../modelo/Scroll.h"
+class ScrollView: public View, public Observer {
 private:
-	bool abajo;
-	SDL_Texture * textura;
-	void inicializar(SDL_Texture * flecha, bool);
+	int contArriba;
+	int contAbajo;
+	int sleep;
+
+	FlechaScrollView * arriba, *abajo;
 public:
-	ScrollView(int x, int y, int w, int h,SDL_Texture * flecha);
-	ScrollView(int x, int y, int w, int h,SDL_Texture * flecha, bool);
+	ScrollView(FlechaScrollView * flechaArriba, FlechaScrollView* flechaAajo, Scroll* scroll, int sleep);
 	virtual ~ScrollView();
-	bool isAbajo() const;
-	void setAbajo(bool abajo);
 	void dibujarse(SDL_Renderer*);
+	void notify(Observable*);
 };
 
 #endif /* SCROLLVIEW_H_ */

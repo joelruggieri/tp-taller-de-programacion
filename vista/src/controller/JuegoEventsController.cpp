@@ -29,6 +29,8 @@ JuegoEventsController::JuegoEventsController() {
 	this->figurasFactory = new FiguraFactory();
 	this->figuraDrag = NULL;
 	this->zona = NULL;
+	this->figuraRotacion = NULL;
+	this->rot = NULL;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -152,7 +154,7 @@ bool JuegoEventsController::isDragging() {
 }
 
 bool JuegoEventsController::rightClickDown(int x, int y) {
-	if (zona != NULL) {
+	if (zona != NULL  && this->figuraDrag == NULL) {
 		Resizer* r = Resizer::Instance();
 		float lX = r->resizearDistanciaPixelX(x);
 		float lY = r->resizearDistanciaPixelY(y);

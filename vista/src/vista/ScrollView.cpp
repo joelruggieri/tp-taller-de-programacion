@@ -6,56 +6,40 @@
  */
 
 #include "ScrollView.h"
-
-ScrollView::ScrollView(int x, int y, int w, int h, SDL_Texture * flecha) :
-		View(x, y, w, h) {
-	inicializar(flecha, false);
-}
-void ScrollView::inicializar(SDL_Texture* flecha, bool abajo) {
-	this->abajo = abajo;
-	this->textura = flecha;
-
-}
-
-ScrollView::ScrollView(int x, int y, int w, int h, SDL_Texture* flecha,
-		bool abajo):View(x,y,w,h) {
-	inicializar(flecha,abajo);
-}
-
-bool ScrollView::isAbajo() const {
-	return abajo;
-}
-
-void ScrollView::setAbajo(bool abajo) {
-	this->abajo = abajo;
+ScrollView::ScrollView(FlechaScrollView* flechaArriba,
+		FlechaScrollView* flechaAajo, Scroll* scroll, int sleep):View(0,0,0,0) {
+	this->abajo = flechaAajo;
+	this->arriba = flechaArriba;
+	this->sleep = sleep;
+	this->contAbajo = sleep;
+	this->contArriba = sleep;
+	scroll->addObserver(this);
 }
 
 ScrollView::~ScrollView() {
-	// TODO Auto-generated destructor stub
+	delete this->abajo;
+	delete this->arriba;
 }
 
 void ScrollView::dibujarse(SDL_Renderer* renderer) {
-	SDL_Rect dest;
-	int ancho = this->getW() * 0.3;
-	int alto = this->getH()*0.5;
-
-	dest.x = this->getX();
-	dest.y = this->getY();
-	dest.w = this->getW();
-	dest.h = this->getH();
-	//dibujo el fondo:
-	SDL_SetRenderDrawColor(renderer, 0, 50, 0, 0);
-	SDL_RenderFillRect(renderer, &dest);
-	dest.x = dest.x + dest.w/2 - ancho/2;
-	dest.y = dest. y +(dest.h - alto) /2;
-	dest.h= alto;
-	dest.w = ancho;
-
-	if (this->abajo) {
-		SDL_RenderCopyEx(renderer, this->textura, NULL, &dest, 180, NULL,
-				SDL_FLIP_NONE);
-	} else {
-		SDL_RenderCopy(renderer, this->textura, NULL, &dest);
+	if(this->abajo->isPresionado() && contAbajo++ == sleep){
+		this->abajo->setPresionado(false);
 	}
+	if(this->arriba->isPresionado() && contArriba++ == sleep){
+		this->arriba->setPresionado(false);
+	}
+	this->abajo->dibujarse(renderer);
+	this->arriba->dibujarse(renderer);
+}
 
+void ScrollView::notify(Observable* obs) {
+	Scroll * scroll = (Scroll *) obs;
+	if(scroll->getltimoClick() > 0){
+		this->contArriba = 1;
+		this->arriba->setPresionado(true);
+	}
+	if(scroll->getltimoClick() < 0){
+		this->contAbajo = 0;
+		this->abajo->setPresionado(true);
+	}
 }
