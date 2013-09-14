@@ -10,7 +10,11 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "Herramientas.h"
+#include "SDL2/SDL_ttf.h"
 
+#include <iostream>
+
+using namespace std;
 
 class TextBox: public Herramientas {
 public:
@@ -20,6 +24,12 @@ public:
 private:
 	int x,y,w,h;
 	SDL_Texture* imagen ;
+	TTF_Font* fuente ;
+	string texto ;
+	SDL_Color color  ;
+	SDL_Surface *surfaceTexto;
+	SDL_Texture * textureTexto;
+
 
 };
 
