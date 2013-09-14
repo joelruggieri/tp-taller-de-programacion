@@ -15,6 +15,8 @@
 #include "../../vista/Dibujable.h"
 //#include "../../controller/Resizer.h"
 #include "../../vista/CargadorDeTextures.h"
+#include "../../vista/TextBox.h"
+
 
 
 using namespace std;

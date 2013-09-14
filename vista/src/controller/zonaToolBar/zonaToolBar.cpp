@@ -6,9 +6,10 @@
  */
 
 #include "zonaToolBar.h"
-#define anchoBoton 40
-#define altoBoton 40
-
+#define ANCHOBOTON 40
+#define ALTOBOTON 40
+#define ANCHOTEXTBOX 300
+#define ALTOTEXTBOX 45
 zonaToolBar::zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
 
 
@@ -23,13 +24,15 @@ zonaToolBar::zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
 
 void zonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
-	//TODO agregar el maldito y faltante textbox
-		BotonAgregar* bAgregar = new BotonAgregar(x+350, y+20, anchoBoton, altoBoton, p1->cargarTexture("resource/botonAgregar.png"));
-		BotonSalir* bSalir = new BotonSalir(x+400, y + 20, anchoBoton, altoBoton, p1->cargarTexture("resource/botonGuardar.png"));
-		BotonGuardar* bGuardar = new BotonGuardar(x+450, y+ 20, anchoBoton, altoBoton, p1->cargarTexture("resource/pelota.PNG"));
+	//TODO ver que hacer con las coordenadas definidas
+		BotonAgregar* bAgregar = new BotonAgregar(x+350, y+20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/botonAgregar.png"));
+		BotonSalir* bSalir = new BotonSalir(x+400, y + 20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/botonGuardar.png"));
+		BotonGuardar* bGuardar = new BotonGuardar(x+450, y+ 20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/pelota.PNG"));
+		TextBox* textBox = new TextBox(x+10, y+20, ANCHOTEXTBOX, ALTOTEXTBOX, p1->cargarTexture("resource/textbox.jpg")) ;
 		this->agregarHerramienta(bAgregar);
 		this->agregarHerramienta(bSalir);
 		this->agregarHerramienta(bGuardar);
+		this->agregarHerramienta(textBox);
 }
 
 zonaToolBar::~zonaToolBar() {
