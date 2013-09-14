@@ -22,6 +22,9 @@ public:
 	float getRadio() const;
 	void setRadio(float radio);
 	void acept(VisitorFigura*);
+	float getAlto();
+	float getAncho();
+
 };
 
 #endif /* CRICULO_H_ */

@@ -48,3 +48,11 @@ bool Circulo::contieneCentro(Posicionable* cuadrado) {
 void Circulo::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 }
+
+float Circulo::getAlto() {
+	return radio * 2;
+}
+
+float Circulo::getAncho() {
+	return radio * 2;
+}
