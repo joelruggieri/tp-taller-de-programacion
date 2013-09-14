@@ -23,6 +23,7 @@ public:
 	void setAlto (float alto);
 	float getAncho() const;
 	float getAlto() const;
+	void acept(VisitorFigura*);
 };
 
 #endif /* TRIANGULO_H_ */

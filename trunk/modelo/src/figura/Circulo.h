@@ -21,6 +21,7 @@ public:
 	bool contieneCentro(Posicionable* cuadrado);
 	float getRadio() const;
 	void setRadio(float radio);
+	void acept(VisitorFigura*);
 };
 
 #endif /* CRICULO_H_ */

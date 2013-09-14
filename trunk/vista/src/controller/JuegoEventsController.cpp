@@ -21,7 +21,6 @@
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
 
-class RomboView;
 
 using namespace std;
 

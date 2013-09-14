@@ -6,6 +6,7 @@
  */
 
 #include "Circulo.h"
+#include "VisitorFigura.h"
 
 Circulo::Circulo() {
 	// TODO Auto-generated constructor stub
@@ -44,3 +45,6 @@ bool Circulo::contieneCentro(Posicionable* cuadrado) {
 	return false;
 }
 
+void Circulo::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

@@ -24,6 +24,7 @@ public:
 	bool contieneCentro(Posicionable* figura);
 	void addFigura(Figura * figura);
 	Figura * getFiguraEn(float, float);
+	void acept(VisitorFigura*);
 };
 
 #endif /* FIGURACOMPUESTA_H_ */

@@ -46,3 +46,7 @@ Figura* FiguraCompuesta::getFiguraEn(float x, float y) {
 	}
 	return NULL;
 }
+
+void FiguraCompuesta::acept(VisitorFigura*) {
+
+}

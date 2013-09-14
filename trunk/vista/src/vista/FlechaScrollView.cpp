@@ -48,7 +48,10 @@ void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
 	dest.w = this->getW();
 	dest.h = this->getH();
 	//dibujo el fondo:
+	int corrPresion = 0;//px
+
 	if(this->presionado){
+		corrPresion = 1;
 		SDL_SetRenderDrawColor(renderer, 0, 70, 0, 0);
 	} else {
 		SDL_SetRenderDrawColor(renderer, 0, 50, 0, 0);
@@ -60,9 +63,11 @@ void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
 	dest.w = ancho;
 
 	if (this->abajo) {
+		dest.y = dest.y - 2 +corrPresion;
 		SDL_RenderCopyEx(renderer, this->textura, NULL, &dest, 180, NULL,
 				SDL_FLIP_NONE);
 	} else {
+		dest.y = dest.y + 2 + corrPresion;
 		SDL_RenderCopy(renderer, this->textura, NULL, &dest);
 	}
 
