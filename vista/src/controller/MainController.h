@@ -16,7 +16,6 @@ using namespace std;
 
 class MainController {
 private:
-	Zona *crearZonaJuego(SDL_Renderer* render);
 	JuegoEventsController * dropController;
 public:
 	MainController();

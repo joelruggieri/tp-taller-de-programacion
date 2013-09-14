@@ -6,31 +6,19 @@
  */
 
 #include "MainController.h"
-#include "zonaDragAndDrop/ZonaJuego.h"
-#include "zonaDragAndDrop/ZonaCreacion.h"
-#include "zonaDragAndDrop/ZonaTablero.h"
 #include "Resizer.h"
-#include "viewFactory/ViewCirculoFactory.h"
-#include "viewFactory/ViewCuadradoFactory.h"
-#include "viewFactory/ViewTrianguloFactory.h"
 #include "GeneralEventController.h"
 #include "../vista/DraggingView.h"
 #include "../vista/RotationView.h"
 #include "../vista/CargadorDeTextures.h"
 #include "zonaToolBar/zonaToolBar.h"
+#include "inicializador/InicializadorJuego.h"
 
 MainController::MainController() {
 	this->dropController = new JuegoEventsController();
 }
 
 MainController::~MainController() {
-}
-
-SDL_Texture* MainController::cargarTexture(const string &file,
-		SDL_Renderer* ren) {
-	CargadorDeTextures * instance = CargadorDeTextures::Instance(ren);
-	SDL_Texture* texture = instance->cargarTexture(file);
-	return texture;
 }
 
 void taparHueco(SDL_Renderer * renderer){
@@ -46,19 +34,25 @@ void taparHueco(SDL_Renderer * renderer){
 int MainController::run() {
 	SDL_Window *ventana = NULL;
 //	int draggin = false;
-	Resizer::Instance(600, 600, 120, 120);
 	bool terminar = false;
 	SDL_Init(SDL_INIT_VIDEO);
 	ventana = SDL_CreateWindow("The Incredible Fail", 400, 400, 600, 600,
 			SDL_WINDOW_RESIZABLE);
 	SDL_Renderer* render = SDL_CreateRenderer(ventana, -1,
 			SDL_RENDERER_ACCELERATED);
-	Zona * zona = crearZonaJuego(render);
-	zonaToolBar* toolBar = new zonaToolBar(0, 500 ,600, 100, cargarTexture("resource/fondoHerramientas.jpg", render ));
+
+
+	Resizer::Instance(600, 600, 120, 120);
+	CargadorDeTextures * texturas = CargadorDeTextures::Instance(render);
+
+	InicializadorJuego inicializador(render,dropController);
+
+	Zona * zona =  inicializador.crearZonaJuego();
+	zonaToolBar* toolBar = new zonaToolBar(0, 500 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));
 	GeneralEventController eventController;
 	eventController.addMouseController(this->dropController,1,1);
 	DraggingView vista(this->dropController);
-	RotationView vistaRotacion(this->dropController, cargarTexture("resource/rotacion.png",render));
+	RotationView vistaRotacion(this->dropController, texturas->cargarTexture("resource/rotacion.png"));
 	this->dropController->setZona(zona);
 	while(!terminar){
 		SDL_Delay(5);
@@ -81,46 +75,4 @@ int MainController::run() {
 	return 0;
 }
 
-Zona* MainController::crearZonaJuego(SDL_Renderer* renderer) {
-
-	//TODO VER DONDE ENCAPSULAR ESTA LOGICA.
-	// 5 margen izq
-	// 100 tablero
-	// 10 entre los dos paneles
-	// 20 la zona creacion
-	// 5 margen izquierdo
-
-	list<ViewFiguraFactory*> factories;
-	SDL_Texture* canvasTexture = this->cargarTexture("resource/Fondo4.jpg",
-			renderer);
-	SDL_Texture* herrTextura = this->cargarTexture("resource/fondoHerramientas.jpg",
-			renderer);
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
-	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-//	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-//	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-//	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-//	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-//	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
-//	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-//	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-//	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-//	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
-//	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-//	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-//	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-//	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-//	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
-			herrTextura);
-	Zona* zonaTablero = new ZonaTablero(new Mapa(),50,50, canvasTexture);
-	return new ZonaJuego(zonaCreacion, zonaTablero,
-			new Cuadrado(75, 50, 150, 100));
-}
 

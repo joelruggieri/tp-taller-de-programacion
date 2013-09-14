@@ -28,6 +28,9 @@ public:
 	void setY(float y);
 	void setRotacion(double rotation);
 	virtual void acept(VisitorFigura*) = 0;
+	//estos metodos devuelven el tamaño del cuadrado contenedor;
+	virtual float getAlto()= 0;
+	virtual float getAncho()= 0;
 };
 
 #endif /* FIGURA_H_ */

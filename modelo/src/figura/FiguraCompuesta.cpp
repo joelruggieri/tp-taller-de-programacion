@@ -50,3 +50,11 @@ Figura* FiguraCompuesta::getFiguraEn(float x, float y) {
 void FiguraCompuesta::acept(VisitorFigura*) {
 
 }
+
+float FiguraCompuesta::getAlto() {
+	return 0;
+}
+
+float FiguraCompuesta::getAncho() {
+	return 0;
+}

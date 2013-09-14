@@ -31,12 +31,12 @@ void Cuadrado::setAncho(float ancho){
 
 }
 
-float Cuadrado::getAlto() const{
+float Cuadrado::getAlto(){
 	return alto;
 
 }
 
-float Cuadrado::getAncho() const{
+float Cuadrado::getAncho(){
 	return ancho;
 
 }
