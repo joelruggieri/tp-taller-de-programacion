@@ -49,8 +49,8 @@ bool Scroll::click(float x, float y) {
 			corrimiento = this->posicion - posAnterior;
 		this->actualizarVistas(corrimiento);
 
+		this->notifY();
 	}
-	this->notifY();
 //	cout<< "SCROL: " << this->posicion<< endl;
 	return resultado;
 }
