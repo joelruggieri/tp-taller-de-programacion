@@ -10,7 +10,7 @@
 using namespace std;
 
 FiguraCompuesta::FiguraCompuesta(float x, float y) :
-		Figura(x, y) {
+	Figura(x, y) {
 }
 
 FiguraCompuesta::~FiguraCompuesta() {

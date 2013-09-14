@@ -14,6 +14,7 @@
 #include <list>
 #include "../../vista/Canvas.h"
 #include "../../modelo/Scroll.h"
+#include "../../vista/ScrollView.h"
 using namespace std;
 
 class ZonaCreacion: public Zona {
@@ -26,6 +27,7 @@ private:
 	void inicializar(list<ViewFiguraFactory*> *, float x, float margenSuperior);
 	Canvas * canvas;
 	Scroll * scroll;
+	ScrollView * crearScrollView(int x, int y,Scroll* scroll, SDL_Texture * texturaFlecha);
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior, SDL_Texture *);
 	virtual ~ZonaCreacion();

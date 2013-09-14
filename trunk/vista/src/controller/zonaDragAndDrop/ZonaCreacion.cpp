@@ -9,7 +9,7 @@
 #include "src/figura/Cuadrado.h"
 #include "../Resizer.h"
 #include "../../vista/Canvas.h"
-#include "../../vista/ScrollView.h"
+#include "../../vista/FlechaScrollView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../RutasArchivos.h"
 ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x,
@@ -61,21 +61,29 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 			this->scroll->addScrolleable((View*) (*it));
 		}
 		//creo la vista del scroll.
-		Resizer * r = Resizer::Instance();
+
 		SDL_Texture * texturaFlecha =
 				CargadorDeTextures::Instance()->cargarTexture(RUTA_FLECHA);
-		canvas->agregar(
-				new ScrollView(r->resizearDistanciaLogicaX(x),
-						r->resizearDistanciaLogicaY(2),
-						r->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2),
-						r->resizearDistanciaLogicaY(4), texturaFlecha));
-		canvas->agregar(
-				new ScrollView(r->resizearDistanciaLogicaX(x),
-						r->resizearDistanciaLogicaY(98),
-						r->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2),
-						r->resizearDistanciaLogicaY(4), texturaFlecha,true));
+		canvas->agregar(this->crearScrollView(x,y,this->scroll,texturaFlecha));
 	}
 }
+
+
+
+ScrollView* ZonaCreacion::crearScrollView(int x, int y,Scroll* scroll, SDL_Texture * texturaFlecha) {
+	Resizer * r = Resizer::Instance();
+	FlechaScrollView * flecha1 = new FlechaScrollView(r->resizearDistanciaLogicaX(x),
+			r->resizearDistanciaLogicaY(2),
+			r->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2),
+			r->resizearDistanciaLogicaY(4), texturaFlecha);
+	FlechaScrollView * flecha2 =new FlechaScrollView(r->resizearDistanciaLogicaX(x),
+			r->resizearDistanciaLogicaY(98),
+			r->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2),
+			r->resizearDistanciaLogicaY(4), texturaFlecha,true);
+	return new ScrollView(flecha1,flecha2,scroll,20);
+
+}
+
 bool ZonaCreacion::agregarTemplate(FiguraView* dragueable) {
 	return false;
 
@@ -122,4 +130,3 @@ bool ZonaCreacion::click(float x, float y) {
 	}
 	return false;
 }
-

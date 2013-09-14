@@ -7,7 +7,7 @@
 
 #include "Circulo.h"
 
-Circulo::Circulo(){
+Circulo::Circulo() {
 	// TODO Auto-generated constructor stub
 }
 
@@ -22,7 +22,7 @@ float Circulo::getRadio() const {
 	return radio;
 }
 
-void Circulo::setRadio(float radio){
+void Circulo::setRadio(float radio) {
 	this->radio = radio;
 }
 
@@ -32,12 +32,12 @@ Circulo::~Circulo() {
 
 bool Circulo::contacto(float x, float y) {
 	float cx = this->getX();
-	 float cy = this->getY();
+	float cy = this->getY();
 
-	 //Distancia al punto
-	 float SqrDist = (( cx - x ) * ( cx - x )) + (( cy - y ) * ( cy - y ));
-	 float SqrRadius = radio*radio;
-	 return (SqrDist <= SqrRadius);
+	//Distancia al punto
+	float SqrDist = ((cx - x) * (cx - x)) + ((cy - y) * (cy - y));
+	float SqrRadius = radio * radio;
+	return (SqrDist <= SqrRadius);
 }
 
 bool Circulo::contieneCentro(Posicionable* cuadrado) {
