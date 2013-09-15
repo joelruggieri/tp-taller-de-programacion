@@ -51,7 +51,7 @@ bool Scroll::click(float x, float y) {
 
 		this->notifY();
 	}
-//	cout<< "SCROL: " << this->posicion<< endl;
+	//cout<< "SCROL: " << getScrollPixels()<< endl;
 	return resultado;
 }
 
