@@ -96,7 +96,8 @@ return;
 }
 
 bool Boton::fueSeleccionado(int x, int y) {
-	if (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->y > y )
+	//TODO calcular la seleccion con el radio, por ser redondos
+	if (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->h > y )
 			return true;
 	else
 		return false;
