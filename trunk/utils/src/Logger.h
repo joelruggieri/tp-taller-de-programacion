@@ -10,6 +10,7 @@
 
 #include <string>
 #include <fstream>
+#include <sstream>
 
 class Logger {
 public:
@@ -24,6 +25,7 @@ public:
 	void info(std::string mensaje);
 	void setNivel(int nivel);
 	void borrar();
+	void concatenar(std::string& mensajeOriginal,float numero);
 private:
 	std::string nombre;
 	std::ofstream archivo;
