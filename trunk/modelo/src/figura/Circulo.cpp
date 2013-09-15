@@ -49,10 +49,10 @@ void Circulo::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 }
 
-float Circulo::getAlto() {
+float Circulo::getAlto() const {
 	return radio * 2;
 }
 
-float Circulo::getAncho() {
+float Circulo::getAncho() const {
 	return radio * 2;
 }

@@ -21,8 +21,8 @@ public:
 	bool isAdentro1D(float pos, float posCentro, float ancho);
 	void setAncho(float ancho);
 	void setAlto (float alto);
-	float getAncho();
-	float getAlto();
+	float getAncho() const ;
+	float getAlto() const;
 	void acept(VisitorFigura*);
 };
 
