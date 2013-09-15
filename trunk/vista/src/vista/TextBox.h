@@ -21,6 +21,12 @@ public:
 	TextBox(int x, int y, int w, int h, SDL_Texture* imagen);
 	virtual ~TextBox();
 	void dibujarse(SDL_Renderer* render);
+	void agregarCaracter(char caracter);
+	void borrarCaracter();
+	void setearTexto();
+	bool fueSeleccionado(int x, int y);
+	void ejecutar();
+
 private:
 	int x,y,w,h;
 	SDL_Texture* imagen ;

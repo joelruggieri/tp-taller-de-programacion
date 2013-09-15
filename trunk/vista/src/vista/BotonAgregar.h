@@ -22,6 +22,7 @@ public:
 	void dibujarse(SDL_Renderer *);
 	void Resizear(int x, int y);
 	virtual void ejecutar() = 0 ;
+	bool fueSeleccionado(int x, int y);
 	int x,y,h,w;
 	SDL_Texture* textura;
 

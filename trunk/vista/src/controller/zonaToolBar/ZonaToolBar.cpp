@@ -5,12 +5,12 @@
  *      Author: ezequiel
  */
 
-#include "zonaToolBar.h"
+#include "ZonaToolBar.h"
 #define ANCHOBOTON 40
 #define ALTOBOTON 40
 #define ANCHOTEXTBOX 300
 #define ALTOTEXTBOX 45
-zonaToolBar::zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
+ZonaToolBar::ZonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
 
 
 	this->x = x;
@@ -22,7 +22,18 @@ zonaToolBar::zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
 
 }
 
-void zonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
+void ZonaToolBar::seleccionarHerramienta(int x, int y) {
+
+	list<Herramientas* >::iterator iter;
+		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
+		{
+			 if ((*iter)->fueSeleccionado(x, y)) return (*iter)->ejecutar();
+
+		}
+
+}
+
+void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
 	//TODO ver que hacer con las coordenadas definidas
 		BotonAgregar* bAgregar = new BotonAgregar(x+350, y+20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/botonAgregar.png"));
@@ -35,17 +46,17 @@ void zonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 		this->agregarHerramienta(textBox);
 }
 
-zonaToolBar::~zonaToolBar() {
+ZonaToolBar::~ZonaToolBar() {
 	// TODO Auto-generated destructor stub
 }
 
-void zonaToolBar::agregarHerramienta(Herramientas* herramienta) {
+void ZonaToolBar::agregarHerramienta(Herramientas* herramienta) {
 	this->herramientas.push_back(herramienta);
 
 
 }
 
-void zonaToolBar::dibujarse(SDL_Renderer* render) {
+void ZonaToolBar::dibujarse(SDL_Renderer* render) {
 	SDL_Rect dst;
 	dst.x = this->x;
 	dst.y = this->y;

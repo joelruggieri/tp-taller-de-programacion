@@ -18,9 +18,9 @@ this->imagen = imagen ;
 this->fuente = TTF_OpenFont("resource/Arial Bold.ttf", TAM_FUENTE);
 this->texto = "Escriba su texto aqui";
 this->color.a = 50;
-this->color.b = 50;
-this->color.g = 50;
-this->color.r = 50;
+this->color.b = 20;
+this->color.g = 20;
+this->color.r = 200;
 this->surfaceTexto = NULL;
 this->textureTexto = NULL ;
 
@@ -54,4 +54,27 @@ void TextBox::dibujarse(SDL_Renderer* render) {
 
 
 
+}
+
+void TextBox::agregarCaracter(char caracter) {
+	this->texto += caracter ;
+
+
+}
+
+void TextBox::borrarCaracter() {
+	this->texto.erase((this->texto.size()-1), 1);
+}
+
+void TextBox::setearTexto() {
+	this->texto.clear();
+
+}
+
+bool TextBox::fueSeleccionado(int x, int y) {
+	return false;
+
+}
+
+void TextBox::ejecutar() {
 }
