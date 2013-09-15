@@ -94,7 +94,11 @@ Zona* InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
 	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
 	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-
+	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
+	factories.push_back(new ViewCirculoFactory(renderer, dropController));
+	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
+	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
+	factories.push_back(new ViewCirculoFactory(renderer, dropController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
 			herrTextura);
 	Zona* zonaTablero = new ZonaTablero(new Mapa(),50,50, canvasTexture);
