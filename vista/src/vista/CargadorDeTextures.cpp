@@ -5,6 +5,7 @@
  *      Author: ezequiel
  */
 
+#include "src/AdministradorDeLoggers.h"
 #include "CargadorDeTextures.h"
 #include <iostream>
 using namespace std;
@@ -21,9 +22,13 @@ CargadorDeTextures* CargadorDeTextures::Instance (SDL_Renderer* render)
 
 CargadorDeTextures* CargadorDeTextures::Instance ()
 {
+	Logger& log = AdministradorDeLoggers::getLogger(ERROR);
+
 	if(pinstance == 0){
 		//TODO LANZAR EXCEPTION
-		cout<< "ERROR"<<endl;
+		std::string mensaje_error = "No se pudo inicializar la Instancia correctamente";
+		log.error(mensaje_error);
+		//cout<< "ERROR"<<endl;
 	}
   return pinstance; // Retornamos la dirección de la instancia
 }

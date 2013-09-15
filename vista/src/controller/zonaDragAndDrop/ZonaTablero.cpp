@@ -7,6 +7,7 @@
 
 #include "ZonaTablero.h"
 #include "../Resizer.h"
+#include "src/AdministradorDeLoggers.h"
 
 //TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
 ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,100,100)) {
@@ -22,7 +23,10 @@ ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFon
 }
 
 bool ZonaTablero::agregarTemplate(FiguraView* view) {
-	cout<<"recibe figura tablero"<<endl;
+	Logger &log = AdministradorDeLoggers::getLogger(INFO);
+	std::string mensaje_info = "recibe figura tablero";
+	log.info(mensaje_info);
+	//cout<<"recibe figura tablero"<<endl;
 	if(view->getModelo() == NULL){
 		return false;
 	}
