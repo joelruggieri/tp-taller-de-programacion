@@ -30,15 +30,16 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 	this->siguiente = sig;
 }
 //
-FiguraView * EslabonCreacion::atender(float posX, float posY) {
+FiguraView * EslabonCreacion::atender(float posX, float posY, float corrimientoScroll) {
 
 	if (this->cuerpo->contacto(posX, posY)) {
 //		if(this->itemsDisponibles >0){
+		cout << "Llamada" <<endl;
 		this->itemsDisponibles--;
 		Resizer * res = Resizer::Instance();
 		FiguraView * view = this->factory->crear(
 				res->resizearDistanciaLogicaX(posX),
-				res->resizearDistanciaLogicaY(posY),
+				res->resizearDistanciaLogicaY(posY - corrimientoScroll),
 				res->resizearDistanciaLogicaX(this->cuerpo->getAncho()),
 				res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
 		return view;
@@ -47,7 +48,7 @@ FiguraView * EslabonCreacion::atender(float posX, float posY) {
 //		}
 	}
 	if (this->siguiente != NULL) {
-		return this->siguiente->atender(posX, posY);
+		return this->siguiente->atender(posX, posY, corrimientoScroll);
 	}
 	return NULL;
 }

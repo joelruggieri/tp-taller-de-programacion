@@ -128,8 +128,7 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 		}
 		this->zona->removerFigura(figura);
 
-		mouseMotion(Resizer::Instance()->resizearDistanciaLogicaX(x),
-				Resizer::Instance()->resizearDistanciaLogicaY(y));
+		mouseMotion(posStartDragX, posStartDragY);
 	}
 }
 
@@ -151,6 +150,8 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 		this->figuraDrag->desplazarCentroA(deltaX , deltaY);
 		this->posStartDragX = corrimientoX;
 		this->posStartDragY = corrimientoY;
+		//cout << "X: " << this->figuraDrag->getXCentro() << " Y : " << this->figuraDrag->getXCentro() <<endl;
+		//cout << "CX: " << corrimientoX << " CY: " << corrimientoY <<endl;
 	}
 	Resizer* r = Resizer::Instance();
 	if (this->figuraRotacion != NULL) {

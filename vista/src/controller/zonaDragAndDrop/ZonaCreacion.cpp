@@ -95,7 +95,7 @@ FiguraView * ZonaCreacion::getFiguraTemplate(float x, float y) {
 		corrimiento = this->scroll->getScroll();
 
 	}
-	return this->inicioCadena->atender(x, y + corrimiento);
+	return this->inicioCadena->atender(x, y + corrimiento, corrimiento);
 }
 
 ZonaCreacion::~ZonaCreacion() {
