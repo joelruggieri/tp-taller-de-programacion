@@ -9,7 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <yaml-cpp/exceptions.h>
-#include "AdministradorDeLoggers.h"
+#include "src/AdministradorDeLoggers.h"
 #include "constructoresYAML.h"
 
 AdministradorDeArchivos::AdministradorDeArchivos(std::string nombre) {

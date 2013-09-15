@@ -1,6 +1,7 @@
 #include "FiguraView.h"
 
 #include <iostream>
+#include "src/AdministradorDeLoggers.h"
 #include "../../controller/DropController.h"
 using namespace std;
 
@@ -17,11 +18,17 @@ void FiguraView::setModelo(Figura* modelo) {
 }
 
 void FiguraView::drop() {
+	Logger& log = AdministradorDeLoggers::getLogger(INFO);
+	std::string mensaje_info;
 	if (this->getModelo() != NULL) {
-		cout<<"llamando al drop generico de figura"<<endl;
+		mensaje_info = "llamando al drop generico de figura";
+		log.info(mensaje_info);
+		//cout<<"llamando al drop generico de figura"<<endl;
 		controller->dropFigura(this);
 	} else {
-		cout<<"llamando al drop especifico de figura"<<endl;
+		mensaje_info = "llamando al drop especifico de figura";
+		log.info(mensaje_info);
+		//cout<<"llamando al drop especifico de figura"<<endl;
 		this->dropTemplate();
 	}
 }

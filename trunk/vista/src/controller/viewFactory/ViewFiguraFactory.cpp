@@ -17,7 +17,6 @@ ViewFiguraFactory::ViewFiguraFactory(string path,SDL_Renderer* ren,DropControlle
 SDL_Texture* ViewFiguraFactory::cargarTexture (const string &file, SDL_Renderer* ren){
 	SDL_Texture* texture = IMG_LoadTexture(ren, file.c_str() );
 	if (texture == NULL) cout << "IMG_Load error: " << IMG_GetError() <<endl;
-
 	return texture;
 }
 

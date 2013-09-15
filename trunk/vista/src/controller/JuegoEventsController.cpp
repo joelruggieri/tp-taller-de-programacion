@@ -12,6 +12,7 @@
 #include <iostream>
 #include <new>
 #include <string>
+#include <sstream>
 
 #include "../vista/figura/CirculoView.h"
 #include "../vista/figura/CuadradoView.h"
@@ -20,6 +21,7 @@
 #include "../vista/View.h"
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
+#include "src/AdministradorDeLoggers.h"
 
 
 using namespace std;
@@ -42,7 +44,10 @@ JuegoEventsController::~JuegoEventsController() {
 }
 
 void JuegoEventsController::dropear(FiguraView* view, Figura* figura) {
-	cout << "dropea figura controller" << endl;
+	Logger& log = AdministradorDeLoggers::getLogger(INFO);
+	std::string mensaje_info = "dropea figura controller";
+	log.info(mensaje_info);
+	//cout << "dropea figura controller" << endl;
 	view->setModelo(figura);
 	if (this->zona != NULL && !zona->agregarFigura(view)) {
 		delete figura;
@@ -111,7 +116,10 @@ bool JuegoEventsController::clickUp(int x, int y) {
 
 void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
-	cout << "draguea figura controller" << endl;
+	Logger& log = AdministradorDeLoggers::getLogger(INFO);
+	std::string mensaje_info = "dropea figura controller";
+	log.info(mensaje_info);
+	//cout << "draguea figura controller" << endl;
 	if (zona != NULL) {
 		if (!isDragging()){
 			this->posStartDragX = Resizer::Instance()->resizearDistanciaLogicaX(x);
@@ -150,9 +158,16 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 		this->figuraRotacion->getModelo()->setRotacion(
 				this->figuraRotacion->getModelo()->getRotacion()
 						+ this->rot->getAngulo());
-		cout << "rotacion total "
+		Logger& log = AdministradorDeLoggers::getLogger(INFO);
+		std::string mensaje_info = "rotacion total";
+		float val_rotacion = this->figuraRotacion->getModelo()->getRotacion();
+		 stringstream ss (stringstream::out);
+		 ss << val_rotacion;
+		 mensaje_info.append(ss.str());
+		 log.info(mensaje_info);
+		/*cout << "rotacion total "
 				<< this->figuraRotacion->getModelo()->getRotacion() << endl;
-		;
+		;*/
 	}
 	// consume el evento
 	return false;
