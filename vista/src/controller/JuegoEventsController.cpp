@@ -160,11 +160,8 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 						+ this->rot->getAngulo());
 		Logger& log = AdministradorDeLoggers::getLogger(INFO);
 		std::string mensaje_info = "rotacion total";
-		float val_rotacion = this->figuraRotacion->getModelo()->getRotacion();
-		 stringstream ss (stringstream::out);
-		 ss << val_rotacion;
-		 mensaje_info.append(ss.str());
-		 log.info(mensaje_info);
+		log.concatenar(mensaje_info,this->figuraRotacion->getModelo()->getRotacion());
+		log.info(mensaje_info);
 		/*cout << "rotacion total "
 				<< this->figuraRotacion->getModelo()->getRotacion() << endl;
 		;*/

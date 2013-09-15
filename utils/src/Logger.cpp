@@ -10,6 +10,8 @@
 #include <iostream>
 #include <time.h>
 
+
+
 const std::string fecha() {
 	time_t tiempo = time(0);
 	struct tm tiempoStruct = *localtime(&tiempo);
@@ -51,6 +53,12 @@ void Logger::info(std::string mensaje) {
 void Logger::borrar() {
 	archivo.close();
 	archivo.open(nombre.c_str(),std::ofstream::trunc);
+}
+
+void Logger::concatenar(std::string& mensajeOriginal,float numero){
+	 std::stringstream ss (std::stringstream::out);
+	 ss << numero;
+	 mensajeOriginal.append(ss.str());
 }
 
 Logger::Logger() {
