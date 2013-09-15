@@ -33,12 +33,14 @@ void ZonaToolBar::seleccionarHerramienta(int x, int y) {
 
 }
 
+
+
 void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
 	//TODO ver que hacer con las coordenadas definidas
-		BotonAgregar* bAgregar = new BotonAgregar(x+350, y+20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/botonAgregar.png"));
-		BotonSalir* bSalir = new BotonSalir(x+400, y + 20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/botonGuardar.png"));
-		BotonGuardar* bGuardar = new BotonGuardar(x+450, y+ 20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/pelota.PNG"));
+		BotonAgregar* bAgregar = new BotonAgregar(x+350, y+20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/changeBackNormal.png"), p1->cargarTexture("resource/changeBackPressed.png"));
+		BotonSalir* bSalir = new BotonSalir(x+400, y + 20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/exitNormal.png"),p1->cargarTexture("resource/exitPressed.png") );
+		BotonGuardar* bGuardar = new BotonGuardar(x+450, y+ 20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/saveNormal.png"),p1->cargarTexture("resource/savePressed.png") );
 		TextBox* textBox = new TextBox(x+10, y+20, ANCHOTEXTBOX, ALTOTEXTBOX, p1->cargarTexture("resource/textbox.jpg")) ;
 		this->agregarHerramienta(bAgregar);
 		this->agregarHerramienta(bSalir);

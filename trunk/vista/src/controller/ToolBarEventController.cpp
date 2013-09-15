@@ -22,6 +22,7 @@ bool ToolBarEventController::clickDown(int int1, int int2) {
 }
 
 bool ToolBarEventController::clickUp(int int1, int int2) {
+	this->zona->seleccionarHerramienta(int1, int2);
 	return true;
 }
 

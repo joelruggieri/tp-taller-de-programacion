@@ -12,16 +12,29 @@ namespace std {
 
 void BotonAgregar::ejecutar() {
 	//TODO ejecutar del boton agregar
-	cout << "se ha ejecutado el boton Agregar" << endl;
+	if (this->seleccionado == false)
+	{
+	this->seleccionado = true;
+	this->modificarImagen();
+	cout << "se ha ejecutado el boton modificar fondo" << endl;
+	}
+	else
+	{
+		this->seleccionado = false;
+		this->modificarImagen();
+	}
 }
 
-Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura) {
+Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada) {
 	// TODO Auto-generated constructor stub
 	 this->textura = textura ;
+	 this->texturaCurrent = textura ;
+	 this->texturaSeleccionada = texturaSeleccionada ;
 	 this->x = x;
 	 this->y = y;
 	 this->w = w;
 	 this->h = h ;
+	 this->seleccionado = false;
 
 
 
@@ -64,12 +77,33 @@ return 0;
 
 void std::BotonSalir::ejecutar() {
 	//TODO ejecutar del boton salir
+	if (this->seleccionado == false)
+	{
+	this->seleccionado = true;
+	this->modificarImagen();
 	cout << "se ha ejecutado el boton salir" << endl;
+	}
+	else
+	{
+		this->seleccionado = false;
+		this->modificarImagen();
+	}
 }
 
 void std::BotonGuardar::ejecutar() {
 	//TODO ejecutar del boton guardar
+	if (this->seleccionado == false)
+	{
+	this->seleccionado = true;
+	this->modificarImagen();
 	cout << "se ha ejecutado el boton guardar" << endl;
+	}
+	else
+	{
+		this->seleccionado = false;
+		this->modificarImagen();
+	}
+
 }
 
 void Boton::dibujarse(SDL_Renderer* render) {
@@ -79,7 +113,7 @@ dst.x = this->x;
 dst.y = this->y;
 dst.h = this->h;
 dst.w = this->w;
-SDL_RenderCopy(render, this->textura,NULL,&dst);
+SDL_RenderCopy(render, this->texturaCurrent,NULL,&dst);
 return;
 }
 
@@ -89,6 +123,13 @@ bool Boton::fueSeleccionado(int x, int y) {
 			return true;
 	else
 		return false;
+}
+
+void Boton::modificarImagen()
+{
+	if (this->texturaCurrent == this->textura)
+	this->texturaCurrent = this->texturaSeleccionada ;
+	else this->texturaCurrent = this->textura ;
 }
 
 }

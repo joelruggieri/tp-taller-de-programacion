@@ -17,14 +17,20 @@
 namespace std {
 
 class Boton: public Herramientas {
+protected:
+	void modificarImagen();
+	int seleccionado ;
 public:
-	Boton(int x, int y, int h, int w, SDL_Texture* textura);
+	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada);
 	void dibujarse(SDL_Renderer *);
 	void Resizear(int x, int y);
 	virtual void ejecutar() = 0 ;
 	bool fueSeleccionado(int x, int y);
 	int x,y,h,w;
 	SDL_Texture* textura;
+	SDL_Texture* texturaCurrent;
+	SDL_Texture* texturaSeleccionada;
+
 
 
 };
@@ -33,7 +39,7 @@ class BotonAgregar : public Boton {
 
 
 public:
-	BotonAgregar(int x, int y, int h, int w, SDL_Texture* textura) : Boton(x,y,h,w,textura)
+	BotonAgregar(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada) : Boton(x,y,h,w,textura, texturaSeleccionada)
 	{
 
 	}
@@ -45,7 +51,7 @@ public:
 
 class BotonSalir: public Boton {
 public:
-	BotonSalir(int x, int y, int h, int w, SDL_Texture* textura) : Boton(x,y,h,w,textura)
+	BotonSalir(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada) : Boton(x,y,h,w,textura, texturaSeleccionada)
 	{
 		//constructor del boton salir
 	}
@@ -55,13 +61,15 @@ public:
 
 class BotonGuardar: public Boton
 {
+
 public:
-	BotonGuardar(int x, int y, int h, int w, SDL_Texture* textura) : Boton(x,y,h,w,textura)
+	BotonGuardar(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada) : Boton(x,y,h,w,textura, texturaSeleccionada)
 	{
 
 	}
 	//TODO implementar la conexion con la persistencia
 	void ejecutar();
+
 };
 
 } /* namespace std */
