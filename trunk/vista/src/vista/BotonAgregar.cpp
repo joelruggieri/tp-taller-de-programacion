@@ -28,12 +28,6 @@ Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura) {
 }
 
 
-
-
-
-
-
-
 /*void BotonAgregar::Dibujarse(){
 	SDL_Rect dst ;
 	dst.x = this->positionX;
@@ -66,12 +60,6 @@ return 0;
 ////	this->x = this->x + x;
 //	this->y = this->y + y;
 //}
-
-
-
-
-
-
 
 
 void std::BotonSalir::ejecutar() {
