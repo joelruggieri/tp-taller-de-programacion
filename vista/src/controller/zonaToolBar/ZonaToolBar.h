@@ -21,15 +21,16 @@
 
 using namespace std;
 
-class zonaToolBar  {
+class ZonaToolBar  {
 private:
 	list<Herramientas* > herramientas ;
 
 public:
-	zonaToolBar(int x, int y, int w, int h, SDL_Texture* texture);
-	virtual ~zonaToolBar();
+	ZonaToolBar(int x, int y, int w, int h, SDL_Texture* texture);
+	virtual ~ZonaToolBar();
 	void agregarHerramienta(Herramientas* herramienta);
 	void dibujarse(SDL_Renderer *render);
+	void seleccionarHerramienta(int x, int y);
 private:
 	SDL_Texture* fondo ;
 	int x,y,h,w;

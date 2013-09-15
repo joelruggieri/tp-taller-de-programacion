@@ -11,8 +11,10 @@
 #include "../vista/DraggingView.h"
 #include "../vista/RotationView.h"
 #include "../vista/CargadorDeTextures.h"
-#include "zonaToolBar/zonaToolBar.h"
+#include "zonaToolBar/ZonaToolBar.h"
 #include "inicializador/InicializadorJuego.h"
+#include "ToolBarController.h"
+#include "ToolBarEventController.h"
 
 MainController::MainController() {
 	this->dropController = new JuegoEventsController();
@@ -48,9 +50,12 @@ int MainController::run() {
 	InicializadorJuego inicializador(render,dropController);
 
 	Zona * zona =  inicializador.crearZonaJuego();
-	zonaToolBar* toolBar = new zonaToolBar(0, 500 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));
+	ZonaToolBar* toolBar = new ZonaToolBar(0, 500 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));
+	ToolBarEventController* tbEventController = new ToolBarEventController(toolBar);
+//	ToolBarController* toolbarController = new ToolBarController(toolBar, tbEventController);
 	GeneralEventController eventController;
 	eventController.addMouseController(this->dropController,1,1);
+	eventController.addMouseController(tbEventController, 1, 1);
 	DraggingView vista(this->dropController);
 	RotationView vistaRotacion(this->dropController, texturas->cargarTexture("resource/rotacion.png"));
 	this->dropController->setZona(zona);

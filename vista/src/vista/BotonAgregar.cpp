@@ -11,6 +11,8 @@
 namespace std {
 
 void BotonAgregar::ejecutar() {
+	//TODO ejecutar del boton agregar
+	cout << "se ha ejecutado el boton Agregar" << endl;
 }
 
 Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura) {
@@ -73,9 +75,13 @@ return 0;
 
 
 void std::BotonSalir::ejecutar() {
+	//TODO ejecutar del boton salir
+	cout << "se ha ejecutado el boton salir" << endl;
 }
 
 void std::BotonGuardar::ejecutar() {
+	//TODO ejecutar del boton guardar
+	cout << "se ha ejecutado el boton guardar" << endl;
 }
 
 void Boton::dibujarse(SDL_Renderer* render) {
@@ -88,4 +94,12 @@ dst.w = this->w;
 SDL_RenderCopy(render, this->textura,NULL,&dst);
 return;
 }
+
+bool Boton::fueSeleccionado(int x, int y) {
+	if (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->y > y )
+			return true;
+	else
+		return false;
+}
+
 }
