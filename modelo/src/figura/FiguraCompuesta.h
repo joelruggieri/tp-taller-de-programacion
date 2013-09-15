@@ -25,8 +25,8 @@ public:
 	void addFigura(Figura * figura);
 	Figura * getFiguraEn(float, float);
 	void acept(VisitorFigura*);
-	float getAlto();
-	float getAncho();
+	float getAlto() const;
+	float getAncho() const;
 };
 
 #endif /* FIGURACOMPUESTA_H_ */

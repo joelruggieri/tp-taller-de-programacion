@@ -66,6 +66,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	int y = r->resizearDistanciaLogicaY(modelo->getY());
 	int w = r->resizearDistanciaLogicaY(modelo->getAncho());
 	int h = r->resizearDistanciaLogicaY(modelo->getAlto());
+	//TODO HABRIA QUE VALIDAR QUE LA POSICION CAIGA BIEN, SINO BORRARLO
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
 	this->zonaJuego->agregarFigura(view);

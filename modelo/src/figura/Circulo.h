@@ -22,8 +22,8 @@ public:
 	float getRadio() const;
 	void setRadio(float radio);
 	void acept(VisitorFigura*);
-	float getAlto();
-	float getAncho();
+	float getAlto() const ;
+	float getAncho() const;
 
 };
 

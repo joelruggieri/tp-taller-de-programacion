@@ -51,10 +51,10 @@ void FiguraCompuesta::acept(VisitorFigura*) {
 
 }
 
-float FiguraCompuesta::getAlto() {
+float FiguraCompuesta::getAlto() const{
 	return 0;
 }
 
-float FiguraCompuesta::getAncho() {
+float FiguraCompuesta::getAncho()  const {
 	return 0;
 }

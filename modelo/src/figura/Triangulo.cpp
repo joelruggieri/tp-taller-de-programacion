@@ -33,12 +33,12 @@ void Triangulo::setAncho(float ancho) {
 
 }
 
-float Triangulo::getAlto() {
+float Triangulo::getAlto() const {
 	return alto;
 
 }
 
-float Triangulo::getAncho() {
+float Triangulo::getAncho() const {
 	return ancho;
 
 }
