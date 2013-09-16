@@ -4,7 +4,7 @@
  *  Created on: 12/09/2013
  *      Author: ezequiel
  */
-
+//TODO ENCARGARME DE HACER UN DESELECCIONAR PARA DISTINTOS EVENTOS
 #ifndef ZONATOOLBAR_H_
 #define ZONATOOLBAR_H_
 #include <list>

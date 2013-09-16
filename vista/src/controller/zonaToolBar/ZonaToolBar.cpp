@@ -55,6 +55,8 @@ void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 		this->agregarHerramienta(bSalir);
 		this->agregarHerramienta(bGuardar);
 		this->agregarHerramienta(textBox);
+
+
 }
 
 ZonaToolBar::~ZonaToolBar() {

@@ -4,21 +4,21 @@
  *  Created on: 14/09/2013
  *      Author: ezequiel
  */
-#define TAM_BUFFER 16 //definir acorde a lo que puede entrar en el textbox
+#define TAM_BUFFER 25 //definir acorde a lo que puede entrar en el textbox
 #include "TextBox.h"
 
 #define TAM_FUENTE 13
 TextBox::TextBox(int x, int y, int w, int h, SDL_Texture* imagen) {
 this->seleccionado = false ;
 
-if (!TTF_Init()) cout << "Inicio bien" << endl;
+TTF_Init();
 this->x = x;
 this->y = y ;
 this->w = w;
 this->h = h ;
 this->imagen = imagen ;
 this->fuente = TTF_OpenFont("resource/Arial Bold.ttf", TAM_FUENTE);
-this->texto = "Escriba su texto aqui";
+this->texto = "";
 this->textoCurrent = texto ;
 
 this->color.a = 50;
@@ -77,7 +77,7 @@ void TextBox::borrarCaracter() {
 	if (this->texto.size() >= TAM_BUFFER)
 	{
 
-	  int posLetraAgregada = texto.size() - TAM_BUFFER ;
+	  int posLetraAgregada = texto.size() - (TAM_BUFFER-1) ;
 		char letraAgregada ;
 		letraAgregada= this->texto.at(posLetraAgregada);	//creo qe ahi recibo la letra
 		 this->textoCurrent = letraAgregada + this->textoCurrent;	//forma hipercavernicola de concatenar, TODO probar
@@ -86,21 +86,32 @@ void TextBox::borrarCaracter() {
 }
 
 void TextBox::setearTexto() {
-	this->texto.clear();
-	this->textoCurrent.clear();
+	this->texto = "" ;
+	this->textoCurrent = this->texto ;
 
 
 }
 
 bool TextBox::fueSeleccionado(int x, int y) {
-	return false;		//TODO logica de seleccion
+	return (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->h > y );		//TODO logica de seleccion
 
 }
 
 void TextBox::ejecutar() {
-	if (!seleccionado) seleccionado = true ;	//TODO ver como ejecutar el textbox
+	if (!seleccionado) seleccionado = true ;
+	return this->resetearTexto();//TODO ver como ejecutar el textbox
+
 
 }
 
 void TextBox::desEjecutar() {
+
+}
+
+
+
+void TextBox::resetearTexto() {
+	this->texto.clear();
+	this->textoCurrent.clear();
+
 }
