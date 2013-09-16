@@ -17,6 +17,8 @@ ToolBarEventController::~ToolBarEventController() {
 }
 
 bool ToolBarEventController::clickDown(int int1, int int2) {
+
+	//TODO SI SE HIZO CLICK  EN LA ZONA QUE RETORNE FALSE PARA QUE NO SE PROPAGUE A LAS OTRAS ZONAS.
 	this->zona->seleccionarHerramienta(int1, int2);
 	return true;
 }
