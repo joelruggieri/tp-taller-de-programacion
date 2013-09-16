@@ -8,9 +8,28 @@
 #ifndef CONSTRUCTORESYAML_H_
 #define CONSTRUCTORESYAML_H_
 
-
+#include "src/Nivel.h"
 
 namespace YAML {
+
+template<>
+struct convert<Nivel> {
+	static Node encode(const Nivel& objeto) {
+		Node node;
+		node.push_back(objeto.getNumero());
+		node.push_back(objeto.cantidadFiguras());
+		return node;
+	}
+
+	static bool decode(const Node& node, Nivel& objeto) {
+		if (!node.IsSequence() || node.size() != 2)
+			return false;
+
+		objeto.setNumero(node[0].as<int>());
+		return true;
+	}
+};
+
 template<>
 struct convert<Circulo> {
 	static Node encode(const Circulo& objeto) {

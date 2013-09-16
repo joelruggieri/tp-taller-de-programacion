@@ -10,25 +10,18 @@
 
 #include <string>
 #include <list>
-#include <yaml-cpp/yaml.h>
-#include "src/figura/Triangulo.h"
-#include "src/figura/Cuadrado.h"
-#include "src/figura/Circulo.h"
+#include "src/Archivo.h"
 
 class AdministradorDeArchivos {
 public:
-	AdministradorDeArchivos(std::string nombre);
+	AdministradorDeArchivos();
 	virtual ~AdministradorDeArchivos();
-	bool guardar(Triangulo* objeto);
-	bool guardar(Circulo* objeto);
-	bool guardar(Cuadrado* objeto);
-	std::list<Figura*> obtenerTodos();
+	static Archivo* obtenerArchivoNivel(int numero);
+	static std::list<Archivo*> archivos;
+	static void cerrarTodo();
 private:
-	void obtenerCirculos(std::list<Figura*> &lista , YAML::Node objetos);
-	void obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos);
-	void obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos);
-	std::string nombre;
-	YAML::Node nodoRaiz;
+	static std::list<int> niveles;
+	static void cargar();
 };
 
 #endif /* ADMINISTRADORDEARCHIVOS_H_ */

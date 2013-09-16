@@ -9,37 +9,31 @@
 #include <iostream>
 #include <fstream>
 
-ObjetoDAO::ObjetoDAO()/*: archivo("config.yaml") */{
+#include "constructoresYAML.h"
 
-	archivo = new AdministradorDeArchivos("config.yaml");
+ObjetoDAO::ObjetoDAO(){
 
-}
-
-ObjetoDAO::ObjetoDAO(std::string nombre_archivo){
-
-	archivo = new AdministradorDeArchivos(nombre_archivo);
 }
 
 ObjetoDAO::~ObjetoDAO() {
-	delete archivo;
 }
 
 
-bool ObjetoDAO::guardar(Circulo* objeto) {
-	bool resultado = archivo->guardar(objeto);
-	return resultado;
+YAML::Node ObjetoDAO::guardar(Circulo* objeto, YAML::Node nodoRaiz) {
+	YAML::Node node = nodoRaiz["Circulos"];
+	node.push_back(*objeto);
+	return node;
 }
 
-bool ObjetoDAO::guardar(Cuadrado* objeto) {
-	bool resultado = archivo->guardar(objeto);
-	return resultado;
+YAML::Node ObjetoDAO::guardar(Cuadrado* objeto, YAML::Node nodoRaiz) {
+	YAML::Node node = nodoRaiz["Cuadrados"];
+	node.push_back(*objeto);
+	return node;
 }
 
-bool ObjetoDAO::guardar(Triangulo* objeto) {
-	bool resultado = archivo->guardar(objeto);
-	return resultado;
+YAML::Node ObjetoDAO::guardar(Triangulo* objeto, YAML::Node nodoRaiz) {
+	YAML::Node node = nodoRaiz["Triangulos"];
+	node.push_back(*objeto);
+	return node;
 }
 
-std::list<Figura*> ObjetoDAO::obtenerTodos() {
-	return archivo->obtenerTodos();
-}
