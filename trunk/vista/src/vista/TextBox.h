@@ -33,6 +33,7 @@ private:
 	SDL_Texture* imagen ;
 	TTF_Font* fuente ;
 	string texto ;
+	string textoCurrent;
 	SDL_Color color  ;
 	SDL_Surface *surfaceTexto;
 	SDL_Texture * textureTexto;
