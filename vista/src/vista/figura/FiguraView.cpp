@@ -1,8 +1,8 @@
 #include "FiguraView.h"
 
 #include <iostream>
-#include "src/AdministradorDeLoggers.h"
 #include "../../controller/DropController.h"
+#include "src/Logger.h"
 using namespace std;
 
 /********************************************************
@@ -18,7 +18,7 @@ void FiguraView::setModelo(Figura* modelo) {
 }
 
 void FiguraView::drop() {
-	Logger& log = AdministradorDeLoggers::getLogger(INFO);
+	Logger log;
 	std::string mensaje_info;
 	if (this->getModelo() != NULL) {
 		mensaje_info = "llamando al drop generico de figura";
