@@ -27,6 +27,7 @@ public:
 	bool fueSeleccionado(int x, int y);
 	void ejecutar();
 	void desEjecutar();
+	void resetearTexto();
 
 private:
 	int x,y,w,h;
