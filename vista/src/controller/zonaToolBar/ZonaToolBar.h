@@ -31,6 +31,7 @@ public:
 	void agregarHerramienta(Herramientas* herramienta);
 	void dibujarse(SDL_Renderer *render);
 	void seleccionarHerramienta(int x, int y);
+	bool zonaFueSeleccionada(int x, int y);
 
 private:
 	SDL_Texture* fondo ;

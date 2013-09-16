@@ -55,7 +55,7 @@ int MainController::run() {
 //	ToolBarController* toolbarController = new ToolBarController(toolBar, tbEventController);
 	GeneralEventController eventController;
 	eventController.addMouseController(this->dropController,1,1);
-	eventController.addMouseController(tbEventController, 1, 1);
+	eventController.addMouseController(tbEventController, 2, 1);
 	DraggingView vista(this->dropController);
 	RotationView vistaRotacion(this->dropController, texturas->cargarTexture("resource/rotacion.png"));
 	this->dropController->setZona(zona);

@@ -18,26 +18,33 @@ ToolBarEventController::~ToolBarEventController() {
 
 bool ToolBarEventController::clickDown(int int1, int int2) {
 
-	//TODO SI SE HIZO CLICK  EN LA ZONA QUE RETORNE FALSE PARA QUE NO SE PROPAGUE A LAS OTRAS ZONAS.
+
+	if (this->zona->zonaFueSeleccionada(int1, int2))
+	{
 	this->zona->seleccionarHerramienta(int1, int2);
-	return true;
+	return false;
+	}
+	else return true ;
 }
 
 bool ToolBarEventController::clickUp(int int1, int int2) {
+	if (this->zona->zonaFueSeleccionada(int1, int2))
+	{
 	this->zona->seleccionarHerramienta(int1, int2);
-	return true;
+	return false;
+	}
+	else return true ;
 }
 
 bool ToolBarEventController::rightClickDown(int int1, int int2) {
-	return true;
-
+return (!this->zona->zonaFueSeleccionada(int1, int2));
 }
 
 bool ToolBarEventController::rightClickUp(int int1, int int2) {
-	return true;
+	return (!this->zona->zonaFueSeleccionada(int1, int2));
 
 }
 
 bool ToolBarEventController::mouseMotion(int int1, int int2) {
-	return true;
+	return (!this->zona->zonaFueSeleccionada(int1, int2));
 }

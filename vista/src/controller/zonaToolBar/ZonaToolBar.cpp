@@ -74,3 +74,10 @@ void ZonaToolBar::dibujarse(SDL_Renderer* render) {
 	}
 
 }
+
+bool ZonaToolBar::zonaFueSeleccionada(int x, int y) {
+	if (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->h > y )
+				return true;
+		else
+			return false;
+}
