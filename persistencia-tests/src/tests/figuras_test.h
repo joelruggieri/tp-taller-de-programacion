@@ -52,7 +52,7 @@ TEST_F(figuras_test,test_archivo_no_creardo_excepcion){
 
 
 TEST_F(figuras_test, test_triangulos) {
-	Triangulo *triangulo = new Triangulo(3.5, 6.5, 2.0, 2.0);
+	Triangulo *triangulo = new Triangulo(3.5f, 6.5f, 2.0f, 2.0f);
 	dao->guardar(triangulo);
 
 	std::list<Figura*> Figuras = dao->obtenerTodos();
@@ -165,7 +165,7 @@ TEST_F(figuras_test,agregar_circulo_y_primera_figura_es_circulo){
 TEST_F(figuras_test,agregamos_tres_figuras_diferentes){
 	Circulo* circulo = new Circulo(0,0,0);
 	Cuadrado* cuadrado = new Cuadrado(1,1,1,1);
-	Triangulo* triangulo = new Triangulo(0,0,0,0);
+	Triangulo* triangulo = new Triangulo(0.0,0.0,0.0,0.0);
 	Cuadrado* cuadrado2 = new Cuadrado(1,1,1,1);
 	dao->guardar(circulo);
 	dao->guardar(cuadrado);

@@ -10,6 +10,7 @@
 
 #include "gtest/gtest.h"
 #include "src/Logger.h"
+#include "src/AdministradorDeLoggers.h"
 
 class logger_test: public testing::Test {
 protected:
@@ -24,4 +25,22 @@ public:
 
 TEST_F(logger_test, test_logger) {
 	l.error("Prueba del logger");
+	l.debug("Prueba del logger");
+	l.info("Prueba del logger");
+	l.fatal("Prueba del logger");
+	l.warning("Prueba del logger");
+
+	l.error("Prueba del logger");
+	l.debug("Prueba del logger");
+	l.info("Prueba del logger");
+	l.fatal("Prueba del logger");
+	l.warning("Prueba del logger");
+
+	l.error("Prueba del logger");
+	l.debug("Prueba del logger");
+	l.info("Prueba del logger");
+	l.fatal("Prueba del logger");
+	l.warning("Prueba del logger");
+
+	AdministradorDeLoggers::cerrarTodo();
 }
