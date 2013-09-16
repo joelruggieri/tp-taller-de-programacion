@@ -13,6 +13,8 @@ public:
 	virtual void dibujarse(SDL_Renderer *) = 0;
 	virtual bool fueSeleccionado(int x, int y) = 0;
 	virtual void ejecutar() = 0 ;
+	virtual void desEjecutar() = 0;
+
 };
 
 #endif /* HERRAMIENTAS_H_ */

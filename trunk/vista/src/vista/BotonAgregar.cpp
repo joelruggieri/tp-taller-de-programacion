@@ -15,14 +15,11 @@ void BotonAgregar::ejecutar() {
 	if (this->seleccionado == false)
 	{
 	this->seleccionado = true;
-	this->modificarImagen();
+	this->cambiarASeleccion();
 	cout << "se ha ejecutado el boton modificar fondo" << endl;
+	return;
 	}
-	else
-	{
-		this->seleccionado = false;
-		this->modificarImagen();
-	}
+
 }
 
 Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada) {
@@ -35,6 +32,7 @@ Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* text
 	 this->w = w;
 	 this->h = h ;
 	 this->seleccionado = false;
+	 this->cantDibujados = 0;
 
 
 
@@ -80,14 +78,11 @@ void std::BotonSalir::ejecutar() {
 	if (this->seleccionado == false)
 	{
 	this->seleccionado = true;
-	this->modificarImagen();
+	this->cambiarASeleccion();
 	cout << "se ha ejecutado el boton salir" << endl;
+	return;
 	}
-	else
-	{
-		this->seleccionado = false;
-		this->modificarImagen();
-	}
+
 }
 
 void std::BotonGuardar::ejecutar() {
@@ -95,13 +90,9 @@ void std::BotonGuardar::ejecutar() {
 	if (this->seleccionado == false)
 	{
 	this->seleccionado = true;
-	this->modificarImagen();
+	this->cambiarASeleccion();
 	cout << "se ha ejecutado el boton guardar" << endl;
-	}
-	else
-	{
-		this->seleccionado = false;
-		this->modificarImagen();
+	return;
 	}
 
 }
@@ -115,21 +106,46 @@ dst.h = this->h;
 dst.w = this->w;
 SDL_RenderCopy(render, this->texturaCurrent,NULL,&dst);
 return;
+
 }
 
 bool Boton::fueSeleccionado(int x, int y) {
 	//TODO calcular la seleccion con el radio, por ser redondos
-	if (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->h > y )
-			return true;
+	int radio = this->h / 2 ;
+	int xc = this->x + (this->w  / 2);
+	int yc = this->y + (this->h /2 );
+
+	if (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->h > y && sqrt((x-xc)*(x-xc)+(y-yc)*(y-yc)) <= radio)
+	{
+		//&& sqrt((x-xc)*(x-xc)+(y-yc)*(y-yc) < radio)
+	//out << sqrt((x-xc)*(x-xc)+(y-yc)*(y-yc)) << " " << radio <<  endl  ;
+
+		return true;
+	}
+
 	else
 		return false;
 }
 
-void Boton::modificarImagen()
+void Boton::cambiarASeleccion()
 {
 	if (this->texturaCurrent == this->textura)
 	this->texturaCurrent = this->texturaSeleccionada ;
-	else this->texturaCurrent = this->textura ;
+
 }
 
+
+
+void std::Boton::cambiarANormal() {
+	if (this->texturaCurrent == this->texturaSeleccionada)
+		this->texturaCurrent = this->textura ;
+}
+
+void Boton::desEjecutar() {
+	if (this->seleccionado)
+	{
+		this->seleccionado = false;
+		this->cambiarANormal();
+	}
+}
 }

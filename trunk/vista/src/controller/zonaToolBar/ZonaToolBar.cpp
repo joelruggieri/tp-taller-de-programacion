@@ -29,11 +29,20 @@ void ZonaToolBar::seleccionarHerramienta(int x, int y) {
 		{
 			 if ((*iter)->fueSeleccionado(x, y)) return (*iter)->ejecutar();
 
+
 		}
 
 }
 
+void ZonaToolBar::desSeleccionarHerramienta(int x, int y) {
+	list<Herramientas* >::iterator iter;
+		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
+		{
+			  (*iter)->desEjecutar();
 
+		}
+		 return;
+}
 
 void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
