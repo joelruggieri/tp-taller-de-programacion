@@ -5,7 +5,7 @@
  *      Author: ezequiel
  */
 
-#include "src/AdministradorDeLoggers.h"
+#include "src/Logger.h"
 #include "Resizer.h"
 #include <iostream>
 using namespace std;
@@ -23,7 +23,7 @@ Resizer* Resizer::Instance (int x, int y, float xLogico, float yLogico )
 
 Resizer* Resizer::Instance ()
 {
-	Logger& log = AdministradorDeLoggers::getLogger(ERROR);
+	Logger log;
 	std::string mensaje_error = "Resizer no se encuentra correctamente inicializado";
 	if(pinstance == 0){
 

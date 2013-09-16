@@ -21,7 +21,8 @@
 #include "../vista/View.h"
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
-#include "src/AdministradorDeLoggers.h"
+
+#include "src/Logger.h"
 
 
 using namespace std;
@@ -44,7 +45,7 @@ JuegoEventsController::~JuegoEventsController() {
 }
 
 void JuegoEventsController::dropear(FiguraView* view, Figura* figura) {
-	Logger& log = AdministradorDeLoggers::getLogger(INFO);
+	Logger log;
 	std::string mensaje_info = "dropea figura controller";
 	log.info(mensaje_info);
 	//cout << "dropea figura controller" << endl;
@@ -116,7 +117,7 @@ bool JuegoEventsController::clickUp(int x, int y) {
 
 void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
-	Logger& log = AdministradorDeLoggers::getLogger(INFO);
+	Logger log;
 	std::string mensaje_info = "dropea figura controller";
 	log.info(mensaje_info);
 	//cout << "draguea figura controller" << endl;
@@ -159,7 +160,7 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 		this->figuraRotacion->getModelo()->setRotacion(
 				this->figuraRotacion->getModelo()->getRotacion()
 						+ this->rot->getAngulo());
-		Logger& log = AdministradorDeLoggers::getLogger(INFO);
+		Logger log;
 		std::string mensaje_info = "rotacion total";
 		log.concatenar(mensaje_info,this->figuraRotacion->getModelo()->getRotacion());
 		log.info(mensaje_info);

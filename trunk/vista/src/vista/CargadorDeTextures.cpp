@@ -5,8 +5,8 @@
  *      Author: ezequiel
  */
 
-#include "src/AdministradorDeLoggers.h"
 #include "CargadorDeTextures.h"
+#include "src/Logger.h"
 #include <iostream>
 using namespace std;
 
@@ -22,7 +22,7 @@ CargadorDeTextures* CargadorDeTextures::Instance (SDL_Renderer* render)
 
 CargadorDeTextures* CargadorDeTextures::Instance ()
 {
-	Logger& log = AdministradorDeLoggers::getLogger(ERROR);
+	Logger log;
 
 	if(pinstance == 0){
 		//TODO LANZAR EXCEPTION
