@@ -13,6 +13,7 @@
 class ToolBarEventController : public MouseEventController {
 public:
 	ZonaToolBar* zona ;
+	bool seleccionado ;
 	ToolBarEventController(ZonaToolBar* zona);
 	virtual ~ToolBarEventController();
 	 bool clickDown(int,int);

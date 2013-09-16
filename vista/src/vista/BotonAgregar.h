@@ -18,14 +18,17 @@ namespace std {
 
 class Boton: public Herramientas {
 protected:
-	void modificarImagen();
+	void cambiarASeleccion();
+	void cambiarANormal();
 	int seleccionado ;
+	int cantDibujados;
 public:
 	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada);
 	void dibujarse(SDL_Renderer *);
 	void Resizear(int x, int y);
 	virtual void ejecutar() = 0 ;
 	bool fueSeleccionado(int x, int y);
+	void desEjecutar();
 	int x,y,h,w;
 	SDL_Texture* textura;
 	SDL_Texture* texturaCurrent;

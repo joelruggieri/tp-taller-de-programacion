@@ -8,6 +8,7 @@
 #include "TextBox.h"
 #define TAM_FUENTE 13
 TextBox::TextBox(int x, int y, int w, int h, SDL_Texture* imagen) {
+this->seleccionado = false ;
 
 if (!TTF_Init()) cout << "Inicio bien" << endl;
 this->x = x;
@@ -77,4 +78,9 @@ bool TextBox::fueSeleccionado(int x, int y) {
 }
 
 void TextBox::ejecutar() {
+	if (!seleccionado) seleccionado = true ;
+
+}
+
+void TextBox::desEjecutar() {
 }

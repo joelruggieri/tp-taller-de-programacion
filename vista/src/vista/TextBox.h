@@ -26,6 +26,7 @@ public:
 	void setearTexto();
 	bool fueSeleccionado(int x, int y);
 	void ejecutar();
+	void desEjecutar();
 
 private:
 	int x,y,w,h;
@@ -35,6 +36,7 @@ private:
 	SDL_Color color  ;
 	SDL_Surface *surfaceTexto;
 	SDL_Texture * textureTexto;
+	bool seleccionado ;
 
 
 };
