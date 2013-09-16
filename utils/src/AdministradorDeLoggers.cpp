@@ -7,11 +7,11 @@
 
 #include "AdministradorDeLoggers.h"
 
-Logger AdministradorDeLoggers::logError("error.log");
-Logger AdministradorDeLoggers::logWarn("warning.log");
-Logger AdministradorDeLoggers::logFatal("fatal.log");
-Logger AdministradorDeLoggers::logDebug("debug.log");
-Logger AdministradorDeLoggers::logInfo("info.log");
+Archivo *AdministradorDeLoggers::logError = new Archivo("error.log", APPEND);
+Archivo *AdministradorDeLoggers::logWarn = new Archivo("warning.log", APPEND);
+Archivo *AdministradorDeLoggers::logFatal = new Archivo("fatal.log", APPEND);
+Archivo *AdministradorDeLoggers::logDebug = new Archivo("debug.log", APPEND);
+Archivo *AdministradorDeLoggers::logInfo = new Archivo("info.log", APPEND);
 
 AdministradorDeLoggers::AdministradorDeLoggers() {
 	// TODO Auto-generated constructor stub
@@ -22,7 +22,7 @@ AdministradorDeLoggers::~AdministradorDeLoggers() {
 	// TODO Auto-generated destructor stub
 }
 
-Logger &AdministradorDeLoggers::getLogger(TIPO_LOGGER tipo) {
+Archivo *AdministradorDeLoggers::getLogger(TIPO_LOGGER tipo) {
 	if (tipo == ERROR) {
 		return logError;
 	} else if (tipo == WARN) {
@@ -34,4 +34,12 @@ Logger &AdministradorDeLoggers::getLogger(TIPO_LOGGER tipo) {
 	} else {
 		return logInfo;
 	}
+}
+
+void AdministradorDeLoggers::cerrarTodo() {
+	logError->cerrar();
+	logDebug->cerrar();
+	logInfo->cerrar();
+	logWarn->cerrar();
+	logFatal->cerrar();
 }

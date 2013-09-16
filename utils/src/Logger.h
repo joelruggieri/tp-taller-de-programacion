@@ -14,7 +14,6 @@
 
 class Logger {
 public:
-	Logger(const char *nombre);
 	Logger();
 //	void abrir(const char* nombre);
 	virtual ~Logger();
@@ -23,8 +22,7 @@ public:
 	void debug(std::string mensaje);
 	void fatal(std::string mensaje);
 	void info(std::string mensaje);
-	void setNivel(int nivel);
-	void borrar();
+//	void borrar();
 	void concatenar(std::string& mensajeOriginal,float numero);
 private:
 	std::string nombre;

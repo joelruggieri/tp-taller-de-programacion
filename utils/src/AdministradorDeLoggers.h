@@ -11,15 +11,17 @@
 enum TIPO_LOGGER { ERROR, DEBUG, FATAL, INFO, WARN};
 
 #include "Logger.h"
+#include "Archivo.h"
 
 class AdministradorDeLoggers {
 public:
-	static Logger &getLogger(TIPO_LOGGER tipo);
+	static Archivo *getLogger(TIPO_LOGGER tipo);
+	static void cerrarTodo();
 private:
 	static bool inicializado;
 	AdministradorDeLoggers();
 	virtual ~AdministradorDeLoggers();
-	static Logger logError, logDebug, logInfo, logWarn, logFatal;
+	static Archivo *logError, *logDebug, *logInfo, *logWarn, *logFatal;
 };
 
 #endif /* ADMINISTRADORDELOGGERS_H_ */
