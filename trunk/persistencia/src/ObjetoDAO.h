@@ -19,14 +19,13 @@
 class ObjetoDAO {
 public:
 	ObjetoDAO();
-	ObjetoDAO(std::string nombre_archivo);
 	virtual ~ObjetoDAO();
-	bool guardar(Circulo *objeto);
-	bool guardar(Cuadrado *objeto);
-	bool guardar(Triangulo *objeto);
+	YAML::Node guardar(Circulo *objeto, YAML::Node nodoRaiz);
+	YAML::Node guardar(Cuadrado *objeto, YAML::Node nodoRaiz);
+	YAML::Node guardar(Triangulo *objeto, YAML::Node nodoRaiz);
 	std::list<Figura*> obtenerTodos();
 private:
-	AdministradorDeArchivos* archivo;
+	AdministradorDeArchivos administradorDeArchivos;
 };
 
 #endif /* OBJETODAO_H_ */
