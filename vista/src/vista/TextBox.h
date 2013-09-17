@@ -25,10 +25,11 @@ public:
 	void borrarCaracter();
 	void setearTexto();
 	bool fueSeleccionado(int x, int y);
-	void ejecutar();
-	void desEjecutar();
+	void presionarMouse();
+	void desPresionarMouse();
 	void resetearTexto();
-
+	void ejecutarTecla(char key);
+	void clickeoFueraDeHerramienta();
 private:
 	int x,y,w,h;
 	SDL_Texture* imagen ;

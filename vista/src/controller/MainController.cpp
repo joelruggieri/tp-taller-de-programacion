@@ -56,6 +56,7 @@ int MainController::run() {
 	GeneralEventController eventController;
 	eventController.addMouseController(this->dropController,1,1);
 	eventController.addMouseController(tbEventController, 2, 1);
+	eventController.addKeyboardController(tbEventController);
 	DraggingView vista(this->dropController);
 	RotationView vistaRotacion(this->dropController, texturas->cargarTexture("resource/rotacion.png"));
 	this->dropController->setZona(zona);

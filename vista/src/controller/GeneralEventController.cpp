@@ -8,7 +8,7 @@
 #include "GeneralEventController.h"
 #include "mouseEventController/MouseEventPriorComparator.h"
 #include "SDL2/SDL.h"
-
+#include <iostream>
 GeneralEventController::GeneralEventController() {
 	this->botonAnterior= 0;
 }
@@ -86,6 +86,19 @@ void GeneralEventController::rightClickDown(int x, int y) {
 	}
 }
 
+void GeneralEventController::addKeyboardController(KeyBoardEventController* keyEventController) {
+	this->keyControllers.push_back(keyEventController);
+}
+
+void GeneralEventController::keyDown(char key) {
+	list<KeyBoardEventController*>::iterator it;
+	bool continuarEvento = true ;
+	for (it = this->keyControllers.begin(); it != this->keyControllers.end() && continuarEvento; ++it)
+	{
+		continuarEvento = (*it)->keyPressed(key);
+	}
+}
+
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
@@ -119,18 +132,33 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 		SDL_GetMouseState(&nuevaPosX, &nuevaPosY);
 		this->mouseMotion(nuevaPosX, nuevaPosY);
 		break;
+	case SDL_KEYDOWN:
+
+		this->keyDown((char)(evento.key.keysym.sym));
+//		switch(evento.key.keysym.sym)
+//		{
+//		case(SDLK_a):
+//				std::cout << "se presiono la tecla a" << std::endl ;
+//				this->keyDown('a');
+//				break;
+//		case(SDLK_b):
+//				std::cout << "se presiono la tecla b" << std::endl ;
+//				this->keyDown('b');
+//				break;
+//		}
+		break;
 	case SDL_WINDOWEVENT: {
-//			switch (evento.window.event) {
+		switch (evento.window.event) {
 //TODO IMPLEMENTAR RESIZE
         		case SDL_WINDOWEVENT_RESIZED:
         			int tamNuevoX, tamNuevoY;
         			SDL_GetWindowSize(ventana,&tamNuevoX,&tamNuevoY);
-        			if(tamNuevoX != tamNuevoY){
+        			if(tamNuevoX != tamNuevoY)
         				SDL_SetWindowSize(ventana,tamNuevoX,tamNuevoX);
-        			}
+
         			//Resizeables tienen que resizear
         			break;
-//        		}
+        		}
 		break;
 	}
 	}

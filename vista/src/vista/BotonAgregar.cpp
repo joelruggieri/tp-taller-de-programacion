@@ -10,7 +10,7 @@
 
 namespace std {
 
-void BotonAgregar::ejecutar() {
+void BotonAgregar::presionarMouse() {
 	//TODO ejecutar del boton agregar
 	if (this->seleccionado == false)
 	{
@@ -73,7 +73,7 @@ return 0;
 //}
 
 
-void std::BotonSalir::ejecutar() {
+void std::BotonSalir::presionarMouse() {
 	//TODO ejecutar del boton salir
 	if (this->seleccionado == false)
 	{
@@ -85,7 +85,7 @@ void std::BotonSalir::ejecutar() {
 
 }
 
-void std::BotonGuardar::ejecutar() {
+void std::BotonGuardar::presionarMouse() {
 	//TODO ejecutar del boton guardar
 	if (this->seleccionado == false)
 	{
@@ -141,11 +141,19 @@ void std::Boton::cambiarANormal() {
 		this->texturaCurrent = this->textura ;
 }
 
-void Boton::desEjecutar() {
+void Boton::desPresionarMouse() {
 	if (this->seleccionado)
 	{
 		this->seleccionado = false;
 		this->cambiarANormal();
 	}
 }
+
+void Boton::ejecutarTecla(char key) {
+	//NADA
+}
+
+}
+
+void Boton::clickeoFueraDeHerramienta() {
 }

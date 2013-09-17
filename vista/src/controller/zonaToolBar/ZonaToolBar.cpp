@@ -22,26 +22,47 @@ ZonaToolBar::ZonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
 
 }
 
-void ZonaToolBar::seleccionarHerramienta(int x, int y) {
+void ZonaToolBar::cliquearHerramienta(int x, int y) {
 
 	list<Herramientas* >::iterator iter;
 		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
 		{
-			 if ((*iter)->fueSeleccionado(x, y)) return (*iter)->ejecutar();
+			 if ((*iter)->fueSeleccionado(x, y)) return (*iter)->presionarMouse();
 
 
 		}
 
 }
 
-void ZonaToolBar::desSeleccionarHerramienta(int x, int y) {
+void ZonaToolBar::desCliquearHerramienta(int x, int y) {
 	list<Herramientas* >::iterator iter;
 		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
 		{
-			  (*iter)->desEjecutar();
+			  (*iter)->desPresionarMouse();
 
 		}
 		 return;
+}
+
+void ZonaToolBar::teclearHerramienta(char key) {
+	list<Herramientas* >::iterator iter;
+		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
+		{
+			  (*iter)->ejecutarTecla(key);
+
+		}
+		 return;
+}
+
+void ZonaToolBar::cliqueoEnOtroLado() {
+
+	list<Herramientas* >::iterator iter;
+			 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
+			{
+				  (*iter)->clickeoFueraDeHerramienta();
+
+			}
+			 return;
 }
 
 void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
@@ -55,7 +76,6 @@ void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 		this->agregarHerramienta(bSalir);
 		this->agregarHerramienta(bGuardar);
 		this->agregarHerramienta(textBox);
-
 
 }
 
@@ -85,10 +105,14 @@ void ZonaToolBar::dibujarse(SDL_Renderer* render) {
 	}
 
 }
-
+//POS: true si alguna herramienta fue seleccionada
 bool ZonaToolBar::zonaFueSeleccionada(int x, int y) {
-	if (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->h > y )
-				return true;
-		else
-			return false;
+	bool result = false ;
+	list<Herramientas* >::iterator iter;
+	 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
+	{
+		 	if ((*iter)->fueSeleccionado(x,y)) return true ;
+
+	}
+	 return result;
 }

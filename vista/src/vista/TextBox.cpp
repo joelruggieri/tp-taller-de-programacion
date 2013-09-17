@@ -4,7 +4,7 @@
  *  Created on: 14/09/2013
  *      Author: ezequiel
  */
-#define TAM_BUFFER 25 //definir acorde a lo que puede entrar en el textbox
+#define TAM_BUFFER 35 //definir acorde a lo que puede entrar en el textbox
 #include "TextBox.h"
 
 #define TAM_FUENTE 13
@@ -45,7 +45,7 @@ void TextBox::dibujarse(SDL_Renderer* render) {
 	dstTxt.x = this->x + 5;
 	dstTxt.y = this->y ;
 	dstTxt.h = this->h - 4 ;
-	dstTxt.w = this->texto.size() * 8 ;
+	dstTxt.w = this->textoCurrent.size() * 8 ;
 
 
 
@@ -97,15 +97,15 @@ bool TextBox::fueSeleccionado(int x, int y) {
 
 }
 
-void TextBox::ejecutar() {
+void TextBox::presionarMouse() {
 	if (!seleccionado) seleccionado = true ;
 	return this->resetearTexto();//TODO ver como ejecutar el textbox
 
 
 }
 
-void TextBox::desEjecutar() {
-
+void TextBox::desPresionarMouse() {
+//this->seleccionado = false;
 }
 
 
@@ -114,4 +114,15 @@ void TextBox::resetearTexto() {
 	this->texto.clear();
 	this->textoCurrent.clear();
 
+}
+
+void TextBox::ejecutarTecla(char key) {
+	if (this->seleccionado)
+		this->agregarCaracter(key);
+	//TODO comprobacion del caracter backspace , en ese caso seria BorrarCaracter();
+	//TODO cuando el key es un "enter" tengo que deseleccionarlo
+}
+
+void TextBox::clickeoFueraDeHerramienta() {
+	this->seleccionado = false;
 }
