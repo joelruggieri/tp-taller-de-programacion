@@ -45,10 +45,10 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 				new Cuadrado(xInicial, y, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF), 1);
 		this->agregarEslabon(eslabon);
 		this->canvas->agregar(eslabon->getFactoryView());
-		y += 12;
+		y += 15;
 	}
 
-	y = factories->size() > 0 ? y - 12 : y;
+	y = factories->size() > 0 ? y - 15 : y;
 	float alto = (y - margenSuperior) + ANCHO_VIEW_DEF;
 	this->setCuerpo(new Cuadrado(x, (margenSuperior + alto) / 2, ancho, alto));
 	//las primeras 100 unidades no tienen scroll, sino lo creo.
