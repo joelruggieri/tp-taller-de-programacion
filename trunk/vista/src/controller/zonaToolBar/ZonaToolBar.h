@@ -30,13 +30,17 @@ public:
 	virtual ~ZonaToolBar();
 	void agregarHerramienta(Herramientas* herramienta);
 	void dibujarse(SDL_Renderer *render);
-	void seleccionarHerramienta(int x, int y);
+	void cliquearHerramienta(int x, int y);
 	bool zonaFueSeleccionada(int x, int y);
-	void desSeleccionarHerramienta(int x, int y);
+	void desCliquearHerramienta(int x, int y);
+	void teclearHerramienta(char key);
+	void cliqueoEnOtroLado();	//feo
+//	TextBox* getTextBox();
 private:
 	SDL_Texture* fondo ;
 	int x,y,h,w;
 	void agregarHerramientasAlToolBar(int x, int y, int w, int h);
+
 
 
 

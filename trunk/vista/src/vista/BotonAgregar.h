@@ -26,13 +26,15 @@ public:
 	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada);
 	void dibujarse(SDL_Renderer *);
 	void Resizear(int x, int y);
-	virtual void ejecutar() = 0 ;
+	virtual void presionarMouse() = 0 ;
 	bool fueSeleccionado(int x, int y);
-	void desEjecutar();
+	void desPresionarMouse();
+	void clickeoFueraDeHerramienta();
 	int x,y,h,w;
 	SDL_Texture* textura;
 	SDL_Texture* texturaCurrent;
 	SDL_Texture* texturaSeleccionada;
+	void ejecutarTecla(char key);
 
 
 
@@ -46,7 +48,7 @@ public:
 	{
 
 	}
-	void ejecutar();
+	void presionarMouse();
 	//virtual ~BotonAgregar();
 	int ModificarFondo(Canvas* fondo,char* rutaNueva);
 
@@ -58,7 +60,7 @@ public:
 	{
 		//constructor del boton salir
 	}
-	void ejecutar();
+	void presionarMouse();
 
 };
 
@@ -71,7 +73,7 @@ public:
 
 	}
 	//TODO implementar la conexion con la persistencia
-	void ejecutar();
+	void presionarMouse();
 
 };
 

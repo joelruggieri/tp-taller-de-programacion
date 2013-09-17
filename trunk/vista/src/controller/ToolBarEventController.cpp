@@ -21,13 +21,13 @@ bool ToolBarEventController::clickDown(int int1, int int2) {
 
 	if (this->zona->zonaFueSeleccionada(int1, int2))
 	{
-	this->zona->seleccionarHerramienta(int1, int2);
+	this->zona->cliquearHerramienta(int1, int2);
 	this->seleccionado = true ;
 	return false;
 	}
 	else
 		{
-		this->zona->desSeleccionarHerramienta(int1,int2);
+		this->zona->cliqueoEnOtroLado();
 		return true ;
 		}
 }
@@ -35,7 +35,7 @@ bool ToolBarEventController::clickDown(int int1, int int2) {
 bool ToolBarEventController::clickUp(int int1, int int2) {
 if (this->seleccionado)
 {
-this->zona->desSeleccionarHerramienta(int1, int2);
+this->zona->desCliquearHerramienta(int1, int2);
 this->seleccionado = false;
 return false;
 }
@@ -49,6 +49,11 @@ return (!this->zona->zonaFueSeleccionada(int1, int2));
 bool ToolBarEventController::rightClickUp(int int1, int int2) {
 	return (!this->zona->zonaFueSeleccionada(int1, int2));
 
+}
+
+bool ToolBarEventController::keyPressed(char key) {
+	this->zona->teclearHerramienta(key);
+	return true;
 }
 
 bool ToolBarEventController::mouseMotion(int int1, int int2) {

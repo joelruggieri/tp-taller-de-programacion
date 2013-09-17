@@ -9,8 +9,8 @@
 #define TOOLBAREVENTCONTROLLER_H_
 #include "mouseEventController/MouseEventController.h"
 #include "zonaToolBar/ZonaToolBar.h"
-
-class ToolBarEventController : public MouseEventController {
+#include "keyboardEventController/KeyBoardEventController.h"
+class ToolBarEventController : public MouseEventController, public KeyBoardEventController {
 public:
 	ZonaToolBar* zona ;
 	bool seleccionado ;
@@ -20,7 +20,7 @@ public:
 		//recibe el evento de soltar el mouse.
 		 bool clickUp(int, int);
 		 bool rightClickDown(int,int);
-
+		 bool keyPressed(char key);
 		 bool rightClickUp(int, int);
 		 bool mouseMotion(int, int);
 
