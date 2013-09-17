@@ -4,7 +4,7 @@
  *  Created on: 14/09/2013
  *      Author: ezequiel
  */
-#define TAM_BUFFER 36 //definir acorde a lo que puede entrar en el textbox
+#define TAM_BUFFER 39 //definir acorde a lo que puede entrar en el textbox
 #include "TextBox.h"
 #define BACKSPACE 8
 #define TAM_FUENTE 13
@@ -64,7 +64,9 @@ void TextBox::dibujarse(SDL_Renderer* render) {
 void TextBox::agregarCaracter(char caracter) {
 	this->texto += caracter ;
 	this->textoCurrent	+= caracter;
-	if (textoCurrent.size() >= TAM_BUFFER)
+	int ancho;
+	TTF_SizeText(this->fuente, this->texto.c_str(), &ancho, NULL);
+	if (ancho >= this->w - 10)
 	{
 		this->textoCurrent.erase(0, 1);	//elimino el primer caracter de esa cadena
 	}
@@ -74,22 +76,23 @@ void TextBox::agregarCaracter(char caracter) {
 }
 
 void TextBox::borrarCaracter() {
-	if ((this->texto.size() == 0)||(this->textoCurrent.size() == 0)) return;
+	if(this->texto.size()== 0 || this->textoCurrent.size()== 0)
+	return this->resetearTexto();
 	this->texto.erase((this->texto.size()-1), 1);
 	this->textoCurrent.erase((this->textoCurrent.size()-1), 1);
-
-	if (this->texto.size() > TAM_BUFFER)
+	int ancho;
+	TTF_SizeText(this->fuente, this->texto.c_str(), &ancho, NULL);
+	if (ancho >= this->w - 5)
 	{
-
-	  int posLetraAgregada = texto.size() - (TAM_BUFFER-1) ;
+		//cout << this->textoCurrent << " " << ancho << endl;
+		cout << "entro" << endl ;
+	  int posLetraAgregada = texto.size() - textoCurrent.size() - 1;
 		char letraAgregada ;
 		letraAgregada= this->texto.at(posLetraAgregada);	//creo qe ahi recibo la letra
 		 this->textoCurrent = letraAgregada + this->textoCurrent;	//forma hipercavernicola de concatenar
-
 	}
-	if (this->texto.size() == TAM_BUFFER ) this->textoCurrent = this->texto ;
-	cout << this->texto << endl;
-	cout << this->textoCurrent << endl;
+	else (textoCurrent = texto);
+
 }
 
 void TextBox::setearTexto() {
@@ -105,9 +108,11 @@ bool TextBox::fueSeleccionado(int x, int y) {
 }
 
 void TextBox::presionarMouse() {
-	if (!seleccionado) seleccionado = true ;
-	return this->resetearTexto();//TODO ver como ejecutar el textbox
-
+	if (!this->seleccionado)
+		{this->seleccionado = true;
+	 this->resetearTexto();
+		}
+	return;
 
 }
 
