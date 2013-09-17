@@ -46,6 +46,7 @@ void TextBox::dibujarse(SDL_Renderer* render) {
 	dstTxt.y = this->y ;
 	dstTxt.h = this->h - 4 ;
 //	dstTxt.w = this->textoCurrent.size() * 8 ;	//TODO
+//	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &(dstTxt.w), NULL);
 	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &(dstTxt.w), NULL);
 
 
@@ -65,10 +66,12 @@ void TextBox::agregarCaracter(char caracter) {
 	this->texto += caracter ;
 	this->textoCurrent	+= caracter;
 	int ancho;
-	TTF_SizeText(this->fuente, this->texto.c_str(), &ancho, NULL);
-	if (ancho >= this->w - 10)
+	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);
+	while (ancho >= this->w - 10)
 	{
+
 		this->textoCurrent.erase(0, 1);	//elimino el primer caracter de esa cadena
+		TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);
 	}
 	cout << this->texto << endl;
 	cout << this->textoCurrent << endl;
