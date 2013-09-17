@@ -4,9 +4,9 @@
  *  Created on: 14/09/2013
  *      Author: ezequiel
  */
-#define TAM_BUFFER 35 //definir acorde a lo que puede entrar en el textbox
+#define TAM_BUFFER 36 //definir acorde a lo que puede entrar en el textbox
 #include "TextBox.h"
-
+#define BACKSPACE 8
 #define TAM_FUENTE 13
 TextBox::TextBox(int x, int y, int w, int h, SDL_Texture* imagen) {
 this->seleccionado = false ;
@@ -45,7 +45,8 @@ void TextBox::dibujarse(SDL_Renderer* render) {
 	dstTxt.x = this->x + 5;
 	dstTxt.y = this->y ;
 	dstTxt.h = this->h - 4 ;
-	dstTxt.w = this->textoCurrent.size() * 8 ;
+//	dstTxt.w = this->textoCurrent.size() * 8 ;	//TODO
+	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &(dstTxt.w), NULL);
 
 
 
@@ -63,26 +64,32 @@ void TextBox::dibujarse(SDL_Renderer* render) {
 void TextBox::agregarCaracter(char caracter) {
 	this->texto += caracter ;
 	this->textoCurrent	+= caracter;
-	if (textoCurrent.size() == TAM_BUFFER)
+	if (textoCurrent.size() >= TAM_BUFFER)
 	{
 		this->textoCurrent.erase(0, 1);	//elimino el primer caracter de esa cadena
 	}
-
+	cout << this->texto << endl;
+	cout << this->textoCurrent << endl;
 
 }
 
 void TextBox::borrarCaracter() {
+	if ((this->texto.size() == 0)||(this->textoCurrent.size() == 0)) return;
 	this->texto.erase((this->texto.size()-1), 1);
 	this->textoCurrent.erase((this->textoCurrent.size()-1), 1);
-	if (this->texto.size() >= TAM_BUFFER)
+
+	if (this->texto.size() > TAM_BUFFER)
 	{
 
 	  int posLetraAgregada = texto.size() - (TAM_BUFFER-1) ;
 		char letraAgregada ;
 		letraAgregada= this->texto.at(posLetraAgregada);	//creo qe ahi recibo la letra
-		 this->textoCurrent = letraAgregada + this->textoCurrent;	//forma hipercavernicola de concatenar, TODO probar
+		 this->textoCurrent = letraAgregada + this->textoCurrent;	//forma hipercavernicola de concatenar
 
 	}
+	if (this->texto.size() == TAM_BUFFER ) this->textoCurrent = this->texto ;
+	cout << this->texto << endl;
+	cout << this->textoCurrent << endl;
 }
 
 void TextBox::setearTexto() {
@@ -118,8 +125,10 @@ void TextBox::resetearTexto() {
 
 void TextBox::ejecutarTecla(char key) {
 	if (this->seleccionado)
+	{	if (key == BACKSPACE) return this->borrarCaracter();
 		this->agregarCaracter(key);
-	//TODO comprobacion del caracter backspace , en ese caso seria BorrarCaracter();
+
+	}//TODO comprobacion del caracter backspace , en ese caso seria BorrarCaracter();
 	//TODO cuando el key es un "enter" tengo que deseleccionarlo
 }
 
