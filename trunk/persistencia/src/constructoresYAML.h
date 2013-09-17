@@ -17,12 +17,11 @@ struct convert<Nivel> {
 	static Node encode(const Nivel& objeto) {
 		Node node;
 		node.push_back(objeto.getNumero());
-		node.push_back(objeto.cantidadFiguras());
 		return node;
 	}
 
 	static bool decode(const Node& node, Nivel& objeto) {
-		if (!node.IsSequence() || node.size() != 2)
+		if (!node.IsSequence() || node.size() != 1)
 			return false;
 
 		objeto.setNumero(node[0].as<int>());

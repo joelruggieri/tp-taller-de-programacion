@@ -17,7 +17,7 @@ public:
 	virtual ~Nivel();
 	void agregar(Figura* figura);
 	int cantidadFiguras() const;
-	std::list<Figura*> getFiguras();
+	std::list<Figura*>& getFiguras();
 	int getNumero() const;
 	void setNumero(int numero);
 private:

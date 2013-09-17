@@ -10,18 +10,18 @@
 #include <list>
 
 std::list<Archivo*> AdministradorDeArchivos::archivos;
-std::list<int> AdministradorDeArchivos::niveles;
 
 
 AdministradorDeArchivos::~AdministradorDeArchivos() {
 	// TODO Auto-generated destructor stub
 }
 
-
+/* En este metodo debemos declarar todos los archivos de nivel que existen.
+ * Tambien se podira buscar todos los archivos ".yaml" de
+ * alguna carpeta y cargarlos aca. */
 void AdministradorDeArchivos::cargar(){
 	if (AdministradorDeArchivos::archivos.size() == 0) {
-		AdministradorDeArchivos::archivos.push_back(new Archivo("nivel01", LECTURA));
-		AdministradorDeArchivos::niveles.push_back(1);
+		AdministradorDeArchivos::archivos.push_back(new Archivo("nivel1.yaml", LECTURA));
 	}
 }
 
@@ -38,7 +38,7 @@ Archivo* AdministradorDeArchivos::obtenerArchivoNivel(int numero) {
 			return *it;
 		}
 	}
-	return NULL;
+	return AdministradorDeArchivos::crearArchivoNivel(numero);
 }
 
 AdministradorDeArchivos::AdministradorDeArchivos() {
@@ -51,4 +51,12 @@ void AdministradorDeArchivos::cerrarTodo() {
 		Archivo *a = *it;
 		delete a;
 	}
+}
+
+Archivo* AdministradorDeArchivos::crearArchivoNivel(int numero) {
+	std::stringstream streamAux;
+	streamAux << "nivel" << numero << ".yaml";
+	Archivo *nuevo = new Archivo(streamAux.str().c_str(), ESCRITURA);
+	AdministradorDeArchivos::archivos.push_back(nuevo);
+	return nuevo;
 }

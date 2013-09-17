@@ -15,6 +15,8 @@
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 
+#define OBJETOS "Objetos"
+
 NivelDAO::NivelDAO() {
 	// TODO Auto-generated constructor stub
 
@@ -26,8 +28,12 @@ NivelDAO::~NivelDAO() {
 
 Nivel* NivelDAO::leerNivel(int numero) {
 	Archivo *a = administrador.obtenerArchivoNivel(numero);
-	if (!a) throw "Error: no existe el nivel";
-	YAML::Node nodo = a->obtenerNodo("objetos");
+	if (!a) {
+		Logger log;
+		log.error("No se pudo cargar el nivel. El archivo no existe.");
+		throw "Error: no existe el nivel";
+	}
+	YAML::Node nodo = a->obtenerNodo(OBJETOS);
 	Nivel *n = new Nivel(numero);
 	std::list<Figura*> figuras = leerFiguras(nodo);
 	std::list<Figura*>::iterator it;
@@ -37,16 +43,18 @@ Nivel* NivelDAO::leerNivel(int numero) {
 	return n;
 }
 
-void NivelDAO::guardarNivel(Nivel &nivel) {
-	Archivo *a = administrador.obtenerArchivoNivel(nivel.getNumero());
+void NivelDAO::guardarNivel(Nivel *nivel) {
+	Archivo *a = administrador.obtenerArchivoNivel(nivel->getNumero());
 	YAML::Node nodo;
-	nodo.push_back(nivel);
+	nodo["Nivel"] = *nivel;
 	YAML::Node nodoFiguras;
 	std::list<Figura*>::iterator it;
 	ObjetoDAO oDao;
-//	for (it = nivel.getFiguras().begin(); it != nivel.getFiguras().end(); ++it) {
-//		oDao.guardar(*it, nodoFiguras);
-//	}
+	std::list<Figura*> &listaFiguras = nivel->getFiguras();
+	for (it = listaFiguras.begin(); it != listaFiguras.end(); ++it) {
+		oDao.guardarFigura(*it, &nodoFiguras);
+	}
+	nodo[OBJETOS] = nodoFiguras;
 	a->sobreescribir(nodo);
 }
 

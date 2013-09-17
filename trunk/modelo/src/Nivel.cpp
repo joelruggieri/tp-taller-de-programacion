@@ -23,7 +23,7 @@ int Nivel::cantidadFiguras() const{
 	return objetos.size();
 }
 
-std::list<Figura*> Nivel::getFiguras() {
+std::list<Figura*> &Nivel::getFiguras() {
 	return objetos;
 }
 

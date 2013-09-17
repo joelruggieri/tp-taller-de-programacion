@@ -11,12 +11,14 @@
 #include "src/Nivel.h"
 #include "AdministradorDeArchivos.h"
 
+/* Esta clase */
+
 class NivelDAO {
 public:
 	NivelDAO();
 	virtual ~NivelDAO();
 	Nivel* leerNivel(int numero);
-	void guardarNivel(Nivel &nivel);
+	void guardarNivel(Nivel *nivel);
 private:
 	AdministradorDeArchivos administrador;
 	std::list<Figura*> leerFiguras(YAML::Node objetos);
