@@ -19,8 +19,8 @@ public:
 	static Archivo* obtenerArchivoNivel(int numero);
 	static std::list<Archivo*> archivos;
 	static void cerrarTodo();
+	static Archivo* crearArchivoNivel(int numero);
 private:
-	static std::list<int> niveles;
 	static void cargar();
 };
 

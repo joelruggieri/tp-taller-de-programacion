@@ -16,16 +16,20 @@
 #include "src/figura/Figura.h"
 #include "AdministradorDeArchivos.h"
 
-class ObjetoDAO {
+class ObjetoDAO: public VisitorFigura {
 public:
 	ObjetoDAO();
 	virtual ~ObjetoDAO();
-	YAML::Node guardar(Circulo *objeto, YAML::Node nodoRaiz);
-	YAML::Node guardar(Cuadrado *objeto, YAML::Node nodoRaiz);
-	YAML::Node guardar(Triangulo *objeto, YAML::Node nodoRaiz);
-	std::list<Figura*> obtenerTodos();
+	void guardarFigura(Figura *objeto, YAML::Node *nodoRaiz);
+	void visit(Cuadrado* c);
+	void visit(Triangulo* t);
+	void visit(Circulo* c);
 private:
+	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
+	void guardar(Cuadrado *objeto, YAML::Node *nodoRaiz);
+	void guardar(Triangulo *objeto, YAML::Node *nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
+	YAML::Node *nodo;
 };
 
 #endif /* OBJETODAO_H_ */
