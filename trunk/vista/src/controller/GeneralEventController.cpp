@@ -7,6 +7,7 @@
 
 #include "GeneralEventController.h"
 #include "mouseEventController/MouseEventPriorComparator.h"
+#include "../controller/UserEventCreator.h"
 #include "SDL2/SDL.h"
 #include <iostream>
 GeneralEventController::GeneralEventController() {
@@ -99,6 +100,10 @@ void GeneralEventController::keyDown(char key) {
 	}
 }
 
+void GeneralEventController::addCanvasController(CanvasController* canvasController){
+	this->canvasController = canvasController;
+}
+
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
@@ -146,6 +151,16 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 //				this->keyDown('b');
 //				break;
 //		}
+		break;
+	case SDL_USEREVENT:
+		switch (evento.user.code) {
+			case USREVENT_CHANGEBACKGROUND:
+				this->canvasController->atenderEvento(evento);
+				break;
+			case USREVENT_SAVEGAME:
+				cout << "Evento de salvar partida capturado." <<endl;
+				break;
+		}
 		break;
 	case SDL_WINDOWEVENT: {
 		switch (evento.window.event) {

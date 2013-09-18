@@ -15,7 +15,6 @@ using namespace std;
 #include "../viewFactory/ViewTrianguloFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
-#include "../zonaDragAndDrop/ZonaJuego.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "../RutasArchivos.h"
 #include "../Resizer.h"
@@ -72,7 +71,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	this->zonaJuego->agregarFigura(view);
 }
 
-Zona* InicializadorJuego::crearZonaJuego() {
+ZonaJuego* InicializadorJuego::crearZonaJuego() {
 	if(zonaJuego != NULL){
 		return zonaJuego;
 	}
@@ -101,7 +100,7 @@ Zona* InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewCirculoFactory(renderer, dropController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
 			herrTextura);
-	Zona* zonaTablero = new ZonaTablero(new Mapa(),50,50, canvasTexture);
+	ZonaTablero* zonaTablero = new ZonaTablero(new Mapa(),50,50, canvasTexture);
 	this->zonaJuego=  new ZonaJuego(zonaCreacion, zonaTablero,
 			new Cuadrado(75, 50, 150, 100));
 
@@ -113,3 +112,8 @@ Zona* InicializadorJuego::crearZonaJuego() {
 
 	return this->zonaJuego;
 }
+
+Canvas* InicializadorJuego::getCanvas(){
+	return this->zonaJuego->getCanvas();
+}
+

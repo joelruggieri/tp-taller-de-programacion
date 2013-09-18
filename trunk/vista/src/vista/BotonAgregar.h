@@ -9,7 +9,7 @@
 #define BOTONAGREGAR_H_
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
-#include "Canvas.h"
+#include "TextBox.h"
 #include <iostream>
 #include "Dibujable.h"
 #include "Resizeable.h"
@@ -49,8 +49,8 @@ public:
 
 	}
 	void presionarMouse();
+	TextBox* campo;
 	//virtual ~BotonAgregar();
-	int ModificarFondo(Canvas* fondo,char* rutaNueva);
 
 };
 

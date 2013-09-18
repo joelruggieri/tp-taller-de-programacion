@@ -34,6 +34,13 @@ this->textureTexto = NULL ;
 TextBox::~TextBox() {	// TODO Auto-generated destructor stub
 }
 
+//Devuelve una copia del string contenido en el textbox
+string* TextBox::getTexto(){
+	string* aDevolver = new string();
+	aDevolver->append(this->texto);
+	return aDevolver;
+}
+
 void TextBox::dibujarse(SDL_Renderer* render) {
 	SDL_Rect dstFondo;
 	dstFondo.x = this->x ;

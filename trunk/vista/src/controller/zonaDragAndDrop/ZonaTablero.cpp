@@ -22,6 +22,10 @@ ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFon
 	this->canvas->setBorder(true);
 }
 
+Canvas* ZonaTablero::getCanvas(){
+	return this->canvas;
+}
+
 bool ZonaTablero::agregarTemplate(FiguraView* view) {
 	Logger log;
 	std::string mensaje_info = "recibe figura tablero";
