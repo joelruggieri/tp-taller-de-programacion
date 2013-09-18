@@ -7,16 +7,18 @@
  */
 
 #include "BotonAgregar.h"
+#include "../controller/UserEventCreator.h"
+#include "SDL2/SDL.h"
 
 namespace std {
 
 void BotonAgregar::presionarMouse() {
-	//TODO ejecutar del boton agregar
 	if (this->seleccionado == false)
 	{
 	this->seleccionado = true;
 	this->cambiarASeleccion();
-	cout << "se ha ejecutado el boton modificar fondo" << endl;
+	SDL_Event evento = crearEvento(USREVENT_CHANGEBACKGROUND, this->campo->getTexto(), NULL);
+	SDL_PushEvent(&evento);
 	return;
 	}
 
@@ -59,13 +61,6 @@ Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* text
 //}
 
 
-
-int BotonAgregar::ModificarFondo(Canvas* fondo, char* rutaNueva)
-{
-fondo->ModificarFondo(rutaNueva);
-return 0;
-}
-
 //void Boton::Resizear(int x , int y)
 //{
 ////	this->x = this->x + x;
@@ -74,24 +69,26 @@ return 0;
 
 
 void std::BotonSalir::presionarMouse() {
-	//TODO ejecutar del boton salir
 	if (this->seleccionado == false)
 	{
 	this->seleccionado = true;
 	this->cambiarASeleccion();
-	cout << "se ha ejecutado el boton salir" << endl;
+	SDL_Event evento = crearEvento(USREVENT_QUIT, NULL, NULL);
+	SDL_PushEvent(&evento);
+	//cout << "se ha ejecutado el boton salir" << endl;
 	return;
 	}
 
 }
 
 void std::BotonGuardar::presionarMouse() {
-	//TODO ejecutar del boton guardar
 	if (this->seleccionado == false)
 	{
 	this->seleccionado = true;
 	this->cambiarASeleccion();
-	cout << "se ha ejecutado el boton guardar" << endl;
+	SDL_Event evento = crearEvento(USREVENT_SAVEGAME, NULL, NULL);
+	SDL_PushEvent(&evento);
+	//cout << "se ha ejecutado el boton guardar" << endl;
 	return;
 	}
 

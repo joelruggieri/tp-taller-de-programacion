@@ -26,6 +26,7 @@ public:
 	void dibujarse(SDL_Renderer *);
 	bool removerFigura(FiguraView*);
 	bool click(float x, float y);
+	Canvas* getCanvas();
 };
 
 #endif /* ZONATABLERO_H_ */

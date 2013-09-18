@@ -9,6 +9,8 @@
 #define INICIALIZADORJUEGO_H_
 #include "src/figura/VisitorFigura.h"
 #include "../zonaDragAndDrop/ZonaDragAndDrop.h"
+#include "../zonaDragAndDrop/ZonaJuego.h"
+#include "../../vista/Canvas.h"
 #include "../viewFactory/ViewFiguraFactory.h"
 #include "PersistenciaManager.h"
 #include "../DropController.h"
@@ -22,7 +24,7 @@ using namespace std;
 
 class InicializadorJuego: public VisitorFigura {
 private:
-	Zona* zonaJuego;
+	ZonaJuego* zonaJuego;
 	map<string, ViewFiguraFactory *> figuraFactory;
 	SDL_Renderer * renderer;
 	DropController * dropController;
@@ -35,7 +37,8 @@ public:
 	void visit(Cuadrado*);
 	void visit(Triangulo*);
 	void visit(Circulo*);
-	Zona * crearZonaJuego();
+	ZonaJuego * crearZonaJuego();
+	Canvas* getCanvas();
 };
 
 #endif /* INICIALIZADORJUEGO_H_ */

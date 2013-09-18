@@ -30,6 +30,7 @@ public:
 	void resetearTexto();
 	void ejecutarTecla(char key);
 	void clickeoFueraDeHerramienta();
+	string* getTexto();
 private:
 	int x,y,w,h;
 	SDL_Texture* imagen ;

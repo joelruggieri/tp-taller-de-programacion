@@ -11,7 +11,7 @@
 using namespace std;
 
 
-ZonaJuego::ZonaJuego(Zona* zonaCreacion, Zona * zonaTablero, Cuadrado * dimensiones) : Zona(dimensiones) {
+ZonaJuego::ZonaJuego(Zona* zonaCreacion, ZonaTablero * zonaTablero, Cuadrado * dimensiones) : Zona(dimensiones) {
 	this->zonaTablero = zonaTablero;
 	this->zonaCreacion = zonaCreacion;
 }
@@ -32,6 +32,10 @@ FiguraView * ZonaJuego::getFiguraTemplate(float x, float y) {
 		result = this->zonaTablero->getVista(x, y);
 	}
 	return result;
+}
+
+Canvas* ZonaJuego::getCanvas(){
+	return this->zonaTablero->getCanvas();
 }
 
 ZonaJuego::~ZonaJuego() {

@@ -15,6 +15,7 @@
 #include "inicializador/InicializadorJuego.h"
 #include "ToolBarController.h"
 #include "ToolBarEventController.h"
+#include "CanvasController.h"
 
 MainController::MainController() {
 	this->dropController = new JuegoEventsController();
@@ -49,11 +50,13 @@ int MainController::run() {
 
 	InicializadorJuego inicializador(render,dropController);
 
-	Zona * zona =  inicializador.crearZonaJuego();
+	ZonaJuego * zona =  inicializador.crearZonaJuego();
 	ZonaToolBar* toolBar = new ZonaToolBar(0, 500 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));
 	ToolBarEventController* tbEventController = new ToolBarEventController(toolBar);
 //	ToolBarController* toolbarController = new ToolBarController(toolBar, tbEventController);
+	CanvasController* canvasController = new CanvasController(zona->getCanvas());
 	GeneralEventController eventController;
+	eventController.addCanvasController(canvasController);
 	eventController.addMouseController(this->dropController,1,1);
 	eventController.addMouseController(tbEventController, 2, 1);
 	eventController.addKeyboardController(tbEventController);
