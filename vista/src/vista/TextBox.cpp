@@ -7,10 +7,10 @@
 #define TAM_BUFFER 39 //definir acorde a lo que puede entrar en el textbox
 #include "TextBox.h"
 #define BACKSPACE 8
-#define TAM_FUENTE 13
+#define TAM_FUENTE 10
 TextBox::TextBox(int x, int y, int w, int h, SDL_Texture* imagen) {
 this->seleccionado = false ;
-
+this->shiftIn = false;
 TTF_Init();
 this->x = x;
 this->y = y ;
@@ -92,16 +92,18 @@ void TextBox::borrarCaracter() {
 	this->textoCurrent.erase((this->textoCurrent.size()-1), 1);
 	int ancho;
 	TTF_SizeText(this->fuente, this->texto.c_str(), &ancho, NULL);
-	if (ancho >= this->w - 5)
+	if (ancho >= this->w)
 	{
 		//cout << this->textoCurrent << " " << ancho << endl;
 		cout << "entro" << endl ;
 	  int posLetraAgregada = texto.size() - textoCurrent.size() - 1;
 		char letraAgregada ;
 		letraAgregada= this->texto.at(posLetraAgregada);	//creo qe ahi recibo la letra
-		 this->textoCurrent = letraAgregada + this->textoCurrent;	//forma hipercavernicola de concatenar
+		 this->textoCurrent = letraAgregada + this->textoCurrent;
+//		 TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);//forma hipercavernicola de concatenar
 	}
-	else (textoCurrent = texto);
+	else
+		textoCurrent = texto;
 
 }
 
@@ -139,11 +141,40 @@ void TextBox::resetearTexto() {
 }
 
 void TextBox::ejecutarTecla(char key) {
-	if (this->seleccionado)
-	{	if (key == BACKSPACE) return this->borrarCaracter();
-		this->agregarCaracter(key);
+	if (this->seleccionado){
+		if (shiftIn)
+		{
+			//logica de signos
+			switch (key)
+			{
+			case 52:
+				return this->agregarCaracter('$');
+				break;
+			case 53:
+				return this->agregarCaracter('%');
+				break;
+			case 54:
+				return this->agregarCaracter('&');
+				break;
+			case 55:
+				return this->agregarCaracter('/');
+			break;
+			}
+		}
+		if (key == BACKSPACE) return this->borrarCaracter();
+		if (key >= 65 && key <= 90) {key = key +32;
+		return this->agregarCaracter(key);}
+		if (key == 160)
+			{this->shiftIn = true;
+				return;}
+		if (key == 12)
+			{this->shiftIn = false;
+				return;}
+		return this->agregarCaracter(key);
 
-	}//TODO comprobacion del caracter backspace , en ese caso seria BorrarCaracter();
+
+
+	}
 	//TODO cuando el key es un "enter" tengo que deseleccionarlo
 }
 
