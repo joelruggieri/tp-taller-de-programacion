@@ -147,6 +147,15 @@ void TextBox::ejecutarTecla(char key) {
 			//logica de signos
 			switch (key)
 			{
+			case 51:
+				return this->agregarCaracter('#');
+				break;
+			case 50:
+				return this->agregarCaracter('@');
+				break;
+			case 49:
+				return this->agregarCaracter('!');
+				break;
 			case 52:
 				return this->agregarCaracter('$');
 				break;
@@ -158,18 +167,30 @@ void TextBox::ejecutarTecla(char key) {
 				break;
 			case 55:
 				return this->agregarCaracter('/');
-			break;
+				break;
+			case 56:
+				return this->agregarCaracter('(');
+				break;
+			case 57:
+				return this->agregarCaracter(')');
+				break;
 			}
 		}
 		if (key == BACKSPACE) return this->borrarCaracter();
 		if (key >= 65 && key <= 90) {key = key +32;
 		return this->agregarCaracter(key);}
-		if (key == 160)
-			{this->shiftIn = true;
-				return;}
-		if (key == 12)
-			{this->shiftIn = false;
-				return;}
+		if (key == 15)
+		{
+			if (!this->shiftIn)
+			{
+				this->shiftIn = true ;
+
+			}
+			else {
+				this->shiftIn = false;
+			}
+			return ;
+		}
 		return this->agregarCaracter(key);
 
 
