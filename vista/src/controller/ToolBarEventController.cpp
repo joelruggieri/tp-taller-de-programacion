@@ -56,6 +56,11 @@ bool ToolBarEventController::keyPressed(char key) {
 	return true;
 }
 
+bool ToolBarEventController::keyReleased() {
+	this->zona->desTeclearHerramienta();
+	return true;
+}
+
 bool ToolBarEventController::mouseMotion(int int1, int int2) {
 	return (!this->zona->zonaFueSeleccionada(int1, int2));
 }

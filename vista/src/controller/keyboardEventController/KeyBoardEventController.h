@@ -13,6 +13,7 @@ public:
 	KeyBoardEventController();
 	virtual ~KeyBoardEventController();
 	virtual bool keyPressed(char key) = 0;
+	virtual bool keyReleased() = 0;
 };
 
 #endif /* KEYBOARDEVENTCONTROLLER_H_ */

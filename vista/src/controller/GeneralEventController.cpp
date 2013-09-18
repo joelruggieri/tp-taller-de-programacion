@@ -115,6 +115,16 @@ bool GeneralEventController::verificarCaracteresEspeciales(SDL_Scancode key) {
 	return false;
 }
 
+void GeneralEventController::keyUp() {
+	list<KeyBoardEventController*>::iterator it;
+	bool continuarEvento = true ;
+	for (it = this->keyControllers.begin(); it != this->keyControllers.end() && continuarEvento; ++it)
+	{
+		continuarEvento = (*it)->keyReleased();
+	}
+
+}
+
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
@@ -151,17 +161,10 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	case SDL_KEYDOWN:
 		if (!this->verificarCaracteresEspeciales(evento.key.keysym.scancode))
 		this->keyDown((char)(evento.key.keysym.sym));
-//		switch(evento.key.keysym.sym)
-//		{
-//		case(SDLK_a):
-//				std::cout << "se presiono la tecla a" << std::endl ;
-//				this->keyDown('a');
-//				break;
-//		case(SDLK_b):
-//				std::cout << "se presiono la tecla b" << std::endl ;
-//				this->keyDown('b');
-//				break;
-//		}
+		break;
+	case SDL_KEYUP:
+		if (evento.key.keysym.scancode == SDL_SCANCODE_LSHIFT)
+		this->keyUp();
 		break;
 	case SDL_USEREVENT:
 		switch (evento.user.code) {
