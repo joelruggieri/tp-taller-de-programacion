@@ -10,6 +10,7 @@
 #include "../controller/UserEventCreator.h"
 #include "SDL2/SDL.h"
 #include <iostream>
+#define ASCII_SHIFT 15
 GeneralEventController::GeneralEventController() {
 	this->botonAnterior= 0;
 }
@@ -104,6 +105,16 @@ void GeneralEventController::addCanvasController(CanvasController* canvasControl
 	this->canvasController = canvasController;
 }
 
+bool GeneralEventController::verificarCaracteresEspeciales(SDL_Scancode key) {
+	if (key == SDL_SCANCODE_LSHIFT)
+	{
+		this->keyDown((char)ASCII_SHIFT);
+		return true;
+	}
+
+	return false;
+}
+
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
@@ -138,7 +149,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 		this->mouseMotion(nuevaPosX, nuevaPosY);
 		break;
 	case SDL_KEYDOWN:
-
+		if (!this->verificarCaracteresEspeciales(evento.key.keysym.scancode))
 		this->keyDown((char)(evento.key.keysym.sym));
 //		switch(evento.key.keysym.sym)
 //		{
