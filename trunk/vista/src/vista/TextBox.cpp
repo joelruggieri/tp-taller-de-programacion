@@ -175,10 +175,11 @@ void TextBox::ejecutarTecla(char key) {
 				return this->agregarCaracter(')');
 				break;
 			}
+			if (key >= 97 && key <= 122) {key = key - 32;
+			return this->agregarCaracter(key);}
 		}
 		if (key == BACKSPACE) return this->borrarCaracter();
-		if (key >= 65 && key <= 90) {key = key +32;
-		return this->agregarCaracter(key);}
+
 		if (key == 15)
 		{
 			if (!this->shiftIn)

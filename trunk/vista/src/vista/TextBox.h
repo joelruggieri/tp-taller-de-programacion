@@ -45,6 +45,7 @@ private:
 	bool shiftIn;
 
 
+
 };
 
 #endif /* TEXTBOX_H_ */
