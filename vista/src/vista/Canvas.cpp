@@ -42,9 +42,8 @@ const list<Dibujable*>& Canvas::getDibujables() const {
 
  }*/
 
-int Canvas::ModificarFondo(char* rutaNueva) {
-//	this->imagen = cargarTexture(rutaNueva,this->render);
-	return 0;
+void Canvas::ModificarFondo(SDL_Texture* nuevaImagen) {
+	this->imagenCanvas = nuevaImagen;
 }
 
 //robo 3 pixels.

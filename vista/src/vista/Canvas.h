@@ -36,7 +36,7 @@ public:
 	Canvas(int x, int y, int h, int w, SDL_Texture* textura);
 	void dibujarse(SDL_Renderer *);
 	virtual ~Canvas();
-	int ModificarFondo(char* rutaNueva);
+	void ModificarFondo(SDL_Texture* nuevaImagen);
 	void agregar(Dibujable *);
 	void remover(Dibujable *);
 	//void Resizear(int x, int y);

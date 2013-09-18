@@ -6,6 +6,7 @@
  */
 
 #include "CanvasController.h"
+#include "../vista/CargadorDeTextures.h"
 
 using namespace std;
 
@@ -18,6 +19,9 @@ CanvasController::~CanvasController() {
 }
 
 void CanvasController::atenderEvento(SDL_Event evento){
-	cout << "Cambiar aca el fondo del canvas" << endl;
+	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
+	SDL_Texture* nuevaTextura = texturas->cargarTexture(*(static_cast<string*>(evento.user.data1)));
+	if (nuevaTextura == NULL) cout<<"Ruta invalida." <<endl;
+	else this->canvas->ModificarFondo(nuevaTextura);
 }
 
