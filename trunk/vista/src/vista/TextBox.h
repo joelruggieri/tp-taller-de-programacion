@@ -30,6 +30,7 @@ public:
 	void resetearTexto();
 	void ejecutarTecla(char key);
 	void clickeoFueraDeHerramienta();
+
 	string* getTexto();
 private:
 	int x,y,w,h;
@@ -41,6 +42,7 @@ private:
 	SDL_Surface *surfaceTexto;
 	SDL_Texture * textureTexto;
 	bool seleccionado ;
+	bool shiftIn;
 
 
 };
