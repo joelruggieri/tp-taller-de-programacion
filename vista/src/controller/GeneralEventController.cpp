@@ -105,13 +105,13 @@ void GeneralEventController::addCanvasController(CanvasController* canvasControl
 	this->canvasController = canvasController;
 }
 
-bool GeneralEventController::verificarCaracteresEspeciales(SDL_Scancode key) {
-	if (key == SDL_SCANCODE_LSHIFT)
+bool GeneralEventController::verificarCaracteresEspeciales(SDL_KeyboardEvent key) {
+	if (key.keysym.scancode == SDL_SCANCODE_LSHIFT)
 	{
 		this->keyDown((char)ASCII_SHIFT);
 		return true;
 	}
-
+//	if (key.keysym.sym >=)
 	return false;
 }
 
@@ -159,7 +159,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 		this->mouseMotion(nuevaPosX, nuevaPosY);
 		break;
 	case SDL_KEYDOWN:
-		if (!this->verificarCaracteresEspeciales(evento.key.keysym.scancode))
+		if (!this->verificarCaracteresEspeciales(evento.key))
 		this->keyDown((char)(evento.key.keysym.sym));
 		break;
 	case SDL_KEYUP:

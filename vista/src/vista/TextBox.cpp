@@ -148,12 +148,15 @@ void TextBox::resetearTexto() {
 }
 
 void TextBox::ejecutarTecla(char key) {
+	if ((key >= 32 && key <=64) || (key >= 97 && key <= 125)  || (key == SHIFT) || (key == BACKSPACE))
+{
 	if (this->seleccionado){
 		if (shiftIn)
 		{
 			//logica de signos
 			switch (key)
 			{
+
 			case 51:
 				return this->agregarCaracter('#');
 				break;
@@ -181,10 +184,25 @@ void TextBox::ejecutarTecla(char key) {
 			case 57:
 				return this->agregarCaracter(')');
 				break;
+			case 46:
+				return this->agregarCaracter(':');
+				break;
+			case 44:
+				return this->agregarCaracter(';');
+				break;
+			case 45:
+				return this->agregarCaracter('_');
+				break;
+			case 60:
+				return this->agregarCaracter('>');
+				break;
 			}
+
+
 			if (key >= 97 && key <= 122) {key = key - 32;
 			return this->agregarCaracter(key);}
 		}
+
 		if (key == BACKSPACE) return this->borrarCaracter();
 
 		if (key == SHIFT)
@@ -204,8 +222,10 @@ void TextBox::ejecutarTecla(char key) {
 
 
 	}
+	}
+	}
 	//TODO cuando el key es un "enter" tengo que deseleccionarlo
-}
+
 
 void TextBox::clickeoFueraDeHerramienta() {
 	this->seleccionado = false;

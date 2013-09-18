@@ -30,7 +30,7 @@ private:
 	void rightClickDown(int x, int y);
 	void keyDown(char key);
 	int botonAnterior;
-	bool verificarCaracteresEspeciales(SDL_Scancode key);
+	bool verificarCaracteresEspeciales(SDL_KeyboardEvent key);
 	void keyUp ();
 public:
 	GeneralEventController();
