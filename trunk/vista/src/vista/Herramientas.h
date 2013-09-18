@@ -16,6 +16,7 @@ public:
 	virtual void desPresionarMouse() = 0;
 	virtual void ejecutarTecla(char key) = 0;
 	virtual void clickeoFueraDeHerramienta() = 0;
+	virtual void desEjecutarTecla() = 0 ;
 
 };
 //TODO refactorizacion: de herramientas que hereden ckickeables y tecleables

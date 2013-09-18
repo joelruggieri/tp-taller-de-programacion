@@ -31,6 +31,7 @@ private:
 	void keyDown(char key);
 	int botonAnterior;
 	bool verificarCaracteresEspeciales(SDL_Scancode key);
+	void keyUp ();
 public:
 	GeneralEventController();
 	virtual ~GeneralEventController();

@@ -117,3 +117,14 @@ bool ZonaToolBar::zonaFueSeleccionada(int x, int y) {
 	}
 	 return result;
 }
+
+void ZonaToolBar::desTeclearHerramienta() {
+	list<Herramientas* >::iterator iter;
+	 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
+	{
+		 	(*iter)->desEjecutarTecla();
+
+
+	}
+return ;
+}

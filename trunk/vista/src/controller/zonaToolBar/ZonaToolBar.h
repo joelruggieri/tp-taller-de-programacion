@@ -35,6 +35,7 @@ public:
 	void desCliquearHerramienta(int x, int y);
 	void teclearHerramienta(char key);
 	void cliqueoEnOtroLado();	//feo
+	void desTeclearHerramienta();
 //	TextBox* getTextBox();
 private:
 	SDL_Texture* fondo ;

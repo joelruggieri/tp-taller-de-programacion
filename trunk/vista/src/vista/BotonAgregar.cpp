@@ -154,3 +154,6 @@ void Boton::ejecutarTecla(char key) {
 
 void Boton::clickeoFueraDeHerramienta() {
 }
+
+void Boton::desEjecutarTecla() {
+}

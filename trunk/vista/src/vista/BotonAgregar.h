@@ -30,6 +30,7 @@ public:
 	bool fueSeleccionado(int x, int y);
 	void desPresionarMouse();
 	void clickeoFueraDeHerramienta();
+	void desEjecutarTecla() ;
 	int x,y,h,w;
 	SDL_Texture* textura;
 	SDL_Texture* texturaCurrent;

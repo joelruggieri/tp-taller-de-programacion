@@ -23,6 +23,7 @@ public:
 		 bool keyPressed(char key);
 		 bool rightClickUp(int, int);
 		 bool mouseMotion(int, int);
+		 bool keyReleased();
 
 };
 

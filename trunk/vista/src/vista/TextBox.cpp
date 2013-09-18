@@ -8,6 +8,9 @@
 #include "TextBox.h"
 #define BACKSPACE 8
 #define TAM_FUENTE 10
+#define SHIFT 15
+
+
 TextBox::TextBox(int x, int y, int w, int h, SDL_Texture* imagen) {
 this->seleccionado = false ;
 this->shiftIn = false;
@@ -32,6 +35,10 @@ this->textureTexto = NULL ;
 }
 
 TextBox::~TextBox() {	// TODO Auto-generated destructor stub
+}
+
+void TextBox::desEjecutarTecla() {
+	this->shiftIn = false ;
 }
 
 //Devuelve una copia del string contenido en el textbox
@@ -180,7 +187,7 @@ void TextBox::ejecutarTecla(char key) {
 		}
 		if (key == BACKSPACE) return this->borrarCaracter();
 
-		if (key == 15)
+		if (key == SHIFT)
 		{
 			if (!this->shiftIn)
 			{

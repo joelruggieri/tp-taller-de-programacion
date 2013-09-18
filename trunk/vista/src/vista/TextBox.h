@@ -30,6 +30,7 @@ public:
 	void resetearTexto();
 	void ejecutarTecla(char key);
 	void clickeoFueraDeHerramienta();
+	void desEjecutarTecla() ;
 
 	string* getTexto();
 private:
