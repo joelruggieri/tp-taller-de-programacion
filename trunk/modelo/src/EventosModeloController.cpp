@@ -5,7 +5,7 @@
  *      Author: jonathan
  */
 
-#include "EventosModeloController.h"
+#include "ModeloController.h"
 
 ModeloController::ModeloController() {
 	mapa = new Mapa();
@@ -24,4 +24,8 @@ bool ModeloController::crearFigura(Figura* figura) {
 bool ModeloController::removerFigura(Figura* figura) {
 	this->mapa->removeFigura(figura);
 	return true;
+}
+
+list<Figura*>& ModeloController::getFiguras() {
+	return mapa->getFiguras();
 }

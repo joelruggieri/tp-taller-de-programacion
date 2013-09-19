@@ -61,7 +61,8 @@ int MainController::run() {
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance(render);
 
 	GeneralEventController eventController;
-	InicializadorJuego inicializador(render,&eventController);
+	ModeloController modeloController;
+	InicializadorJuego inicializador(render,&eventController,&modeloController);
 
 	JuegoEventsController * juegoController =  inicializador.crearZonaJuego();
 	ZonaToolBar* toolBar = new ZonaToolBar(0, 500 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));

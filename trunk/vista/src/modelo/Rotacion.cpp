@@ -8,6 +8,8 @@
 #include "Rotacion.h"
 #include <cmath>
 #include <iostream>
+#include "src/Logger.h"
+#include <string>
 using namespace std;
 
 Rotacion::Rotacion(int x, int y, int x0, int y0, float anguloI) {
@@ -27,6 +29,23 @@ Rotacion::Rotacion(int x, int y, int x0, int y0, float anguloI) {
 
 	this->angulo = 0;
 	this->rotaciones = 0;
+}
+
+void Rotacion::loggear(double xN, double yN) {
+	Logger log;
+	string msj = "Vector Inicial ";
+	log.concatenar(msj, this->x0);
+	msj = msj + ":";
+	log.concatenar(msj, this->y0);
+	log.debug(msj);
+	msj = "Vector final ";
+	log.concatenar(msj, xN);
+	msj = msj + ":";
+	log.concatenar(msj, yN);
+	log.debug(msj);
+	msj = "Rotacion ";
+	log.concatenar(msj, angulo);
+	log.debug(msj);
 }
 
 double Rotacion::rotar(double x, double y) {
@@ -49,9 +68,7 @@ double Rotacion::rotar(double x, double y) {
 //	direccion = direccion;
 	direccion = direccion >0 ? 1 : -1;
 	this->angulo = direccion * acos(this->x0 * xN + this->y0 * yN) * 180 / 3.14;
-	cout << "Vector inicial " << this->x0 << ":" << this->y0 << endl;
-	cout << "Vector final " << xN << ":" << yN << endl;
-	cout << "rotacion " << angulo<< endl;
+	loggear(xN, yN);
 	this->x0 = xN;
 	this->y0 = yN;
 	if(isnan(angulo)){

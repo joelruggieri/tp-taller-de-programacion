@@ -8,15 +8,15 @@
 #ifndef PERSISTENCIAEVENTCONTROLLER_H_
 #define PERSISTENCIAEVENTCONTROLLER_H_
 #include "PersistenciaManager.h"
-#include "src/figura/Mapa.h"
+#include "src/ModeloController.h"
 
 
 class PersistenciaEventController {
 private:
 	PersistenciaManager * manager;
-	Mapa * mapa;
+	ModeloController * modeloController;
 public:
-	PersistenciaEventController(Mapa * m, PersistenciaManager *);
+	PersistenciaEventController(ModeloController * m, PersistenciaManager *);
 	void persistir();
 	virtual ~PersistenciaEventController();
 };

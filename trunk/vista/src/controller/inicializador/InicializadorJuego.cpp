@@ -18,13 +18,14 @@ using namespace std;
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "../RutasArchivos.h"
 #include "../Resizer.h"
+#include "../PersistenciaEventController.h"
 const string KEY_CUADRADO = "CUADRADO";
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
 
-InicializadorJuego::InicializadorJuego(SDL_Renderer * renderer, GeneralEventController * controllerEventos) {
+InicializadorJuego::InicializadorJuego(SDL_Renderer * renderer, GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->zonaJuego = NULL;
-	this->juegoController = new JuegoEventsController();
+	this->juegoController = new JuegoEventsController(modeloController);
 	ViewFiguraFactory * factory = new ViewCuadradoFactory(renderer, juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CUADRADO,factory));
 
@@ -36,6 +37,7 @@ InicializadorJuego::InicializadorJuego(SDL_Renderer * renderer, GeneralEventCont
 	this->renderer = renderer;
 	this->eventsController = controllerEventos;
 	this->bbdd = new PersistenciaManager();
+	this->modeloController = modeloController;
 }
 
 InicializadorJuego::~InicializadorJuego() {
@@ -106,7 +108,9 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	}
 
 	CanvasController* canvasController = new CanvasController(zonaTablero->getCanvas());
-	this->eventsController->addCanvasController(canvasController);
+	PersistenciaEventController * persistenciaController= new PersistenciaEventController (this->modeloController, this->bbdd);
+	this->eventsController->setCanvasController(canvasController);
+	this->eventsController->setGuardarController(persistenciaController);
 	this->eventsController->addMouseController(this->juegoController,1,1);
 	this->juegoController->setZona(this->zonaJuego);
 

@@ -27,7 +27,7 @@
 
 using namespace std;
 
-JuegoEventsController::JuegoEventsController() {
+JuegoEventsController::JuegoEventsController(ModeloController *modeloController) {
 	this->figurasFactory = new FiguraFactory();
 	this->figuraDrag = NULL;
 	this->zona = NULL;
@@ -36,7 +36,7 @@ JuegoEventsController::JuegoEventsController() {
 	this->posStartDragX = 0;
 	this->posStartDragY = 0;
 	//TODO ver donde se crea este
-	this->modeloController = new ModeloController();
+	this->modeloController = modeloController;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -51,12 +51,22 @@ JuegoEventsController::~JuegoEventsController() {
 
 void JuegoEventsController::dropear(FiguraView* view, Figura* figura) {
 	Logger log;
-	log.info("dropea figura controller");
-	//cout << "dropea figura controller" << endl;
 	view->setModelo(figura);
-	if (this->zona != NULL && !zona->agregarFigura(view)) {
-		delete figura;
-		delete view;
+	log.info("Finaliza Drag");
+	if (this->zona != NULL){
+		bool exitoVista = zona->agregarFigura(view);
+		bool exitoModelo =this->modeloController->crearFigura(figura);
+		if(!exitoVista || !exitoModelo){
+			if(exitoVista){
+				zona->removerFigura(view);
+			}
+			if(exitoModelo){
+				modeloController->removerFigura(figura);
+			}
+			delete figura;
+			delete view;
+			log.info("El Drag no pudo completarse, se retorna a la posicion anterior");
+		}
 	}
 }
 
@@ -65,7 +75,7 @@ void JuegoEventsController::dropNuevaFigura(CirculoView* view) {
 	dropear(view,
 			this->figurasFactory->crearCirculo(
 					r->resizearDistanciaPixelX(view->getXCentro()),
-					r->resizearDistanciaPixelX(view->getYCentro())));
+					r->resizearDistanciaPixelY(view->getYCentro())));
 }
 
 void JuegoEventsController::dropNuevaFigura(TrianguloView* view) {
@@ -109,30 +119,27 @@ bool JuegoEventsController::clickDown(int x, int y) {
 
 bool JuegoEventsController::clickUp(int x, int y) {
 	if (this->figuraDrag != NULL) {
-		//TODO ESTO DEBERÍA ACTUALIZAR LA POSICION DE LA IMAGEN, EN EL DROP SE DEBERÍA IMPACTAR TAMBIEN EN EL MODELO
 		this->figuraDrag->drop();
 		this->figuraDrag = NULL;
 	}
-//	if(this->figuraRotacion != NULL){
-//		this->rightClickUp(x,y);
-//	}
 	return true;
 }
 
 void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
 	Logger log;
-	std::string mensaje_info = "dropea figura controller";
-	log.info(mensaje_info);
 	//cout << "draguea figura controller" << endl;
 	if (zona != NULL) {
 		if (!isDragging()){
 			this->posStartDragX = Resizer::Instance()->resizearDistanciaLogicaX(x);
 			this->posStartDragY = Resizer::Instance()->resizearDistanciaLogicaY(y);
 			this->figuraDrag = figura;
+			log.info("Comienza Drag");
 		}
 		this->zona->removerFigura(figura);
-
+		if(figura->getModelo() != NULL){
+			this->modeloController->removerFigura(figura->getModelo());
+		}
 		mouseMotion(posStartDragX, posStartDragY);
 	}
 }
@@ -165,12 +172,9 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 				this->figuraRotacion->getModelo()->getRotacion()
 						+ this->rot->getAngulo());
 		Logger log;
-		std::string mensaje_info = "rotacion total";
+		std::string mensaje_info = "Rotacion total ";
 		log.concatenar(mensaje_info,this->figuraRotacion->getModelo()->getRotacion());
-		log.info(mensaje_info);
-		/*cout << "rotacion total "
-				<< this->figuraRotacion->getModelo()->getRotacion() << endl;
-		;*/
+		log.debug(mensaje_info);
 	}
 	// consume el evento
 	return false;
@@ -206,7 +210,6 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 
 bool JuegoEventsController::rightClickUp(int int1, int int2) {
 	if (this->figuraRotacion != NULL) {
-		//TODO ESTO DEBERÍA ACTUALIZAR LA POSICION DE LA IMAGEN, EN EL DROP SE DEBERÍA IMPACTAR TAMBIEN EN EL MODELO
 		this->zona->agregarFigura(this->figuraRotacion);
 		this->figuraRotacion = NULL;
 		delete this->rot;

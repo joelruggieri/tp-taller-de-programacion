@@ -24,6 +24,7 @@ public:
 	void info(std::string mensaje);
 //	void borrar();
 	void concatenar(std::string& mensajeOriginal,float numero);
+	void concatenar(std::string& mensajeOriginal,double numero);
 private:
 	std::string nombre;
 	std::ofstream archivo;

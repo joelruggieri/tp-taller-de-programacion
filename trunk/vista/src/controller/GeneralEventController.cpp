@@ -6,14 +6,30 @@
  */
 
 #include "GeneralEventController.h"
-#include "mouseEventController/MouseEventPriorComparator.h"
-#include "../controller/UserEventCreator.h"
-#include "SDL2/SDL.h"
+
+#include <SDL2/SDL_events.h>
+#include <SDL2/SDL_keyboard.h>
+#include <SDL2/SDL_mouse.h>
+#include <SDL2/SDL_scancode.h>
+#include <SDL2/SDL_video.h>
 #include <iostream>
+#include <list>
+#include <string>
+
+#include "../controller/UserEventCreator.h"
+#include "CanvasController.h"
+#include "keyboardEventController/KeyBoardEventController.h"
+#include "mouseEventController/MouseControllerPrioridades.h"
+#include "mouseEventController/MouseEventController.h"
+#include "mouseEventController/MouseEventPriorComparator.h"
+#include "Resizer.h"
+
+struct SDL_Window;
+
 #define ASCII_SHIFT 15
 GeneralEventController::GeneralEventController() {
-	this->botonAnterior= 0;
 	this->canvasController = 0;
+	this->guardarController = NULL;
 }
 
 GeneralEventController::~GeneralEventController() {
@@ -102,7 +118,7 @@ void GeneralEventController::keyDown(char key) {
 	}
 }
 
-void GeneralEventController::addCanvasController(CanvasController* canvasController){
+void GeneralEventController::setCanvasController(CanvasController* canvasController){
 	this->canvasController = canvasController;
 }
 
@@ -129,6 +145,11 @@ void GeneralEventController::keyUp() {
 void GeneralEventController::resize(int nuevoX, int nuevoY) {
 		Resizer::Instance()->setearResizer(nuevoX,nuevoY);
 		Resizer::Instance()->resizearResizeables();
+}
+
+void GeneralEventController::setGuardarController(
+		PersistenciaEventController* controller) {
+	this->guardarController = controller;
 }
 
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
@@ -180,7 +201,9 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 				}
 				break;
 			case USREVENT_SAVEGAME:
-				cout << "Evento de salvar partida capturado." <<endl;
+				if(this->guardarController != NULL){
+					this->guardarController->persistir();
+				}
 				break;
 		}
 		break;

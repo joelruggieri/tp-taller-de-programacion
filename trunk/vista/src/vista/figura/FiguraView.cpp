@@ -21,13 +21,11 @@ void FiguraView::drop() {
 	Logger log;
 	std::string mensaje_info;
 	if (this->getModelo() != NULL) {
-		mensaje_info = "llamando al drop generico de figura";
-		log.info(mensaje_info);
+		log.debug("llamando al drop generico de figura");
 		//cout<<"llamando al drop generico de figura"<<endl;
 		controller->dropFigura(this);
 	} else {
-		mensaje_info = "llamando al drop especifico de figura";
-		log.info(mensaje_info);
+		log.debug("llamando al drop especifico de figura");
 		//cout<<"llamando al drop especifico de figura"<<endl;
 		this->dropTemplate();
 	}

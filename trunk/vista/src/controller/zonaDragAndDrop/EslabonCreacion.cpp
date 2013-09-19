@@ -8,6 +8,7 @@
 #include "EslabonCreacion.h"
 #include <iostream>
 #include "../Resizer.h"
+#include "src/Logger.h"
 using namespace std;
 
 EslabonCreacion::EslabonCreacion(ViewFiguraFactory * factory, Cuadrado * cuerpo,
@@ -34,7 +35,8 @@ FiguraView * EslabonCreacion::atender(float posX, float posY, float corrimientoS
 
 	if (this->cuerpo->contacto(posX, posY)) {
 //		if(this->itemsDisponibles >0){
-		cout << "Llamada" <<endl;
+		Logger log;
+		log.debug("Se llama a factory de vista");
 		this->itemsDisponibles--;
 		Resizer * res = Resizer::Instance();
 		FiguraView * view = this->factory->crear(
