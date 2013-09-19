@@ -214,7 +214,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
         			int tamNuevoX, tamNuevoY;
         			SDL_GetWindowSize(ventana,&tamNuevoX,&tamNuevoY);
         			if(tamNuevoX != tamNuevoY)
-        				SDL_SetWindowSize(ventana,tamNuevoX,tamNuevoX);
+        				SDL_SetWindowSize(ventana,tamNuevoX,tamNuevoY);
         				this->resize(tamNuevoX, tamNuevoY);
         			//Resizeables tienen que resizear
         			break;
