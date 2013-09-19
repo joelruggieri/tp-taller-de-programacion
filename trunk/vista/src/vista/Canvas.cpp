@@ -171,5 +171,5 @@ const list<Dibujable*>& Canvas::getVistas() {
 
 void Canvas::resizear() {
 	cout << "canvas resizeado" << endl;
-//	this->w = Resizer::Instance()->resizearDistanciaPixelX(this->w) * this->w;
+//	TODO resizear
 }
