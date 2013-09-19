@@ -19,6 +19,6 @@ Resizeable::~Resizeable() {
 
 } /* namespace std */
 
-void Resizeable::Resizear(int x, int y)
+void Resizeable::resizear(int x, int y)
 {
 }

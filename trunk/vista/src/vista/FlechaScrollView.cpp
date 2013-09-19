@@ -76,3 +76,7 @@ void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
 void FlechaScrollView::setPresionado(bool presionado) {
 	this->presionado = presionado;
 }
+
+void FlechaScrollView::resizear(int x, int y) {
+	cout << "se ha resieado las flechas scrooll view" << endl ;
+}

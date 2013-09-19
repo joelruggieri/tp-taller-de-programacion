@@ -125,6 +125,17 @@ void GeneralEventController::keyUp() {
 
 }
 
+void GeneralEventController::resize(int x, int y) {
+	this->mouseControllers.sort(comparar_prioridadClick);
+		list<MouseControllerPrioridades*>::iterator it;
+		//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
+		bool continuarEvento = true;
+		for (it = this->mouseControllers.begin();
+				it != this->mouseControllers.end(); ++it) {
+			(*it)->getEventController()->resizear(x, y);
+		}
+}
+
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
@@ -184,7 +195,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
         			SDL_GetWindowSize(ventana,&tamNuevoX,&tamNuevoY);
         			if(tamNuevoX != tamNuevoY)
         				SDL_SetWindowSize(ventana,tamNuevoX,tamNuevoX);
-
+        				this->resize(tamNuevoX, tamNuevoY);
         			//Resizeables tienen que resizear
         			break;
         		}

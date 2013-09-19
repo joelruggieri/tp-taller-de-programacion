@@ -12,7 +12,7 @@
 class Resizeable {
 public:
 	Resizeable();
-	void Resizear(int x, int y);
+	virtual void resizear(int x, int y) = 0;
 	virtual ~Resizeable();
 };
 

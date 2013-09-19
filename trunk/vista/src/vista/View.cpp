@@ -12,6 +12,7 @@ View::View(int x, int y, int w, int h) {
 	this->h = h;
 	this->xc = x;
 	this->yc = y;
+	Resizer::Instance()->addResizeable(this);
 }
 
 View::~View() {

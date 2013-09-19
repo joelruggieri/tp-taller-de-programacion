@@ -168,3 +168,7 @@ void Canvas::setBorder(bool border) {
 const list<Dibujable*>& Canvas::getVistas() {
 	return (this->vistas);
 }
+
+void Canvas::resizear(int x, int y) {
+	cout << "canvas resizeado" << endl;
+}

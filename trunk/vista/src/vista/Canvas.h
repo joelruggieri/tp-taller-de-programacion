@@ -31,6 +31,7 @@ private:
 	void dibujarBordeDerecho(SDL_Renderer* renderer);
 	void dibujarBordeSuperior(SDL_Renderer* renderer);
 	void dibujarBordeInferior(SDL_Renderer* renderer);
+	 void resizear(int x, int y);
 
 public:
 	Canvas(int x, int y, int h, int w, SDL_Texture* textura);

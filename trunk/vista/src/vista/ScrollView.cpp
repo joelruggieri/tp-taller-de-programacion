@@ -43,3 +43,7 @@ void ScrollView::notify(Observable* obs) {
 		this->abajo->setPresionado(true);
 	}
 }
+
+void ScrollView::resizear(int x, int y) {
+	cout << "se ha resizeado el scrool view" << endl ;
+}
