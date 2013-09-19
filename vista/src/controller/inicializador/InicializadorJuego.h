@@ -31,10 +31,11 @@ private:
 	JuegoEventsController * juegoController;
 	GeneralEventController * eventsController;
 	PersistenciaManager * bbdd;
+	ModeloController * modeloController;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
 public:
 	InicializadorJuego(SDL_Renderer * renderer,
-			GeneralEventController * eventsController);
+			GeneralEventController * eventsController, ModeloController * modeloController);
 	virtual ~InicializadorJuego();
 	void visit(Cuadrado*);
 	void visit(Triangulo*);

@@ -6,16 +6,17 @@
  */
 
 #include "PersistenciaEventController.h"
-
-PersistenciaEventController::PersistenciaEventController(Mapa* m,
+#include "src/Logger.h"
+PersistenciaEventController::PersistenciaEventController(ModeloController * m,
 		PersistenciaManager* manager) {
-	this->mapa = m;
+	this->modeloController = m;
 	this->manager = manager;
 }
 
 void PersistenciaEventController::persistir() {
-//	void & figuras = mapa->getFiguras();
-//	this->manager->persistirFiguras(figuras);
+	Logger log;
+	log.debug("Ejecutando persistencia de nivel");
+	this->manager->persistirFiguras(modeloController->getFiguras());
 }
 
 PersistenciaEventController::~PersistenciaEventController() {

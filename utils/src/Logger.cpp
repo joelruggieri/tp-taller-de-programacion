@@ -13,6 +13,8 @@
 #include "Archivo.h"
 #include "AdministradorDeLoggers.h"
 
+using namespace std;
+
 const std::string fecha() {
 	time_t tiempo = time(0);
 	struct tm tiempoStruct = *localtime(&tiempo);
@@ -32,27 +34,37 @@ Logger::~Logger() {
 
 void Logger::error(std::string mensaje) {
 	Archivo *a = AdministradorDeLoggers::getLogger(ERROR);
-	a->escribir(fecha() + " [ERROR]: " + mensaje);
+	std::string salida = fecha() + " [ERROR]: " + mensaje;
+	cout<< salida<< endl;
+	a->escribir(salida);
 }
 
 void Logger::warning(std::string mensaje) {
 	Archivo *a = AdministradorDeLoggers::getLogger(WARN);
-	a->escribir(fecha() + " [WARN]: " + mensaje);
+	std::string salida = fecha() + " [WARN]: " + mensaje;
+	cout<< salida<< endl;
+	a->escribir(salida);
 }
 
 void Logger::debug(std::string mensaje) {
 	Archivo *a = AdministradorDeLoggers::getLogger(DEBUG);
-	a->escribir(fecha() + " [DEBUG]: " + mensaje);
+	std::string salida = fecha() + " [DEBUG]: " + mensaje;
+	cout<< salida<< endl;
+	a->escribir(salida);
 }
 
 void Logger::fatal(std::string mensaje) {
 	Archivo *a = AdministradorDeLoggers::getLogger(FATAL);
-	a->escribir(fecha() + " [FATAL]: " + mensaje);
+	std::string salida = fecha() + " [FATAL]: " + mensaje;
+	cout<< salida<< endl;
+	a->escribir(salida);
 }
 
 void Logger::info(std::string mensaje) {
 	Archivo *a = AdministradorDeLoggers::getLogger(INFO);
-	a->escribir(fecha() + " [INFO]: " + mensaje);
+	std::string salida = fecha() + " [INFO]: " + mensaje;
+	cout<< salida<< endl;
+	a->escribir(salida);
 }
 
 
@@ -66,6 +78,13 @@ void Logger::concatenar(std::string& mensajeOriginal,float numero){
 	 ss << numero;
 	 mensajeOriginal.append(ss.str());
 }
+
+void Logger::concatenar(std::string& mensajeOriginal,double numero){
+	 std::stringstream ss (std::stringstream::out);
+	 ss << numero;
+	 mensajeOriginal.append(ss.str());
+}
+
 
 Logger::Logger() {
 	this->nombre = "";

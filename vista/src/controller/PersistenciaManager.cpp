@@ -38,10 +38,20 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 }
 
 void PersistenciaManager::persistirFiguras(list<Figura*>& figuras) {
+	Logger log;
 	if(this->nivel != NULL){
 		nivel->getFiguras().empty();
 		nivel->getFiguras().merge(figuras);
+	} else {
+		try{
+			nivel = dao->leerNivel(nivelActual);
+		} catch (NivelInexistenteException& e){
+			log.warning("No existe el nivel, se procede a crear uno vacio");
+			nivel = new Nivel(nivelActual);
+		}
 	}
+	log.debug("Persistiendo nivel");
+	dao->guardarNivel(nivel);
 }
 
 void PersistenciaManager::cambiarNivel(int nivel) {

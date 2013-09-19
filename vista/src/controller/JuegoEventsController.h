@@ -18,7 +18,7 @@
 #include "../vista/Dragueable.h"
 #include "../vista/Rotable.h"
 #include "../modelo/Rotacion.h"
-#include "src/EventosModeloController.h"
+#include "src/ModeloController.h"
 #include "../vista/Dibujable.h"
 #include "SDL2/SDL.h"
 class Figura;
@@ -37,7 +37,7 @@ private:
 	void dropear(FiguraView* view, Figura* figura);
 	ModeloController * modeloController;
 public:
-	JuegoEventsController();
+	JuegoEventsController(ModeloController*);
 	virtual ~JuegoEventsController();
 	void dropNuevaFigura(CuadradoView*);
 	void dropNuevaFigura(CirculoView*);

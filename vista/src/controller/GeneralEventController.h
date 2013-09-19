@@ -7,14 +7,17 @@
 
 #ifndef GENERALEVENTCONTROLLER_H_
 #define GENERALEVENTCONTROLLER_H_
-#include "mouseEventController/MouseEventController.h"
-#include "mouseEventController/MouseControllerPrioridades.h"
-#include "keyboardEventController/KeyBoardEventController.h"
-#include "CanvasController.h"
-#include "Resizer.h"
 
-#include "SDL2/SDL.h"
+
 #include <list>
+
+#include "keyboardEventController/KeyBoardEventController.h"
+#include "mouseEventController/MouseEventController.h"
+#include "CanvasController.h"
+#include "PersistenciaEventController.h"
+class MouseControllerPrioridades;
+struct SDL_KeyboardEvent;
+
 using namespace std;
 
 
@@ -23,14 +26,13 @@ private:
 	list<MouseControllerPrioridades *> mouseControllers;
 	list<KeyBoardEventController *> keyControllers;
 	CanvasController* canvasController; //De este siempre tiene que haber uno solo.
-
+	PersistenciaEventController * guardarController;
 	void clickUp(int x, int y);
 	void clickDown(int x, int y);
 	void mouseMotion(int x, int y);
 	void rightClickUp(int x, int y);
 	void rightClickDown(int x, int y);
 	void keyDown(char key);
-	int botonAnterior;
 	bool verificarCaracteresEspeciales(SDL_KeyboardEvent key);
 	void keyUp ();
 	void resize (int nuevoX, int nuevoY);
@@ -39,7 +41,8 @@ public:
 	virtual ~GeneralEventController();
 	void addMouseController(MouseEventController *, int prioridadClick, int prioridadMotion);
 	void addKeyboardController(KeyBoardEventController* );
-	void addCanvasController(CanvasController* canvasController);
+	void setCanvasController(CanvasController* canvasController);
+	void setGuardarController(PersistenciaEventController * controller);
 	//TODO POR AHORA INDICA SI SALIR O NO DE LA APLICACION
 	bool procesarEventos(SDL_Window *);
 

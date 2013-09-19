@@ -14,6 +14,9 @@ private:
 	double x0, y0;
 	double angulo;
 int rotaciones;
+
+	void loggear(double xN, double yN);
+
 public:
 	Rotacion(int x, int y, int x0, int y0, float anguloI);
 	double rotar(double x, double y);

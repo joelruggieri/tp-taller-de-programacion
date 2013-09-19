@@ -9,6 +9,9 @@
 #define EVENTOSMODELOCONTROLLER_H_
 #include "figura/Figura.h"
 #include "figura/Mapa.h"
+#include <list>
+using namespace std;
+
 class ModeloController {
 private:
 	Mapa * mapa;
@@ -18,6 +21,7 @@ public:
 	//Instancia una figura en el modelo y retora true si la operacion fue correcta.
 	bool crearFigura(Figura* figura);
 	bool removerFigura(Figura* figura);
+	list<Figura*>& getFiguras();
 };
 
 #endif /* EVENTOSMODELOCONTROLLER_H_ */
