@@ -98,19 +98,31 @@ void TextBox::borrarCaracter() {
 	this->texto.erase((this->texto.size()-1), 1);
 	this->textoCurrent.erase((this->textoCurrent.size()-1), 1);
 	int ancho;
-	TTF_SizeText(this->fuente, this->texto.c_str(), &ancho, NULL);
-	if (ancho >= this->w)
+
+//	int posLetraAgregada;
+	char letraAgregada ;
+	if (texto.size() > textoCurrent.size()){
+//	posLetraAgregada = texto.size() - textoCurrent.size();
+	letraAgregada= this->texto.at(texto.size() - textoCurrent.size() - 1);	//creo qe ahi recibo la letra
+	this->textoCurrent = letraAgregada + this->textoCurrent;
+	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);
+	while (ancho >= this->w - 10)
 	{
-		//cout << this->textoCurrent << " " << ancho << endl;
-		cout << "entro" << endl ;
-	  int posLetraAgregada = texto.size() - textoCurrent.size() - 1;
-		char letraAgregada ;
-		letraAgregada= this->texto.at(posLetraAgregada);	//creo qe ahi recibo la letra
-		 this->textoCurrent = letraAgregada + this->textoCurrent;
-//		 TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);//forma hipercavernicola de concatenar
+		this->textoCurrent.erase(0, 1);
+//		if (texto.size() > textoCurrent.size())
+//		this->textoCurrent = this->texto.at(texto.size() - textoCurrent.size()) + this->textoCurrent;
+		TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);
+//		if (ancho <= this->w - 10) this->textoCurrent = this->texto.at(texto.size() - textoCurrent.size()) + this->textoCurrent;
+//		TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);
 	}
-	else
-		textoCurrent = texto;
+	}
+	TTF_SizeText(this->fuente, this->texto.c_str(), &ancho, NULL);
+	if (ancho <= this->w - 10) textoCurrent= texto ;
+
+
+
+
+
 
 }
 
