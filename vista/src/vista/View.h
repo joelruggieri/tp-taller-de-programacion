@@ -12,7 +12,7 @@
 #include "../controller/Resizer.h"
 
 class View : public Dibujable, public Resizeable{
-protected:
+private:
 	int w,h;
 	int xc, yc;
 public:
