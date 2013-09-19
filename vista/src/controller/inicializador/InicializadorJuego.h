@@ -39,7 +39,7 @@ public:
 	void visit(Cuadrado*);
 	void visit(Triangulo*);
 	void visit(Circulo*);
-	ZonaJuego * crearZonaJuego();
+	JuegoEventsController * crearZonaJuego();
 };
 
 #endif /* INICIALIZADORJUEGO_H_ */

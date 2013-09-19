@@ -72,9 +72,9 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	this->zonaJuego->agregarFigura(view);
 }
 
-ZonaJuego* InicializadorJuego::crearZonaJuego() {
+JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	if(zonaJuego != NULL){
-		return zonaJuego;
+		return this->juegoController;
 	}
 
 	list<ViewFiguraFactory*> factories;
@@ -110,6 +110,6 @@ ZonaJuego* InicializadorJuego::crearZonaJuego() {
 	this->eventsController->addMouseController(this->juegoController,1,1);
 	this->juegoController->setZona(this->zonaJuego);
 
-	return this->zonaJuego;
+	return this->juegoController;
 }
 

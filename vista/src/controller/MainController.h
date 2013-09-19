@@ -11,12 +11,9 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
-#include "JuegoEventsController.h"
 using namespace std;
 
 class MainController {
-private:
-	JuegoEventsController * dropController;
 public:
 	MainController();
 	virtual ~MainController();
