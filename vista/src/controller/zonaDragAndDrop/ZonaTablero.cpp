@@ -10,8 +10,7 @@
 #include "src/Logger.h"
 
 //TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
-ZonaTablero::ZonaTablero(Mapa * mapa, float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,100,100)) {
-	this->mapa = mapa;
+ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,100,100)) {
 	Resizer * instance = Resizer::Instance();
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 	int xC = instance->resizearDistanciaLogicaX(x);
@@ -35,7 +34,6 @@ bool ZonaTablero::agregarTemplate(FiguraView* view) {
 		return false;
 	}
 	this->canvas->agregar(view);
-//	this->mapa->addFigura(view->getModelo());
 	return true;
 }
 
@@ -59,8 +57,6 @@ FiguraView * ZonaTablero::getFiguraTemplate(float x, float y) {
 ZonaTablero::~ZonaTablero() {
 	std::list<FiguraView*>::const_iterator iterator;
 	delete this->canvas;
-
-	delete this->mapa;
 }
 
 void ZonaTablero::dibujarse(SDL_Renderer* renderer) {

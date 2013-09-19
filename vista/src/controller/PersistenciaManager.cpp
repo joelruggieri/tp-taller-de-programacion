@@ -19,7 +19,6 @@ PersistenciaManager::PersistenciaManager() {
 	figurasPersistidas.push_back(figura);
 	figurasPersistidas.push_back(new Cuadrado(20,20,10,10));
 	figurasPersistidas.push_back(new Circulo(25,25,5));
-
 }
 
 PersistenciaManager::~PersistenciaManager() {
@@ -28,4 +27,13 @@ PersistenciaManager::~PersistenciaManager() {
 
 list<Figura*> & PersistenciaManager::getFiguras() {
  return this->figurasPersistidas;
+}
+
+void PersistenciaManager::persistirFiguras(list<Figura*>& figuras) {
+	this->figurasPersistidas.clear();
+	this->figurasPersistidas.merge(figuras);
+}
+
+void PersistenciaManager::cambiarNivel(int nivel) {
+	this->figurasPersistidas.clear();
 }

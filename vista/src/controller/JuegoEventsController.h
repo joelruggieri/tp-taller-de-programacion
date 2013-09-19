@@ -18,6 +18,7 @@
 #include "../vista/Dragueable.h"
 #include "../vista/Rotable.h"
 #include "../modelo/Rotacion.h"
+#include "src/EventosModeloController.h"
 class Figura;
 class FiguraFactory;
 class Zona;
@@ -32,6 +33,7 @@ private:
 	float posStartDragX;
 	float posStartDragY;
 	void dropear(FiguraView* view, Figura* figura);
+	ModeloController * modeloController;
 public:
 	JuegoEventsController();
 	virtual ~JuegoEventsController();
