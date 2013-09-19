@@ -129,7 +129,6 @@ void GeneralEventController::resize(int x, int y) {
 	this->mouseControllers.sort(comparar_prioridadClick);
 		list<MouseControllerPrioridades*>::iterator it;
 		//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
-		bool continuarEvento = true;
 		for (it = this->mouseControllers.begin();
 				it != this->mouseControllers.end(); ++it) {
 			(*it)->getEventController()->resizear(x, y);
