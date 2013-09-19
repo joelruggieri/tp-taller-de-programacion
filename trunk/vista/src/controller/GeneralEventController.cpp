@@ -127,13 +127,8 @@ void GeneralEventController::keyUp() {
 }
 
 void GeneralEventController::resize(int nuevoX, int nuevoY) {
-	this->mouseControllers.sort(comparar_prioridadClick);
-		list<MouseControllerPrioridades*>::iterator it;
 		Resizer::Instance()->setearResizer(nuevoX,nuevoY);
-		for (it = this->mouseControllers.begin();
-				it != this->mouseControllers.end(); ++it) {
-			(*it)->getEventController()->resizear();
-		}
+		Resizer::Instance()->resizearResizeables();
 }
 
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
