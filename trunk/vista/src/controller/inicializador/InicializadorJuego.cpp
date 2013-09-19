@@ -108,6 +108,7 @@ ZonaJuego* InicializadorJuego::crearZonaJuego() {
 	CanvasController* canvasController = new CanvasController(zonaTablero->getCanvas());
 	this->eventsController->addCanvasController(canvasController);
 	this->eventsController->addMouseController(this->juegoController,1,1);
+	this->juegoController->setZona(this->zonaJuego);
 
 	return this->zonaJuego;
 }
