@@ -35,6 +35,8 @@ JuegoEventsController::JuegoEventsController() {
 	this->rot = NULL;
 	this->posStartDragX = 0;
 	this->posStartDragY = 0;
+	//TODO ver donde se crea este
+	this->modeloController = new ModeloController();
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -42,12 +44,14 @@ JuegoEventsController::~JuegoEventsController() {
 	if (this->figuraDrag != NULL) {
 		delete this->figuraDrag;
 	}
+	if (this->figuraRotacion != NULL) {
+		delete this->figuraRotacion;
+	}
 }
 
 void JuegoEventsController::dropear(FiguraView* view, Figura* figura) {
 	Logger log;
-	std::string mensaje_info = "dropea figura controller";
-	log.info(mensaje_info);
+	log.info("dropea figura controller");
 	//cout << "dropea figura controller" << endl;
 	view->setModelo(figura);
 	if (this->zona != NULL && !zona->agregarFigura(view)) {

@@ -22,18 +22,19 @@ const string KEY_CUADRADO = "CUADRADO";
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
 
-InicializadorJuego::InicializadorJuego(SDL_Renderer * renderer, DropController * dropController) {
+InicializadorJuego::InicializadorJuego(SDL_Renderer * renderer, GeneralEventController * controllerEventos) {
 	this->zonaJuego = NULL;
-	ViewFiguraFactory * factory = new ViewCuadradoFactory(renderer, dropController);
+	this->juegoController = new JuegoEventsController();
+	ViewFiguraFactory * factory = new ViewCuadradoFactory(renderer, juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CUADRADO,factory));
 
-	factory = new ViewTrianguloFactory(renderer, dropController);
+	factory = new ViewTrianguloFactory(renderer, juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TRIANGULO,factory));
 
-	factory = new ViewCirculoFactory(renderer, dropController);
+	factory = new ViewCirculoFactory(renderer, juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,factory));
-	this->dropController =dropController;
 	this->renderer = renderer;
+	this->eventsController = controllerEventos;
 	this->bbdd = new PersistenciaManager();
 }
 
@@ -75,32 +76,26 @@ ZonaJuego* InicializadorJuego::crearZonaJuego() {
 	if(zonaJuego != NULL){
 		return zonaJuego;
 	}
-	//TODO VER DONDE ENCAPSULAR ESTA LOGICA.
-	// 5 margen izq
-	// 100 tablero
-	// 10 entre los dos paneles
-	// 20 la zona creacion
-	// 5 margen izquierdo
 
 	list<ViewFiguraFactory*> factories;
 	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(FONDO_DEFECTO);
 	SDL_Texture* herrTextura = texturas->cargarTexture(FONDO_ZONA_CREACION);
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
-	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewCirculoFactory(renderer, dropController));
-	factories.push_back(new ViewCuadradoFactory(renderer, dropController));
-	factories.push_back(new ViewTrianguloFactory(renderer, dropController));
-	factories.push_back(new ViewCirculoFactory(renderer, dropController));
+	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
+	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
+	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
+	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
+	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
+	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
+	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
+	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
+	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
+	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
+	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
+	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
 			herrTextura);
-	ZonaTablero* zonaTablero = new ZonaTablero(new Mapa(),50,50, canvasTexture);
+	ZonaTablero* zonaTablero = new ZonaTablero(50,50, canvasTexture);
 	this->zonaJuego=  new ZonaJuego(zonaCreacion, zonaTablero,
 			new Cuadrado(75, 50, 150, 100));
 
@@ -110,10 +105,10 @@ ZonaJuego* InicializadorJuego::crearZonaJuego() {
 		(*it)->acept(this);
 	}
 
-	return this->zonaJuego;
-}
+	CanvasController* canvasController = new CanvasController(zonaTablero->getCanvas());
+	this->eventsController->addCanvasController(canvasController);
+	this->eventsController->addMouseController(this->juegoController,1,1);
 
-Canvas* InicializadorJuego::getCanvas(){
-	return this->zonaJuego->getCanvas();
+	return this->zonaJuego;
 }
 

@@ -15,3 +15,14 @@ Mapa::~Mapa() {
 	// TODO Auto-generated destructor stub
 }
 
+void Mapa::removeFigura(Figura* figura) {
+	this->figuras.remove(figura);
+}
+
+void Mapa::addFigura(Figura* figura) {
+	this->figuras.push_back(figura);
+}
+
+list<Figura*>& Mapa::getFiguras() {
+	return this->figuras;
+}

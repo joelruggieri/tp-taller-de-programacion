@@ -19,6 +19,8 @@ public:
 	Mapa();
 	virtual ~Mapa();
 	void addFigura(Figura*);
+	void removeFigura(Figura*);
+	list<Figura*> & getFiguras();
 };
 
 #endif /* MAPA_H_ */

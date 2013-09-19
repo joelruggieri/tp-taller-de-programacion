@@ -10,14 +10,19 @@
 #include <list>
 using namespace std;
 #include "src/figura/Figura.h"
+#include "src/figura/Mapa.h"
 
 class PersistenciaManager {
 private:
 	list<Figura*> figurasPersistidas;
+	int nivelActual;
 public:
 	PersistenciaManager();
 	virtual ~PersistenciaManager();
 	list<Figura*> & getFiguras();
+	void persistirFiguras(list<Figura*> & figuras);
+	void cambiarNivel(int nivel);
+
 };
 
 #endif /* PERSISTENCIAMANAGER_H_ */

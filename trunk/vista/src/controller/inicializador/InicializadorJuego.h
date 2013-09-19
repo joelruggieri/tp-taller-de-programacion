@@ -12,8 +12,9 @@
 #include "../zonaDragAndDrop/ZonaJuego.h"
 #include "../../vista/Canvas.h"
 #include "../viewFactory/ViewFiguraFactory.h"
-#include "PersistenciaManager.h"
-#include "../DropController.h"
+#include "../PersistenciaManager.h"
+#include "../JuegoEventsController.h"
+#include "../GeneralEventController.h"
 #include <map>
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
@@ -27,18 +28,18 @@ private:
 	ZonaJuego* zonaJuego;
 	map<string, ViewFiguraFactory *> figuraFactory;
 	SDL_Renderer * renderer;
-	DropController * dropController;
+	JuegoEventsController * juegoController;
+	GeneralEventController * eventsController;
 	PersistenciaManager * bbdd;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
 public:
 	InicializadorJuego(SDL_Renderer * renderer,
-			DropController * dropController);
+			GeneralEventController * eventsController);
 	virtual ~InicializadorJuego();
 	void visit(Cuadrado*);
 	void visit(Triangulo*);
 	void visit(Circulo*);
 	ZonaJuego * crearZonaJuego();
-	Canvas* getCanvas();
 };
 
 #endif /* INICIALIZADORJUEGO_H_ */
