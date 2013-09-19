@@ -27,9 +27,7 @@ Canvas* ZonaTablero::getCanvas(){
 
 bool ZonaTablero::agregarTemplate(FiguraView* view) {
 	Logger log;
-	std::string mensaje_info = "recibe figura tablero";
-	log.info(mensaje_info);
-	//cout<<"recibe figura tablero"<<endl;
+	log.info("Recibe figura el tablero");
 	if(view->getModelo() == NULL){
 		return false;
 	}
