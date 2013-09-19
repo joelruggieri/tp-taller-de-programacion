@@ -231,6 +231,3 @@ void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
 }
 
 
-void JuegoEventsController::resizear() {
-	Resizer::Instance()->resizearResizeables();
-}

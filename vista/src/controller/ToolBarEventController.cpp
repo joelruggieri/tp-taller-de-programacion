@@ -64,6 +64,3 @@ bool ToolBarEventController::keyReleased() {
 bool ToolBarEventController::mouseMotion(int int1, int int2) {
 	return (!this->zona->zonaFueSeleccionada(int1, int2));
 }
-
-void ToolBarEventController::resizear() {
-}

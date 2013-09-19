@@ -20,7 +20,7 @@ public:
 	//recibe el evento de soltar el mouse.
 	virtual bool rightClickUp(int, int)=0;
 	virtual bool mouseMotion(int, int)=0;
-	virtual void resizear() = 0;
+
 
 };
 
