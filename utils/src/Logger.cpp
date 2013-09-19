@@ -11,9 +11,10 @@
 #include <time.h>
 
 #include "Archivo.h"
-#include "AdministradorDeLoggers.h"
 
 using namespace std;
+
+NIVEL_LOGGER Logger::nivel = DEBUG_N;
 
 const std::string fecha() {
 	time_t tiempo = time(0);
@@ -33,38 +34,30 @@ Logger::~Logger() {
 }
 
 void Logger::error(std::string mensaje) {
-	Archivo *a = AdministradorDeLoggers::getLogger(ERROR);
 	std::string salida = fecha() + " [ERROR]: " + mensaje;
-	cout<< salida<< endl;
-	a->escribir(salida);
+	log(salida,ERROR,ERROR_N);
 }
 
 void Logger::warning(std::string mensaje) {
-	Archivo *a = AdministradorDeLoggers::getLogger(WARN);
 	std::string salida = fecha() + " [WARN]: " + mensaje;
-	cout<< salida<< endl;
-	a->escribir(salida);
+	log(salida,WARN,WARN_N);
 }
 
 void Logger::debug(std::string mensaje) {
-	Archivo *a = AdministradorDeLoggers::getLogger(DEBUG);
 	std::string salida = fecha() + " [DEBUG]: " + mensaje;
-	cout<< salida<< endl;
-	a->escribir(salida);
+	log(salida,DEBUG,DEBUG_N);
+
 }
 
 void Logger::fatal(std::string mensaje) {
-	Archivo *a = AdministradorDeLoggers::getLogger(FATAL);
 	std::string salida = fecha() + " [FATAL]: " + mensaje;
-	cout<< salida<< endl;
-	a->escribir(salida);
+	log(salida,FATAL,FATAL_N);
+
 }
 
 void Logger::info(std::string mensaje) {
-	Archivo *a = AdministradorDeLoggers::getLogger(INFO);
 	std::string salida = fecha() + " [INFO]: " + mensaje;
-	cout<< salida<< endl;
-	a->escribir(salida);
+	log(salida,INFO,INFO_N);
 }
 
 
@@ -88,4 +81,17 @@ void Logger::concatenar(std::string& mensajeOriginal,double numero){
 
 Logger::Logger() {
 	this->nombre = "";
+}
+
+void Logger::setNivel(NIVEL_LOGGER n) {
+	Logger::nivel = n;
+}
+
+
+void Logger::log(std::string mensaje, TIPO_LOGGER tLogger,	NIVEL_LOGGER nLog) {
+	if(Logger::nivel <= nLog ){
+		Archivo *a = AdministradorDeLoggers::getLogger(tLogger);
+		cout<< mensaje<< endl;
+		a->escribir(mensaje);
+	}
 }

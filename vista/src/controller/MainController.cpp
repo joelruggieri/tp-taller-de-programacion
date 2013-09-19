@@ -12,25 +12,26 @@
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL.h>
+#include <src/ModeloController.h>
 #include <new>
 
 #include "../vista/CargadorDeTextures.h"
 #include "../vista/DraggingView.h"
 #include "../vista/RotationView.h"
-//#include "CanvasController.h"
 #include "GeneralEventController.h"
 #include "inicializador/InicializadorJuego.h"
-//#include "JuegoEventsController.h"
+#include "JuegoEventsController.h"
 #include "Resizer.h"
-//#include "ToolBarController.h"
 #include "ToolBarEventController.h"
 #include "zonaToolBar/ZonaToolBar.h"
-
-class JuegoEventsController;
+#include "src/Logger.h"
 struct SDL_Renderer;
 struct SDL_Window;
 
 MainController::MainController() {
+	Logger::setNivel(INFO_N);
+
+
 }
 
 MainController::~MainController() {
