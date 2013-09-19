@@ -24,7 +24,7 @@ public:
 		 bool rightClickUp(int, int);
 		 bool mouseMotion(int, int);
 		 bool keyReleased();
-		void resizear(int x, int y);
+		void resizear();
 
 };
 

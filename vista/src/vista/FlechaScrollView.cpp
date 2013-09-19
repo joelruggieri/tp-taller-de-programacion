@@ -77,6 +77,6 @@ void FlechaScrollView::setPresionado(bool presionado) {
 	this->presionado = presionado;
 }
 
-void FlechaScrollView::resizear(int x, int y) {
+void FlechaScrollView::resizear() {
 	cout << "se ha resieado las flechas scrooll view" << endl ;
 }

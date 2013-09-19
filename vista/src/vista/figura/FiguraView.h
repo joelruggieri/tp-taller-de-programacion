@@ -29,7 +29,7 @@ public:
 	void drop();
 	void dibujarse(SDL_Renderer*);
 	void click(float x, float y);
-	void resizear(int x, int y);
+	void resizear();
 };
 
 #endif /* FIGURAVIEW_H_ */

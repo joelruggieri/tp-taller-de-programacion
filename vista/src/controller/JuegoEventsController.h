@@ -56,7 +56,7 @@ public:
 	View* getDragueado();
 	bool isRotando();
 	View* getRotado();
-	void resizear(int x, int y);
+	void resizear();
 	void dibujarse(SDL_Renderer *);
 };
 #endif /* JuegoEventsController_H_ */
