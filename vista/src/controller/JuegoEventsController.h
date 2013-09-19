@@ -21,6 +21,7 @@
 #include "src/ModeloController.h"
 #include "../vista/Dibujable.h"
 #include "SDL2/SDL.h"
+#include "Drag.h"
 class Figura;
 class FiguraFactory;
 class Zona;
@@ -29,15 +30,16 @@ class JuegoEventsController: public DropController, public MouseEventController,
 private:
 	Zona * zona;
 	FiguraFactory * figurasFactory;
-	FiguraView * figuraDrag;
+	Drag * elementoDrag;
 	FiguraView * figuraRotacion;
 	Rotacion * rot;
-	float posStartDragX;
-	float posStartDragY;
+	int posStartDragX;
+	int posStartDragY;
 	void dropear(FiguraView* view, Figura* figura);
 	ModeloController * modeloController;
+	int yMaxDrag;
 public:
-	JuegoEventsController(ModeloController*);
+	JuegoEventsController(ModeloController*, int yMax);
 	virtual ~JuegoEventsController();
 	void dropNuevaFigura(CuadradoView*);
 	void dropNuevaFigura(CirculoView*);

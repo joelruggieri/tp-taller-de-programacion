@@ -27,22 +27,22 @@
 
 using namespace std;
 
-JuegoEventsController::JuegoEventsController(ModeloController *modeloController) {
+JuegoEventsController::JuegoEventsController(ModeloController *modeloController, int yMaxDrag) {
 	this->figurasFactory = new FiguraFactory();
-	this->figuraDrag = NULL;
+	this->elementoDrag = NULL;
 	this->zona = NULL;
 	this->figuraRotacion = NULL;
 	this->rot = NULL;
 	this->posStartDragX = 0;
 	this->posStartDragY = 0;
-	//TODO ver donde se crea este
 	this->modeloController = modeloController;
+	this->yMaxDrag = yMaxDrag;
 }
 
 JuegoEventsController::~JuegoEventsController() {
 	delete this->figurasFactory;
-	if (this->figuraDrag != NULL) {
-		delete this->figuraDrag;
+	if (this->elementoDrag != NULL) {
+		delete this->elementoDrag;
 	}
 	if (this->figuraRotacion != NULL) {
 		delete this->figuraRotacion;
@@ -57,15 +57,26 @@ void JuegoEventsController::dropear(FiguraView* view, Figura* figura) {
 		bool exitoVista = zona->agregarFigura(view);
 		bool exitoModelo =this->modeloController->crearFigura(figura);
 		if(!exitoVista || !exitoModelo){
+//si uno de los dos no tuvo exito probamos rollbackeando.
 			if(exitoVista){
 				zona->removerFigura(view);
 			}
 			if(exitoModelo){
 				modeloController->removerFigura(figura);
 			}
-			delete figura;
-			delete view;
-			log.info("El Drag no pudo completarse, se retorna a la posicion anterior");
+			if(!this->elementoDrag->isRolledBack()){
+				log.info("El Drag no pudo completarse, se retorna a la posicion anterior");
+				this->elementoDrag->rollBack();
+				this->elementoDrag->drop();
+			} else {
+				delete figura;
+				delete view;
+				delete elementoDrag;
+				elementoDrag = NULL;
+			}
+		} else {
+			delete elementoDrag;
+			elementoDrag = NULL;
 		}
 	}
 }
@@ -118,9 +129,9 @@ bool JuegoEventsController::clickDown(int x, int y) {
 }
 
 bool JuegoEventsController::clickUp(int x, int y) {
-	if (this->figuraDrag != NULL) {
-		this->figuraDrag->drop();
-		this->figuraDrag = NULL;
+	if (this->elementoDrag != NULL) {
+		this->elementoDrag->drop();
+		this->elementoDrag = NULL;
 	}
 	return true;
 }
@@ -133,7 +144,7 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 		if (!isDragging()){
 			this->posStartDragX = Resizer::Instance()->resizearDistanciaLogicaX(x);
 			this->posStartDragY = Resizer::Instance()->resizearDistanciaLogicaY(y);
-			this->figuraDrag = figura;
+			this->elementoDrag = new Drag(figura, Resizer::Instance()->resizearDistanciaLogicaY(yMaxDrag));
 			log.info("Comienza Drag");
 		}
 		this->zona->removerFigura(figura);
@@ -156,13 +167,15 @@ void JuegoEventsController::setZona(Zona* zona) {
 }
 
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
-	if (this->figuraDrag != NULL ) {
-		float deltaX = this->figuraDrag->getXCentro() + corrimientoX - this->posStartDragX;
-		float deltaY = this->figuraDrag->getYCentro() + corrimientoY - this->posStartDragY;
-		this->figuraDrag->desplazarCentroA(deltaX , deltaY);
-		this->posStartDragX = corrimientoX;
-		this->posStartDragY = corrimientoY;
-		//cout << "X: " << this->figuraDrag->getXCentro() << " Y : " << this->figuraDrag->getXCentro() <<endl;
+	if (this->elementoDrag != NULL ) {
+		int yBack = this->elementoDrag->getYCentro();
+		float deltaX = this->elementoDrag->getXCentro() + corrimientoX - this->posStartDragX;
+		float deltaY = this->elementoDrag->getYCentro() + corrimientoY - this->posStartDragY;
+		int posYAlcanzada = this->elementoDrag->desplazarCentroA(deltaX , deltaY);
+		//si no se pudo hacer el desplazamiento no hago el corrimiento;
+			this->posStartDragX = corrimientoX;
+			this->posStartDragY = posYAlcanzada - yBack +this->posStartDragY;
+		//cout << "X: " << this->elementoDrag->getXCentro() << " Y : " << this->elementoDrag->getXCentro() <<endl;
 		//cout << "CX: " << corrimientoX << " CY: " << corrimientoY <<endl;
 	}
 	Resizer* r = Resizer::Instance();
@@ -181,11 +194,11 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 }
 
 bool JuegoEventsController::isDragging() {
-	return this->figuraDrag != NULL;
+	return this->elementoDrag != NULL;
 }
 
 bool JuegoEventsController::rightClickDown(int x, int y) {
-	if (zona != NULL  && this->figuraDrag == NULL) {
+	if (zona != NULL  && this->elementoDrag == NULL) {
 		Resizer* r = Resizer::Instance();
 		float lX = r->resizearDistanciaPixelX(x);
 		float lY = r->resizearDistanciaPixelY(y);
@@ -218,7 +231,7 @@ bool JuegoEventsController::rightClickUp(int int1, int int2) {
 }
 
 View* JuegoEventsController::getDragueado() {
-	return this->figuraDrag;
+	return this->elementoDrag->getView();
 }
 
 bool JuegoEventsController::isRotando() {

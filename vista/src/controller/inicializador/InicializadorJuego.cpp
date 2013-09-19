@@ -25,15 +25,7 @@ const string KEY_TRIANGULO= "TRIANGULO";
 
 InicializadorJuego::InicializadorJuego(SDL_Renderer * renderer, GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->zonaJuego = NULL;
-	this->juegoController = new JuegoEventsController(modeloController);
-	ViewFiguraFactory * factory = new ViewCuadradoFactory(renderer, juegoController);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CUADRADO,factory));
-
-	factory = new ViewTrianguloFactory(renderer, juegoController);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TRIANGULO,factory));
-
-	factory = new ViewCirculoFactory(renderer, juegoController);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,factory));
+	this->juegoController = NULL;
 	this->renderer = renderer;
 	this->eventsController = controllerEventos;
 	this->bbdd = new PersistenciaManager();
@@ -78,6 +70,15 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	if(zonaJuego != NULL){
 		return this->juegoController;
 	}
+	//TODO HARCODEO DEL Y MAX QUE SE LE PASA AL JUEGO EVENTS CONTROLLER.
+	this->juegoController = new JuegoEventsController(modeloController, 100);
+	ViewFiguraFactory * factory = new ViewCuadradoFactory(renderer, juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CUADRADO,factory));
+	factory = new ViewTrianguloFactory(renderer, juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TRIANGULO,factory));
+	factory = new ViewCirculoFactory(renderer, juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,factory));
+
 
 	list<ViewFiguraFactory*> factories;
 	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
