@@ -171,5 +171,11 @@ const list<Dibujable*>& Canvas::getVistas() {
 
 void Canvas::resizear() {
 	cout << "canvas resizeado" << endl;
+//	int wFinal, hFinal, xFinal, yFinal;
+
+this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
+this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
 //	TODO resizear
 }
