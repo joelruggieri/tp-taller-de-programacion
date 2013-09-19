@@ -225,3 +225,7 @@ bool JuegoEventsController::isRotando() {
 View* JuegoEventsController::getRotado() {
 	return this->figuraRotacion;
 }
+
+void JuegoEventsController::resizear(int x, int y) {
+	Resizer::Instance()->resizearResizeables(x, y);
+}

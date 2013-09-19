@@ -8,8 +8,10 @@
 #ifndef VIEW_H_
 #define VIEW_H_
 #include "Dibujable.h"
+#include "Resizeable.h"
+#include "../controller/Resizer.h"
 
-class View : public Dibujable{
+class View : public Dibujable, public Resizeable{
 	int w,h;
 	int xc, yc;
 public:
@@ -22,7 +24,7 @@ public:
 	int getY() const;
 	int getXCentro() const;
 	int getYCentro() const;
-
+	virtual void resizear(int x, int y) = 0;
 	//desplaza la vista en x y en y;
 	void desplazarCentroA(int x, int y);
 };

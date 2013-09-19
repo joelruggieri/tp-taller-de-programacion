@@ -25,6 +25,7 @@ public:
 	virtual ~ScrollView();
 	void dibujarse(SDL_Renderer*);
 	void notify(Observable*);
+	void resizear(int x, int y);
 };
 
 #endif /* SCROLLVIEW_H_ */

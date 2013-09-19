@@ -32,6 +32,7 @@ private:
 	int botonAnterior;
 	bool verificarCaracteresEspeciales(SDL_KeyboardEvent key);
 	void keyUp ();
+	void resize (int x , int y);
 public:
 	GeneralEventController();
 	virtual ~GeneralEventController();
@@ -40,6 +41,7 @@ public:
 	void addCanvasController(CanvasController* canvasController);
 	//TODO POR AHORA INDICA SI SALIR O NO DE LA APLICACION
 	bool procesarEventos(SDL_Window *);
+
 };
 
 #endif /* GENERALEVENTCONTROLLER_H_ */

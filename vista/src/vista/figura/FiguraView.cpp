@@ -60,3 +60,7 @@ void FiguraView::dibujarse(SDL_Renderer * renderer){
 void FiguraView::click(float x, float y) {
 	this->controller->drag(this,x,y);
 }
+
+void FiguraView::resizear(int x, int y) {
+	cout << "Se ha hecho resize en un figuraView" << endl ;
+}

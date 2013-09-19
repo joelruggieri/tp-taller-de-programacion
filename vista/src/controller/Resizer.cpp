@@ -84,6 +84,20 @@ int Resizer::resizearDistanciaY(int valor) {
 	return round(this->relacionY * valor);
 }
 
+void Resizer::quitarResizeable(Resizeable* resizeable) {
+	this->resizeables.remove(resizeable);
+}
+
+void Resizer::resizearResizeables(int xNuevo, int yNuevo) {
+	list<Resizeable* >::iterator iter;
+		 for(iter = this->resizeables.begin();iter != this->resizeables.end();iter++)
+		{
+			 	(*iter)->resizear(xNuevo, yNuevo);
+
+
+		}
+}
+
 Resizer::Resizer(int x, int y,float xLogico, float yLogico)
 {
 	this->xViejo = x;
@@ -102,4 +116,8 @@ Resizer::Resizer(int x, int y,float xLogico, float yLogico)
 
 int Resizer::getAltoPantalla() {
 	return this->yNuevo;
+}
+
+void Resizer::addResizeable(Resizeable* resizeable) {
+	this->resizeables.push_back(resizeable);
 }
