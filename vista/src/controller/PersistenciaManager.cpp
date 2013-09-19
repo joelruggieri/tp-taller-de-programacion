@@ -25,11 +25,12 @@ PersistenciaManager::~PersistenciaManager() {
 }
 
 list<Figura*> & PersistenciaManager::getFiguras() {
+	Logger log;
 	if(nivel== NULL){
 		try{
 			nivel = dao->leerNivel(nivelActual);
+			log.info("Se obtuvo nivel persistido");
 		} catch (NivelInexistenteException& e){
-			Logger log;
 			log.warning("No existe el nivel, se procede a crear uno vacio");
 			nivel = new Nivel(nivelActual);
 		}
