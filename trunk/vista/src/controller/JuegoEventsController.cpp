@@ -226,6 +226,11 @@ View* JuegoEventsController::getRotado() {
 	return this->figuraRotacion;
 }
 
+void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
+	this->zona->dibujarse(renderer);
+}
+
+
 void JuegoEventsController::resizear(int x, int y) {
 	Resizer::Instance()->resizearResizeables(x, y);
 }

@@ -19,11 +19,13 @@
 #include "../vista/Rotable.h"
 #include "../modelo/Rotacion.h"
 #include "src/EventosModeloController.h"
+#include "../vista/Dibujable.h"
+#include "SDL2/SDL.h"
 class Figura;
 class FiguraFactory;
 class Zona;
 
-class JuegoEventsController: public DropController, public MouseEventController, public Dragueable, public Rotable {
+class JuegoEventsController: public DropController, public MouseEventController, public Dragueable, public Rotable, public Dibujable {
 private:
 	Zona * zona;
 	FiguraFactory * figurasFactory;
@@ -55,6 +57,6 @@ public:
 	bool isRotando();
 	View* getRotado();
 	void resizear(int x, int y);
-
+	void dibujarse(SDL_Renderer *);
 };
 #endif /* JuegoEventsController_H_ */
