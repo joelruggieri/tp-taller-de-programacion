@@ -24,7 +24,7 @@ public:
 	void dibujarse(SDL_Renderer*);
 	void setPresionado(bool presionado);
 	bool isPresionado() const;
-	void resizear(int x, int y);
+	void resizear();
 };
 
 #endif /* FLECHASCROLLVIEW_H_ */

@@ -44,6 +44,6 @@ void ScrollView::notify(Observable* obs) {
 	}
 }
 
-void ScrollView::resizear(int x, int y) {
+void ScrollView::resizear() {
 	cout << "se ha resizeado el scrool view" << endl ;
 }

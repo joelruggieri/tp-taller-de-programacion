@@ -11,7 +11,6 @@
 #include "SDL2/SDL.h"
 #include <iostream>
 #include "View.h"
-#include "Resizeable.h"
 #include <list>
 using namespace std;
 
@@ -31,9 +30,10 @@ private:
 	void dibujarBordeDerecho(SDL_Renderer* renderer);
 	void dibujarBordeSuperior(SDL_Renderer* renderer);
 	void dibujarBordeInferior(SDL_Renderer* renderer);
-	 void resizear(int x, int y);
+
 
 public:
+	 void resizear();
 	Canvas(int x, int y, int h, int w, SDL_Texture* textura);
 	void dibujarse(SDL_Renderer *);
 	virtual ~Canvas();

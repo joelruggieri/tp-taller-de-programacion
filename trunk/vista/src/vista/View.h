@@ -12,6 +12,7 @@
 #include "../controller/Resizer.h"
 
 class View : public Dibujable, public Resizeable{
+protected:
 	int w,h;
 	int xc, yc;
 public:
@@ -24,7 +25,7 @@ public:
 	int getY() const;
 	int getXCentro() const;
 	int getYCentro() const;
-	virtual void resizear(int x, int y) = 0;
+	virtual void resizear() = 0;
 	//desplaza la vista en x y en y;
 	void desplazarCentroA(int x, int y);
 };

@@ -88,11 +88,11 @@ void Resizer::quitarResizeable(Resizeable* resizeable) {
 	this->resizeables.remove(resizeable);
 }
 
-void Resizer::resizearResizeables(int xNuevo, int yNuevo) {
+void Resizer::resizearResizeables() {
 	list<Resizeable* >::iterator iter;
 		 for(iter = this->resizeables.begin();iter != this->resizeables.end();iter++)
 		{
-			 	(*iter)->resizear(xNuevo, yNuevo);
+			 	(*iter)->resizear();
 
 
 		}

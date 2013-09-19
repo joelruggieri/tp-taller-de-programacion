@@ -11,6 +11,7 @@
 #include "mouseEventController/MouseControllerPrioridades.h"
 #include "keyboardEventController/KeyBoardEventController.h"
 #include "CanvasController.h"
+#include "Resizer.h"
 
 #include "SDL2/SDL.h"
 #include <list>
@@ -32,7 +33,7 @@ private:
 	int botonAnterior;
 	bool verificarCaracteresEspeciales(SDL_KeyboardEvent key);
 	void keyUp ();
-	void resize (int x , int y);
+	void resize (int nuevoX, int nuevoY);
 public:
 	GeneralEventController();
 	virtual ~GeneralEventController();

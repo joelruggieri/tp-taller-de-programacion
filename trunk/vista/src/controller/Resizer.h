@@ -25,7 +25,7 @@ public:
 	int getAltoPantalla();
 	void addResizeable(Resizeable* resizeable);
 	void quitarResizeable(Resizeable* resizeable);
-	void resizearResizeables(int xNuevo, int yNuevo);
+	void resizearResizeables();
 	//Resizer();
 	//virtual ~Resizer();
 protected:

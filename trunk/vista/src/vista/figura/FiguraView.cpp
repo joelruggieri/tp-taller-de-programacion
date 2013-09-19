@@ -61,6 +61,6 @@ void FiguraView::click(float x, float y) {
 	this->controller->drag(this,x,y);
 }
 
-void FiguraView::resizear(int x, int y) {
+void FiguraView::resizear() {
 	cout << "Se ha hecho resize en un figuraView" << endl ;
 }
