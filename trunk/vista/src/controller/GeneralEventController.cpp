@@ -13,6 +13,7 @@
 #define ASCII_SHIFT 15
 GeneralEventController::GeneralEventController() {
 	this->botonAnterior= 0;
+	this->canvasController = 0;
 }
 
 GeneralEventController::~GeneralEventController() {
@@ -179,7 +180,9 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	case SDL_USEREVENT:
 		switch (evento.user.code) {
 			case USREVENT_CHANGEBACKGROUND:
-				this->canvasController->atenderEvento(evento);
+				if(this->canvasController != NULL){
+					this->canvasController->atenderEvento(evento);
+				}
 				break;
 			case USREVENT_SAVEGAME:
 				cout << "Evento de salvar partida capturado." <<endl;
