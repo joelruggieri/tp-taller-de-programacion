@@ -11,11 +11,12 @@
 using namespace std;
 #include "src/figura/Figura.h"
 #include "src/figura/Mapa.h"
-
+#include "src/NivelDAO.h"
 class PersistenciaManager {
 private:
-	list<Figura*> figurasPersistidas;
 	int nivelActual;
+	NivelDAO * dao;
+	Nivel * nivel;
 public:
 	PersistenciaManager();
 	virtual ~PersistenciaManager();

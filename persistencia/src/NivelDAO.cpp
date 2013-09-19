@@ -14,7 +14,7 @@
 #include "src/figura/Circulo.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
-
+#include "NivelInexistenteException.h"
 #define OBJETOS "Objetos"
 
 NivelDAO::NivelDAO() {
@@ -31,7 +31,7 @@ Nivel* NivelDAO::leerNivel(int numero) {
 	if (!a) {
 		Logger log;
 		log.error("No se pudo cargar el nivel. El archivo no existe.");
-		throw "Error: no existe el nivel";
+		throw NivelInexistenteException();
 	}
 	YAML::Node nodo = a->obtenerNodo(OBJETOS);
 	Nivel *n = new Nivel(numero);
