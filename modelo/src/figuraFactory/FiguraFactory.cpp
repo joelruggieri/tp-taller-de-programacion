@@ -10,8 +10,8 @@
 #include "../figura/Circulo.h"
 #include "../figura/Triangulo.h"
 
-FiguraFactory::FiguraFactory() {
-	// TODO Auto-generated constructor stub
+FiguraFactory::FiguraFactory(Rotador * rotador) {
+	this->rotador = rotador;
 
 }
 
@@ -20,12 +20,12 @@ FiguraFactory::~FiguraFactory() {
 }
 
 Figura * FiguraFactory::crearCuadrado(float x,float y){
-	return new Cuadrado(x,y,10,10);
+	return new Cuadrado(x,y, rotador,10,10);
 }
 Figura* FiguraFactory::crearCirculo(float x, float y) {
-	return new Circulo(x,y,5);
+	return new Circulo(x,y, rotador,5);
 }
 
 Figura* FiguraFactory::crearTriangulo(float x,float y) {
-	return new Triangulo(x,y,10,10);
+	return new Triangulo(x,y,rotador,10,10);
 }

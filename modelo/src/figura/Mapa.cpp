@@ -7,7 +7,7 @@
 
 #include "Mapa.h"
 
-Mapa::Mapa():Cuadrado(50,50,100,100) {
+Mapa::Mapa():Cuadrado(50,50,0,100,100) {
 
 }
 

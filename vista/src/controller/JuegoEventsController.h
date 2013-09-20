@@ -40,7 +40,7 @@ private:
 	ModeloController * modeloController;
 	int yMaxDrag;
 public:
-	JuegoEventsController(ModeloController*, int yMax);
+	JuegoEventsController(ModeloController*,FiguraFactory*, int yMax);
 	virtual ~JuegoEventsController();
 	void dropNuevaFigura(RuedaView*);
 	void dropNuevaFigura(CuadradoView*);

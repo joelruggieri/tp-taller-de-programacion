@@ -22,6 +22,10 @@ public:
 	int resizearDistanciaLogicaY(float valor);
 	float resizearDistanciaPixelX(int valor);
 	float resizearDistanciaPixelY(int valor);
+
+	float resizearPosicionPixelY(int valor);
+	int resizearPosicionLogicaY(float valor);
+
 	int getAltoPantalla();
 	void addResizeable(Resizeable* resizeable);
 	void quitarResizeable(Resizeable* resizeable);

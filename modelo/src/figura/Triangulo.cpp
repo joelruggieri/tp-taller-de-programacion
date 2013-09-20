@@ -9,9 +9,7 @@
 #include <cmath>
 #include "VisitorFigura.h"
 
-Triangulo::Triangulo(float x, float y, float ancho, float alto) {
-	this->x = x;
-	this->y = y;
+Triangulo::Triangulo(float x, float y,Rotador * rotador, float ancho, float alto):Figura(x,y,rotador) {
 	this->ancho = ancho;
 	this->alto = alto;
 }

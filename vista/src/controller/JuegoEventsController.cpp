@@ -22,14 +22,14 @@
 #include "../vista/View.h"
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
-
+#include "RotadorSistemaCoordenadas.h"
 #include "src/Logger.h"
 
 
 using namespace std;
 
-JuegoEventsController::JuegoEventsController(ModeloController *modeloController, int yMaxDrag) {
-	this->figurasFactory = new FiguraFactory();
+JuegoEventsController::JuegoEventsController(ModeloController *modeloController, FiguraFactory* factory,int yMaxDrag) {
+	this->figurasFactory = factory;
 	this->elementoDrag = NULL;
 	this->zona = NULL;
 	this->figuraRotacion = NULL;
@@ -87,7 +87,7 @@ void JuegoEventsController::dropNuevaFigura(CirculoView* view) {
 	dropear(view,
 			this->figurasFactory->crearCirculo(
 					r->resizearDistanciaPixelX(view->getXCentro()),
-					r->resizearDistanciaPixelY(view->getYCentro())));
+					r->resizearPosicionPixelY(view->getYCentro())));
 }
 
 void JuegoEventsController::dropNuevaFigura(TrianguloView* view) {
@@ -95,7 +95,7 @@ void JuegoEventsController::dropNuevaFigura(TrianguloView* view) {
 	dropear(view,
 			this->figurasFactory->crearTriangulo(
 					r->resizearDistanciaPixelX(view->getXCentro()),
-					r->resizearDistanciaPixelY(view->getYCentro())));
+					r->resizearPosicionPixelY(view->getYCentro())));
 }
 
 void JuegoEventsController::dropNuevaFigura(CuadradoView* view) {
@@ -103,14 +103,14 @@ void JuegoEventsController::dropNuevaFigura(CuadradoView* view) {
 	dropear(view,
 			this->figurasFactory->crearCuadrado(
 					r->resizearDistanciaPixelX(view->getXCentro()),
-					r->resizearDistanciaPixelY(view->getYCentro())));
+					r->resizearPosicionPixelY(view->getYCentro())));
 }
 
 void JuegoEventsController::dropFigura(FiguraView* view) {
 	Figura* modelo = view->getModelo();
 	Resizer * r = Resizer::Instance();
 	modelo->setX(r->resizearDistanciaPixelX(view->getXCentro()));
-	modelo->setY(r->resizearDistanciaPixelY(view->getYCentro()));
+	modelo->setY(r->resizearPosicionPixelY(view->getYCentro()));
 	this->dropear(view, modelo);
 }
 
@@ -126,7 +126,7 @@ bool JuegoEventsController::clickDown(int x, int y) {
 	//prueba de hacer click en la zona
 	Resizer* r = Resizer::Instance();
 	float lX = r->resizearDistanciaPixelX(x);
-	float lY = r->resizearDistanciaPixelY(y);
+	float lY = r->resizearPosicionPixelY(y);
 	if (zona != NULL && !zona->click(lX, lY) && this->figuraRotacion == NULL) {
 		FiguraView * view = this->zona->getVista(lX, lY);
 		if (view != NULL) {
@@ -152,8 +152,8 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	if (zona != NULL) {
 		if (!isDragging()){
 			this->posStartDragX = Resizer::Instance()->resizearDistanciaLogicaX(x);
-			this->posStartDragY = Resizer::Instance()->resizearDistanciaLogicaY(y);
-			this->elementoDrag = new Drag(figura, Resizer::Instance()->resizearDistanciaLogicaY(yMaxDrag));
+			this->posStartDragY = Resizer::Instance()->resizearPosicionLogicaY(y);
+			this->elementoDrag = new Drag(figura, Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
 			log.info("Comienza Drag");
 		}
 		this->zona->removerFigura(figura);
@@ -210,7 +210,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 	if (zona != NULL  && this->elementoDrag == NULL) {
 		Resizer* r = Resizer::Instance();
 		float lX = r->resizearDistanciaPixelX(x);
-		float lY = r->resizearDistanciaPixelY(y);
+		float lY = r->resizearPosicionPixelY(y);
 		FiguraView * view = this->zona->getVista(lX, lY);
 		if (view != NULL) {
 			if (view->getModelo() != NULL) {

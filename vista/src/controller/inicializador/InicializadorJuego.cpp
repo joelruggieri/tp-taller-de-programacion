@@ -20,6 +20,7 @@ using namespace std;
 #include "../RutasArchivos.h"
 #include "../Resizer.h"
 #include "../PersistenciaEventController.h"
+#include "src/figuraFactory/FiguraFactory.h"
 const string KEY_CUADRADO = "CUADRADO";
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
@@ -31,6 +32,8 @@ InicializadorJuego::InicializadorJuego(SDL_Renderer * renderer, GeneralEventCont
 	this->eventsController = controllerEventos;
 	this->bbdd = new PersistenciaManager();
 	this->modeloController = modeloController;
+	//TODO EL ROTADOR NO SE BORRA, DONDE SE BORRA?
+	this->rotador = new RotadorSistemaCoordenadas();
 }
 
 InicializadorJuego::~InicializadorJuego() {
@@ -58,7 +61,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 		Figura* modelo) {
 	Resizer * r = Resizer::Instance();
 	int x = r->resizearDistanciaLogicaX(modelo->getX());
-	int y = r->resizearDistanciaLogicaY(modelo->getY());
+	int y = r->resizearPosicionLogicaY(modelo->getY());
 	int w = r->resizearDistanciaLogicaY(modelo->getAncho());
 	int h = r->resizearDistanciaLogicaY(modelo->getAlto());
 	//TODO HABRIA QUE VALIDAR QUE LA POSICION CAIGA BIEN, SINO BORRARLO
@@ -71,8 +74,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	if(zonaJuego != NULL){
 		return this->juegoController;
 	}
-	//TODO HARCODEO DEL Y MAX QUE SE LE PASA AL JUEGO EVENTS CONTROLLER.
-	this->juegoController = new JuegoEventsController(modeloController, 100);
+
+	this->juegoController = new JuegoEventsController(modeloController,new FiguraFactory(this->rotador), 20);
 	ViewFiguraFactory * factory = new ViewCuadradoFactory(renderer, juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CUADRADO,factory));
 	factory = new ViewTrianguloFactory(renderer, juegoController);
@@ -99,15 +102,16 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
 	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
 	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
-	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
+	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 120,
 			herrTextura);
-	ZonaTablero* zonaTablero = new ZonaTablero(50,50, canvasTexture);
+	ZonaTablero* zonaTablero = new ZonaTablero(50,70, canvasTexture);
 	this->zonaJuego=  new ZonaJuego(zonaCreacion, zonaTablero,
-			new Cuadrado(75, 50, 150, 100));
+			new Cuadrado(75, 70,0, 150, 100));
 
 	list<Figura*> figurasPersistidas = this->bbdd->getFiguras();
 	list<Figura*>::iterator it;
 	for(it = figurasPersistidas.begin() ; it != figurasPersistidas.end() ; ++it){
+		(*it)->setRotador(this->rotador);
 		(*it)->acept(this);
 	}
 

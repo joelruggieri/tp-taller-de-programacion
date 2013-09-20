@@ -40,14 +40,20 @@ Figura::Figura() {
 	x= 0;
 	y=0;
 	rotacion = 0;
+	this->rotador = 0;
 }
 
-Figura::Figura(float x, float y) {
+Figura::Figura(float x, float y, Rotador * rotador) {
 	this->x = x;
 	this->y = y;
 	this->rotacion = 0;
+	this->rotador = rotador;
 }
 
 
 Figura::~Figura() {
+}
+
+void Figura::setRotador(Rotador* rotador) {
+	this->rotador = rotador;
 }

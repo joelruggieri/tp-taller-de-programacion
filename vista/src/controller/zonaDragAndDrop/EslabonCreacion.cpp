@@ -41,7 +41,7 @@ FiguraView * EslabonCreacion::atender(float posX, float posY, float corrimientoS
 		Resizer * res = Resizer::Instance();
 		FiguraView * view = this->factory->crear(
 				res->resizearDistanciaLogicaX(posX),
-				res->resizearDistanciaLogicaY(posY - corrimientoScroll),
+				res->resizearPosicionLogicaY(posY - corrimientoScroll),
 				res->resizearDistanciaLogicaX(this->cuerpo->getAncho()),
 				res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
 		return view;
@@ -59,7 +59,7 @@ Dibujable * EslabonCreacion::getFactoryView() {
 	Resizer * res = Resizer::Instance();
 	return this->factory->crearVistaPropia(
 			res->resizearDistanciaLogicaX(cuerpo->getX()),
-			res->resizearDistanciaLogicaY(cuerpo->getY()),
+			res->resizearPosicionLogicaY(cuerpo->getY()),
 			res->resizearDistanciaLogicaX(this->cuerpo->getAncho()),
 			res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
 }

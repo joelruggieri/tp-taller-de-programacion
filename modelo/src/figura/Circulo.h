@@ -9,13 +9,13 @@
 #define CRICULO_H_
 
 #include "Figura.h"
-
+#include "Rotador.h"
 class Circulo: public Figura {
 private:
 	float radio;
 public:
 	Circulo();
-	Circulo(float, float, float);
+	Circulo(float, float, Rotador *, float);
 	virtual ~Circulo();
 	bool contacto(float,float);
 	bool contieneCentro(Posicionable* cuadrado);

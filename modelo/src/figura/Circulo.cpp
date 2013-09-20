@@ -8,13 +8,11 @@
 #include "Circulo.h"
 #include "VisitorFigura.h"
 
-Circulo::Circulo() {
-	// TODO Auto-generated constructor stub
+Circulo::Circulo(): Figura(0,0,0) {
+	this->radio = 0;
 }
 
-Circulo::Circulo(float x, float y, float radio) {
-	this->x = x;
-	this->y = y;
+Circulo::Circulo(float x, float y, Rotador * rotador, float radio):Figura(x,y,rotador) {
 	this->radio = radio;
 
 }
@@ -34,9 +32,13 @@ Circulo::~Circulo() {
 bool Circulo::contacto(float x, float y) {
 	float cx = this->getX();
 	float cy = this->getY();
-
+	double xAux = x;
+	double yAux = y;
+	if(this->getRotacion() != 0){
+		this->rotador->rotar(this,xAux,yAux);
+	}
 	//Distancia al punto
-	float SqrDist = ((cx - x) * (cx - x)) + ((cy - y) * (cy - y));
+	float SqrDist = ((cx - xAux) * (cx - xAux)) + ((cy - yAux) * (cy - yAux));
 	float SqrRadius = radio * radio;
 	return (SqrDist <= SqrRadius);
 }

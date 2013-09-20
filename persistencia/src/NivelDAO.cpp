@@ -82,7 +82,7 @@ void NivelDAO::obtenerCirculos(std::list<Figura*> &lista, YAML::Node objetos){
 	for (std::size_t i = 0; i < circulos.size(); i++) {
 		try {
 			Circulo obj = circulos[i].as<Circulo>();
-			lista.push_back(new Circulo(obj.getX(), obj.getY(), obj.getRadio()));
+			lista.push_back(new Circulo(obj.getX(), obj.getY(),0, obj.getRadio()));
 		} catch (YAML::InvalidNode &exc) {
 			std::string mensaje = "Error al leer circulo ";
 			mensaje.append(exc.what());
@@ -97,7 +97,7 @@ void NivelDAO::obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos){
 	for (std::size_t i = 0; i < cuadrados.size(); i++) {
 		try {
 			Cuadrado obj = cuadrados[i].as<Cuadrado>();
-			lista.push_back( new Cuadrado(obj.getX(), obj.getY(), obj.getAncho(), obj.getAlto()));
+			lista.push_back( new Cuadrado(obj.getX(), obj.getY(),0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::InvalidNode &exc) {
 			std::string mensaje = "Error al leer cuadrado ";
 			mensaje.append(exc.what());
@@ -112,7 +112,7 @@ void NivelDAO::obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos){
 	for (std::size_t i = 0; i < triangulos.size(); i++) {
 		try {
 			Triangulo obj = triangulos[i].as<Triangulo>();
-			lista.push_back( new Triangulo(obj.getX(), obj.getY(), obj.getAncho(), obj.getAlto()));
+			lista.push_back( new Triangulo(obj.getX(), obj.getY(),0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::InvalidNode &exc) {
 			std::string mensaje = "Error al leer Triangulo ";
 			mensaje.append(exc.what());
