@@ -16,7 +16,7 @@ View::View(int x, int y, int w, int h) {
 }
 
 View::~View() {
-	// TODO Auto-generated destructor stub
+	Resizer::Instance()->quitarResizeable(this);
 }
 
 int View::getH() const {
