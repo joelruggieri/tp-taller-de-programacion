@@ -14,13 +14,11 @@
 using namespace std;
 
 class ViewFiguraFactory {
-private:
-	SDL_Texture* cargarTexture (const string &file, SDL_Renderer* ren);
 protected:
 	SDL_Texture * textura;
 	DropController * controller;
 public:
-	ViewFiguraFactory(string path,SDL_Renderer* ren, DropController * controller);
+	ViewFiguraFactory(string path, DropController * controller);
 	virtual ~ViewFiguraFactory();
 	virtual FiguraView * crear(int,int,int,int)=0;
 	virtual FiguraView * crearVistaPropia(int,int,int,int) = 0;

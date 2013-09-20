@@ -25,10 +25,9 @@ const string KEY_CUADRADO = "CUADRADO";
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
 
-InicializadorJuego::InicializadorJuego(SDL_Renderer * renderer, GeneralEventController * controllerEventos, ModeloController * modeloController) {
+InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->zonaJuego = NULL;
 	this->juegoController = NULL;
-	this->renderer = renderer;
 	this->eventsController = controllerEventos;
 	this->bbdd = new PersistenciaManager();
 	this->modeloController = modeloController;
@@ -76,11 +75,11 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	}
 
 	this->juegoController = new JuegoEventsController(modeloController,new FiguraFactory(this->rotador), 20);
-	ViewFiguraFactory * factory = new ViewCuadradoFactory(renderer, juegoController);
+	ViewFiguraFactory * factory = new ViewCuadradoFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CUADRADO,factory));
-	factory = new ViewTrianguloFactory(renderer, juegoController);
+	factory = new ViewTrianguloFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TRIANGULO,factory));
-	factory = new ViewCirculoFactory(renderer, juegoController);
+	factory = new ViewCirculoFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,factory));
 
 
@@ -88,20 +87,20 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(FONDO_DEFECTO);
 	SDL_Texture* herrTextura = texturas->cargarTexture(FONDO_ZONA_CREACION);
-	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
-	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
-	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
-	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
-	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
-	factories.push_back(new ViewRuedaFactory(renderer, juegoController));
-	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
-	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
-	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
-	factories.push_back(new ViewRuedaFactory(renderer, juegoController));
-	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
-	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
-	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
-	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
+	factories.push_back(new ViewCuadradoFactory(juegoController));
+	factories.push_back(new ViewTrianguloFactory(juegoController));
+	factories.push_back(new ViewCuadradoFactory(juegoController));
+	factories.push_back(new ViewCirculoFactory(juegoController));
+	factories.push_back(new ViewCuadradoFactory(juegoController));
+	factories.push_back(new ViewRuedaFactory(juegoController));
+	factories.push_back(new ViewTrianguloFactory(juegoController));
+	factories.push_back(new ViewCirculoFactory(juegoController));
+	factories.push_back(new ViewCuadradoFactory(juegoController));
+	factories.push_back(new ViewRuedaFactory(juegoController));
+	factories.push_back(new ViewCirculoFactory(juegoController));
+	factories.push_back(new ViewCuadradoFactory(juegoController));
+	factories.push_back(new ViewTrianguloFactory(juegoController));
+	factories.push_back(new ViewCirculoFactory(juegoController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 120,
 			herrTextura);
 	ZonaTablero* zonaTablero = new ZonaTablero(50,70, canvasTexture);

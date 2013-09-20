@@ -9,10 +9,9 @@
 #define VIEWRUEDAFACTORY_H_
 
 #include "ViewFiguraFactory.h"
-#include "SDL2/SDL.h"
 class ViewRuedaFactory: public ViewFiguraFactory {
 public:
-	ViewRuedaFactory(SDL_Renderer * renderer,DropController * controller);
+	ViewRuedaFactory(DropController * controller);
 	virtual ~ViewRuedaFactory();
 	FiguraView * crear(int,int,int,int);
 	FiguraView * crearVistaPropia(int,int,int,int);

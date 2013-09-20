@@ -9,10 +9,9 @@
 #define VIEWCUADRADOFACTORY_H_
 
 #include "ViewFiguraFactory.h"
-#include "SDL2/SDL.h"
 class ViewCuadradoFactory: public ViewFiguraFactory {
 public:
-	ViewCuadradoFactory(SDL_Renderer * renderer,DropController * controller);
+	ViewCuadradoFactory(DropController * controller);
 	virtual ~ViewCuadradoFactory();
 	FiguraView * crear(int, int,int,int);
 	FiguraView * crearVistaPropia(int,int,int,int);

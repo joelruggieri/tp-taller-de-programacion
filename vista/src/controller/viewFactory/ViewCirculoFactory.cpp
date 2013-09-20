@@ -8,7 +8,7 @@
 #include "ViewCirculoFactory.h"
 #include "../../vista/figura/CirculoView.h"
 
-ViewCirculoFactory::ViewCirculoFactory(SDL_Renderer * renderer,DropController * controller): ViewFiguraFactory("resource/circulo.jpg", renderer, controller) {
+ViewCirculoFactory::ViewCirculoFactory(DropController * controller): ViewFiguraFactory("resource/circulo.jpg", controller) {
 
 }
 
