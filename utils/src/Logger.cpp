@@ -30,7 +30,6 @@ const std::string fecha() {
 //}
 
 Logger::~Logger() {
-	archivo.close();
 }
 
 void Logger::error(std::string mensaje) {
@@ -80,7 +79,6 @@ void Logger::concatenar(std::string& mensajeOriginal,double numero){
 
 
 Logger::Logger() {
-	this->nombre = "";
 }
 
 void Logger::setNivel(NIVEL_LOGGER n) {

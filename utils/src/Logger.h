@@ -32,8 +32,5 @@ public:
 	void concatenar(std::string& mensajeOriginal, float numero);
 	void concatenar(std::string& mensajeOriginal, double numero);
 	static void setNivel(NIVEL_LOGGER);
-private:
-	std::string nombre;
-	std::ofstream archivo;
 };
 #endif /* LOGGER_H_ */
