@@ -43,6 +43,7 @@ public:
 	void cliqueoEnOtroLado();	//feo
 	void desTeclearHerramienta();
 	void resizear();
+	bool algunaHerramientaSeleccionada(int x, int y);
 //	TextBox* getTextBox();
 private:
 	SDL_Texture* fondo ;
