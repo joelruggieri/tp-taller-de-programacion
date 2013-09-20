@@ -20,8 +20,10 @@ CanvasController::~CanvasController() {
 
 void CanvasController::atenderEvento(SDL_Event evento){
 	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
-	SDL_Texture* nuevaTextura = texturas->cargarTexture(*(static_cast<string*>(evento.user.data1)));
+	string* ruta = static_cast<string*>(evento.user.data1);
+	SDL_Texture* nuevaTextura = texturas->cargarTexture(*ruta);
 	if (nuevaTextura == NULL) cout<<"Ruta invalida." <<endl;
 	else this->canvas->ModificarFondo(nuevaTextura);
+	delete ruta;
 }
 
