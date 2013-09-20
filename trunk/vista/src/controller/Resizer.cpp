@@ -98,6 +98,17 @@ void Resizer::resizearResizeables() {
 		}
 }
 
+float Resizer::resizearPosicionPixelY(int valor) {
+	int yPixel = getAltoPantalla() - valor;
+	float valorFloat = (float)yPixel;
+	return (valorFloat / this->relacionYLogica);
+}
+
+int Resizer::resizearPosicionLogicaY(float valor) {
+	int yPixel =round(this->relacionYLogica * valor);
+	return getAltoPantalla() - yPixel;
+}
+
 Resizer::Resizer(int x, int y,float xLogico, float yLogico)
 {
 	this->xViejo = x;

@@ -10,11 +10,11 @@
 #include "src/Logger.h"
 
 //TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
-ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,100,100)) {
+ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,0,100,100)) {
 	Resizer * instance = Resizer::Instance();
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 	int xC = instance->resizearDistanciaLogicaX(x);
-	int yC =instance->resizearDistanciaLogicaY(y);
+	int yC =instance->resizearPosicionLogicaY(y);
 	int wC = instance->resizearDistanciaLogicaX(100);
 	int hC =instance->resizearDistanciaLogicaY(100);
 	this->canvas = new Canvas(xC,yC,wC,hC,imagenFondo);

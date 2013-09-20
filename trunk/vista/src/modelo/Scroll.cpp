@@ -55,9 +55,9 @@ bool Scroll::click(float x, float y) {
 	return resultado;
 }
 
-int Scroll::getScrollPixels() {
-	return Resizer::Instance()->resizearDistanciaLogicaY(this->posicion);
-}
+//int Scroll::getScrollPixels() {
+//	return Resizer::Instance()->resizearDistanciaLogicaY(this->posicion);
+//}
 
 float Scroll::getScroll() {
 	return this->max - this->posicion;

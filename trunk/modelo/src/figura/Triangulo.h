@@ -9,12 +9,13 @@
 #define TRIANGULO_H_
 
 #include "Figura.h"
+#include "Rotador.h"
 class Triangulo: public Figura {
 private:
 	float ancho,alto;
 public:
 	Triangulo();
-	Triangulo(float, float, float, float);
+	Triangulo(float, float, Rotador * rotador, float, float);
 	virtual ~Triangulo();
 	bool contacto(float,float);
 	bool contieneCentro(Posicionable* cuadrado);

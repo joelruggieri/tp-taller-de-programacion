@@ -15,6 +15,7 @@
 #include "../PersistenciaManager.h"
 #include "../JuegoEventsController.h"
 #include "../GeneralEventController.h"
+#include "../RotadorSistemaCoordenadas.h"
 #include <map>
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
@@ -32,6 +33,7 @@ private:
 	GeneralEventController * eventsController;
 	PersistenciaManager * bbdd;
 	ModeloController * modeloController;
+	RotadorSistemaCoordenadas * rotador;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
 public:
 	InicializadorJuego(SDL_Renderer * renderer,

@@ -30,7 +30,7 @@ public:
 	Scroll(Figura * flechaSup, Figura* flechaInf,int velocidad, int max);
 	virtual ~Scroll();
 	bool click(float x, float y);
-	int getScrollPixels();
+//	int getScrollPixels();
 	float getScroll();
 	void addScrolleable(View *);
 	int getltimoClick() const;

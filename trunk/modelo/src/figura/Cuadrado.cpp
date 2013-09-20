@@ -9,7 +9,7 @@
 #include <cmath>
 #include "VisitorFigura.h"
 
-Cuadrado::Cuadrado(float x, float y, float ancho, float alto): Figura(x,y) {
+Cuadrado::Cuadrado(float x, float y,Rotador * rot, float ancho, float alto): Figura(x,y,rot) {
 	this->ancho = ancho;
 	this->alto = alto;
 }
@@ -48,16 +48,17 @@ Cuadrado::~Cuadrado() {
 bool Cuadrado::contacto(float posX, float posY) {
 	double xc = posX;
 	double yc= posY;
-	if(this->getRotacion() != 0){
-		//traslado al centro, roto el punto y pruebo el contacto.
-		xc = posX - this->x;
-		yc = posY - this->y;
-		//roto
-		double rotacionRad = this->getRotacion() *-3.14 /180.0;
-		xc = (posX - this->x) * cos(rotacionRad)- (posY - this->y) * sin(rotacionRad);
-		yc = (posX - this->x) * sin(rotacionRad)+ (posY - this->y) * cos(rotacionRad);
-		xc =xc + this->x;
-		yc=yc + this->y;
+	if(this->getRotacion() != 0 && rotador != 0){
+//		//traslado al centro, roto el punto y pruebo el contacto.
+//		xc = posX - this->x;
+//		yc = posY - this->y;
+//		//roto
+//		double rotacionRad = this->getRotacion() *-3.14 /180.0;
+//		xc = (posX - this->x) * cos(rotacionRad)- (posY - this->y) * sin(rotacionRad);
+//		yc = (posX - this->x) * sin(rotacionRad)+ (posY - this->y) * cos(rotacionRad);
+//		xc =xc + this->x;
+//		yc=yc + this->y;
+		this->rotador->rotar(this,xc, yc);
 	}
 
 	return this->isAdentro1D(xc, this->x, this->ancho)

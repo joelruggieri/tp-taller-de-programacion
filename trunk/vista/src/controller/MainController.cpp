@@ -41,7 +41,7 @@ void taparHueco(SDL_Renderer * renderer){
 	SDL_Rect dest;
 	Resizer * r= Resizer::Instance();
 	dest.x = 0;
-	dest.y= r->resizearDistanciaLogicaY(100);
+	dest.y= r->resizearPosicionLogicaY(100);
 	dest.w= r->resizearDistanciaLogicaX(120);
 	dest.h= r->resizearDistanciaLogicaY(20);
 	SDL_SetRenderDrawColor(renderer, 0,0,0,0);
@@ -80,7 +80,7 @@ int MainController::run() {
 		SDL_RenderClear(render);
 
 		juegoController->dibujarse(render);
-		taparHueco(render);
+//		taparHueco(render);
 		vista.dibujarse(render);
 		vistaRotacion.dibujarse(render);
 		toolBar->dibujarse(render);
