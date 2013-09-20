@@ -16,17 +16,23 @@
 //#include "../../controller/Resizer.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/TextBox.h"
+#include "../../vista/View.h"
+#include "../Resizer.h"
 
 
 
 using namespace std;
 
-class ZonaToolBar  {
+class ZonaToolBar : public View   {
 private:
 	list<Herramientas* > herramientas ;
 
 public:
-	ZonaToolBar(int x, int y, int w, int h, SDL_Texture* texture);
+	ZonaToolBar(int x, int y, int w, int h, SDL_Texture* texture): View(x,y,w,h)
+{
+		this->fondo = texture ;
+		this->agregarHerramientasAlToolBar(x,y,w,h);
+}
 	virtual ~ZonaToolBar();
 	void agregarHerramienta(Herramientas* herramienta);
 	void dibujarse(SDL_Renderer *render);
@@ -36,10 +42,11 @@ public:
 	void teclearHerramienta(char key);
 	void cliqueoEnOtroLado();	//feo
 	void desTeclearHerramienta();
+	void resizear();
 //	TextBox* getTextBox();
 private:
 	SDL_Texture* fondo ;
-	int x,y,h,w;
+//	int x,y,h,w;
 	void agregarHerramientasAlToolBar(int x, int y, int w, int h);
 
 

@@ -24,21 +24,18 @@ void BotonAgregar::presionarMouse() {
 
 }
 
-Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada) {
-	// TODO Auto-generated constructor stub
-	 this->textura = textura ;
-	 this->texturaCurrent = textura ;
-	 this->texturaSeleccionada = texturaSeleccionada ;
-	 this->x = x;
-	 this->y = y;
-	 this->w = w;
-	 this->h = h ;
-	 this->seleccionado = false;
-	 this->cantDibujados = 0;
-
-
-
-}
+//Boton::Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada) {
+//	// TODO Auto-generated constructor stub
+//	 this->textura = textura ;
+//	 this->texturaCurrent = textura ;
+//	 this->texturaSeleccionada = texturaSeleccionada ;
+//
+//	 this->seleccionado = false;
+//	 this->cantDibujados = 0;
+//
+//
+//
+//}
 
 
 /*void BotonAgregar::Dibujarse(){
@@ -97,10 +94,10 @@ void std::BotonGuardar::presionarMouse() {
 void Boton::dibujarse(SDL_Renderer* render) {
 
 SDL_Rect dst ;
-dst.x = this->x;
-dst.y = this->y;
-dst.h = this->h;
-dst.w = this->w;
+dst.x = this->getX();
+dst.y = this->getY();
+dst.h = this->getH();
+dst.w = this->getW();
 SDL_RenderCopy(render, this->texturaCurrent,NULL,&dst);
 return;
 
@@ -108,11 +105,14 @@ return;
 
 bool Boton::fueSeleccionado(int x, int y) {
 	//TODO calcular la seleccion con el radio, por ser redondos
-	int radio = this->h / 2 ;
-	int xc = this->x + (this->w  / 2);
-	int yc = this->y + (this->h /2 );
-
-	if (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->h > y && sqrt((x-xc)*(x-xc)+(y-yc)*(y-yc)) <= radio)
+	int radio = this->getH() / 2 ;
+	int xc = this->getXCentro();
+	int yc = this->getYCentro();
+	int xe = this->getX();
+	int ye = this->getY();
+	int w = this->getW();
+	int h = this->getH();
+	if (xe <= x && xe + w > x && ye <= y && ye + h > y && sqrt((x-xc)*(x-xc)+(y-yc)*(y-yc)) <= radio)
 	{
 		//&& sqrt((x-xc)*(x-xc)+(y-yc)*(y-yc) < radio)
 	//out << sqrt((x-xc)*(x-xc)+(y-yc)*(y-yc)) << " " << radio <<  endl  ;
@@ -156,4 +156,11 @@ void Boton::clickeoFueraDeHerramienta() {
 }
 
 void Boton::desEjecutarTecla() {
+}
+
+void Boton::resizear() {
+	this->setYc(Resizer::Instance()->resizearDistanciaY(this->getYCentro()));
+	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+//	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+//	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 }
