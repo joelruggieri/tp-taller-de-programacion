@@ -9,7 +9,7 @@
 #include "ViewCirculoFactory.h"
 #include "../../vista/figura/CirculoView.h"
 
-ViewRuedaFactory::ViewRuedaFactory(DropController * controller): ViewFiguraFactory("resource/rueda.jpg", controller) {
+ViewRuedaFactory::ViewRuedaFactory(DropController * controller): ViewFiguraFactory("resource/rueda.png", controller) {
 
 }
 
