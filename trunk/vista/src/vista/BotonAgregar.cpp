@@ -160,7 +160,7 @@ void Boton::desEjecutarTecla() {
 
 void Boton::resizear() {
 	this->setYc(Resizer::Instance()->resizearDistanciaY(this->getYCentro()));
-	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+//	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
 //	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 //	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 }
