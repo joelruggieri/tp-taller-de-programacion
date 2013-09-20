@@ -21,8 +21,8 @@ public:
 	std::string leer();
 	std::string getNombre();
 	YAML::Node obtenerNodo(std::string nombre);
-	void sobreescribir(YAML::Node nodo);
-	Archivo(const Archivo &a);
+	void sobreescribir(YAML::Node &nodo);
+//	Archivo(const Archivo &a);
 	void cerrar();
 private:
 	std::string nombre;

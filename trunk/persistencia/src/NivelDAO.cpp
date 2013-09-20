@@ -45,8 +45,8 @@ Nivel* NivelDAO::leerNivel(int numero) {
 
 void NivelDAO::guardarNivel(Nivel *nivel) {
 	Archivo *a = administrador.obtenerArchivoNivel(nivel->getNumero());
-	YAML::Node nodo;
-	nodo["Nivel"] = *nivel;
+	YAML::Node nodoRaiz;
+	nodoRaiz["Nivel"] = *nivel;
 	YAML::Node nodoFiguras;
 	std::list<Figura*>::iterator it;
 	ObjetoDAO oDao;
@@ -54,8 +54,8 @@ void NivelDAO::guardarNivel(Nivel *nivel) {
 	for (it = listaFiguras.begin(); it != listaFiguras.end(); ++it) {
 		oDao.guardarFigura(*it, &nodoFiguras);
 	}
-	nodo[OBJETOS] = nodoFiguras;
-	a->sobreescribir(nodo);
+	nodoRaiz[OBJETOS] = nodoFiguras;
+	a->sobreescribir(nodoRaiz);
 }
 
 
