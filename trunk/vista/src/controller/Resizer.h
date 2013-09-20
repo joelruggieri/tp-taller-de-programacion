@@ -30,6 +30,15 @@ public:
 	void addResizeable(Resizeable* resizeable);
 	void quitarResizeable(Resizeable* resizeable);
 	void resizearResizeables();
+
+
+	//METODOS MAS FACILES DE USAR.
+	void adaptarPosicionLogica(float x, float y, int & xNuevo, int & yNuevo);
+	void adaptarDimensionLogica(float w, float h, int & wNuevo, int & hNuevo);
+
+	void adaptarPosicionPixel(int x, int y, float & xNuevo, float & yNuevo);
+	void adaptarDimensionPixel(int w, int h, float & wNuevo, float & hNuevo);
+
 	//Resizer();
 	//virtual ~Resizer();
 protected:

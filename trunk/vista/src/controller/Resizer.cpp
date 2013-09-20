@@ -132,3 +132,28 @@ int Resizer::getAltoPantalla() {
 void Resizer::addResizeable(Resizeable* resizeable) {
 	this->resizeables.push_back(resizeable);
 }
+
+void Resizer::adaptarPosicionLogica(float x, float y, int& xNuevo,
+		int& yNuevo) {
+	xNuevo = this->resizearDistanciaLogicaX(x);
+	yNuevo = this->resizearPosicionLogicaY(y);
+
+}
+
+void Resizer::adaptarDimensionLogica(float w, float h, int& wNuevo,
+		int& hNuevo) {
+	wNuevo = this->resizearDistanciaLogicaX(w);
+	hNuevo = this->resizearDistanciaLogicaY(h);
+
+}
+
+void Resizer::adaptarPosicionPixel(int x, int y, float& xNuevo, float& yNuevo) {
+	xNuevo = this->resizearDistanciaPixelX(x);
+	yNuevo = this->resizearPosicionPixelY(y);
+}
+
+void Resizer::adaptarDimensionPixel(int w, int h, float& wNuevo,
+		float& hNuevo) {
+	wNuevo = this->resizearDistanciaPixelX(w);
+	hNuevo = this->resizearDistanciaPixelY(h);
+}
