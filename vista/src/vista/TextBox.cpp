@@ -41,7 +41,7 @@ void TextBox::desEjecutarTecla() {
 
 void TextBox::resizear() {
 	this->setYc(Resizer::Instance()->resizearDistanciaY(this->getYCentro()));
-	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+//	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
 //	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 //	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 }

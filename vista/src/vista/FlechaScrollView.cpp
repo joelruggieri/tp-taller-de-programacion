@@ -81,5 +81,6 @@ void FlechaScrollView::resizear() {
 	cout << "se ha resieado las flechas scrooll view" << endl ;
 	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
 	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
+		this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 
 }
