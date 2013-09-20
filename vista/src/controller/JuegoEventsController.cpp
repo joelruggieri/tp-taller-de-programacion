@@ -178,12 +178,13 @@ void JuegoEventsController::setZona(Zona* zona) {
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 	if (this->elementoDrag != NULL ) {
 		int yBack = this->elementoDrag->getYCentro();
-		float deltaX = this->elementoDrag->getXCentro() + corrimientoX - this->posStartDragX;
-		float deltaY = this->elementoDrag->getYCentro() + corrimientoY - this->posStartDragY;
-		int posYAlcanzada = this->elementoDrag->desplazarCentroA(deltaX , deltaY);
+		int xBack = this->elementoDrag->getXCentro();
+		int deltaX = this->elementoDrag->getXCentro() + corrimientoX - this->posStartDragX;
+		int deltaY = this->elementoDrag->getYCentro() + corrimientoY - this->posStartDragY;
+		this->elementoDrag->desplazarCentroA(deltaX , deltaY);
 		//si no se pudo hacer el desplazamiento no hago el corrimiento;
-			this->posStartDragX = corrimientoX;
-			this->posStartDragY = posYAlcanzada - yBack +this->posStartDragY;
+			this->posStartDragX = deltaX- xBack +this->posStartDragX;
+			this->posStartDragY = deltaY- yBack +this->posStartDragY;
 		//cout << "X: " << this->elementoDrag->getXCentro() << " Y : " << this->elementoDrag->getXCentro() <<endl;
 		//cout << "CX: " << corrimientoX << " CY: " << corrimientoY <<endl;
 	}
