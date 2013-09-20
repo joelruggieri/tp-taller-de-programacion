@@ -14,6 +14,7 @@
 #include <string>
 #include <sstream>
 
+#include "../vista/figura/RuedaView.h"
 #include "../vista/figura/CirculoView.h"
 #include "../vista/figura/CuadradoView.h"
 #include "../vista/figura/FiguraView.h"
@@ -111,6 +112,14 @@ void JuegoEventsController::dropFigura(FiguraView* view) {
 	modelo->setX(r->resizearDistanciaPixelX(view->getXCentro()));
 	modelo->setY(r->resizearDistanciaPixelY(view->getYCentro()));
 	this->dropear(view, modelo);
+}
+
+void JuegoEventsController::dropNuevaFigura(RuedaView* vistaRueda){
+	Resizer* r = Resizer::Instance();
+	dropear(vistaRueda,
+			this->figurasFactory->crearCirculo(
+					r->resizearDistanciaPixelX(vistaRueda->getXCentro()),
+					r->resizearDistanciaPixelX(vistaRueda->getYCentro())));
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {

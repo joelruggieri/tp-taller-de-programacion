@@ -18,6 +18,7 @@
 #include "../vista/figura/CuadradoView.h"
 #include "../vista/figura/CirculoView.h"
 #include "../vista/figura/TrianguloView.h"
+#include "../vista/figura/RuedaView.h"
 #include <list>
 
 using namespace std;
@@ -28,6 +29,7 @@ public:
 	virtual ~DropController(){
 
 	}
+	virtual void dropNuevaFigura(RuedaView*) = 0;
 	virtual void dropNuevaFigura(CuadradoView*) = 0;
 	virtual void dropNuevaFigura(CirculoView*) = 0;
 	virtual void dropNuevaFigura(TrianguloView*) = 0;

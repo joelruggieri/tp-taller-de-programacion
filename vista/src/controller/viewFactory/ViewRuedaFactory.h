@@ -1,0 +1,21 @@
+/*
+ * ViewRuedaFactory.h
+ *
+ *  Created on: 19/09/2013
+ *      Author: joel
+ */
+
+#ifndef VIEWRUEDAFACTORY_H_
+#define VIEWRUEDAFACTORY_H_
+
+#include "ViewFiguraFactory.h"
+#include "SDL2/SDL.h"
+class ViewRuedaFactory: public ViewFiguraFactory {
+public:
+	ViewRuedaFactory(SDL_Renderer * renderer,DropController * controller);
+	virtual ~ViewRuedaFactory();
+	FiguraView * crear(int,int,int,int);
+	FiguraView * crearVistaPropia(int,int,int,int);
+};
+
+#endif /* VIEWRUEDAFACTORY_H_ */

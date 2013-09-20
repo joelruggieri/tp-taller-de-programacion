@@ -8,6 +8,7 @@
 #ifndef JuegoEventsController_H_
 #define JuegoEventsController_H_
 
+#include "../vista/figura/RuedaView.h"
 #include "../vista/figura/CirculoView.h"
 #include "../vista/figura/CuadradoView.h"
 #include "../vista/figura/FiguraView.h"
@@ -41,6 +42,7 @@ private:
 public:
 	JuegoEventsController(ModeloController*, int yMax);
 	virtual ~JuegoEventsController();
+	void dropNuevaFigura(RuedaView*);
 	void dropNuevaFigura(CuadradoView*);
 	void dropNuevaFigura(CirculoView*);
 	void dropNuevaFigura(TrianguloView*);
