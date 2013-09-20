@@ -5,7 +5,7 @@
  *      Author: javier
  */
 
-#ifndef FIGURAS_TEST_H_
+/*#ifndef FIGURAS_TEST_H_
 #define FIGURAS_TEST_H_
 
 #include "gtest/gtest.h"
@@ -33,9 +33,9 @@ public:
 	}
 };
 
-#endif /* FIGURAS_TEST_H_ */
+#endif*/ /* FIGURAS_TEST_H_ */
 
-TEST_F(figuras_test,test_archivo_no_creardo_excepcion){
+/*TEST_F(figuras_test,test_archivo_no_creardo_excepcion){
 	bool exc = false;
 	//Triangulo *triangulo = new Triangulo(3.5, 6.5,0,0);
 	try{
@@ -212,4 +212,4 @@ TEST_F(figuras_test,agregamos_tres_figuras_diferentes){
 	//ser asi.
 
 
-}
+}*/

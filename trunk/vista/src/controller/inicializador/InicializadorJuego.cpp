@@ -13,6 +13,7 @@ using namespace std;
 #include "../viewFactory/ViewCuadradoFactory.h"
 #include "../viewFactory/ViewCirculoFactory.h"
 #include "../viewFactory/ViewTrianguloFactory.h"
+#include "../viewFactory/ViewRuedaFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -89,9 +90,11 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
 	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
 	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
+	factories.push_back(new ViewRuedaFactory(renderer, juegoController));
 	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
 	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
 	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
+	factories.push_back(new ViewRuedaFactory(renderer, juegoController));
 	factories.push_back(new ViewCirculoFactory(renderer, juegoController));
 	factories.push_back(new ViewCuadradoFactory(renderer, juegoController));
 	factories.push_back(new ViewTrianguloFactory(renderer, juegoController));
