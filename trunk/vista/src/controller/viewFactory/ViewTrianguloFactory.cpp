@@ -7,7 +7,7 @@
 
 #include "ViewTrianguloFactory.h"
 #include "../../vista/figura/TrianguloView.h"
-ViewTrianguloFactory::ViewTrianguloFactory(SDL_Renderer * renderer, DropController * controller): ViewFiguraFactory("resource/triangulo.jpg", renderer, controller){
+ViewTrianguloFactory::ViewTrianguloFactory(DropController * controller): ViewFiguraFactory("resource/triangulo.jpg", controller){
 	// TODO Auto-generated constructor stub
 
 }

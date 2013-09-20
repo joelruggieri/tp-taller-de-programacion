@@ -17,8 +17,6 @@
 #include "../GeneralEventController.h"
 #include "../RotadorSistemaCoordenadas.h"
 #include <map>
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
 #include "src/figura/Circulo.h"
 #include "src/figura/Cuadrado.h"
 #include "src/figura/Triangulo.h"
@@ -36,8 +34,7 @@ private:
 	RotadorSistemaCoordenadas * rotador;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
 public:
-	InicializadorJuego(SDL_Renderer * renderer,
-			GeneralEventController * eventsController, ModeloController * modeloController);
+	InicializadorJuego(GeneralEventController * eventsController, ModeloController * modeloController);
 	virtual ~InicializadorJuego();
 	void visit(Cuadrado*);
 	void visit(Triangulo*);

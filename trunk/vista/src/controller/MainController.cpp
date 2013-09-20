@@ -63,7 +63,7 @@ int MainController::run() {
 
 	GeneralEventController eventController;
 	ModeloController modeloController;
-	InicializadorJuego inicializador(render,&eventController,&modeloController);
+	InicializadorJuego inicializador(&eventController,&modeloController);
 
 	JuegoEventsController * juegoController =  inicializador.crearZonaJuego();
 	ZonaToolBar* toolBar = new ZonaToolBar(0, 500 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));

@@ -8,7 +8,7 @@
 #include "ViewCuadradoFactory.h"
 #include "../../vista/figura/CuadradoView.h"
 
-ViewCuadradoFactory::ViewCuadradoFactory(SDL_Renderer * renderer,DropController * controller): ViewFiguraFactory("resource/cuadrado.jpg", renderer, controller){
+ViewCuadradoFactory::ViewCuadradoFactory(DropController * controller): ViewFiguraFactory("resource/cuadrado.jpg", controller){
 	// TODO Auto-generated constructor stub
 
 }
