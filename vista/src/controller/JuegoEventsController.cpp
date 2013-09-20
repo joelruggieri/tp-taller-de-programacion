@@ -25,10 +25,10 @@
 #include "RotadorSistemaCoordenadas.h"
 #include "src/Logger.h"
 
-
 using namespace std;
 
-JuegoEventsController::JuegoEventsController(ModeloController *modeloController, FiguraFactory* factory,int yMaxDrag) {
+JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
+		FiguraFactory* factory, int yMaxDrag) {
 	this->figurasFactory = factory;
 	this->elementoDrag = NULL;
 	this->zona = NULL;
@@ -54,19 +54,20 @@ void JuegoEventsController::dropear(FiguraView* view, Figura* figura) {
 	Logger log;
 	view->setModelo(figura);
 	log.info("Finaliza Drag");
-	if (this->zona != NULL){
+	if (this->zona != NULL) {
 		bool exitoVista = zona->agregarFigura(view);
-		bool exitoModelo =this->modeloController->crearFigura(figura);
-		if(!exitoVista || !exitoModelo){
+		bool exitoModelo = this->modeloController->crearFigura(figura);
+		if (!exitoVista || !exitoModelo) {
 //si uno de los dos no tuvo exito probamos rollbackeando.
-			if(exitoVista){
+			if (exitoVista) {
 				zona->removerFigura(view);
 			}
-			if(exitoModelo){
+			if (exitoModelo) {
 				modeloController->removerFigura(figura);
 			}
-			if(!this->elementoDrag->isRolledBack()){
-				log.info("El Drag no pudo completarse, se retorna a la posicion anterior");
+			if (!this->elementoDrag->isRolledBack()) {
+				log.info(
+						"El Drag no pudo completarse, se retorna a la posicion anterior");
 				this->elementoDrag->rollBack();
 				this->elementoDrag->drop();
 			} else {
@@ -84,42 +85,45 @@ void JuegoEventsController::dropear(FiguraView* view, Figura* figura) {
 
 void JuegoEventsController::dropNuevaFigura(CirculoView* view) {
 	Resizer* r = Resizer::Instance();
-	dropear(view,
-			this->figurasFactory->crearCirculo(
-					r->resizearDistanciaPixelX(view->getXCentro()),
-					r->resizearPosicionPixelY(view->getYCentro())));
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCirculo(x, y));
 }
 
 void JuegoEventsController::dropNuevaFigura(TrianguloView* view) {
 	Resizer* r = Resizer::Instance();
-	dropear(view,
-			this->figurasFactory->crearTriangulo(
-					r->resizearDistanciaPixelX(view->getXCentro()),
-					r->resizearPosicionPixelY(view->getYCentro())));
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearTriangulo(x, y));
 }
 
 void JuegoEventsController::dropNuevaFigura(CuadradoView* view) {
 	Resizer* r = Resizer::Instance();
-	dropear(view,
-			this->figurasFactory->crearCuadrado(
-					r->resizearDistanciaPixelX(view->getXCentro()),
-					r->resizearPosicionPixelY(view->getYCentro())));
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCuadrado(x, y));
 }
 
 void JuegoEventsController::dropFigura(FiguraView* view) {
 	Figura* modelo = view->getModelo();
 	Resizer * r = Resizer::Instance();
-	modelo->setX(r->resizearDistanciaPixelX(view->getXCentro()));
-	modelo->setY(r->resizearPosicionPixelY(view->getYCentro()));
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	modelo->setX(x);
+	modelo->setY(y);
 	this->dropear(view, modelo);
 }
 
-void JuegoEventsController::dropNuevaFigura(RuedaView* vistaRueda){
+void JuegoEventsController::dropNuevaFigura(RuedaView* view) {
 	Resizer* r = Resizer::Instance();
-	dropear(vistaRueda,
-			this->figurasFactory->crearCirculo(
-					r->resizearDistanciaPixelX(vistaRueda->getXCentro()),
-					r->resizearDistanciaPixelX(vistaRueda->getYCentro())));
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCirculo(x, y));
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
@@ -150,14 +154,17 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	Logger log;
 	//cout << "draguea figura controller" << endl;
 	if (zona != NULL) {
-		if (!isDragging()){
-			this->posStartDragX = Resizer::Instance()->resizearDistanciaLogicaX(x);
-			this->posStartDragY = Resizer::Instance()->resizearPosicionLogicaY(y);
-			this->elementoDrag = new Drag(figura, Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
+		if (!isDragging()) {
+			this->posStartDragX = Resizer::Instance()->resizearDistanciaLogicaX(
+					x);
+			this->posStartDragY = Resizer::Instance()->resizearPosicionLogicaY(
+					y);
+			this->elementoDrag = new Drag(figura,
+					Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
 			log.info("Comienza Drag");
 		}
 		this->zona->removerFigura(figura);
-		if(figura->getModelo() != NULL){
+		if (figura->getModelo() != NULL) {
 			this->modeloController->removerFigura(figura->getModelo());
 		}
 		mouseMotion(posStartDragX, posStartDragY);
@@ -176,15 +183,17 @@ void JuegoEventsController::setZona(Zona* zona) {
 }
 
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
-	if (this->elementoDrag != NULL ) {
+	if (this->elementoDrag != NULL) {
 		int yBack = this->elementoDrag->getYCentro();
 		int xBack = this->elementoDrag->getXCentro();
-		int deltaX = this->elementoDrag->getXCentro() + corrimientoX - this->posStartDragX;
-		int deltaY = this->elementoDrag->getYCentro() + corrimientoY - this->posStartDragY;
-		this->elementoDrag->desplazarCentroA(deltaX , deltaY);
+		int deltaX = this->elementoDrag->getXCentro() + corrimientoX
+				- this->posStartDragX;
+		int deltaY = this->elementoDrag->getYCentro() + corrimientoY
+				- this->posStartDragY;
+		this->elementoDrag->desplazarCentroA(deltaX, deltaY);
 		//si no se pudo hacer el desplazamiento no hago el corrimiento;
-			this->posStartDragX = deltaX- xBack +this->posStartDragX;
-			this->posStartDragY = deltaY- yBack +this->posStartDragY;
+		this->posStartDragX = deltaX - xBack + this->posStartDragX;
+		this->posStartDragY = deltaY - yBack + this->posStartDragY;
 		//cout << "X: " << this->elementoDrag->getXCentro() << " Y : " << this->elementoDrag->getXCentro() <<endl;
 		//cout << "CX: " << corrimientoX << " CY: " << corrimientoY <<endl;
 	}
@@ -196,7 +205,8 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 						+ this->rot->getAngulo());
 		Logger log;
 		std::string mensaje_info = "Rotacion total ";
-		log.concatenar(mensaje_info,this->figuraRotacion->getModelo()->getRotacion());
+		log.concatenar(mensaje_info,
+				this->figuraRotacion->getModelo()->getRotacion());
 		log.debug(mensaje_info);
 	}
 	// consume el evento
@@ -208,7 +218,7 @@ bool JuegoEventsController::isDragging() {
 }
 
 bool JuegoEventsController::rightClickDown(int x, int y) {
-	if (zona != NULL  && this->elementoDrag == NULL) {
+	if (zona != NULL && this->elementoDrag == NULL) {
 		Resizer* r = Resizer::Instance();
 		float lX = r->resizearDistanciaPixelX(x);
 		float lY = r->resizearPosicionPixelY(y);
@@ -255,5 +265,4 @@ View* JuegoEventsController::getRotado() {
 void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
 	this->zona->dibujarse(renderer);
 }
-
 
