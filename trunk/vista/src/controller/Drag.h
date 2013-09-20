@@ -21,7 +21,7 @@ public:
 	void drop();
 	virtual ~Drag();
 	FiguraView * getView();
-	int desplazarCentroA(int x, int y);
+	int desplazarCentroA(int &x, int &y);
 	int getXCentro() const;
 	int getYCentro() const;
 	void rollBack();

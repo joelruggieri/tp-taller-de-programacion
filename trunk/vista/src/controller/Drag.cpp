@@ -1,10 +1,9 @@
+
 /*
- * Drag.cpp
  *
  *  Created on: 19/09/2013
  *      Author: jonathan
  */
-
 #include "Drag.h"
 
 Drag::~Drag() {
@@ -26,9 +25,15 @@ FiguraView* Drag::getView() {
 	return view;
 }
 
-int Drag::desplazarCentroA(int x, int y) {
+int Drag::desplazarCentroA(int &x, int &y) {
 	if(y> yMax){
 		y = yMax;
+	}
+	if(y < 0){
+		y = 0;
+	}
+	if(x < 0){
+		x = 0;
 	}
 	view->desplazarCentroA(x,y);
 	return y;
