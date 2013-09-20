@@ -4,41 +4,46 @@
  *  Created on: 14/09/2013
  *      Author: ezequiel
  */
-#define TAM_BUFFER 39 //definir acorde a lo que puede entrar en el textbox
+ //definir acorde a lo que puede entrar en el textbox
 #include "TextBox.h"
-#define BACKSPACE 8
-#define TAM_FUENTE 10
-#define SHIFT 15
 
 
-TextBox::TextBox(int x, int y, int w, int h, SDL_Texture* imagen) {
-this->seleccionado = false ;
-this->shiftIn = false;
-TTF_Init();
-this->x = x;
-this->y = y ;
-this->w = w;
-this->h = h ;
-this->imagen = imagen ;
-this->fuente = TTF_OpenFont("resource/Arial Bold.ttf", TAM_FUENTE);
-this->texto = "";
-this->textoCurrent = texto ;
 
-this->color.a = 50;
-this->color.b = 20;
-this->color.g = 20;
-this->color.r = 200;
-this->surfaceTexto = NULL;
-this->textureTexto = NULL ;
-
-
-}
+//TextBox::TextBox(int x, int y, int w, int h, SDL_Texture* imagen) {
+//this->seleccionado = false ;
+//this->shiftIn = false;
+//TTF_Init();
+//this->x = x;
+//this->y = y ;
+//this->w = w;
+//this->h = h ;
+//this->imagen = imagen ;
+//this->fuente = TTF_OpenFont("resource/Arial Bold.ttf", TAM_FUENTE);
+//this->texto = "";
+//this->textoCurrent = texto ;
+//
+//this->color.a = 50;
+//this->color.b = 20;
+//this->color.g = 20;
+//this->color.r = 200;
+//this->surfaceTexto = NULL;
+//this->textureTexto = NULL ;
+//
+//
+//}
 
 TextBox::~TextBox() {	// TODO Auto-generated destructor stub
 }
 
 void TextBox::desEjecutarTecla() {
 	this->shiftIn = false ;
+}
+
+void TextBox::resizear() {
+	this->setYc(Resizer::Instance()->resizearDistanciaY(this->getYCentro()));
+	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+//	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+//	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 }
 
 //Devuelve una copia del string contenido en el textbox
@@ -50,15 +55,15 @@ string* TextBox::getTexto(){
 
 void TextBox::dibujarse(SDL_Renderer* render) {
 	SDL_Rect dstFondo;
-	dstFondo.x = this->x ;
-	dstFondo.y =  this ->y;
-	dstFondo.h = this->h ;
-	dstFondo.w = this->w ;
+	dstFondo.x = this->getX() ;
+	dstFondo.y =  this->getY();
+	dstFondo.h = this->getH();
+	dstFondo.w = this->getW() ;
 	SDL_RenderCopy(render,this->imagen, NULL, &dstFondo);
 	SDL_Rect dstTxt;
-	dstTxt.x = this->x + 5;
-	dstTxt.y = this->y ;
-	dstTxt.h = this->h - 4 ;
+	dstTxt.x = this->getX()+7;
+	dstTxt.y = this->getY() ;
+	dstTxt.h = this->getH() - 4 ;
 //	dstTxt.w = this->textoCurrent.size() * 8 ;	//TODO
 //	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &(dstTxt.w), NULL);
 	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &(dstTxt.w), NULL);
@@ -81,7 +86,7 @@ void TextBox::agregarCaracter(char caracter) {
 	this->textoCurrent	+= caracter;
 	int ancho;
 	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);
-	while (ancho >= this->w - 10)
+	while (ancho >= this->getW() - 10)
 	{
 
 		this->textoCurrent.erase(0, 1);	//elimino el primer caracter de esa cadena
@@ -106,7 +111,7 @@ void TextBox::borrarCaracter() {
 	letraAgregada= this->texto.at(texto.size() - textoCurrent.size() - 1);	//creo qe ahi recibo la letra
 	this->textoCurrent = letraAgregada + this->textoCurrent;
 	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);
-	while (ancho >= this->w - 10)
+	while (ancho >= this->getW() - 10)
 	{
 		this->textoCurrent.erase(0, 1);
 //		if (texto.size() > textoCurrent.size())
@@ -117,7 +122,7 @@ void TextBox::borrarCaracter() {
 	}
 	}
 	TTF_SizeText(this->fuente, this->texto.c_str(), &ancho, NULL);
-	if (ancho <= this->w - 10) textoCurrent= texto ;
+	if (ancho <= this->getW() - 10) textoCurrent= texto ;
 
 
 
@@ -134,7 +139,7 @@ void TextBox::setearTexto() {
 }
 
 bool TextBox::fueSeleccionado(int x, int y) {
-	return (this->x <= x && this->x + this->w > x && this->y <= y && this->y + this->h > y );		//TODO logica de seleccion
+	return (this->getX() <= x && getX() + this->getW() > x && this->getY() <= y && this->getY() + this->getH() > y );		//TODO logica de seleccion
 
 }
 

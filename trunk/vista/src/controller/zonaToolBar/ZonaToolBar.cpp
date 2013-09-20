@@ -10,17 +10,13 @@
 #define ALTOBOTON 40
 #define ANCHOTEXTBOX 300
 #define ALTOTEXTBOX 45
-ZonaToolBar::ZonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
-
-
-	this->x = x;
-	this->y = y;
-	this->w = w;
-	this->h = h;
-	this->fondo = texture ;
-	this->agregarHerramientasAlToolBar(x,y,w,h);
-
-}
+//ZonaToolBar::ZonaToolBar(int x, int y, int w, int h, SDL_Texture* texture) {
+//
+//
+//
+//
+//
+//}
 
 void ZonaToolBar::cliquearHerramienta(int x, int y) {
 
@@ -65,13 +61,24 @@ void ZonaToolBar::cliqueoEnOtroLado() {
 			 return;
 }
 
+void ZonaToolBar::resizear() {
+
+	//Resizer::Instance()->adaptarPosicionPixel(this->getXCentro(),this->getYCentro(),xNuevo,yNuevo );
+	this->setYc(Resizer::Instance()->resizearDistanciaY(this->getYCentro()));
+	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+
+	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
+//	this->setH(Resizer::Instance()->resizearDistanciaX(this->getH()));
+}
+
 void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
 	//TODO ver que hacer con las coordenadas definidas
-		BotonAgregar* bAgregar = new BotonAgregar(x+350, y+20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/changeBackNormal.png"), p1->cargarTexture("resource/changeBackPressed.png"));
-		BotonSalir* bSalir = new BotonSalir(x+450, y + 20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/exitNormal.png"),p1->cargarTexture("resource/exitPressed.png") );
-		BotonGuardar* bGuardar = new BotonGuardar(x+400, y+ 20, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/saveNormal.png"),p1->cargarTexture("resource/savePressed.png") );
-		TextBox* textBox = new TextBox(x+10, y+20, ANCHOTEXTBOX, ALTOTEXTBOX, p1->cargarTexture("resource/textbox.jpg")) ;
+		BotonAgregar* bAgregar = new BotonAgregar(x+ ANCHOBOTON+ 30, y, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/changeBackNormal.png"), p1->cargarTexture("resource/changeBackPressed.png"));
+		BotonSalir* bSalir = new BotonSalir(x+ 2* ANCHOBOTON + 30, y , ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/exitNormal.png"),p1->cargarTexture("resource/exitPressed.png") );
+		BotonGuardar* bGuardar = new BotonGuardar(x+ 3 * ANCHOBOTON + 30, y, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/saveNormal.png"),p1->cargarTexture("resource/savePressed.png") );
+		TextBox* textBox = new TextBox(x - 130 , y, ANCHOTEXTBOX, ALTOTEXTBOX, p1->cargarTexture("resource/textbox.jpg")) ;
 		bAgregar->campo = textBox;
 		this->agregarHerramienta(bAgregar);
 		this->agregarHerramienta(bSalir);
@@ -92,10 +99,10 @@ void ZonaToolBar::agregarHerramienta(Herramientas* herramienta) {
 
 void ZonaToolBar::dibujarse(SDL_Renderer* render) {
 	SDL_Rect dst;
-	dst.x = this->x;
-	dst.y = this->y;
-	dst.h = this->h;
-	dst.w= this->w;
+	dst.x = this->getX();
+	dst.y = this->getY();
+	dst.h = this->getH();
+	dst.w= this->getW();
 	SDL_RenderCopy(render,this->fondo,NULL, &dst);
 
 	list<Herramientas* >::iterator iter;

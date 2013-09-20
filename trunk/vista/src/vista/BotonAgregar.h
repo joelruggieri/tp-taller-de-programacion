@@ -14,6 +14,8 @@
 #include "Dibujable.h"
 #include "Resizeable.h"
 #include "Herramientas.h"
+#include "View.h"
+
 namespace std {
 
 class Boton: public Herramientas {
@@ -23,7 +25,15 @@ protected:
 	int seleccionado ;
 	int cantDibujados;
 public:
-	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada);
+	Boton(int x, int y, int h, int w, SDL_Texture* textura, SDL_Texture* texturaSeleccionada) : Herramientas(x,y,h,w)
+{
+		 this->textura = textura ;
+		 this->texturaCurrent = textura ;
+		 this->texturaSeleccionada = texturaSeleccionada ;
+
+		 this->seleccionado = false;
+		 this->cantDibujados = 0;
+}
 	void dibujarse(SDL_Renderer *);
 	void Resizear(int x, int y);
 	virtual void presionarMouse() = 0 ;
@@ -31,7 +41,8 @@ public:
 	void desPresionarMouse();
 	void clickeoFueraDeHerramienta();
 	void desEjecutarTecla() ;
-	int x,y,h,w;
+	void resizear();
+//	int x,y,h,w;
 	SDL_Texture* textura;
 	SDL_Texture* texturaCurrent;
 	SDL_Texture* texturaSeleccionada;

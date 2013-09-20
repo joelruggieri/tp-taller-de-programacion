@@ -66,7 +66,7 @@ int MainController::run() {
 	InicializadorJuego inicializador(&eventController,&modeloController);
 
 	JuegoEventsController * juegoController =  inicializador.crearZonaJuego();
-	ZonaToolBar* toolBar = new ZonaToolBar(0, 500 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));
+	ZonaToolBar* toolBar = new ZonaToolBar(300, 550 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));
 	ToolBarEventController* tbEventController = new ToolBarEventController(toolBar);
 
 	eventController.addMouseController(tbEventController, 2, 1);
