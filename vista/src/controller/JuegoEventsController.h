@@ -14,6 +14,7 @@
 #include "../vista/figura/FiguraView.h"
 #include "../vista/figura/TrianguloView.h"
 #include "../vista/figura/GloboView.h"
+#include "../vista/figura/PelotaView.h"
 #include "DropController.h"
 #include "mouseEventController/MouseEventController.h"
 #include "../vista/Dragueable.h"
@@ -47,6 +48,7 @@ public:
 	void dropNuevaFigura(CirculoView*);
 	void dropNuevaFigura(TrianguloView*);
 	void dropNuevaFigura(GloboView*);
+	void dropNuevaFigura(PelotaView*);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 	bool clickDown(int,int);

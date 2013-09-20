@@ -11,6 +11,7 @@
 #include "../figura/Triangulo.h"
 #include "../figura/Rueda.h"
 #include "../figura/Globo.h"
+#include "../figura/Pelota.h"
 
 FiguraFactory::FiguraFactory(Rotador * rotador) {
 	this->rotador = rotador;
@@ -38,4 +39,8 @@ Figura* FiguraFactory::crearRueda(float x, float y) {
 
 Figura* FiguraFactory::crearGlobo(float x, float y){
 	return new Globo(x,y,rotador,5);
+}
+
+Figura* FiguraFactory::crearPelota(float x, float y){
+	return new Pelota(x,y,rotador,5);
 }
