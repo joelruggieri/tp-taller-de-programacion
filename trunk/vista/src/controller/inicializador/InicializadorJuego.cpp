@@ -15,6 +15,7 @@ using namespace std;
 #include "../viewFactory/ViewTrianguloFactory.h"
 #include "../viewFactory/ViewRuedaFactory.h"
 #include "../viewFactory/ViewGloboFactory.h"
+#include "../viewFactory/ViewPelotaFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -90,18 +91,18 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	SDL_Texture* herrTextura = texturas->cargarTexture(FONDO_ZONA_CREACION);
 	factories.push_back(new ViewCuadradoFactory(juegoController));
 	factories.push_back(new ViewTrianguloFactory(juegoController));
-	factories.push_back(new ViewCuadradoFactory(juegoController));
+	factories.push_back(new ViewPelotaFactory(juegoController));
 	factories.push_back(new ViewGloboFactory(juegoController));
 	factories.push_back(new ViewCuadradoFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
 	factories.push_back(new ViewTrianguloFactory(juegoController));
-	factories.push_back(new ViewGloboFactory(juegoController));
+	factories.push_back(new ViewPelotaFactory(juegoController));
 	factories.push_back(new ViewCuadradoFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
 	factories.push_back(new ViewGloboFactory(juegoController));
 	factories.push_back(new ViewCuadradoFactory(juegoController));
 	factories.push_back(new ViewTrianguloFactory(juegoController));
-	factories.push_back(new ViewGloboFactory(juegoController));
+	factories.push_back(new ViewPelotaFactory(juegoController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 120,
 			herrTextura);
 	ZonaTablero* zonaTablero = new ZonaTablero(50,70, canvasTexture);
