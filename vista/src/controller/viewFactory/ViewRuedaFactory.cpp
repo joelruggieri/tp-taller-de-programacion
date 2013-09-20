@@ -6,8 +6,7 @@
  */
 
 #include "ViewRuedaFactory.h"
-#include "ViewCirculoFactory.h"
-#include "../../vista/figura/CirculoView.h"
+#include "../../vista/figura/RuedaView.h"
 
 ViewRuedaFactory::ViewRuedaFactory(DropController * controller): ViewFiguraFactory("resource/rueda.png", controller) {
 

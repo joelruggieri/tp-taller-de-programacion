@@ -18,6 +18,8 @@ public:
 	Figura * crearCuadrado(float x,float y);
 	Figura * crearCirculo(float x,float y);
 	Figura * crearTriangulo(float x,float y);
+	Figura * crearRueda(float x,float y);
+	Figura * crearGlobo(float x,float y);
 };
 
 #endif /* FIGURAFACTORY_H_ */
