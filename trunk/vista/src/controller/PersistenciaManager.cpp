@@ -52,6 +52,11 @@ void PersistenciaManager::persistirFiguras(list<Figura*>& figuras) {
 		}
 	}
 	log.debug("Persistiendo nivel");
+	string msj = "Se van a persistir ";
+	float size = nivel->getFiguras().size();
+	log.concatenar(msj, size);
+	msj = msj +" Figuras";
+	log.info(msj);
 	dao->guardarNivel(nivel);
 }
 

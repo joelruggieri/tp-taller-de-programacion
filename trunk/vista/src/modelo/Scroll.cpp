@@ -56,7 +56,7 @@ bool Scroll::click(float x, float y) {
 }
 
 int Scroll::getScrollPixels() {
-	return Resizer::Instance()->resizearDistanciaLogicaX(this->posicion);
+	return Resizer::Instance()->resizearDistanciaLogicaY(this->posicion);
 }
 
 float Scroll::getScroll() {
@@ -73,7 +73,7 @@ void Scroll::actualizarVistas(int corrimiento) {
 
 	for(it= scrolleables.begin(); it!= scrolleables.end(); ++it){
 		vista = *it;
-		vista->desplazarCentroA(vista->getXCentro(), vista->getYCentro() + Resizer::Instance()->resizearDistanciaLogicaX(corrimiento));
+		vista->desplazarCentroA(vista->getXCentro(), vista->getYCentro() + Resizer::Instance()->resizearDistanciaLogicaY(corrimiento));
 	}
 }
 
