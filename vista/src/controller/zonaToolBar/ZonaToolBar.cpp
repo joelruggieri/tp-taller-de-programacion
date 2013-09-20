@@ -72,6 +72,17 @@ void ZonaToolBar::resizear() {
 //	this->setH(Resizer::Instance()->resizearDistanciaX(this->getH()));
 }
 
+bool ZonaToolBar::algunaHerramientaSeleccionada(int x, int y) {
+		bool result = false ;
+		list<Herramientas* >::iterator iter;
+		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
+		{
+			 	if ((*iter)->fueSeleccionado(x,y)) return true ;
+
+		}
+		 return result;
+}
+
 void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
 	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
 	//TODO ver que hacer con las coordenadas definidas
@@ -115,14 +126,8 @@ void ZonaToolBar::dibujarse(SDL_Renderer* render) {
 }
 //POS: true si alguna herramienta fue seleccionada
 bool ZonaToolBar::zonaFueSeleccionada(int x, int y) {
-	bool result = false ;
-	list<Herramientas* >::iterator iter;
-	 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
-	{
-		 	if ((*iter)->fueSeleccionado(x,y)) return true ;
 
-	}
-	 return result;
+	return (this->getX() <= x && getX() + this->getW() > x && this->getY() <= y && this->getY() + this->getH() > y );
 }
 
 void ZonaToolBar::desTeclearHerramienta() {

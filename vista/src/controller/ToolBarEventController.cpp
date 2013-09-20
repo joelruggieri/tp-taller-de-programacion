@@ -21,8 +21,12 @@ bool ToolBarEventController::clickDown(int int1, int int2) {
 
 	if (this->zona->zonaFueSeleccionada(int1, int2))
 	{
+	if (this->zona->algunaHerramientaSeleccionada(int1, int2)){
 	this->zona->cliquearHerramienta(int1, int2);
 	this->seleccionado = true ;
+	}
+	else {this->zona->cliqueoEnOtroLado();
+	}
 	return false;
 	}
 	else
@@ -30,6 +34,7 @@ bool ToolBarEventController::clickDown(int int1, int int2) {
 		this->zona->cliqueoEnOtroLado();
 		return true ;
 		}
+
 }
 
 bool ToolBarEventController::clickUp(int int1, int int2) {
