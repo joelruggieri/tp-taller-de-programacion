@@ -234,12 +234,17 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 		if (view != NULL) {
 			if (view->getModelo() != NULL) {
 				this->zona->removerFigura(view);
-				this->figuraRotacion = view;
-				this->rot = new Rotacion(this->figuraRotacion->getXCentro(),
-						r->getAltoPantalla()
-								- this->figuraRotacion->getYCentro(), x,
-						r->getAltoPantalla() - y, 0);
-				return false;
+				//Verifico si se apreto el shift tambien.
+				const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+				if(keyboardState[SDL_SCANCODE_LSHIFT]) return false;
+				else {
+					this->figuraRotacion = view;
+					this->rot = new Rotacion(this->figuraRotacion->getXCentro(),
+							r->getAltoPantalla()
+									- this->figuraRotacion->getYCentro(), x,
+									r->getAltoPantalla() - y, 0);
+					return false;
+				}
 			} else {
 				delete view;
 			}
