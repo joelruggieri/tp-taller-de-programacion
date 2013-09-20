@@ -152,13 +152,12 @@ bool JuegoEventsController::clickUp(int x, int y) {
 void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
 	Logger log;
+	Resizer * r = Resizer::Instance();
 	//cout << "draguea figura controller" << endl;
 	if (zona != NULL) {
 		if (!isDragging()) {
-			this->posStartDragX = Resizer::Instance()->resizearDistanciaLogicaX(
-					x);
-			this->posStartDragY = Resizer::Instance()->resizearPosicionLogicaY(
-					y);
+			r->adaptarPosicionLogica(x, y, this->posStartDragX,
+					this->posStartDragY);
 			this->elementoDrag = new Drag(figura,
 					Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
 			log.info("Comienza Drag");
@@ -220,14 +219,15 @@ bool JuegoEventsController::isDragging() {
 bool JuegoEventsController::rightClickDown(int x, int y) {
 	if (zona != NULL && this->elementoDrag == NULL) {
 		Resizer* r = Resizer::Instance();
-		float lX = r->resizearDistanciaPixelX(x);
-		float lY = r->resizearPosicionPixelY(y);
+		float lX;
+		float lY;
+		r->adaptarPosicionPixel(x, y, lX, lY);
+
 		FiguraView * view = this->zona->getVista(lX, lY);
 		if (view != NULL) {
 			if (view->getModelo() != NULL) {
 				this->zona->removerFigura(view);
 				this->figuraRotacion = view;
-				Resizer* r = Resizer::Instance();
 				this->rot = new Rotacion(this->figuraRotacion->getXCentro(),
 						r->getAltoPantalla()
 								- this->figuraRotacion->getYCentro(), x,
