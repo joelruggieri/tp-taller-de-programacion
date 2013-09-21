@@ -16,6 +16,7 @@ using namespace std;
 #include "../viewFactory/ViewRuedaFactory.h"
 #include "../viewFactory/ViewGloboFactory.h"
 #include "../viewFactory/ViewPelotaFactory.h"
+#include "../viewFactory/ViewResorteFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -26,6 +27,10 @@ using namespace std;
 const string KEY_CUADRADO = "CUADRADO";
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
+const string KEY_RUEDA = "RUEDA";
+const string KEY_GLOBO = "GLOBO";
+const string KEY_PELOTA = "PELOTA";
+const string KEY_RESORTE = "RESORTE";
 
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->zonaJuego = NULL;
@@ -83,6 +88,14 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TRIANGULO,factory));
 	factory = new ViewCirculoFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,factory));
+	factory = new ViewRuedaFactory(juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_RUEDA,factory));
+	factory = new ViewGloboFactory(juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,factory));
+	factory = new ViewPelotaFactory(juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA,factory));
+	factory = new ViewResorteFactory(juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_RESORTE,factory));
 
 
 	list<ViewFiguraFactory*> factories;
@@ -93,11 +106,11 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewTrianguloFactory(juegoController));
 	factories.push_back(new ViewPelotaFactory(juegoController));
 	factories.push_back(new ViewGloboFactory(juegoController));
-	factories.push_back(new ViewCuadradoFactory(juegoController));
+	factories.push_back(new ViewResorteFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
 	factories.push_back(new ViewTrianguloFactory(juegoController));
 	factories.push_back(new ViewPelotaFactory(juegoController));
-	factories.push_back(new ViewCuadradoFactory(juegoController));
+	factories.push_back(new ViewResorteFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
 	factories.push_back(new ViewGloboFactory(juegoController));
 	factories.push_back(new ViewCuadradoFactory(juegoController));
