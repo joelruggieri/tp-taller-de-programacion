@@ -31,7 +31,7 @@ Figura * FiguraFactory::crearCuadrado(float x,float y){
 	return new Cuadrado(x,y, rotador,10,10);
 }
 Figura* FiguraFactory::crearCirculo(float x, float y) {
-	return new Circulo(x,y, rotador,5);
+	return new Circulo(x,y, rotador,4.3);
 }
 
 Figura* FiguraFactory::crearTriangulo(float x,float y) {
@@ -51,7 +51,7 @@ Figura* FiguraFactory::crearPelota(float x, float y){
 }
 
 Figura* FiguraFactory::crearResorte(float x, float y){
-	return new Resorte(x,y,rotador,10,10);
+	return new Resorte(x,y,rotador,7,10);
 }
 
 Figura* FiguraFactory::crearMartillo(float x, float y){
@@ -59,9 +59,9 @@ Figura* FiguraFactory::crearMartillo(float x, float y){
 }
 
 Figura* FiguraFactory::crearBloque(float x, float y){
-	return new Bloque(x,y,rotador,10,10);
+	return new Bloque(x,y,rotador,9.5,9.5);
 }
 
 Figura* FiguraFactory::crearCohete(float x, float y){
-	return new Cohete(x,y,rotador,10,10);
+	return new Cohete(x,y,rotador,4,6);
 }
