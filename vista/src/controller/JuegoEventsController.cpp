@@ -22,6 +22,10 @@
 #include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
 #include "../vista/figura/ResorteView.h"
+#include "../vista/figura/MartilloView.h"
+#include "../vista/figura/BloqueView.h"
+#include "../vista/figura/CoheteView.h"
+
 #include "../vista/View.h"
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
@@ -151,6 +155,30 @@ void JuegoEventsController::dropNuevaFigura(ResorteView* view) {
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 	dropear(view, this->figurasFactory->crearResorte(x, y));
+}
+
+void JuegoEventsController::dropNuevaFigura(MartilloView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearMartillo(x, y));
+}
+
+void JuegoEventsController::dropNuevaFigura(BloqueView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearBloque(x, y));
+}
+
+void JuegoEventsController::dropNuevaFigura(CoheteView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCohete(x, y));
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
