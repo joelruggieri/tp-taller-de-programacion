@@ -21,6 +21,7 @@ public:
 	Figura * crearRueda(float x,float y);
 	Figura * crearGlobo(float x,float y);
 	Figura * crearPelota(float x,float y);
+	Figura * crearResorte(float x,float y);
 };
 
 #endif /* FIGURAFACTORY_H_ */

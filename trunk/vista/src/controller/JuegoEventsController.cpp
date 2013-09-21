@@ -21,6 +21,7 @@
 #include "../vista/figura/TrianguloView.h"
 #include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
+#include "../vista/figura/ResorteView.h"
 #include "../vista/View.h"
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
@@ -142,6 +143,14 @@ void JuegoEventsController::dropNuevaFigura(PelotaView* view) {
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 	dropear(view, this->figurasFactory->crearPelota(x, y));
+}
+
+void JuegoEventsController::dropNuevaFigura(ResorteView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearResorte(x, y));
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
