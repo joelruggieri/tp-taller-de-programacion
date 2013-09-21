@@ -26,6 +26,7 @@ private:
 	void obtenerCirculos(std::list<Figura*> &lista , YAML::Node objetos);
 	void obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos);
 };
 
 #endif /* NIVELDAO_H_ */
