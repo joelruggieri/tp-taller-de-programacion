@@ -30,7 +30,7 @@ Archivo* AdministradorDeArchivos::obtenerArchivoNivel(const char *nombre) {
 			return *it;
 		}
 	}
-	return AdministradorDeArchivos::crearArchivoNivel(nombre);
+	return NULL;
 }
 
 AdministradorDeArchivos::AdministradorDeArchivos() {

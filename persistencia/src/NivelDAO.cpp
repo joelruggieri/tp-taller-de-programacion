@@ -49,6 +49,11 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 
 void NivelDAO::guardarNivel(Nivel *nivel) {
 	Archivo *a = administrador.obtenerArchivoNivel(nivel->getNombre());
+	if (!a) {
+		// Se esta guardando un nivel nuevo, sin archivo previo
+		// O el archivo no se registro antes.
+		a = AdministradorDeArchivos::crearArchivoNivel(nivel->getNombre().c_str());
+	}
 	YAML::Node nodoRaiz;
 	nodoRaiz["Nivel"] = *nivel;
 	YAML::Node nodoFiguras;
