@@ -10,8 +10,16 @@
 
 #include "src/NivelDAO.h"
 #include "src/Archivo.h"
-#include "src/figura/Triangulo.h"
 #include "src/controller/RotadorSistemaCoordenadas.h"
+#include "src/figura/Globo.h"
+#include "src/figura/Pelota.h"
+#include "src/figura/Rueda.h"
+#include "src/figura/Bloque.h"
+#include "src/figura/Cohete.h"
+#include "src/figura/Triangulo.h"
+#include "src/figura/Mapa.h"
+#include "src/figura/Martillo.h"
+#include "src/figura/Resorte.h"
 
 class niveldao_test: public testing::Test {
 public:
@@ -38,8 +46,8 @@ TEST_F(niveldao_test, test_niveldao_guardar_nuevo) {
 	nivel2->agregar(new Triangulo(0,0,new RotadorSistemaCoordenadas(), 0,1));
 	nivelDAO.guardarNivel(nivel2);
 
-	Nivel *nivel3 = nivelDAO.leerNivel("test02");
-	ASSERT_EQ(nivel3->cantidadFiguras(), 1);
+	nivel2 = nivelDAO.leerNivel("test02");
+	ASSERT_EQ(nivel2->cantidadFiguras(), 1);
 }
 
 
@@ -54,5 +62,23 @@ TEST_F(niveldao_test, test_niveldao_sobreescribir_nuevo) {
 	otroNivel3 = nivelDAO.leerNivel("test03");
 	ASSERT_EQ(1, otroNivel3->cantidadFiguras());
 	ASSERT_EQ(nivel3->getNombre(), otroNivel3->getNombre());
+
+}
+
+
+TEST_F(niveldao_test, test_niveldao_guardar_nivel_grande) {
+	Nivel *nivel4 = new Nivel("test04");
+	nivel4->agregar(new Globo(10,10, new RotadorSistemaCoordenadas(), 10));
+	nivel4->agregar(new Pelota(10,10, new RotadorSistemaCoordenadas(),10));
+	nivel4->agregar(new Rueda(10,10, new RotadorSistemaCoordenadas(),10));
+	nivel4->agregar(new Bloque(10,10, new RotadorSistemaCoordenadas(), 10,10));
+	nivel4->agregar(new Cohete(10,10, new RotadorSistemaCoordenadas(), 10,10));
+	nivel4->agregar(new Mapa());
+	nivel4->agregar(new Martillo(10,10, new RotadorSistemaCoordenadas(), 10,10));
+	nivel4->agregar(new Resorte(10,10, new RotadorSistemaCoordenadas(), 10,10));
+	nivelDAO.guardarNivel(nivel4);
+
+	nivel4 = nivelDAO.leerNivel("test04");
+	ASSERT_EQ(8, nivel4->cantidadFiguras());
 
 }
