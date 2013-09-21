@@ -22,6 +22,9 @@ public:
 	Figura * crearGlobo(float x,float y);
 	Figura * crearPelota(float x,float y);
 	Figura * crearResorte(float x,float y);
+	Figura * crearMartillo(float x,float y);
+	Figura * crearBloque(float x,float y);
+	Figura * crearCohete(float x,float y);
 };
 
 #endif /* FIGURAFACTORY_H_ */

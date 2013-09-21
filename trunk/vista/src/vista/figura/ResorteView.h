@@ -11,7 +11,7 @@
 #include "SDL2/SDL.h"
 
 class ResorteView: public FiguraView {
-protected:
+private:
 	void dropTemplate();
 public:
 	ResorteView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);

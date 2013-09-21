@@ -20,6 +20,13 @@
 #include "src/figura/Circulo.h"
 #include "src/figura/Cuadrado.h"
 #include "src/figura/Triangulo.h"
+#include "src/figura/Rueda.h"
+#include "src/figura/Globo.h"
+#include "src/figura/Pelota.h"
+#include "src/figura/Resorte.h"
+#include "src/figura/Martillo.h"
+#include "src/figura/Bloque.h"
+#include "src/figura/Cohete.h"
 using namespace std;
 
 class InicializadorJuego: public VisitorFigura {
@@ -39,6 +46,13 @@ public:
 	void visit(Cuadrado*);
 	void visit(Triangulo*);
 	void visit(Circulo*);
+	void visit(Rueda*);
+	void visit(Globo*);
+	void visit(Pelota*);
+	void visit(Resorte*);
+	void visit(Martillo*);
+	void visit(Bloque*);
+	void visit(Cohete*);
 	JuegoEventsController * crearZonaJuego();
 };
 

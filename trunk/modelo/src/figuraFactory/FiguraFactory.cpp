@@ -13,6 +13,10 @@
 #include "../figura/Globo.h"
 #include "../figura/Pelota.h"
 #include "../figura/Resorte.h"
+#include "../figura/Martillo.h"
+#include "../figura/Bloque.h"
+#include "../figura/Cohete.h"
+
 
 FiguraFactory::FiguraFactory(Rotador * rotador) {
 	this->rotador = rotador;
@@ -48,4 +52,16 @@ Figura* FiguraFactory::crearPelota(float x, float y){
 
 Figura* FiguraFactory::crearResorte(float x, float y){
 	return new Resorte(x,y,rotador,10,10);
+}
+
+Figura* FiguraFactory::crearMartillo(float x, float y){
+	return new Martillo(x,y,rotador,10,10);
+}
+
+Figura* FiguraFactory::crearBloque(float x, float y){
+	return new Bloque(x,y,rotador,10,10);
+}
+
+Figura* FiguraFactory::crearCohete(float x, float y){
+	return new Cohete(x,y,rotador,10,10);
 }

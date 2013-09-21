@@ -17,6 +17,9 @@ using namespace std;
 #include "../viewFactory/ViewGloboFactory.h"
 #include "../viewFactory/ViewPelotaFactory.h"
 #include "../viewFactory/ViewResorteFactory.h"
+#include "../viewFactory/ViewMartilloFactory.h"
+#include "../viewFactory/ViewBloqueFactory.h"
+#include "../viewFactory/ViewCoheteFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -31,6 +34,9 @@ const string KEY_RUEDA = "RUEDA";
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PELOTA = "PELOTA";
 const string KEY_RESORTE = "RESORTE";
+const string KEY_MARTILLO = "MARTILLO";
+const string KEY_BLOQUE = "BLOQUE";
+const string KEY_COHETE = "COHETE";
 
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->zonaJuego = NULL;
@@ -60,6 +66,41 @@ void InicializadorJuego::visit(Triangulo * t) {
 
 void InicializadorJuego::visit(Circulo* c) {
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CIRCULO);
+	this->agregarFigura(iter->second, c);
+}
+
+void InicializadorJuego::visit(Rueda* c) {
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_RUEDA);
+	this->agregarFigura(iter->second, c);
+}
+
+void InicializadorJuego::visit(Globo* c) {
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_GLOBO);
+	this->agregarFigura(iter->second, c);
+}
+
+void InicializadorJuego::visit(Pelota* c) {
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PELOTA);
+	this->agregarFigura(iter->second, c);
+}
+
+void InicializadorJuego::visit(Resorte* c) {
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_RESORTE);
+	this->agregarFigura(iter->second, c);
+}
+
+void InicializadorJuego::visit(Martillo* c) {
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_MARTILLO);
+	this->agregarFigura(iter->second, c);
+}
+
+void InicializadorJuego::visit(Bloque* c) {
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_BLOQUE);
+	this->agregarFigura(iter->second, c);
+}
+
+void InicializadorJuego::visit(Cohete* c) {
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_COHETE);
 	this->agregarFigura(iter->second, c);
 }
 
@@ -96,25 +137,30 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA,factory));
 	factory = new ViewResorteFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_RESORTE,factory));
-
+	factory = new ViewMartilloFactory(juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_MARTILLO,factory));
+	factory = new ViewBloqueFactory(juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BLOQUE,factory));
+	factory = new ViewCoheteFactory(juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_COHETE,factory));
 
 	list<ViewFiguraFactory*> factories;
 	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(FONDO_DEFECTO);
 	SDL_Texture* herrTextura = texturas->cargarTexture(FONDO_ZONA_CREACION);
-	factories.push_back(new ViewCuadradoFactory(juegoController));
-	factories.push_back(new ViewTrianguloFactory(juegoController));
+	factories.push_back(new ViewMartilloFactory(juegoController));
+	factories.push_back(new ViewBloqueFactory(juegoController));
 	factories.push_back(new ViewPelotaFactory(juegoController));
 	factories.push_back(new ViewGloboFactory(juegoController));
 	factories.push_back(new ViewResorteFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
-	factories.push_back(new ViewTrianguloFactory(juegoController));
+	factories.push_back(new ViewCoheteFactory(juegoController));
 	factories.push_back(new ViewPelotaFactory(juegoController));
 	factories.push_back(new ViewResorteFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
 	factories.push_back(new ViewGloboFactory(juegoController));
-	factories.push_back(new ViewCuadradoFactory(juegoController));
-	factories.push_back(new ViewTrianguloFactory(juegoController));
+	factories.push_back(new ViewMartilloFactory(juegoController));
+	factories.push_back(new ViewCoheteFactory(juegoController));
 	factories.push_back(new ViewPelotaFactory(juegoController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 120,
 			herrTextura);
