@@ -47,3 +47,24 @@ void ObjetoDAO::visit(Triangulo* t) {
 void ObjetoDAO::visit(Circulo* c) {
 	guardar(c, nodo);
 }
+
+void ObjetoDAO::visit(Rueda*) {
+}
+
+void ObjetoDAO::visit(Globo*) {
+}
+
+void ObjetoDAO::visit(Pelota*) {
+}
+
+void ObjetoDAO::visit(Resorte*) {
+}
+
+void ObjetoDAO::visit(Martillo*) {
+}
+
+void ObjetoDAO::visit(Bloque*) {
+}
+
+void ObjetoDAO::visit(Cohete*) {
+}
