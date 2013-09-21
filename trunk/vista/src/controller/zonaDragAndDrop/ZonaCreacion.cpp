@@ -74,11 +74,11 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 ScrollView* ZonaCreacion::crearScrollView(int x, int y,Scroll* scroll, SDL_Texture * texturaFlecha) {
 	Resizer * r = Resizer::Instance();
 	FlechaScrollView * flecha1 = new FlechaScrollView(r->resizearDistanciaLogicaX(x),
-			r->resizearPosicionLogicaY(y - 2),
+			r->resizearPosicionLogicaY(y - 1),
 			r->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2),
 			r->resizearDistanciaLogicaY(4), texturaFlecha);
 	FlechaScrollView * flecha2 =new FlechaScrollView(r->resizearDistanciaLogicaX(x),
-			r->resizearPosicionLogicaY(y - 98),
+			r->resizearPosicionLogicaY(y - 99),
 			r->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2),
 			r->resizearDistanciaLogicaY(4), texturaFlecha,true);
 	return new ScrollView(flecha1,flecha2,scroll,20);
