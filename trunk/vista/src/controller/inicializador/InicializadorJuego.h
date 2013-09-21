@@ -27,6 +27,7 @@
 #include "src/figura/Martillo.h"
 #include "src/figura/Bloque.h"
 #include "src/figura/Cohete.h"
+#include "src/figura/Carrito.h"
 using namespace std;
 
 class InicializadorJuego: public VisitorFigura {
@@ -53,6 +54,7 @@ public:
 	void visit(Martillo*);
 	void visit(Bloque*);
 	void visit(Cohete*);
+	void visit(Carrito*);
 	JuegoEventsController * crearZonaJuego();
 };
 

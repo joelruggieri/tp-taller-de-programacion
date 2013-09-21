@@ -24,6 +24,7 @@
 #include "../vista/figura/MartilloView.h"
 #include "../vista/figura/BloqueView.h"
 #include "../vista/figura/CoheteView.h"
+#include "../vista/figura/CarritoView.h"
 
 #include <list>
 
@@ -45,6 +46,7 @@ public:
 	virtual void dropNuevaFigura(MartilloView*) = 0;
 	virtual void dropNuevaFigura(BloqueView*) = 0;
 	virtual void dropNuevaFigura(CoheteView*) = 0;
+	virtual void dropNuevaFigura(CarritoView*) = 0;
 	virtual void dropFigura(FiguraView*) = 0;
 	virtual void drag(FiguraView *, float,float) = 0;
 };

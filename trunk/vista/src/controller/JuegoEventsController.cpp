@@ -25,6 +25,7 @@
 #include "../vista/figura/MartilloView.h"
 #include "../vista/figura/BloqueView.h"
 #include "../vista/figura/CoheteView.h"
+#include "../vista/figura/CarritoView.h"
 
 #include "../vista/View.h"
 #include "Resizer.h"
@@ -179,6 +180,14 @@ void JuegoEventsController::dropNuevaFigura(CoheteView* view) {
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 	dropear(view, this->figurasFactory->crearCohete(x, y));
+}
+
+void JuegoEventsController::dropNuevaFigura(CarritoView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCarrito(x, y));
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {

@@ -19,6 +19,7 @@ class Martillo;
 class Resorte;
 class Bloque;
 class Cohete;
+class Carrito;
 
 class VisitorFigura {
 public:
@@ -35,6 +36,7 @@ public:
 	virtual void visit(Martillo*) = 0;
 	virtual void visit(Bloque*) = 0;
 	virtual void visit(Cohete*) = 0;
+	virtual void visit(Carrito*) = 0;
 };
 
 #endif /* VISITORFIGURA_H_ */

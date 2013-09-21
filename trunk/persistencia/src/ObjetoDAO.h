@@ -40,6 +40,7 @@ public:
 	void visit(Bloque* bloque);
 	void visit(Cohete* cohete);
 	void visit(Rueda* rueda);
+	void visit(Carrito* carrito);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Cuadrado *objeto, YAML::Node *nodoRaiz);

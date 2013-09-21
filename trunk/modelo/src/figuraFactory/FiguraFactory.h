@@ -25,6 +25,7 @@ public:
 	Figura * crearMartillo(float x,float y);
 	Figura * crearBloque(float x,float y);
 	Figura * crearCohete(float x,float y);
+	Figura * crearCarrito(float x,float y);
 };
 
 #endif /* FIGURAFACTORY_H_ */
