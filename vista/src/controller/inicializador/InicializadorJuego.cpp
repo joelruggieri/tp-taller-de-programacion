@@ -20,6 +20,7 @@ using namespace std;
 #include "../viewFactory/ViewMartilloFactory.h"
 #include "../viewFactory/ViewBloqueFactory.h"
 #include "../viewFactory/ViewCoheteFactory.h"
+#include "../viewFactory/ViewCarritoFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -37,6 +38,7 @@ const string KEY_RESORTE = "RESORTE";
 const string KEY_MARTILLO = "MARTILLO";
 const string KEY_BLOQUE = "BLOQUE";
 const string KEY_COHETE = "COHETE";
+const string KEY_CARRITO = "CARRITO";
 
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->zonaJuego = NULL;
@@ -104,6 +106,11 @@ void InicializadorJuego::visit(Cohete* c) {
 	this->agregarFigura(iter->second, c);
 }
 
+void InicializadorJuego::visit(Carrito* c) {
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CARRITO);
+	this->agregarFigura(iter->second, c);
+}
+
 void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 		Figura* modelo) {
 	Resizer * r = Resizer::Instance();
@@ -143,6 +150,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BLOQUE,factory));
 	factory = new ViewCoheteFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_COHETE,factory));
+	factory = new ViewCarritoFactory(juegoController);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CARRITO,factory));
 
 	list<ViewFiguraFactory*> factories;
 	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
@@ -155,6 +164,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewResorteFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
 	factories.push_back(new ViewCoheteFactory(juegoController));
+	factories.push_back(new ViewCarritoFactory(juegoController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 120,
 			herrTextura);
 	ZonaTablero* zonaTablero = new ZonaTablero(50,70, canvasTexture);

@@ -19,6 +19,7 @@
 #include "../vista/figura/MartilloView.h"
 #include "../vista/figura/BloqueView.h"
 #include "../vista/figura/CoheteView.h"
+#include "../vista/figura/CarritoView.h"
 #include "DropController.h"
 #include "mouseEventController/MouseEventController.h"
 #include "../vista/Dragueable.h"
@@ -57,6 +58,7 @@ public:
 	void dropNuevaFigura(MartilloView*);
 	void dropNuevaFigura(BloqueView*);
 	void dropNuevaFigura(CoheteView*);
+	void dropNuevaFigura(CarritoView*);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 	bool clickDown(int,int);

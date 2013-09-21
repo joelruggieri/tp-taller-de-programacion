@@ -20,6 +20,8 @@
 #include "src/figura/Bloque.h"
 #include "src/figura/Cohete.h"
 #include "src/figura/Rueda.h"
+#include "src/figura/Carrito.h"
+
 
 #include "constructoresYAML.h"
 
@@ -79,4 +81,7 @@ void ObjetoDAO::visit(Cohete* cohete) {
 }
 
 void ObjetoDAO::visit(Rueda* rueda) {
+}
+
+void ObjetoDAO::visit(Carrito* carrito) {
 }
