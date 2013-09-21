@@ -12,9 +12,11 @@ using namespace std;
 #include "src/figura/Figura.h"
 #include "src/figura/Mapa.h"
 #include "src/NivelDAO.h"
+#include <string>
+
 class PersistenciaManager {
 private:
-	int nivelActual;
+	std::string nivelActual;
 	NivelDAO * dao;
 	Nivel * nivel;
 public:

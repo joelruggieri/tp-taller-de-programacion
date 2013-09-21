@@ -1,0 +1,8 @@
+Objetos:
+  Triangulos:
+    - y: 0
+      ancho: 0
+      x: 0
+      alto: 1
+Nivel:
+  Nombre: test01

@@ -10,19 +10,23 @@
 
 #include <list>
 #include "figura/Figura.h"
+#include <string>
 
 class Nivel {
 public:
-	Nivel(int numero);
+	Nivel(std::string nombre);
 	virtual ~Nivel();
 	void agregar(Figura* figura);
 	int cantidadFiguras() const;
 	std::list<Figura*>& getFiguras();
 	int getNumero() const;
 	void setNumero(int numero);
+	const std::string& getNombre() const;
+	void setNombre(const std::string& nombre);
+
 private:
 	std::list<Figura*> objetos;
-	int numero;
+	std::string nombre;
 };
 
 #endif /* NIVEL_H_ */

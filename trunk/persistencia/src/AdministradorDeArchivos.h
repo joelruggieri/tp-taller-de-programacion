@@ -16,12 +16,12 @@ class AdministradorDeArchivos {
 public:
 	AdministradorDeArchivos();
 	virtual ~AdministradorDeArchivos();
-	static Archivo* obtenerArchivoNivel(int numero);
+	static Archivo* obtenerArchivoNivel(const char *numero);
+	static Archivo* obtenerArchivoNivel(const std::string &numero);
 	static std::list<Archivo*> archivos;
 	static void cerrarTodo();
-	static Archivo* crearArchivoNivel(int numero);
-private:
-	static void cargar();
+	static Archivo* crearArchivoNivel(const char* numero);
+	static void registrar(std::string nombre);
 };
 
 #endif /* ADMINISTRADORDEARCHIVOS_H_ */

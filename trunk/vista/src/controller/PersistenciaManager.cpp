@@ -14,7 +14,7 @@
 PersistenciaManager::PersistenciaManager() {
 	this->dao = new NivelDAO();
 	this->nivel = NULL;
-	nivelActual =1;
+	nivelActual = "nivel1";
 }
 
 PersistenciaManager::~PersistenciaManager() {

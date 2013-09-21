@@ -11,7 +11,7 @@
 #include <fstream>
 #include <yaml-cpp/yaml.h>
 
-enum TIPO {LECTURA, ESCRITURA, APPEND};
+enum TIPO {LECTURA, ESCRITURA, APPEND, LECTOESCRITURA};
 
 class Archivo {
 public:
@@ -21,11 +21,13 @@ public:
 	std::string leer();
 	std::string getNombre();
 	YAML::Node obtenerNodo(std::string nombre);
+	YAML::Node obtenerNodoRaiz();
 	void sobreescribir(YAML::Node &nodo);
-//	Archivo(const Archivo &a);
+	bool alFinal();
 	void cerrar();
 private:
 	std::string nombre;
+	TIPO tipo;
 	std::fstream archivo;
 };
 

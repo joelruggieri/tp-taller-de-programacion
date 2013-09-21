@@ -16,7 +16,7 @@ template<>
 struct convert<Nivel> {
 	static Node encode(const Nivel& objeto) {
 		Node node;
-		node["Numero"] = objeto.getNumero();
+		node["Nombre"] = objeto.getNombre();
 		return node;
 	}
 

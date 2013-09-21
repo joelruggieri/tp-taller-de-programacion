@@ -26,15 +26,19 @@ NivelDAO::~NivelDAO() {
 	// TODO Auto-generated destructor stub
 }
 
-Nivel* NivelDAO::leerNivel(int numero) {
-	Archivo *a = administrador.obtenerArchivoNivel(numero);
+Nivel* NivelDAO::leerNivel(const std::string &nombre) {
+	return leerNivel(nombre.c_str());
+}
+
+Nivel* NivelDAO::leerNivel(const char *nombre) {
+	Archivo *a = administrador.obtenerArchivoNivel(nombre);
 	if (!a) {
 		Logger log;
 		log.error("No se pudo cargar el nivel. El archivo no existe.");
 		throw NivelInexistenteException();
 	}
 	YAML::Node nodo = a->obtenerNodo(OBJETOS);
-	Nivel *n = new Nivel(numero);
+	Nivel *n = new Nivel(nombre);
 	std::list<Figura*> figuras = leerFiguras(nodo);
 	std::list<Figura*>::iterator it;
 	for (it = figuras.begin(); it != figuras.end(); ++it){
@@ -44,7 +48,7 @@ Nivel* NivelDAO::leerNivel(int numero) {
 }
 
 void NivelDAO::guardarNivel(Nivel *nivel) {
-	Archivo *a = administrador.obtenerArchivoNivel(nivel->getNumero());
+	Archivo *a = administrador.obtenerArchivoNivel(nivel->getNombre());
 	YAML::Node nodoRaiz;
 	nodoRaiz["Nivel"] = *nivel;
 	YAML::Node nodoFiguras;
@@ -56,6 +60,7 @@ void NivelDAO::guardarNivel(Nivel *nivel) {
 	}
 	nodoRaiz[OBJETOS] = nodoFiguras;
 	a->sobreescribir(nodoRaiz);
+	a->cerrar();
 }
 
 
