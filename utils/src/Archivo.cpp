@@ -9,12 +9,13 @@
 #include <iostream>
 
 Archivo::Archivo(const char* nombre, TIPO tipo) {
+	this->tipo = tipo;
 	this->nombre = nombre;
 	if (tipo == LECTURA) {
 		archivo.open(nombre, std::ios::in);
 		if (! archivo.is_open()){
 			// El archivo no existe, se creara vacio.
-			archivo.open(nombre, std::ios::in | std::ios::trunc);
+			archivo.open(nombre, std::ios::trunc);
 		}
 	} else if (tipo == ESCRITURA){
 		archivo.open(nombre, std::ios::out | std::ios::trunc);
@@ -27,6 +28,12 @@ Archivo::Archivo(const char* nombre, TIPO tipo) {
 			// El archivo no existe, se creara vacio.
 			archivo.open(nombre, std::ios::out | std::ios::trunc);
 		}
+	} else if (tipo == LECTOESCRITURA){
+		archivo.open(nombre, std::ios::in | std::ios::out | std::ios::app);
+		if (! archivo.is_open()){
+			// El archivo no existe, se creara vacio.
+			archivo.open(nombre, std::ios::in |  std::ios::out | std::ios::trunc);
+		}
 	}
 }
 
@@ -36,7 +43,7 @@ void Archivo::escribir(std::string dato) {
 
 std::string Archivo::leer(){
 	std::string linea = "";
-	archivo >> linea;
+	std::getline(archivo, linea);
 	return linea;
 }
 
@@ -55,13 +62,26 @@ YAML::Node Archivo::obtenerNodo(std::string nombreNodo) {
 
 void Archivo::sobreescribir(YAML::Node &nodo) {
 //	archivo.open(nombre.c_str(), std::ios::out | std::ios::trunc);
-	YAML::Emitter out;
-	out << nodo;
-	archivo << out.c_str();
+//	YAML::Emitter out;
+//	out << nodo;
+//	archivo << out.c_str();
+	if (tipo == LECTOESCRITURA || tipo == ESCRITURA) {
+		archivo.close();
+		archivo.open(this->nombre.c_str(), std::ios::out | std::ios::trunc);
+		archivo << nodo;
+	}
 }
 
 
 
 void Archivo::cerrar() {
 	archivo.close();
+}
+
+bool Archivo::alFinal() {
+	return archivo.eof();
+}
+
+YAML::Node Archivo::obtenerNodoRaiz() {
+	return YAML::LoadFile(this->nombre.c_str());
 }

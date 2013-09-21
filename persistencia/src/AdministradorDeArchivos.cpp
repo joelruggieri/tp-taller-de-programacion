@@ -15,29 +15,22 @@ std::list<Archivo*> AdministradorDeArchivos::archivos;
 AdministradorDeArchivos::~AdministradorDeArchivos() {
 	// TODO Auto-generated destructor stub
 }
-//
-///* En este metodo debemos declarar todos los archivos de nivel que existen.
-// * Tambien se podira buscar todos los archivos ".yaml" de
-// * alguna carpeta y cargarlos aca. */
-//void AdministradorDeArchivos::cargar(){
-//	if (AdministradorDeArchivos::archivos.size() == 0) {
-//		AdministradorDeArchivos::archivos.push_back(new Archivo("nivel1.yaml", LECTURA));
-//	}
-//}
 
-Archivo* AdministradorDeArchivos::obtenerArchivoNivel(int numero) {
+Archivo* AdministradorDeArchivos::obtenerArchivoNivel(const std::string &nombre) {
+	return obtenerArchivoNivel(nombre.c_str());
+}
+
+Archivo* AdministradorDeArchivos::obtenerArchivoNivel(const char *nombre) {
 	std::list<Archivo*>::iterator it;
+	std::string nombreArchivoBuscado = nombre;
+	nombreArchivoBuscado += ".yaml";
 	for (it = archivos.begin(); it != archivos.end(); ++it){
-		std::string sNumeroNivel = (*it)->getNombre().substr(5,2);
-		std::stringstream streamAux;
-		streamAux << sNumeroNivel;
-		int numeroNivel = 0;
-		streamAux >> numeroNivel;
-		if (numero == numeroNivel) {
+		Archivo *archivo = *it;
+		if (archivo->getNombre().compare(nombreArchivoBuscado) == 0) {
 			return *it;
 		}
 	}
-	return AdministradorDeArchivos::crearArchivoNivel(numero);
+	return AdministradorDeArchivos::crearArchivoNivel(nombre);
 }
 
 AdministradorDeArchivos::AdministradorDeArchivos() {
@@ -52,10 +45,25 @@ void AdministradorDeArchivos::cerrarTodo() {
 	}
 }
 
-Archivo* AdministradorDeArchivos::crearArchivoNivel(int numero) {
-	std::stringstream streamAux;
-	streamAux << "nivel" << numero << ".yaml";
-	Archivo *nuevo = new Archivo(streamAux.str().c_str(), ESCRITURA);
+Archivo* AdministradorDeArchivos::crearArchivoNivel(const char* numero) {
+	std::string streamAux = numero;
+	streamAux.append(".yaml");
+	Archivo *nuevo = new Archivo(streamAux.c_str(), ESCRITURA);
 	AdministradorDeArchivos::archivos.push_back(nuevo);
 	return nuevo;
+}
+
+void AdministradorDeArchivos::registrar(std::string nombre) {
+
+	std::list<Archivo*>::iterator it;
+	for (it = archivos.begin(); it != archivos.end(); ++it){
+		Archivo *archivo = *it;
+		if (archivo->getNombre().compare(nombre) == 0) {
+			// El archivo ya existe
+			return;
+		}
+	}
+
+	Archivo *nuevo = new Archivo(nombre.c_str(), LECTOESCRITURA);
+	AdministradorDeArchivos::archivos.push_back(nuevo);
 }

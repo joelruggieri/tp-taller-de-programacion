@@ -7,8 +7,8 @@
 
 #include "Nivel.h"
 
-Nivel::Nivel(int num) {
-	numero = num;
+Nivel::Nivel(std::string nombre) {
+	this->nombre = nombre;
 }
 
 Nivel::~Nivel() {
@@ -27,11 +27,10 @@ std::list<Figura*> &Nivel::getFiguras() {
 	return objetos;
 }
 
-
-int Nivel::getNumero() const{
-	return numero;
+const std::string& Nivel::getNombre() const {
+	return nombre;
 }
 
-void Nivel::setNumero(int n) {
-	this->numero = n;
+void Nivel::setNombre(const std::string& nombre) {
+	this->nombre = nombre;
 }

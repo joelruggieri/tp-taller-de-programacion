@@ -10,18 +10,20 @@
 
 #include <list>
 #include <string>
-#include "src/figura/Circulo.h"
-#include "src/figura/Triangulo.h"
-#include "src/figura/Cuadrado.h"
-#include "src/figura/Figura.h"
-#include "src/figura/Bloque.h"
-#include "src/figura/Cohete.h"
-#include "src/figura/Globo.h"
-#include "src/figura/Martillo.h"
-#include "src/figura/Pelota.h"
-#include "src/figura/Resorte.h"
-#include "src/figura/Rueda.h"
+class Circulo;
+class Triangulo;
+class Cuadrado;
+class Figura;
+class Pelota;
+class Globo;
+class Resorte;
+class Martillo;
+class Bloque;
+class Cohete;
+class Rueda;
+
 #include "AdministradorDeArchivos.h"
+#include "src/figura/VisitorFigura.h"
 
 class ObjetoDAO: public VisitorFigura {
 public:
@@ -31,13 +33,13 @@ public:
 	void visit(Cuadrado* c);
 	void visit(Triangulo* t);
 	void visit(Circulo* c);
-	void visit(Rueda*);
-	void visit(Globo*);
-	void visit(Pelota*);
-	void visit(Resorte*);
-	void visit(Martillo*);
-	void visit(Bloque*);
-	void visit(Cohete*);
+	void visit(Globo* globo);
+	void visit(Pelota* pelota);
+	void visit(Resorte* resorte);
+	void visit(Martillo* martillo);
+	void visit(Bloque* bloque);
+	void visit(Cohete* cohete);
+	void visit(Rueda* rueda);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Cuadrado *objeto, YAML::Node *nodoRaiz);
@@ -45,4 +47,5 @@ private:
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };
+
 #endif /* OBJETODAO_H_ */

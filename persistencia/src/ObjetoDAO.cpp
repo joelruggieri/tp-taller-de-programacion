@@ -9,6 +9,18 @@
 #include <iostream>
 #include <fstream>
 
+#include "src/figura/Circulo.h"
+#include "src/figura/Triangulo.h"
+#include "src/figura/Cuadrado.h"
+#include "src/figura/Figura.h"
+#include "src/figura/Pelota.h"
+#include "src/figura/Globo.h"
+#include "src/figura/Resorte.h"
+#include "src/figura/Martillo.h"
+#include "src/figura/Bloque.h"
+#include "src/figura/Cohete.h"
+#include "src/figura/Rueda.h"
+
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -48,23 +60,23 @@ void ObjetoDAO::visit(Circulo* c) {
 	guardar(c, nodo);
 }
 
-void ObjetoDAO::visit(Rueda*) {
+void ObjetoDAO::visit(Globo* globo) {
 }
 
-void ObjetoDAO::visit(Globo*) {
+void ObjetoDAO::visit(Pelota* pelota) {
 }
 
-void ObjetoDAO::visit(Pelota*) {
+void ObjetoDAO::visit(Resorte* resorte) {
 }
 
-void ObjetoDAO::visit(Resorte*) {
+void ObjetoDAO::visit(Martillo* martillo) {
 }
 
-void ObjetoDAO::visit(Martillo*) {
+void ObjetoDAO::visit(Bloque* bloque) {
 }
 
-void ObjetoDAO::visit(Bloque*) {
+void ObjetoDAO::visit(Cohete* cohete) {
 }
 
-void ObjetoDAO::visit(Cohete*) {
+void ObjetoDAO::visit(Rueda* rueda) {
 }

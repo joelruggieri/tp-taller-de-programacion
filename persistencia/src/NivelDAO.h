@@ -17,7 +17,8 @@ class NivelDAO {
 public:
 	NivelDAO();
 	virtual ~NivelDAO();
-	Nivel* leerNivel(int numero);
+	Nivel* leerNivel(const std::string &numero);
+	Nivel* leerNivel(const char* numero);
 	void guardarNivel(Nivel *nivel);
 private:
 	AdministradorDeArchivos administrador;
