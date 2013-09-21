@@ -155,13 +155,6 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewResorteFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
 	factories.push_back(new ViewCoheteFactory(juegoController));
-	factories.push_back(new ViewPelotaFactory(juegoController));
-	factories.push_back(new ViewResorteFactory(juegoController));
-	factories.push_back(new ViewRuedaFactory(juegoController));
-	factories.push_back(new ViewGloboFactory(juegoController));
-	factories.push_back(new ViewMartilloFactory(juegoController));
-	factories.push_back(new ViewCoheteFactory(juegoController));
-	factories.push_back(new ViewPelotaFactory(juegoController));
 	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 120,
 			herrTextura);
 	ZonaTablero* zonaTablero = new ZonaTablero(50,70, canvasTexture);
