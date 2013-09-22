@@ -45,6 +45,14 @@ private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Cuadrado *objeto, YAML::Node *nodoRaiz);
 	void guardar(Triangulo *objeto, YAML::Node *nodoRaiz);
+	void guardar(Globo *objeto, YAML::Node *nodoRaiz);
+	void guardar(Pelota *objeto, YAML::Node *nodoRaiz);
+	void guardar(Resorte *objeto, YAML::Node *nodoRaiz);
+	void guardar(Martillo *objeto, YAML::Node *nodoRaiz);
+	void guardar(Bloque *objeto, YAML::Node *nodoRaiz);
+	void guardar(Cohete *objeto, YAML::Node *nodoRaiz);
+	void guardar(Rueda *objeto, YAML::Node *nodoRaiz);
+	void guardar(Carrito *objeto, YAML::Node *nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };
