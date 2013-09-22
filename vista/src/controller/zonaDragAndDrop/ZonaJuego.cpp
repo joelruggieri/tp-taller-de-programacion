@@ -63,3 +63,7 @@ bool ZonaJuego::removerFigura(FiguraView* figura) {
 bool ZonaJuego::click(float x, float y) {
 	return this->zonaCreacion->click(x,y);
 }
+
+void ZonaJuego::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
+	this->dibujarse(renderer);
+}

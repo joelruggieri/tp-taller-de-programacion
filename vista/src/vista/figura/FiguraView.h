@@ -28,6 +28,7 @@ public:
 	void setModelo(Figura* modelo);
 	void drop();
 	void dibujarse(SDL_Renderer*);
+	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void click(float x, float y);
 	void resizear();
 };

@@ -247,3 +247,7 @@ void TextBox::ejecutarTecla(char key) {
 void TextBox::clickeoFueraDeHerramienta() {
 	this->seleccionado = false;
 }
+
+void TextBox::dibujarse(SDL_Renderer* render, SDL_Rect &dest) {
+
+}

@@ -25,9 +25,11 @@ public:
 	float getScrollY() const;
 	void setScrollY(float scrollY);
 	void dibujarse(SDL_Renderer *);
+	void dibujarse(SDL_Renderer *, SDL_Rect &);
 	bool removerFigura(FiguraView*);
 	FiguraView * getVista(float x, float y);
 	bool click(float x, float y);
 };
 
 #endif /* ZONAJUEGO_H_ */
+

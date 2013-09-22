@@ -18,6 +18,7 @@ public:
 	RotationView(Rotable *, SDL_Texture * textura);
 	virtual ~RotationView();
 	void dibujarse(SDL_Renderer *);
+	void dibujarse(SDL_Renderer*, SDL_Rect &);
 };
 
 #endif /* ROTATIONVIEW_H_ */

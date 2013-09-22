@@ -31,3 +31,7 @@ void RotationView::dibujarse(SDL_Renderer* renderer) {
 //		cout << rotacion->getModelo()->getRotacion()<<endl;
 	}
 }
+
+void RotationView::dibujarse(SDL_Renderer* rnd, SDL_Rect&) {
+	this->dibujarse(rnd);
+}

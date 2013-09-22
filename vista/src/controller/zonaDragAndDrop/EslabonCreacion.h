@@ -25,7 +25,7 @@ public:
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
 	FiguraView * atender(float posX, float posY, float corrimientoScroll);
-	Dibujable * getFactoryView();
+	View * getFactoryView();
 	//	void invalidar(Dropeable*);
 };
 

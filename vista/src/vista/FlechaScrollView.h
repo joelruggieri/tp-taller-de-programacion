@@ -22,6 +22,7 @@ public:
 	bool isAbajo() const;
 	void setAbajo(bool abajo);
 	void dibujarse(SDL_Renderer*);
+	void dibujarse(SDL_Renderer*, SDL_Rect & dest);
 	void setPresionado(bool presionado);
 	bool isPresionado() const;
 	void resizear();

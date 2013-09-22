@@ -18,7 +18,8 @@ ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new 
 	int wC = instance->resizearDistanciaLogicaX(100);
 	int hC =instance->resizearDistanciaLogicaY(100);
 	this->canvas = new Canvas(xC,yC,wC,hC,imagenFondo);
-	this->canvas->setBorder(true);
+	this->viewCanvas= new ViewConBorde(canvas);
+	this->viewCanvas->setAutoAjustar(true);
 }
 
 Canvas* ZonaTablero::getCanvas(){
@@ -54,11 +55,12 @@ FiguraView * ZonaTablero::getFiguraTemplate(float x, float y) {
 
 ZonaTablero::~ZonaTablero() {
 	std::list<FiguraView*>::const_iterator iterator;
-	delete this->canvas;
+	delete this->viewCanvas;
 }
 
 void ZonaTablero::dibujarse(SDL_Renderer* renderer) {
-	this->canvas->dibujarse(renderer);
+//	this->canvas->dibujarse(renderer);()
+	this->viewCanvas->dibujarse(renderer);
 }
 
 bool ZonaTablero::removerFigura(FiguraView* figura) {
@@ -69,4 +71,8 @@ bool ZonaTablero::removerFigura(FiguraView* figura) {
 
 bool ZonaTablero::click(float x, float y) {
 return false;
+}
+
+void ZonaTablero::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
+	this->dibujarse(renderer);
 }

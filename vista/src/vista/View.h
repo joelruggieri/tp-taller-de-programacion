@@ -19,29 +19,30 @@ public:
 	View(int x, int y, int w, int h);
 	virtual ~View();
 	virtual void dibujarse(SDL_Renderer*)=0;
-	int getH() const;
-	int getW() const;
-	int getX() const;
-	int getY() const;
-	int getXCentro() const;
-	int getYCentro() const;
+	virtual void dibujarse(SDL_Renderer*, SDL_Rect&)=0;
+	virtual int getH() const;
+	virtual int getW() const;
+	virtual int getX() const;
+	virtual int getY() const;
+	virtual int getXCentro() const;
+	virtual int getYCentro() const;
 	virtual void resizear() = 0;
 	//desplaza la vista en x y en y;
-	void desplazarCentroA(int x, int y);
+	virtual void desplazarCentroA(int x, int y);
 
-	void setH(int h) {
+	virtual void setH(int h) {
 		this->h = h;
 	}
 
-	void setW(int w) {
+	virtual void setW(int w) {
 		this->w = w;
 	}
 
-	void setXc(int xc) {
+	virtual void setXc(int xc) {
 		this->xc = xc;
 	}
 
-	void setYc(int yc) {
+	virtual void setYc(int yc) {
 		this->yc = yc;
 	}
 };

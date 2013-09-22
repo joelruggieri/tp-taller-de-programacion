@@ -55,7 +55,7 @@ FiguraView * EslabonCreacion::atender(float posX, float posY, float corrimientoS
 	return NULL;
 }
 
-Dibujable * EslabonCreacion::getFactoryView() {
+View * EslabonCreacion::getFactoryView() {
 	Resizer * res = Resizer::Instance();
 	return this->factory->crearVistaPropia(
 			res->resizearDistanciaLogicaX(cuerpo->getX()),

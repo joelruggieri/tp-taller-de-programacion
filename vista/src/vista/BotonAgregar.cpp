@@ -98,7 +98,7 @@ dst.x = this->getX();
 dst.y = this->getY();
 dst.h = this->getH();
 dst.w = this->getW();
-SDL_RenderCopy(render, this->texturaCurrent,NULL,&dst);
+this->dibujarse(render, dst);
 return;
 
 }
@@ -163,4 +163,8 @@ void Boton::resizear() {
 //	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
 //	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 //	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
+}
+
+void Boton::dibujarse(SDL_Renderer* render, SDL_Rect &dest) {
+	SDL_RenderCopy(render, this->texturaCurrent,NULL,&dest);
 }

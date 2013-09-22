@@ -15,6 +15,7 @@
 #include "../../vista/Canvas.h"
 #include "../../modelo/Scroll.h"
 #include "../../vista/ScrollView.h"
+#include "../../vista/ViewConBorde.h"
 using namespace std;
 
 class ZonaCreacion: public Zona {
@@ -26,6 +27,7 @@ private:
 	FiguraView * getFiguraTemplate(float x, float y);
 	void inicializar(list<ViewFiguraFactory*> *, float x, float margenSuperior);
 	Canvas * canvas;
+	ViewConBorde * viewCanvas;
 	Scroll * scroll;
 	ScrollView * crearScrollView(int x, int y,Scroll* scroll, SDL_Texture * texturaFlecha);
 public:
@@ -33,6 +35,7 @@ public:
 	virtual ~ZonaCreacion();
 	void agregarEslabon(EslabonCreacion* eslabon);
 	void dibujarse(SDL_Renderer *);
+	void dibujarse(SDL_Renderer *, SDL_Rect &);
 	bool removerFigura(FiguraView*);
 	bool click(float x, float y);
 };

@@ -40,13 +40,29 @@ bool FlechaScrollView::isPresionado() const {
 
 void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
 	SDL_Rect dest;
-	int ancho = this->getW() * 0.3;
-	int alto = this->getH()*0.5;
-
 	dest.x = this->getX();
 	dest.y = this->getY();
 	dest.w = this->getW();
 	dest.h = this->getH();
+	this->dibujarse(renderer, dest);
+}
+
+void FlechaScrollView::setPresionado(bool presionado) {
+	this->presionado = presionado;
+}
+
+void FlechaScrollView::resizear() {
+	cout << "se ha resieado las flechas scrooll view" << endl ;
+	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
+		this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+
+}
+
+void FlechaScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
+	int ancho = dest.w * 0.3;
+	int alto = dest.h*0.5;
+
 	//dibujo el fondo:
 	int corrPresion = 0;//px
 
@@ -70,17 +86,5 @@ void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
 		dest.y = dest.y + 2 + corrPresion;
 		SDL_RenderCopy(renderer, this->textura, NULL, &dest);
 	}
-
-}
-
-void FlechaScrollView::setPresionado(bool presionado) {
-	this->presionado = presionado;
-}
-
-void FlechaScrollView::resizear() {
-	cout << "se ha resieado las flechas scrooll view" << endl ;
-	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
-	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
-		this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 
 }

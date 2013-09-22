@@ -17,6 +17,7 @@ public:
 	DraggingView(Dragueable*);
 	virtual ~DraggingView();
 	void dibujarse(SDL_Renderer*);
+	void dibujarse(SDL_Renderer*, SDL_Rect &);
 };
 
 #endif /* DRAGGINGVIEW_H_ */
