@@ -16,6 +16,10 @@ ToolBarEventController::~ToolBarEventController() {
 	// TODO Auto-generated destructor stub
 }
 
+bool ToolBarEventController::mouseWheelMoved(int x, int y, int amountScrolled){
+	return true;
+}
+
 bool ToolBarEventController::clickDown(int int1, int int2) {
 
 

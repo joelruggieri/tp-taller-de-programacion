@@ -41,6 +41,7 @@ public:
 	virtual void dibujarse(SDL_Renderer *, SDL_Rect &) = 0;
 	Cuadrado*& getCuerpo();
 	virtual bool click(float x, float y) = 0;
+	virtual bool mouseScroll(float x, float y, int amountScrolled) = 0;
 };
 
 #endif /* ZONADRAGANDDROP_H_ */

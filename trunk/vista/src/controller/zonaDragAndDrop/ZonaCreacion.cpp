@@ -26,6 +26,7 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x,
 	this->viewCanvas = new ViewConBorde(canvas);
 	this->viewCanvas->setAutoAjustar(true);
 	this->inicializar(factories, x, margenSuperior);
+	this->margenSuperior = margenSuperior;
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 }
 void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
@@ -135,6 +136,18 @@ void ZonaCreacion::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
 bool ZonaCreacion::click(float x, float y) {
 	if (this->scroll != NULL) {
 		return this->scroll->click(x, y);
+	}
+	return false;
+}
+
+bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled){
+	if (this->scroll != NULL){
+		Resizer* r = Resizer::Instance();
+		int alto = 100;
+		//Normalizo el centro en Y sacando la parte cubierta por el toolBar.
+		return this->scroll->mouseScroll(x, y , amountScrolled,
+				r->resizearDistanciaPixelX(this->canvas->getXCentro()), (this->margenSuperior+this->margenSuperior - alto) / 2,
+				r->resizearDistanciaPixelX(this->canvas->getW()), alto);
 	}
 	return false;
 }

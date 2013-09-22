@@ -24,6 +24,7 @@ public:
 		 bool rightClickUp(int, int);
 		 bool mouseMotion(int, int);
 		 bool keyReleased();
+		 bool mouseWheelMoved(int, int, int);
 
 };
 

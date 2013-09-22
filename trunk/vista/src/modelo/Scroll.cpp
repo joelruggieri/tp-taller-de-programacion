@@ -29,30 +29,46 @@ Scroll::~Scroll() {
 	delete this->figura;
 }
 
+void Scroll::desplazarBarra(int sentido){
+	int posAnterior = this->posicion;
+	int corrimiento = this->velocidad * sentido;
+	this->ultimoClick = corrimiento;
+	this->posicion = corrimiento + this->posicion;
+
+	//Valido que no se pase de los maximos.
+	if(this->posicion > this->max) this->posicion = this->max;
+	if(this->posicion < 0) this->posicion = 0;
+
+	corrimiento = this->posicion - posAnterior;
+	this->actualizarVistas(corrimiento);
+
+	this->notifY();
+}
+
 bool Scroll::click(float x, float y) {
 	Figura * fig = this->figura->getFiguraEn(x,y);
-	bool resultado = false;
 
 	if(fig != NULL){
-		int posAnterior = this->posicion;
-		int corrimiento = this->velocidad * this->signado.find(fig) ->second;
-		this->ultimoClick = corrimiento;
-		this->posicion = corrimiento + this->posicion;
-		resultado = true;
-		if(this->posicion > this->max){
-			this->posicion = this->max;
-
-		}
-		if(this->posicion < 0){
-			this->posicion = 0;
-		}
-			corrimiento = this->posicion - posAnterior;
-		this->actualizarVistas(corrimiento);
-
-		this->notifY();
+		this->desplazarBarra(this->signado.find(fig) ->second);
+		return true;
 	}
 	//cout<< "SCROL: " << getScrollPixels()<< endl;
-	return resultado;
+	return false;
+}
+
+bool enContacto(float posX, float posY, int xC, int yC, int wC, int hC){
+	return (posX <= (xC + wC / 2)) && (posX >= (xC - wC / 2)) && (posY <= (yC + hC / 2)) && (posY >= (yC - hC / 2));
+}
+
+bool Scroll::mouseScroll(float x, float y, int amountScrolled, int xC, int yC, int w, int h){
+	bool enContactoFlechas = this->figura->contacto(x, y);
+	bool enContactoZona = enContacto(x, y, xC, yC, w, h);
+	if(enContactoFlechas || enContactoZona){
+		this->desplazarBarra(amountScrolled);
+		//cout << "Se escroleo" <<endl;
+		return false;
+	}
+	return true;
 }
 
 //int Scroll::getScrollPixels() {

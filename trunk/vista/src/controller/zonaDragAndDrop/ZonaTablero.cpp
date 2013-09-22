@@ -73,6 +73,10 @@ bool ZonaTablero::click(float x, float y) {
 return false;
 }
 
+bool ZonaTablero::mouseScroll(float x, float y, int amountScrolled){
+	return false;
+}
+
 void ZonaTablero::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
 	this->dibujarse(renderer);
 }

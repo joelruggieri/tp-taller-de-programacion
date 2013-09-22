@@ -105,6 +105,20 @@ void GeneralEventController::rightClickDown(int x, int y) {
 	}
 }
 
+void GeneralEventController::mouseWheelMoved(int amountScrolledY){
+	this->mouseControllers.sort(comparar_prioridadClick);
+	list<MouseControllerPrioridades*>::iterator it;
+	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
+	//Agarro la posicion del mouse.
+	int posX, posY;
+	SDL_GetMouseState(&posX, &posY);
+	bool continuarEvento = true;
+	for (it = this->mouseControllers.begin();
+			it != this->mouseControllers.end() && continuarEvento; ++it) {
+		continuarEvento = (*it)->getEventController()->mouseWheelMoved(posX, posY, amountScrolledY);
+	}
+}
+
 void GeneralEventController::addKeyboardController(KeyBoardEventController* keyEventController) {
 	this->keyControllers.push_back(keyEventController);
 }
@@ -170,6 +184,9 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 				this->clickDown(evento.button.x, evento.button.y);
 			break;
 		}
+		break;
+	case SDL_MOUSEWHEEL:
+		this->mouseWheelMoved(evento.wheel.y);
 		break;
 	case SDL_MOUSEBUTTONUP:
 		switch (evento.button.button) {

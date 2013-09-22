@@ -234,6 +234,16 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	}
 }
 
+bool JuegoEventsController::mouseWheelMoved(int x, int y, int amountScrolled){
+	Resizer* r = Resizer::Instance();
+	float lX = r->resizearDistanciaPixelX(x);
+	float lY = r->resizearPosicionPixelY(y);
+	if (zona != NULL) {
+		return zona->mouseScroll(lX, lY, amountScrolled);
+	}
+	return true;
+}
+
 
 Zona* JuegoEventsController::getZona() {
 	return zona;

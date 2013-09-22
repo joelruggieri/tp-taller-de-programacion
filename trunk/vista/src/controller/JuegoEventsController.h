@@ -66,6 +66,7 @@ public:
 	bool mouseMotion(int, int);
 	bool rightClickDown(int,int);
 	bool rightClickUp(int,int);
+	bool mouseWheelMoved(int, int, int);
 	Zona* getZona();
 	void setZona(Zona* zona);
 	bool isDragging();

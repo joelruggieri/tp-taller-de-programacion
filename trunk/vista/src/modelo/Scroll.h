@@ -26,6 +26,7 @@ private:
 	list<View*> scrolleables;
 	void actualizarVistas(int corrimiento);
 	int ultimoClick;
+	void desplazarBarra(int sentido);
 public:
 	Scroll(Figura * flechaSup, Figura* flechaInf,int velocidad, int max);
 	virtual ~Scroll();
@@ -34,6 +35,7 @@ public:
 	float getScroll();
 	void addScrolleable(View *);
 	int getltimoClick() const;
+	bool mouseScroll(float x, float y, int amountScrolled, int xC, int yC, int w, int h);
 };
 
 #endif /* SCROLL_H_ */
