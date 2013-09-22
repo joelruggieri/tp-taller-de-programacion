@@ -21,7 +21,7 @@ struct convert<Nivel> {
 	}
 
 	static bool decode(const Node& node, Nivel& objeto) {
-		objeto.setNumero(node["Numero"].as<int>());
+		objeto.setNombre(node["Nombre"].as<std::string>());
 		return true;
 	}
 };

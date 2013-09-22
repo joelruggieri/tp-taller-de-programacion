@@ -19,8 +19,6 @@ public:
 	void agregar(Figura* figura);
 	int cantidadFiguras() const;
 	std::list<Figura*>& getFiguras();
-	int getNumero() const;
-	void setNumero(int numero);
 	const std::string& getNombre() const;
 	void setNombre(const std::string& nombre);
 

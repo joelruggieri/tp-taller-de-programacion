@@ -1,0 +1,41 @@
+Nivel:
+  Nombre: test04
+Objetos:
+  Circulos:
+    - x: 5
+      y: 5
+      rotacion: 0
+      radio: 1
+    - x: 5
+      y: 5
+      rotacion: 0
+      radio: 1
+    - x: 5
+      y: 5
+      rotacion: 0
+      radio: 1
+  Cuadrados:
+    - x: 5
+      y: 5
+      ancho: 1
+      alto: 1
+    - x: 5
+      y: 5
+      ancho: 1
+      alto: 1
+    - x: 58.2
+      y: 45.8
+      ancho: 1
+      alto: 1
+    - x: 58.2
+      y: 45.8
+      ancho: 1
+      alto: 1
+    - x: 5
+      y: 5
+      ancho: 1
+      alto: 1
+    - x: 5
+      y: 5
+      ancho: 1
+      alto: 1
