@@ -46,6 +46,6 @@ public:
 	void setYc(int yc);
 	void setAutoAjustar(bool);
 };
-const struct ViewConBorde::RGB COLOR_BORDE_EXTERNO = {124,117,105};
-const struct ViewConBorde::RGB COLOR_BORDE_INTERNO = {107, 84, 43};
+const struct ViewConBorde::RGB COLOR_BORDE_EXTERNO = {94,139,0};
+const struct ViewConBorde::RGB COLOR_BORDE_INTERNO = {22, 41, 28};
 #endif /* VIEWCONBORDE_H_ */

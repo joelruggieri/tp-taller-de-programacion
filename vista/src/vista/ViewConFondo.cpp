@@ -74,8 +74,8 @@ void ViewConFondo::dibujarse(SDL_Renderer*r){
 	dst.w = this->decorable->getW();
 	dst.h = this->decorable->getH();
 
-	SDL_SetRenderDrawColor(r, 0,
-			0, 70, 1);
+	SDL_SetRenderDrawColor(r, 170,
+			255, 214, 1);
 	SDL_RenderFillRect(r, &dst);
 	this->decorable->dibujarse(r);
 }

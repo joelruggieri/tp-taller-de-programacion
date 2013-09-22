@@ -289,6 +289,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 		if (view != NULL) {
 			if (view->getModelo() != NULL) {
 				this->zona->removerFigura(view);
+				this->modeloController->removerFigura(view->getModelo());
 				//Verifico si se apreto el shift tambien.
 				const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
 				if(keyboardState[SDL_SCANCODE_LSHIFT]) return false;

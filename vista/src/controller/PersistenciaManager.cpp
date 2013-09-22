@@ -54,8 +54,8 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 void PersistenciaManager::persistirFiguras(list<Figura*>& figuras) {
 	Logger log;
 	if(this->nivel != NULL){
-		nivel->getFiguras().empty();
-		nivel->getFiguras().merge(figuras);
+		nivel->getFiguras().clear();
+		nivel->getFiguras().insert(nivel->getFiguras().begin(),figuras.begin(),figuras.end());
 	} else {
 		try{
 			nivel = dao->leerNivel(nivelActual);
