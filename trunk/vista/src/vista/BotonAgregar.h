@@ -35,6 +35,7 @@ public:
 		 this->cantDibujados = 0;
 }
 	void dibujarse(SDL_Renderer *);
+	void dibujarse(SDL_Renderer *, SDL_Rect &dest);
 	void Resizear(int x, int y);
 	virtual void presionarMouse() = 0 ;
 	bool fueSeleccionado(int x, int y);
@@ -91,3 +92,4 @@ public:
 
 } /* namespace std */
 #endif /* BOTONAGREGAR_H_ */
+

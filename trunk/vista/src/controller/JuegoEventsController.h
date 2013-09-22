@@ -73,5 +73,6 @@ public:
 	bool isRotando();
 	View* getRotado();
 	void dibujarse(SDL_Renderer *);
+	void dibujarse(SDL_Renderer *, SDL_Rect &);
 };
 #endif /* JuegoEventsController_H_ */

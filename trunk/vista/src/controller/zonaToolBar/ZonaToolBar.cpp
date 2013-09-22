@@ -20,45 +20,45 @@
 
 void ZonaToolBar::cliquearHerramienta(int x, int y) {
 
-	list<Herramientas* >::iterator iter;
-		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
-		{
-			 if ((*iter)->fueSeleccionado(x, y)) return (*iter)->presionarMouse();
+	list<Herramientas*>::iterator iter;
+	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+			iter++) {
+		if ((*iter)->fueSeleccionado(x, y))
+			return (*iter)->presionarMouse();
 
-
-		}
+	}
 
 }
 
 void ZonaToolBar::desCliquearHerramienta(int x, int y) {
-	list<Herramientas* >::iterator iter;
-		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
-		{
-			  (*iter)->desPresionarMouse();
+	list<Herramientas*>::iterator iter;
+	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+			iter++) {
+		(*iter)->desPresionarMouse();
 
-		}
-		 return;
+	}
+	return;
 }
 
 void ZonaToolBar::teclearHerramienta(char key) {
-	list<Herramientas* >::iterator iter;
-		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
-		{
-			  (*iter)->ejecutarTecla(key);
+	list<Herramientas*>::iterator iter;
+	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+			iter++) {
+		(*iter)->ejecutarTecla(key);
 
-		}
-		 return;
+	}
+	return;
 }
 
 void ZonaToolBar::cliqueoEnOtroLado() {
 
-	list<Herramientas* >::iterator iter;
-			 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
-			{
-				  (*iter)->clickeoFueraDeHerramienta();
+	list<Herramientas*>::iterator iter;
+	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+			iter++) {
+		(*iter)->clickeoFueraDeHerramienta();
 
-			}
-			 return;
+	}
+	return;
 }
 
 void ZonaToolBar::resizear() {
@@ -73,28 +73,37 @@ void ZonaToolBar::resizear() {
 }
 
 bool ZonaToolBar::algunaHerramientaSeleccionada(int x, int y) {
-		bool result = false ;
-		list<Herramientas* >::iterator iter;
-		 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
-		{
-			 	if ((*iter)->fueSeleccionado(x,y)) return true ;
+	bool result = false;
+	list<Herramientas*>::iterator iter;
+	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+			iter++) {
+		if ((*iter)->fueSeleccionado(x, y))
+			return true;
 
-		}
-		 return result;
+	}
+	return result;
 }
 
-void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h){
+void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h) {
 	CargadorDeTextures *p1 = CargadorDeTextures::Instance();
 	//TODO ver que hacer con las coordenadas definidas
-		BotonAgregar* bAgregar = new BotonAgregar(x+ ANCHOBOTON+ 30, y, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/changeBackNormal.png"), p1->cargarTexture("resource/changeBackPressed.png"));
-		BotonSalir* bSalir = new BotonSalir(x+ 2* ANCHOBOTON + 30, y , ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/exitNormal.png"),p1->cargarTexture("resource/exitPressed.png") );
-		BotonGuardar* bGuardar = new BotonGuardar(x+ 3 * ANCHOBOTON + 30, y, ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/saveNormal.png"),p1->cargarTexture("resource/savePressed.png") );
-		TextBox* textBox = new TextBox(x - 130 , y, ANCHOTEXTBOX, ALTOTEXTBOX, p1->cargarTexture("resource/textbox.jpg")) ;
-		bAgregar->campo = textBox;
-		this->agregarHerramienta(bAgregar);
-		this->agregarHerramienta(bSalir);
-		this->agregarHerramienta(bGuardar);
-		this->agregarHerramienta(textBox);
+	BotonAgregar* bAgregar = new BotonAgregar(x + ANCHOBOTON + 30, y,
+			ANCHOBOTON, ALTOBOTON,
+			p1->cargarTexture("resource/changeBackNormal.png"),
+			p1->cargarTexture("resource/changeBackPressed.png"));
+	BotonSalir* bSalir = new BotonSalir(x + 2 * ANCHOBOTON + 30, y, ANCHOBOTON,
+			ALTOBOTON, p1->cargarTexture("resource/exitNormal.png"),
+			p1->cargarTexture("resource/exitPressed.png"));
+	BotonGuardar* bGuardar = new BotonGuardar(x + 3 * ANCHOBOTON + 30, y,
+			ANCHOBOTON, ALTOBOTON, p1->cargarTexture("resource/saveNormal.png"),
+			p1->cargarTexture("resource/savePressed.png"));
+	TextBox* textBox = new TextBox(x - 130, y, ANCHOTEXTBOX, ALTOTEXTBOX,
+			p1->cargarTexture("resource/textbox.jpg"));
+	bAgregar->campo = textBox;
+	this->agregarHerramienta(bAgregar);
+	this->agregarHerramienta(bSalir);
+	this->agregarHerramienta(bGuardar);
+	this->agregarHerramienta(textBox);
 
 }
 
@@ -105,7 +114,6 @@ ZonaToolBar::~ZonaToolBar() {
 void ZonaToolBar::agregarHerramienta(Herramientas* herramienta) {
 	this->herramientas.push_back(herramienta);
 
-
 }
 
 void ZonaToolBar::dibujarse(SDL_Renderer* render) {
@@ -113,30 +121,34 @@ void ZonaToolBar::dibujarse(SDL_Renderer* render) {
 	dst.x = this->getX();
 	dst.y = this->getY();
 	dst.h = this->getH();
-	dst.w= this->getW();
-	SDL_RenderCopy(render,this->fondo,NULL, &dst);
-
-	list<Herramientas* >::iterator iter;
-	 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
-	{
-		 	(*iter)->dibujarse(render);
-
-	}
+	dst.w = this->getW();
+	this->dibujarse(render, dst);
 
 }
 //POS: true si alguna herramienta fue seleccionada
 bool ZonaToolBar::zonaFueSeleccionada(int x, int y) {
 
-	return (this->getX() <= x && getX() + this->getW() > x && this->getY() <= y && this->getY() + this->getH() > y );
+	return (this->getX() <= x && getX() + this->getW() > x && this->getY() <= y
+			&& this->getY() + this->getH() > y);
 }
 
 void ZonaToolBar::desTeclearHerramienta() {
-	list<Herramientas* >::iterator iter;
-	 for(iter = this->herramientas.begin();iter != this->herramientas.end();iter++)
-	{
-		 	(*iter)->desEjecutarTecla();
-
+	list<Herramientas*>::iterator iter;
+	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+			iter++) {
+		(*iter)->desEjecutarTecla();
 
 	}
-return ;
+	return;
+}
+
+void ZonaToolBar::dibujarse(SDL_Renderer* render, SDL_Rect& dst) {
+	SDL_RenderCopy(render, this->fondo, NULL, &dst);
+
+	list<Herramientas*>::iterator iter;
+	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+			iter++) {
+		(*iter)->dibujarse(render);
+
+	}
 }

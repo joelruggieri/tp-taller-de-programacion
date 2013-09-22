@@ -47,6 +47,10 @@ void FiguraView::dibujarse(SDL_Renderer * renderer){
 	dest.w = this->getW();
 	dest.x = this->getX();
 	dest.y = this->getY();
+	this->dibujarse(renderer, dest);
+}
+
+void FiguraView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
 	if(this->getModelo() != NULL && this->getModelo()->getRotacion() != 0){
 		SDL_RenderCopyEx(renderer,this->textura, NULL, &dest,this->getModelo()->getRotacion(),NULL,SDL_FLIP_NONE);
 	} else {

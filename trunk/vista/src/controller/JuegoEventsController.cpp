@@ -333,3 +333,6 @@ void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
 	this->zona->dibujarse(renderer);
 }
 
+void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
+	this->zona->dibujarse(renderer, dest);
+}

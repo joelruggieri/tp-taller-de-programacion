@@ -23,37 +23,24 @@ private:
 	SDL_Texture* imagenCanvas;
 	list<Dibujable*> vistas;
 	bool border;
-	void generarConBorde(SDL_Rect & dest);
-	void generarSinBorde(SDL_Rect & dest);
-	void dibujarBorde(SDL_Renderer * renderer);
-	void dibujarBordeIzquierdo(SDL_Renderer* renderer);
-	void dibujarBordeDerecho(SDL_Renderer* renderer);
-	void dibujarBordeSuperior(SDL_Renderer* renderer);
-	void dibujarBordeInferior(SDL_Renderer* renderer);
 
+	void generarSinBorde(SDL_Rect & dest);
 
 public:
 	 void resizear();
 	Canvas(int x, int y, int h, int w, SDL_Texture* textura);
 	void dibujarse(SDL_Renderer *);
+	void dibujarse(SDL_Renderer *, SDL_Rect&);
 	virtual ~Canvas();
 	void ModificarFondo(SDL_Texture* nuevaImagen);
 	void agregar(Dibujable *);
 	void remover(Dibujable *);
 	//void Resizear(int x, int y);
 	const list<Dibujable*>& getDibujables() const;
-	bool isBorder() const;
-	void setBorder(bool border);
 	const list<Dibujable*>& getVistas();
-	typedef struct RGB{
-	    int r;
-	    int g;
-	    int b;
-	} RGB;
 //	static const RGB COLOR_BORDE_EXTERNO;
 };
 
-const struct Canvas::RGB COLOR_BORDE_EXTERNO = {124,117,105};
-const struct Canvas::RGB COLOR_BORDE_INTERNO = {107, 84, 43};
 #endif /* CANVAS_H_ */
+
 

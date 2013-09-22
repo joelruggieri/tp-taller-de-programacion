@@ -41,6 +41,7 @@ public:
 	}
 	virtual ~TextBox();
 	void dibujarse(SDL_Renderer* render);
+	void dibujarse(SDL_Renderer* render, SDL_Rect& dest);
 	void agregarCaracter(char caracter);
 	void borrarCaracter();
 	void setearTexto();
@@ -71,3 +72,4 @@ private:
 };
 
 #endif /* TEXTBOX_H_ */
+

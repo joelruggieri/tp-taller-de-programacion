@@ -12,6 +12,7 @@
 #include "../../vista/FlechaScrollView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../RutasArchivos.h"
+#include "../../vista/ViewConFondo.h"
 ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x,
 		float margenSuperior, SDL_Texture* textura) :
 		Zona(NULL) {
@@ -21,8 +22,9 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x,
 	int wC = instance->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2);
 	int hC = instance->resizearDistanciaLogicaY(100);
 	this->canvas = new Canvas(xC, yC, wC, hC, textura);
-	this->canvas->setBorder(true);
 	this->scroll = NULL;
+	this->viewCanvas = new ViewConBorde(canvas);
+	this->viewCanvas->setAutoAjustar(true);
 	this->inicializar(factories, x, margenSuperior);
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 }
@@ -44,7 +46,7 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 		EslabonCreacion* eslabon = new EslabonCreacion(*iterator,
 				new Cuadrado(xInicial, y,0, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF), 1);
 		this->agregarEslabon(eslabon);
-		this->canvas->agregar(eslabon->getFactoryView());
+		this->canvas->agregar(new ViewConFondo( new ViewConBorde(eslabon->getFactoryView())));
 		y -= 15;
 	}
 
@@ -101,7 +103,7 @@ FiguraView * ZonaCreacion::getFiguraTemplate(float x, float y) {
 
 ZonaCreacion::~ZonaCreacion() {
 	delete this->inicioCadena;
-	delete this->canvas;
+	delete this->viewCanvas;
 	if (this->scroll != NULL) {
 		delete this->scroll;
 	}
@@ -118,11 +120,16 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 }
 
 void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
-	this->canvas->dibujarse(renderer);
+//	this->canvas->dibujarse(renderer);
+	this->viewCanvas->dibujarse(renderer);
 }
 
 bool ZonaCreacion::removerFigura(FiguraView* figura) {
 	return false;
+}
+
+void ZonaCreacion::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
+	this->dibujarse(renderer);
 }
 
 bool ZonaCreacion::click(float x, float y) {

@@ -38,6 +38,7 @@ public:
 	float getScrollY() const;
 	void setScrollY(float);
 	virtual void dibujarse(SDL_Renderer *) = 0;
+	virtual void dibujarse(SDL_Renderer *, SDL_Rect &) = 0;
 	Cuadrado*& getCuerpo();
 	virtual bool click(float x, float y) = 0;
 };

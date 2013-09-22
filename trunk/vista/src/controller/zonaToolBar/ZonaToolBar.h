@@ -36,6 +36,7 @@ public:
 	virtual ~ZonaToolBar();
 	void agregarHerramienta(Herramientas* herramienta);
 	void dibujarse(SDL_Renderer *render);
+	void dibujarse(SDL_Renderer *render, SDL_Rect &);
 	void cliquearHerramienta(int x, int y);
 	bool zonaFueSeleccionada(int x, int y);
 	void desCliquearHerramienta(int x, int y);

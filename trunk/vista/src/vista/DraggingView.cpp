@@ -23,3 +23,7 @@ void DraggingView::dibujarse(SDL_Renderer* renderer) {
 		this->dragueable->getDragueado()->dibujarse(renderer);
 	}
 }
+
+void DraggingView::dibujarse(SDL_Renderer* rnd, SDL_Rect&) {
+	this->dibujarse(rnd);
+}

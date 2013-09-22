@@ -18,6 +18,7 @@ public:
 	Dibujable();
 	virtual ~Dibujable();
 	virtual void dibujarse(SDL_Renderer *) = 0;
+	virtual void dibujarse(SDL_Renderer *, SDL_Rect& destino) = 0;
 };
 
 #endif /* DIBUJABLE_H_ */
