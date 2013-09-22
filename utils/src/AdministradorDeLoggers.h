@@ -16,12 +16,13 @@ enum TIPO_LOGGER { ERROR, DEBUG, FATAL, INFO, WARN};
 class AdministradorDeLoggers {
 public:
 	static Archivo *getLogger(TIPO_LOGGER tipo);
+	static Archivo *getLoggerUnificado();
 	static void cerrarTodo();
 private:
 	static bool inicializado;
 	AdministradorDeLoggers();
 	virtual ~AdministradorDeLoggers();
-	static Archivo *logError, *logDebug, *logInfo, *logWarn, *logFatal;
+	static Archivo *logError, *logDebug, *logInfo, *logWarn, *logFatal, *logUnificado;
 };
 
 #endif /* ADMINISTRADORDELOGGERS_H_ */

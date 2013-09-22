@@ -36,7 +36,14 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 			aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
 			nivel = new Nivel(aux.str());
 		} else {
-			nivel = dao->cargarPrimerNivel();
+			try {
+				nivel = dao->cargarPrimerNivel();
+			} catch (NivelInexistenteException &exc) {
+				log.error("El nivel ingresado por parametro no existe. Se creara un nuevo nivel.");
+				std::stringstream aux;
+				aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
+				nivel = new Nivel(aux.str());
+			}
 
 		}
 		nivelActual = nivel->getNombre();

@@ -91,5 +91,8 @@ void Logger::log(std::string mensaje, TIPO_LOGGER tLogger,	NIVEL_LOGGER nLog) {
 		Archivo *a = AdministradorDeLoggers::getLogger(tLogger);
 		cout<< mensaje<< endl;
 		a->escribir(mensaje);
+		// Ademas hay que escribir en el logger unico
+		a = AdministradorDeLoggers::getLoggerUnificado();
+		a->escribir(mensaje);
 	}
 }
