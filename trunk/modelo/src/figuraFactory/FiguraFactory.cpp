@@ -64,9 +64,9 @@ Figura* FiguraFactory::crearBloque(float x, float y){
 }
 
 Figura* FiguraFactory::crearCohete(float x, float y){
-	return new Cohete(x,y,rotador,4,6);
+	return new Cohete(x,y,rotador,4,5);
 }
 
 Figura* FiguraFactory::crearCarrito(float x, float y){
-	return new Carrito(x,y,rotador,4,6);
+	return new Carrito(x,y,rotador,6,6);
 }
