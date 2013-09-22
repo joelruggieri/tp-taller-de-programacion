@@ -15,7 +15,8 @@
 #include <iostream>
 #include <list>
 #include <string>
-
+#define  MIN_VENTANA_Y 400
+#define MIN_VENTANA_X 475
 #include "../controller/UserEventCreator.h"
 #include "CanvasController.h"
 #include "keyboardEventController/KeyBoardEventController.h"
@@ -230,6 +231,13 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
         		case SDL_WINDOWEVENT_RESIZED:
         			int tamNuevoX, tamNuevoY;
         			SDL_GetWindowSize(ventana,&tamNuevoX,&tamNuevoY);
+        			if (tamNuevoX <= MIN_VENTANA_X )
+        				tamNuevoX = MIN_VENTANA_X;
+        				//minimo de la ventana
+        			if (tamNuevoY <= MIN_VENTANA_Y)
+					{
+						tamNuevoY = MIN_VENTANA_Y ;
+					}
         			if(tamNuevoX != tamNuevoY)
         				SDL_SetWindowSize(ventana,tamNuevoX,tamNuevoY);
         				this->resize(tamNuevoX, tamNuevoY);
