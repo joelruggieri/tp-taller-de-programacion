@@ -22,6 +22,8 @@ public:
 	static void cerrarTodo();
 	static Archivo* crearArchivoNivel(const char* numero);
 	static void registrar(std::string nombre);
+	static int cantidadNiveles();
+	static std::list<std::string> getNombres();
 };
 
 #endif /* ADMINISTRADORDEARCHIVOS_H_ */

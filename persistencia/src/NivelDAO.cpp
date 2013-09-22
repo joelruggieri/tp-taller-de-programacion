@@ -157,3 +157,9 @@ void NivelDAO::obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos){
 		}
 	}
 }
+
+Nivel* NivelDAO::cargarPrimerNivel() {
+	std::list<std::string> nombres = AdministradorDeArchivos::getNombres();
+	std::string nombre = nombres.front().substr(0, nombres.front().size() - 5);
+	return leerNivel(nombre);
+}

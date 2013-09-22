@@ -20,6 +20,7 @@ public:
 	Nivel* leerNivel(const std::string &numero);
 	Nivel* leerNivel(const char* numero);
 	void guardarNivel(Nivel *nivel);
+	Nivel* cargarPrimerNivel();
 private:
 	AdministradorDeArchivos administrador;
 	std::list<Figura*> leerFiguras(YAML::Node objetos);

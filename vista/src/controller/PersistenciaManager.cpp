@@ -11,6 +11,8 @@
 #include "src/figura/Circulo.h"
 #include "src/NivelInexistenteException.h"
 #include "src/Logger.h"
+#include <sstream>
+
 PersistenciaManager::PersistenciaManager() {
 	this->dao = new NivelDAO();
 	this->nivel = NULL;
@@ -27,15 +29,19 @@ PersistenciaManager::~PersistenciaManager() {
 list<Figura*> & PersistenciaManager::getFiguras() {
 	Logger log;
 	if(nivel== NULL){
-		try{
-			nivel = dao->leerNivel(nivelActual);
-			log.info("Se obtuvo nivel persistido");
-		} catch (NivelInexistenteException& e){
+		if (AdministradorDeArchivos::cantidadNiveles() == 0) {
+			// No hay niveles, se creara uno nuevo.
 			log.warning("No existe el nivel, se procede a crear uno vacio");
-			nivel = new Nivel(nivelActual);
+			std::stringstream aux;
+			aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
+			nivel = new Nivel(aux.str());
+		} else {
+			nivel = dao->cargarPrimerNivel();
+
 		}
+		nivelActual = nivel->getNombre();
 	}
- return this->nivel->getFiguras();
+	return this->nivel->getFiguras();
 }
 
 void PersistenciaManager::persistirFiguras(list<Figura*>& figuras) {

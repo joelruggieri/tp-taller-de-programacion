@@ -67,3 +67,16 @@ void AdministradorDeArchivos::registrar(std::string nombre) {
 	Archivo *nuevo = new Archivo(nombre.c_str(), LECTOESCRITURA);
 	AdministradorDeArchivos::archivos.push_back(nuevo);
 }
+
+int AdministradorDeArchivos::cantidadNiveles() {
+	return archivos.size();
+}
+
+std::list<std::string> AdministradorDeArchivos::getNombres() {
+	std::list<std::string> nombres;
+	std::list<Archivo*>::iterator it;
+	for (it = archivos.begin(); it != archivos.end(); ++it){
+		nombres.push_back((*it)->getNombre());
+	}
+	return nombres;
+}
