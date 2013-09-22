@@ -12,6 +12,7 @@ Archivo *AdministradorDeLoggers::logWarn = new Archivo("warning.log", APPEND);
 Archivo *AdministradorDeLoggers::logFatal = new Archivo("fatal.log", APPEND);
 Archivo *AdministradorDeLoggers::logDebug = new Archivo("debug.log", APPEND);
 Archivo *AdministradorDeLoggers::logInfo = new Archivo("info.log", APPEND);
+Archivo *AdministradorDeLoggers::logUnificado = new Archivo("programa.log", APPEND);
 
 AdministradorDeLoggers::AdministradorDeLoggers() {
 	// TODO Auto-generated constructor stub
@@ -42,4 +43,9 @@ void AdministradorDeLoggers::cerrarTodo() {
 	logInfo->cerrar();
 	logWarn->cerrar();
 	logFatal->cerrar();
+	logUnificado->cerrar();
+}
+
+Archivo* AdministradorDeLoggers::getLoggerUnificado() {
+	return logUnificado;
 }

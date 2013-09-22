@@ -7,6 +7,7 @@
 
 #include "Archivo.h"
 #include <iostream>
+#include <cstdio>
 
 Archivo::Archivo(const char* nombre, TIPO tipo) {
 	this->tipo = tipo;
@@ -14,8 +15,7 @@ Archivo::Archivo(const char* nombre, TIPO tipo) {
 	if (tipo == LECTURA) {
 		archivo.open(nombre, std::ios::in);
 		if (! archivo.is_open()){
-			// El archivo no existe, se creara vacio.
-			archivo.open(nombre, std::ios::trunc);
+			throw std::exception();
 		}
 	} else if (tipo == ESCRITURA){
 		archivo.open(nombre, std::ios::out | std::ios::trunc);
@@ -31,14 +31,13 @@ Archivo::Archivo(const char* nombre, TIPO tipo) {
 	} else if (tipo == LECTOESCRITURA){
 		archivo.open(nombre, std::ios::in | std::ios::out | std::ios::app);
 		if (! archivo.is_open()){
-			// El archivo no existe, se creara vacio.
-			archivo.open(nombre, std::ios::in |  std::ios::out | std::ios::trunc);
+			throw std::exception();
 		}
 	}
 }
 
 void Archivo::escribir(std::string dato) {
-	archivo << dato.c_str() << "\n";
+	archivo << dato << std::endl;
 }
 
 std::string Archivo::leer(){
