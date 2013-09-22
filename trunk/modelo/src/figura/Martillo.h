@@ -16,6 +16,7 @@ public:
 	Martillo();
 	Martillo(float, float,Rotador*, float, float);
 	virtual ~Martillo();
+	void acept(VisitorFigura *visitor);
 };
 
 #endif /* MARTILLO_H_ */

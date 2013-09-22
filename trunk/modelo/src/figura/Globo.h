@@ -14,6 +14,7 @@ public:
 	Globo();
 	virtual ~Globo();
 	Globo(float x, float y, Rotador* rotador, float radio);
+	void acept(VisitorFigura *visitor);
 };
 
 #endif /* GLOBO_H_ */

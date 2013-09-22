@@ -22,3 +22,6 @@ Rueda::~Rueda() {
 	// TODO Auto-generated destructor stub
 }
 
+void Rueda::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

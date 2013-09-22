@@ -19,3 +19,6 @@ Cohete::~Cohete() {
 	// TODO Auto-generated destructor stub
 }
 
+void Cohete::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

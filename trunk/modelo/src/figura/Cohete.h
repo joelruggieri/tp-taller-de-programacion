@@ -15,6 +15,7 @@ public:
 	Cohete();
 	Cohete(float x, float y,Rotador* rotador, float ancho, float alto);
 	virtual ~Cohete();
+	void acept(VisitorFigura* visitor);
 };
 
 #endif /* COHETE_H_ */

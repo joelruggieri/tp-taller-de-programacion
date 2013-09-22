@@ -18,3 +18,6 @@ Martillo::~Martillo() {
 	// TODO Auto-generated destructor stub
 }
 
+void Martillo::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

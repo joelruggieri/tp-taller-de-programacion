@@ -73,12 +73,11 @@ TEST_F(niveldao_test, test_niveldao_guardar_nivel_grande) {
 	nivel4->agregar(new Rueda(10,10, new RotadorSistemaCoordenadas(),10));
 	nivel4->agregar(new Bloque(10,10, new RotadorSistemaCoordenadas(), 10,10));
 	nivel4->agregar(new Cohete(10,10, new RotadorSistemaCoordenadas(), 10,10));
-	nivel4->agregar(new Mapa());
 	nivel4->agregar(new Martillo(10,10, new RotadorSistemaCoordenadas(), 10,10));
 	nivel4->agregar(new Resorte(10,10, new RotadorSistemaCoordenadas(), 10,10));
 	nivelDAO.guardarNivel(nivel4);
 
 	nivel4 = nivelDAO.leerNivel("test04");
-	ASSERT_EQ(8, nivel4->cantidadFiguras());
+	ASSERT_EQ(7, nivel4->cantidadFiguras());
 
 }

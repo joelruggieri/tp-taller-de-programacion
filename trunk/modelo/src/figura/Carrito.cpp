@@ -19,3 +19,6 @@ Carrito::~Carrito() {
 	// TODO Auto-generated destructor stub
 }
 
+void Carrito::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

@@ -10,8 +10,7 @@
 
 #include "src/Nivel.h"
 #include "AdministradorDeArchivos.h"
-
-/* Esta clase */
+#include "src/Logger.h"
 
 class NivelDAO {
 public:
@@ -28,6 +27,14 @@ private:
 	void obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerResortes(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerMartillos(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerBloques(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos);
+	Logger logg;
 };
 
 #endif /* NIVELDAO_H_ */
