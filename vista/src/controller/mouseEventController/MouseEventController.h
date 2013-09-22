@@ -20,6 +20,8 @@ public:
 	//recibe el evento de soltar el mouse.
 	virtual bool rightClickUp(int, int)=0;
 	virtual bool mouseMotion(int, int)=0;
+	//recibe el evento de mover la rueda del mouse.
+	virtual bool mouseWheelMoved(int, int, int)=0;
 
 
 };

@@ -27,6 +27,7 @@ public:
 	bool removerFigura(FiguraView*);
 	bool click(float x, float y);
 	Canvas* getCanvas();
+	bool mouseScroll(float x, float y, int amountScrolled);
 };
 
 #endif /* ZONATABLERO_H_ */

@@ -30,6 +30,7 @@ private:
 	void clickUp(int x, int y);
 	void clickDown(int x, int y);
 	void mouseMotion(int x, int y);
+	void mouseWheelMoved(int amountScrolledY);
 	void rightClickUp(int x, int y);
 	void rightClickDown(int x, int y);
 	void keyDown(char key);

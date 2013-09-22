@@ -29,6 +29,7 @@ public:
 	bool removerFigura(FiguraView*);
 	FiguraView * getVista(float x, float y);
 	bool click(float x, float y);
+	bool mouseScroll(float x, float y, int amountScrolled);
 };
 
 #endif /* ZONAJUEGO_H_ */

@@ -30,6 +30,7 @@ private:
 	ViewConBorde * viewCanvas;
 	Scroll * scroll;
 	ScrollView * crearScrollView(int x, int y,Scroll* scroll, SDL_Texture * texturaFlecha);
+	float margenSuperior;
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior, SDL_Texture *);
 	virtual ~ZonaCreacion();
@@ -38,6 +39,8 @@ public:
 	void dibujarse(SDL_Renderer *, SDL_Rect &);
 	bool removerFigura(FiguraView*);
 	bool click(float x, float y);
+	bool mouseScroll(float x, float y, int amountScrolled);
+	bool enContacto(float posX, float posY);
 };
 
 #endif /* ZONACREACION_H_ */

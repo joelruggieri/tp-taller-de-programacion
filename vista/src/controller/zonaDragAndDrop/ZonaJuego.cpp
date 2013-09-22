@@ -67,3 +67,7 @@ bool ZonaJuego::click(float x, float y) {
 void ZonaJuego::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
 	this->dibujarse(renderer);
 }
+
+bool ZonaJuego::mouseScroll(float x, float y, int amountScrolled){
+	return this->zonaCreacion->mouseScroll(x, y, amountScrolled);
+}
