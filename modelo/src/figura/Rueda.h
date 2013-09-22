@@ -16,6 +16,7 @@ public:
 	Rueda();
 	virtual ~Rueda();
 	Rueda(float x, float y,Rotador * rotador, float radio);
+	void acept(VisitorFigura *visitor);
 };
 
 #endif /* RUEDA_H_ */

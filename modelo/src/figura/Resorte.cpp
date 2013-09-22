@@ -19,3 +19,6 @@ Resorte::~Resorte() {
 	// TODO Auto-generated destructor stub
 }
 
+void Resorte::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

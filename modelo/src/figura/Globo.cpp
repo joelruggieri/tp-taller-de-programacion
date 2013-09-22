@@ -20,3 +20,6 @@ Globo::Globo(float x, float y, Rotador* rotador, float radio): Circulo(x,y,rotad
 
 }
 
+void Globo::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

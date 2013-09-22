@@ -15,6 +15,7 @@ public:
 	Bloque();
 	Bloque(float x, float y,Rotador* rotador, float ancho, float alto);
 	virtual ~Bloque();
+	void acept(VisitorFigura *visitor);
 };
 
 #endif /* BLOQUE_H_ */

@@ -16,6 +16,7 @@ public:
 	Pelota();
 	Pelota(float x, float y, Rotador* rotador,float radio);
 	virtual ~Pelota();
+	void acept(VisitorFigura *visitor);
 };
 
 #endif /* PELOTA_H_ */

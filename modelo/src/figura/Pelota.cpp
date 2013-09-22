@@ -20,3 +20,6 @@ Pelota::Pelota(float x, float y, Rotador* rotador,float radio): Circulo(x,y,rota
 
 }
 
+void Pelota::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

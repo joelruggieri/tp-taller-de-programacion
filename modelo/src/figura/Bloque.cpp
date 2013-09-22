@@ -20,3 +20,6 @@ Bloque::~Bloque() {
 	// TODO Auto-generated destructor stub
 }
 
+void Bloque::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
+}

@@ -16,6 +16,7 @@ public:
 	Carrito();
 	Carrito(float x, float y,Rotador* rotador, float ancho, float alto);
 	virtual ~Carrito();
+	void acept(VisitorFigura *visitor);
 };
 
 #endif /* CARRITO_H_ */
