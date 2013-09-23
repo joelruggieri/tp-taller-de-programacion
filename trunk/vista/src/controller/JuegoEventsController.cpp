@@ -322,6 +322,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 bool JuegoEventsController::rightClickUp(int int1, int int2) {
 	if (this->figuraRotacion != NULL) {
 		this->zona->agregarFigura(this->figuraRotacion);
+		this->modeloController->crearFigura(this->figuraRotacion->getModelo());
 		this->figuraRotacion = NULL;
 		delete this->rot;
 	}
