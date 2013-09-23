@@ -14,6 +14,7 @@
 class Martillo: public Cuadrado {
 public:
 	Martillo();
+	Martillo(const Martillo& figura);
 	Martillo(float, float,Rotador*, float, float);
 	virtual ~Martillo();
 	void acept(VisitorFigura *visitor);

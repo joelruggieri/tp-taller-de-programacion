@@ -13,6 +13,7 @@
 class Cohete: public Cuadrado {
 public:
 	Cohete();
+	Cohete(const Cohete& figura);
 	Cohete(float x, float y,Rotador* rotador, float ancho, float alto);
 	virtual ~Cohete();
 	void acept(VisitorFigura* visitor);

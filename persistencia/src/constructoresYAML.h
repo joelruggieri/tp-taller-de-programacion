@@ -33,7 +33,6 @@ struct convert<Circulo> {
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
 		node["rotacion"] = objeto.getRotacion();
-		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
@@ -41,7 +40,6 @@ struct convert<Circulo> {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
-		objeto.setRadio(node["radio"].as<float>());
 		return true;
 	}
 };
@@ -53,7 +51,6 @@ struct convert<Rueda> {
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
 		node["rotacion"] = objeto.getRotacion();
-		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
@@ -61,7 +58,6 @@ struct convert<Rueda> {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
-		objeto.setRadio(node["radio"].as<float>());
 		return true;
 	}
 };
@@ -73,7 +69,6 @@ struct convert<Globo> {
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
 		node["rotacion"] = objeto.getRotacion();
-		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
@@ -81,7 +76,6 @@ struct convert<Globo> {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
-		objeto.setRadio(node["radio"].as<float>());
 		return true;
 	}
 };
@@ -93,7 +87,6 @@ struct convert<Pelota> {
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
 		node["rotacion"] = objeto.getRotacion();
-		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
@@ -101,7 +94,6 @@ struct convert<Pelota> {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
-		objeto.setRadio(node["radio"].as<float>());
 		return true;
 	}
 };
@@ -112,16 +104,13 @@ struct convert<Cuadrado> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["ancho"] = objeto.getAncho();
-		node["alto"]=objeto.getAlto();
+		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Cuadrado& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setAncho(node["ancho"].as<float>());
-		objeto.setAlto(node["alto"].as<float>());
 		return true;
 	}
 };
@@ -132,16 +121,14 @@ struct convert<Carrito> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["ancho"] = objeto.getAncho();
-		node["alto"]=objeto.getAlto();
+		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Carrito& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setAncho(node["ancho"].as<float>());
-		objeto.setAlto(node["alto"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
 		return true;
 	}
 };
@@ -152,16 +139,14 @@ struct convert<Resorte> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["ancho"] = objeto.getAncho();
-		node["alto"]=objeto.getAlto();
+		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Resorte& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setAncho(node["ancho"].as<float>());
-		objeto.setAlto(node["alto"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
 		return true;
 	}
 };
@@ -172,16 +157,14 @@ struct convert<Martillo> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["ancho"] = objeto.getAncho();
-		node["alto"]=objeto.getAlto();
+		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Martillo& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setAncho(node["ancho"].as<float>());
-		objeto.setAlto(node["alto"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
 		return true;
 	}
 };
@@ -192,16 +175,14 @@ struct convert<Bloque> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["ancho"] = objeto.getAncho();
-		node["alto"]=objeto.getAlto();
+		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Bloque& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setAncho(node["ancho"].as<float>());
-		objeto.setAlto(node["alto"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
 		return true;
 	}
 };
@@ -212,16 +193,14 @@ struct convert<Cohete> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["ancho"] = objeto.getAncho();
-		node["alto"]=objeto.getAlto();
+		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Cohete& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setAncho(node["ancho"].as<float>());
-		objeto.setAlto(node["alto"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
 		return true;
 	}
 };
@@ -232,16 +211,12 @@ struct convert<Triangulo> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["ancho"]=objeto.getAncho();
-		node["alto"]=objeto.getAlto();
 		return node;
 	}
 
 	static bool decode(const Node& node, Triangulo& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setAncho(node["ancho"].as<float>());
-		objeto.setAlto(node["alto"].as<float>());
 		return true;
 	}
 };

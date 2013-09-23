@@ -14,6 +14,7 @@
 class Rueda: public Circulo {
 public:
 	Rueda();
+	Rueda(const Rueda& figura);
 	virtual ~Rueda();
 	Rueda(float x, float y,Rotador * rotador, float radio);
 	void acept(VisitorFigura *visitor);

@@ -14,6 +14,7 @@ class Carrito: public Cuadrado {
 
 public:
 	Carrito();
+	Carrito(const Carrito& figura);
 	Carrito(float x, float y,Rotador* rotador, float ancho, float alto);
 	virtual ~Carrito();
 	void acept(VisitorFigura *visitor);

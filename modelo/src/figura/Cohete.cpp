@@ -15,6 +15,16 @@ Cohete::Cohete(float x, float y,Rotador* rotador, float ancho, float alto): Cuad
 
 }
 
+Cohete::Cohete(const Cohete& figura){
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->rotacion = figura.getRotacion();
+	this->rotador = figura.rotador;
+	this->alto = figura.getAlto();
+	this->ancho = figura.getAncho();
+
+}
+
 Cohete::~Cohete() {
 	// TODO Auto-generated destructor stub
 }

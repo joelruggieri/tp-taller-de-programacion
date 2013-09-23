@@ -17,6 +17,15 @@ Circulo::Circulo(float x, float y, Rotador * rotador, float radio):Figura(x,y,ro
 
 }
 
+Circulo::Circulo(const Circulo& figura){
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->rotacion = figura.getRotacion();
+	this->rotador = figura.rotador;
+	this->radio = figura.getRadio();
+
+}
+
 float Circulo::getRadio() const {
 	return radio;
 }

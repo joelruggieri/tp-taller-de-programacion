@@ -21,6 +21,7 @@ Cuadrado::Cuadrado() {
 	this->alto = 1;
 }
 
+
 void Cuadrado::setAlto(float alto){
 	this->alto = alto;
 

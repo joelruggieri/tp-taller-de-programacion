@@ -12,6 +12,7 @@
 class Globo: public Circulo {
 public:
 	Globo();
+	Globo(const Globo& figura);
 	virtual ~Globo();
 	Globo(float x, float y, Rotador* rotador, float radio);
 	void acept(VisitorFigura *visitor);
