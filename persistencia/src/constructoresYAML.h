@@ -111,6 +111,7 @@ struct convert<Cuadrado> {
 	static bool decode(const Node& node, Cuadrado& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
 		return true;
 	}
 };
@@ -211,12 +212,14 @@ struct convert<Triangulo> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
+		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Triangulo& objeto) {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
 		return true;
 	}
 };
