@@ -64,7 +64,6 @@ void FiguraView::click(float x, float y) {
 }
 
 void FiguraView::resizear() {
-	cout << "Se ha hecho resize en un figuraView" << endl ;
 	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 	this->setXc((Resizer::Instance()->resizearDistanciaX(this->getXCentro())));
 	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));

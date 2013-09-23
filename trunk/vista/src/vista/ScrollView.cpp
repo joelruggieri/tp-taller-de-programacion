@@ -46,7 +46,8 @@ void ScrollView::notify(Observable* obs) {
 
 void ScrollView::resizear() {
 	cout << "se ha resizeado el scrool view" << endl ;
-	//this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+	this->setH(Resizer::Instance()->resizearDistanciaX(this->getH()));
 	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
 	this->setYc(Resizer::Instance()->resizearDistanciaY(this->getYCentro()));
 }

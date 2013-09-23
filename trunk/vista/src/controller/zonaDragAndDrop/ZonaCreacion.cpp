@@ -57,8 +57,13 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 	this->setCuerpo(new Cuadrado(x, margenSuperior -( alto / 2),0, ancho, alto));
 	//las primeras 100 unidades no tienen scroll, sino lo creo.
 	if (alto > 100) {
-		this->scroll = new Scroll(new Cuadrado(x, margenSuperior - 2,0, ANCHO_VIEW_DEF * 2, 4),
-				new Cuadrado(x, margenSuperior - 98,0, ANCHO_VIEW_DEF * 2, 4), 2, alto - 100);
+		Cuadrado* flechaSuperior = new Cuadrado(x, margenSuperior - 2, 0,
+				ANCHO_VIEW_DEF * 2, 4);
+		Cuadrado* flechaInferior = new Cuadrado(x, margenSuperior - 98, 0,
+				ANCHO_VIEW_DEF * 2, 4);
+		this->scroll = new Scroll(flechaSuperior,
+				flechaInferior, 2,
+				alto - 100);
 		list<Dibujable *>::iterator it;
 		list<Dibujable*> dibujables = this->canvas->getDibujables();
 		for (it = dibujables.begin(); it != dibujables.end(); ++it) {
@@ -68,23 +73,26 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 
 		SDL_Texture * texturaFlecha =
 				CargadorDeTextures::Instance()->cargarTexture(RUTA_FLECHA);
-		canvas->agregar(this->crearScrollView(x,margenSuperior,this->scroll,texturaFlecha));
+		canvas->agregar(this->crearScrollView(flechaSuperior,flechaInferior,this->scroll,texturaFlecha));
 	}
 }
 
 
 
-ScrollView* ZonaCreacion::crearScrollView(int x, int y,Scroll* scroll, SDL_Texture * texturaFlecha) {
+ScrollView* ZonaCreacion::crearScrollView(Cuadrado* c1, Cuadrado* c2,Scroll* scroll, SDL_Texture * texturaFlecha) {
 	Resizer * r = Resizer::Instance();
-	FlechaScrollView * flecha1 = new FlechaScrollView(r->resizearDistanciaLogicaX(x),
-			r->resizearPosicionLogicaY(y - 1),
-			r->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2),
-			r->resizearDistanciaLogicaY(4), texturaFlecha);
-	FlechaScrollView * flecha2 =new FlechaScrollView(r->resizearDistanciaLogicaX(x),
-			r->resizearPosicionLogicaY(y - 99),
-			r->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2),
-			r->resizearDistanciaLogicaY(4), texturaFlecha,true);
+	int x,y,w,h;
+
+	r->adaptarPosicionLogica(c1->getX(),c1->getY(),x,y);
+	r->adaptarDimensionLogica(c1->getAncho(),c1->getAlto(),w,h);
+	FlechaScrollView * flecha1 = new FlechaScrollView(x,y,w,h,texturaFlecha,false);
+
+	r->adaptarPosicionLogica(c2->getX(),c2->getY(),x,y);
+	r->adaptarDimensionLogica(c2->getAncho(),c2->getAlto(),w,h);
+	FlechaScrollView * flecha2 =new FlechaScrollView(x,y,w,h,texturaFlecha,true);
+
 	return new ScrollView(flecha1,flecha2,scroll,20);
+
 
 }
 
