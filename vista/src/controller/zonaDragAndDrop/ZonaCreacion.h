@@ -29,7 +29,7 @@ private:
 	Canvas * canvas;
 	ViewConBorde * viewCanvas;
 	Scroll * scroll;
-	ScrollView * crearScrollView(int x, int y,Scroll* scroll, SDL_Texture * texturaFlecha);
+	ScrollView * crearScrollView(Cuadrado* c1, Cuadrado* c2,Scroll* scroll, SDL_Texture * texturaFlecha);
 	float margenSuperior;
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior, SDL_Texture *);
