@@ -12,7 +12,11 @@ Nivel::Nivel(std::string nombre) {
 }
 
 Nivel::~Nivel() {
-	// TODO Auto-generated destructor stub
+	std::list<Figura*>::iterator it;
+	for(it = this->objetos.begin(); it!= this->objetos.end(); ++it ){
+		delete (*it);
+	}
+
 }
 
 void Nivel::agregar(Figura* figura) {
