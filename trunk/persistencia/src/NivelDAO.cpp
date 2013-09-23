@@ -113,9 +113,12 @@ void NivelDAO::obtenerCirculos(std::list<Figura*> &lista, YAML::Node objetos){
 			Circulo obj = circulos[i].as<Circulo>();
 			lista.push_back(new Circulo(obj.getX(), obj.getY(),0, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer circulo ";
+			std::string mensaje = "Error al leer circulo\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -128,9 +131,12 @@ void NivelDAO::obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos){
 			Cuadrado obj = cuadrados[i].as<Cuadrado>();
 			lista.push_back( new Cuadrado(obj.getX(), obj.getY(),0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer cuadrado ";
+			std::string mensaje = "Error al leer cuadrado\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -143,9 +149,12 @@ void NivelDAO::obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos){
 			Triangulo obj = triangulos[i].as<Triangulo>();
 			lista.push_back( new Triangulo(obj.getX(), obj.getY(),0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Triangulos";
+			std::string mensaje = "Error al leer Triangulos\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -158,9 +167,12 @@ void NivelDAO::obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos){
 			Pelota obj = pelotas[i].as<Pelota>();
 			lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer pelotas";
+			std::string mensaje = "Error al leer pelotas\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -172,9 +184,12 @@ void NivelDAO::obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos){
 			Globo obj = globos[i].as<Globo>();
 			lista.push_back( new Globo(obj.getX(), obj.getY(), NULL, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer globos";
+			std::string mensaje = "Error al leer globos\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -187,9 +202,12 @@ void NivelDAO::obtenerResortes(std::list<Figura*> &lista, YAML::Node objetos){
 			Resorte obj = resortes[i].as<Resorte>();
 			lista.push_back( new Resorte(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer resortes";
+			std::string mensaje = "Error al leer resortes\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -202,9 +220,12 @@ void NivelDAO::obtenerMartillos(std::list<Figura*> &lista, YAML::Node objetos){
 			Martillo obj = martillos[i].as<Martillo>();
 			lista.push_back( new Martillo(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer martillos";
+			std::string mensaje = "Error al leer martillos\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -217,9 +238,12 @@ void NivelDAO::obtenerBloques(std::list<Figura*> &lista, YAML::Node objetos){
 			Bloque obj = bloques[i].as<Bloque>();
 			lista.push_back( new Bloque(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer bloques";
+			std::string mensaje = "Error al leer bloques\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -232,9 +256,12 @@ void NivelDAO::obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos){
 			Cohete obj = Cohetes[i].as<Cohete>();
 			lista.push_back( new Cohete(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Cohetes";
+			std::string mensaje = "Error al leer Cohetes\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -247,9 +274,12 @@ void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 			Rueda obj = Ruedas[i].as<Rueda>();
 			lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Ruedas";
+			std::string mensaje = "Error al leer Ruedas\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
@@ -261,9 +291,12 @@ void NivelDAO::obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos){
 			Carrito obj = Carritos[i].as<Carrito>();
 			lista.push_back( new Carrito(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Carritos";
+			std::string mensaje = "Error al leer Carritos\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
+			std::stringstream aux;
+			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+			logg.error(aux.str());
 		}
 	}
 }
