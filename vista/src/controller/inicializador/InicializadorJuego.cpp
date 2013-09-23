@@ -121,7 +121,26 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	//TODO HABRIA QUE VALIDAR QUE LA POSICION CAIGA BIEN, SINO BORRARLO
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
-	this->zonaJuego->agregarFigura(view);
+	bool exitoVista = zonaJuego->agregarFigura(view);
+	bool exitoModelo = this->modeloController->crearFigura(modelo);
+	if (!exitoVista || !exitoModelo) {
+		Logger log;
+		string msj = "Figura con posicion invalida, es omitida (";
+		log.concatenar(msj, modelo->getX());
+		msj = msj + ";";
+		log.concatenar(msj,modelo->getY());
+		msj = msj + ")";
+		log.warning(msj);
+
+		if (exitoVista) {
+			zonaJuego->removerFigura(view);
+		}
+		if (exitoModelo) {
+			modeloController->removerFigura(modelo);
+		}
+		delete view;
+		delete modelo;
+	}
 }
 
 JuegoEventsController * InicializadorJuego::crearZonaJuego() {
@@ -171,6 +190,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	this->zonaJuego=  new ZonaJuego(zonaCreacion, zonaTablero,
 			new Cuadrado(75, 70,0, 150, 100));
 
+	this->juegoController->setZona(this->zonaJuego);
+
 	list<Figura*> figurasPersistidas = this->bbdd->getFiguras();
 	list<Figura*>::iterator it;
 	for(it = figurasPersistidas.begin() ; it != figurasPersistidas.end() ; ++it){
@@ -183,7 +204,6 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	this->eventsController->setCanvasController(canvasController);
 	this->eventsController->setGuardarController(persistenciaController);
 	this->eventsController->addMouseController(this->juegoController,1,1);
-	this->juegoController->setZona(this->zonaJuego);
 
 	return this->juegoController;
 }
