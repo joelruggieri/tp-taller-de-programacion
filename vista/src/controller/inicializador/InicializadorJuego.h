@@ -28,6 +28,7 @@
 #include "src/figura/Bloque.h"
 #include "src/figura/Cohete.h"
 #include "src/figura/Carrito.h"
+
 using namespace std;
 
 class InicializadorJuego: public VisitorFigura {
@@ -40,6 +41,7 @@ private:
 	PersistenciaManager * bbdd;
 	ModeloController * modeloController;
 	RotadorSistemaCoordenadas * rotador;
+	FiguraFactory * factory;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
 public:
 	InicializadorJuego(GeneralEventController * eventsController, ModeloController * modeloController);

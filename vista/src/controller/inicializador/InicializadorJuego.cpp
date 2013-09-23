@@ -48,6 +48,7 @@ InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEvento
 	this->modeloController = modeloController;
 	//TODO EL ROTADOR NO SE BORRA, DONDE SE BORRA?
 	this->rotador = new RotadorSistemaCoordenadas();
+	this->factory = new FiguraFactory(this->rotador);
 }
 
 InicializadorJuego::~InicializadorJuego() {
@@ -55,60 +56,71 @@ InicializadorJuego::~InicializadorJuego() {
 }
 
 void InicializadorJuego::visit(Cuadrado* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CUADRADO);
 	ViewFiguraFactory* second = iter->second;
-	this->agregarFigura(second, c);
+	this->agregarFigura(second, fig);
 }
 
 void InicializadorJuego::visit(Triangulo * t) {
+	Figura * fig = this->factory->crear(t);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_TRIANGULO);
 	ViewFiguraFactory* second = iter->second;
-	this->agregarFigura(second, t);
+	this->agregarFigura(second, fig);
 }
 
 void InicializadorJuego::visit(Circulo* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CIRCULO);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Rueda* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_RUEDA);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Globo* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_GLOBO);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Pelota* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PELOTA);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Resorte* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_RESORTE);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Martillo* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_MARTILLO);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Bloque* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_BLOQUE);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Cohete* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_COHETE);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Carrito* c) {
+	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CARRITO);
-	this->agregarFigura(iter->second, c);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
@@ -125,7 +137,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	bool exitoModelo = this->modeloController->crearFigura(modelo);
 	if (!exitoVista || !exitoModelo) {
 		Logger log;
-		string msj = "Figura con posicion invalida, es omitida (";
+		string msj = "Objeto con posicion invalida, es omitido (";
 		log.concatenar(msj, modelo->getX());
 		msj = msj + ";";
 		log.concatenar(msj,modelo->getY());
@@ -139,6 +151,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 			modeloController->removerFigura(modelo);
 		}
 		delete view;
+		delete modelo;
 	}
 }
 
@@ -147,7 +160,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 		return this->juegoController;
 	}
 
-	this->juegoController = new JuegoEventsController(modeloController,new FiguraFactory(this->rotador), 20);
+	this->juegoController = new JuegoEventsController(modeloController, this->factory, 20);
 	ViewFiguraFactory * factory = new ViewCuadradoFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CUADRADO,factory));
 	factory = new ViewTrianguloFactory(juegoController);
@@ -195,13 +208,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	list<Figura*>::iterator it;
 	for(it = figurasPersistidas.begin() ; it != figurasPersistidas.end() ; ++it){
 		(*it)->setRotador(this->rotador);
-		unsigned int size = this->modeloController->getFiguras().size();
 		(*it)->acept(this);
-		cout<< (*it)->getRotacion()<< endl;
-		//TODO HACER LA PRUEBA CON ESTO, Y VER QUE ONDA.
-		if(size == this->modeloController->getFiguras().size()){
-			delete (*it);
-		}
 	}
 
 	CanvasController* canvasController = new CanvasController(zonaTablero->getCanvas());

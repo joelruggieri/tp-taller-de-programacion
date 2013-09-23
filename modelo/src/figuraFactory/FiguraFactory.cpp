@@ -70,3 +70,47 @@ Figura* FiguraFactory::crearCohete(float x, float y){
 Figura* FiguraFactory::crearCarrito(float x, float y){
 	return new Carrito(x,y,rotador,6,6);
 }
+
+Figura* FiguraFactory::crear(Cuadrado* c) {
+	return this->crearCuadrado(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Circulo* c) {
+	return this->crearCirculo(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Triangulo* c) {
+	return this->crearTriangulo(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Rueda* c) {
+	return this->crearRueda(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Globo* c) {
+	return this->crearGlobo(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Pelota* c) {
+	return this->crearPelota(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Resorte* c) {
+	return this->crearResorte(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Martillo* c) {
+	return this->crearMartillo(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Bloque*c) {
+	return this->crearBloque(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Cohete* c) {
+	return this->crearCohete(c->getX(),c->getY());
+}
+
+Figura* FiguraFactory::crear(Carrito* c) {
+	return this->crearCarrito(c->getX(),c->getY());
+}
