@@ -13,6 +13,7 @@
 class Bloque: public Cuadrado {
 public:
 	Bloque();
+	Bloque(const Bloque& figura);
 	Bloque(float x, float y,Rotador* rotador, float ancho, float alto);
 	virtual ~Bloque();
 	void acept(VisitorFigura *visitor);

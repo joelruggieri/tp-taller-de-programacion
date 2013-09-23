@@ -11,10 +11,11 @@
 #include "Figura.h"
 #include "Rotador.h"
 class Circulo: public Figura {
-private:
+protected:
 	float radio;
 public:
 	Circulo();
+	Circulo(const Circulo& circulo);
 	Circulo(float, float, Rotador *, float);
 	virtual ~Circulo();
 	bool contacto(float,float);

@@ -14,6 +14,7 @@
 class Pelota: public Circulo{
 public:
 	Pelota();
+	Pelota(const Pelota& figura);
 	Pelota(float x, float y, Rotador* rotador,float radio);
 	virtual ~Pelota();
 	void acept(VisitorFigura *visitor);

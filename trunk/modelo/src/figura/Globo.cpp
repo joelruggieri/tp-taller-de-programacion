@@ -20,6 +20,15 @@ Globo::Globo(float x, float y, Rotador* rotador, float radio): Circulo(x,y,rotad
 
 }
 
+Globo::Globo(const Globo& figura){
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->rotacion = figura.getRotacion();
+	this->rotador = figura.rotador;
+	this->radio = figura.getRadio();
+}
+
+
 void Globo::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 }

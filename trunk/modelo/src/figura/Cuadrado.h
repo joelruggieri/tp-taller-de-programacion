@@ -11,7 +11,7 @@
 
 #include "Figura.h"
 class Cuadrado: public Figura {
-private:
+protected:
 	float ancho,alto;
 public:
 	Cuadrado();

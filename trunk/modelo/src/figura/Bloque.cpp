@@ -16,6 +16,16 @@ Bloque::Bloque(float x, float y,Rotador* rotador, float ancho, float alto): Cuad
 
 }
 
+Bloque::Bloque(const Bloque& figura){
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->rotacion = figura.getRotacion();
+	this->rotador = figura.rotador;
+	this->alto = figura.getAlto();
+	this->ancho = figura.getAncho();
+
+}
+
 Bloque::~Bloque() {
 	// TODO Auto-generated destructor stub
 }

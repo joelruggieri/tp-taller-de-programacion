@@ -13,6 +13,7 @@
 class Resorte: public Cuadrado {
 public:
 	Resorte();
+	Resorte(const Resorte& figura);
 	Resorte(float, float,Rotador*, float, float);
 	virtual ~Resorte();
 	void acept(VisitorFigura *visitor);
