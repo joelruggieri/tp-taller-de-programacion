@@ -20,31 +20,40 @@
 
 void ZonaToolBar::cliquearHerramienta(int x, int y) {
 
-	list<Herramientas*>::iterator iter;
-	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+	list<Dibujable*>::iterator iter;
+	Herramientas * herr;
+	list<Dibujable*> dibujables = this->canvas->getDibujables();
+	for (iter = dibujables.begin(); iter != dibujables.end();
 			iter++) {
-		if ((*iter)->fueSeleccionado(x, y))
-			return (*iter)->presionarMouse();
+		herr = (Herramientas*) *iter;
+		if ((herr)->fueSeleccionado(x, y))
+			return (herr)->presionarMouse();
 
 	}
 
 }
 
 void ZonaToolBar::desCliquearHerramienta(int x, int y) {
-	list<Herramientas*>::iterator iter;
-	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+	list<Dibujable*>::iterator iter;
+	Herramientas * herr;
+	list<Dibujable*> dibujables = this->canvas->getDibujables();
+	for (iter = dibujables.begin(); iter != dibujables.end();
 			iter++) {
-		(*iter)->desPresionarMouse();
+		herr = (Herramientas*) *iter;
+		(herr)->desPresionarMouse();
 
 	}
 	return;
 }
 
 void ZonaToolBar::teclearHerramienta(char key) {
-	list<Herramientas*>::iterator iter;
-	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+	list<Dibujable*>::iterator iter;
+	Herramientas * herr;
+	list<Dibujable*> dibujables = this->canvas->getDibujables();
+	for (iter = dibujables.begin(); iter != dibujables.end();
 			iter++) {
-		(*iter)->ejecutarTecla(key);
+		herr = (Herramientas*) *iter;
+		(herr)->ejecutarTecla(key);
 
 	}
 	return;
@@ -52,10 +61,13 @@ void ZonaToolBar::teclearHerramienta(char key) {
 
 void ZonaToolBar::cliqueoEnOtroLado() {
 
-	list<Herramientas*>::iterator iter;
-	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+	list<Dibujable*>::iterator iter;
+	Herramientas * herr;
+	list<Dibujable*> dibujables = this->canvas->getDibujables();
+	for (iter = dibujables.begin(); iter != dibujables.end();
 			iter++) {
-		(*iter)->clickeoFueraDeHerramienta();
+		herr = (Herramientas*) *iter;
+		(herr)->clickeoFueraDeHerramienta();
 
 	}
 	return;
@@ -74,10 +86,13 @@ void ZonaToolBar::resizear() {
 
 bool ZonaToolBar::algunaHerramientaSeleccionada(int x, int y) {
 	bool result = false;
-	list<Herramientas*>::iterator iter;
-	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+	list<Dibujable*>::iterator iter;
+	Herramientas * herr;
+	list<Dibujable*> dibujables = this->canvas->getDibujables();
+	for (iter = dibujables.begin(); iter != dibujables.end();
 			iter++) {
-		if ((*iter)->fueSeleccionado(x, y))
+		herr = (Herramientas*) *iter;
+		if ((herr)->fueSeleccionado(x, y))
 			return true;
 
 	}
@@ -108,21 +123,22 @@ void ZonaToolBar::agregarHerramientasAlToolBar(int x, int y, int w, int h) {
 }
 
 ZonaToolBar::~ZonaToolBar() {
-	// TODO Auto-generated destructor stub
+	delete view;
 }
 
 void ZonaToolBar::agregarHerramienta(Herramientas* herramienta) {
-	this->herramientas.push_back(herramienta);
+	this->canvas->agregar(herramienta);
 
 }
 
 void ZonaToolBar::dibujarse(SDL_Renderer* render) {
-	SDL_Rect dst;
-	dst.x = this->getX();
-	dst.y = this->getY();
-	dst.h = this->getH();
-	dst.w = this->getW();
-	this->dibujarse(render, dst);
+//	SDL_Rect dst;
+//	dst.x = this->getX();
+//	dst.y = this->getY();
+//	dst.h = this->getH();
+//	dst.w = this->getW();
+//	this->dibujarse(render, dst);
+	this->view->dibujarse(render);
 
 }
 //POS: true si alguna herramienta fue seleccionada
@@ -133,10 +149,13 @@ bool ZonaToolBar::zonaFueSeleccionada(int x, int y) {
 }
 
 void ZonaToolBar::desTeclearHerramienta() {
-	list<Herramientas*>::iterator iter;
-	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+	list<Dibujable*>::iterator iter;
+	Herramientas * herr;
+	list<Dibujable*> dibujables = this->canvas->getDibujables();
+	for (iter = dibujables.begin(); iter != dibujables.end();
 			iter++) {
-		(*iter)->desEjecutarTecla();
+		herr = (Herramientas*) *iter;
+		(herr)->desEjecutarTecla();
 
 	}
 	return;
@@ -145,10 +164,13 @@ void ZonaToolBar::desTeclearHerramienta() {
 void ZonaToolBar::dibujarse(SDL_Renderer* render, SDL_Rect& dst) {
 	SDL_RenderCopy(render, this->fondo, NULL, &dst);
 
-	list<Herramientas*>::iterator iter;
-	for (iter = this->herramientas.begin(); iter != this->herramientas.end();
+	list<Dibujable*>::iterator iter;
+	Herramientas * herr;
+	list<Dibujable*> dibujables = this->canvas->getDibujables();
+	for (iter = dibujables.begin(); iter != dibujables.end();
 			iter++) {
-		(*iter)->dibujarse(render);
+		herr = (Herramientas*) *iter;
+		(herr)->dibujarse(render);
 
 	}
 }

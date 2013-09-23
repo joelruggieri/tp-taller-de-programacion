@@ -24,7 +24,7 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x,
 	this->canvas = new Canvas(xC, yC, wC, hC, textura);
 	this->scroll = NULL;
 	this->viewCanvas = new ViewConBorde(canvas);
-	this->viewCanvas->setAutoAjustar(true);
+	this->viewCanvas->setTamanioOriginal(true);
 	this->inicializar(factories, x, margenSuperior);
 	this->margenSuperior = margenSuperior;
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS

@@ -18,19 +18,23 @@
 #include "../../vista/TextBox.h"
 #include "../../vista/View.h"
 #include "../Resizer.h"
-
-
+#include "../../vista/Canvas.h"
+#include "../../vista/ViewConBorde.h"
 
 using namespace std;
 
 class ZonaToolBar : public View   {
 private:
-	list<Herramientas* > herramientas ;
-
+	Canvas * canvas;
+	View * view;
 public:
 	ZonaToolBar(int x, int y, int w, int h, SDL_Texture* texture): View(x,y,w,h)
 {
 		this->fondo = texture ;
+		this->canvas = new Canvas(x,y,w,h,texture);
+		ViewConBorde *vcb = new ViewConBorde(canvas);
+		vcb->setTamanioOriginal(false);
+		view = vcb;
 		this->agregarHerramientasAlToolBar(x,y,w,h);
 }
 	virtual ~ZonaToolBar();
