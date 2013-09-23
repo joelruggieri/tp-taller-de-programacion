@@ -20,7 +20,7 @@ private:
 	void dibujarBordeInferior(SDL_Renderer* renderer);
 	void generarConBorde(SDL_Rect & dest);
 	void generarSinBorde(SDL_Rect & dest);
-	bool achicar;
+	bool mantenerTamanio;
 public:
 	ViewConBorde(View* view);
 	virtual ~ViewConBorde();
@@ -44,7 +44,7 @@ public:
 	void setW(int w);
 	void setXc(int xc);
 	void setYc(int yc);
-	void setAutoAjustar(bool);
+	void setTamanioOriginal(bool);
 };
 const struct ViewConBorde::RGB COLOR_BORDE_EXTERNO = {94,139,0};
 const struct ViewConBorde::RGB COLOR_BORDE_INTERNO = {22, 41, 28};

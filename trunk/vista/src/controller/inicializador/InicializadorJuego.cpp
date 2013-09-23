@@ -116,8 +116,8 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	Resizer * r = Resizer::Instance();
 	int x = r->resizearDistanciaLogicaX(modelo->getX());
 	int y = r->resizearPosicionLogicaY(modelo->getY());
-	int w = r->resizearDistanciaLogicaY(modelo->getAncho());
-	int h = r->resizearDistanciaLogicaY(modelo->getAlto());
+	int w = r->resizearDistanciaLogicaY(10);
+	int h = r->resizearDistanciaLogicaY(10);
 	//TODO HABRIA QUE VALIDAR QUE LA POSICION CAIGA BIEN, SINO BORRARLO
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
@@ -139,7 +139,6 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 			modeloController->removerFigura(modelo);
 		}
 		delete view;
-		delete modelo;
 	}
 }
 
@@ -192,11 +191,17 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 
 	this->juegoController->setZona(this->zonaJuego);
 
-	list<Figura*> figurasPersistidas = this->bbdd->getFiguras();
+	list<Figura*>& figurasPersistidas = this->bbdd->getFiguras();
 	list<Figura*>::iterator it;
 	for(it = figurasPersistidas.begin() ; it != figurasPersistidas.end() ; ++it){
 		(*it)->setRotador(this->rotador);
+		unsigned int size = this->modeloController->getFiguras().size();
 		(*it)->acept(this);
+		cout<< (*it)->getRotacion()<< endl;
+		//TODO HACER LA PRUEBA CON ESTO, Y VER QUE ONDA.
+		if(size == this->modeloController->getFiguras().size()){
+			delete (*it);
+		}
 	}
 
 	CanvasController* canvasController = new CanvasController(zonaTablero->getCanvas());
