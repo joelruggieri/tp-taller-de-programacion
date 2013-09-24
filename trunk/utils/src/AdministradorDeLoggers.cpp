@@ -7,11 +7,11 @@
 
 #include "AdministradorDeLoggers.h"
 
-Archivo *AdministradorDeLoggers::logError = new Archivo("error.log", APPEND);
-Archivo *AdministradorDeLoggers::logWarn = new Archivo("warning.log", APPEND);
-Archivo *AdministradorDeLoggers::logFatal = new Archivo("fatal.log", APPEND);
-Archivo *AdministradorDeLoggers::logDebug = new Archivo("debug.log", APPEND);
-Archivo *AdministradorDeLoggers::logInfo = new Archivo("info.log", APPEND);
+//Archivo *AdministradorDeLoggers::logError = new Archivo("error.log", APPEND);
+//Archivo *AdministradorDeLoggers::logWarn = new Archivo("warning.log", APPEND);
+//Archivo *AdministradorDeLoggers::logFatal = new Archivo("fatal.log", APPEND);
+//Archivo *AdministradorDeLoggers::logDebug = new Archivo("debug.log", APPEND);
+//Archivo *AdministradorDeLoggers::logInfo = new Archivo("info.log", APPEND);
 Archivo *AdministradorDeLoggers::logUnificado = new Archivo("programa.log", APPEND);
 
 AdministradorDeLoggers::AdministradorDeLoggers() {
@@ -24,25 +24,26 @@ AdministradorDeLoggers::~AdministradorDeLoggers() {
 }
 
 Archivo *AdministradorDeLoggers::getLogger(TIPO_LOGGER tipo) {
-	if (tipo == ERROR) {
-		return logError;
-	} else if (tipo == WARN) {
-		return logWarn;
-	} else if (tipo == FATAL) {
-		return logFatal;
-	} else if (tipo == DEBUG) {
-		return logDebug;
-	} else {
-		return logInfo;
-	}
+//	if (tipo == ERROR) {
+//		return logError;
+//	} else if (tipo == WARN) {
+//		return logWarn;
+//	} else if (tipo == FATAL) {
+//		return logFatal;
+//	} else if (tipo == DEBUG) {
+//		return logDebug;
+//	} else {
+//		return logInfo;
+//	}
+	return logUnificado;
 }
 
 void AdministradorDeLoggers::cerrarTodo() {
-	logError->cerrar();
-	logDebug->cerrar();
-	logInfo->cerrar();
-	logWarn->cerrar();
-	logFatal->cerrar();
+//	logError->cerrar();
+//	logDebug->cerrar();
+//	logInfo->cerrar();
+//	logWarn->cerrar();
+//	logFatal->cerrar();
 	logUnificado->cerrar();
 }
 
