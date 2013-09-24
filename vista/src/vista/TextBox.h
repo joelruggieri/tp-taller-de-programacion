@@ -17,7 +17,7 @@
 #define BACKSPACE 8
 #define TAM_FUENTE 10
 #define SHIFT 15
-
+#define MAYUS 16
 using namespace std;
 
 class TextBox: public Herramientas {
@@ -31,7 +31,7 @@ public:
 		this->fuente = TTF_OpenFont("resource/Arial Bold.ttf", TAM_FUENTE);
 		this->texto = "";
 		this->textoCurrent = texto ;
-
+		this->mayusIn = false;
 		this->color.a = 50;
 		this->color.b = 20;
 		this->color.g = 20;
@@ -66,7 +66,7 @@ private:
 	SDL_Texture * textureTexto;
 	bool seleccionado ;
 	bool shiftIn;
-
+	bool mayusIn;
 
 
 };

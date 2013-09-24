@@ -28,6 +28,7 @@
 struct SDL_Window;
 
 #define ASCII_SHIFT 15
+#define ASCII_MAYUS 16
 GeneralEventController::GeneralEventController() {
 	this->canvasController = 0;
 	this->guardarController = NULL;
@@ -138,9 +139,14 @@ void GeneralEventController::setCanvasController(CanvasController* canvasControl
 }
 
 bool GeneralEventController::verificarCaracteresEspeciales(SDL_KeyboardEvent key) {
-	if (key.keysym.scancode == SDL_SCANCODE_LSHIFT)
+	if (key.keysym.scancode == SDL_SCANCODE_LSHIFT || key.keysym.scancode == SDL_SCANCODE_RSHIFT  )
 	{
 		this->keyDown((char)ASCII_SHIFT);
+		return true;
+	}
+	if(key.keysym.scancode == SDL_SCANCODE_CAPSLOCK)
+	{
+		this->keyDown((char)ASCII_MAYUS);
 		return true;
 	}
 //	if (key.keysym.sym >=)
@@ -208,7 +214,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 		this->keyDown((char)(evento.key.keysym.sym));
 		break;
 	case SDL_KEYUP:
-		if (evento.key.keysym.scancode == SDL_SCANCODE_LSHIFT)
+		if (evento.key.keysym.scancode == SDL_SCANCODE_LSHIFT || evento.key.keysym.scancode == SDL_SCANCODE_RSHIFT )
 		this->keyUp();
 		break;
 	case SDL_USEREVENT:
