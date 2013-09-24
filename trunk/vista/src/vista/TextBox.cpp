@@ -165,7 +165,7 @@ void TextBox::resetearTexto() {
 }
 
 void TextBox::ejecutarTecla(char key) {
-	if ((key >= 32 && key <=64) || (key >= 97 && key <= 125)  || (key == SHIFT) || (key == BACKSPACE))
+	if ((key >= 32 && key <=64) || (key >= 97 && key <= 125)  || (key == SHIFT) || (key == BACKSPACE) || key == MAYUS)
 {
 	if (this->seleccionado){
 		if (shiftIn)
@@ -214,11 +214,11 @@ void TextBox::ejecutarTecla(char key) {
 				return this->agregarCaracter('>');
 				break;
 			}
-
-
-			if (key >= 97 && key <= 122) {key = key - 32;
-			return this->agregarCaracter(key);}
 		}
+		if (shiftIn || mayusIn ){
+			if (key >= 97 && key <= 122) {key = key - 32;
+			return this->agregarCaracter(key);}}
+
 
 		if (key == BACKSPACE) return this->borrarCaracter();
 
@@ -231,6 +231,19 @@ void TextBox::ejecutarTecla(char key) {
 			}
 			else {
 				this->shiftIn = false;
+			}
+			return ;
+		}
+		if (key == MAYUS)
+		{
+//			cout << "hay un MAYUS" << endl ;
+			if (!this->mayusIn)
+			{
+				this->mayusIn = true ;
+
+			}
+			else {
+				this->mayusIn = false;
 			}
 			return ;
 		}
