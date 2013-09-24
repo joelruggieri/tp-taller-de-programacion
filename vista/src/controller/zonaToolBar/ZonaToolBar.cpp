@@ -76,7 +76,7 @@ void ZonaToolBar::cliqueoEnOtroLado() {
 void ZonaToolBar::resizear() {
 
 	//Resizer::Instance()->adaptarPosicionPixel(this->getXCentro(),this->getYCentro(),xNuevo,yNuevo );
-	this->setYc(Resizer::Instance()->resizearDistanciaY(this->getYCentro()));
+	this->setYc(Resizer::Instance()->resizearPosicionY(this->getYCentro()));
 	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
 
 	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
