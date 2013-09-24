@@ -7,7 +7,6 @@
 
 #include "NivelDAO.h"
 #include <yaml-cpp/yaml.h>
-#include <yaml-cpp/exceptions.h>
 #include "src/figura/Figura.h"
 #include "src/figura/Triangulo.h"
 #include "src/figura/Cuadrado.h"
@@ -84,6 +83,14 @@ void NivelDAO::guardarNivel(Nivel *nivel) {
 	a->cerrar();
 }
 
+void NivelDAO::imprimirLinea(YAML::Exception &exc) {
+	std::string descripcionError(exc.what());
+	if (descripcionError.find("line") == 0) {
+		std::stringstream aux;
+		aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
+		logg.error(aux.str());
+	}
+}
 
 std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 	std::list<Figura*> lista;
@@ -123,9 +130,7 @@ void NivelDAO::obtenerCirculos(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer circulo\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -142,9 +147,7 @@ void NivelDAO::obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer cuadrado\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -160,9 +163,7 @@ void NivelDAO::obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer Triangulos\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -179,9 +180,7 @@ void NivelDAO::obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer pelotas\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -197,9 +196,7 @@ void NivelDAO::obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer globos\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -216,9 +213,7 @@ void NivelDAO::obtenerResortes(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer resortes\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -235,9 +230,7 @@ void NivelDAO::obtenerMartillos(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer martillos\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -254,9 +247,7 @@ void NivelDAO::obtenerBloques(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer bloques\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -273,9 +264,7 @@ void NivelDAO::obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer Cohetes\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -292,9 +281,7 @@ void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer Ruedas\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
@@ -310,9 +297,7 @@ void NivelDAO::obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer Carritos\n";
 			mensaje.append(exc.what());
 			logg.error(mensaje);
-			std::stringstream aux;
-			aux << " en la linea " << exc.mark.line << " columna " << exc.mark.pos << std::endl;
-			logg.error(aux.str());
+			imprimirLinea(exc);
 		}
 	}
 }
