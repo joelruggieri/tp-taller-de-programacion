@@ -52,7 +52,7 @@ int MainController::run() {
 //	int draggin = false;
 	bool terminar = false;
 	SDL_Init(SDL_INIT_VIDEO);
-	ventana = SDL_CreateWindow("The Incredible Fail", 400, 400, 600, 600,
+	ventana = SDL_CreateWindow("Generador Niveles", 400, 400, 600, 600,
 			SDL_WINDOW_RESIZABLE);
 	SDL_Renderer* render = SDL_CreateRenderer(ventana, -1,
 			SDL_RENDERER_ACCELERATED);

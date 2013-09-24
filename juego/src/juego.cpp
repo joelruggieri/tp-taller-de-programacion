@@ -31,9 +31,9 @@ void corroborar_existencia(DIR* resource, bool& existe_fuente, bool& existe_imag
 bool inexistenciaDeArchivos(bool existe_fuente, bool existe_imagen_error){
 	if(!existe_fuente || !existe_imagen_error){
 		if(!existe_fuente)
-			cout<<"The Incredible Machine: no existe el archivo que proporciona la fuente para el text box en el directorio resource" <<endl;
+			cout<<"Generador Niveles: no existe el archivo que proporciona la fuente para el text box en el directorio resource" <<endl;
 		if(!existe_imagen_error)
-			cout<<"The Incredible Machine: no existe la imagen de error en el directorio resource" <<endl;
+			cout<<"Generador Niveles: no existe la imagen de error en el directorio resource" <<endl;
 		return true;
 	}
 	return false;
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 	bool existe_imagen_error = false;
 
 	if (resource == NULL){
-		cout << "The Incredible Machine: No se encontró el directorio resource, se procede a salir de la aplicacion" <<endl;
+		cout << "Generador Niveles: No se encontró el directorio resource, se procede a salir de la aplicacion" <<endl;
 		return -1;
 	}else{
 		corroborar_existencia(resource,existe_fuente,existe_imagen_error);
