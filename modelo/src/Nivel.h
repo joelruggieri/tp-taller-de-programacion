@@ -21,10 +21,13 @@ public:
 	std::list<Figura*>& getFiguras();
 	const std::string& getNombre() const;
 	void setNombre(const std::string& nombre);
+	void setFondo(std::string fondo);
+	std::string getFondo();
 
 private:
 	std::list<Figura*> objetos;
 	std::string nombre;
+	std::string fondo;
 };
 
 #endif /* NIVEL_H_ */

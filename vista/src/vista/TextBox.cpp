@@ -92,8 +92,8 @@ void TextBox::agregarCaracter(char caracter) {
 		this->textoCurrent.erase(0, 1);	//elimino el primer caracter de esa cadena
 		TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &ancho, NULL);
 	}
-	cout << this->texto << endl;
-	cout << this->textoCurrent << endl;
+//	cout << this->texto << endl;
+//	cout << this->textoCurrent << endl;
 
 }
 

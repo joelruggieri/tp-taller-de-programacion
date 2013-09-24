@@ -13,6 +13,7 @@ using namespace std;
 #include "src/figura/Mapa.h"
 #include "src/NivelDAO.h"
 #include <string>
+using namespace std;
 
 class PersistenciaManager {
 private:
@@ -23,9 +24,11 @@ public:
 	PersistenciaManager();
 	virtual ~PersistenciaManager();
 	list<Figura*> & getFiguras();
-	void persistirFiguras(list<Figura*> & figuras);
+	void setFiguras(list<Figura*> & figuras);
 	void cambiarNivel(int nivel);
-
+	void cambiarImagenFondo(string);
+	void persistir();
+	string getImagenFondo();
 };
 
 #endif /* PERSISTENCIAMANAGER_H_ */

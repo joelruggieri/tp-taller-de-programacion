@@ -212,7 +212,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	}
 
 	CanvasController* canvasController = new CanvasController(zonaTablero->getCanvas());
-	PersistenciaEventController * persistenciaController= new PersistenciaEventController (this->modeloController, this->bbdd);
+	canvasController->cambiarFondo(this->bbdd->getImagenFondo());
+	PersistenciaEventController * persistenciaController= new PersistenciaEventController (this->modeloController,canvasController, this->bbdd);
 	this->eventsController->setCanvasController(canvasController);
 	this->eventsController->setGuardarController(persistenciaController);
 	this->eventsController->addMouseController(this->juegoController,1,1);
