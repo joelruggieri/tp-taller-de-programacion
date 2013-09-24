@@ -44,7 +44,6 @@ public:
 	void addKeyboardController(KeyBoardEventController* );
 	void setCanvasController(CanvasController* canvasController);
 	void setGuardarController(PersistenciaEventController * controller);
-	//TODO POR AHORA INDICA SI SALIR O NO DE LA APLICACION
 	bool procesarEventos(SDL_Window *);
 
 };

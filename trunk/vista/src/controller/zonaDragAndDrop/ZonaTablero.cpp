@@ -9,7 +9,7 @@
 #include "../Resizer.h"
 #include "src/Logger.h"
 
-//TODO UN CUADRADO DE 100X100 CENTRADO EN X,Y
+//UN CUADRADO DE 100X100 CENTRADO EN X,Y
 ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,0,100,100)) {
 	Resizer * instance = Resizer::Instance();
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
