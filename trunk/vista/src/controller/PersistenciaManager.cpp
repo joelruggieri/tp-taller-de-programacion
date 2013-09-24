@@ -45,7 +45,7 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 				std::stringstream aux;
 				aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
 				nivel = new Nivel(aux.str());
-				nivel->setFondo(FONDO_DEFECTO);
+//				nivel->setFondo(FONDO_DEFECTO);
 			}
 
 		}

@@ -14,6 +14,7 @@
 
 class Nivel {
 public:
+	Nivel();
 	Nivel(std::string nombre);
 	virtual ~Nivel();
 	void agregar(Figura* figura);
@@ -22,7 +23,7 @@ public:
 	const std::string& getNombre() const;
 	void setNombre(const std::string& nombre);
 	void setFondo(std::string fondo);
-	std::string getFondo();
+	std::string getFondo() const;
 
 private:
 	std::list<Figura*> objetos;
