@@ -17,11 +17,13 @@ struct convert<Nivel> {
 	static Node encode(const Nivel& objeto) {
 		Node node;
 		node["Nombre"] = objeto.getNombre();
+		node["Fondo"] = objeto.getFondo();
 		return node;
 	}
 
 	static bool decode(const Node& node, Nivel& objeto) {
 		objeto.setNombre(node["Nombre"].as<std::string>());
+		objeto.setFondo(node["Fondo"].as<std::string>());
 		return true;
 	}
 };

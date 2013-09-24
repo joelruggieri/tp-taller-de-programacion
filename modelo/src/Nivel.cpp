@@ -45,6 +45,9 @@ void Nivel::setFondo(std::string fondo) {
 	this->fondo = fondo;
 }
 
- std::string Nivel::getFondo() {
+ std::string Nivel::getFondo() const{
 	return fondo;
+}
+
+Nivel::Nivel() {
 }

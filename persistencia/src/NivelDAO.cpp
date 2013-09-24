@@ -47,8 +47,14 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 		logg.error("No se pudo cargar el nivel. El archivo no existe.");
 		throw NivelInexistenteException();
 	}
+	YAML::Node nodoRaiz = a->obtenerNodoRaiz();
 	YAML::Node nodo = a->obtenerNodo(OBJETOS);
 	Nivel *n = new Nivel(nombre);
+	try {
+		n->setFondo(nodoRaiz["Nivel"]["Fondo"].as<std::string>());
+	} catch (YAML::Exception exc) {
+		logg.error("No se pudo cargar el fondo delnivel.");
+	}
 	std::list<Figura*> figuras = leerFiguras(nodo);
 	std::list<Figura*>::iterator it;
 	for (it = figuras.begin(); it != figuras.end(); ++it){
