@@ -8,6 +8,7 @@
 #include "AdministradorDeArchivos.h"
 #include <sstream>
 #include <list>
+#include "src/Logger.h"
 
 std::list<Archivo*> AdministradorDeArchivos::archivos;
 
@@ -63,9 +64,14 @@ void AdministradorDeArchivos::registrar(std::string nombre) {
 			return;
 		}
 	}
-
-	Archivo *nuevo = new Archivo(nombre.c_str(), LECTOESCRITURA);
-	AdministradorDeArchivos::archivos.push_back(nuevo);
+	try{
+		Archivo *nuevo = new Archivo(nombre.c_str(), LECTOESCRITURA);
+		AdministradorDeArchivos::archivos.push_back(nuevo);
+	}catch(std::exception& exc){
+		std::string mensaje = "No se a especificado el archivo yaml, se procederà a sobreescribir el archivo por defecto NuevoNivel0.yaml";
+		Logger logg;
+		logg.warning(mensaje);
+	}
 }
 
 int AdministradorDeArchivos::cantidadNiveles() {
