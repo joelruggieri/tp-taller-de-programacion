@@ -68,7 +68,7 @@ void AdministradorDeArchivos::registrar(std::string nombre) {
 		Archivo *nuevo = new Archivo(nombre.c_str(), LECTOESCRITURA);
 		AdministradorDeArchivos::archivos.push_back(nuevo);
 	}catch(std::exception& exc){
-		std::string mensaje = "No se a especificado el archivo yaml, se procederà a sobreescribir el archivo por defecto NuevoNivel0.yaml";
+		std::string mensaje = "No se a especificado el archivo yaml o es un nombre invàlido, se procederà a sobreescribir el archivo por defecto NuevoNivel0.yaml";
 		Logger logg;
 		logg.warning(mensaje);
 	}
