@@ -33,7 +33,7 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 		float margenSuperior) {
 	//TODO ADAPTAR TAMANIO DE LA ZONA SEGUN LA CANTIDAD DE FACTORIES QUE VENGAN.
 	float ancho = ANCHO_VIEW_DEF * 2;
-	//50% de margen alrededor de todo el panel
+	//50% de margen alrededor del panel
 	float xInicial = x;
 	float yInicial = margenSuperior - ANCHO_VIEW_DEF;
 	float y = yInicial - 1;

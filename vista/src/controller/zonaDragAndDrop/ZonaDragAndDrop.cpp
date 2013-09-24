@@ -19,7 +19,7 @@ Zona::~Zona() {
 }
 
 
-//TODO: Si hay scroll lo almacena con la posicion cambiada.
+//Si hay scroll lo almacena con la posicion cambiada.
 bool Zona::agregarFigura(FiguraView* vista) {
 
 	if (this->cuerpo->contieneCentro(vista->getModelo())) {
@@ -36,7 +36,7 @@ void Zona::setScrollY(float scrollY) {
 	this->scrollY = scrollY;
 }
 
-//TODO :Si hay scroll lo devuelve con la posicion cambiada y adapta la posicion algo del modelo.
+//Si hay scroll lo devuelve con la posicion cambiada y adapta la posicion algo del modelo.
 FiguraView * Zona::getVista(float x, float y) {
 	FiguraView * drop  = NULL;
 	if (this->cuerpo->contacto(x, y)) {
