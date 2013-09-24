@@ -41,13 +41,26 @@ Nivel* NivelDAO::leerNivel(const std::string &nombre) {
 
 Nivel* NivelDAO::leerNivel(const char *nombre) {
 	Archivo *a = administrador.obtenerArchivoNivel(nombre);
+	YAML::Node nodoRaiz;
+	YAML::Node nodo;
 	if (!a) {
 
 		logg.error("No se pudo cargar el nivel. El archivo no existe.");
 		throw NivelInexistenteException();
 	}
-	YAML::Node nodoRaiz = a->obtenerNodoRaiz();
-	YAML::Node nodo = a->obtenerNodo(OBJETOS);
+	try{
+	nodoRaiz = a->obtenerNodoRaiz();
+	nodo = a->obtenerNodo(OBJETOS);
+	}catch(YAML::ParserException& exc){
+		std::string mensaje = "Error de parseo de datos del archivo yaml en la linea ";
+		std::string s;
+		std::stringstream out;
+		out << exc.mark.line + 1;
+		s = out.str();
+		mensaje.append(s);
+		mensaje.append(". Se procederà a sobreecribir el archivo");
+		logg.error(mensaje);
+	}
 	Nivel *n = new Nivel(nombre);
 	try {
 		n->setFondo(nodoRaiz["Nivel"]["Fondo"].as<std::string>());
