@@ -56,7 +56,7 @@ Figura* FiguraFactory::crearResorte(float x, float y){
 }
 
 Figura* FiguraFactory::crearMartillo(float x, float y){
-	return new Martillo(x,y,rotador,10,10);
+	return new Martillo(x,y,rotador,1,9);
 }
 
 Figura* FiguraFactory::crearBloque(float x, float y){
