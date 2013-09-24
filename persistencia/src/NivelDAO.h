@@ -11,6 +11,7 @@
 #include "src/Nivel.h"
 #include "AdministradorDeArchivos.h"
 #include "src/Logger.h"
+#include <yaml-cpp/exceptions.h>
 
 class NivelDAO {
 public:
@@ -34,6 +35,7 @@ private:
 	void obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos);
+	void imprimirLinea(YAML::Exception &exc);
 	Logger logg;
 };
 

@@ -22,6 +22,7 @@ struct convert<Nivel> {
 	}
 
 	static bool decode(const Node& node, Nivel& objeto) {
+		if (node.size() != 2) return false;
 		objeto.setNombre(node["Nombre"].as<std::string>());
 		objeto.setFondo(node["Fondo"].as<std::string>());
 		return true;
@@ -39,6 +40,7 @@ struct convert<Circulo> {
 	}
 
 	static bool decode(const Node& node, Circulo& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -57,6 +59,7 @@ struct convert<Rueda> {
 	}
 
 	static bool decode(const Node& node, Rueda& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -75,6 +78,7 @@ struct convert<Globo> {
 	}
 
 	static bool decode(const Node& node, Globo& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -93,6 +97,7 @@ struct convert<Pelota> {
 	}
 
 	static bool decode(const Node& node, Pelota& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -111,6 +116,7 @@ struct convert<Cuadrado> {
 	}
 
 	static bool decode(const Node& node, Cuadrado& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -129,6 +135,7 @@ struct convert<Carrito> {
 	}
 
 	static bool decode(const Node& node, Carrito& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -147,6 +154,7 @@ struct convert<Resorte> {
 	}
 
 	static bool decode(const Node& node, Resorte& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -165,6 +173,7 @@ struct convert<Martillo> {
 	}
 
 	static bool decode(const Node& node, Martillo& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -183,6 +192,7 @@ struct convert<Bloque> {
 	}
 
 	static bool decode(const Node& node, Bloque& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -201,6 +211,7 @@ struct convert<Cohete> {
 	}
 
 	static bool decode(const Node& node, Cohete& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
@@ -219,6 +230,7 @@ struct convert<Triangulo> {
 	}
 
 	static bool decode(const Node& node, Triangulo& objeto) {
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
