@@ -49,7 +49,7 @@ void ScrollView::resizear() {
 	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 	this->setH(Resizer::Instance()->resizearDistanciaX(this->getH()));
 	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
-	this->setYc(Resizer::Instance()->resizearDistanciaY(this->getYCentro()));
+	this->setYc(Resizer::Instance()->resizearPosicionY(this->getYCentro()));
 }
 
 void ScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {

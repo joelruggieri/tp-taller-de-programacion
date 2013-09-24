@@ -81,6 +81,10 @@ void Resizer::setearResizer(int xNuevo, int yNuevo) {
 
 
 int Resizer::resizearDistanciaY(int valor) {
+	return ceil(this->relacionY * valor);
+}
+
+int Resizer::resizearPosicionY(int valor) {
 	return round(this->relacionY * valor);
 }
 

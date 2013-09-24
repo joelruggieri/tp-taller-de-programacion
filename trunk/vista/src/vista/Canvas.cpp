@@ -94,6 +94,6 @@ void Canvas::resizear() {
 this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
 this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
-this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
+this->setYc((Resizer::Instance()->resizearPosicionY(this->getYCentro())));
 //	TODO resizear
 }
