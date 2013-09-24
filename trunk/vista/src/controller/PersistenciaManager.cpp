@@ -11,6 +11,7 @@
 #include "src/figura/Circulo.h"
 #include "src/NivelInexistenteException.h"
 #include "src/Logger.h"
+#include "RutasArchivos.h"
 #include <sstream>
 
 PersistenciaManager::PersistenciaManager() {
@@ -35,6 +36,7 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 			std::stringstream aux;
 			aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
 			nivel = new Nivel(aux.str());
+			nivel->setFondo(FONDO_DEFECTO);
 		} else {
 			try {
 				nivel = dao->cargarPrimerNivel();
@@ -43,6 +45,7 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 				std::stringstream aux;
 				aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
 				nivel = new Nivel(aux.str());
+				nivel->setFondo(FONDO_DEFECTO);
 			}
 
 		}
@@ -51,7 +54,7 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 	return this->nivel->getFiguras();
 }
 
-void PersistenciaManager::persistirFiguras(list<Figura*>& figuras) {
+void PersistenciaManager::setFiguras(list<Figura*>& figuras) {
 	Logger log;
 	if(this->nivel != NULL){
 		nivel->getFiguras().clear();
@@ -62,9 +65,22 @@ void PersistenciaManager::persistirFiguras(list<Figura*>& figuras) {
 		} catch (NivelInexistenteException& e){
 			log.warning("No existe el nivel, se procede a crear uno vacio");
 			nivel = new Nivel(nivelActual);
+			nivel->setFondo(FONDO_DEFECTO);
 		}
 	}
-	log.debug("Persistiendo nivel");
+}
+
+void PersistenciaManager::cambiarNivel(int nivel) {
+	throw "No implementado todavia";
+}
+
+void PersistenciaManager::cambiarImagenFondo(string ruta) {
+	nivel->setFondo(ruta);
+}
+
+void PersistenciaManager::persistir() {
+	Logger log;
+	log.debug("Persistiendo nivel " + nivel->getNombre());
 	string msj = "Se van a persistir ";
 	float size = nivel->getFiguras().size();
 	log.concatenar(msj, size);
@@ -73,6 +89,7 @@ void PersistenciaManager::persistirFiguras(list<Figura*>& figuras) {
 	dao->guardarNivel(nivel);
 }
 
-void PersistenciaManager::cambiarNivel(int nivel) {
-	throw "No implementado todavia";
+string PersistenciaManager::getImagenFondo() {
+	return nivel->getFondo();
 }
+

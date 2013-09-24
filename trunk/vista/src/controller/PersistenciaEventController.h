@@ -9,14 +9,15 @@
 #define PERSISTENCIAEVENTCONTROLLER_H_
 #include "PersistenciaManager.h"
 #include "src/ModeloController.h"
-
+#include "CanvasController.h"
 
 class PersistenciaEventController {
 private:
 	PersistenciaManager * manager;
 	ModeloController * modeloController;
+	CanvasController * canvasController;
 public:
-	PersistenciaEventController(ModeloController * m, PersistenciaManager *);
+	PersistenciaEventController(ModeloController * m, CanvasController * c, PersistenciaManager *);
 	void persistir();
 	virtual ~PersistenciaEventController();
 };

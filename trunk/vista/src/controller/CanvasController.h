@@ -15,11 +15,13 @@ using namespace std;
 class CanvasController {
 private:
 	Canvas* canvas;
-
+	string ultimaRuta;
 public:
 	CanvasController(Canvas* canvas);
 	virtual ~CanvasController();
-	void atenderEvento(SDL_Event evento);
+	void atenderEvento(SDL_Event & evento);
+	void cambiarFondo(string string);
+	string getRutaFondo();
 };
 
 #endif /* CANVASCONTROLLER_H_ */

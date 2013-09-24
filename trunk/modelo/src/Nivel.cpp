@@ -6,6 +6,8 @@
  */
 
 #include "Nivel.h"
+#include <iostream>
+using namespace std;
 
 Nivel::Nivel(std::string nombre) {
 	this->nombre = nombre;
@@ -37,4 +39,12 @@ const std::string& Nivel::getNombre() const {
 
 void Nivel::setNombre(const std::string& nombre) {
 	this->nombre = nombre;
+}
+
+void Nivel::setFondo(std::string fondo) {
+	this->fondo = fondo;
+}
+
+ std::string Nivel::getFondo() {
+	return fondo;
 }
