@@ -22,7 +22,8 @@ private:
 	static bool inicializado;
 	AdministradorDeLoggers();
 	virtual ~AdministradorDeLoggers();
-	static Archivo *logError, *logDebug, *logInfo, *logWarn, *logFatal, *logUnificado;
+//	static Archivo *logError, *logDebug, *logInfo, *logWarn, *logFatal;
+	static Archivo *logUnificado;
 };
 
 #endif /* ADMINISTRADORDELOGGERS_H_ */
