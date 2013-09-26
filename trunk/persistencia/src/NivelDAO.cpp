@@ -107,6 +107,8 @@ void NivelDAO::imprimirLinea(std::string & msj, YAML::Mark marca) {
 		std::stringstream aux;
 		aux << msj << " en la linea " << marca.line;
 		logg.error(aux.str());
+	} else {
+		logg.error(msj);
 	}
 }
 
@@ -288,6 +290,7 @@ void NivelDAO::obtenerBloques(std::list<Figura*> &lista, YAML::Node objetos){
 			//lista.push_back( new Bloque(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
 		} catch (YAML::Exception &exc) {
 			std::string mensaje = "Error al leer bloques: ";
+			Logger log;
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje,  bloques[i].Mark() );
 		}
