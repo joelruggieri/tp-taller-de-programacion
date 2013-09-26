@@ -33,7 +33,7 @@ public:
 		this->fondo = texture ;
 		this->canvas = new Canvas(x,y,w,h,texture);
 		ViewConBorde *vcb = new ViewConBorde(canvas);
-		vcb->setTamanioOriginal(false);
+		vcb->setAjustarTamanio(false);
 		view = vcb;
 		this->agregarHerramientasAlToolBar(x,y,w,h);
 }

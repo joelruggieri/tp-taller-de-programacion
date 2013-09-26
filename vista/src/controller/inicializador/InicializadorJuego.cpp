@@ -130,7 +130,6 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	int y = r->resizearPosicionLogicaY(modelo->getY());
 	int w = r->resizearDistanciaLogicaY(10);
 	int h = r->resizearDistanciaLogicaY(10);
-	//TODO HABRIA QUE VALIDAR QUE LA POSICION CAIGA BIEN, SINO BORRARLO
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
 	bool exitoVista = zonaJuego->agregarFigura(view);
@@ -160,7 +159,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 		return this->juegoController;
 	}
 
-	this->juegoController = new JuegoEventsController(modeloController, this->factory, 20);
+	this->juegoController = new JuegoEventsController(modeloController, this->factory, 100);
 	ViewFiguraFactory * factory = new ViewCuadradoFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CUADRADO,factory));
 	factory = new ViewTrianguloFactory(juegoController);
@@ -196,11 +195,11 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewRuedaFactory(juegoController));
 	factories.push_back(new ViewCoheteFactory(juegoController));
 	factories.push_back(new ViewCarritoFactory(juegoController));
-	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 120,
+	Zona* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
 			herrTextura);
-	ZonaTablero* zonaTablero = new ZonaTablero(50,70, canvasTexture);
+	ZonaTablero* zonaTablero = new ZonaTablero(50,50, canvasTexture);
 	this->zonaJuego=  new ZonaJuego(zonaCreacion, zonaTablero,
-			new Cuadrado(75, 70,0, 150, 100));
+			new Cuadrado(75, 50,0, 150, 100));
 
 	this->juegoController->setZona(this->zonaJuego);
 

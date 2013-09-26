@@ -19,7 +19,7 @@ ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new 
 	int hC =instance->resizearDistanciaLogicaY(100);
 	this->canvas = new Canvas(xC,yC,wC,hC,imagenFondo);
 	this->viewCanvas= new ViewConBorde(canvas);
-	this->viewCanvas->setTamanioOriginal(true);
+	this->viewCanvas->setAjustarTamanio(true);
 }
 
 Canvas* ZonaTablero::getCanvas(){

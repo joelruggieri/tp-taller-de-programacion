@@ -18,13 +18,13 @@ ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x,
 		Zona(NULL) {
 	Resizer * instance = Resizer::Instance();
 	int xC = instance->resizearDistanciaLogicaX(x);
-	int yC = instance->resizearPosicionLogicaY(70);
+	int yC = instance->resizearPosicionLogicaY(margenSuperior + ALTO_PANEL/2);
 	int wC = instance->resizearDistanciaLogicaX(ANCHO_VIEW_DEF * 2);
-	int hC = instance->resizearDistanciaLogicaY(100);
+	int hC = instance->resizearDistanciaLogicaY(ALTO_PANEL);
 	this->canvas = new Canvas(xC, yC, wC, hC, textura);
 	this->scroll = NULL;
 	this->viewCanvas = new ViewConBorde(canvas);
-	this->viewCanvas->setTamanioOriginal(true);
+	this->viewCanvas->setAjustarTamanio(false);
 	this->inicializar(factories, x, margenSuperior);
 	this->margenSuperior = margenSuperior;
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
@@ -35,8 +35,8 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 	float ancho = ANCHO_VIEW_DEF * 2;
 	//50% de margen alrededor del panel
 	float xInicial = x;
-	float yInicial = margenSuperior - ANCHO_VIEW_DEF;
-	float y = yInicial - 1;
+	float yInicial = margenSuperior + ANCHO_VIEW_DEF;
+	float y = yInicial + 1;
 
 	std::list<ViewFiguraFactory*>::const_iterator iterator;
 	this->inicioCadena = NULL;
@@ -45,25 +45,27 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 	for (iterator = factories->begin(); iterator != factories->end();
 			++iterator) {
 		EslabonCreacion* eslabon = new EslabonCreacion(*iterator,
-				new Cuadrado(xInicial, y,0, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF), 1);
+				new Cuadrado(xInicial, y, 0, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF),
+				1);
 		this->agregarEslabon(eslabon);
-		this->canvas->agregar(new ViewConFondo( new ViewConBorde(eslabon->getFactoryView())));
-		y -= 15;
+		this->canvas->agregar(
+				new ViewConFondo(new ViewConBorde(eslabon->getFactoryView())));
+		y += DISTANCIA_ENTRE_ELEMENTOS;
 	}
 
-	y = factories->size() > 0 ? y + 15 : y;
-	float alto = (margenSuperior -y) + ANCHO_VIEW_DEF;
+	y = factories->size() > 0 ? y - DISTANCIA_ENTRE_ELEMENTOS : y;
+	float alto = (y - margenSuperior) + ANCHO_VIEW_DEF;
 //	y = margenSuperior -( alto / 2);
-	this->setCuerpo(new Cuadrado(x, margenSuperior -( alto / 2),0, ancho, alto));
+	this->setCuerpo(
+			new Cuadrado(x, margenSuperior + (alto / 2), 0, ancho, alto));
 	//las primeras 100 unidades no tienen scroll, sino lo creo.
-	if (alto > 100) {
-		Cuadrado* flechaSuperior = new Cuadrado(x, margenSuperior - 2, 0,
+	if (alto > ALTO_PANEL) {
+		Cuadrado* flechaSuperior = new Cuadrado(x, margenSuperior + 2, 0,
 				ANCHO_VIEW_DEF * 2, 4);
-		Cuadrado* flechaInferior = new Cuadrado(x, margenSuperior - 98, 0,
+		Cuadrado* flechaInferior = new Cuadrado(x, margenSuperior + ALTO_PANEL - 2, 0,
 				ANCHO_VIEW_DEF * 2, 4);
-		this->scroll = new Scroll(flechaSuperior,
-				flechaInferior, 2,
-				alto - 100);
+		this->scroll = new Scroll(flechaSuperior, flechaInferior, 2,
+				alto - ALTO_PANEL);
 		list<Dibujable *>::iterator it;
 		list<Dibujable*> dibujables = this->canvas->getDibujables();
 		for (it = dibujables.begin(); it != dibujables.end(); ++it) {
@@ -73,26 +75,28 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 
 		SDL_Texture * texturaFlecha =
 				CargadorDeTextures::Instance()->cargarTexture(RUTA_FLECHA);
-		canvas->agregar(this->crearScrollView(flechaSuperior,flechaInferior,this->scroll,texturaFlecha));
+		canvas->agregar(
+				this->crearScrollView(flechaSuperior, flechaInferior,
+						this->scroll, texturaFlecha));
 	}
 }
 
-
-
-ScrollView* ZonaCreacion::crearScrollView(Cuadrado* c1, Cuadrado* c2,Scroll* scroll, SDL_Texture * texturaFlecha) {
+ScrollView* ZonaCreacion::crearScrollView(Cuadrado* c1, Cuadrado* c2,
+		Scroll* scroll, SDL_Texture * texturaFlecha) {
 	Resizer * r = Resizer::Instance();
-	int x,y,w,h;
+	int x, y, w, h;
 
-	r->adaptarPosicionLogica(c1->getX(),c1->getY(),x,y);
-	r->adaptarDimensionLogica(c1->getAncho(),c1->getAlto(),w,h);
-	FlechaScrollView * flecha1 = new FlechaScrollView(x,y,w,h,texturaFlecha,false);
+	r->adaptarPosicionLogica(c1->getX(), c1->getY(), x, y);
+	r->adaptarDimensionLogica(c1->getAncho(), c1->getAlto(), w, h);
+	FlechaScrollView * flecha1 = new FlechaScrollView(x, y, w, h, texturaFlecha,
+			false);
 
-	r->adaptarPosicionLogica(c2->getX(),c2->getY(),x,y);
-	r->adaptarDimensionLogica(c2->getAncho(),c2->getAlto(),w,h);
-	FlechaScrollView * flecha2 =new FlechaScrollView(x,y,w,h,texturaFlecha,true);
+	r->adaptarPosicionLogica(c2->getX(), c2->getY(), x, y);
+	r->adaptarDimensionLogica(c2->getAncho(), c2->getAlto(), w, h);
+	FlechaScrollView * flecha2 = new FlechaScrollView(x, y, w, h, texturaFlecha,
+			true);
 
-	return new ScrollView(flecha1,flecha2,scroll,20);
-
+	return new ScrollView(flecha1, flecha2, scroll, SLEEP_BOTONES_SCROLL);
 
 }
 
@@ -107,7 +111,7 @@ FiguraView * ZonaCreacion::getFiguraTemplate(float x, float y) {
 		corrimiento = this->scroll->getScroll();
 
 	}
-	return this->inicioCadena->atender(x, y - corrimiento, -1*corrimiento);
+	return this->inicioCadena->atender(x, y + corrimiento, corrimiento);
 }
 
 ZonaCreacion::~ZonaCreacion() {
@@ -148,14 +152,19 @@ bool ZonaCreacion::click(float x, float y) {
 	return false;
 }
 
-bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled){
-	if (this->scroll != NULL){
-		Resizer* r = Resizer::Instance();
-		int alto = 100;
-		//Normalizo el centro en Y sacando la parte cubierta por el toolBar.
-		return this->scroll->mouseScroll(x, y , amountScrolled,
-				r->resizearDistanciaPixelX(this->canvas->getXCentro()), (this->margenSuperior+this->margenSuperior - alto) / 2,
-				r->resizearDistanciaPixelX(this->canvas->getW()), alto);
+bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled) {
+	if (this->scroll != NULL) {
+		Cuadrado c(this->getCuerpo()->getX(), (this->margenSuperior + ALTO_PANEL/2), 0,
+				ANCHO_VIEW_DEF * 2, ALTO_PANEL);
+		if (c.contacto(x,y)) {
+			return this->scroll->mouseScroll(x, y, amountScrolled, x, x, x, x);
+		}
 	}
 	return false;
+
+//		//Normalizo el centro en Y sacando la parte cubierta por el toolBar.
+//		return this->scroll->mouseScroll(x, y , amountScrolled,
+//				r->resizearDistanciaPixelX(this->canvas->getXCentro()),
+//				r->resizearPosicionPixelY((this->margenSuperior + alto) /2 ),
+//				r->resizearDistanciaPixelX(this->canvas->getW()), alto);
 }
