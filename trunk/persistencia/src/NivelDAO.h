@@ -35,7 +35,9 @@ private:
 	void obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos);
-	void imprimirLinea(YAML::Exception &exc);
+	void imprimirLinea(std:: string & msj, YAML::Mark marca);
+	bool validar(const Figura& obj, const YAML::Node& circulos, std::size_t i);
+
 	Logger logg;
 };
 

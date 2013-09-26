@@ -61,8 +61,8 @@ bool enContacto(float posX, float posY, int xC, int yC, int wC, int hC){
 }
 
 bool Scroll::mouseScroll(float x, float y, int amountScrolled, int xC, int yC, int w, int h){
-	bool enContactoFlechas = this->figura->contacto(x, y);
-	bool enContactoZona = enContacto(x, y, xC, yC, w, h);
+	bool enContactoFlechas = true;
+	bool enContactoZona = true;
 	if(enContactoFlechas || enContactoZona){
 		this->desplazarBarra(amountScrolled);
 		//cout << "Se escroleo" <<endl;

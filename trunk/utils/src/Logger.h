@@ -31,6 +31,7 @@ public:
 //	void borrar();
 	void concatenar(std::string& mensajeOriginal, float numero);
 	void concatenar(std::string& mensajeOriginal, double numero);
+	void concatenar(std::string& mensajeOriginal, int numero);
 	static void setNivel(NIVEL_LOGGER);
 };
 #endif /* LOGGER_H_ */

@@ -77,6 +77,11 @@ void Logger::concatenar(std::string& mensajeOriginal,double numero){
 	 mensajeOriginal.append(ss.str());
 }
 
+void Logger::concatenar(std::string& mensajeOriginal,int numero){
+	 std::stringstream ss (std::stringstream::out);
+	 ss << numero;
+	 mensajeOriginal.append(ss.str());
+}
 
 Logger::Logger() {
 }

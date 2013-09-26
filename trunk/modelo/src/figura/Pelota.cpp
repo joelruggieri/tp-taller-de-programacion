@@ -23,7 +23,7 @@ Pelota::Pelota(float x, float y, Rotador* rotador,float radio): Circulo(x,y,rota
 Pelota::Pelota(const Pelota& figura){
 	this->x = figura.getX();
 	this->y = figura.getY();
-	this->rotacion = figura.getRotacion();
+	this->setRotacion(figura.getRotacion());
 	this->rotador = figura.rotador;
 	this->radio = figura.getRadio();
 

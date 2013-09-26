@@ -21,7 +21,7 @@ Martillo::~Martillo() {
 Martillo::Martillo(const Martillo& figura){
 	this->x = figura.getX();
 	this->y = figura.getY();
-	this->rotacion = figura.getRotacion();
+	this->setRotacion(figura.getRotacion());
 	this->rotador = figura.rotador;
 	this->alto = figura.getAlto();
 	this->ancho = figura.getAncho();

@@ -10,7 +10,7 @@
 ViewConBorde::ViewConBorde(View * view) :
 		View(view->getXCentro(), view->getYCentro(), view->getW(), view->getH()) {
 	this->decorable = view;
-	this->mantenerTamanio = true;
+	this->ajustarTamanio = true;
 }
 
 ViewConBorde::~ViewConBorde() {
@@ -107,7 +107,7 @@ void ViewConBorde::generarSinBorde(SDL_Rect & dest) {
 	dest.y = this->decorable->getY();
 }
 void ViewConBorde::dibujarse(SDL_Renderer* renderer) {
-	if (this->mantenerTamanio) {
+	if (this->ajustarTamanio) {
 		SDL_Rect dest;
 		generarConBorde(dest);
 		this->decorable->dibujarse(renderer, dest);
@@ -170,6 +170,6 @@ void ViewConBorde::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
 	this->dibujarse(renderer);
 }
 
-void ViewConBorde::setTamanioOriginal(bool bool1) {
-	this->mantenerTamanio = bool1;
+void ViewConBorde::setAjustarTamanio(bool bool1) {
+	this->ajustarTamanio = bool1;
 }

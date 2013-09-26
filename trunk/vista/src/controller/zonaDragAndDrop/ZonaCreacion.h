@@ -23,6 +23,10 @@ private:
 	EslabonCreacion * inicioCadena;
 	EslabonCreacion * ultimo;
 	static const int ANCHO_VIEW_DEF = 10;
+	static const int ALTO_PANEL = 100;
+	static const int DISTANCIA_ENTRE_ELEMENTOS = 15;
+	static const int SLEEP_BOTONES_SCROLL = 20;
+
 	bool agregarTemplate(FiguraView * dragueable);
 	FiguraView * getFiguraTemplate(float x, float y);
 	void inicializar(list<ViewFiguraFactory*> *, float x, float margenSuperior);
@@ -31,6 +35,7 @@ private:
 	Scroll * scroll;
 	ScrollView * crearScrollView(Cuadrado* c1, Cuadrado* c2,Scroll* scroll, SDL_Texture * texturaFlecha);
 	float margenSuperior;
+
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior, SDL_Texture *);
 	virtual ~ZonaCreacion();
