@@ -135,8 +135,8 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 
 bool NivelDAO::validar(const Figura& obj, const YAML::Node& circulos,
 		std::size_t i) {
-	if (obj.getX() > 100 || obj.getX() < 0 || obj.getY() < 20
-			|| obj.getY() > 120) {
+	if (obj.getX() > 100 || obj.getX() < 0 || obj.getY() < 0
+			|| obj.getY() > 100) {
 		Logger log;
 		std::string msj = "Objeto con posicion invalida, es omitido (";
 		log.concatenar(msj, obj.getX());
