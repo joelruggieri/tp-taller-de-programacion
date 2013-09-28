@@ -53,23 +53,42 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 	try{
 	nodoRaiz = a->obtenerNodoRaiz();
 	nodo = a->obtenerNodo(OBJETOS);
-	}catch(YAML::ParserException& exc){
+	}catch(YAML::BadFile& exc){
+		std::string mensaje = "No se pudo crear/abrir el archivo: ";
+		mensaje.append(a->getNombre());
+		logg.fatal(mensaje);
+	}
+	catch(YAML::ParserException& exc){
 		std::string mensaje = "Error de parseo de datos del archivo yaml en la linea ";
 		std::string s;
 		std::stringstream out;
-		out << exc.mark.line + 1;
+		out << exc.mark.line;
 		s = out.str();
 		mensaje.append(s);
 		mensaje.append(". Se procederà a sobreecribir el archivo");
 		logg.error(mensaje);
+	}catch (YAML::BadConversion& exc) {
+		std::string msj = "No se pudo cargar el fondo del nivel: " + string(exc.what());
+		std::string s;
+		std::stringstream out;
+		//out << nodoRaiz.Mark().line/*nodoRaiz.Mark().line +1*/;
+		s = out.str();
+		msj.append(s);
+		logg.error(msj);
+
 	}
+
 	Nivel *n = new Nivel(nombre);
 	try {
 		n->setFondo(nodoRaiz["Nivel"]["Fondo"].as<std::string>());
-	} catch (YAML::Exception& exc) {
-		std::string msj = "No se pudo cargar el fondo del nivel: " + string(exc.what());
-		imprimirLinea(msj, nodoRaiz.Mark());
-
+	} catch (YAML::BadConversion& exc) {
+		std::string msj = "No se pudo cargar el fondo del nivel ni el nivel: " + string(exc.what());
+		std::string s;
+		std::stringstream out;
+		//out << nodoRaiz.Mark().line/*nodoRaiz.Mark().line +1*/;
+		s = out.str();
+		msj.append(s);
+		logg.error(msj);
 	}
 	std::list<Figura*> figuras = leerFiguras(nodo);
 	std::list<Figura*>::iterator it;
@@ -131,7 +150,16 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
 			logg.fatal(mensaje);
-		}
+		}catch (YAML::BadSubscript& exc) {
+		std::string msj = "No hay reconocimiento de figuras validas en la linea ";
+		std::string s;
+		std::stringstream out;
+		out << objetos.Mark().line;
+		s = out.str();
+		msj.append(s);
+		logg.error(msj);
+
+	}
 	return lista;
 }
 
@@ -226,7 +254,7 @@ void NivelDAO::obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos){
 }
 
 void NivelDAO::obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node globos = objetos["Globos"];
+	YAML::Node globos =  objetos["Globos"];
 	for (std::size_t i = 0; i < globos.size(); i++) {
 		try {
 			Globo obj = globos[i].as<Globo>();
