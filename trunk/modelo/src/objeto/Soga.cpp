@@ -7,7 +7,7 @@
 
 #include "Soga.h"
 
-Soga::Soga() {
+Soga::Soga(float x, float y,Rotador * rot):Objeto(x,y,rot) {
 	// TODO Auto-generated constructor stub
 
 }

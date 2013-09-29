@@ -9,24 +9,18 @@
 #include <iostream>
 #include "../controller/Resizer.h"
 using namespace std;
-Scroll::Scroll(Figura * flechaSup, Figura* flechaInf,int velocidad, int max) {
+Scroll::Scroll(Cuadrado * flechaSup, Cuadrado* flechaInf,int velocidad, int max) {
 	this->ultimoClick = 0;
-	float x = (flechaSup->getX() + flechaInf->getX())/2;
-	float y = (flechaSup->getY() + flechaInf->getY())/2;
-	this->figura = new FiguraCompuesta(x,y);
-	this->figura->addFigura(flechaSup);
-//	flechaSup->setRotacion(0);
-//	flechaInf->setRotacion(90);
-	this->figura->addFigura(flechaInf);
-	this->signado.insert(pair<Figura*,int>(flechaSup,1));
-	this->signado.insert(pair<Figura*,int>(flechaInf,-1));
+	this->sup = flechaSup;
+	this->inf = flechaInf;
 	this->posicion = max;
 	this->max = max;
 	this->velocidad = velocidad;
 }
 
 Scroll::~Scroll() {
-	delete this->figura;
+	delete sup;
+	delete inf;
 }
 
 void Scroll::desplazarBarra(int sentido){
@@ -46,10 +40,12 @@ void Scroll::desplazarBarra(int sentido){
 }
 
 bool Scroll::click(float x, float y) {
-	Figura * fig = this->figura->getFiguraEn(x,y);
+	Cuadrado * fig = sup->contacto(x,y) ? sup : (inf->contacto(x,y) ? inf: NULL);
+
 
 	if(fig != NULL){
-		this->desplazarBarra(this->signado.find(fig) ->second);
+		int signado = (sup == fig ? 1 : -1);
+		this->desplazarBarra(signado);
 		return true;
 	}
 	//cout<< "SCROL: " << getScrollPixels()<< endl;

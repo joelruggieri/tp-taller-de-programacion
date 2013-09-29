@@ -13,6 +13,10 @@
 #include "../../vista/figura/FiguraView.h"
 #include "../../vista/Canvas.h"
 #include "../../vista/ViewConBorde.h"
+#include <map>
+using namespace std;
+
+
 class ZonaTablero: public Zona{
 private:
 	bool agregarTemplate(FiguraView * dragueable);

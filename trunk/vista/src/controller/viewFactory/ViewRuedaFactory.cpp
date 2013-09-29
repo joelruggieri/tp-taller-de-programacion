@@ -20,7 +20,7 @@ FiguraView* ViewRuedaFactory::crear(int x, int y, int w, int h) {
 	return new RuedaView(x, y, w, h, this->textura, this->controller);
 }
 
-FiguraView* ViewRuedaFactory::crearVistaPropia(int x, int y, int w,
+View* ViewRuedaFactory::crearVistaPropia(int x, int y, int w,
 		int h) {
-	return new RuedaView(x,y,w,h, this->textura, this->controller);
+	return new FactoryView(x,y,w,h, this->textura);
 }

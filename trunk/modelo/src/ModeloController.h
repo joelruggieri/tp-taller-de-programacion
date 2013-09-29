@@ -22,6 +22,7 @@ public:
 	bool crearFigura(Figura* figura);
 	bool removerFigura(Figura* figura);
 	list<Figura*>& getFiguras();
+	Figura * pickUp(float, float);
 };
 
 #endif /* EVENTOSMODELOCONTROLLER_H_ */

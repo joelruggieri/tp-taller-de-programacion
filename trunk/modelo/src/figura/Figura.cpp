@@ -41,6 +41,7 @@ Figura::Figura() {
 	y=0;
 	rotacion = 0;
 	this->rotador = 0;
+	vista= 0;
 }
 
 Figura::Figura(float x, float y, Rotador * rotador) {
@@ -48,6 +49,7 @@ Figura::Figura(float x, float y, Rotador * rotador) {
 	this->y = y;
 	this->rotacion = 0;
 	this->rotador = rotador;
+	vista= 0;
 }
 
 
@@ -56,4 +58,25 @@ Figura::~Figura() {
 
 void Figura::setRotador(Rotador* rotador) {
 	this->rotador = rotador;
+}
+
+ Vista* Figura::getVista()  {
+	return vista;
+}
+
+void Figura::setVista(Vista* vista) {
+	this->vista = vista;
+}
+
+
+b2Body* Figura::getBody() {
+	return this->body;
+}
+
+void Figura::setBody(b2Body* b) {
+	body = b;
+}
+
+Rotador* Figura::getRotador() {
+	return this->rotador;
 }

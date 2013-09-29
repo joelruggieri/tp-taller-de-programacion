@@ -7,15 +7,14 @@
 
 #ifndef CUADRADO_H_
 #define CUADRADO_H_
-#include "Rotador.h"
+#include "src/Posicionable.h"
 
-#include "Figura.h"
-class Cuadrado: public Figura {
+class Cuadrado {
 protected:
-	float ancho,alto;
+	float ancho,alto,x,y;
 public:
 	Cuadrado();
-	Cuadrado(float, float,Rotador*, float, float);
+	Cuadrado(float, float, float, float);
 	virtual ~Cuadrado();
 	bool contacto(float,float);
 	bool contieneCentro(Posicionable* posicion);
@@ -24,7 +23,10 @@ public:
 	void setAlto (float alto);
 	float getAncho() const ;
 	float getAlto() const;
-	void acept(VisitorFigura*);
+	float getX() const;
+	void setX(float x);
+	float getY() const;
+	void setY(float y);
 };
 
 #endif /* CUADRADO_H_ */

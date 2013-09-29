@@ -14,7 +14,7 @@ public:
 	ViewPelotaFactory(DropController* controller);
 	virtual ~ViewPelotaFactory();
 	FiguraView * crear(int,int,int,int);
-	FiguraView * crearVistaPropia(int,int,int,int);
+	View * crearVistaPropia(int,int,int,int);
 
 };
 

@@ -10,7 +10,7 @@
 #include "src/Logger.h"
 
 //UN CUADRADO DE 100X100 CENTRADO EN X,Y
-ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,0,100,100)) {
+ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,100,100)) {
 	Resizer * instance = Resizer::Instance();
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 	int xC = instance->resizearDistanciaLogicaX(x);
@@ -80,3 +80,4 @@ bool ZonaTablero::mouseScroll(float x, float y, int amountScrolled){
 void ZonaTablero::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
 	this->dibujarse(renderer);
 }
+

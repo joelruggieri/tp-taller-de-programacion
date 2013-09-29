@@ -21,7 +21,7 @@ FiguraView* ViewPelotaFactory::crear(int x, int y, int w, int h) {
 	return new PelotaView(x, y, w, h, this->textura, this->controller);
 }
 
-FiguraView* ViewPelotaFactory::crearVistaPropia(int x, int y, int w,
+View* ViewPelotaFactory::crearVistaPropia(int x, int y, int w,
 		int h) {
-	return new PelotaView(x,y,w,h, this->textura, this->controller);
+	return new FactoryView(x,y,w,h, this->textura);
 }

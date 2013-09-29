@@ -14,7 +14,7 @@ public:
 	ViewCirculoFactory(DropController * controller);
 	virtual ~ViewCirculoFactory();
 	FiguraView * crear(int,int,int,int);
-	FiguraView * crearVistaPropia(int,int,int,int);
+	FactoryView * crearVistaPropia(int,int,int,int);
 };
 
 #endif /* VIEWCIRCULOFACTORY_H_ */

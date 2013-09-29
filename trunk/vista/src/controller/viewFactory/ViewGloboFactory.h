@@ -15,7 +15,7 @@ public:
 	ViewGloboFactory(DropController* controller);
 	virtual ~ViewGloboFactory();
 	FiguraView * crear(int,int,int,int);
-	FiguraView * crearVistaPropia(int,int,int,int);
+	View * crearVistaPropia(int,int,int,int);
 };
 
 #endif /* VIEWGLOBOFACTORY_H_ */

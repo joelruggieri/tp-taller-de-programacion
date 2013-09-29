@@ -20,7 +20,7 @@ FiguraView* ViewTrianguloFactory::crear(int x, int y, int w, int h) {
 	return new TrianguloView(x,y,w,h, this->textura, this->controller);
 }
 
-FiguraView* ViewTrianguloFactory::crearVistaPropia(int x, int y, int w,
+View* ViewTrianguloFactory::crearVistaPropia(int x, int y, int w,
 		int h) {
-	return new TrianguloView(x,y,w,h, this->textura, this->controller);
+	return new FactoryView(x,y,w,h, this->textura);
 }

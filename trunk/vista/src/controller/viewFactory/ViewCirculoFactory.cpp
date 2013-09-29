@@ -20,7 +20,7 @@ FiguraView* ViewCirculoFactory::crear(int x, int y, int w, int h) {
 	return new CirculoView(x, y, w, h, this->textura, this->controller);
 }
 
-FiguraView* ViewCirculoFactory::crearVistaPropia(int x, int y, int w,
+FactoryView* ViewCirculoFactory::crearVistaPropia(int x, int y, int w,
 		int h) {
-	return new CirculoView(x,y,w,h, this->textura, this->controller);
+	return new FactoryView(x,y,w,h, this->textura);
 }

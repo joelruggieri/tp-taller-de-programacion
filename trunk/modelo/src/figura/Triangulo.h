@@ -10,6 +10,7 @@
 
 #include "Figura.h"
 #include "Rotador.h"
+#include "Box2D/Box2D.h"
 class Triangulo: public Figura {
 private:
 	float ancho,alto;
@@ -25,6 +26,7 @@ public:
 	float getAncho() const;
 	float getAlto() const;
 	void acept(VisitorFigura*);
+	void crearsFisica(b2World *);
 };
 
 #endif /* TRIANGULO_H_ */

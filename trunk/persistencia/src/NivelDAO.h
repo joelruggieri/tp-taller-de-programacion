@@ -25,16 +25,10 @@ private:
 	AdministradorDeArchivos administrador;
 	std::list<Figura*> leerFiguras(YAML::Node objetos);
 	void obtenerCirculos(std::list<Figura*> &lista , YAML::Node objetos);
-	void obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos);
-	void obtenerResortes(std::list<Figura*> &lista, YAML::Node objetos);
-	void obtenerMartillos(std::list<Figura*> &lista, YAML::Node objetos);
-	void obtenerBloques(std::list<Figura*> &lista, YAML::Node objetos);
-	void obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos);
-	void obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos);
 	void imprimirLinea(std:: string & msj, YAML::Mark marca);
 	bool validar(const Figura& obj, const YAML::Node& circulos, std::size_t i);
 

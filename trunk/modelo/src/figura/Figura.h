@@ -9,13 +9,17 @@
 #define FIGURA_H_
 #include "../Posicionable.h"
 #include "VisitorFigura.h"
+#include "Box2D/Box2D.h"
 #include "Rotador.h"
+#include "../Vista.h"
 class Figura: public Posicionable {
 protected:
 	float x;
 	float y;
 	double rotacion;
 	Rotador * rotador;
+	Vista * vista;
+	b2Body * body;
 public:
 	Figura();
 	Figura(float x, float y, Rotador * rot);
@@ -28,11 +32,17 @@ public:
 	void setX(float x);
 	void setY(float y);
 	void setRotacion(double rotation);
+	virtual void crearsFisica(b2World *) = 0;
 	virtual void acept(VisitorFigura*) = 0;
 	//estos metodos devuelven el tamaño del cuadrado contenedor;
 	virtual float getAlto() const = 0;
 	virtual float getAncho() const = 0;
 	void setRotador(Rotador* rotador);
+	Vista* getVista();
+	void setVista(Vista* vista);
+	b2Body * getBody();
+	void setBody(b2Body *);
+	Rotador * getRotador();
 };
 
 #endif /* FIGURA_H_ */

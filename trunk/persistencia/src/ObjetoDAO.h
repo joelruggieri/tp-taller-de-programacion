@@ -12,16 +12,11 @@
 #include <string>
 class Circulo;
 class Triangulo;
-class Cuadrado;
 class Figura;
 class Pelota;
 class Globo;
-class Resorte;
-class Martillo;
-class Bloque;
-class Cohete;
 class Rueda;
-
+class Motor;
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
 
@@ -30,29 +25,18 @@ public:
 	ObjetoDAO();
 	virtual ~ObjetoDAO();
 	void guardarFigura(Figura *objeto, YAML::Node *nodoRaiz);
-	void visit(Cuadrado* c);
 	void visit(Triangulo* t);
 	void visit(Circulo* c);
 	void visit(Globo* globo);
 	void visit(Pelota* pelota);
-	void visit(Resorte* resorte);
-	void visit(Martillo* martillo);
-	void visit(Bloque* bloque);
-	void visit(Cohete* cohete);
 	void visit(Rueda* rueda);
-	void visit(Carrito* carrito);
+	void visit (Motor * motor);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
-	void guardar(Cuadrado *objeto, YAML::Node *nodoRaiz);
 	void guardar(Triangulo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Globo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Pelota *objeto, YAML::Node *nodoRaiz);
-	void guardar(Resorte *objeto, YAML::Node *nodoRaiz);
-	void guardar(Martillo *objeto, YAML::Node *nodoRaiz);
-	void guardar(Bloque *objeto, YAML::Node *nodoRaiz);
-	void guardar(Cohete *objeto, YAML::Node *nodoRaiz);
 	void guardar(Rueda *objeto, YAML::Node *nodoRaiz);
-	void guardar(Carrito *objeto, YAML::Node *nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };

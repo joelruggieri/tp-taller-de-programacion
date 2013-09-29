@@ -35,11 +35,11 @@ private:
 	Scroll * scroll;
 	ScrollView * crearScrollView(Cuadrado* c1, Cuadrado* c2,Scroll* scroll, SDL_Texture * texturaFlecha);
 	float margenSuperior;
+	void agregarEslabon(EslabonCreacion* eslabon);
 
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior, SDL_Texture *);
 	virtual ~ZonaCreacion();
-	void agregarEslabon(EslabonCreacion* eslabon);
 	void dibujarse(SDL_Renderer *);
 	void dibujarse(SDL_Renderer *, SDL_Rect &);
 	bool removerFigura(FiguraView*);
