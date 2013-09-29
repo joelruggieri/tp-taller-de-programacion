@@ -86,7 +86,7 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 	try {
 		n->setFondo(nodoRaiz["Nivel"]["Fondo"].as<std::string>());
 	} catch (YAML::BadConversion& exc) {
-		std::string msj = "No se pudo cargar el fondo del nivel ni el nivel: " + string(exc.what());
+		std::string msj = "No se pudo cargar el fondo del nivel: " + string(exc.what());
 		logg.error(msj);
 	}
 	std::list<Figura*> figuras = leerFiguras(nodo);
