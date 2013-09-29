@@ -7,7 +7,7 @@
 
 #include "PelotaJuego.h"
 
-PelotaJuego::PelotaJuego() {
+PelotaJuego::PelotaJuego(float x, float y,Rotador * rot):Objeto(x,y,rot) {
 	// TODO Auto-generated constructor stub
 
 }

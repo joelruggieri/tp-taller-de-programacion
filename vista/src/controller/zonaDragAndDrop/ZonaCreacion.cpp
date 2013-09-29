@@ -6,7 +6,7 @@
  */
 
 #include "ZonaCreacion.h"
-#include "src/figura/Cuadrado.h"
+#include "../../modelo/Cuadrado.h"
 #include "../Resizer.h"
 #include "../../vista/Canvas.h"
 #include "../../vista/FlechaScrollView.h"
@@ -41,11 +41,11 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 	std::list<ViewFiguraFactory*>::const_iterator iterator;
 	this->inicioCadena = NULL;
 	this->ultimo = NULL;
-	//por cada factory crea un eslabon.
+	//por cada mapa crea un eslabon.
 	for (iterator = factories->begin(); iterator != factories->end();
 			++iterator) {
 		EslabonCreacion* eslabon = new EslabonCreacion(*iterator,
-				new Cuadrado(xInicial, y, 0, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF),
+				new Cuadrado(xInicial, y, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF),
 				1);
 		this->agregarEslabon(eslabon);
 		this->canvas->agregar(
@@ -57,12 +57,12 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 	float alto = (y - margenSuperior) + ANCHO_VIEW_DEF;
 //	y = margenSuperior -( alto / 2);
 	this->setCuerpo(
-			new Cuadrado(x, margenSuperior + (alto / 2), 0, ancho, alto));
+			new Cuadrado(x, margenSuperior + (alto / 2), ancho, alto));
 	//las primeras 100 unidades no tienen scroll, sino lo creo.
 	if (alto > ALTO_PANEL) {
-		Cuadrado* flechaSuperior = new Cuadrado(x, margenSuperior + 2, 0,
+		Cuadrado* flechaSuperior = new Cuadrado(x, margenSuperior + 2,
 				ANCHO_VIEW_DEF * 2, 4);
-		Cuadrado* flechaInferior = new Cuadrado(x, margenSuperior + ALTO_PANEL - 2, 0,
+		Cuadrado* flechaInferior = new Cuadrado(x, margenSuperior + ALTO_PANEL - 2,
 				ANCHO_VIEW_DEF * 2, 4);
 		this->scroll = new Scroll(flechaSuperior, flechaInferior, 2,
 				alto - ALTO_PANEL);
@@ -154,17 +154,11 @@ bool ZonaCreacion::click(float x, float y) {
 
 bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled) {
 	if (this->scroll != NULL) {
-		Cuadrado c(this->getCuerpo()->getX(), (this->margenSuperior + ALTO_PANEL/2), 0,
+		Cuadrado c(this->getCuerpo()->getX(), (this->margenSuperior + ALTO_PANEL/2),
 				ANCHO_VIEW_DEF * 2, ALTO_PANEL);
 		if (c.contacto(x,y)) {
 			return this->scroll->mouseScroll(x, y, amountScrolled, x, x, x, x);
 		}
 	}
 	return false;
-
-//		//Normalizo el centro en Y sacando la parte cubierta por el toolBar.
-//		return this->scroll->mouseScroll(x, y , amountScrolled,
-//				r->resizearDistanciaPixelX(this->canvas->getXCentro()),
-//				r->resizearPosicionPixelY((this->margenSuperior + alto) /2 ),
-//				r->resizearDistanciaPixelX(this->canvas->getW()), alto);
 }

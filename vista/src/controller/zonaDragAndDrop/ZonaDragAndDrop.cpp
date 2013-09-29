@@ -11,7 +11,6 @@
 
 Zona::Zona(Cuadrado * cuerpo) {
 	this->cuerpo = cuerpo;
-	this->scrollY = 0;
 }
 
 Zona::~Zona() {
@@ -26,14 +25,6 @@ bool Zona::agregarFigura(FiguraView* vista) {
 		return this->agregarTemplate(vista);
 	}
 	return false;
-}
-
-float Zona::getScrollY() const {
-	return scrollY;
-}
-
-void Zona::setScrollY(float scrollY) {
-	this->scrollY = scrollY;
 }
 
 //Si hay scroll lo devuelve con la posicion cambiada y adapta la posicion algo del modelo.

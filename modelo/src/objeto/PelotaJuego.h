@@ -12,7 +12,7 @@
 
 class PelotaJuego: public Objeto {
 public:
-	PelotaJuego();
+	PelotaJuego(float x, float y,Rotador * rot);;
 	virtual ~PelotaJuego();
 };
 

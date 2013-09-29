@@ -10,16 +10,11 @@
 
 #include "../vista/figura/RuedaView.h"
 #include "../vista/figura/CirculoView.h"
-#include "../vista/figura/CuadradoView.h"
 #include "../vista/figura/FiguraView.h"
 #include "../vista/figura/TrianguloView.h"
 #include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
-#include "../vista/figura/ResorteView.h"
-#include "../vista/figura/MartilloView.h"
-#include "../vista/figura/BloqueView.h"
-#include "../vista/figura/CoheteView.h"
-#include "../vista/figura/CarritoView.h"
+#include "../vista/objeto/MotorView.h"
 #include "DropController.h"
 #include "mouseEventController/MouseEventController.h"
 #include "../vista/Dragueable.h"
@@ -29,13 +24,16 @@
 #include "../vista/Dibujable.h"
 #include "SDL2/SDL.h"
 #include "Drag.h"
+#include "zonaDragAndDrop/ZonaTablero.h"
+#include "zonaDragAndDrop/ZonaCreacion.h"
 class Figura;
 class FiguraFactory;
 class Zona;
 
 class JuegoEventsController: public DropController, public MouseEventController, public Dragueable, public Rotable, public Dibujable {
 private:
-	Zona * zona;
+	ZonaTablero * tablero;
+	ZonaCreacion * creacion;
 	FiguraFactory * figurasFactory;
 	Drag * elementoDrag;
 	FiguraView * figuraRotacion;
@@ -49,16 +47,11 @@ public:
 	JuegoEventsController(ModeloController*,FiguraFactory*, int yMax);
 	virtual ~JuegoEventsController();
 	void dropNuevaFigura(RuedaView*);
-	void dropNuevaFigura(CuadradoView*);
 	void dropNuevaFigura(CirculoView*);
 	void dropNuevaFigura(TrianguloView*);
 	void dropNuevaFigura(GloboView*);
 	void dropNuevaFigura(PelotaView*);
-	void dropNuevaFigura(ResorteView*);
-	void dropNuevaFigura(MartilloView*);
-	void dropNuevaFigura(BloqueView*);
-	void dropNuevaFigura(CoheteView*);
-	void dropNuevaFigura(CarritoView*);
+	void dropNuevaFigura(MotorView*);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 	bool clickDown(int,int);
@@ -67,8 +60,7 @@ public:
 	bool rightClickDown(int,int);
 	bool rightClickUp(int,int);
 	bool mouseWheelMoved(int, int, int);
-	Zona* getZona();
-	void setZona(Zona* zona);
+	void setZonas(ZonaTablero *tablero, ZonaCreacion * creacion);
 	bool isDragging();
 	View* getDragueado();
 	bool isRotando();

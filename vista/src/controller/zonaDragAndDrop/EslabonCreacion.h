@@ -10,7 +10,7 @@
 
 #include "../../vista/figura/FiguraView.h"
 #include "../viewFactory/ViewFiguraFactory.h"
-#include "src/figura/Cuadrado.h"
+#include "../../modelo/Cuadrado.h"
 using namespace std;
 
 class EslabonCreacion {

@@ -15,7 +15,7 @@ public:
 	ViewTrianguloFactory(DropController * controller);
 	virtual ~ViewTrianguloFactory();
 	FiguraView * crear(int, int, int, int);
-	FiguraView * crearVistaPropia(int,int,int,int);
+	View * crearVistaPropia(int,int,int,int);
 };
 
 #endif /* VIEWTRIANGULOFACTORY_H_ */

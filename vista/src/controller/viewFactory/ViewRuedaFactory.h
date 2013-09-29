@@ -14,7 +14,7 @@ public:
 	ViewRuedaFactory(DropController * controller);
 	virtual ~ViewRuedaFactory();
 	FiguraView * crear(int,int,int,int);
-	FiguraView * crearVistaPropia(int,int,int,int);
+	View * crearVistaPropia(int,int,int,int);
 };
 
 #endif /* VIEWRUEDAFACTORY_H_ */

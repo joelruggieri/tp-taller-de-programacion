@@ -9,16 +9,10 @@
 #include <yaml-cpp/yaml.h>
 #include "src/figura/Figura.h"
 #include "src/figura/Triangulo.h"
-#include "src/figura/Cuadrado.h"
 #include "src/figura/Circulo.h"
 #include "src/figura/Pelota.h"
-#include "src/figura/Globo.h"
-#include "src/figura/Resorte.h"
-#include "src/figura/Martillo.h"
-#include "src/figura/Bloque.h"
-#include "src/figura/Cohete.h"
 #include "src/figura/Rueda.h"
-#include "src/figura/Carrito.h"
+#include "src/figura/Globo.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
@@ -136,12 +130,7 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 		try{
 			this->obtenerPelotas(lista,objetos);
 			this->obtenerGlobos(lista,objetos);
-			this->obtenerResortes(lista,objetos);
-			this->obtenerMartillos(lista,objetos);
-			this->obtenerBloques(lista,objetos);
-			this->obtenerCohetes(lista,objetos);
 			this->obtenerRuedas(lista,objetos);
-			this->obtenerCarritos(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
@@ -223,95 +212,6 @@ void NivelDAO::obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos){
 }
 
 
-void NivelDAO::obtenerResortes(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node resortes = objetos["Resortes"];
-	if(resortes.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Resortes";
-		logg.info(mensaje);
-	}
-	for (std::size_t i = 0; i < resortes.size(); i++) {
-		try {
-			Resorte obj = resortes[i].as<Resorte>();
-			bool salir = validar(obj, resortes, i);
-			if(!salir ) continue;
-			lista.push_back( new Resorte(obj));
-			//lista.push_back( new Resorte(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer resortes: ";
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje,  resortes[i].Mark() );
-		}
-	}
-}
-
-
-void NivelDAO::obtenerMartillos(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node martillos = objetos["Martillos"];
-	if(martillos.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Martillos";
-		logg.info(mensaje);
-	}
-	for (std::size_t i = 0; i < martillos.size(); i++) {
-		try {
-			Martillo obj = martillos[i].as<Martillo>();
-			bool salir = validar(obj, martillos, i);
-			if(!salir ) continue;
-			lista.push_back( new Martillo(obj));
-			//lista.push_back( new Martillo(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer martillos: ";
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje, martillos[i].Mark() );
-		}
-	}
-}
-
-
-void NivelDAO::obtenerBloques(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node bloques = objetos["Bloques"];
-	if(bloques.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Bloques";
-		logg.info(mensaje);
-	}
-	for (std::size_t i = 0; i < bloques.size(); i++) {
-		try {
-			Bloque obj = bloques[i].as<Bloque>();
-			bool salir = validar(obj, bloques, i);
-			if(!salir ) continue;
-			lista.push_back( new Bloque(obj));
-			//lista.push_back( new Bloque(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer bloques: ";
-			Logger log;
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje,  bloques[i].Mark() );
-		}
-	}
-}
-
-
-void NivelDAO::obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node Cohetes = objetos["Cohetes"];
-	if(Cohetes.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Cohetes";
-		logg.info(mensaje);
-	}
-	for (std::size_t i = 0; i < Cohetes.size(); i++) {
-		try {
-			Cohete obj = Cohetes[i].as<Cohete>();
-			bool salir = validar(obj, Cohetes, i);
-			if(!salir ) continue;
-			lista.push_back( new Cohete(obj));
-			//lista.push_back( new Cohete(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Cohetes: ";
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje,  Cohetes[i].Mark() );
-		}
-	}
-}
-
-
 void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node Ruedas = objetos["Ruedas"];
 	if(Ruedas.Mark().line == -1 ){
@@ -333,26 +233,6 @@ void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 	}
 }
 
-void NivelDAO::obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node Carritos = objetos["Carritos"];
-	if(Carritos.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Carritos";
-		logg.info(mensaje);
-	}
-	for (std::size_t i = 0; i < Carritos.size(); i++) {
-		try {
-			Carrito obj = Carritos[i].as<Carrito>();
-			bool salir = validar(obj, Carritos, i);
-			if(!salir ) continue;
-			lista.push_back( new Carrito(obj));
-			//lista.push_back( new Carrito(obj.getX(), obj.getY(), 0, obj.getAncho(), obj.getAlto()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Carritos: ";
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje,  Carritos[i].Mark() );
-		}
-	}
-}
 
 Nivel* NivelDAO::cargarPrimerNivel() {
 	std::list<std::string> nombres = AdministradorDeArchivos::getNombres();

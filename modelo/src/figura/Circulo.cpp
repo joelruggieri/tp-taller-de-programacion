@@ -67,3 +67,6 @@ float Circulo::getAlto() const {
 float Circulo::getAncho() const {
 	return radio * 2;
 }
+
+void Circulo::crearsFisica(b2World*) {
+}

@@ -18,4 +18,4 @@ public:
 	virtual ~TrianguloView();
 };
 
-#endif /* CUADRADOVIEW_H_ */
+#endif /* TRIANGULOVIEW_H_ */

@@ -17,7 +17,6 @@ EslabonCreacion::EslabonCreacion(ViewFiguraFactory * factory, Cuadrado * cuerpo,
 	this->siguiente = NULL;
 	this->cuerpo = cuerpo;
 	this->itemsDisponibles = maxItems;
-	//TODO: Adaptar posicion con resizer.
 }
 //
 EslabonCreacion::~EslabonCreacion() {

@@ -8,8 +8,7 @@
 #ifndef ZONADRAGANDDROP_H_
 #define ZONADRAGANDDROP_H_
 
-#include "src/figura/Figura.h"
-#include "src/figura/Cuadrado.h"
+#include "../../modelo/Cuadrado.h"
 #include "../../vista/figura/FiguraView.h"
 #include "../../vista/Dibujable.h"
 #include <list>
@@ -18,7 +17,6 @@ using namespace std;
 class Zona: public Dibujable {
 private:
 	Cuadrado *cuerpo;
-	float scrollY;
 protected:
 	virtual bool agregarTemplate(FiguraView * figura) = 0;
 	// clickea en el area y retorna true si hubo alguna accion.
@@ -35,8 +33,6 @@ public:
 
 	// puede estar recibiendo en unidades logicas.
 	virtual FiguraView * getVista(float, float);
-	float getScrollY() const;
-	void setScrollY(float);
 	virtual void dibujarse(SDL_Renderer *) = 0;
 	virtual void dibujarse(SDL_Renderer *, SDL_Rect &) = 0;
 	Cuadrado*& getCuerpo();

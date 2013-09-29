@@ -7,7 +7,7 @@
 
 #include "BolaBoliche.h"
 
-BolaBoliche::BolaBoliche() {
+BolaBoliche::BolaBoliche(float x, float y,Rotador * rot):Objeto(x,y,rot) {
 	// TODO Auto-generated constructor stub
 
 }

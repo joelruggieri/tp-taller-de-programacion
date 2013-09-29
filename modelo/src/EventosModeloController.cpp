@@ -8,7 +8,7 @@
 #include "ModeloController.h"
 
 ModeloController::ModeloController() {
-	mapa = new Mapa();
+	mapa = new Mapa(50,50,100,100);
 
 }
 
@@ -17,15 +17,17 @@ ModeloController::~ModeloController() {
 }
 
 bool ModeloController::crearFigura(Figura* figura) {
-	this->mapa->addFigura(figura);
-	return true;
+	return this->mapa->addFigura(figura);;
 }
 
 bool ModeloController::removerFigura(Figura* figura) {
-	this->mapa->removeFigura(figura);
-	return true;
+	return this->mapa->removeFigura(figura);;
 }
 
 list<Figura*>& ModeloController::getFiguras() {
 	return mapa->getFiguras();
+}
+
+Figura* ModeloController::pickUp(float x, float y) {
+	return mapa->pickUp(x,y);
 }

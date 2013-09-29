@@ -12,25 +12,17 @@
 #include <iostream>
 #include <new>
 #include <string>
-#include <sstream>
 
 #include "../vista/figura/RuedaView.h"
 #include "../vista/figura/CirculoView.h"
-#include "../vista/figura/CuadradoView.h"
 #include "../vista/figura/FiguraView.h"
 #include "../vista/figura/TrianguloView.h"
 #include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
-#include "../vista/figura/ResorteView.h"
-#include "../vista/figura/MartilloView.h"
-#include "../vista/figura/BloqueView.h"
-#include "../vista/figura/CoheteView.h"
-#include "../vista/figura/CarritoView.h"
 
 #include "../vista/View.h"
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
-#include "RotadorSistemaCoordenadas.h"
 #include "src/Logger.h"
 
 using namespace std;
@@ -39,7 +31,8 @@ JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 		FiguraFactory* factory, int yMaxDrag) {
 	this->figurasFactory = factory;
 	this->elementoDrag = NULL;
-	this->zona = NULL;
+	this->tablero = NULL;
+	this->creacion = NULL;
 	this->figuraRotacion = NULL;
 	this->rot = NULL;
 	this->posStartDragX = 0;
@@ -61,14 +54,15 @@ JuegoEventsController::~JuegoEventsController() {
 void JuegoEventsController::dropear(FiguraView* view, Figura* figura) {
 	Logger log;
 	view->setModelo(figura);
+	figura->setVista(view);
 	log.info("Finaliza Drag");
-	if (this->zona != NULL) {
-		bool exitoVista = zona->agregarFigura(view);
+	if (this->tablero != NULL && this->creacion != NULL) {
+		bool exitoVista = tablero->agregarFigura(view);
 		bool exitoModelo = this->modeloController->crearFigura(figura);
 		if (!exitoVista || !exitoModelo) {
 //si uno de los dos no tuvo exito probamos rollbackeando.
 			if (exitoVista) {
-				zona->removerFigura(view);
+				tablero->removerFigura(view);
 			}
 			if (exitoModelo) {
 				modeloController->removerFigura(figura);
@@ -104,15 +98,7 @@ void JuegoEventsController::dropNuevaFigura(TrianguloView* view) {
 	float x;
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearTriangulo(x, y));
-}
-
-void JuegoEventsController::dropNuevaFigura(CuadradoView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearCuadrado(x, y));
+	dropear(view, this->figurasFactory->crearTriangulo(x, 100 - y));
 }
 
 void JuegoEventsController::dropFigura(FiguraView* view) {
@@ -122,7 +108,7 @@ void JuegoEventsController::dropFigura(FiguraView* view) {
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 	modelo->setX(x);
-	modelo->setY(y);
+	modelo->setY(100 - y);
 	this->dropear(view, modelo);
 }
 
@@ -150,44 +136,13 @@ void JuegoEventsController::dropNuevaFigura(PelotaView* view) {
 	dropear(view, this->figurasFactory->crearPelota(x, y));
 }
 
-void JuegoEventsController::dropNuevaFigura(ResorteView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearResorte(x, y));
-}
+void JuegoEventsController::dropNuevaFigura(MotorView* view) {
 
-void JuegoEventsController::dropNuevaFigura(MartilloView* view) {
 	Resizer* r = Resizer::Instance();
 	float x;
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearMartillo(x, y));
-}
-
-void JuegoEventsController::dropNuevaFigura(BloqueView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearBloque(x, y));
-}
-
-void JuegoEventsController::dropNuevaFigura(CoheteView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearCohete(x, y));
-}
-
-void JuegoEventsController::dropNuevaFigura(CarritoView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearCarrito(x, y));
+	dropear(view, this->figurasFactory->crearMotor(x, 100 - y));
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
@@ -195,12 +150,21 @@ bool JuegoEventsController::clickDown(int x, int y) {
 	Resizer* r = Resizer::Instance();
 	float lX = r->resizearDistanciaPixelX(x);
 	float lY = r->resizearPosicionPixelY(y);
-	if (zona != NULL && !zona->click(lX, lY) && this->figuraRotacion == NULL) {
-		FiguraView * view = this->zona->getVista(lX, lY);
+	if (tablero != NULL && creacion != NULL && this->figuraRotacion == NULL) {
+		FiguraView * view = NULL;
+		Figura * fig = this->modeloController->pickUp(lX, 100 - lY);
+
+		if(fig != NULL){
+			view = (FiguraView * )fig->getVista();
+		} else {
+			view = this->creacion->getVista(lX,lY);
+		}
+
 		if (view != NULL) {
 			view->click(lX, lY);
 			return false;
 		}
+
 	}
 	return true;
 }
@@ -217,8 +181,7 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
 	Logger log;
 	Resizer * r = Resizer::Instance();
-	//cout << "draguea figura controller" << endl;
-	if (zona != NULL) {
+	if (tablero != NULL && creacion != NULL) {
 		if (!isDragging()) {
 			r->adaptarPosicionLogica(x, y, this->posStartDragX,
 					this->posStartDragY);
@@ -226,7 +189,7 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 					Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
 			log.info("Comienza Drag");
 		}
-		this->zona->removerFigura(figura);
+		tablero->removerFigura(figura);
 		if (figura->getModelo() != NULL) {
 			this->modeloController->removerFigura(figura->getModelo());
 		}
@@ -234,23 +197,20 @@ void JuegoEventsController::drag(FiguraView* figura, float x, float y) {
 	}
 }
 
-bool JuegoEventsController::mouseWheelMoved(int x, int y, int amountScrolled){
+bool JuegoEventsController::mouseWheelMoved(int x, int y, int amountScrolled) {
 	Resizer* r = Resizer::Instance();
 	float lX = r->resizearDistanciaPixelX(x);
 	float lY = r->resizearPosicionPixelY(y);
-	if (zona != NULL) {
-		return zona->mouseScroll(lX, lY, amountScrolled);
+	if (creacion != NULL) {
+		return creacion->mouseScroll(lX, lY, amountScrolled);
 	}
 	return true;
 }
 
 
-Zona* JuegoEventsController::getZona() {
-	return zona;
-}
-
-void JuegoEventsController::setZona(Zona* zona) {
-	this->zona = zona;
+void JuegoEventsController::setZonas(ZonaTablero *tablero, ZonaCreacion * creacion) {
+	this->tablero = tablero;
+	this->creacion = creacion;
 }
 
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
@@ -289,26 +249,28 @@ bool JuegoEventsController::isDragging() {
 }
 
 bool JuegoEventsController::rightClickDown(int x, int y) {
-	if (zona != NULL && this->elementoDrag == NULL) {
+	if (tablero != NULL && creacion != NULL && this->elementoDrag == NULL) {
 		Resizer* r = Resizer::Instance();
 		float lX;
 		float lY;
 		r->adaptarPosicionPixel(x, y, lX, lY);
-
-		FiguraView * view = this->zona->getVista(lX, lY);
+		Figura* fig = modeloController->pickUp(lX, 100 - lY);
+//		FiguraView * view = tablero->getVista(lX, lY);
+		FiguraView * view = fig != NULL ? (FiguraView *)fig->getVista() : NULL;
 		if (view != NULL) {
 			if (view->getModelo() != NULL) {
-				this->zona->removerFigura(view);
+				tablero->removerFigura(view);
 				this->modeloController->removerFigura(view->getModelo());
 				//Verifico si se apreto el shift tambien.
 				const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
-				if(keyboardState[SDL_SCANCODE_LSHIFT]) return false;
+				if (keyboardState[SDL_SCANCODE_LSHIFT])
+					return false;
 				else {
 					this->figuraRotacion = view;
 					this->rot = new Rotacion(this->figuraRotacion->getXCentro(),
 							r->getAltoPantalla()
 									- this->figuraRotacion->getYCentro(), x,
-									r->getAltoPantalla() - y, 0);
+							r->getAltoPantalla() - y, 0);
 					return false;
 				}
 			} else {
@@ -321,7 +283,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 
 bool JuegoEventsController::rightClickUp(int int1, int int2) {
 	if (this->figuraRotacion != NULL) {
-		this->zona->agregarFigura(this->figuraRotacion);
+		tablero->agregarFigura(this->figuraRotacion);
 		this->modeloController->crearFigura(this->figuraRotacion->getModelo());
 		this->figuraRotacion = NULL;
 		delete this->rot;
@@ -342,9 +304,12 @@ View* JuegoEventsController::getRotado() {
 }
 
 void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
-	this->zona->dibujarse(renderer);
+	tablero->dibujarse(renderer);
+	creacion->dibujarse(renderer);
+
 }
 
 void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
-	this->zona->dibujarse(renderer, dest);
+	tablero->dibujarse(renderer,dest);
+	creacion->dibujarse(renderer,dest);
 }

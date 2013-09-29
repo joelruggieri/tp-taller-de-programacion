@@ -76,3 +76,20 @@ bool Triangulo::isAdentro1D(float pos, float posCentro, float ancho) {
 void Triangulo::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 }
+
+void Triangulo::crearsFisica(b2World* world) {
+	float x = this->getX();
+	float y = this->getY();
+	b2Vec2 vertices[3];
+	vertices[0].Set(-5.0f, -5.0f);
+	vertices[1].Set(5.0f, -5.0f);
+	vertices[2].Set(0.0f, 5.0f);
+	b2PolygonShape * polygon= new b2PolygonShape();
+	polygon->Set(vertices, 3);
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+	bodyDef.position.Set(x,y);
+	b2Body* body = world->CreateBody(&bodyDef);
+	body->CreateFixture(polygon, 10.0f);
+	body->SetUserData(this);
+}

@@ -10,11 +10,12 @@
 #include "src/figura/Figura.h"
 #include <iostream>
 #include "../View.h"
+#include "src/Vista.h"
 #include "SDL2/SDL.h"
 using namespace std;
 
 class DropController;
-class FiguraView: public View {
+class FiguraView: public View, public Vista {
 private:
 	Figura * modelo;
 	SDL_Texture * textura;

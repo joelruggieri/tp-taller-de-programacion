@@ -22,7 +22,7 @@ FiguraView* ViewGloboFactory::crear(int x, int y, int w, int h) {
 	return new GloboView(x, y, w, h, this->textura, this->controller);
 }
 
-FiguraView* ViewGloboFactory::crearVistaPropia(int x, int y, int w,
+View* ViewGloboFactory::crearVistaPropia(int x, int y, int w,
 		int h) {
-	return new GloboView(x,y,w,h, this->textura, this->controller);
+	return new FactoryView(x,y,w,h, this->textura);
 }

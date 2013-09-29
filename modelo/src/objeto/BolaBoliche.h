@@ -12,7 +12,7 @@
 
 class BolaBoliche: public Objeto {
 public:
-	BolaBoliche();
+	BolaBoliche(float x, float y,Rotador * rot);
 	virtual ~BolaBoliche();
 };
 
