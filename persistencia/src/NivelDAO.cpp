@@ -53,6 +53,10 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 	try{
 	nodoRaiz = a->obtenerNodoRaiz();
 	nodo = a->obtenerNodo(OBJETOS);
+	if(nodo.Mark().line == -1 ){
+		std::string mensaje = "No se encontrò la etiqueta Objetos, en consecuencia no se cargan figuras";
+		logg.warning(mensaje);
+	}
 	}catch(YAML::BadFile& exc){
 		std::string mensaje = "No se pudo crear/abrir el archivo: ";
 		mensaje.append(a->getNombre());
@@ -68,7 +72,7 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 		mensaje.append(". Se procederà a sobreecribir el archivo");
 		logg.error(mensaje);
 	}catch (YAML::BadConversion& exc) {
-		std::string msj = "No se pudo cargar el fondo del nivel: " + string(exc.what());
+		std::string msj = "No se pudo cargar el nivel: " + string(exc.what());
 		std::string s;
 		std::stringstream out;
 		//out << nodoRaiz.Mark().line/*nodoRaiz.Mark().line +1*/;
@@ -83,11 +87,6 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 		n->setFondo(nodoRaiz["Nivel"]["Fondo"].as<std::string>());
 	} catch (YAML::BadConversion& exc) {
 		std::string msj = "No se pudo cargar el fondo del nivel ni el nivel: " + string(exc.what());
-		std::string s;
-		std::stringstream out;
-		//out << nodoRaiz.Mark().line/*nodoRaiz.Mark().line +1*/;
-		s = out.str();
-		msj.append(s);
 		logg.error(msj);
 	}
 	std::list<Figura*> figuras = leerFiguras(nodo);
@@ -135,9 +134,6 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 	std::list<Figura*> lista;
 
 		try{
-			this->obtenerCirculos(lista,objetos);
-			this->obtenerCuadrados(lista,objetos);
-			this->obtenerTriangulos(lista,objetos);
 			this->obtenerPelotas(lista,objetos);
 			this->obtenerGlobos(lista,objetos);
 			this->obtenerResortes(lista,objetos);
@@ -182,62 +178,14 @@ bool NivelDAO::validar(const Figura& obj, const YAML::Node& circulos,
 	return true;
 }
 
-// Evidentemente hay una forma de parametrizar esto,
-// pero a esta hora no se me ocurre cual es.
 
-void NivelDAO::obtenerCirculos(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node circulos = objetos["Circulos"];
-
-	for (std::size_t i = 0; i < circulos.size(); i++) {
-		try {
-			Circulo obj = circulos[i].as<Circulo>();
-			bool salir = validar(obj, circulos, i);
-			if(!salir ) continue;
-			lista.push_back( new Circulo(obj));
-
-			//lista.push_back(new Circulo(obj.getX(), obj.getY(),0, obj.getRadio()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer circulo: ";
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje, circulos[i].Mark() );
-		}
-	}
-}
-
-void NivelDAO::obtenerCuadrados(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node cuadrados = objetos["Cuadrados"];
-
-	for (std::size_t i = 0; i < cuadrados.size(); i++) {
-		try {
-			Cuadrado obj = cuadrados[i].as<Cuadrado>();
-			lista.push_back( new Cuadrado(obj));
-			//lista.push_back( new Cuadrado(obj.getX(), obj.getY(),0, obj.getAncho(), obj.getAlto()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer cuadrado: ";
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje,  cuadrados[i].Mark() );
-		}
-	}
-}
-
-void NivelDAO::obtenerTriangulos(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node triangulos = objetos["Triangulos"];
-
-	for (std::size_t i = 0; i < triangulos.size(); i++) {
-		try {
-			Triangulo obj = triangulos[i].as<Triangulo>();
-			lista.push_back( new Triangulo(obj.getX(), obj.getY(),0, obj.getAncho(), obj.getAlto()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Triangulos: ";
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje,  triangulos[i].Mark() );
-		}
-	}
-}
 
 void NivelDAO::obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node pelotas = objetos["Pelotas"];
-
+	if(pelotas.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Pelotas";
+		logg.info(mensaje);
+		}
 	for (std::size_t i = 0; i < pelotas.size(); i++) {
 		try {
 			Pelota obj = pelotas[i].as<Pelota>();
@@ -255,6 +203,10 @@ void NivelDAO::obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos){
 
 void NivelDAO::obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node globos =  objetos["Globos"];
+	if(globos.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Globos";
+		logg.info(mensaje);
+	}
 	for (std::size_t i = 0; i < globos.size(); i++) {
 		try {
 			Globo obj = globos[i].as<Globo>();
@@ -273,6 +225,10 @@ void NivelDAO::obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos){
 
 void NivelDAO::obtenerResortes(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node resortes = objetos["Resortes"];
+	if(resortes.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Resortes";
+		logg.info(mensaje);
+	}
 	for (std::size_t i = 0; i < resortes.size(); i++) {
 		try {
 			Resorte obj = resortes[i].as<Resorte>();
@@ -291,6 +247,10 @@ void NivelDAO::obtenerResortes(std::list<Figura*> &lista, YAML::Node objetos){
 
 void NivelDAO::obtenerMartillos(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node martillos = objetos["Martillos"];
+	if(martillos.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Martillos";
+		logg.info(mensaje);
+	}
 	for (std::size_t i = 0; i < martillos.size(); i++) {
 		try {
 			Martillo obj = martillos[i].as<Martillo>();
@@ -309,6 +269,10 @@ void NivelDAO::obtenerMartillos(std::list<Figura*> &lista, YAML::Node objetos){
 
 void NivelDAO::obtenerBloques(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node bloques = objetos["Bloques"];
+	if(bloques.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Bloques";
+		logg.info(mensaje);
+	}
 	for (std::size_t i = 0; i < bloques.size(); i++) {
 		try {
 			Bloque obj = bloques[i].as<Bloque>();
@@ -328,6 +292,10 @@ void NivelDAO::obtenerBloques(std::list<Figura*> &lista, YAML::Node objetos){
 
 void NivelDAO::obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node Cohetes = objetos["Cohetes"];
+	if(Cohetes.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Cohetes";
+		logg.info(mensaje);
+	}
 	for (std::size_t i = 0; i < Cohetes.size(); i++) {
 		try {
 			Cohete obj = Cohetes[i].as<Cohete>();
@@ -346,6 +314,10 @@ void NivelDAO::obtenerCohetes(std::list<Figura*> &lista, YAML::Node objetos){
 
 void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node Ruedas = objetos["Ruedas"];
+	if(Ruedas.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Ruedas";
+		logg.info(mensaje);
+	}
 	for (std::size_t i = 0; i < Ruedas.size(); i++) {
 		try {
 			Rueda obj = Ruedas[i].as<Rueda>();
@@ -363,6 +335,10 @@ void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 
 void NivelDAO::obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node Carritos = objetos["Carritos"];
+	if(Carritos.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Carritos";
+		logg.info(mensaje);
+	}
 	for (std::size_t i = 0; i < Carritos.size(); i++) {
 		try {
 			Carrito obj = Carritos[i].as<Carrito>();
