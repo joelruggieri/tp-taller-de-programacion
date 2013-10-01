@@ -29,14 +29,14 @@ void Motor::crearsFisica(b2World* world) {
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(x,y);
-//	bodyDef.fixedRotation = true;
-//	bodyDef.angle = this->getRotacion();
+	bodyDef.fixedRotation = true;
+	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
+	bodyDef.angle = rotacionRad;
 	b2Body* body = world->CreateBody(&bodyDef);
 	body->CreateFixture(polygon, 10.0f);
 	body->SetUserData(this);
 	this->setBody(body);
 //	b2Vec2 pos = body->GetPosition();
-//	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
 //	body->SetTransform(pos, rotacionRad);
 //	int i =world->GetBodyCount();
 //	cout << i << endl;
