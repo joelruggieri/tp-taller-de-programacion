@@ -101,41 +101,41 @@ Figura* Mapa::pickUp(float x, float y) {
 	if (!isAdentro(x, y)) {
 		return NULL;
 	}
-//	b2Vec2 p(x, y);
-//	b2AABB aabb;
-//	b2Vec2 d;
-//	d.Set(0.001f, 0.001f);
-//	aabb.lowerBound = p - d;
-//	aabb.upperBound = p + d;
-//	QueryCallback callback(p);
-//	myWorld->QueryAABB(&callback, aabb);
-//	if (callback.m_fixture) {
-//		b2Body* body = callback.m_fixture->GetBody();
-//		cout
-//				<< (body->GetUserData() == 0 ?
-//						"------------------No hay interseccion" :
-//						"--------------Contacto") << endl;
-//		// TODO SI HUBIERA JOINTS HABRÍA QUE VER COMO MANEJARLAS, quizas no dejar draguear si hay un joint de soga o algo asi.
-//		Figura* figura = (Figura*) (body->GetUserData());
-//		return figura;
-//	}
-//	return NULL;
-	for(b2Body *b = myWorld->GetBodyList(); b; b=b->GetNext()){
-
-		if(b->GetUserData() != 0){
-			Figura * fig = (Figura*) b->GetUserData();
-			double xC = x;
-			double yC = 100 - y;
-			fig->getRotador()->rotar(fig,xC,yC);
-			b2Vec2 vec(xC,100 - yC);
-			b2Shape* shape = b->GetFixtureList()->GetShape();
-			bool contacto = shape->TestPoint(b->GetTransform(), vec);
-			if(contacto){
-				return fig;
-			}
-
-		}
+	b2Vec2 p(x, y);
+	b2AABB aabb;
+	b2Vec2 d;
+	d.Set(0.001f, 0.001f);
+	aabb.lowerBound = p - d;
+	aabb.upperBound = p + d;
+	QueryCallback callback(p);
+	myWorld->QueryAABB(&callback, aabb);
+	if (callback.m_fixture) {
+		b2Body* body = callback.m_fixture->GetBody();
+		cout
+				<< (body->GetUserData() == 0 ?
+						"------------------No hay interseccion" :
+						"--------------Contacto") << endl;
+		// TODO SI HUBIERA JOINTS HABRÍA QUE VER COMO MANEJARLAS, quizas no dejar draguear si hay un joint de soga o algo asi.
+		Figura* figura = (Figura*) (body->GetUserData());
+		return figura;
 	}
+//	return NULL;
+//	for(b2Body *b = myWorld->GetBodyList(); b; b=b->GetNext()){
+//
+//		if(b->GetUserData() != 0){
+//			Figura * fig = (Figura*) b->GetUserData();
+//			double xC = x;
+//			double yC = 100 - y;
+//			fig->getRotador()->rotar(fig,xC,yC);
+//			b2Vec2 vec(xC,100 - yC);
+//			b2Shape* shape = b->GetFixtureList()->GetShape();
+//			bool contacto = shape->TestPoint(b->GetTransform(), vec);
+//			if(contacto){
+//				return fig;
+//			}
+//
+//		}
+//	}
 	return NULL;
 
 }
