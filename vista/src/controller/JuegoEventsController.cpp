@@ -313,3 +313,7 @@ void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
 	tablero->dibujarse(renderer,dest);
 	creacion->dibujarse(renderer,dest);
 }
+
+void JuegoEventsController::stepJuego() {
+	modeloController->step();
+}
