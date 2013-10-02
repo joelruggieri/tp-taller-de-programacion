@@ -10,6 +10,7 @@
 #include "src/figura/Mapa.h"
 #include "src/figura/Triangulo.h"
 #include "gtest/gtest.h"
+#include "ObjetoCualquiera.h"
 class MapaTests: public testing::Test {
 protected:
 	Mapa * mapa;
@@ -45,4 +46,15 @@ TEST_F(MapaTests, AgregarFigura) {
 //	figura = mapa->pickUp(10,9);
 //	ASSERT_TRUE(figura == 0);
 
+}
+
+
+TEST_F(MapaTests, DarPaso) {
+	Figura * fig = new ObjetoCualquiera(10,10);
+	mapa->addFigura(fig);
+	for (int i = 0; i < 10; ++i) {
+		mapa->step();
+	}
+	b2Vec2 pos = fig->getBody()->GetPosition();
+	ASSERT_LT(pos.y, 10);
 }

@@ -25,14 +25,13 @@ public:
 	Figura(float x, float y, Rotador * rot);
 	virtual ~Figura();
 	virtual bool contacto(float, float)= 0;
-	virtual bool contieneCentro(Posicionable* figura) = 0;
 	float getX() const;
 	float getY() const;
 	double getRotacion() const;
 	void setX(float x);
 	void setY(float y);
 	void setRotacion(double rotation);
-	virtual void crearsFisica(b2World *) = 0;
+	virtual void crearFisica(b2World *) = 0;
 	virtual void acept(VisitorFigura*) = 0;
 	//estos metodos devuelven el tamaño del cuadrado contenedor;
 	virtual float getAlto() const = 0;

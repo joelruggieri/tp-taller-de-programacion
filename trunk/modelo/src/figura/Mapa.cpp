@@ -9,30 +9,12 @@
 #include <iostream>
 using namespace std;
 
+Mapa::Mapa(float x, float y, float w, float h,	float32 hz, int32 velocityIterations,int32 positionIterations) {
+	inicializar(x,y,w,h,hz,velocityIterations,positionIterations);
+}
+
 Mapa::Mapa(float x, float y, float w, float h) {
-	b2Vec2 gravity(0.0f, -10.0f);
-	this->x = x;
-	this->y = y;
-	this->w = w;
-	this->h = h;
-	this->myWorld = new b2World(gravity);
-	// Define the ground body.
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0.0f, -60.0f);
-
-	// Call the body mapa which allocates memory for the ground body
-	// from a pool and creates the ground box shape (also from a pool).
-	// The body is also added to the world.
-	b2Body* groundBody = myWorld->CreateBody(&groundBodyDef);
-
-	// Define the ground box shape.
-	b2PolygonShape groundBox;
-
-	// The extents are the half-widths of the box.
-	groundBox.SetAsBox(100.0f, 10.0f);
-
-	// Add the ground fixture to the ground body.
-	groundBody->CreateFixture(&groundBox, 0.0f);
+	inicializar(x,y,w,h,60,8,3);
 }
 
 Mapa::~Mapa() {
@@ -54,7 +36,7 @@ bool Mapa::addFigura(Figura* figura) {
 	if (!isAdentro(figura->getX(), figura->getY())) {
 		return false;
 	}
-	figura->crearsFisica(this->myWorld);
+	figura->crearFisica(this->myWorld);
 	this->figuras.push_back(figura);
 	return true;
 }
@@ -163,4 +145,39 @@ void Mapa::setY(float y) {
 bool Mapa::isAdentro(float x, float y) {
 	return isAdentro1D(x, this->getX(), this->w)
 			&& isAdentro1D(y, this->getY(), this->h);
+}
+
+void Mapa::step() {
+	myWorld->Step(this->frecuencia,this->velocidad,this->posicion);
+}
+
+void Mapa::inicializar(float x, float y, float w, float h, float32 hz,
+		int32 velocityIterations, int32 positionIterations) {
+	b2Vec2 gravity(0.0f, -10.0f);
+	this->x = x;
+	this->y = y;
+	this->w = w;
+	this->h = h;
+
+	this->frecuencia = hz;
+	this->velocidad = velocityIterations;
+	this->posicion = positionIterations;
+	this->myWorld = new b2World(gravity);
+	// Define the ground body.
+	b2BodyDef groundBodyDef;
+	groundBodyDef.position.Set(0.0f, -60.0f);
+
+	// Call the body mapa which allocates memory for the ground body
+	// from a pool and creates the ground box shape (also from a pool).
+	// The body is also added to the world.
+	b2Body* groundBody = myWorld->CreateBody(&groundBodyDef);
+
+	// Define the ground box shape.
+	b2PolygonShape groundBox;
+
+	// The extents are the half-widths of the box.
+	groundBox.SetAsBox(100.0f, 10.0f);
+
+	// Add the ground fixture to the ground body.
+	groundBody->CreateFixture(&groundBox, 0.0f);
 }

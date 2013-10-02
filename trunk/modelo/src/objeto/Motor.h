@@ -16,7 +16,8 @@ private:
 public:
 	Motor(float x, float y,Rotador * rot, float w, float h);
 	virtual ~Motor();
-	void crearsFisica(b2World *);
+	void crearFisica(b2World *);
+
 };
 
 #endif /* MOTOR_H_ */
