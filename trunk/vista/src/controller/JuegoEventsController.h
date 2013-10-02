@@ -67,5 +67,6 @@ public:
 	View* getRotado();
 	void dibujarse(SDL_Renderer *);
 	void dibujarse(SDL_Renderer *, SDL_Rect &);
+	void stepJuego();
 };
 #endif /* JuegoEventsController_H_ */
