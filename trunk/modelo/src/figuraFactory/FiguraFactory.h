@@ -26,6 +26,8 @@ public:
 	Figura * crearCohete(float x,float y);
 	Figura * crearCarrito(float x,float y);
 	Figura * crearMotor(float x,float y);
+	Figura * crearPlataforma(float x, float y);
+	Figura * crear(Plataforma*);
 	Figura * crear(Circulo*);
 	Figura * crear(Triangulo*);
 	Figura * crear(Rueda*);

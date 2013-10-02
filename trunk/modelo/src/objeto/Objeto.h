@@ -14,7 +14,6 @@ public:
 	Objeto(float x, float y,Rotador * rot);
 	virtual ~Objeto();
 	bool contieneCentro(Posicionable *);
-	void acept(VisitorFigura*);
 	//estos metodos devuelven el tamaño del cuadrado contenedor;
 	float getAlto() const;
 	float getAncho() const;

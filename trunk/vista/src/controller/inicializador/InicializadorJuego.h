@@ -23,6 +23,7 @@
 #include "src/figura/Globo.h"
 #include "src/figura/Pelota.h"
 #include "src/objeto/Motor.h"
+#include "src/objeto/Plataforma.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 using namespace std;
 
@@ -47,6 +48,7 @@ public:
 	void visit(Globo*);
 	void visit(Pelota*);
 	void visit(Motor*);
+	void visit(Plataforma*);
 	JuegoEventsController * crearZonaJuego();
 };
 

@@ -19,9 +19,6 @@ bool Objeto::contieneCentro(Posicionable*) {
 	return false;
 }
 
-void Objeto::acept(VisitorFigura*) {
-
-}
 
 float Objeto::getAlto() const {
 	return 0;

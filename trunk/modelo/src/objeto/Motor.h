@@ -17,6 +17,7 @@ public:
 	Motor(float x, float y,Rotador * rot, float w, float h);
 	virtual ~Motor();
 	void crearFisica(b2World *);
+	void acept(VisitorFigura*);
 
 };
 

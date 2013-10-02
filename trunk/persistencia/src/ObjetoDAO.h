@@ -17,6 +17,7 @@ class Pelota;
 class Globo;
 class Rueda;
 class Motor;
+class Plataforma;
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
 
@@ -31,6 +32,7 @@ public:
 	void visit(Pelota* pelota);
 	void visit(Rueda* rueda);
 	void visit (Motor * motor);
+	void visit (Plataforma * plataforma);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Triangulo *objeto, YAML::Node *nodoRaiz);
