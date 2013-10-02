@@ -79,3 +79,7 @@ void ObjetoDAO::guardar(Rueda* objeto, YAML::Node* nodoRaiz) {
 
 void ObjetoDAO::visit(Motor* motor) {
 }
+
+void ObjetoDAO::visit(Plataforma* plataforma){
+
+}

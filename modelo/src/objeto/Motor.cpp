@@ -42,3 +42,7 @@ void Motor::crearFisica(b2World* world) {
 //	cout << i << endl;
 //	body->Dump();
 }
+
+void Motor::acept(VisitorFigura* visitor){
+
+}

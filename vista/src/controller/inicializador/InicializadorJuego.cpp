@@ -161,3 +161,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 
 void InicializadorJuego::visit(Motor*) {
 }
+
+void InicializadorJuego::visit(Plataforma*) {
+}
+

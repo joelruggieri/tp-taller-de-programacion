@@ -12,6 +12,7 @@
 #include "../figura/Globo.h"
 #include "../figura/Pelota.h"
 #include "../objeto/Motor.h"
+#include "../objeto/Plataforma.h"
 
 FiguraFactory::FiguraFactory(Rotador * rotador) {
 	this->rotador = rotador;
@@ -47,7 +48,15 @@ Figura* FiguraFactory::crearMotor(float x, float y){
 	return new Motor(x,y,rotador,10,5);
 }
 
+Figura* FiguraFactory::crearPlataforma(float x, float y){
+	return new Plataforma(x,y,rotador,10,5);
+}
 
+Figura* FiguraFactory::crear(Plataforma* c) {
+	Figura* y = this->crearPlataforma(c->getX(), c->getY());
+	y->setRotacion(c->getRotacion());
+	return y;
+}
 
 Figura* FiguraFactory::crear(Circulo* c) {
 	Figura* y = this->crearCirculo(c->getX(), c->getY());
