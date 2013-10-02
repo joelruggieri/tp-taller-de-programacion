@@ -24,7 +24,7 @@
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
 #include "src/Logger.h"
-
+#include "src/Transformacion.h"
 using namespace std;
 
 JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
@@ -152,7 +152,14 @@ bool JuegoEventsController::clickDown(int x, int y) {
 	float lY = r->resizearPosicionPixelY(y);
 	if (tablero != NULL && creacion != NULL && this->figuraRotacion == NULL) {
 		FiguraView * view = NULL;
-		Figura * fig = this->modeloController->pickUp(lX, 100 - lY);
+		Transformacion trans;
+		trans.traslacion(0,100);
+		trans.escalar(r->getRelacionX(),r->getRelacionY());
+		trans.invertir(false,true);
+		trans.setVector(x,y);
+		float lX2, lY2;
+		trans.getResultado(lX2, lY2);
+		Figura * fig = this->modeloController->pickUp(lX2, lY2);
 
 		if(fig != NULL){
 			view = (FiguraView * )fig->getVista();

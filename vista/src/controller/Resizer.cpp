@@ -161,3 +161,11 @@ void Resizer::adaptarDimensionPixel(int w, int h, float& wNuevo,
 	wNuevo = this->resizearDistanciaPixelX(w);
 	hNuevo = this->resizearDistanciaPixelY(h);
 }
+
+float Resizer::getRelacionX() {
+	return 1/this->relacionXLogica;
+}
+
+float Resizer::getRelacionY() {
+	return 1/this->relacionYLogica;
+}
