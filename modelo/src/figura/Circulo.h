@@ -25,7 +25,7 @@ public:
 	void acept(VisitorFigura*);
 	float getAlto() const ;
 	float getAncho() const;
-	void crearsFisica(b2World *);
+	void crearFisica(b2World *);
 
 };
 

@@ -26,7 +26,7 @@ public:
 	float getAncho() const;
 	float getAlto() const;
 	void acept(VisitorFigura*);
-	void crearsFisica(b2World *);
+	void crearFisica(b2World *);
 };
 
 #endif /* TRIANGULO_H_ */

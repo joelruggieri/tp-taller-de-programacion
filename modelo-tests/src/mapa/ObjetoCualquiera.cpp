@@ -1,31 +1,28 @@
 /*
- * Motor.cpp
+ * ObjetoCualquiera.cpp
  *
- *  Created on: 28/09/2013
+ *  Created on: 01/10/2013
  *      Author: jonathan
  */
 
-#include "Motor.h"
-#include <iostream>
-using namespace std;
+#include "ObjetoCualquiera.h"
 
-Motor::Motor(float x, float y,Rotador * rot, float w, float h):Objeto(x,y,rot) {
-	this->w = w;
-	this->h = h;
+ObjetoCualquiera::ObjetoCualquiera(float x, float y):Objeto(x,y,0) {
+	// TODO Auto-generated constructor stub
 
 }
 
-Motor::~Motor() {
+ObjetoCualquiera::~ObjetoCualquiera() {
 	// TODO Auto-generated destructor stub
 }
 
-void Motor::crearFisica(b2World* world) {
+void ObjetoCualquiera::crearFisica(b2World* world) {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x,y);
 
 	b2PolygonShape * polygon= new b2PolygonShape();
-	polygon->SetAsBox(this->w/2,this->h/2);
+	polygon->SetAsBox(5,5);
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(x,y);
@@ -36,9 +33,4 @@ void Motor::crearFisica(b2World* world) {
 	body->CreateFixture(polygon, 10.0f);
 	body->SetUserData(this);
 	this->setBody(body);
-//	b2Vec2 pos = body->GetPosition();
-//	body->SetTransform(pos, rotacionRad);
-//	int i =world->GetBodyCount();
-//	cout << i << endl;
-//	body->Dump();
 }

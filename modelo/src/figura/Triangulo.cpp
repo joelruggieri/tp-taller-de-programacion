@@ -77,7 +77,7 @@ void Triangulo::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 }
 
-void Triangulo::crearsFisica(b2World* world) {
+void Triangulo::crearFisica(b2World* world) {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 vertices[3];

@@ -18,9 +18,12 @@ private:
 	list<Figura*> figuras;
 	b2World* myWorld;
 	float x,y, w,h;
+	float32 frecuencia;
+	int32 velocidad, posicion;
+	void inicializar(float  x, float y, float w, float h,float32 hz, int32 velocityIterations,int32 positionIterations);
 public:
+	Mapa(float  x, float y, float w, float h,float32 hz, int32 velocityIterations,int32 positionIterations);
 	Mapa(float  x, float y, float w, float h);
-
 	virtual ~Mapa();
 	bool addFigura(Figura*);
 	bool removeFigura(Figura*);
@@ -32,6 +35,7 @@ public:
 	void setY(float y);
 	bool isAdentro1D(float pos, float posCentro, float ancho);
 	bool isAdentro(float,float);
+	void step();
 };
 
 #endif /* MAPA_H_ */
