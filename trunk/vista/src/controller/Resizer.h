@@ -39,6 +39,9 @@ public:
 	void adaptarPosicionPixel(int x, int y, float & xNuevo, float & yNuevo);
 	void adaptarDimensionPixel(int w, int h, float & wNuevo, float & hNuevo);
 
+
+	float getRelacionX();
+	float getRelacionY();
 	//Resizer();
 	//virtual ~Resizer();
 protected:
