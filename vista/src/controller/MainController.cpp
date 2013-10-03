@@ -71,6 +71,7 @@ int MainController::run() {
 
 	eventController.addMouseController(tbEventController, 2, 1);
 	eventController.addKeyboardController(tbEventController);
+	eventController.setFlujoController(juegoController);
 	DraggingView vista(juegoController);
 	RotationView vistaRotacion(juegoController, texturas->cargarTexture("resource/rotacion.png"));
 	while(!terminar){
@@ -78,7 +79,7 @@ int MainController::run() {
 		terminar = eventController.procesarEventos(ventana);
 		SDL_SetRenderDrawColor(render,1,1,1,1);
 		SDL_RenderClear(render);
-
+		juegoController->paso();
 		juegoController->dibujarse(render);
 //		taparHueco(render);
 		vista.dibujarse(render);

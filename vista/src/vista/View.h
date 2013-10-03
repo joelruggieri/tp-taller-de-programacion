@@ -26,7 +26,7 @@ public:
 	virtual int getY() const;
 	virtual int getXCentro() const;
 	virtual int getYCentro() const;
-	virtual void resizear() = 0;
+	virtual void resizear();
 	//desplaza la vista en x y en y;
 	virtual void desplazarCentroA(int x, int y);
 

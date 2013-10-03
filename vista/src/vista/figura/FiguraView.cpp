@@ -63,10 +63,3 @@ void FiguraView::click(float x, float y) {
 	this->controller->drag(this,x,y);
 }
 
-void FiguraView::resizear() {
-	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-	this->setXc((Resizer::Instance()->resizearDistanciaX(this->getXCentro())));
-	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
-	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
-
-}

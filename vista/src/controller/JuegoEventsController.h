@@ -27,11 +27,12 @@
 #include "zonaDragAndDrop/ZonaTablero.h"
 #include "zonaDragAndDrop/ZonaCreacion.h"
 #include "zonaDragAndDrop/ZonaPlay.h"
+#include "FlujoDeJuegoController.h"
 class Figura;
 class FiguraFactory;
 class Zona;
 
-class JuegoEventsController: public DropController, public MouseEventController, public Dragueable, public Rotable, public Dibujable {
+class JuegoEventsController: public DropController, public MouseEventController, public Dragueable, public Rotable, public Dibujable, public FlujoDeJuegoController {
 private:
 	ZonaTablero * tablero;
 	ZonaCreacion * creacion;
@@ -45,6 +46,7 @@ private:
 	void dropear(FiguraView* view, Figura* figura);
 	ModeloController * modeloController;
 	int yMaxDrag;
+	bool iniciado;
 public:
 	JuegoEventsController(ModeloController*,ZonaPlay * zplay,FiguraFactory*, int yMax);
 	virtual ~JuegoEventsController();
@@ -69,6 +71,8 @@ public:
 	View* getRotado();
 	void dibujarse(SDL_Renderer *);
 	void dibujarse(SDL_Renderer *, SDL_Rect &);
-	void stepJuego();
+	void start();
+	void stop();
+	void paso();
 };
 #endif /* JuegoEventsController_H_ */

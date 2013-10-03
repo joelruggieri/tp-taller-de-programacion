@@ -40,6 +40,7 @@ JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 	this->modeloController = modeloController;
 	this->yMaxDrag = yMaxDrag;
 	this->zplay = zplay;
+	iniciado = false;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -314,7 +315,7 @@ View* JuegoEventsController::getRotado() {
 void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
 	tablero->dibujarse(renderer);
 	creacion->dibujarse(renderer);
-
+	zplay->dibujarse(renderer);
 }
 
 void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
@@ -322,6 +323,16 @@ void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
 	creacion->dibujarse(renderer,dest);
 }
 
-void JuegoEventsController::stepJuego() {
-	modeloController->step();
+void JuegoEventsController::start() {
+	this->iniciado = true;
+}
+
+void JuegoEventsController::stop() {
+	this->iniciado = false;
+}
+
+void JuegoEventsController::paso() {
+	if(iniciado){
+		this->modeloController->step();
+	}
 }
