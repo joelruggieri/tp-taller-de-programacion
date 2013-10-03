@@ -27,7 +27,7 @@ void Motor::crearFisica(b2World* world) {
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(x,y);
-	bodyDef.fixedRotation = true;
+	bodyDef.fixedRotation = false;
 	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = world->CreateBody(&bodyDef);
