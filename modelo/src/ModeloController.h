@@ -9,6 +9,7 @@
 #define EVENTOSMODELOCONTROLLER_H_
 #include "figura/Figura.h"
 #include "figura/Mapa.h"
+#include "Transformacion.h"
 #include <list>
 using namespace std;
 
@@ -23,7 +24,7 @@ public:
 	bool removerFigura(Figura* figura);
 	list<Figura*>& getFiguras();
 	Figura * pickUp(float, float);
-	void step();
+	void step(Transformacion & tl);
 };
 
 #endif /* EVENTOSMODELOCONTROLLER_H_ */

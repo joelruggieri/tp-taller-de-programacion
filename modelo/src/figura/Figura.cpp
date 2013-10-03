@@ -6,6 +6,9 @@
  *      Author: jonathan
  */
 #include "Figura.h"
+#include <iostream>
+using namespace std;
+
 float Figura::getX() const {
 	return x;
 }
@@ -42,6 +45,7 @@ Figura::Figura() {
 	rotacion = 0;
 	this->rotador = 0;
 	vista= 0;
+	this->body =0;
 }
 
 Figura::Figura(float x, float y, Rotador * rotador) {
@@ -50,6 +54,7 @@ Figura::Figura(float x, float y, Rotador * rotador) {
 	this->rotacion = 0;
 	this->rotador = rotador;
 	vista= 0;
+	this->body =0;
 }
 
 
@@ -79,4 +84,24 @@ void Figura::setBody(b2Body* b) {
 
 Rotador* Figura::getRotador() {
 	return this->rotador;
+}
+
+void Figura::updateModelo(Transformacion & tl) {
+	if(this->body != 0){
+		const b2Vec2 p = body->GetPosition();
+		this->setX(p.x);
+		this->setY(p.y);
+		this->setRotacion( -1*radianesAGrados(body->GetAngle()));
+		cout << "("<<p.x <<","<<p.y << ")"<<endl;
+		if(vista != 0)
+			this->vista->update(tl);
+	}
+}
+
+double Figura::radianesAGrados(float r) {
+	return r * 180 / 3.14;
+}
+
+double Figura::gradosARadianes(float g) {
+	return g*3.14/180;
 }

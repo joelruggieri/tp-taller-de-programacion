@@ -20,6 +20,8 @@ protected:
 	Rotador * rotador;
 	Vista * vista;
 	b2Body * body;
+	double radianesAGrados(float r);
+	double gradosARadianes(float g);
 public:
 	Figura();
 	Figura(float x, float y, Rotador * rot);
@@ -42,6 +44,7 @@ public:
 	b2Body * getBody();
 	void setBody(b2Body *);
 	Rotador * getRotador();
+	virtual void updateModelo(Transformacion &);
 };
 
 #endif /* FIGURA_H_ */

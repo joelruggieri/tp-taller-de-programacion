@@ -3,6 +3,7 @@
 #include <iostream>
 #include "../../controller/DropController.h"
 #include "src/Logger.h"
+#include <cmath>
 using namespace std;
 
 /********************************************************
@@ -63,3 +64,14 @@ void FiguraView::click(float x, float y) {
 	this->controller->drag(this,x,y);
 }
 
+void FiguraView::update(Transformacion & tl) {
+
+	tl.setVector(this->modelo->getX(), this->modelo->getY());
+	float x,y;
+	tl.getResultadoInverso(x,y);
+	int xi = round(x);
+	int yi = round(y);
+	this->setXc(xi);
+	this->setYc(yi);
+
+}

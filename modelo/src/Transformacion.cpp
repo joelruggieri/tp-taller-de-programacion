@@ -85,3 +85,42 @@ void Transformacion::getResultado(float& x, float& y) {
 	y = yActual;
 
 }
+
+void Transformacion::getResultadoInverso(float& x, float& y) {
+
+	float xActual = this->x;
+	float yActual = this->y;
+
+	//invierto los ejes si es necesario.
+	xActual = invertirx ? xActual * -1 : xActual;
+	yActual = invertiry ? yActual * -1 : yActual;
+
+	//hago la translacion.
+	xActual = xActual + transx;
+	yActual = yActual + transy;
+
+
+	//escalo
+	xActual = xActual/ escalax;
+	yActual = yActual / escalay;
+
+	//voy al eje de rotacion, roto, y vuelvo al corrimiento.
+
+	if (angulo != 0) {
+//		xActual = xActual - ejex;
+//		yActual = yActual - ejey;
+//		double rotacionRad = angulo * -3.14 / 180.0;
+//		float xAux = xActual * cos(rotacionRad) - yActual * sin(rotacionRad);
+//		float yAux = xActual * sin(rotacionRad) + yActual * cos(rotacionRad);
+//		xActual = xAux + ejex;
+//		yActual = yAux + ejey;
+		// TODO NO SE CALCULAR ESTO AUN.
+	}
+
+//	//hago la translacion.
+//	xActual = xActual - transx;
+//	yActual = yActual - transy;
+
+	x = xActual;
+	y = yActual;
+}

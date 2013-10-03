@@ -53,7 +53,7 @@ TEST_F(MapaTests, DarPaso) {
 	Figura * fig = new ObjetoCualquiera(10,10);
 	mapa->addFigura(fig);
 	for (int i = 0; i < 10; ++i) {
-		mapa->step();
+//		mapa->step();
 	}
 	b2Vec2 pos = fig->getBody()->GetPosition();
 	ASSERT_LT(pos.y, 10);

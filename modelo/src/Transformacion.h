@@ -22,6 +22,7 @@ public:
 	void setVector(float x, float y);
 	void setEjeRotacion(float x, float y);
 	void getResultado(float &x, float &y);
+	void getResultadoInverso(float &x, float &y);
 };
 
 #endif /* TRANSFORMACION_H_ */

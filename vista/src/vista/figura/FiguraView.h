@@ -31,6 +31,7 @@ public:
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void click(float x, float y);
+	virtual void update(Transformacion & tl);
 };
 
 #endif /* FIGURAVIEW_H_ */
