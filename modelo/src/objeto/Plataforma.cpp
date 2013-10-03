@@ -55,9 +55,10 @@ void Plataforma::crearFisica(b2World * world){
 	b2PolygonShape * polygon= new b2PolygonShape();
 
 	b2MassData masa;
-	masa.center = centro;
+	/*masa.center = centro;
 	masa.mass = 100.00;
-	polygon->ComputeMass(&masa,1);
+	masa.I = 0.00;
+	polygon->ComputeMass(&masa,3);*/
 	polygon->SetAsBox(this->ancho/2,this->alto/2);
 
 	b2FixtureDef fixture;

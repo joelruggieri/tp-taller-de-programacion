@@ -15,6 +15,7 @@ using namespace std;
 #include "../viewFactory/ViewGloboFactory.h"
 #include "../viewFactory/ViewPelotaFactory.h"
 #include "../viewFactory/ViewMotorFactory.h"
+#include "../viewFactory/ViewPlataformaFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -28,6 +29,7 @@ const string KEY_TRIANGULO= "TRIANGULO";
 const string KEY_RUEDA = "RUEDA";
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PELOTA = "PELOTA";
+const string KEY_PLATAFORMA = "PLATAFORMA";
 
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->juegoController = NULL;
@@ -73,6 +75,12 @@ void InicializadorJuego::visit(Globo* c) {
 void InicializadorJuego::visit(Pelota* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PELOTA);
+	this->agregarFigura(iter->second, fig);
+}
+
+void InicializadorJuego::visit(Plataforma* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PLATAFORMA);
 	this->agregarFigura(iter->second, fig);
 }
 
@@ -138,6 +146,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewPelotaFactory(juegoController));
 	factories.push_back(new ViewGloboFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
+	factories.push_back(new ViewPlataformaFactory(juegoController));
 
 
 	tablero = new ZonaTablero(50,50, canvasTexture);
@@ -167,6 +176,5 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 void InicializadorJuego::visit(Motor*) {
 }
 
-void InicializadorJuego::visit(Plataforma*) {
-}
+
 

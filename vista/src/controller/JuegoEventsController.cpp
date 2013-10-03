@@ -19,6 +19,7 @@
 #include "../vista/figura/TrianguloView.h"
 #include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
+#include "../vista/objeto/PlataformaView.h"
 
 #include "../vista/View.h"
 #include "Resizer.h"
@@ -145,6 +146,15 @@ void JuegoEventsController::dropNuevaFigura(MotorView* view) {
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 	dropear(view, this->figurasFactory->crearMotor(x, 100 - y));
+}
+
+void JuegoEventsController::dropNuevaFigura(PlataformaView* view) {
+
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearPlataforma(x, 100 - y));
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
