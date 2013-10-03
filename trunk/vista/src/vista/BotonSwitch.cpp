@@ -7,7 +7,7 @@
 
 #include "BotonSwitch.h"
 
-BotonSwitch::BotonSwitch() {
+BotonSwitch::BotonSwitch(float x,float y,float w,float h):View(x,y,w,h) {
 	// TODO Auto-generated constructor stub
 
 }

@@ -34,3 +34,7 @@ void ObjetoCualquiera::crearFisica(b2World* world) {
 	body->SetUserData(this);
 	this->setBody(body);
 }
+
+void ObjetoCualquiera::acept(VisitorFigura*) {
+
+}
