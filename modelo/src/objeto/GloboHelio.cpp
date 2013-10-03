@@ -16,7 +16,7 @@ GloboHelio::~GloboHelio() {
 	// TODO Auto-generated destructor stub
 }
 
-void GloboHelio::crearsFisica(b2World* world) {
+void GloboHelio::crearFisica(b2World* world) {
 	float x = this->getX();
 		float y = this->getY();
 		b2Vec2 centro(x,y);

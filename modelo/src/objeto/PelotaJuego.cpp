@@ -15,7 +15,7 @@ PelotaJuego::~PelotaJuego() {
 	// TODO Auto-generated destructor stub
 }
 
-void PelotaJuego::crearsFisica(b2World* world) {
+void PelotaJuego::crearFisica(b2World* world) {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x,y);
