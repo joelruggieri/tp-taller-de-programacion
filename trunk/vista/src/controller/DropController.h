@@ -20,6 +20,7 @@
 #include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
 #include "../vista/objeto/MotorView.h"
+#include "../vista/objeto/PlataformaView.h"
 #include "../vista/figura/RuedaView.h"
 #include <list>
 
@@ -37,6 +38,7 @@ public:
 	virtual void dropNuevaFigura(GloboView*) = 0;
 	virtual void dropNuevaFigura(PelotaView*) = 0;
 	virtual void dropNuevaFigura(MotorView*) = 0;
+	virtual void dropNuevaFigura(PlataformaView*) = 0;
 	virtual void dropFigura(FiguraView*) = 0;
 	virtual void drag(FiguraView *, float,float) = 0;
 };
