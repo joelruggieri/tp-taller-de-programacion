@@ -39,6 +39,7 @@ private:
 	void guardar(Globo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Pelota *objeto, YAML::Node *nodoRaiz);
 	void guardar(Rueda *objeto, YAML::Node *nodoRaiz);
+	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };

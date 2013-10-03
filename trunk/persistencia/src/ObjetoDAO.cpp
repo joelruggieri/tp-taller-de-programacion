@@ -15,7 +15,7 @@
 #include "src/figura/Pelota.h"
 #include "src/figura/Globo.h"
 #include "src/figura/Rueda.h"
-
+#include "../modelo/src/objeto/Plataforma.h"
 
 #include "constructoresYAML.h"
 
@@ -55,6 +55,13 @@ void ObjetoDAO::visit(Rueda* rueda) {
 	guardar(rueda, nodo);
 }
 
+void ObjetoDAO::visit(Motor* motor) {
+}
+
+void ObjetoDAO::visit(Plataforma* plataforma){
+	guardar(plataforma,nodo);
+}
+
 
 void ObjetoDAO::guardar(Circulo* objeto, YAML::Node *nodoRaiz) {
 	(*nodoRaiz)["Circulos"].push_back(*objeto);
@@ -77,9 +84,8 @@ void ObjetoDAO::guardar(Rueda* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Ruedas"].push_back(*objeto);
 }
 
-void ObjetoDAO::visit(Motor* motor) {
+void ObjetoDAO::guardar(Plataforma* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Plataformas"].push_back(*objeto);
 }
 
-void ObjetoDAO::visit(Plataforma* plataforma){
 
-}

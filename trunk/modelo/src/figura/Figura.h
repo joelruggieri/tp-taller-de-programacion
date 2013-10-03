@@ -36,8 +36,6 @@ public:
 	virtual void crearFisica(b2World *) = 0;
 	virtual void acept(VisitorFigura*) = 0;
 	//estos metodos devuelven el tamaño del cuadrado contenedor;
-	virtual float getAlto() const = 0;
-	virtual float getAncho() const = 0;
 	void setRotador(Rotador* rotador);
 	Vista* getVista();
 	void setVista(Vista* vista);

@@ -7,6 +7,10 @@
 
 #include "Objeto.h"
 
+Objeto::Objeto(): Figura(){
+
+}
+
 Objeto::Objeto(float x, float y,Rotador * rot):Figura(x,y,rot){
 	body = NULL;
 }
@@ -20,13 +24,6 @@ bool Objeto::contieneCentro(Posicionable*) {
 }
 
 
-float Objeto::getAlto() const {
-	return 0;
-}
-
-float Objeto::getAncho() const {
-	return 0;
-}
 
 bool Objeto::contacto(float float1, float float2) {
 	return false;

@@ -8,13 +8,14 @@
 #ifndef VISITORFIGURA_H_
 #define VISITORFIGURA_H_
 
+class Plataforma;
 class Circulo;
 class Triangulo;
 class Rueda;
 class Globo;
 class Pelota;
 class Motor;
-class Plataforma;
+
 
 class VisitorFigura {
 public:

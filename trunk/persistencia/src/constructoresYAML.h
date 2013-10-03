@@ -104,6 +104,30 @@ struct convert<Pelota> {
 		return true;
 	}
 };
+
+template<>
+struct convert<Plataforma> {
+	static Node encode(const Plataforma& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["ancho"] = objeto.getAncho();
+		node["alto"] = objeto.getAlto();
+		node["rotacion"] = objeto.getRotacion();
+		return node;
+	}
+
+	static bool decode(const Node& node, Plataforma& objeto) {
+		if (node.size() != 3) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setAncho(node["ancho"].as<float>());
+		objeto.setAlto(node["alto"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
+		return true;
+	}
+};
+
 template<>
 struct convert<Triangulo> {
 	static Node encode(const Triangulo& objeto) {

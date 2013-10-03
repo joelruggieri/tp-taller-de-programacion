@@ -16,10 +16,14 @@ private:
 	float alto;
 	float ancho;
 public:
+	Plataforma(const Plataforma& plataforma);
+	Plataforma();
 	Plataforma(float x ,float y, Rotador* rotador, float ancho, float alto );
 	virtual ~Plataforma();
-	float getAlto();
-	float getAncho();
+	float getAlto() const;
+	float getAncho() const;
+	void setAlto(float alto);
+	void setAncho(float ancho);
 	void crearFisica(b2World *);
 	void acept(VisitorFigura*);
 
