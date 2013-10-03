@@ -14,7 +14,7 @@ Mapa::Mapa(float x, float y, float w, float h,	float32 hz, int32 velocityIterati
 }
 
 Mapa::Mapa(float x, float y, float w, float h) {
-	inicializar(x,y,w,h,60,8,3);
+	inicializar(x,y,w,h,30,8,3);
 }
 
 Mapa::~Mapa() {
@@ -141,8 +141,16 @@ bool Mapa::isAdentro(float x, float y) {
 			&& isAdentro1D(y, this->getY(), this->h);
 }
 
-void Mapa::step() {
+void Mapa::step(Transformacion & tl) {
 	myWorld->Step(this->frecuencia,this->velocidad,this->posicion);
+	list<Figura*>::iterator it;
+	//TODO VER OTRA FORMA DE HACER EL UPDATE.
+	Figura * fig;
+	for(it= this->figuras.begin(); it != this->figuras.end(); ++it){
+		fig = *it;
+		fig->updateModelo(tl);
+	}
+
 }
 
 void Mapa::inicializar(float x, float y, float w, float h, float32 hz,
@@ -159,7 +167,7 @@ void Mapa::inicializar(float x, float y, float w, float h, float32 hz,
 	this->myWorld = new b2World(gravity);
 	// Define the ground body.
 	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0.0f, -60.0f);
+	groundBodyDef.position.Set(0.0f, 0.0f);
 
 	// Call the body mapa which allocates memory for the ground body
 	// from a pool and creates the ground box shape (also from a pool).

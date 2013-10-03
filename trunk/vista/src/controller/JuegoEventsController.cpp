@@ -332,7 +332,13 @@ void JuegoEventsController::stop() {
 }
 
 void JuegoEventsController::paso() {
+	Resizer * r = Resizer::Instance();
+	Transformacion trans;
+	trans.traslacion(0,100);
+	trans.escalar(r->getRelacionX(),r->getRelacionY());
+	trans.invertir(false,true);
+
 	if(iniciado){
-		this->modeloController->step();
+		this->modeloController->step(trans);
 	}
 }

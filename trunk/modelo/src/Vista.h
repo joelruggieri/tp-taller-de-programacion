@@ -8,11 +8,13 @@
 #ifndef VISTA_H_
 #define VISTA_H_
 
+#include "Transformacion.h"
 class Vista {
 public:
 	virtual ~Vista(){
 
 	};
+	virtual void update(Transformacion &) = 0;
 };
 
 #endif /* VISTA_H_ */

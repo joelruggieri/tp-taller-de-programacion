@@ -35,7 +35,7 @@ public:
 	void setY(float y);
 	bool isAdentro1D(float pos, float posCentro, float ancho);
 	bool isAdentro(float,float);
-	void step();
+	void step(Transformacion & tl);
 };
 
 #endif /* MAPA_H_ */
