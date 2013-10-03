@@ -26,6 +26,7 @@
 #include "Drag.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
 #include "zonaDragAndDrop/ZonaCreacion.h"
+#include "zonaDragAndDrop/ZonaPlay.h"
 class Figura;
 class FiguraFactory;
 class Zona;
@@ -34,6 +35,7 @@ class JuegoEventsController: public DropController, public MouseEventController,
 private:
 	ZonaTablero * tablero;
 	ZonaCreacion * creacion;
+	ZonaPlay * zplay;
 	FiguraFactory * figurasFactory;
 	Drag * elementoDrag;
 	FiguraView * figuraRotacion;
@@ -44,7 +46,7 @@ private:
 	ModeloController * modeloController;
 	int yMaxDrag;
 public:
-	JuegoEventsController(ModeloController*,FiguraFactory*, int yMax);
+	JuegoEventsController(ModeloController*,ZonaPlay * zplay,FiguraFactory*, int yMax);
 	virtual ~JuegoEventsController();
 	void dropNuevaFigura(RuedaView*);
 	void dropNuevaFigura(CirculoView*);

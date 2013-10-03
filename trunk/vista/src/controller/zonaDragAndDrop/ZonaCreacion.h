@@ -23,7 +23,7 @@ private:
 	EslabonCreacion * inicioCadena;
 	EslabonCreacion * ultimo;
 	static const int ANCHO_VIEW_DEF = 10;
-	static const int ALTO_PANEL = 100;
+	static const int ALTO_PANEL = 90;
 	static const int DISTANCIA_ENTRE_ELEMENTOS = 15;
 	static const int SLEEP_BOTONES_SCROLL = 20;
 
@@ -42,7 +42,6 @@ public:
 	virtual ~ZonaCreacion();
 	void dibujarse(SDL_Renderer *);
 	void dibujarse(SDL_Renderer *, SDL_Rect &);
-	bool removerFigura(FiguraView*);
 	bool click(float x, float y);
 	bool mouseScroll(float x, float y, int amountScrolled);
 	bool enContacto(float posX, float posY);
