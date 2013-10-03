@@ -7,10 +7,10 @@
 
 #ifndef BOTONSWITCH_H_
 #define BOTONSWITCH_H_
-
+#include "View.h"
 class BotonSwitch: public View {
 public:
-	BotonSwitch();
+	BotonSwitch(float x,float y,float w,float h);
 	virtual ~BotonSwitch();
 };
 

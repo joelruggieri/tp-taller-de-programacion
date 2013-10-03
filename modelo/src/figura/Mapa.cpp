@@ -55,12 +55,6 @@ public:
 	bool ReportFixture(b2Fixture* fixture) {
 		cout << "reporta" << endl;
 		b2Body* body = fixture->GetBody();
-//		Figura* fig = (Figura*)body->GetUserData();
-//		Rotador * rotador = fig->getRotador();
-//		double x = m_point.x;
-//		double y = 100-  m_point.y;
-//		rotador->rotar(fig, x,y);
-//		b2Vec2 v(x,y);
 		if (body->GetType() == b2_dynamicBody) {
 			bool inside = fixture->TestPoint(m_point);
 			if (inside) {

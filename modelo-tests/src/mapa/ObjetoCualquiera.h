@@ -16,6 +16,7 @@ public:
 	ObjetoCualquiera(float x, float y);
 	virtual ~ObjetoCualquiera();
 	void crearFisica(b2World *);
+	void acept(VisitorFigura*);
 };
 
 #endif /* OBJETOCUALQUIERA_H_ */
