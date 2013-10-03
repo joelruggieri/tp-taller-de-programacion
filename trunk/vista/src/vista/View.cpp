@@ -47,3 +47,11 @@ int View::getXCentro() const {
 int View::getYCentro() const {
 	return yc;
 }
+
+void View::resizear() {
+	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+	this->setXc((Resizer::Instance()->resizearDistanciaX(this->getXCentro())));
+	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
+	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
+
+}

@@ -24,6 +24,7 @@
 #include "mouseEventController/MouseEventController.h"
 #include "mouseEventController/MouseEventPriorComparator.h"
 #include "Resizer.h"
+#include "src/Logger.h"
 
 struct SDL_Window;
 
@@ -32,6 +33,7 @@ struct SDL_Window;
 GeneralEventController::GeneralEventController() {
 	this->canvasController = 0;
 	this->guardarController = NULL;
+	this->flujoController = NULL;
 }
 
 GeneralEventController::~GeneralEventController() {
@@ -177,6 +179,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
 	SDL_Event evento;
+	Logger log;
 	SDL_PollEvent(&evento);
 	switch (evento.type) {
 	case SDL_QUIT:
@@ -229,6 +232,18 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 					this->guardarController->persistir();
 				}
 				break;
+			case USREVENT_STOP:
+				if(this->flujoController!= NULL){
+					log.info("Finaliza Juego");
+					flujoController->stop();
+				}
+				break;
+			case USREVENT_START:
+				if(this->flujoController!= NULL){
+					log.info("Inicia Juego");
+					flujoController->start();
+				}
+				break;
 		}
 		break;
 	case SDL_WINDOWEVENT: {
@@ -254,4 +269,8 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	}
 	}
 	return false;
+}
+
+void GeneralEventController::setFlujoController(FlujoDeJuegoController* c) {
+	this->flujoController = c;
 }

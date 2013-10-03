@@ -6,9 +6,22 @@
  */
 
 #include "ZonaPlay.h"
+#include "../UserEventCreator.h"
+#include "../../vista/CargadorDeTextures.h"
+#include "../../vista/ViewConBorde.h"
 
-ZonaPlay::ZonaPlay(float x, float y):Zona(new Cuadrado(x,y,10,20)) {
-
+#include "SDL2/SDL.h"
+ZonaPlay::ZonaPlay(float x, float y):Zona(new Cuadrado(x,y,20,10)) {
+	Resizer* r = Resizer::Instance();
+	int w,h;
+	r->adaptarDimensionLogica(20,10,w,h);
+	int lx,ly;
+	r->adaptarPosicionLogica(x,y,lx,ly);
+	CargadorDeTextures* loader = CargadorDeTextures::Instance();
+	SDL_Texture* text1 = loader->cargarTexture("resource/botonPlayUp");
+	SDL_Texture* text2 = loader->cargarTexture("resource/botonPlayDown");
+	boton = new BotonSwitch(lx,ly,w,h,USREVENT_START, USREVENT_STOP,text1,text2);
+	vista = new ViewConBorde(boton);
 }
 
 bool ZonaPlay::agregarTemplate(FiguraView* dragueable) {
@@ -20,22 +33,23 @@ FiguraView* ZonaPlay::getFiguraTemplate(float x, float y) {
 }
 
 ZonaPlay::~ZonaPlay() {
-	// TODO Auto-generated destructor stub
+	delete vista;
 }
 
 bool ZonaPlay::click(float x, float y) {
 	if(this->getCuerpo()->contacto(x,y)){
-		cout << "clickea" << endl;
+		this->boton->click();
 		return true;
 	}
 	return false;
 }
 
-void ZonaPlay::dibujarse(SDL_Renderer*) {
-	cout << "se dibuja" <<endl;
+void ZonaPlay::dibujarse(SDL_Renderer*r) {
+	this->vista->dibujarse(r);
 }
 
-void ZonaPlay::dibujarse(SDL_Renderer*, SDL_Rect&) {
+void ZonaPlay::dibujarse(SDL_Renderer*r, SDL_Rect&) {
+	this->vista->dibujarse(r);
 }
 
 bool ZonaPlay::mouseScroll(float x, float y, int amountScrolled) {

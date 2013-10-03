@@ -1,5 +1,4 @@
 /*
- * InicializadorJuego.cpp
  *
  *  Created on: 14/09/2013
  *      Author: jonathan
@@ -112,7 +111,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	if(tablero != NULL){
 		return this->juegoController;
 	}
-	ZonaPlay * zp = new ZonaPlay(110,0);
+	ZonaPlay * zp = new ZonaPlay(110,5);
 	this->juegoController = new JuegoEventsController(modeloController, zp,this->factory, 100);
 	ViewFiguraFactory * viewFactory = new ViewTrianguloFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TRIANGULO,viewFactory));
