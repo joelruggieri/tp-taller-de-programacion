@@ -137,9 +137,6 @@ void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
 	this->viewCanvas->dibujarse(renderer);
 }
 
-bool ZonaCreacion::removerFigura(FiguraView* figura) {
-	return false;
-}
 
 void ZonaCreacion::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
 	this->dibujarse(renderer);

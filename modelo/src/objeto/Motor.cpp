@@ -22,8 +22,6 @@ Motor::~Motor() {
 void Motor::crearFisica(b2World* world) {
 	float x = this->getX();
 	float y = this->getY();
-	b2Vec2 centro(x,y);
-
 	b2PolygonShape * polygon= new b2PolygonShape();
 	polygon->SetAsBox(this->w/2,this->h/2);
 	b2BodyDef bodyDef;

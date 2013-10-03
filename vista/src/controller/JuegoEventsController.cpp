@@ -27,7 +27,7 @@
 #include "src/Transformacion.h"
 using namespace std;
 
-JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
+JuegoEventsController::JuegoEventsController(ModeloController *modeloController, ZonaPlay * zplay,
 		FiguraFactory* factory, int yMaxDrag) {
 	this->figurasFactory = factory;
 	this->elementoDrag = NULL;
@@ -39,6 +39,7 @@ JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 	this->posStartDragY = 0;
 	this->modeloController = modeloController;
 	this->yMaxDrag = yMaxDrag;
+	this->zplay = zplay;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -150,7 +151,7 @@ bool JuegoEventsController::clickDown(int x, int y) {
 	Resizer* r = Resizer::Instance();
 	float lX = r->resizearDistanciaPixelX(x);
 	float lY = r->resizearPosicionPixelY(y);
-	if (tablero != NULL && creacion != NULL && this->figuraRotacion == NULL) {
+	if (tablero != NULL && creacion != NULL && !creacion->click(lX,lY) && !zplay->click(lX,lY) &&(this->figuraRotacion == NULL)) {
 		FiguraView * view = NULL;
 		Transformacion trans;
 		trans.traslacion(0,100);

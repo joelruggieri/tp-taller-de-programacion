@@ -23,6 +23,7 @@ using namespace std;
 #include "../Resizer.h"
 #include "../PersistenciaEventController.h"
 #include "src/figuraFactory/FiguraFactory.h"
+#include "../zonaDragAndDrop/ZonaPlay.h"
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
 const string KEY_RUEDA = "RUEDA";
@@ -111,8 +112,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	if(tablero != NULL){
 		return this->juegoController;
 	}
-
-	this->juegoController = new JuegoEventsController(modeloController, this->factory, 100);
+	ZonaPlay * zp = new ZonaPlay(110,0);
+	this->juegoController = new JuegoEventsController(modeloController, zp,this->factory, 100);
 	ViewFiguraFactory * viewFactory = new ViewTrianguloFactory(juegoController);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TRIANGULO,viewFactory));
 	viewFactory = new ViewCirculoFactory(juegoController);
@@ -133,11 +134,16 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewPelotaFactory(juegoController));
 	factories.push_back(new ViewGloboFactory(juegoController));
 	factories.push_back(new ViewRuedaFactory(juegoController));
+	factories.push_back(new ViewMotorFactory(juegoController));
+	factories.push_back(new ViewTrianguloFactory(juegoController));
+	factories.push_back(new ViewPelotaFactory(juegoController));
+	factories.push_back(new ViewGloboFactory(juegoController));
+	factories.push_back(new ViewRuedaFactory(juegoController));
 
 
 	tablero = new ZonaTablero(50,50, canvasTexture);
 
-	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 0,
+	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
 			herrTextura);
 
 	this->juegoController->setZonas(tablero, zonaCreacion);

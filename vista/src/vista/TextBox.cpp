@@ -75,8 +75,8 @@ void TextBox::dibujarse(SDL_Renderer* render) {
 
 
 	SDL_RenderCopy(render,this->textureTexto, NULL, &dstTxt);
-
-
+	SDL_FreeSurface(this->surfaceTexto);
+	SDL_DestroyTexture(this->textureTexto);
 
 
 }

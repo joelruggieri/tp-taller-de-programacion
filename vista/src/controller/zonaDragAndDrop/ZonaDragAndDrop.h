@@ -29,7 +29,6 @@ public:
 	//retorna true si se hizo cargo de la peticion.
 	bool agregarFigura(FiguraView*);
 	//retorna true si se hizo cargo de la peticion.
-	virtual bool removerFigura(FiguraView*) = 0;
 
 	// puede estar recibiendo en unidades logicas.
 	virtual FiguraView * getVista(float, float);
