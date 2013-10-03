@@ -14,7 +14,7 @@ class BolaBoliche: public Objeto {
 public:
 	BolaBoliche(float x, float y,Rotador * rot, float radio);
 	virtual ~BolaBoliche();
-	void crearsFisica(b2World *);
+	void crearFisica(b2World *);
 private:
 	float radio;
 };

@@ -14,7 +14,7 @@ class GloboHelio : public Objeto {
 public:
 	GloboHelio(float x, float y,Rotador * rot, float radio) ;
 	virtual ~GloboHelio();
-	void crearsFisica(b2World* world);
+	void crearFisica(b2World* world);
 private:
 	float radio;
 };

@@ -29,6 +29,7 @@ private:
 	CanvasController* canvasController; //De este siempre tiene que haber uno solo.
 	PersistenciaEventController * guardarController;
 	FlujoDeJuegoController * flujoController;
+	int tamAnteriorX, tamAnteriorY;
 	void clickUp(int x, int y);
 	void clickDown(int x, int y);
 	void mouseMotion(int x, int y);

@@ -14,7 +14,7 @@ class PelotaJuego: public Objeto {
 public:
 	PelotaJuego(float x, float y,Rotador * rot, float radio);
 	virtual ~PelotaJuego();
-	void crearsFisica(b2World *world);
+	void crearFisica(b2World *world);
 private:
 	float radio;
 };

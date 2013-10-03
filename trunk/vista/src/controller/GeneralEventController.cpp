@@ -16,7 +16,8 @@
 #include <list>
 #include <string>
 #define  MIN_VENTANA_Y 400
-#define MIN_VENTANA_X 475
+#define MIN_VENTANA_X 400
+#define MAX_VENTANA 700
 #include "../controller/UserEventCreator.h"
 #include "CanvasController.h"
 #include "keyboardEventController/KeyBoardEventController.h"
@@ -34,6 +35,9 @@ GeneralEventController::GeneralEventController() {
 	this->canvasController = 0;
 	this->guardarController = NULL;
 	this->flujoController = NULL;
+	tamAnteriorX = 600;
+	tamAnteriorY = 600;
+
 }
 
 GeneralEventController::~GeneralEventController() {
@@ -180,6 +184,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 //	int tamNuevoX, tamNuevoY;
 	SDL_Event evento;
 	Logger log;
+	int tamNuevoX, tamNuevoY;
 	SDL_PollEvent(&evento);
 	switch (evento.type) {
 	case SDL_QUIT:
@@ -250,23 +255,49 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 		switch (evento.window.event) {
 //TODO IMPLEMENTAR RESIZE
         		case SDL_WINDOWEVENT_RESIZED:
-        			int tamNuevoX, tamNuevoY;
+        			cout << "resize" << endl;
         			SDL_GetWindowSize(ventana,&tamNuevoX,&tamNuevoY);
-        			if (tamNuevoX <= MIN_VENTANA_X )
+
+        			if (tamNuevoX != this->tamAnteriorX && tamNuevoY == this->tamAnteriorY )
+        				tamNuevoY = tamNuevoX;
+        			else if(tamNuevoX == this->tamAnteriorX && tamNuevoY != this->tamAnteriorY )
+						tamNuevoX = tamNuevoY;
+        			else tamNuevoY = tamNuevoX;
+        			if ((tamNuevoX >= MAX_VENTANA) || (tamNuevoY >= MAX_VENTANA))
+        			{
+        				tamNuevoX = MAX_VENTANA;
+        				tamNuevoY = MAX_VENTANA ;
+        			}
+
+        			if (tamNuevoX <= MIN_VENTANA_X ){
         				tamNuevoX = MIN_VENTANA_X;
-        				//minimo de la ventana
-        			if (tamNuevoY <= MIN_VENTANA_Y)
-					{
-						tamNuevoY = MIN_VENTANA_Y ;
-					}
-        			if(tamNuevoX != tamNuevoY)
+        			tamNuevoY = MIN_VENTANA_Y ;}
+        			if (tamNuevoY <= MIN_VENTANA_Y){
+					tamNuevoY = MIN_VENTANA_Y ;
+					tamNuevoX = MIN_VENTANA_Y;}
+        			this->tamAnteriorX = tamNuevoX;
+        			this->tamAnteriorY = tamNuevoY;
+//        			tamNuevoX = tamNuevoY;
+        				cout << tamNuevoX << " " << tamNuevoY << " "<< tamAnteriorX << " " << tamAnteriorY << endl;
+        			if((tamNuevoX == tamNuevoY) && tamNuevoY <= MAX_VENTANA){
+        				cout << "se metio aca" << endl ;
         				SDL_SetWindowSize(ventana,tamNuevoX,tamNuevoY);
-        				this->resize(tamNuevoX, tamNuevoY);
-        			//Resizeables tienen que resizear
+        				this->resize(tamNuevoX, tamNuevoY);}
+//        			if (tamNuevoY >= MAX_VENTANA){
+//        				cout << "paso de largo" << endl ;
+//        				SDL_SetWindowSize(ventana,MAX_VENTANA,MAX_VENTANA);
+//        				 this->resize(MAX_VENTANA, MAX_VENTANA);
+//        			}
         			break;
+//
+
         		}
+
+
+
 		break;
 	}
+
 	}
 	return false;
 }
