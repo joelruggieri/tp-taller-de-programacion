@@ -13,6 +13,7 @@
 #include "src/figura/Pelota.h"
 #include "src/figura/Rueda.h"
 #include "src/figura/Globo.h"
+#include "../modelo/src/objeto/Plataforma.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
@@ -233,6 +234,26 @@ void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 	}
 }
 
+void NivelDAO::obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node plataformas = objetos["Plataformas"];
+	if(plataformas.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Ruedas";
+		logg.info(mensaje);
+	}
+	for (std::size_t i = 0; i < plataformas.size(); i++) {
+		try {
+			Plataforma obj = plataformas[i].as<Plataforma>();
+			bool salir = validar(obj, plataformas, i);
+			if(!salir ) continue;
+			lista.push_back( new Plataforma(obj));
+			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Ruedas: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje, plataformas[i].Mark() );
+		}
+	}
+}
 
 Nivel* NivelDAO::cargarPrimerNivel() {
 	std::list<std::string> nombres = AdministradorDeArchivos::getNombres();

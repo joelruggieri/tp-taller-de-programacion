@@ -65,7 +65,7 @@ void Figura::setRotador(Rotador* rotador) {
 	this->rotador = rotador;
 }
 
- Vista* Figura::getVista()  {
+ Vista* Figura::getVista(){
 	return vista;
 }
 
@@ -74,15 +74,15 @@ void Figura::setVista(Vista* vista) {
 }
 
 
-b2Body* Figura::getBody() {
+b2Body* Figura::getBody(){
 	return this->body;
 }
 
-void Figura::setBody(b2Body* b) {
+void Figura::setBody(b2Body* b){
 	body = b;
 }
 
-Rotador* Figura::getRotador() {
+Rotador* Figura::getRotador(){
 	return this->rotador;
 }
 

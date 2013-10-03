@@ -7,22 +7,45 @@
 
 #include "Plataforma.h"
 
+Plataforma::Plataforma(): Objeto(){
+	this->ancho = 0;
+	this->alto = 0;
+}
 
 Plataforma::Plataforma(float x, float y, Rotador* rotador, float ancho, float alto): Objeto(x,y,rotador) {
 	this->ancho = ancho;
 	this->alto = alto;
 }
 
+Plataforma::Plataforma(const Plataforma& plataforma){
+	x = plataforma.getX();
+	y = plataforma.getY();
+	alto = plataforma.getAlto();
+	ancho = plataforma.getAncho();
+	body = plataforma.body;
+	rotacion  = plataforma.getRotacion();
+	rotador = plataforma.rotador;
+	vista = plataforma.vista;
+}
+
 Plataforma::~Plataforma() {
 	// TODO Auto-generated destructor stub
 }
 
-float Plataforma::getAlto(){
+float Plataforma::getAlto() const{
 	return this->alto;
 }
 
-float Plataforma::getAncho(){
+float Plataforma::getAncho() const{
 	return this->ancho;
+}
+
+void Plataforma::setAlto(float alto){
+	this->alto = alto;
+}
+
+void Plataforma::setAncho(float ancho){
+	this->ancho = ancho;
 }
 
 void Plataforma::crearFisica(b2World * world){

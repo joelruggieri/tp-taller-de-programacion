@@ -11,12 +11,11 @@
 #include "../figura/Figura.h"
 class Objeto: public Figura {
 public:
+	Objeto();
 	Objeto(float x, float y,Rotador * rot);
 	virtual ~Objeto();
 	bool contieneCentro(Posicionable *);
 	//estos metodos devuelven el tamaño del cuadrado contenedor;
-	float getAlto() const;
-	float getAncho() const;
 	bool contacto(float, float);
 };
 
