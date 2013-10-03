@@ -18,8 +18,8 @@ ZonaPlay::ZonaPlay(float x, float y):Zona(new Cuadrado(x,y,20,10)) {
 	int lx,ly;
 	r->adaptarPosicionLogica(x,y,lx,ly);
 	CargadorDeTextures* loader = CargadorDeTextures::Instance();
-	SDL_Texture* text1 = loader->cargarTexture("resource/botonPlayUp");
-	SDL_Texture* text2 = loader->cargarTexture("resource/botonPlayDown");
+	SDL_Texture* text1 = loader->cargarTexture("resource/play.png");
+	SDL_Texture* text2 = loader->cargarTexture("resource/stop.png");
 	boton = new BotonSwitch(lx,ly,w,h,USREVENT_START, USREVENT_STOP,text1,text2);
 	vista = new ViewConBorde(boton);
 }
