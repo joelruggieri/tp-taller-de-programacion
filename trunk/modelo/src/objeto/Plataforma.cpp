@@ -65,7 +65,7 @@ void Plataforma::crearFisica(b2World * world){
 	fixture.density = 50.00f;
 	fixture.shape = polygon;
 	fixture.friction = 0.5f;
-	fixture.restitution = 0.90f;
+	fixture.restitution = 0.00f;
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody;
 	bodyDef.position.Set(x,y);
