@@ -10,7 +10,6 @@
 
 #include "ObjetoView.h"
 
-class DropController;
 class SimpleEditorAnguloFijo;
 struct SDL_Texture;
 
