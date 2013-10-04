@@ -44,5 +44,6 @@ public:
 	void start();
 	void stop();
 	void paso();
+	bool corriendo();
 };
 #endif /* JuegoEventsController_H_ */
