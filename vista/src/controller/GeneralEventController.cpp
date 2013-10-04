@@ -228,12 +228,12 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	case SDL_USEREVENT:
 		switch (evento.user.code) {
 			case USREVENT_CHANGEBACKGROUND:
-				if(this->canvasController != NULL){
+				if(this->canvasController != NULL && (flujoController == NULL || !flujoController->corriendo())){
 					this->canvasController->atenderEvento(evento);
 				}
 				break;
 			case USREVENT_SAVEGAME:
-				if(this->guardarController != NULL){
+				if(this->guardarController != NULL &&  (flujoController == NULL || !flujoController->corriendo())){
 					this->guardarController->persistir();
 				}
 				break;

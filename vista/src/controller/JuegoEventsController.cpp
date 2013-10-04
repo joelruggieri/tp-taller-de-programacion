@@ -110,7 +110,7 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 
 bool JuegoEventsController::rightClickDown(int x, int y) {
 	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
-	if (editor == NULL) {
+	if (editor == NULL && !iniciado) {
 		if (tablero != NULL && creacion != NULL) {
 			Resizer* r = Resizer::Instance();
 			Transformacion trans;
@@ -176,4 +176,8 @@ void JuegoEventsController::paso() {
 
 		this->modeloController->step(trans);
 	}
+}
+
+bool JuegoEventsController::corriendo() {
+	return iniciado;
 }
