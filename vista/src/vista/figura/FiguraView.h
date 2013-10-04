@@ -12,6 +12,7 @@
 #include "../View.h"
 #include "src/Vista.h"
 #include "SDL2/SDL.h"
+#include "../../controller/editor/EditorNivel.h"
 using namespace std;
 
 class DropController;
@@ -32,6 +33,7 @@ public:
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void click(float x, float y);
 	virtual void update(Transformacion & tl);
+	virtual EditorNivel* getEditor() = 0;
 };
 
 #endif /* FIGURAVIEW_H_ */

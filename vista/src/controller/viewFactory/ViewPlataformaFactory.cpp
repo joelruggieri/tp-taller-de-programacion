@@ -9,12 +9,12 @@
 
 
 
-ViewPlataformaFactory::ViewPlataformaFactory(DropController* controller): ViewFiguraFactory("resource/piso.png", controller) {
-
+ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorNivel * editor): ViewFiguraFactory("resource/piso.png", controller) {
+	this->editor= editor;
 }
 
 FiguraView* ViewPlataformaFactory::crear(int x, int y, int w, int h) {
-	return new PlataformaView(x, y, w, h, this->textura, this->controller);
+	return new PlataformaView(x, y, w, h, this->textura, this->editor);
 }
 
 ViewPlataformaFactory::~ViewPlataformaFactory() {

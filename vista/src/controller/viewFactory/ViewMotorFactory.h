@@ -8,9 +8,10 @@
 #ifndef VIEWMOTORFACTORY_H_
 #define VIEWMOTORFACTORY_H_
 #include "ViewFiguraFactory.h"
+#include "../../controller/editor/SimpleEditorAnguloFijo.h"
 class ViewMotorFactory: public ViewFiguraFactory {
 public:
-	ViewMotorFactory(DropController* controller);
+	ViewMotorFactory(SimpleEditorAnguloFijo * editor);
 	virtual ~ViewMotorFactory();
 	FiguraView * crear(int, int, int, int);
 	View * crearVistaPropia(int,int,int,int);

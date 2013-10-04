@@ -21,3 +21,6 @@ PelotaView::~PelotaView() {
 	// TODO Auto-generated destructor stub
 }
 
+EditorNivel* PelotaView::getEditor() {
+	return 0;
+}

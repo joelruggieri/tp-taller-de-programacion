@@ -7,13 +7,19 @@
 
 #ifndef MOTORVIEW_H_
 #define MOTORVIEW_H_
+
 #include "ObjetoView.h"
+
+class DropController;
+class SimpleEditorAnguloFijo;
+struct SDL_Texture;
 
 class MotorView: public ObjetoView {
 public:
-	MotorView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
+	MotorView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
 	virtual ~MotorView();
 	void dropTemplate();
+	EditorNivel * getEditor();
 
 };
 

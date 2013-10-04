@@ -21,3 +21,6 @@ GloboView::~GloboView() {
 	// TODO Auto-generated destructor stub
 }
 
+EditorNivel* GloboView::getEditor() {
+	return 0;
+}

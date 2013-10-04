@@ -16,6 +16,7 @@ private:
 public:
 	PelotaView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
 	virtual ~PelotaView();
+	EditorNivel* getEditor();
 };
 
 

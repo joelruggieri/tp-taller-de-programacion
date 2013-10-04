@@ -8,8 +8,8 @@
 #include "ViewRuedaFactory.h"
 #include "../../vista/figura/RuedaView.h"
 
-ViewRuedaFactory::ViewRuedaFactory(DropController * controller): ViewFiguraFactory("resource/rueda.png", controller) {
-
+ViewRuedaFactory::ViewRuedaFactory(DropController * controller, SimpleEditorNivel * editor): ViewFiguraFactory("resource/rueda.png", controller) {
+	this->editor= editor;
 }
 
 ViewRuedaFactory::~ViewRuedaFactory() {
