@@ -19,13 +19,13 @@
 #include "../vista/figura/RuedaView.h"
 #include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
-#include "../vista/objeto/MotorView.h"
 #include "../vista/objeto/PlataformaView.h"
 #include "../vista/figura/RuedaView.h"
 #include <list>
 
 using namespace std;
-
+class MotorView;
+class PlataformaView;
 class DropController{
 
 public:

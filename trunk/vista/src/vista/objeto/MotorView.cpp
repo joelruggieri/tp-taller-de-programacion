@@ -6,9 +6,8 @@
  */
 
 #include "MotorView.h"
-#include "../../controller/DropController.h"
-MotorView::MotorView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller): ObjetoView(x, y, w, h,textura, controller) {
-	// TODO Auto-generated constructor stub
+#include "../../controller/editor/SimpleEditorAnguloFijo.h"
+MotorView::MotorView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, w, h,textura, editor) {
 
 }
 
@@ -20,3 +19,8 @@ void MotorView::dropTemplate() {
 	controller->dropNuevaFigura(this);
 }
 
+EditorNivel* MotorView::getEditor() {
+	SimpleEditorAnguloFijo * editor = (SimpleEditorAnguloFijo *)controller;
+	editor->setFigura(this);
+	return editor;
+}

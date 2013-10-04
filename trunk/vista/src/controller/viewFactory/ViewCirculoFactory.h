@@ -9,9 +9,12 @@
 #define VIEWCIRCULOFACTORY_H_
 
 #include "ViewFiguraFactory.h"
+#include "../editor/SimpleEditorNivel.h"
 class ViewCirculoFactory: public ViewFiguraFactory {
+private:
+	SimpleEditorNivel * editor;
 public:
-	ViewCirculoFactory(DropController * controller);
+	ViewCirculoFactory(DropController* controller, SimpleEditorNivel * editor);
 	virtual ~ViewCirculoFactory();
 	FiguraView * crear(int,int,int,int);
 	FactoryView * crearVistaPropia(int,int,int,int);

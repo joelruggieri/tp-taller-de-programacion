@@ -81,7 +81,5 @@ void Plataforma::crearFisica(b2World * world){
 
 void Plataforma::acept(VisitorFigura* visitor){
 	visitor->visit(this);
-
-
 } /* namespace std */
 

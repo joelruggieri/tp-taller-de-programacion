@@ -17,7 +17,6 @@
 
 #include "../vista/CargadorDeTextures.h"
 #include "../vista/DraggingView.h"
-#include "../vista/RotationView.h"
 #include "GeneralEventController.h"
 #include "inicializador/InicializadorJuego.h"
 #include "JuegoEventsController.h"
@@ -72,8 +71,8 @@ int MainController::run() {
 	eventController.addMouseController(tbEventController, 2, 1);
 	eventController.addKeyboardController(tbEventController);
 	eventController.setFlujoController(juegoController);
-	DraggingView vista(juegoController);
-	RotationView vistaRotacion(juegoController, texturas->cargarTexture("resource/rotacion.png"));
+//	DraggingView vista(juegoController);
+//	RotationView vistaRotacion(juegoController, texturas->cargarTexture("resource/rotacion.png"));
 	while(!terminar){
 		SDL_Delay(5);
 		terminar = eventController.procesarEventos(ventana);
@@ -82,8 +81,8 @@ int MainController::run() {
 		juegoController->paso();
 		juegoController->dibujarse(render);
 //		taparHueco(render);
-		vista.dibujarse(render);
-		vistaRotacion.dibujarse(render);
+//		vista.dibujarse(render);
+//		vistaRotacion.dibujarse(render);
 		toolBar->dibujarse(render);
 		SDL_RenderPresent(render);
 	}

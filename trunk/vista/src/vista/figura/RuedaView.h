@@ -18,6 +18,7 @@ private:
 public:
 	RuedaView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
 	virtual ~RuedaView();
+	EditorNivel * getEditor();
 };
 
 } /* namespace std */

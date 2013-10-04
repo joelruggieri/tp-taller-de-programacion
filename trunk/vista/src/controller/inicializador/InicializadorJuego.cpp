@@ -10,7 +10,6 @@ using namespace std;
 #include <list>
 #include "../../vista/figura/FiguraView.h"
 #include "../viewFactory/ViewCirculoFactory.h"
-#include "../viewFactory/ViewTrianguloFactory.h"
 #include "../viewFactory/ViewRuedaFactory.h"
 #include "../viewFactory/ViewGloboFactory.h"
 #include "../viewFactory/ViewPelotaFactory.h"
@@ -24,6 +23,8 @@ using namespace std;
 #include "../PersistenciaEventController.h"
 #include "src/figuraFactory/FiguraFactory.h"
 #include "../zonaDragAndDrop/ZonaPlay.h"
+#include "../editor/SimpleEditorNivel.h"
+#include "../editor/SimpleEditorAnguloFijo.h"
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
 const string KEY_RUEDA = "RUEDA";
@@ -120,36 +121,35 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 		return this->juegoController;
 	}
 	ZonaPlay * zp = new ZonaPlay(110,5);
-	this->juegoController = new JuegoEventsController(modeloController, zp,this->factory, 100);
-	ViewFiguraFactory * viewFactory = new ViewTrianguloFactory(juegoController);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TRIANGULO,viewFactory));
-	viewFactory = new ViewCirculoFactory(juegoController);
+	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
+	SDL_Texture* canvasTexture = texturas->cargarTexture(FONDO_DEFECTO);
+	tablero = new ZonaTablero(50,50, canvasTexture);
+
+	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
+	SimpleEditorAnguloFijo * editorSimpleAnguloFijo = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100);
+	this->juegoController = new JuegoEventsController(modeloController, zp);
+	ViewFiguraFactory * viewFactory = new ViewCirculoFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,viewFactory));
-	viewFactory = new ViewRuedaFactory(juegoController);
+	viewFactory = new ViewRuedaFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_RUEDA,viewFactory));
-	viewFactory = new ViewGloboFactory(juegoController);
+	viewFactory = new ViewGloboFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
-	viewFactory = new ViewPelotaFactory(juegoController);
+	viewFactory = new ViewPelotaFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA,viewFactory));
 
 	list<ViewFiguraFactory*> factories;
-	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
-	SDL_Texture* canvasTexture = texturas->cargarTexture(FONDO_DEFECTO);
 	SDL_Texture* herrTextura = texturas->cargarTexture(FONDO_ZONA_CREACION);
-	factories.push_back(new ViewMotorFactory(juegoController));
-	factories.push_back(new ViewTrianguloFactory(juegoController));
-	factories.push_back(new ViewPelotaFactory(juegoController));
-	factories.push_back(new ViewGloboFactory(juegoController));
-	factories.push_back(new ViewRuedaFactory(juegoController));
-	factories.push_back(new ViewMotorFactory(juegoController));
-	factories.push_back(new ViewTrianguloFactory(juegoController));
-	factories.push_back(new ViewPelotaFactory(juegoController));
-	factories.push_back(new ViewGloboFactory(juegoController));
-	factories.push_back(new ViewRuedaFactory(juegoController));
-	factories.push_back(new ViewPlataformaFactory(juegoController));
+	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo));
+	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
+	factories.push_back(new ViewGloboFactory(editorSimple,editorSimple));
+	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
+	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo));
+	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
+	factories.push_back(new ViewGloboFactory(editorSimple,editorSimple));
+	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
+	factories.push_back(new ViewPlataformaFactory(editorSimple));
 
 
-	tablero = new ZonaTablero(50,50, canvasTexture);
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
 			herrTextura);

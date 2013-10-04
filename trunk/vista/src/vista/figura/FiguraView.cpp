@@ -75,3 +75,4 @@ void FiguraView::update(Transformacion & tl) {
 	this->setYc(yi);
 
 }
+

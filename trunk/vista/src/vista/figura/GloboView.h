@@ -17,6 +17,7 @@ private:
 public:
 	GloboView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
 	virtual ~GloboView();
+	EditorNivel* getEditor();
 };
 
 #endif /* GLOBOVIEW_H_ */

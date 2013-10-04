@@ -17,6 +17,7 @@ private:
 public:
 	CirculoView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
 	virtual ~CirculoView();
+	EditorNivel* getEditor();
 };
 
 #endif /* CIRCULOVIEW_H_ */

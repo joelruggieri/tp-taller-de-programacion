@@ -9,7 +9,7 @@
 #include "../../vista/figura/GloboView.h"
 
 
-ViewGloboFactory::ViewGloboFactory(DropController* controler): ViewFiguraFactory("resource/globo-3-naranja.png", controler)  {
+ViewGloboFactory::ViewGloboFactory(DropController* controler, SimpleEditorNivel * editor): ViewFiguraFactory("resource/globo-3-naranja.png", controler)  {
 
 
 }

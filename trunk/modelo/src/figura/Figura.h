@@ -32,7 +32,7 @@ public:
 	double getRotacion() const;
 	void setX(float x);
 	void setY(float y);
-	void setRotacion(double rotation);
+	virtual void setRotacion(double rotation);
 	virtual void crearFisica(b2World *) = 0;
 	virtual void acept(VisitorFigura*) = 0;
 	//estos metodos devuelven el tamaño del cuadrado contenedor;

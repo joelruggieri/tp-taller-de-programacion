@@ -6,9 +6,8 @@
  */
 
 #include "PlataformaView.h"
-#include "../../controller/DropController.h"
-
-PlataformaView::PlataformaView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller) : ObjetoView(x,y,w,h,textura,controller) {
+#include "../../controller/editor/SimpleEditorNivel.h"
+PlataformaView::PlataformaView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorNivel* editor) : ObjetoView(x,y,w,h,textura,editor) {
 
 }
 
@@ -20,3 +19,8 @@ void 	PlataformaView::dropTemplate() {
 	controller->dropNuevaFigura(this);
 }
 
+EditorNivel* PlataformaView::getEditor() {
+	SimpleEditorNivel * editor = (SimpleEditorNivel *)controller;
+	editor->setFigura(this);
+	return editor;
+}

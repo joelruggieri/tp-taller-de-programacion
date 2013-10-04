@@ -25,3 +25,7 @@ RuedaView::~RuedaView() {
 }
 
 } /* namespace std */
+
+EditorNivel* std::RuedaView::getEditor() {
+	return 0;
+}
