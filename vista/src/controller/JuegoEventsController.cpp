@@ -37,11 +37,12 @@ JuegoEventsController::~JuegoEventsController() {
 
 bool JuegoEventsController::clickDown(int x, int y) {
 	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
-	Resizer* r = Resizer::Instance();
-	float lX = r->resizearDistanciaPixelX(x);
-	float lY = r->resizearPosicionPixelY(y);
 	if (editor == NULL) {
-		if (tablero != NULL && creacion != NULL && !zplay->click(lX, lY) && !creacion->click(lX,lY)) {
+		Resizer* r = Resizer::Instance();
+		float lX = r->resizearDistanciaPixelX(x);
+		float lY = r->resizearPosicionPixelY(y);
+		if (tablero != NULL && creacion != NULL && !zplay->click(lX, lY) &&!iniciado
+				&& !creacion->click(lX, lY) ) {
 			Transformacion trans;
 			trans.traslacion(0, 100);
 			trans.escalar(r->getRelacionX(), r->getRelacionY());
@@ -76,7 +77,7 @@ bool JuegoEventsController::clickDown(int x, int y) {
 }
 
 bool JuegoEventsController::clickUp(int x, int y) {
-	if (editor != NULL) {
+	if (editor != NULL && !iniciado) {
 		editor->clickUp(x, y);
 		editor = editor->isEnd() ? NULL : editor;
 	}
@@ -100,7 +101,7 @@ void JuegoEventsController::setZonas(ZonaTablero *tablero,
 }
 
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
-	if (editor != NULL) {
+	if (editor != NULL && !iniciado) {
 		editor->mouseMotion(corrimientoX, corrimientoY);
 		editor = editor->isEnd() ? NULL : editor;
 	}
@@ -132,7 +133,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 }
 
 bool JuegoEventsController::rightClickUp(int x, int y) {
-	if (editor != NULL) {
+	if (editor != NULL && !iniciado) {
 		editor->rightClickUp(x, y);
 		editor = editor->isEnd() ? NULL : editor;
 	}
@@ -166,13 +167,13 @@ void JuegoEventsController::stop() {
 }
 
 void JuegoEventsController::paso() {
-	Resizer * r = Resizer::Instance();
-	Transformacion trans;
-	trans.traslacion(0, 100);
-	trans.escalar(r->getRelacionX(), r->getRelacionY());
-	trans.invertir(false, true);
-
 	if (iniciado) {
+		Resizer * r = Resizer::Instance();
+		Transformacion trans;
+		trans.traslacion(0, 100);
+		trans.escalar(r->getRelacionX(), r->getRelacionY());
+		trans.invertir(false, true);
+
 		this->modeloController->step(trans);
 	}
 }
