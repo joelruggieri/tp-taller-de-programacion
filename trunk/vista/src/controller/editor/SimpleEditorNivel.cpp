@@ -29,11 +29,10 @@ SimpleEditorNivel::SimpleEditorNivel(ModeloController * m, ZonaTablero * t,
 }
 
 SimpleEditorNivel::~SimpleEditorNivel() {
-	if(this->editado != NULL){
+	if (this->editado != NULL) {
 		delete editado;
 	}
 }
-
 
 void SimpleEditorNivel::dropear(FiguraView* view, Figura* figura) {
 	Logger log;
@@ -91,7 +90,7 @@ void SimpleEditorNivel::dropNuevaFigura(TrianguloView* view) {
 
 void SimpleEditorNivel::setFigura(FiguraView* f) {
 	this->editado = f;
-	this->finalizado  = false;
+	this->finalizado = false;
 }
 
 void SimpleEditorNivel::dropFigura(FiguraView* view) {
@@ -157,9 +156,11 @@ void SimpleEditorNivel::clickDown(int x, int y) {
 		this->visor = editado;
 		dragueando = true;
 
+	} else {
+		Logger log;
+		log.warning(
+				"El editor se encuentra finalizado, puede que no se haya seteado el elemento a editar");
 	}
-	Logger log;
-	log.warning("El editor se encuentra finalizado, puede que no se haya seteado el elemento a editar");
 }
 
 void SimpleEditorNivel::clickUp(int x, int y) {
@@ -167,7 +168,7 @@ void SimpleEditorNivel::clickUp(int x, int y) {
 		this->elementoDrag->drop();
 		delete this->elementoDrag;
 		this->dragueando = false;
-		visor =  NULL;
+		visor = NULL;
 		this->finalizado = true;
 	}
 }
@@ -217,7 +218,8 @@ void SimpleEditorNivel::rightClickDown(int x, int y) {
 						r->getAltoPantalla() - y, 0);
 				rotando = true;
 				CargadorDeTextures* l = CargadorDeTextures::Instance();
-				this->visor = new ViewConIcono(editado, l->cargarTexture("resource/rotacion.png"), 2);
+				this->visor = new ViewConIcono(editado,
+						l->cargarTexture("resource/rotacion.png"), 2);
 			}
 
 		} else {
@@ -244,7 +246,7 @@ bool SimpleEditorNivel::isEnd() {
 }
 
 void SimpleEditorNivel::dibujarEdicion(SDL_Renderer*r) {
-	if(dragueando || rotando){
+	if (dragueando || rotando) {
 		visor->dibujarse(r);
 	}
 }
