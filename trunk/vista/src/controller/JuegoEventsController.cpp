@@ -22,51 +22,50 @@
 
 using namespace std;
 
-JuegoEventsController::JuegoEventsController(ModeloController *modeloController, ZonaPlay * zplay) {
+JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
+		ZonaPlay * zplay) {
 	this->tablero = NULL;
 	this->creacion = NULL;
 	this->modeloController = modeloController;
 	this->zplay = zplay;
-	editor= NULL;
+	editor = NULL;
 	iniciado = false;
 }
 
 JuegoEventsController::~JuegoEventsController() {
 }
 
-
-
 bool JuegoEventsController::clickDown(int x, int y) {
 	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
-	if(editor == NULL){
-		if(tablero != NULL && creacion != NULL){
-			Resizer* r = Resizer::Instance();
-			float lX = r->resizearDistanciaPixelX(x);
-			float lY = r->resizearPosicionPixelY(y);
+	Resizer* r = Resizer::Instance();
+	float lX = r->resizearDistanciaPixelX(x);
+	float lY = r->resizearPosicionPixelY(y);
+	if (editor == NULL) {
+		if (tablero != NULL && creacion != NULL && !zplay->click(lX, lY) && !creacion->click(lX,lY)) {
 			Transformacion trans;
-			trans.traslacion(0,100);
-			trans.escalar(r->getRelacionX(),r->getRelacionY());
-			trans.invertir(false,true);
-			trans.setVector(x,y);
+			trans.traslacion(0, 100);
+			trans.escalar(r->getRelacionX(), r->getRelacionY());
+			trans.invertir(false, true);
+			trans.setVector(x, y);
 			float lX2, lY2;
 			trans.getResultado(lX2, lY2);
 			FiguraView * view = NULL;
 			Figura * fig = this->modeloController->pickUp(lX2, lY2);
 			// VOY A BUSCAR TANTO A ZONA DE CREACION COMO A ZONA DE TABLERO EN BUSCA DE UNA VISTA, YA QUE CLICK IZQUIERDO PUEDE CREAR VISTA.
-			if(fig != NULL){
-				view = (FiguraView * )fig->getVista();
+			if (fig != NULL) {
+				view = (FiguraView *) fig->getVista();
 			} else {
-				view = this->creacion->getVista(lX,lY);
+				view = this->creacion->getVista(lX, lY);
 			}
 
 			if (view != NULL) {
 				editor = view->getEditor();
-				if (editor == NULL){
-					cout<<"La Vista no tiene un editor";
+				if (editor == NULL) {
+					cout << "La Vista no tiene un editor";
 					throw "La Vista no tiene un editor";
 				}
-				editor->clickDown(x,y);
-				if(editor->isEnd()){
+				editor->clickDown(x, y);
+				if (editor->isEnd()) {
 					editor = NULL;
 				}
 				return false;
@@ -77,9 +76,9 @@ bool JuegoEventsController::clickDown(int x, int y) {
 }
 
 bool JuegoEventsController::clickUp(int x, int y) {
-	if(editor != NULL){
-		editor->clickUp(x,y);
-		editor = editor->isEnd() ? NULL: editor;
+	if (editor != NULL) {
+		editor->clickUp(x, y);
+		editor = editor->isEnd() ? NULL : editor;
 	}
 	return true;
 }
@@ -94,38 +93,37 @@ bool JuegoEventsController::mouseWheelMoved(int x, int y, int amountScrolled) {
 	return true;
 }
 
-
-void JuegoEventsController::setZonas(ZonaTablero *tablero, ZonaCreacion * creacion) {
+void JuegoEventsController::setZonas(ZonaTablero *tablero,
+		ZonaCreacion * creacion) {
 	this->tablero = tablero;
 	this->creacion = creacion;
 }
 
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
-	if(editor != NULL){
-		editor->mouseMotion(corrimientoX,corrimientoY);
-		editor = editor->isEnd() ? NULL: editor;
+	if (editor != NULL) {
+		editor->mouseMotion(corrimientoX, corrimientoY);
+		editor = editor->isEnd() ? NULL : editor;
 	}
 	return true;
 }
 
-
 bool JuegoEventsController::rightClickDown(int x, int y) {
 	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
-	if(editor == NULL){
-		if(tablero != NULL && creacion != NULL){
+	if (editor == NULL) {
+		if (tablero != NULL && creacion != NULL) {
 			Resizer* r = Resizer::Instance();
 			Transformacion trans;
-			trans.traslacion(0,100);
-			trans.escalar(r->getRelacionX(),r->getRelacionY());
-			trans.invertir(false,true);
-			trans.setVector(x,y);
+			trans.traslacion(0, 100);
+			trans.escalar(r->getRelacionX(), r->getRelacionY());
+			trans.invertir(false, true);
+			trans.setVector(x, y);
 			float lX2, lY2;
 			trans.getResultado(lX2, lY2);
 			Figura * fig = this->modeloController->pickUp(lX2, lY2);
 			// VOY A BUSCAR SOLO A LA ZONA DE TABLERO
-			if(fig != NULL){
-				editor =((FiguraView * )fig->getVista())->getEditor();
-				editor->rightClickDown(x,y);
+			if (fig != NULL) {
+				editor = ((FiguraView *) fig->getVista())->getEditor();
+				editor->rightClickDown(x, y);
 				editor = editor->isEnd() ? NULL : editor;
 			}
 		}
@@ -134,9 +132,9 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 }
 
 bool JuegoEventsController::rightClickUp(int x, int y) {
-	if(editor != NULL){
-		editor->rightClickUp(x,y);
-		editor = editor->isEnd() ? NULL: editor;
+	if (editor != NULL) {
+		editor->rightClickUp(x, y);
+		editor = editor->isEnd() ? NULL : editor;
 	}
 	return true;
 }
@@ -144,16 +142,16 @@ void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
 	tablero->dibujarse(renderer);
 	creacion->dibujarse(renderer);
 	zplay->dibujarse(renderer);
-	if(editor != NULL){
+	if (editor != NULL) {
 		editor->dibujarEdicion(renderer);
 	}
 }
 
 void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
-	tablero->dibujarse(renderer,dest);
-	creacion->dibujarse(renderer,dest);
+	tablero->dibujarse(renderer, dest);
+	creacion->dibujarse(renderer, dest);
 	zplay->dibujarse(renderer);
-	if(editor != NULL){
+	if (editor != NULL) {
 		editor->dibujarEdicion(renderer);
 	}
 
@@ -170,11 +168,11 @@ void JuegoEventsController::stop() {
 void JuegoEventsController::paso() {
 	Resizer * r = Resizer::Instance();
 	Transformacion trans;
-	trans.traslacion(0,100);
-	trans.escalar(r->getRelacionX(),r->getRelacionY());
-	trans.invertir(false,true);
+	trans.traslacion(0, 100);
+	trans.escalar(r->getRelacionX(), r->getRelacionY());
+	trans.invertir(false, true);
 
-	if(iniciado){
+	if (iniciado) {
 		this->modeloController->step(trans);
 	}
 }
