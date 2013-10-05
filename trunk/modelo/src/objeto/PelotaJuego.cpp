@@ -7,7 +7,7 @@
 
 #include "PelotaJuego.h"
 
-PelotaJuego::PelotaJuego(float x, float y,Rotador * rot, float radio):Objeto(x,y,rot) {
+PelotaJuego::PelotaJuego(float x, float y, float radio):Objeto(x,y) {
 	this->radio = radio ;
 }
 

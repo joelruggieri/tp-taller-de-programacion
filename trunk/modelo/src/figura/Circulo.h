@@ -16,7 +16,7 @@ protected:
 public:
 	Circulo();
 	Circulo(const Circulo& circulo);
-	Circulo(float, float, Rotador *, float);
+	Circulo(float, float, float);
 	virtual ~Circulo();
 	bool contacto(float,float);
 	bool contieneCentro(Posicionable* cuadrado);

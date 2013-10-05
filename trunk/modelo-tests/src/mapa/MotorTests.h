@@ -25,7 +25,7 @@ public:
 
 #endif /* MOTORTESTS_H_ */
 TEST_F(MotorTests, AgregarFigura) {
-	Motor m (10,10,0,10,6);
+	Motor m (10,10,10,6);
 	// los vertices son entonces (5,7)(15,7)(15,13)(5,13)
 	mapa->addFigura(&m);
 	Figura* figura = mapa->pickUp(10, 10);

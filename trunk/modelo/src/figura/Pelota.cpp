@@ -16,7 +16,7 @@ Pelota::~Pelota() {
 	// TODO Auto-generated destructor stub
 }
 
-Pelota::Pelota(float x, float y, Rotador* rotador,float radio): Circulo(x,y,rotador,radio){
+Pelota::Pelota(float x, float y,float radio): Circulo(x,y,radio){
 
 }
 
@@ -24,7 +24,6 @@ Pelota::Pelota(const Pelota& figura){
 	this->x = figura.getX();
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
-	this->rotador = figura.rotador;
 	this->radio = figura.getRadio();
 
 }

@@ -14,7 +14,7 @@ public:
 	Globo();
 	Globo(const Globo& figura);
 	virtual ~Globo();
-	Globo(float x, float y, Rotador* rotador, float radio);
+	Globo(float x, float y, float radio);
 	void acept(VisitorFigura *visitor);
 };
 

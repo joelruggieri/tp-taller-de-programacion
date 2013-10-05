@@ -12,7 +12,7 @@ Plataforma::Plataforma(): Objeto(){
 	this->alto = 0;
 }
 
-Plataforma::Plataforma(float x, float y, Rotador* rotador, float ancho, float alto): Objeto(x,y,rotador) {
+Plataforma::Plataforma(float x, float y, float ancho, float alto): Objeto(x,y) {
 	this->ancho = ancho;
 	this->alto = alto;
 }
@@ -24,7 +24,6 @@ Plataforma::Plataforma(const Plataforma& plataforma){
 	ancho = plataforma.getAncho();
 	body = plataforma.body;
 	rotacion  = plataforma.getRotacion();
-	rotador = plataforma.rotador;
 	vista = plataforma.vista;
 }
 

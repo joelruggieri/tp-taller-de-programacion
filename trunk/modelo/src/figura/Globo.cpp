@@ -16,7 +16,7 @@ Globo::~Globo() {
 	// TODO Auto-generated destructor stub
 }
 
-Globo::Globo(float x, float y, Rotador* rotador, float radio): Circulo(x,y,rotador,radio){
+Globo::Globo(float x, float y, float radio): Circulo(x,y,radio){
 
 }
 
@@ -24,7 +24,6 @@ Globo::Globo(const Globo& figura){
 	this->x = figura.getX();
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
-	this->rotador = figura.rotador;
 	this->radio = figura.getRadio();
 }
 

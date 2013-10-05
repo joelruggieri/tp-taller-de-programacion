@@ -11,7 +11,7 @@ Objeto::Objeto(): Figura(){
 
 }
 
-Objeto::Objeto(float x, float y,Rotador * rot):Figura(x,y,rot){
+Objeto::Objeto(float x, float y):Figura(x,y){
 	body = NULL;
 }
 

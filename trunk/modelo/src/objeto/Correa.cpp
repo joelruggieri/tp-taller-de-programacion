@@ -7,7 +7,7 @@
 
 #include "Correa.h"
 
-Correa::Correa(float x, float y,Rotador * rot):Objeto(x,y,rot){
+Correa::Correa(float x, float y):Objeto(x,y){
 	// TODO Auto-generated constructor stub
 
 }

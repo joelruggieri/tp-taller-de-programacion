@@ -16,7 +16,6 @@ public:
 	FiguraFactory(Rotador * rotador);
 	virtual ~FiguraFactory();
 	Figura * crearCirculo(float x,float y);
-	Figura * crearTriangulo(float x,float y);
 	Figura * crearRueda(float x,float y);
 	Figura * crearGlobo(float x,float y);
 	Figura * crearPelota(float x,float y);

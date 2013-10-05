@@ -7,7 +7,7 @@
 
 #include "ObjetoCualquiera.h"
 
-ObjetoCualquiera::ObjetoCualquiera(float x, float y):Objeto(x,y,0) {
+ObjetoCualquiera::ObjetoCualquiera(float x, float y):Objeto(x,y) {
 	// TODO Auto-generated constructor stub
 
 }

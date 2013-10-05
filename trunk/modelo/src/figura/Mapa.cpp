@@ -155,7 +155,6 @@ void Mapa::step(Transformacion & tl) {
 
 void Mapa::inicializar(float x, float y, float w, float h, float32 hz,
 		int32 velocityIterations, int32 positionIterations) {
-	b2Vec2 gravity(0.0f, -10.0f);
 	this->x = x;
 	this->y = y;
 	this->w = w;
@@ -164,6 +163,35 @@ void Mapa::inicializar(float x, float y, float w, float h, float32 hz,
 	this->frecuencia = hz;
 	this->velocidad = velocityIterations;
 	this->posicion = positionIterations;
+	crearMundo();
+}
+
+void Mapa::makeBackUp() {
+	//TODO POR AHORA NO HAY FIGURAS QUE SE VAYAN EN LOS STEPS.
+	list<Figura*>::iterator it;
+	for(it = figuras.begin(); it != figuras.end(); ++it){
+		(*it)->makeBackUp();
+	}
+}
+
+void Mapa::restoreBackUp(Transformacion & tl) {
+	list<Figura*>::iterator it;
+	for(it = figuras.begin(); it != figuras.end(); ++it){
+		(*it)->restoreBackUp();
+	}
+	delete myWorld;
+	crearMundo();
+	for(it = figuras.begin(); it != figuras.end(); ++it){
+		(*it)->crearFisica(myWorld);
+	}
+
+	for(it = figuras.begin(); it != figuras.end(); ++it){
+		(*it)->updateModelo(tl);
+	}
+}
+
+void Mapa::crearMundo() {
+	b2Vec2 gravity(0.0f, -10.0f);
 	this->myWorld = new b2World(gravity);
 	// Define the ground body.
 	b2BodyDef groundBodyDef;

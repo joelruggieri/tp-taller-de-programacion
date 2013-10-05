@@ -12,7 +12,7 @@
 class Objeto: public Figura {
 public:
 	Objeto();
-	Objeto(float x, float y,Rotador * rot);
+	Objeto(float x, float y);
 	virtual ~Objeto();
 	bool contieneCentro(Posicionable *);
 	//estos metodos devuelven el tamaño del cuadrado contenedor;

@@ -12,7 +12,7 @@
 
 class BolaBoliche: public Objeto {
 public:
-	BolaBoliche(float x, float y,Rotador * rot, float radio);
+	BolaBoliche(float x, float y, float radio);
 	virtual ~BolaBoliche();
 	void crearFisica(b2World *);
 private:

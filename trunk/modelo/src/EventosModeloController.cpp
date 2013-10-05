@@ -32,7 +32,18 @@ Figura* ModeloController::pickUp(float x, float y) {
 	return mapa->pickUp(x,y);
 }
 
-void ModeloController::step(Transformacion & tl) {
+void ModeloController::step() {
+	mapa->step(*tl);
+}
 
-	mapa->step(tl);
+void ModeloController::start() {
+	mapa->makeBackUp();
+}
+
+void ModeloController::stop() {
+	mapa->restoreBackUp(*tl);
+}
+
+void ModeloController::setTransformacion(Transformacion * tl) {
+	this->tl = tl;
 }

@@ -22,7 +22,6 @@ public:
 	virtual ~VisitorFigura(){
 
 	}
-	virtual void visit(Triangulo*) = 0;
 	virtual void visit(Circulo*) = 0;
 	virtual void visit(Rueda*) = 0;
 	virtual void visit(Globo*) = 0;

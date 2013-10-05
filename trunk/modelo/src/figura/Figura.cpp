@@ -43,26 +43,20 @@ Figura::Figura() {
 	x= 0;
 	y=0;
 	rotacion = 0;
-	this->rotador = 0;
 	vista= 0;
 	this->body =0;
 }
 
-Figura::Figura(float x, float y, Rotador * rotador) {
+Figura::Figura(float x, float y) {
 	this->x = x;
 	this->y = y;
 	this->rotacion = 0;
-	this->rotador = rotador;
 	vista= 0;
 	this->body =0;
 }
 
 
 Figura::~Figura() {
-}
-
-void Figura::setRotador(Rotador* rotador) {
-	this->rotador = rotador;
 }
 
  Vista* Figura::getVista(){
@@ -82,9 +76,6 @@ void Figura::setBody(b2Body* b){
 	body = b;
 }
 
-Rotador* Figura::getRotador(){
-	return this->rotador;
-}
 
 void Figura::updateModelo(Transformacion & tl) {
 	if(this->body != 0){
@@ -92,7 +83,7 @@ void Figura::updateModelo(Transformacion & tl) {
 		this->setX(p.x);
 		this->setY(p.y);
 		this->setRotacion( -1*radianesAGrados(body->GetAngle()));
-		cout << "("<<p.x <<","<<p.y << ")"<<endl;
+//		cout << "("<<p.x <<","<<p.y << ")"<<endl;
 		if(vista != 0)
 			this->vista->update(tl);
 	}
@@ -104,4 +95,16 @@ double Figura::radianesAGrados(float r) {
 
 double Figura::gradosARadianes(float g) {
 	return g*3.14/180;
+}
+
+void Figura::makeBackUp() {
+	xb = x;
+	yb =y;
+	rotacionb = rotacion;
+}
+
+void Figura::restoreBackUp() {
+	x= xb;
+	y = yb;
+	rotacion = rotacionb;
 }

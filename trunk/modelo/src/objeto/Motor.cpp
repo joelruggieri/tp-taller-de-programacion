@@ -9,7 +9,7 @@
 #include <iostream>
 using namespace std;
 
-Motor::Motor(float x, float y,Rotador * rot, float w, float h):Objeto(x,y,rot) {
+Motor::Motor(float x, float y, float w, float h):Objeto(x,y) {
 	this->w = w;
 	this->h = h;
 
@@ -31,7 +31,7 @@ void Motor::crearFisica(b2World* world) {
 	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = world->CreateBody(&bodyDef);
-	body->CreateFixture(polygon, 10.0f);
+	body->CreateFixture(polygon, 1.0);
 	body->SetUserData(this);
 	this->setBody(body);
 //	b2Vec2 pos = body->GetPosition();

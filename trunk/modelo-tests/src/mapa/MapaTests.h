@@ -8,7 +8,6 @@
 #ifndef MAPATESTS_H_
 #define MAPATESTS_H_
 #include "src/figura/Mapa.h"
-#include "src/figura/Triangulo.h"
 #include "gtest/gtest.h"
 #include "ObjetoCualquiera.h"
 class MapaTests: public testing::Test {

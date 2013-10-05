@@ -7,7 +7,7 @@
 
 #include "BolaBoliche.h"
 
-BolaBoliche::BolaBoliche(float x, float y,Rotador * rot, float radio):Objeto(x,y,rot) {
+BolaBoliche::BolaBoliche(float x, float y, float radio):Objeto(x,y) {
 //this->x = x ;
 //this->y = y;
 this->radio = radio ;
