@@ -25,6 +25,7 @@ using namespace std;
 #include "../zonaDragAndDrop/ZonaPlay.h"
 #include "../editor/SimpleEditorNivel.h"
 #include "../editor/SimpleEditorAnguloFijo.h"
+#include "../editor/SimpleEditorEstirar.h"
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
 const string KEY_RUEDA = "RUEDA";
@@ -127,6 +128,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 
 	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100);
+	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);
 	ViewFiguraFactory * viewFactory = new ViewCirculoFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,viewFactory));
@@ -147,7 +149,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewGloboFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
-	factories.push_back(new ViewPlataformaFactory(editorSimple));
+	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
 
 
 
