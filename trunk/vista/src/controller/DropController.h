@@ -15,7 +15,6 @@
 #include "mouseEventController/MouseEventController.h"
 #include "../vista/figura/FiguraView.h"
 #include "../vista/figura/CirculoView.h"
-#include "../vista/figura/TrianguloView.h"
 #include "../vista/figura/RuedaView.h"
 #include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
@@ -34,7 +33,6 @@ public:
 	}
 	virtual void dropNuevaFigura(RuedaView*) = 0;
 	virtual void dropNuevaFigura(CirculoView*) = 0;
-	virtual void dropNuevaFigura(TrianguloView*) = 0;
 	virtual void dropNuevaFigura(GloboView*) = 0;
 	virtual void dropNuevaFigura(PelotaView*) = 0;
 	virtual void dropNuevaFigura(MotorView*) = 0;

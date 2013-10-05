@@ -18,7 +18,6 @@
 #include <map>
 #include "src/figura/Circulo.h"
 #include "../../modelo/Cuadrado.h"
-#include "src/figura/Triangulo.h"
 #include "src/figura/Rueda.h"
 #include "src/figura/Globo.h"
 #include "src/figura/Pelota.h"
@@ -42,7 +41,6 @@ public:
 	InicializadorJuego(GeneralEventController * eventsController, ModeloController * modeloController);
 	virtual ~InicializadorJuego();
 	void visit(Cuadrado*);
-	void visit(Triangulo*);
 	void visit(Circulo*);
 	void visit(Rueda*);
 	void visit(Globo*);

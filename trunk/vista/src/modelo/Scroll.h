@@ -7,7 +7,6 @@
 
 #ifndef SCROLL_H_
 #define SCROLL_H_
-#include "src/figura/FiguraCompuesta.h"
 #include "Cuadrado.h"
 #include "../vista/View.h"
 #include "Observable.h"

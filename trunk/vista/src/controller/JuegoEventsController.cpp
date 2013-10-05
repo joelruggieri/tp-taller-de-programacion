@@ -30,9 +30,18 @@ JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 	this->zplay = zplay;
 	editor = NULL;
 	iniciado = false;
+	Resizer*r = Resizer::Instance();
+	r->addResizeable(this);
+
+	trans = new Transformacion();
+	trans->traslacion(0, 100);
+	trans->escalar(r->getRelacionX(), r->getRelacionY());
+	trans->invertir(false, true);
+	this->modeloController->setTransformacion(trans);
 }
 
 JuegoEventsController::~JuegoEventsController() {
+	delete trans;
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
@@ -159,25 +168,30 @@ void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
 }
 
 void JuegoEventsController::start() {
+	this->modeloController->start();
 	this->iniciado = true;
 }
 
 void JuegoEventsController::stop() {
+	modeloController->stop();
 	this->iniciado = false;
 }
 
 void JuegoEventsController::paso() {
 	if (iniciado) {
-		Resizer * r = Resizer::Instance();
-		Transformacion trans;
-		trans.traslacion(0, 100);
-		trans.escalar(r->getRelacionX(), r->getRelacionY());
-		trans.invertir(false, true);
 
-		this->modeloController->step(trans);
+		this->modeloController->step();
 	}
 }
 
 bool JuegoEventsController::corriendo() {
 	return iniciado;
+}
+
+void JuegoEventsController::resizear() {
+	Resizer * r = Resizer::Instance();
+	trans->traslacion(0, 100);
+	trans->escalar(r->getRelacionX(), r->getRelacionY());
+	trans->invertir(false, true);
+	this->modeloController->setTransformacion(trans);
 }
