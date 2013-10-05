@@ -31,16 +31,21 @@ void GloboHelio::crearFisica(b2World* world) {
 			shapeCircle.m_radius = this->radio ;
 			b2FixtureDef bodyBolaBoliche;
 			bodyBolaBoliche.shape = &shapeCircle;
-			bodyBolaBoliche.density = 0.0001f;	//poca densidad, la densidad del aire cual es ?
+			bodyBolaBoliche.density = 0.5f;	//poca densidad, la densidad del aire cual es ?
 			bodyBolaBoliche.friction = 0.2f;
 			bodyBolaBoliche.restitution	 = 0.3f;
 			body->CreateFixture(&bodyBolaBoliche);
-			body->SetLinearVelocity(b2Vec2 (0, -4));//por ahora lo resuelvo asi
-			b2MassData masa;
-			masa.mass = 4; //chequear la cantidad de masa
-			masa.I = 0.005; // chequear inercia rotacional
-			body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
+			body->SetGravityScale(-1);//por ahora lo resuelvo asi
+//			b2MassData masa;
+//			masa.mass = 4; //chequear la cantidad de masa
+//			masa.I = 0.005; // chequear inercia rotacional
+//			body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
 			body->SetUserData(this);
 			this->setBody(body);
 
 }
+
+void GloboHelio::acept(VisitorFigura*) {
+}
+
+

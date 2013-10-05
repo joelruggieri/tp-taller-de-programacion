@@ -26,6 +26,7 @@ public:
 	Figura * crearCarrito(float x,float y);
 	Figura * crearMotor(float x,float y);
 	Figura * crearPlataforma(float x, float y);
+	Figura*  crearGloboHelio(float x, float y);
 	Figura * crearBalancin(float x, float y);
 	Figura * crear(Plataforma*);
 	Figura * crear(Balancin*);
@@ -33,6 +34,7 @@ public:
 	Figura * crear(Circulo*);
 	Figura * crear(Globo*);
 	Figura * crear(Pelota*);
+
 };
 
 #endif /* FIGURAFACTORY_H_ */
