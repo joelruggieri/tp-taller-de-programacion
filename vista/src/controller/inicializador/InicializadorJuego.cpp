@@ -14,6 +14,7 @@ using namespace std;
 #include "../viewFactory/ViewGloboFactory.h"
 #include "../viewFactory/ViewPelotaFactory.h"
 #include "../viewFactory/ViewMotorFactory.h"
+#include "../viewFactory/ViewSogaFactory.h"
 #include "../viewFactory/ViewPlataformaFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
@@ -26,12 +27,14 @@ using namespace std;
 #include "../editor/SimpleEditorNivel.h"
 #include "../editor/SimpleEditorAnguloFijo.h"
 #include "../editor/SimpleEditorEstirar.h"
+#include "../editor/SimpleEditorSoga.h"
 const string KEY_CIRCULO= "CIRCULO";
 const string KEY_TRIANGULO= "TRIANGULO";
 const string KEY_RUEDA = "RUEDA";
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PELOTA = "PELOTA";
 const string KEY_PLATAFORMA = "PLATAFORMA";
+const string KEY_SOGA = "SOGA";
 const string KEY_BALANCIN = "BALANCIN";
 
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
@@ -129,6 +132,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100);
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
+	SimpleEditorSoga* editorSogas = new SimpleEditorSoga(modeloController, tablero, this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);
 	ViewFiguraFactory * viewFactory = new ViewCirculoFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,viewFactory));
@@ -150,6 +154,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewGloboFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
+	factories.push_back(new ViewSogaFactory(editorSogas));
 
 
 
