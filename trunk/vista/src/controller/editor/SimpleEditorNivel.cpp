@@ -132,6 +132,15 @@ void SimpleEditorNivel::dropNuevaFigura(PlataformaView* view) {
 	dropear(view, this->figurasFactory->crearPlataforma(x, 100 - y));
 }
 
+void SimpleEditorNivel::dropNuevaFigura(BalancinView* view) {
+
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearBalancin(x, 100 - y));
+}
+
 void SimpleEditorNivel::clickDown(int x, int y) {
 	//si no esta haciendo nada
 	if (!rotando && !finalizado && !dragueando) {

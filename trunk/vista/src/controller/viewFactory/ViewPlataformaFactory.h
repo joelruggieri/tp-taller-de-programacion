@@ -8,13 +8,12 @@
 #ifndef VIEWPLATAFORMAFACTORY_H_
 #define VIEWPLATAFORMAFACTORY_H_
 #include "ViewFiguraFactory.h"
-#include "../editor/SimpleEditorNivel.h"
+#include "../editor/SimpleEditorEstirar.h"
 
 class ViewPlataformaFactory: public ViewFiguraFactory{
-private:
-	SimpleEditorNivel * editor;
+
 public:
-	ViewPlataformaFactory(SimpleEditorNivel * editor);
+	ViewPlataformaFactory(SimpleEditorEstirar * editor);
 	virtual ~ViewPlataformaFactory();
 	FiguraView * crear(int, int, int, int);
 	View * crearVistaPropia(int,int,int,int);

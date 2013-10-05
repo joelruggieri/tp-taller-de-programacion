@@ -16,6 +16,7 @@ using namespace std;
 #include "../viewFactory/ViewMotorFactory.h"
 #include "../viewFactory/ViewSogaFactory.h"
 #include "../viewFactory/ViewPlataformaFactory.h"
+#include "../viewFactory/ViewBalancinFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -142,6 +143,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
 	viewFactory = new ViewPelotaFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA,viewFactory));
+	viewFactory = new ViewPlataformaFactory(editorSimpleEstirar);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PLATAFORMA,viewFactory));
 
 	list<ViewFiguraFactory*> factories;
 	SDL_Texture* herrTextura = texturas->cargarTexture(FONDO_ZONA_CREACION);
@@ -154,8 +157,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo));
 	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
-	factories.push_back(new ViewSogaFactory(editorSogas));
-
+	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo));
 
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
