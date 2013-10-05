@@ -80,13 +80,6 @@ void SimpleEditorNivel::dropNuevaFigura(CirculoView* view) {
 	dropear(view, this->figurasFactory->crearCirculo(x, y));
 }
 
-void SimpleEditorNivel::dropNuevaFigura(TrianguloView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearTriangulo(x, 100 - y));
-}
 
 void SimpleEditorNivel::setFigura(FiguraView* f) {
 	this->editado = f;

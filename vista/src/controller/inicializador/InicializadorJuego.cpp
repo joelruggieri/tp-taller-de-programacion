@@ -49,13 +49,6 @@ InicializadorJuego::~InicializadorJuego() {
 }
 
 
-void InicializadorJuego::visit(Triangulo * t) {
-	Figura * fig = this->factory->crear(t);
-	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_TRIANGULO);
-	ViewFiguraFactory* second = iter->second;
-	this->agregarFigura(second, fig);
-}
-
 void InicializadorJuego::visit(Circulo* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CIRCULO);
@@ -161,7 +154,6 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	list<Figura*>& figurasPersistidas = this->bbdd->getFiguras();
 	list<Figura*>::iterator it;
 	for(it = figurasPersistidas.begin() ; it != figurasPersistidas.end() ; ++it){
-		(*it)->setRotador(this->rotador);
 		(*it)->acept(this);
 	}
 
