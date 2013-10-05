@@ -8,6 +8,7 @@
 #include "SimpleEditorNivel.h"
 #include "src/Logger.h"
 #include "../../vista/objeto/MotorView.h"
+#include "../../vista/objeto/GloboHelioView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 SimpleEditorNivel::SimpleEditorNivel(ModeloController * m, ZonaTablero * t,
@@ -103,14 +104,6 @@ void SimpleEditorNivel::dropNuevaFigura(RuedaView* view) {
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 	dropear(view, this->figurasFactory->crearRueda(x, y));
-}
-
-void SimpleEditorNivel::dropNuevaFigura(GloboView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearGlobo(x, y));
 }
 
 void SimpleEditorNivel::dropNuevaFigura(PelotaView* view) {

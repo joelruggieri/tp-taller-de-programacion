@@ -16,7 +16,6 @@
 #include "../vista/figura/FiguraView.h"
 #include "../vista/figura/CirculoView.h"
 #include "../vista/figura/RuedaView.h"
-#include "../vista/figura/GloboView.h"
 #include "../vista/figura/PelotaView.h"
 #include "../vista/objeto/PlataformaView.h"
 #include "../vista/figura/RuedaView.h"
@@ -34,7 +33,6 @@ public:
 	}
 	virtual void dropNuevaFigura(RuedaView*) = 0;
 	virtual void dropNuevaFigura(CirculoView*) = 0;
-	virtual void dropNuevaFigura(GloboView*) = 0;
 	virtual void dropNuevaFigura(PelotaView*) = 0;
 	virtual void dropNuevaFigura(MotorView*) = 0;
 	virtual void dropNuevaFigura(PlataformaView*) = 0;
