@@ -32,6 +32,7 @@ const string KEY_RUEDA = "RUEDA";
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PELOTA = "PELOTA";
 const string KEY_PLATAFORMA = "PLATAFORMA";
+const string KEY_BALANCIN = "BALANCIN";
 
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->juegoController = NULL;
@@ -74,6 +75,12 @@ void InicializadorJuego::visit(Pelota* c) {
 }
 
 void InicializadorJuego::visit(Plataforma* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PLATAFORMA);
+	this->agregarFigura(iter->second, fig);
+}
+
+void InicializadorJuego::visit(Balancin* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PLATAFORMA);
 	this->agregarFigura(iter->second, fig);

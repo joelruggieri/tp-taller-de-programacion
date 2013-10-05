@@ -8,12 +8,12 @@
 #include "NivelDAO.h"
 #include <yaml-cpp/yaml.h>
 #include "src/figura/Figura.h"
-#include "src/figura/Triangulo.h"
 #include "src/figura/Circulo.h"
 #include "src/figura/Pelota.h"
 #include "src/figura/Rueda.h"
 #include "src/figura/Globo.h"
-#include "../modelo/src/objeto/Plataforma.h"
+#include "src/objeto/Plataforma.h"
+#include "src/objeto/Balancin.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
@@ -237,7 +237,7 @@ void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 void NivelDAO::obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node plataformas = objetos["Plataformas"];
 	if(plataformas.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Ruedas";
+		std::string mensaje = "No se encuentrò la etiqueta Plataformas";
 		logg.info(mensaje);
 	}
 	for (std::size_t i = 0; i < plataformas.size(); i++) {
@@ -248,9 +248,30 @@ void NivelDAO::obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos)
 			lista.push_back( new Plataforma(obj));
 			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Ruedas: ";
+			std::string mensaje = "Error al leer Plataformas: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje, plataformas[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node balancines = objetos["Balancines"];
+	if(balancines.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Balancines";
+		logg.info(mensaje);
+	}
+	for (std::size_t i = 0; i < balancines.size(); i++) {
+		try {
+			Balancin obj = balancines[i].as<Balancin>();
+			bool salir = validar(obj,balancines, i);
+			if(!salir ) continue;
+			lista.push_back( new Balancin(obj));
+			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Balancines: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje, balancines[i].Mark() );
 		}
 	}
 }

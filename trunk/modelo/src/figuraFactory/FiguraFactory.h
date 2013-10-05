@@ -26,10 +26,11 @@ public:
 	Figura * crearCarrito(float x,float y);
 	Figura * crearMotor(float x,float y);
 	Figura * crearPlataforma(float x, float y);
+	Figura * crearBalancin(float x, float y);
 	Figura * crear(Plataforma*);
-	Figura * crear(Circulo*);
-	Figura * crear(Triangulo*);
+	Figura * crear(Balancin*);
 	Figura * crear(Rueda*);
+	Figura * crear(Circulo*);
 	Figura * crear(Globo*);
 	Figura * crear(Pelota*);
 };
