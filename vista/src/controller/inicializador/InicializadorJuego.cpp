@@ -66,12 +66,6 @@ void InicializadorJuego::visit(Rueda* c) {
 	this->agregarFigura(iter->second, fig);
 }
 
-void InicializadorJuego::visit(Globo* c) {
-	Figura * fig = this->factory->crear(c);
-	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_GLOBO);
-	this->agregarFigura(iter->second, fig);
-}
-
 void InicializadorJuego::visit(Pelota* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PELOTA);
@@ -158,6 +152,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
 	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo));
+	factories.push_back(new ViewSogaFactory(editorSogas));
 
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,

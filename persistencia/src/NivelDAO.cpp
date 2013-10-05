@@ -11,7 +11,6 @@
 #include "src/figura/Circulo.h"
 #include "src/figura/Pelota.h"
 #include "src/figura/Rueda.h"
-#include "src/figura/Globo.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
 #include "constructoresYAML.h"
@@ -130,7 +129,6 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 
 		try{
 			this->obtenerPelotas(lista,objetos);
-			this->obtenerGlobos(lista,objetos);
 			this->obtenerRuedas(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
@@ -187,27 +185,6 @@ void NivelDAO::obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer pelotas: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje,  pelotas[i].Mark() );
-		}
-	}
-}
-
-void NivelDAO::obtenerGlobos(std::list<Figura*> &lista, YAML::Node objetos){
-	YAML::Node globos =  objetos["Globos"];
-	if(globos.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Globos";
-		logg.info(mensaje);
-	}
-	for (std::size_t i = 0; i < globos.size(); i++) {
-		try {
-			Globo obj = globos[i].as<Globo>();
-			bool salir = validar(obj, globos, i);
-			if(!salir ) continue;
-			lista.push_back( new Globo(obj));
-			//lista.push_back( new Globo(obj.getX(), obj.getY(), NULL, obj.getRadio()));
-		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer globos\n";
-			mensaje.append(exc.what());
-			imprimirLinea(mensaje,  globos[i].Mark() );
 		}
 	}
 }

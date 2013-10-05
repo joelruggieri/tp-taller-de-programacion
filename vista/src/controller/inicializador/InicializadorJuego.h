@@ -19,7 +19,6 @@
 #include "src/figura/Circulo.h"
 #include "../../modelo/Cuadrado.h"
 #include "src/figura/Rueda.h"
-#include "src/figura/Globo.h"
 #include "src/figura/Pelota.h"
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
@@ -44,7 +43,6 @@ public:
 	void visit(Cuadrado*);
 	void visit(Circulo*);
 	void visit(Rueda*);
-	void visit(Globo*);
 	void visit(Pelota*);
 	void visit(Motor*);
 	void visit(Plataforma*);

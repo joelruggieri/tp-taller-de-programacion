@@ -68,25 +68,6 @@ struct convert<Rueda> {
 };
 
 template<>
-struct convert<Globo> {
-	static Node encode(const Globo& objeto) {
-		Node node;
-		node["x"] = objeto.getX();
-		node["y"] = objeto.getY();
-		node["rotacion"] = objeto.getRotacion();
-		return node;
-	}
-
-	static bool decode(const Node& node, Globo& objeto) {
-		if (node.size() != 3) return false;
-		objeto.setX(node["x"].as<float>());
-		objeto.setY(node["y"].as<float>());
-		objeto.setRotacion(node["rotacion"].as<float>());
-		return true;
-	}
-};
-
-template<>
 struct convert<Pelota> {
 	static Node encode(const Pelota& objeto) {
 		Node node;

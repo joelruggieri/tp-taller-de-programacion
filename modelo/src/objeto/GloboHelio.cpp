@@ -27,6 +27,7 @@ void GloboHelio::crearFisica(b2World* world) {
 			bodyDef.type = b2_dynamicBody;
 			bodyDef.position.Set(centro.x, centro.y);
 			bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
+			bodyDef.fixedRotation = true;
 			b2Body* body = world->CreateBody(&bodyDef);
 			shapeCircle.m_radius = this->radio ;
 			b2FixtureDef bodyBolaBoliche;

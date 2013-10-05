@@ -58,6 +58,7 @@ public:
 	void dropNuevaFigura(MotorView*);
 	void dropNuevaFigura(PlataformaView*);
 	void dropNuevaFigura(BalancinView*);
+	void dropNuevaFigura(GloboHelioView* view);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 };

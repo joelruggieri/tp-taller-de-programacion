@@ -106,13 +106,6 @@ void SimpleEditorSoga::dropNuevaFigura(RuedaView* view) {
 	dropear(view, this->figurasFactory->crearRueda(x, y));
 }
 
-void SimpleEditorSoga::dropNuevaFigura(GloboView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearGlobo(x, y));
-}
 
 void SimpleEditorSoga::dropNuevaFigura(PelotaView* view) {
 	Resizer* r = Resizer::Instance();
@@ -259,6 +252,14 @@ void SimpleEditorSoga::cleanAndDelete() {
 	finalizado = true;
 	dragueando = false;
 	rotando = false;
+}
+
+void SimpleEditorSoga::dropNuevaFigura(BalancinView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearMotor(x, 100 - y));
 }
 
 void SimpleEditorSoga::drag(FiguraView* figuras, float x, float y) {

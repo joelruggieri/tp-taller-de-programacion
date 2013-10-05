@@ -28,7 +28,6 @@ public:
 	virtual ~ObjetoDAO();
 	void guardarFigura(Figura *objeto, YAML::Node *nodoRaiz);
 	void visit(Circulo* c);
-	void visit(Globo* globo);
 	void visit(Pelota* pelota);
 	void visit(Rueda* rueda);
 	void visit (Motor * motor);
@@ -36,7 +35,6 @@ public:
 	void visit (Balancin * balancin);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
-	void guardar(Globo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Pelota *objeto, YAML::Node *nodoRaiz);
 	void guardar(Rueda *objeto, YAML::Node *nodoRaiz);
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
