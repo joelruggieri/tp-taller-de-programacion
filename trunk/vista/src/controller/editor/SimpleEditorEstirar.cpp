@@ -19,8 +19,8 @@ SimpleEditorEstirar::~SimpleEditorEstirar() {
 }
 
 void SimpleEditorEstirar::rightClickDown(int x, int y){
-		//tablero->removerFigura(editado);
-		//this->modeloController->removerFigura(editado->getModelo());
+		tablero->removerFigura(editado);
+		this->modeloController->removerFigura(editado->getModelo());
 		const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
 		if (keyboardState[SDL_SCANCODE_LCTRL]) {
 			estirando = true;
@@ -69,6 +69,7 @@ void SimpleEditorEstirar::rightClickUp(int int1, int int2) {
 		this->modeloController->crearFigura(this->editado->getModelo());
 		estirando = false;
 		delete visor;
+		visor = NULL;
 		finalizado = true;
 	}else
 		super::rightClickUp(int1,int2);

@@ -86,12 +86,13 @@ int MainController::run() {
 	eventController.addKeyboardController(tbEventController);
 	eventController.setFlujoController(juegoController);
 	eventController.setDrawController(this);
-	SDL_AddTimer(1000/60, my_callbackfunc, NULL);
+	int timerID =SDL_AddTimer(1000/60, my_callbackfunc, NULL);
 	while (!terminar) {
 		SDL_Delay(1000/60);
 		juegoController->paso();
 		terminar = eventController.procesarEventos(ventana);
 	}
+	SDL_RemoveTimer(timerID);
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(ventana);
 
