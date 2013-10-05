@@ -246,9 +246,7 @@ bool SimpleEditorNivel::isEnd() {
 }
 
 void SimpleEditorNivel::dibujarEdicion(SDL_Renderer*r) {
-	if (dragueando || rotando) {
-		visor->dibujarse(r);
-	}
+	if (visor != NULL )	visor->dibujarse(r) ;
 }
 
 void SimpleEditorNivel::cleanAndDelete() {
