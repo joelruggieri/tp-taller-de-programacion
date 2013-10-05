@@ -6,7 +6,7 @@
  */
 
 #include "SimpleEditorEstirar.h"
-#include "../modelo/src/objeto/Plataforma.h"
+#include "src/objeto/Plataforma.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 

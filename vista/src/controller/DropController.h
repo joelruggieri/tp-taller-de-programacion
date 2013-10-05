@@ -24,6 +24,7 @@
 
 using namespace std;
 class MotorView;
+class GloboHelioView;
 class PlataformaView;
 class DropController{
 
@@ -37,6 +38,7 @@ public:
 	virtual void dropNuevaFigura(PelotaView*) = 0;
 	virtual void dropNuevaFigura(MotorView*) = 0;
 	virtual void dropNuevaFigura(PlataformaView*) = 0;
+	virtual void dropNuevaFigura(GloboHelioView*) = 0;
 	virtual void dropFigura(FiguraView*) = 0;
 	virtual void drag(FiguraView *, float,float) = 0;
 };

@@ -15,6 +15,8 @@ public:
 	GloboHelio(float x, float y, float radio) ;
 	virtual ~GloboHelio();
 	void crearFisica(b2World* world);
+	void acept(VisitorFigura*);
+
 private:
 	float radio;
 };

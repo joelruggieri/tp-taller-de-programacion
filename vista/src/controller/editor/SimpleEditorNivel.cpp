@@ -269,3 +269,11 @@ void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {
 	mouseMotion(posStartDragX, posStartDragY);
 }
 
+void SimpleEditorNivel::dropNuevaFigura(GloboHelioView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearGloboHelio(x,100-y));
+//	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
+}
