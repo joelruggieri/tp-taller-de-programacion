@@ -19,34 +19,46 @@ SimpleEditorEstirar::~SimpleEditorEstirar() {
 }
 
 void SimpleEditorEstirar::rightClickDown(int x, int y){
-	const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
-	if (keyboardState[SDL_SCANCODE_LCTRL]) {
 		//tablero->removerFigura(editado);
 		//this->modeloController->removerFigura(editado->getModelo());
-		estirando = true;
-		CargadorDeTextures* l = CargadorDeTextures::Instance();
-		this->visor = new ViewConIcono(editado,
-		l->cargarTexture("resource/rotacion.png"), 2);
+		const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+		if (keyboardState[SDL_SCANCODE_LCTRL]) {
+			estirando = true;
+			CargadorDeTextures* l = CargadorDeTextures::Instance();
+			this->visor = new ViewConIcono(editado,
+			l->cargarTexture("resource/rotacion.png"), 2);
 
-	}else
-		super::rightClickDown(x,y);
+		}else
+			super::rightClickDown(x,y);
+}
+
+void SimpleEditorEstirar::actualizarAncho(int delta){
+	this->editado->setW(this->editado->getW() + delta);
+	Plataforma* figura = static_cast<Plataforma*>(this->editado->getModelo());
+	Resizer* r = Resizer::Instance();
+	float wNuevo = 0;
+	float hNuevo = 0;
+	int aux = 0;
+	r->adaptarDimensionPixel(this->editado->getW(),aux,wNuevo,hNuevo);
+	figura->setAncho(wNuevo);
 }
 
 void SimpleEditorEstirar::mouseMotion(int x, int y) {
 	if (estirando && !dragueando) {
 		int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW()/2);
+		int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW()/2);
+		int delta;
 		if((x > this->editado->getXCentro() + (this->editado->getW()/2)) /*&& (this->editado->getXCentro() == y)*/){
-			int delta = x - posFinalDerecha;
-			this->editado->setW(this->editado->getW() + delta);
-			Plataforma* figura = static_cast<Plataforma*>(this->editado->getModelo());
-			Resizer* r = Resizer::Instance();
-			float wNuevo = 0;
-			float hNuevo = 0;
-			int aux = 0;
-			r->adaptarDimensionPixel(this->editado->getW(),aux,wNuevo,hNuevo);
-			figura->setAncho(wNuevo);
-
+			delta = x - posFinalDerecha;
+			this->actualizarAncho(delta);
 		}
+		else{
+			if(x < this->editado->getXCentro() - (this->editado->getW()/2)){
+			delta = posFinalIzquierda - x;
+			this->actualizarAncho(delta);
+			}
+		}
+
 	}else
 		super::mouseMotion(x,y);
 }
