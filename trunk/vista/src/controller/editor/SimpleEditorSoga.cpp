@@ -154,8 +154,7 @@ void SimpleEditorSoga::clickDown(int x, int y) {
 
 	} else {
 		Logger log;
-		log.warning(
-				"El editor se encuentra finalizado, puede que no se haya seteado el elemento a editar");
+		log.warning("El editor se encuentra finalizado, puede que no se haya seteado el elemento a editar");
 	}
 }
 
