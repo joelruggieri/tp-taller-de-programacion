@@ -6,7 +6,7 @@
  */
 
 #include "PlataformaView.h"
-#include "../../controller/editor/SimpleEditorNivel.h"
+#include "../../controller/editor/SimpleEditorEstirar.h"
 PlataformaView::PlataformaView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorNivel* editor) : ObjetoView(x,y,w,h,textura,editor) {
 
 }
