@@ -12,6 +12,7 @@
 #include "../figura/Pelota.h"
 #include "../objeto/Motor.h"
 #include "../objeto/Plataforma.h"
+#include "../objeto/Balancin.h"
 
 FiguraFactory::FiguraFactory(Rotador * rotador) {
 	this->rotador = rotador;
@@ -47,17 +48,22 @@ Figura* FiguraFactory::crearPlataforma(float x, float y){
 	return new Plataforma(x,y,10,5);
 }
 
+Figura* FiguraFactory::crearBalancin(float x, float y){
+	return new Balancin(x,y,10,5);
+}
+
 Figura* FiguraFactory::crear(Plataforma* c) {
 	Figura* y = this->crearPlataforma(c->getX(), c->getY());
 	y->setRotacion(c->getRotacion());
 	return y;
 }
 
-Figura* FiguraFactory::crear(Circulo* c) {
-	Figura* y = this->crearCirculo(c->getX(), c->getY());
+Figura* FiguraFactory::crear(Balancin* c) {
+	Figura* y = this->crearPlataforma(c->getX(), c->getY());
 	y->setRotacion(c->getRotacion());
 	return y;
 }
+
 
 Figura* FiguraFactory::crear(Rueda* c) {
 	Figura* t = this->crearRueda(c->getX(), c->getY());
@@ -73,6 +79,12 @@ Figura* FiguraFactory::crear(Globo* c) {
 
 Figura* FiguraFactory::crear(Pelota* c) {
 	Figura* t = this->crearPelota(c->getX(), c->getY());
+	t->setRotacion(c->getRotacion());
+	return t;
+}
+
+Figura* FiguraFactory::crear(Circulo* c) {
+	Figura* t = this->crearCirculo(c->getX(), c->getY());
 	t->setRotacion(c->getRotacion());
 	return t;
 }

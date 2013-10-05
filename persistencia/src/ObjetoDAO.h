@@ -11,13 +11,14 @@
 #include <list>
 #include <string>
 class Circulo;
-class Triangulo;
 class Figura;
 class Pelota;
 class Globo;
 class Rueda;
 class Motor;
 class Plataforma;
+class Balancin;
+
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
 
@@ -26,20 +27,20 @@ public:
 	ObjetoDAO();
 	virtual ~ObjetoDAO();
 	void guardarFigura(Figura *objeto, YAML::Node *nodoRaiz);
-	void visit(Triangulo* t);
 	void visit(Circulo* c);
 	void visit(Globo* globo);
 	void visit(Pelota* pelota);
 	void visit(Rueda* rueda);
 	void visit (Motor * motor);
 	void visit (Plataforma * plataforma);
+	void visit (Balancin * balancin);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
-	void guardar(Triangulo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Globo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Pelota *objeto, YAML::Node *nodoRaiz);
 	void guardar(Rueda *objeto, YAML::Node *nodoRaiz);
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
+	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };

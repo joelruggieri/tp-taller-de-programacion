@@ -10,12 +10,11 @@
 
 class Plataforma;
 class Circulo;
-class Triangulo;
 class Rueda;
 class Globo;
 class Pelota;
 class Motor;
-
+class Balancin;
 
 class VisitorFigura {
 public:
@@ -28,6 +27,7 @@ public:
 	virtual void visit(Pelota*) = 0;
 	virtual void visit(Motor*) = 0;
 	virtual void visit(Plataforma*) = 0;
+	virtual void visit(Balancin*) = 0;
 };
 
 #endif /* VISITORFIGURA_H_ */

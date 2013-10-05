@@ -10,12 +10,13 @@
 #include <fstream>
 
 #include "src/figura/Circulo.h"
-#include "src/figura/Triangulo.h"
+
 #include "src/figura/Figura.h"
 #include "src/figura/Pelota.h"
 #include "src/figura/Globo.h"
 #include "src/figura/Rueda.h"
-#include "../modelo/src/objeto/Plataforma.h"
+#include "src/objeto/Plataforma.h"
+#include "src/objeto/Balancin.h"
 
 #include "constructoresYAML.h"
 
@@ -32,11 +33,6 @@ void ObjetoDAO::guardarFigura(Figura* objeto, YAML::Node *nodoRaiz) {
 }
 
 
-
-
-void ObjetoDAO::visit(Triangulo* t) {
-	guardar(t, nodo);
-}
 
 void ObjetoDAO::visit(Circulo* c) {
 	guardar(c, nodo);
@@ -62,13 +58,12 @@ void ObjetoDAO::visit(Plataforma* plataforma){
 	guardar(plataforma,nodo);
 }
 
+void ObjetoDAO::visit(Balancin* balancin){
+	guardar(balancin,nodo);
+}
 
 void ObjetoDAO::guardar(Circulo* objeto, YAML::Node *nodoRaiz) {
 	(*nodoRaiz)["Circulos"].push_back(*objeto);
-}
-
-void ObjetoDAO::guardar(Triangulo* objeto, YAML::Node *nodoRaiz) {
-	(*nodoRaiz)["Triangulos"].push_back(*objeto);
 }
 
 void ObjetoDAO::guardar(Globo* objeto, YAML::Node* nodoRaiz) {
@@ -88,4 +83,7 @@ void ObjetoDAO::guardar(Plataforma* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Plataformas"].push_back(*objeto);
 }
 
+void ObjetoDAO::guardar(Balancin* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Balancines"].push_back(*objeto);
+}
 
