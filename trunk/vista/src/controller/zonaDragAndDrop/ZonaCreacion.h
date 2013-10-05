@@ -25,7 +25,7 @@ private:
 	static const int ANCHO_VIEW_DEF = 10;
 	static const int ALTO_PANEL = 90;
 	static const int DISTANCIA_ENTRE_ELEMENTOS = 15;
-	static const int SLEEP_BOTONES_SCROLL = 20;
+	static const int SLEEP_BOTONES_SCROLL = 10;
 
 	bool agregarTemplate(FiguraView * dragueable);
 	FiguraView * getFiguraTemplate(float x, float y);

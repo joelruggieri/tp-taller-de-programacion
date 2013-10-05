@@ -30,5 +30,5 @@ public:
 };
 //TODO refactorizacion: de herramientas que hereden ckickeables y tecleables
 // los primeros que tengan presionar, desperecionarmouse y los segundos ejecutar tecla
-//y cliqueoFueraDeHerramientas , herramientas que tenga solo dibujarse
+//y cliqueoFueraDeHerramientas , herramientas que tenga solo dibujar
 #endif /* HERRAMIENTAS_H_ */

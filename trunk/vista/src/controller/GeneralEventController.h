@@ -16,6 +16,7 @@
 #include "CanvasController.h"
 #include "PersistenciaEventController.h"
 #include "FlujoDeJuegoController.h"
+#include "DrawController.h"
 class MouseControllerPrioridades;
 struct SDL_KeyboardEvent;
 
@@ -29,6 +30,7 @@ private:
 	CanvasController* canvasController; //De este siempre tiene que haber uno solo.
 	PersistenciaEventController * guardarController;
 	FlujoDeJuegoController * flujoController;
+	DrawController * drawController;
 	int tamAnteriorX, tamAnteriorY;
 	void clickUp(int x, int y);
 	void clickDown(int x, int y);
@@ -49,7 +51,7 @@ public:
 	void setGuardarController(PersistenciaEventController * controller);
 	bool procesarEventos(SDL_Window *);
 	void setFlujoController(FlujoDeJuegoController*);
-
+	void setDrawController(DrawController *);
 };
 
 #endif /* GENERALEVENTCONTROLLER_H_ */

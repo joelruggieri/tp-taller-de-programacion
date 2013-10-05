@@ -19,7 +19,7 @@ ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new 
 	int hC =instance->resizearDistanciaLogicaY(100);
 	this->canvas = new Canvas(xC,yC,wC,hC,imagenFondo);
 	this->viewCanvas= new ViewConBorde(canvas);
-	this->viewCanvas->setAjustarTamanio(true);
+	this->viewCanvas->setAjustarTamanio(false);
 }
 
 Canvas* ZonaTablero::getCanvas(){
@@ -59,7 +59,7 @@ ZonaTablero::~ZonaTablero() {
 }
 
 void ZonaTablero::dibujarse(SDL_Renderer* renderer) {
-//	this->canvas->dibujarse(renderer);()
+//	this->canvas->dibujar(renderer);()
 	this->viewCanvas->dibujarse(renderer);
 }
 
