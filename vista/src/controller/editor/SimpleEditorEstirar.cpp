@@ -26,7 +26,7 @@ void SimpleEditorEstirar::rightClickDown(int x, int y){
 			estirando = true;
 			CargadorDeTextures* l = CargadorDeTextures::Instance();
 			this->visor = new ViewConIcono(editado,
-			l->cargarTexture("resource/rotacion.png"), 2);
+			l->cargarTexture("resource/Flecha_013.png"),0);
 
 		}else
 			super::rightClickDown(x,y);
@@ -44,21 +44,18 @@ void SimpleEditorEstirar::actualizarAncho(int delta){
 }
 
 void SimpleEditorEstirar::mouseMotion(int x, int y) {
+	int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW()/2);
+	int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW()/2);
+	int delta;
 	if (estirando && !dragueando) {
-		int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW()/2);
-		int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW()/2);
-		int delta;
-		if((x > this->editado->getXCentro() + (this->editado->getW()/2)) /*&& (this->editado->getXCentro() == y)*/){
+		if((x > this->editado->getXCentro() + (this->editado->getW()/2)) || (x > this->editado->getXCentro())){
 			delta = x - posFinalDerecha;
 			this->actualizarAncho(delta);
 		}
-		else{
-			if(x < this->editado->getXCentro() - (this->editado->getW()/2)){
+		else if((x < this->editado->getXCentro() - (this->editado->getW()/2)) || (x < this->editado->getXCentro())){
 			delta = posFinalIzquierda - x;
 			this->actualizarAncho(delta);
-			}
 		}
-
 	}else
 		super::mouseMotion(x,y);
 }
