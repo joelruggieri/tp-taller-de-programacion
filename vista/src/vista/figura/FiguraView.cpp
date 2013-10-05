@@ -75,3 +75,7 @@ void FiguraView::update(Transformacion & tl) {
 
 }
 
+Lista_Enganches FiguraView::getEnganches(){
+	return this->enganches;
+}
+
