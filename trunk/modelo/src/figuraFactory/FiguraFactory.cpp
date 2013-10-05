@@ -8,7 +8,6 @@
 #include "FiguraFactory.h"
 #include "../figura/Circulo.h"
 #include "../figura/Rueda.h"
-#include "../figura/Globo.h"
 #include "../figura/Pelota.h"
 #include "../objeto/Motor.h"
 #include "../objeto/Plataforma.h"
@@ -31,10 +30,6 @@ Figura* FiguraFactory::crearCirculo(float x, float y) {
 
 Figura* FiguraFactory::crearRueda(float x, float y) {
 	return new Rueda(x,y,5);
-}
-
-Figura* FiguraFactory::crearGlobo(float x, float y){
-	return new Globo(x,y,5);
 }
 
 Figura* FiguraFactory::crearPelota(float x, float y){
@@ -73,12 +68,6 @@ Figura* FiguraFactory::crear(Balancin* c) {
 
 Figura* FiguraFactory::crear(Rueda* c) {
 	Figura* t = this->crearRueda(c->getX(), c->getY());
-	t->setRotacion(c->getRotacion());
-	return t;
-}
-
-Figura* FiguraFactory::crear(Globo* c) {
-	Figura* t = this->crearGlobo(c->getX(), c->getY());
 	t->setRotacion(c->getRotacion());
 	return t;
 }

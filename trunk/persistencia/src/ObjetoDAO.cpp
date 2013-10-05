@@ -13,7 +13,6 @@
 
 #include "src/figura/Figura.h"
 #include "src/figura/Pelota.h"
-#include "src/figura/Globo.h"
 #include "src/figura/Rueda.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
@@ -38,10 +37,6 @@ void ObjetoDAO::visit(Circulo* c) {
 	guardar(c, nodo);
 }
 
-void ObjetoDAO::visit(Globo* globo) {
-	guardar(globo, nodo);
-}
-
 void ObjetoDAO::visit(Pelota* pelota) {
 	guardar(pelota, nodo);
 }
@@ -64,10 +59,6 @@ void ObjetoDAO::visit(Balancin* balancin){
 
 void ObjetoDAO::guardar(Circulo* objeto, YAML::Node *nodoRaiz) {
 	(*nodoRaiz)["Circulos"].push_back(*objeto);
-}
-
-void ObjetoDAO::guardar(Globo* objeto, YAML::Node* nodoRaiz) {
-	(*nodoRaiz)["Globos"].push_back(*objeto);
 }
 
 void ObjetoDAO::guardar(Pelota* objeto, YAML::Node* nodoRaiz) {

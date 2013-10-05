@@ -11,7 +11,6 @@
 class Plataforma;
 class Circulo;
 class Rueda;
-class Globo;
 class Pelota;
 class Motor;
 class Balancin;
@@ -23,7 +22,6 @@ public:
 	}
 	virtual void visit(Circulo*) = 0;
 	virtual void visit(Rueda*) = 0;
-	virtual void visit(Globo*) = 0;
 	virtual void visit(Pelota*) = 0;
 	virtual void visit(Motor*) = 0;
 	virtual void visit(Plataforma*) = 0;

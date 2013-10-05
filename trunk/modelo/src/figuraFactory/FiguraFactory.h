@@ -32,7 +32,6 @@ public:
 	Figura * crear(Balancin*);
 	Figura * crear(Rueda*);
 	Figura * crear(Circulo*);
-	Figura * crear(Globo*);
 	Figura * crear(Pelota*);
 
 };

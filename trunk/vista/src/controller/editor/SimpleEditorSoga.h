@@ -12,10 +12,10 @@
 #include "../../vista/figura/RuedaView.h"
 #include "../../vista/figura/CirculoView.h"
 #include "../../vista/figura/FiguraView.h"
-#include "../../vista/figura/GloboView.h"
 #include "../../vista/figura/PelotaView.h"
 #include "../../vista/objeto/PlataformaView.h"
 #include "../../vista/objeto/GloboHelioView.h"
+#include "../../vista/objeto/BalancinView.h"
 #include "../../vista/figura/FiguraView.h"
 #include "../DropController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -54,11 +54,11 @@ public:
 	virtual void mouseMotion(int x, int y);
 	void dropNuevaFigura(RuedaView*);
 	void dropNuevaFigura(CirculoView*);
-	void dropNuevaFigura(GloboView*);
 	void dropNuevaFigura(PelotaView*);
 	void dropNuevaFigura(MotorView*);
 	void dropNuevaFigura(PlataformaView*);
 	void dropNuevaFigura(GloboHelioView*);
+	void dropNuevaFigura(BalancinView* view);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 };
