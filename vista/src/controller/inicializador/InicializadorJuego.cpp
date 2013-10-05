@@ -138,7 +138,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,viewFactory));
 	viewFactory = new ViewRuedaFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_RUEDA,viewFactory));
-	viewFactory = new ViewGloboFactory(editorSimple,editorSimple);
+	viewFactory = new ViewGloboFactory(editorSimpleAnguloFijo);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
 	viewFactory = new ViewPelotaFactory(editorSimple,editorSimple);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA,viewFactory));
@@ -147,11 +147,11 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	SDL_Texture* herrTextura = texturas->cargarTexture(FONDO_ZONA_CREACION);
 	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo));
 	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
-	factories.push_back(new ViewGloboFactory(editorSimple,editorSimple));
+	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo));
 	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo));
 	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
-	factories.push_back(new ViewGloboFactory(editorSimple,editorSimple));
+	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo));
 	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
 	factories.push_back(new ViewSogaFactory(editorSogas));

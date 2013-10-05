@@ -6,10 +6,10 @@
  */
 
 #include "ViewGloboFactory.h"
-#include "../../vista/figura/GloboView.h"
+#include "../../vista/objeto/GloboHelioView.h"
+#include "../../controller/editor/SimpleEditorAnguloFijo.h"
 
-
-ViewGloboFactory::ViewGloboFactory(DropController* controler, SimpleEditorNivel * editor): ViewFiguraFactory("resource/globo-3-naranja.png", controler)  {
+ViewGloboFactory::ViewGloboFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory("resource/globo-3-naranja.png", editor)  {
 
 
 }
@@ -19,7 +19,7 @@ ViewGloboFactory::~ViewGloboFactory() {
 }
 
 FiguraView* ViewGloboFactory::crear(int x, int y, int w, int h) {
-	return new GloboView(x, y, w, h, this->textura, this->controller);
+	return new GloboHelioView(x, y, w, h, this->textura, (SimpleEditorAnguloFijo*)this->controller);
 }
 
 View* ViewGloboFactory::crearVistaPropia(int x, int y, int w,

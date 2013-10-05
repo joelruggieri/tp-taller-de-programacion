@@ -9,12 +9,10 @@
 #define VIEWGLOBOFACTORY_H_
 
 #include "ViewFiguraFactory.h"
-#include "../editor/SimpleEditorNivel.h"
+class SimpleEditorAnguloFijo;
 class ViewGloboFactory: public ViewFiguraFactory{
-private:
-	SimpleEditorNivel * editor;
 public:
-	ViewGloboFactory(DropController* controller, SimpleEditorNivel * editor);
+	ViewGloboFactory(SimpleEditorAnguloFijo * editor);
 	virtual ~ViewGloboFactory();
 	FiguraView * crear(int,int,int,int);
 	View * crearVistaPropia(int,int,int,int);

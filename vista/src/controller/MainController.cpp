@@ -88,7 +88,7 @@ int MainController::run() {
 	eventController.setDrawController(this);
 	int timerID =SDL_AddTimer(1000/60, my_callbackfunc, NULL);
 	while (!terminar) {
-		SDL_Delay(1000/60);
+		SDL_Delay(100.0/48.0);
 		juegoController->paso();
 		terminar = eventController.procesarEventos(ventana);
 	}

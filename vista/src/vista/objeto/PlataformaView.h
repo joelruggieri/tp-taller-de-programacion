@@ -8,6 +8,7 @@
 #ifndef PLATAFORMAVIEW_H_
 #define PLATAFORMAVIEW_H_
 #include "ObjetoView.h"
+
 class SimpleEditorNivel;
 class PlataformaView: public ObjetoView {
 public:
