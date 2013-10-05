@@ -11,14 +11,21 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
+#include "JuegoEventsController.h"
+#include "zonaToolBar/ZonaToolBar.h"
+#include "DrawController.h"
 using namespace std;
 
-class MainController {
+class MainController: public DrawController {
+private:
+	SDL_Renderer * render;
+	JuegoEventsController * juegoController;
+	ZonaToolBar * toolBar;
 public:
 	MainController();
 	virtual ~MainController();
 	int run();
-	SDL_Texture* cargarTexture (const string &file, SDL_Renderer* ren);
+	void dibujar();
 };
 
 #endif /* MAINCONTROLLER_H_ */

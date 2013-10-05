@@ -5,6 +5,7 @@
 #define USREVENT_QUIT 3
 #define USREVENT_START 4
 #define USREVENT_STOP 5
+#define USREVENT_DRAW 6
 
 //Metodo que crea un user event con la inforacion recibida. Los codigos de evento posible son los definidos arriba.
 SDL_Event crearEvento(int code, void* data1, void* data2);

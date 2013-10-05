@@ -24,27 +24,40 @@
 #include "ToolBarEventController.h"
 #include "zonaToolBar/ZonaToolBar.h"
 #include "src/Logger.h"
+#include "UserEventCreator.h"
 struct SDL_Renderer;
 struct SDL_Window;
 
 MainController::MainController() {
 	Logger::setNivel(INFO_N);
-
-
 }
 
 MainController::~MainController() {
 }
 
-void taparHueco(SDL_Renderer * renderer){
+Uint32 my_callbackfunc(Uint32 interval, void *param)
+{
+	SDL_Event event = crearEvento(USREVENT_DRAW, NULL, NULL);
+	SDL_PushEvent(&event);
+	return(interval);
+}
+void taparHueco(SDL_Renderer * renderer) {
 	SDL_Rect dest;
-	Resizer * r= Resizer::Instance();
+	Resizer * r = Resizer::Instance();
 	dest.x = 0;
-	dest.y= r->resizearPosicionLogicaY(100);
-	dest.w= r->resizearDistanciaLogicaX(120);
-	dest.h= r->resizearDistanciaLogicaY(20);
-	SDL_SetRenderDrawColor(renderer, 0,0,0,0);
-	SDL_RenderFillRect(renderer,&dest);
+	dest.y = r->resizearPosicionLogicaY(100);
+	dest.w = r->resizearDistanciaLogicaX(120);
+	dest.h = r->resizearDistanciaLogicaY(20);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	SDL_RenderFillRect(renderer, &dest);
+}
+
+void MainController::dibujar() {
+	SDL_SetRenderDrawColor(render, 1, 1, 1, 1);
+	SDL_RenderClear(render);
+	juegoController->dibujarse(render);
+	toolBar->dibujarse(render);
+	SDL_RenderPresent(render);
 }
 int MainController::run() {
 	SDL_Window *ventana = NULL;
@@ -53,43 +66,35 @@ int MainController::run() {
 	SDL_Init(SDL_INIT_VIDEO);
 	ventana = SDL_CreateWindow("Generador Niveles", 400, 400, 600, 600,
 			SDL_WINDOW_RESIZABLE);
-	SDL_Renderer* render = SDL_CreateRenderer(ventana, -1,
+	render = SDL_CreateRenderer(ventana, -1,
 			SDL_RENDERER_ACCELERATED);
-
 
 	Resizer::Instance(600, 600, 120, 120);
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance(render);
 
 	GeneralEventController eventController;
 	ModeloController modeloController;
-	InicializadorJuego inicializador(&eventController,&modeloController);
+	InicializadorJuego inicializador(&eventController, &modeloController);
 
-	JuegoEventsController * juegoController =  inicializador.crearZonaJuego();
-	ZonaToolBar* toolBar = new ZonaToolBar(300, 550 ,600, 100, texturas->cargarTexture("resource/fondoHerramientas.jpg"));
-	ToolBarEventController* tbEventController = new ToolBarEventController(toolBar);
+	juegoController = inicializador.crearZonaJuego();
+	toolBar = new ZonaToolBar(300, 550, 600, 100,
+			texturas->cargarTexture("resource/fondoHerramientas.jpg"));
+	ToolBarEventController* tbEventController = new ToolBarEventController(
+			toolBar);
 
 	eventController.addMouseController(tbEventController, 2, 1);
 	eventController.addKeyboardController(tbEventController);
 	eventController.setFlujoController(juegoController);
-//	DraggingView vista(juegoController);
-//	RotationView vistaRotacion(juegoController, texturas->cargarTexture("resource/rotacion.png"));
-	while(!terminar){
-		SDL_Delay(5);
-		terminar = eventController.procesarEventos(ventana);
-		SDL_SetRenderDrawColor(render,1,1,1,1);
-		SDL_RenderClear(render);
+	eventController.setDrawController(this);
+	SDL_AddTimer(1000/60, my_callbackfunc, NULL);
+	while (!terminar) {
+		SDL_Delay(1000/60);
 		juegoController->paso();
-		juegoController->dibujarse(render);
-//		taparHueco(render);
-//		vista.dibujarse(render);
-//		vistaRotacion.dibujarse(render);
-		toolBar->dibujarse(render);
-		SDL_RenderPresent(render);
+		terminar = eventController.procesarEventos(ventana);
 	}
-		SDL_DestroyRenderer(render);
-		SDL_DestroyWindow(ventana);
+	SDL_DestroyRenderer(render);
+	SDL_DestroyWindow(ventana);
 
-		return 0;
+	return 0;
 }
-
 

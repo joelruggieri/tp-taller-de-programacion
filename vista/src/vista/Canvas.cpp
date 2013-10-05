@@ -63,7 +63,7 @@ void Canvas::dibujarse(SDL_Renderer * renderer) {
 //	SDL_RenderCopy(renderer, this->imagenCanvas, NULL, &dest);
 //	std::list<Dibujable*>::const_iterator it;
 //	for (it = vistas.begin(); it != vistas.end(); ++it) {
-//		(*it)->dibujarse(renderer);
+//		(*it)->dibujar(renderer);
 //	}
 
 }

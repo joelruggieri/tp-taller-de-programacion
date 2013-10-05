@@ -137,7 +137,7 @@ void ZonaToolBar::dibujarse(SDL_Renderer* render) {
 //	dst.y = this->getY();
 //	dst.h = this->getH();
 //	dst.w = this->getW();
-//	this->dibujarse(render, dst);
+//	this->dibujar(render, dst);
 	this->view->dibujarse(render);
 
 }

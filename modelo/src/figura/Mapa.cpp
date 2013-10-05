@@ -14,7 +14,7 @@ Mapa::Mapa(float x, float y, float w, float h,	float32 hz, int32 velocityIterati
 }
 
 Mapa::Mapa(float x, float y, float w, float h) {
-	inicializar(x,y,w,h,30,8,3);
+	inicializar(x,y,w,h,60,8,3);
 }
 
 Mapa::~Mapa() {

@@ -65,7 +65,6 @@ void FiguraView::click(float x, float y) {
 }
 
 void FiguraView::update(Transformacion & tl) {
-
 	tl.setVector(this->modelo->getX(), this->modelo->getY());
 	float x,y;
 	tl.getResultadoInverso(x,y);

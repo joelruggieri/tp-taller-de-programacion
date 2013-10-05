@@ -64,7 +64,7 @@ void ZonaCreacion::inicializar(list<ViewFiguraFactory*> * factories, float x,
 				ANCHO_VIEW_DEF * 2, 4);
 		Cuadrado* flechaInferior = new Cuadrado(x, margenSuperior + ALTO_PANEL - 2,
 				ANCHO_VIEW_DEF * 2, 4);
-		this->scroll = new Scroll(flechaSuperior, flechaInferior, 2,
+		this->scroll = new Scroll(flechaSuperior, flechaInferior, 4,
 				alto - ALTO_PANEL);
 		list<Dibujable *>::iterator it;
 		list<Dibujable*> dibujables = this->canvas->getDibujables();
@@ -133,7 +133,7 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 }
 
 void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
-//	this->canvas->dibujarse(renderer);
+//	this->canvas->dibujar(renderer);
 	this->viewCanvas->dibujarse(renderer);
 }
 
