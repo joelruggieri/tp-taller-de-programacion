@@ -18,7 +18,7 @@ private:
 public:
 	Plataforma(const Plataforma& plataforma);
 	Plataforma();
-	Plataforma(float x ,float y, Rotador* rotador, float ancho, float alto );
+	Plataforma(float x ,float y, float ancho, float alto );
 	virtual ~Plataforma();
 	float getAlto() const;
 	float getAncho() const;

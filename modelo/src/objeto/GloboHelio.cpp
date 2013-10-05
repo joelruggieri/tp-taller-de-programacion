@@ -7,7 +7,7 @@
 
 #include "GloboHelio.h"
 
-GloboHelio::GloboHelio(float x, float y,Rotador * rot, float radio) : Objeto(x,y,rot){
+GloboHelio::GloboHelio(float x, float y, float radio) : Objeto(x,y){
 	this->radio = radio ;
 
 }

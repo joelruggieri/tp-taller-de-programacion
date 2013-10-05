@@ -14,7 +14,7 @@ class Motor: public Objeto {
 private:
 	float32 w,h;
 public:
-	Motor(float x, float y,Rotador * rot, float w, float h);
+	Motor(float x, float y, float w, float h);
 	virtual ~Motor();
 	void crearFisica(b2World *);
 	void acept(VisitorFigura*);

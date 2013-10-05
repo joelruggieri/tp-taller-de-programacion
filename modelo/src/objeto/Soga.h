@@ -12,7 +12,7 @@
 
 class Soga: public Objeto {
 public:
-	Soga(float x, float y,Rotador * rot);
+	Soga(float x, float y);
 	virtual ~Soga();
 };
 

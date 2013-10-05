@@ -17,14 +17,17 @@ protected:
 	float x;
 	float y;
 	double rotacion;
-	Rotador * rotador;
+
+	float xb,yb;
+	double rotacionb;
+
 	Vista * vista;
 	b2Body * body;
 	double radianesAGrados(float r);
 	double gradosARadianes(float g);
 public:
 	Figura();
-	Figura(float x, float y, Rotador * rot);
+	Figura(float x, float y);
 	virtual ~Figura();
 	virtual bool contacto(float, float)= 0;
 	float getX() const;
@@ -36,13 +39,14 @@ public:
 	virtual void crearFisica(b2World *) = 0;
 	virtual void acept(VisitorFigura*) = 0;
 	//estos metodos devuelven el tamaño del cuadrado contenedor;
-	void setRotador(Rotador* rotador);
 	Vista* getVista();
 	void setVista(Vista* vista);
 	b2Body * getBody();
 	void setBody(b2Body *);
 	Rotador * getRotador();
 	virtual void updateModelo(Transformacion &);
+	virtual void makeBackUp();
+	virtual void restoreBackUp();
 };
 
 #endif /* FIGURA_H_ */

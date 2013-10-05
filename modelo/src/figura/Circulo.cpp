@@ -8,11 +8,11 @@
 #include "Circulo.h"
 #include "VisitorFigura.h"
 
-Circulo::Circulo(): Figura(0,0,0) {
+Circulo::Circulo(): Figura(0,0) {
 	this->radio = 0;
 }
 
-Circulo::Circulo(float x, float y, Rotador * rotador, float radio):Figura(x,y,rotador) {
+Circulo::Circulo(float x, float y, float radio):Figura(x,y) {
 	this->radio = radio;
 
 }
@@ -21,7 +21,6 @@ Circulo::Circulo(const Circulo& figura){
 	this->x = figura.getX();
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
-	this->rotador = figura.rotador;
 	this->radio = figura.getRadio();
 
 }
@@ -43,9 +42,6 @@ bool Circulo::contacto(float x, float y) {
 	float cy = this->getY();
 	double xAux = x;
 	double yAux = y;
-	if(this->getRotacion() != 0){
-		this->rotador->rotar(this,xAux,yAux);
-	}
 	//Distancia al punto
 	float SqrDist = ((cx - xAux) * (cx - xAux)) + ((cy - yAux) * (cy - yAux));
 	float SqrRadius = radio * radio;

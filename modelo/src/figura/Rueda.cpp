@@ -14,7 +14,7 @@ Rueda::Rueda() :Circulo() {
 
 }
 
-Rueda::Rueda(float x, float y, Rotador* rotador, float radio):Circulo(x,y,rotador,radio){
+Rueda::Rueda(float x, float y, float radio):Circulo(x,y,radio){
 
 }
 
@@ -22,7 +22,6 @@ Rueda::Rueda(const Rueda& figura){
 	this->x = figura.getX();
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
-	this->rotador = figura.rotador;
 	this->radio = figura.getRadio();
 }
 

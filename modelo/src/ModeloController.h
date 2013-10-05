@@ -16,6 +16,7 @@ using namespace std;
 class ModeloController {
 private:
 	Mapa * mapa;
+	Transformacion *tl;
 public:
 	ModeloController();
 	virtual ~ModeloController();
@@ -24,7 +25,10 @@ public:
 	bool removerFigura(Figura* figura);
 	list<Figura*>& getFiguras();
 	Figura * pickUp(float, float);
-	void step(Transformacion & tl);
+	void start();
+	void step();
+	void stop();
+	void setTransformacion(Transformacion *);
 };
 
 #endif /* EVENTOSMODELOCONTROLLER_H_ */

@@ -12,7 +12,7 @@
 
 class GloboHelio : public Objeto {
 public:
-	GloboHelio(float x, float y,Rotador * rot, float radio) ;
+	GloboHelio(float x, float y, float radio) ;
 	virtual ~GloboHelio();
 	void crearFisica(b2World* world);
 private:

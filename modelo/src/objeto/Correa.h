@@ -12,7 +12,7 @@
 
 class Correa: public Objeto {
 public:
-	Correa(float x, float y,Rotador * rot);
+	Correa(float x, float y);
 	virtual ~Correa();
 };
 
