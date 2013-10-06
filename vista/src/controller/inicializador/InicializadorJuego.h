@@ -49,6 +49,7 @@ public:
 	void visit(Plataforma*);
 	void visit(Balancin*);
 	void visit(BolaBoliche*);
+	void visit(PelotaJuego*);
 	JuegoEventsController * crearZonaJuego();
 };
 

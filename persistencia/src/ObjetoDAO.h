@@ -33,6 +33,7 @@ public:
 	void visit (Motor * motor);
 	void visit (Plataforma * plataforma);
 	void visit (Balancin * balancin);
+	void visit (BolaBoliche* bolaBoliche);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Pelota *objeto, YAML::Node *nodoRaiz);

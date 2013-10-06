@@ -33,7 +33,7 @@ void BolaBoliche::crearFisica(b2World* world) {
 		shapeCircle.m_radius = this->radio ;
 		b2FixtureDef bodyBolaBoliche;
 		bodyBolaBoliche.shape = &shapeCircle;
-		bodyBolaBoliche.density = 0.8f;
+		bodyBolaBoliche.density = 45.0f;
 		bodyBolaBoliche.friction = 0.2f;
 		bodyBolaBoliche.restitution	 = 0.05;	//poco coeficiente de restitucion
 		body->CreateFixture(&bodyBolaBoliche);

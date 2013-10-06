@@ -13,6 +13,7 @@
 #include "../objeto/Plataforma.h"
 #include "../objeto/GloboHelio.h"
 #include "../objeto/BolaBoliche.h"
+#include "../objeto/PelotaJuego.h"
 #include "../../../Vista/src/controller/Resizer.h"
 #include "../objeto/Balancin.h"
 
@@ -98,6 +99,17 @@ Figura* FiguraFactory::crearBolaBoliche(float x, float y) {
 
 Figura* FiguraFactory::crear(BolaBoliche* c) {
 	Figura* t = this->crearBolaBoliche(c->getX(), c->getY());
+		t->setRotacion(c->getRotacion());
+		return t;
+}
+
+Figura* FiguraFactory::crearPelotaJuego(float x, float y) {
+	return new PelotaJuego(x, y, 5);
+}
+
+
+Figura* FiguraFactory::crear(PelotaJuego* c) {
+	Figura* t = this->crearPelotaJuego(c->getX(), c->getY());
 		t->setRotacion(c->getRotacion());
 		return t;
 }
