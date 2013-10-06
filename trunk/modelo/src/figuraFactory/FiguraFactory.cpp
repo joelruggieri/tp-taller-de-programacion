@@ -12,6 +12,7 @@
 #include "../objeto/Motor.h"
 #include "../objeto/Plataforma.h"
 #include "../objeto/GloboHelio.h"
+#include "../vista/src/controller/Resizer.h"
 
 #include "../objeto/Balancin.h"
 
@@ -50,7 +51,12 @@ Figura* FiguraFactory::crearPlataforma(float x, float y){
 }
 
 Figura* FiguraFactory::crearBalancin(float x, float y){
-	return new Balancin(x,y,10,5);
+	Resizer* r = Resizer::Instance();
+	float w = 0;
+	int aux = 0;
+	float aux2 = 0;
+	r->adaptarDimensionPixel(250,aux,w,aux2);
+	return new Balancin(x,y,w,5);
 }
 
 Figura* FiguraFactory::crear(Plataforma* c) {
@@ -60,7 +66,7 @@ Figura* FiguraFactory::crear(Plataforma* c) {
 }
 
 Figura* FiguraFactory::crear(Balancin* c) {
-	Figura* y = this->crearPlataforma(c->getX(), c->getY());
+	Figura* y = this->crearBalancin(c->getX(), c->getY());
 	y->setRotacion(c->getRotacion());
 	return y;
 }

@@ -65,13 +65,13 @@ void Balancin::crearFisica(b2World * world){
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
 	b2BodyDef bodyDef;
+	bodyDef.bullet = true;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(x,y);
-	bodyDef.fixedRotation = true;
+	//bodyDef.fixedRotation = true;
 	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = world->CreateBody(&bodyDef);
-	//body->CreateFixture(polygon, 10.0f);
 	body->CreateFixture(&fixture);
 	body->SetUserData(this);
 	this->setBody(body);
@@ -79,18 +79,21 @@ void Balancin::crearFisica(b2World * world){
 	b2CircleShape shape;
 	shape.m_radius = this->getAlto()/2 ;
 	b2BodyDef bd;
-	bd.type = b2_staticBody;
-	bd.position.Set(centro.x,centro.y);
+	bd.position.Set(x,y);
 	b2Body* bodyCircle = world->CreateBody(&bd);
 	body->CreateFixture(&shape, 5.0f);
 
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(bodyCircle,body,centro);
-
-	rjd.lowerAngle = -45 * 3.14 / 180.0; //TODO ver esto
-	rjd.upperAngle = 45 * 3.14 / 180.0;  // TODO ver esto
+	rjd.motorSpeed = 1.0f * b2_pi;
+	rjd.maxMotorTorque = 10000.0f;
+	rjd.collideConnected = true;
+	rjd.lowerAngle = -0.25f * b2_pi;
+	rjd.upperAngle = 0.25f * b2_pi;
 	rjd.enableLimit = true;
 	world->CreateJoint(&rjd);
+
+
 }
 
 void Balancin::acept(VisitorFigura* visitor){
