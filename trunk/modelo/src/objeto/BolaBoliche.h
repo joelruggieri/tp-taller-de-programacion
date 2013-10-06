@@ -15,6 +15,7 @@ public:
 	BolaBoliche(float x, float y, float radio);
 	virtual ~BolaBoliche();
 	void crearFisica(b2World *);
+	void acept(VisitorFigura*);
 private:
 	float radio;
 };

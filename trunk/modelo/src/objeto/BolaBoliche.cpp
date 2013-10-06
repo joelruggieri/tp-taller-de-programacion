@@ -35,12 +35,16 @@ void BolaBoliche::crearFisica(b2World* world) {
 		bodyBolaBoliche.shape = &shapeCircle;
 		bodyBolaBoliche.density = 0.8f;
 		bodyBolaBoliche.friction = 0.2f;
-		bodyBolaBoliche.restitution	 = 0.05f;	//poco coeficiente de restitucion
+		bodyBolaBoliche.restitution	 = 0.05;	//poco coeficiente de restitucion
 		body->CreateFixture(&bodyBolaBoliche);
-		b2MassData masa;
-		masa.mass = 50; //chequear la cantidad de masa
-		masa.I = 0.005; // chequear inercia rotacional
-		body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
+//		b2MassData masa;
+//		masa.mass = 50; //chequear la cantidad de masa
+//		masa.I = 0.005; // chequear inercia rotacional
+//		body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
 		body->SetUserData(this);
 		this->setBody(body);
+}
+
+void BolaBoliche::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
 }

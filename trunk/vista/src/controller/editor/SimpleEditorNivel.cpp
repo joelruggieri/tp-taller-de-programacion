@@ -8,7 +8,6 @@
 #include "SimpleEditorNivel.h"
 #include "src/Logger.h"
 #include "../../vista/objeto/MotorView.h"
-#include "../../vista/objeto/GloboHelioView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 SimpleEditorNivel::SimpleEditorNivel(ModeloController * m, ZonaTablero * t,
@@ -251,6 +250,14 @@ void SimpleEditorNivel::cleanAndDelete() {
 	finalizado = true;
 	dragueando = false;
 	rotando = false;
+}
+
+void SimpleEditorNivel::dropNuevaFigura(BolaBolicheView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearBolaBoliche(x,100-y));
 }
 
 void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {

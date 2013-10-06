@@ -20,6 +20,7 @@
 #include "../vista/objeto/PlataformaView.h"
 #include "../vista/objeto/BalancinView.h"
 #include "../vista/figura/RuedaView.h"
+#include "../vista/objeto/BolaBolicheView.h"
 #include <list>
 
 using namespace std;
@@ -27,6 +28,7 @@ class MotorView;
 class GloboHelioView;
 class PlataformaView;
 class BalancinView;
+class BolaBolicheView;
 class DropController{
 
 public:
@@ -40,6 +42,7 @@ public:
 	virtual void dropNuevaFigura(PlataformaView*) = 0;
 	virtual void dropNuevaFigura(GloboHelioView*) = 0;
 	virtual void dropNuevaFigura(BalancinView*) = 0;
+	virtual void dropNuevaFigura(BolaBolicheView*)= 0;
 	virtual void dropFigura(FiguraView*) = 0;
 	virtual void drag(FiguraView *, float,float) = 0;
 };
