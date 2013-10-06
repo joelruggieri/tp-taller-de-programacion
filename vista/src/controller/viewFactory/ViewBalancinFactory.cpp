@@ -12,7 +12,13 @@ ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewF
 }
 
 FiguraView* ViewBalancinFactory::crear(int x, int y, int w, int h) {
-	return new BalancinView(x, y, 250, h, this->textura,(SimpleEditorAnguloFijo *) this->controller);
+	Resizer* r = Resizer::Instance();
+	float anchoHardcodeado = 30;
+	float  aux = 0;
+	int ancho = 0;
+	int aux2 = 0;
+	r->adaptarDimensionLogica(anchoHardcodeado,aux,ancho,aux2);
+	return new BalancinView(x, y, ancho, h, this->textura,(SimpleEditorAnguloFijo *) this->controller);
 }
 
 ViewBalancinFactory::~ViewBalancinFactory() {

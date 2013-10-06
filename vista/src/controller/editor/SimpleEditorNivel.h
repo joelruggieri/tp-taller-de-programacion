@@ -26,13 +26,13 @@
 #include "../../modelo/Rotacion.h"
 
 class SimpleEditorNivel: public EditorNivel,public DropController {
-private:
+/*private:
 	FiguraFactory * figurasFactory;
 	Drag * elementoDrag;
 	Rotacion * rot;
 	int posStartDragX;
 	int posStartDragY;
-	int yMaxDrag;
+	int yMaxDrag;*/
 protected:
 	ModeloController * modeloController;
 	virtual void dropear(FiguraView* view, Figura* figura);
@@ -43,6 +43,13 @@ protected:
 	Dibujable * visor;
 	ZonaTablero * tablero;
 	void cleanAndDelete();
+
+	FiguraFactory * figurasFactory;
+	Drag * elementoDrag;
+	Rotacion * rot;
+	int posStartDragX;
+	int posStartDragY;
+	int yMaxDrag;
 public:
 	SimpleEditorNivel(ModeloController * , ZonaTablero *,FiguraFactory* factory, int yMaxDrag);
 	void setFigura(FiguraView *);
