@@ -28,11 +28,13 @@ public:
 	Figura * crearPlataforma(float x, float y);
 	Figura*  crearGloboHelio(float x, float y);
 	Figura * crearBalancin(float x, float y);
+	Figura* crearBolaBoliche(float x, float y);
 	Figura * crear(Plataforma*);
 	Figura * crear(Balancin*);
 	Figura * crear(Rueda*);
 	Figura * crear(Circulo*);
 	Figura * crear(Pelota*);
+	Figura* crear(BolaBoliche*);
 
 };
 

@@ -12,8 +12,8 @@
 #include "../objeto/Motor.h"
 #include "../objeto/Plataforma.h"
 #include "../objeto/GloboHelio.h"
+#include "../objeto/BolaBoliche.h"
 #include "../../../Vista/src/controller/Resizer.h"
-
 #include "../objeto/Balancin.h"
 
 FiguraFactory::FiguraFactory(Rotador * rotador) {
@@ -90,3 +90,14 @@ Figura* FiguraFactory::crear(Circulo* c) {
 	return t;
 }
 
+Figura* FiguraFactory::crearBolaBoliche(float x, float y) {
+	return new BolaBoliche(x,y,5);
+}
+
+
+
+Figura* FiguraFactory::crear(BolaBoliche* c) {
+	Figura* t = this->crearBolaBoliche(c->getX(), c->getY());
+		t->setRotacion(c->getRotacion());
+		return t;
+}

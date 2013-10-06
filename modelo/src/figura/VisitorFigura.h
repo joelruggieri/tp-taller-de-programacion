@@ -14,7 +14,7 @@ class Rueda;
 class Pelota;
 class Motor;
 class Balancin;
-
+class BolaBoliche;
 class VisitorFigura {
 public:
 	virtual ~VisitorFigura(){
@@ -26,6 +26,7 @@ public:
 	virtual void visit(Motor*) = 0;
 	virtual void visit(Plataforma*) = 0;
 	virtual void visit(Balancin*) = 0;
+	virtual void visit (BolaBoliche*) = 0;
 };
 
 #endif /* VISITORFIGURA_H_ */

@@ -17,6 +17,7 @@
 #include "../../vista/objeto/GloboHelioView.h"
 #include "../../vista/objeto/BalancinView.h"
 #include "../../vista/figura/FiguraView.h"
+#include "../../vista/objeto/BolaBolicheView.h"
 #include "../DropController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "src/ModeloController.h"
@@ -59,6 +60,7 @@ public:
 	void dropNuevaFigura(PlataformaView*);
 	void dropNuevaFigura(GloboHelioView*);
 	void dropNuevaFigura(BalancinView* view);
+	void dropNuevaFigura(BolaBolicheView* view);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 };

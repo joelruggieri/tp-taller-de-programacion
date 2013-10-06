@@ -278,6 +278,14 @@ void SimpleEditorSoga::dropNuevaFigura(BalancinView* view) {
 	dropear(view, this->figurasFactory->crearMotor(x, 100 - y));
 }
 
+void SimpleEditorSoga::dropNuevaFigura(BolaBolicheView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearMotor(x, 100 - y));
+}
+
 void SimpleEditorSoga::drag(FiguraView* figuras, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
 	Logger log;

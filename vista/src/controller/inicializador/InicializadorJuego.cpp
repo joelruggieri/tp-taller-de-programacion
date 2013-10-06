@@ -17,6 +17,7 @@ using namespace std;
 #include "../viewFactory/ViewSogaFactory.h"
 #include "../viewFactory/ViewPlataformaFactory.h"
 #include "../viewFactory/ViewBalancinFactory.h"
+#include "../viewFactory/ViewBolaBolicheFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -115,6 +116,12 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	}
 }
 
+void InicializadorJuego::visit(BolaBoliche* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PLATAFORMA);
+	this->agregarFigura(iter->second, fig);
+}
+
 JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	if(tablero != NULL){
 		return this->juegoController;
@@ -153,6 +160,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
 	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo));
 	factories.push_back(new ViewSogaFactory(editorSogas));
+	factories.push_back(new ViewBolaBolicheFactory(editorSimpleAnguloFijo));
 
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
