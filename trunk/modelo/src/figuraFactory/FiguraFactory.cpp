@@ -12,7 +12,7 @@
 #include "../objeto/Motor.h"
 #include "../objeto/Plataforma.h"
 #include "../objeto/GloboHelio.h"
-#include "../vista/src/controller/Resizer.h"
+#include "../../../Vista/src/controller/Resizer.h"
 
 #include "../objeto/Balancin.h"
 

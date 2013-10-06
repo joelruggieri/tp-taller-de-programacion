@@ -108,3 +108,7 @@ void Figura::restoreBackUp() {
 	y = yb;
 	rotacion = rotacionb;
 }
+
+Lista_Enganches Figura::getEnganches(){
+	return this->enganches;
+}

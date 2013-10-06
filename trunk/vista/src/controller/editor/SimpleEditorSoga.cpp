@@ -10,6 +10,7 @@
 #include "../../vista/objeto/MotorView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
+#include "src/figura/Enganche.h"
 
 SimpleEditorSoga::SimpleEditorSoga(ModeloController * m, ZonaTablero * t,
 		FiguraFactory* factory, int yMaxDrag) {
@@ -40,7 +41,7 @@ void SimpleEditorSoga::dropear(FiguraView* view, Figura* figura) {
 	view->setModelo(figura);
 	figura->setVista(view);
 	log.info("Finaliza Drag");
-//	if (this->tablero != NULL && this->creacion != NULL) {
+	//Figura* figuraA = this->modeloController->pickUp()
 	bool exitoVista = tablero->agregarFigura(view);
 	bool exitoModelo = this->modeloController->crearFigura(figura);
 	if (!exitoVista || !exitoModelo) {
@@ -159,12 +160,28 @@ void SimpleEditorSoga::clickDown(int x, int y) {
 }
 
 void SimpleEditorSoga::clickUp(int x, int y) {
+	Logger log;
 	if (dragueando) {
-		this->elementoDrag->drop();
-		delete this->elementoDrag;
-		this->dragueando = false;
-		visor = NULL;
-		this->finalizado = true;
+		Figura* objetoA = this->modeloController->pickUp(x, y);//Aca que coordenadas van?
+		if(objetoA != NULL){
+			Lista_Enganches listaA = objetoA->getEnganches();
+			if(listaA.size() != 0){
+				//Poner aca la creacion del nodo de la soga.
+				log.info("El elemento sobre el que se tiro la soga tiene enganches.");
+			}
+			else{
+				//El elemento no se puede enganchar.
+				log.info("El elemento sobre el que se tiro la soga no tiene enganches.");
+			}
+		}
+		else{
+			//No se tiro sobre un elemento
+			log.info("No se tiro la soga sobre un elemento.");
+			delete this->elementoDrag;
+			this->dragueando = false;
+			visor = NULL;
+			this->finalizado = true;
+		}
 	}
 }
 
