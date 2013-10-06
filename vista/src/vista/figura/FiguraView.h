@@ -13,7 +13,6 @@
 #include "src/Vista.h"
 #include "SDL2/SDL.h"
 #include "../../controller/editor/EditorNivel.h"
-#include "Enganche.h"
 
 using namespace std;
 
@@ -22,7 +21,6 @@ class FiguraView: public View, public Vista {
 private:
 	Figura * modelo;
 	SDL_Texture * textura;
-	Lista_Enganches enganches; //Cada hijo debe agregar a la lista sus enganches.
 protected:
 	DropController * controller;
 	virtual void dropTemplate() = 0;
@@ -37,7 +35,6 @@ public:
 	void click(float x, float y);
 	virtual void update(Transformacion & tl);
 	virtual EditorNivel* getEditor() = 0;
-	virtual Lista_Enganches getEnganches();
 };
 
 #endif /* FIGURAVIEW_H_ */

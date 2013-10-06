@@ -12,6 +12,8 @@
 #include "Box2D/Box2D.h"
 #include "Rotador.h"
 #include "../Vista.h"
+#include "Enganche.h"
+
 class Figura: public Posicionable {
 protected:
 	float x;
@@ -20,6 +22,8 @@ protected:
 
 	float xb,yb;
 	double rotacionb;
+
+	Lista_Enganches enganches;
 
 	Vista * vista;
 	b2Body * body;
@@ -47,6 +51,7 @@ public:
 	virtual void updateModelo(Transformacion &);
 	virtual void makeBackUp();
 	virtual void restoreBackUp();
+	virtual Lista_Enganches getEnganches();
 };
 
 #endif /* FIGURA_H_ */
