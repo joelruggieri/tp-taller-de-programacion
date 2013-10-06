@@ -15,6 +15,7 @@ public:
 	PelotaJuego(float x, float y, float radio);
 	virtual ~PelotaJuego();
 	void crearFisica(b2World *world);
+	void acept(VisitorFigura* visitor);
 private:
 	float radio;
 };

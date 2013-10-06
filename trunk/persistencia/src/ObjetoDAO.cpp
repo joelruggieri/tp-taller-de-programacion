@@ -78,3 +78,5 @@ void ObjetoDAO::guardar(Balancin* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Balancines"].push_back(*objeto);
 }
 
+void ObjetoDAO::visit(BolaBoliche* bolaBoliche) {
+}

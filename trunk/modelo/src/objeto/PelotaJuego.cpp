@@ -34,10 +34,14 @@ void PelotaJuego::crearFisica(b2World* world) {
 		bodyPelota.friction = 0.2f;
 		bodyPelota.restitution	 = 0.85f;	//mucho coeficiente de restitucion
 		body->CreateFixture(&bodyPelota);
-		b2MassData masa;
-		masa.mass = 5; //chequear la cantidad de masa
-		masa.I = 0.005; // chequear inercia rotacional
-		body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
+//		b2MassData masa;
+//		masa.mass = 5; //chequear la cantidad de masa
+//		masa.I = 0.005; // chequear inercia rotacional
+//		body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
 		body->SetUserData(this);
 		this->setBody(body);
+}
+
+void PelotaJuego::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
 }
