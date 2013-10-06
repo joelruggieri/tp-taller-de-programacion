@@ -80,3 +80,6 @@ void ObjetoDAO::guardar(Balancin* objeto, YAML::Node* nodoRaiz) {
 
 void ObjetoDAO::visit(BolaBoliche* bolaBoliche) {
 }
+
+void ObjetoDAO::visit(PelotaJuego* pelotaJuego) {
+}

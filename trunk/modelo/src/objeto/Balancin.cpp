@@ -6,6 +6,11 @@
  */
 
 #include "Balancin.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <fstream>
+#include <iostream>
+
 
 Balancin::Balancin(): Objeto() {
 	alto = 0;
@@ -88,8 +93,18 @@ void Balancin::crearFisica(b2World * world){
 	rjd.motorSpeed = 1.0f * b2_pi;
 	rjd.maxMotorTorque = 10000.0f;
 	rjd.collideConnected = true;
-	rjd.lowerAngle = -0.25f * b2_pi;
-	rjd.upperAngle = 0.25f * b2_pi;
+	//std::cout << " " << this->getRotacion() <<std::endl;
+	if(this->getRotacion() == 0){
+		std::cout << "esta aca" << std::endl;
+		rjd.lowerAngle = -0.25f * b2_pi;
+		rjd.upperAngle = 0.25f * b2_pi;
+	}else if(this->getRotacion() == 45){
+		rjd.lowerAngle = 0.0f * b2_pi;
+		rjd.upperAngle = 0.50f * b2_pi;//0.0f * (-b2_pi);
+	}else if(this->getRotacion() == 315){
+		rjd.lowerAngle = -0.50f * b2_pi;//0.00f * (-b2_pi);
+		rjd.upperAngle = 0.00f * b2_pi;
+	}
 	rjd.enableLimit = true;
 	world->CreateJoint(&rjd);
 

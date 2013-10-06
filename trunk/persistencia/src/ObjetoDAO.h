@@ -18,6 +18,8 @@ class Rueda;
 class Motor;
 class Plataforma;
 class Balancin;
+class BolaBoliche;
+class PelotaJuego;
 
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
@@ -34,6 +36,7 @@ public:
 	void visit (Plataforma * plataforma);
 	void visit (Balancin * balancin);
 	void visit (BolaBoliche* bolaBoliche);
+	void visit (PelotaJuego* PelotaJuego);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
 	void guardar(Pelota *objeto, YAML::Node *nodoRaiz);

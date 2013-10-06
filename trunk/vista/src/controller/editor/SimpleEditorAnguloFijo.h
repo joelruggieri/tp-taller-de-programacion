@@ -13,12 +13,12 @@
 class SimpleEditorAnguloFijo: public SimpleEditorNivel {
 private:
    typedef SimpleEditorNivel super;
+   list<float> angulosPermitidos;
+   float anguloPermitidoMasCercano(float angulo);
 public:
-	SimpleEditorAnguloFijo(ModeloController * , ZonaTablero *,FiguraFactory* factory, int yMaxDrag);
+	SimpleEditorAnguloFijo(ModeloController * , ZonaTablero *,FiguraFactory* factory, int yMaxDrag, list<float>&);
 	virtual ~SimpleEditorAnguloFijo();
-	virtual void rightClickUp(int x, int y);
-	virtual void rightClickDown(int x, int y);
-	virtual void mouseMotion(int x, int y);
+	void mouseMotion(int x, int y);
 
 };
 

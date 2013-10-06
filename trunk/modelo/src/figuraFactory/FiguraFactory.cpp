@@ -14,7 +14,6 @@
 #include "../objeto/GloboHelio.h"
 #include "../objeto/BolaBoliche.h"
 #include "../objeto/PelotaJuego.h"
-#include "../../../Vista/src/controller/Resizer.h"
 #include "../objeto/Balancin.h"
 
 FiguraFactory::FiguraFactory(Rotador * rotador) {
@@ -52,12 +51,7 @@ Figura* FiguraFactory::crearPlataforma(float x, float y){
 }
 
 Figura* FiguraFactory::crearBalancin(float x, float y){
-	Resizer* r = Resizer::Instance();
-	float w = 0;
-	int aux = 0;
-	float aux2 = 0;
-	r->adaptarDimensionPixel(250,aux,w,aux2);
-	return new Balancin(x,y,w,5);
+	return new Balancin(x,y,30,5);
 }
 
 Figura* FiguraFactory::crear(Plataforma* c) {
