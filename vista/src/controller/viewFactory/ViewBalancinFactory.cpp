@@ -7,12 +7,12 @@
 
 #include "ViewBalancinFactory.h"
 
-ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory("resource/tabla.png",editor) {
+ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory("resource/arco.png",editor) {
 
 }
 
 FiguraView* ViewBalancinFactory::crear(int x, int y, int w, int h) {
-	return new BalancinView(x, y, w, h, this->textura,(SimpleEditorAnguloFijo *) this->controller);
+	return new BalancinView(x, y, 250, h, this->textura,(SimpleEditorAnguloFijo *) this->controller);
 }
 
 ViewBalancinFactory::~ViewBalancinFactory() {

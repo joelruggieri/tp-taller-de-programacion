@@ -80,7 +80,7 @@ void InicializadorJuego::visit(Plataforma* c) {
 
 void InicializadorJuego::visit(Balancin* c) {
 	Figura * fig = this->factory->crear(c);
-	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PLATAFORMA);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_BALANCIN);
 	this->agregarFigura(iter->second, fig);
 }
 
