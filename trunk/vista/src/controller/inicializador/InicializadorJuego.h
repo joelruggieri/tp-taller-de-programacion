@@ -23,6 +23,7 @@
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
+#include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 using namespace std;
@@ -48,6 +49,7 @@ public:
 	void visit(Motor*);
 	void visit(Plataforma*);
 	void visit(Balancin*);
+	void visit(CintaTransportadora*);
 	void visit(BolaBoliche*);
 	void visit(PelotaJuego*);
 	JuegoEventsController * crearZonaJuego();

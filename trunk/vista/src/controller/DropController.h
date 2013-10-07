@@ -28,6 +28,7 @@ class MotorView;
 class GloboHelioView;
 class PlataformaView;
 class BalancinView;
+class VistaCintaTransportadora;
 class BolaBolicheView;
 class PelotaJuegoView;
 class DropController{
@@ -43,6 +44,7 @@ public:
 	virtual void dropNuevaFigura(PlataformaView*) = 0;
 	virtual void dropNuevaFigura(GloboHelioView*) = 0;
 	virtual void dropNuevaFigura(BalancinView*) = 0;
+	virtual void dropNuevaFigura(VistaCintaTransportadora*) = 0;
 	virtual void dropNuevaFigura(BolaBolicheView*)= 0;
 	virtual void dropNuevaFigura(PelotaJuegoView*) = 0 ;
 	virtual void dropFigura(FiguraView*) = 0;

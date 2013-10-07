@@ -17,6 +17,7 @@ using namespace std;
 #include "../viewFactory/ViewSogaFactory.h"
 #include "../viewFactory/ViewPlataformaFactory.h"
 #include "../viewFactory/ViewBalancinFactory.h"
+#include "../viewFactory/VistaCintaTransportadoraFactory.h"
 #include "../viewFactory/ViewBolaBolicheFactory.h"
 #include "../viewFactory/ViewPelotaJuegoFactory.h"
 #include "../../vista/CargadorDeTextures.h"
@@ -39,6 +40,7 @@ const string KEY_PELOTA = "PELOTA";
 const string KEY_PLATAFORMA = "PLATAFORMA";
 const string KEY_SOGA = "SOGA";
 const string KEY_BALANCIN = "BALANCIN";
+const string KEY_CINTA = "CINTA";
 const string KEY_BOLA_BOLICHE = "BOLABOLICHE";
 const string KEY_PELOTA_JUEGO = "PELOTA";
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
@@ -84,6 +86,12 @@ void InicializadorJuego::visit(Plataforma* c) {
 void InicializadorJuego::visit(Balancin* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_BALANCIN);
+	this->agregarFigura(iter->second, fig);
+}
+
+void InicializadorJuego::visit(CintaTransportadora* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CINTA);
 	this->agregarFigura(iter->second, fig);
 }
 
@@ -175,6 +183,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
 	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo2));
 	factories.push_back(new ViewSogaFactory(editorSogas));
+	factories.push_back(new VistaCintaTransportadoraFactory(editorSimple));
 	factories.push_back(new ViewBolaBolicheFactory(editorSimpleAnguloFijo1));
 	factories.push_back(new ViewPelotaJuegoFactory(editorSimpleAnguloFijo1));
 

@@ -28,6 +28,7 @@ public:
 	Figura * crearPlataforma(float x, float y);
 	Figura*  crearGloboHelio(float x, float y);
 	Figura * crearBalancin(float x, float y);
+	Figura * crearCintaTransportadora(float x, float y);
 	Figura* crearBolaBoliche(float x, float y);
 	Figura* crearPelotaJuego(float x, float y);
 	Figura * crear(Plataforma*);
@@ -35,6 +36,7 @@ public:
 	Figura * crear(Rueda*);
 	Figura * crear(Circulo*);
 	Figura * crear(Pelota*);
+	Figura * crear(CintaTransportadora* cinta);
 	Figura* crear(BolaBoliche*);
 	Figura* crear(PelotaJuego*);
 };

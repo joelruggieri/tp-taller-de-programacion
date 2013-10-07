@@ -16,6 +16,8 @@
 #include "src/figura/Rueda.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
+#include "src/objeto/CintaTransportadora.h"
+#include "src/objeto/BolaBoliche.h"
 
 #include "constructoresYAML.h"
 
@@ -78,6 +80,17 @@ void ObjetoDAO::guardar(Balancin* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Balancines"].push_back(*objeto);
 }
 
+void ObjetoDAO::visit(CintaTransportadora* cinta) {
+	guardar(cinta, nodo);
+}
+
+void ObjetoDAO::guardar(CintaTransportadora* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Cintas"].push_back(*objeto);
+}
+
+void ObjetoDAO::guardar(BolaBoliche* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["BolasBoliche"].push_back(*objeto);
+}
 void ObjetoDAO::visit(BolaBoliche* bolaBoliche) {
 }
 

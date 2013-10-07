@@ -14,6 +14,7 @@ class Rueda;
 class Pelota;
 class Motor;
 class Balancin;
+class CintaTransportadora;
 class BolaBoliche;
 class PelotaJuego;
 class VisitorFigura {
@@ -27,6 +28,7 @@ public:
 	virtual void visit(Motor*) = 0;
 	virtual void visit(Plataforma*) = 0;
 	virtual void visit(Balancin*) = 0;
+	virtual void visit(CintaTransportadora*) = 0;
 	virtual void visit (BolaBoliche*) = 0;
 	virtual void visit(PelotaJuego*) = 0;
 };
