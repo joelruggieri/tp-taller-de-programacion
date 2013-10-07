@@ -15,6 +15,7 @@ GloboHelio::GloboHelio(float x, float y, float radio) : Objeto(x,y){
 
 GloboHelio::~GloboHelio() {
 //	this->engancheBajo->~Enganche();
+	if(this->engancheBajo != NULL)
 	delete this->engancheBajo;
 
 }
