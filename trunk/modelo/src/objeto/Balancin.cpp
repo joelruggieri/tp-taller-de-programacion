@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <iostream>
+#include <cmath>
 
 
 Balancin::Balancin(): Objeto() {
@@ -22,6 +23,7 @@ Balancin::Balancin(): Objeto() {
 Balancin::Balancin(float x, float y, float ancho, float alto): Objeto(x,y) {
 	this->ancho = ancho;
 	this->alto = alto;
+
 }
 
 Balancin::Balancin(const Balancin& balancin){
@@ -35,7 +37,10 @@ Balancin::Balancin(const Balancin& balancin){
 }
 
 Balancin::~Balancin() {
-	// TODO Auto-generated destructor stub
+	list<Enganche*>::iterator it;
+	for(it = enganches.begin() ; it != enganches.end() ; ++it){
+		delete (*it);
+	}
 }
 
 float Balancin::getAlto() const{
@@ -95,18 +100,27 @@ void Balancin::crearFisica(b2World * world){
 	rjd.collideConnected = true;
 	//std::cout << " " << this->getRotacion() <<std::endl;
 	if(this->getRotacion() == 0){
-		std::cout << "esta aca" << std::endl;
 		rjd.lowerAngle = -0.25f * b2_pi;
 		rjd.upperAngle = 0.25f * b2_pi;
 	}else if(this->getRotacion() == 45){
 		rjd.lowerAngle = 0.0f * b2_pi;
 		rjd.upperAngle = 0.50f * b2_pi;//0.0f * (-b2_pi);
 	}else if(this->getRotacion() == 315){
-		rjd.lowerAngle = -0.50f * b2_pi;//0.00f * (-b2_pi);
+		std::cout << "entro" << std::endl;
+		rjd.lowerAngle = -0.50f * b2_pi;
 		rjd.upperAngle = 0.00f * b2_pi;
 	}
 	rjd.enableLimit = true;
 	world->CreateJoint(&rjd);
+
+	float xDerecho = this->getX() + (this->getAncho()/2);
+	float xIzquierdo = this->getX() - (this->getAncho()/2);
+	float yDerecho = (tan(this->gradosARadianes(this->getRotacion()))) * xDerecho;
+	float yIzquierdo = -yDerecho;
+	Enganche* engancheDerecho = new Enganche(xDerecho,yDerecho);
+	Enganche* engancheIzquierdo = new Enganche(xIzquierdo,yIzquierdo);
+	enganches.push_back(engancheIzquierdo);
+	enganches.push_back(engancheDerecho);
 
 
 }

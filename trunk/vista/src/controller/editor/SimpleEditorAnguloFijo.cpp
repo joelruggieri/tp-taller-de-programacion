@@ -76,9 +76,9 @@ void SimpleEditorAnguloFijo::mouseMotion(int x, int y) {
 			Resizer* r = Resizer::Instance();
 			this->rot->rotar(x, r->getAltoPantalla() - y);
 			float angulo = anguloPermitidoMasCercano(this->rot->getAngulo());
-			//cout << " " << angulo << endl;
+			cout << " " << angulo << endl;
 			this->editado->getModelo()->setRotacion(angulo);
-			//std::cout << "hola  " << this->editado->getModelo()->getRotacion() << endl;;
+			std::cout << "hola  " << this->editado->getModelo()->getRotacion() << endl;;
 		}
 
 	}
