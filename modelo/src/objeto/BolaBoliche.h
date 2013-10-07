@@ -12,10 +12,15 @@
 
 class BolaBoliche: public Objeto {
 public:
+	BolaBoliche();
 	BolaBoliche(float x, float y, float radio);
 	virtual ~BolaBoliche();
+	BolaBoliche(const BolaBoliche& figura);
+	float getRadio();
 	void crearFisica(b2World *);
 	void acept(VisitorFigura*);
+	float getRadio() const;
+	void setRadio(float radio);
 private:
 	float radio;
 };

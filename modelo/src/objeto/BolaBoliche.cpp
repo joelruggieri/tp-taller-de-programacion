@@ -48,3 +48,26 @@ void BolaBoliche::crearFisica(b2World* world) {
 void BolaBoliche::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 }
+
+BolaBoliche::BolaBoliche(const BolaBoliche& figura) {
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->setRotacion(figura.getRotacion());
+	this->setRadio(figura.getRadio());
+}
+
+float BolaBoliche::getRadio() {
+	return this->radio;
+}
+
+BolaBoliche::BolaBoliche():Objeto() {
+	this->radio = 0 ;
+}
+
+float BolaBoliche::getRadio() const {
+	return radio;
+}
+
+void BolaBoliche::setRadio(float radio) {
+	this->radio =  radio;
+}
