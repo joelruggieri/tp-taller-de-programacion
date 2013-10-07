@@ -23,12 +23,10 @@ public:
 	void setLongitud(int longitud);
 private:
 	float longitud;
-	b2Body* piso;
 	b2Body* piezas[PIEZAS];
 	b2Body* ruedas[2];
 	b2Body* cuerpo;
 	b2Body* base;
-	b2Body* extra;
 
 	float alto;
 	float ancho;
