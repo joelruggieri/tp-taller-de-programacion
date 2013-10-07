@@ -9,7 +9,7 @@
 
 GloboHelio::GloboHelio(float x, float y, float radio) : Objeto(x,y){
 	this->radio = radio ;
-
+	this->engancheBajo = new Enganche((int)x, (int)y - (int)radio);
 }
 
 GloboHelio::~GloboHelio() {
@@ -44,6 +44,7 @@ void GloboHelio::crearFisica(b2World* world) {
 			body->SetUserData(this);
 			this->setBody(body);
 
+			this->enganches.push_back((this->engancheBajo));
 }
 
 void GloboHelio::acept(VisitorFigura*) {
