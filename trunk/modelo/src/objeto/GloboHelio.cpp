@@ -13,7 +13,9 @@ GloboHelio::GloboHelio(float x, float y, float radio) : Objeto(x,y){
 }
 
 GloboHelio::~GloboHelio() {
-	// TODO Auto-generated destructor stub
+	this->engancheBajo->~Enganche();
+	delete this->engancheBajo;
+
 }
 
 void GloboHelio::crearFisica(b2World* world) {
@@ -47,7 +49,26 @@ void GloboHelio::crearFisica(b2World* world) {
 			this->enganches.push_back((this->engancheBajo));
 }
 
-void GloboHelio::acept(VisitorFigura*) {
+void GloboHelio::acept(VisitorFigura* visitor) {
+	visitor->visit(this);
 }
 
+GloboHelio::GloboHelio(const GloboHelio&  figura) {
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->setRotacion(figura.getRotacion());
+	this->setRadio(figura.getRadio());
+}
 
+GloboHelio::GloboHelio():  Objeto() {
+	this->radio = 0 ;
+	this->engancheBajo = NULL;
+}
+
+float GloboHelio::getRadio() const{
+	return radio;
+}
+
+void GloboHelio::setRadio(float radio) {
+	this->radio = radio ;
+}

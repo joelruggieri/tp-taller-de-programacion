@@ -93,6 +93,7 @@ struct convert<BolaBoliche> {
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
 		node["rotacion"] = objeto.getRotacion();
+		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
@@ -101,6 +102,49 @@ struct convert<BolaBoliche> {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
+		objeto.setRadio(node["radio"].as<float>());
+		return true;
+	}
+};
+
+template<>
+struct convert<GloboHelio> {
+	static Node encode(const GloboHelio& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["rotacion"] = objeto.getRotacion();
+		node["radio"] = objeto.getRadio();
+		return node;
+	}
+
+	static bool decode(const Node& node, GloboHelio& objeto) {
+		if (node.size() != 3) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
+		objeto.setRadio(node["radio"].as<float>());
+		return true;
+	}
+};
+
+template<>
+struct convert<PelotaJuego> {
+	static Node encode(const PelotaJuego& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["rotacion"] = objeto.getRotacion();
+		node["radio"] = objeto.getRadio();
+		return node;
+	}
+
+	static bool decode(const Node& node, PelotaJuego& objeto) {
+		if (node.size() != 3) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
+		objeto.setRadio(node["radio"].as<float>());
 		return true;
 	}
 };
@@ -169,6 +213,8 @@ struct convert<CintaTransportadora> {
 		return true;
 	}
 };
+
+
 
 }
 

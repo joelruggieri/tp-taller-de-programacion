@@ -18,7 +18,8 @@
 #include "src/objeto/Balancin.h"
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
-
+#include "src/objeto/GloboHelio.h"
+#include "src/objeto/PelotaJuego.h"
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -92,7 +93,20 @@ void ObjetoDAO::guardar(BolaBoliche* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["BolasBoliche"].push_back(*objeto);
 }
 void ObjetoDAO::visit(BolaBoliche* bolaBoliche) {
+	guardar(bolaBoliche, nodo);
+}
+
+void ObjetoDAO::guardar(GloboHelio* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["GlobosHelio"].push_back(*objeto);
+}
+void ObjetoDAO::visit(GloboHelio* globoHelio) {
+	guardar(globoHelio, nodo);
 }
 
 void ObjetoDAO::visit(PelotaJuego* pelotaJuego) {
+	guardar(pelotaJuego, nodo);
+}
+
+void ObjetoDAO::guardar(PelotaJuego* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["PelotasJuego"].push_back(*objeto);
 }

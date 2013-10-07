@@ -15,6 +15,8 @@
 #include "src/objeto/Balancin.h"
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
+#include "src/objeto/GloboHelio.h"
+#include "src/objeto/PelotaJuego.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
@@ -192,6 +194,27 @@ void NivelDAO::obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos){
 	}
 }
 
+void NivelDAO::obtenerGlobosHelio(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node globos = objetos["GlobosHelio"];
+	if(globos.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta GlobosHelio";
+		logg.info(mensaje);
+		}
+	for (std::size_t i = 0; i < globos.size(); i++) {
+		try {
+			GloboHelio obj = globos[i].as<GloboHelio>();
+			bool salir = validar(obj, globos, i);
+			if(!salir ) continue;
+			lista.push_back( new GloboHelio(obj));
+			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer pelotas: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  globos[i].Mark() );
+		}
+	}
+}
+
 
 void NivelDAO::obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node Ruedas = objetos["Ruedas"];
@@ -275,8 +298,52 @@ void NivelDAO::obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos){
 	}
 }
 
+void NivelDAO::obtenerBolasDeBoliche(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node bolasboliche = objetos["BolasBoliche"];
+	if(bolasboliche.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta BolasBoliche";
+		logg.info(mensaje);
+	}
+	for (std::size_t i = 0; i < bolasboliche.size(); i++) {
+		try {
+			BolaBoliche obj = bolasboliche[i].as<BolaBoliche>();
+			bool salir = validar(obj,bolasboliche, i);
+			if(!salir ) continue;
+			lista.push_back( new BolaBoliche(obj));
+			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Balancines: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje, bolasboliche[i].Mark() );
+		}
+	}
+}
+
 Nivel* NivelDAO::cargarPrimerNivel() {
 	std::list<std::string> nombres = AdministradorDeArchivos::getNombres();
 	std::string nombre = nombres.front().substr(0, nombres.front().size() - 5);
 	return leerNivel(nombre);
+}
+
+void NivelDAO::obtenerPelotasJuego(std::list<Figura*>& lista,
+		YAML::Node objetos) {
+
+	YAML::Node pelotasJuego = objetos["PelotasJuego"];
+	if(pelotasJuego.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta PelotasJuego";
+		logg.info(mensaje);
+		}
+	for (std::size_t i = 0; i < pelotasJuego.size(); i++) {
+		try {
+			PelotaJuego obj = pelotasJuego[i].as<PelotaJuego>();
+			bool salir = validar(obj, pelotasJuego, i);
+			if(!salir ) continue;
+			lista.push_back( new PelotaJuego(obj));
+			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer pelotas: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  pelotasJuego[i].Mark() );
+		}
+	}
 }
