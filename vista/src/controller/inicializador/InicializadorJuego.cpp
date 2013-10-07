@@ -93,12 +93,19 @@ void InicializadorJuego::visit(CintaTransportadora* c) {
 void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 		Figura* modelo) {
 	Resizer * r = Resizer::Instance();
-	int x = r->resizearDistanciaLogicaX(modelo->getX());
-	int y = r->resizearPosicionLogicaY(modelo->getY());
-	int w = r->resizearDistanciaLogicaY(10);
-	int h = r->resizearDistanciaLogicaY(10);
+	Transformacion trans;
+	trans.traslacion(0, 100);
+	trans.escalar(r->getRelacionX(), r->getRelacionY());
+	trans.invertir(false, true);
+	float x,y;
+	int w,h;
+	trans.setVector(modelo->getX(), modelo->getY());
+	trans.getResultadoInverso(x,y);
+	w = r->resizearDistanciaLogicaY(10);
+	h = r->resizearDistanciaLogicaY(10);
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
+	modelo->setVista(view);
 	bool exitoVista = tablero->agregarFigura(view);
 	bool exitoModelo = this->modeloController->crearFigura(modelo);
 	if (!exitoVista || !exitoModelo) {

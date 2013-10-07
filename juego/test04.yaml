@@ -1,7 +1,14 @@
 Objetos:
+  BolasBoliche:
+    - rotacion: 0
+      radio: 5
+      y: 58.4
+      x: 80.8
   GlobosHelio:
     - x: 88.2
       y: 69.4
+    - y: 71.8
+      x: 84.8
 Nivel:
   Nombre: test04
   Fondo: ""
