@@ -16,6 +16,7 @@
 #include "../../vista/objeto/PlataformaView.h"
 #include "../../vista/objeto/GloboHelioView.h"
 #include "../../vista/objeto/BalancinView.h"
+#include "../../vista/objeto/VistaCintaTransportadora.h"
 #include "../../vista/figura/FiguraView.h"
 #include "../../vista/objeto/BolaBolicheView.h"
 #include "../../vista/objeto/PelotaJuegoView.h"
@@ -61,6 +62,7 @@ public:
 	void dropNuevaFigura(PlataformaView*);
 	void dropNuevaFigura(GloboHelioView*);
 	void dropNuevaFigura(BalancinView* view);
+	void dropNuevaFigura(VistaCintaTransportadora*);
 	void dropNuevaFigura(BolaBolicheView* view);
 	void dropNuevaFigura(PelotaJuegoView* view);
 	void dropFigura(FiguraView*);

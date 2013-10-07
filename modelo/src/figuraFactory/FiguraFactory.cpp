@@ -12,6 +12,7 @@
 #include "../objeto/Motor.h"
 #include "../objeto/Plataforma.h"
 #include "../objeto/GloboHelio.h"
+#include "../objeto/CintaTransportadora.h"
 #include "../objeto/BolaBoliche.h"
 #include "../objeto/PelotaJuego.h"
 #include "../objeto/Balancin.h"
@@ -85,6 +86,15 @@ Figura* FiguraFactory::crear(Circulo* c) {
 	return t;
 }
 
+Figura* FiguraFactory::crearCintaTransportadora(float x, float y) {
+	return new CintaTransportadora(x,y,100);
+}
+
+Figura* FiguraFactory::crear(CintaTransportadora* cinta) {
+	Figura* t = this->crearCintaTransportadora(cinta->getX(), cinta->getY());
+	t->setRotacion(0);
+	return t;
+}
 Figura* FiguraFactory::crearBolaBoliche(float x, float y) {
 	return new BolaBoliche(x,y,5);
 }

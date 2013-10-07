@@ -13,6 +13,7 @@
 #include "src/figura/Rueda.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
+#include "src/objeto/CintaTransportadora.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
@@ -130,6 +131,7 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 		try{
 			this->obtenerPelotas(lista,objetos);
 			this->obtenerRuedas(lista,objetos);
+			this->obtenerCintas(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
@@ -228,6 +230,25 @@ void NivelDAO::obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos)
 			std::string mensaje = "Error al leer Plataformas: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje, plataformas[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerCintas(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node cintas = objetos["Cintas"];
+	if(cintas.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Plataformas";
+		logg.info(mensaje);
+	}
+	for (std::size_t i = 0; i < cintas.size(); i++) {
+		try {
+			CintaTransportadora obj = cintas[i].as<CintaTransportadora>();
+			lista.push_back( new CintaTransportadora(obj));
+			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Cintas transportadoras: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje, cintas[i].Mark() );
 		}
 	}
 }

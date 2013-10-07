@@ -87,6 +87,25 @@ struct convert<Pelota> {
 };
 
 template<>
+struct convert<BolaBoliche> {
+	static Node encode(const BolaBoliche& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["rotacion"] = objeto.getRotacion();
+		return node;
+	}
+
+	static bool decode(const Node& node, BolaBoliche& objeto) {
+		if (node.size() != 3) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
+		return true;
+	}
+};
+
+template<>
 struct convert<Plataforma> {
 	static Node encode(const Plataforma& objeto) {
 		Node node;
@@ -99,7 +118,7 @@ struct convert<Plataforma> {
 	}
 
 	static bool decode(const Node& node, Plataforma& objeto) {
-		if (node.size() != 3) return false;
+		if (node.size() != 5) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setAncho(node["ancho"].as<float>());
@@ -122,12 +141,31 @@ struct convert<Balancin> {
 	}
 
 	static bool decode(const Node& node, Balancin& objeto) {
-		if (node.size() != 3) return false;
+		if (node.size() != 5) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setAncho(node["ancho"].as<float>());
 		objeto.setAlto(node["alto"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
+		return true;
+	}
+};
+
+template<>
+struct convert<CintaTransportadora> {
+	static Node encode(const CintaTransportadora& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["longitud"] = objeto.getLongitud();
+		return node;
+	}
+
+	static bool decode(const Node& node, CintaTransportadora& objeto) {
+		if (node.size() != 3) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setLongitud(node["longitud"].as<float>());
 		return true;
 	}
 };

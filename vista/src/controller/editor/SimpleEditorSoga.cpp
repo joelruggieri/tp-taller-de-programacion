@@ -294,6 +294,14 @@ void SimpleEditorSoga::dropNuevaFigura(PelotaJuegoView* view) {
 //	dropear(view, this->figurasFactory->crearPelotaJuego(x, 100 - y));
 }
 
+void SimpleEditorSoga::dropNuevaFigura(VistaCintaTransportadora* vista) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(vista->getXCentro(), vista->getYCentro(), x, y);
+	dropear(vista, this->figurasFactory->crearCintaTransportadora(x, 100 - y));
+}
+
 void SimpleEditorSoga::drag(FiguraView* figuras, float x, float y) {
 	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
 	Logger log;
