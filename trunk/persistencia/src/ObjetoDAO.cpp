@@ -9,11 +9,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "src/figura/Circulo.h"
 
 #include "src/figura/Figura.h"
-#include "src/figura/Pelota.h"
-#include "src/figura/Rueda.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
 #include "src/objeto/CintaTransportadora.h"
@@ -36,18 +33,6 @@ void ObjetoDAO::guardarFigura(Figura* objeto, YAML::Node *nodoRaiz) {
 
 
 
-void ObjetoDAO::visit(Circulo* c) {
-	guardar(c, nodo);
-}
-
-void ObjetoDAO::visit(Pelota* pelota) {
-	guardar(pelota, nodo);
-}
-
-
-void ObjetoDAO::visit(Rueda* rueda) {
-	guardar(rueda, nodo);
-}
 
 void ObjetoDAO::visit(Motor* motor) {
 }
@@ -58,19 +43,6 @@ void ObjetoDAO::visit(Plataforma* plataforma){
 
 void ObjetoDAO::visit(Balancin* balancin){
 	guardar(balancin,nodo);
-}
-
-void ObjetoDAO::guardar(Circulo* objeto, YAML::Node *nodoRaiz) {
-	(*nodoRaiz)["Circulos"].push_back(*objeto);
-}
-
-void ObjetoDAO::guardar(Pelota* objeto, YAML::Node* nodoRaiz) {
-	(*nodoRaiz)["Pelotas"].push_back(*objeto);
-}
-
-
-void ObjetoDAO::guardar(Rueda* objeto, YAML::Node* nodoRaiz) {
-	(*nodoRaiz)["Ruedas"].push_back(*objeto);
 }
 
 void ObjetoDAO::guardar(Plataforma* objeto, YAML::Node* nodoRaiz) {

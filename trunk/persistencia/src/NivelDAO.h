@@ -23,9 +23,6 @@ public:
 private:
 	AdministradorDeArchivos administrador;
 	std::list<Figura*> leerFiguras(YAML::Node objetos);
-	void obtenerCirculos(std::list<Figura*> &lista , YAML::Node objetos);
-	void obtenerPelotas(std::list<Figura*> &lista, YAML::Node objetos);
-	void obtenerRuedas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerCintas(std::list<Figura*> &lista, YAML::Node objetos);

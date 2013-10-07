@@ -16,13 +16,14 @@
 #include "../GeneralEventController.h"
 #include "../RotadorSistemaCoordenadas.h"
 #include <map>
-#include "src/figura/Circulo.h"
 #include "../../modelo/Cuadrado.h"
-#include "src/figura/Rueda.h"
-#include "src/figura/Pelota.h"
+
+
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
+#include "src/objeto/GloboHelio.h"
+#include "src/objeto/PelotaJuego.h"
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -42,13 +43,10 @@ private:
 public:
 	InicializadorJuego(GeneralEventController * eventsController, ModeloController * modeloController);
 	virtual ~InicializadorJuego();
-	void visit(Cuadrado*);
-	void visit(Circulo*);
-	void visit(Rueda*);
-	void visit(Pelota*);
 	void visit(Motor*);
 	void visit(Plataforma*);
 	void visit(Balancin*);
+	void visit(GloboHelio*);
 	void visit(CintaTransportadora*);
 	void visit(BolaBoliche*);
 	void visit(PelotaJuego*);

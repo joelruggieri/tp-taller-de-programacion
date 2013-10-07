@@ -12,9 +12,6 @@
 #include <string>
 class Circulo;
 class Figura;
-class Pelota;
-class Globo;
-class Rueda;
 class Motor;
 class Plataforma;
 class Balancin;
@@ -31,9 +28,6 @@ public:
 	ObjetoDAO();
 	virtual ~ObjetoDAO();
 	void guardarFigura(Figura *objeto, YAML::Node *nodoRaiz);
-	void visit(Circulo* c);
-	void visit(Pelota* pelota);
-	void visit(Rueda* rueda);
 	void visit (Motor * motor);
 	void visit (Plataforma * plataforma);
 	void visit (Balancin * balancin);
@@ -43,8 +37,6 @@ public:
 	void visit (GloboHelio* globoHelio);
 private:
 	void guardar(Circulo *objeto, YAML::Node *nodoRaiz);
-	void guardar(Pelota *objeto, YAML::Node *nodoRaiz);
-	void guardar(Rueda *objeto, YAML::Node *nodoRaiz);
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);
 	void guardar(CintaTransportadora *objeto, YAML::Node *nodoRaiz);

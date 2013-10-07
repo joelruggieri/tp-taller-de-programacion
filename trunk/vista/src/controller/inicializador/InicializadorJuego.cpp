@@ -5,14 +5,30 @@
  */
 
 #include "InicializadorJuego.h"
-#include <iostream>
+
+#include <src/figura/Figura.h>
+#include <src/Logger.h>
+#include <src/ModeloController.h>
+//#include <iostream>
+#include <map>
+#include <memory>
+#include <new>
+#include <string>
+#include <utility>
+
+#include "../../vista/Canvas.h"
+#include "../CanvasController.h"
+#include "../GeneralEventController.h"
+#include "../JuegoEventsController.h"
+#include "../PersistenciaManager.h"
+#include "../RotadorSistemaCoordenadas.h"
+#include "../viewFactory/ViewFiguraFactory.h"
+#include "../zonaDragAndDrop/ZonaDragAndDrop.h"
+
 using namespace std;
 #include <list>
 #include "../../vista/figura/FiguraView.h"
-#include "../viewFactory/ViewCirculoFactory.h"
-#include "../viewFactory/ViewRuedaFactory.h"
 #include "../viewFactory/ViewGloboFactory.h"
-#include "../viewFactory/ViewPelotaFactory.h"
 #include "../viewFactory/ViewMotorFactory.h"
 #include "../viewFactory/ViewSogaFactory.h"
 #include "../viewFactory/ViewPlataformaFactory.h"
@@ -32,11 +48,7 @@ using namespace std;
 #include "../editor/SimpleEditorAnguloFijo.h"
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/SimpleEditorSoga.h"
-const string KEY_CIRCULO= "CIRCULO";
-const string KEY_TRIANGULO= "TRIANGULO";
-const string KEY_RUEDA = "RUEDA";
 const string KEY_GLOBO = "GLOBO";
-const string KEY_PELOTA = "PELOTA";
 const string KEY_PLATAFORMA = "PLATAFORMA";
 const string KEY_SOGA = "SOGA";
 const string KEY_BALANCIN = "BALANCIN";
@@ -59,23 +71,6 @@ InicializadorJuego::~InicializadorJuego() {
 }
 
 
-void InicializadorJuego::visit(Circulo* c) {
-	Figura * fig = this->factory->crear(c);
-	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CIRCULO);
-	this->agregarFigura(iter->second, fig);
-}
-
-void InicializadorJuego::visit(Rueda* c) {
-	Figura * fig = this->factory->crear(c);
-	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_RUEDA);
-	this->agregarFigura(iter->second, fig);
-}
-
-void InicializadorJuego::visit(Pelota* c) {
-	Figura * fig = this->factory->crear(c);
-	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PELOTA);
-	this->agregarFigura(iter->second, fig);
-}
 
 void InicializadorJuego::visit(Plataforma* c) {
 	Figura * fig = this->factory->crear(c);
@@ -153,14 +148,9 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
 	SimpleEditorSoga* editorSogas = new SimpleEditorSoga(modeloController, tablero, this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);
-	ViewFiguraFactory * viewFactory = new ViewCirculoFactory(editorSimple,editorSimple);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CIRCULO,viewFactory));
-	viewFactory = new ViewRuedaFactory(editorSimple,editorSimple);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_RUEDA,viewFactory));
+	ViewFiguraFactory * viewFactory;
 	viewFactory = new ViewGloboFactory(editorSimpleAnguloFijo1);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
-	viewFactory = new ViewPelotaFactory(editorSimple,editorSimple);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA,viewFactory));
 	viewFactory = new ViewPlataformaFactory(editorSimpleEstirar);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PLATAFORMA,viewFactory));
 	viewFactory = new ViewBolaBolicheFactory(editorSimpleAnguloFijo1);
@@ -175,17 +165,14 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
 //	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo1));
-	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
 //	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo1));
-	factories.push_back(new ViewRuedaFactory(editorSimple,editorSimple));
 	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
 	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo2));
 	factories.push_back(new ViewSogaFactory(editorSogas));
 	factories.push_back(new VistaCintaTransportadoraFactory(editorSimple));
 	factories.push_back(new ViewBolaBolicheFactory(editorSimpleAnguloFijo1));
-	factories.push_back(new ViewPelotaJuegoFactory(editorSimpleAnguloFijo1));
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
 			herrTextura);
@@ -209,6 +196,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 }
 
 void InicializadorJuego::visit(Motor*) {
+	//TODO IMPLEMENTAR PERSISTENCIA
 }
 
 void InicializadorJuego::visit(PelotaJuego* c) {
@@ -217,4 +205,10 @@ void InicializadorJuego::visit(PelotaJuego* c) {
 		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_PELOTA_JUEGO);
 		this->agregarFigura(iter->second, fig);
 
+}
+
+void InicializadorJuego::visit(GloboHelio*c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_GLOBO);
+	this->agregarFigura(iter->second, fig);
 }

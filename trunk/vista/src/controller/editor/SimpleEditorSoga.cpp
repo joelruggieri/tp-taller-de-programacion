@@ -74,14 +74,6 @@ void SimpleEditorSoga::dropear(FiguraView* view, Figura* figura) {
 //	}
 }
 
-void SimpleEditorSoga::dropNuevaFigura(CirculoView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearCirculo(x, y));
-}
-
 
 void SimpleEditorSoga::setFigura(FiguraView* f) {
 	this->editado = f;
@@ -97,23 +89,6 @@ void SimpleEditorSoga::dropFigura(FiguraView* view) {
 	modelo->setX(x);
 	modelo->setY(100 - y);
 	this->dropear(view, modelo);
-}
-
-void SimpleEditorSoga::dropNuevaFigura(RuedaView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearRueda(x, y));
-}
-
-
-void SimpleEditorSoga::dropNuevaFigura(PelotaView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearPelota(x, y));
 }
 
 void SimpleEditorSoga::dropNuevaFigura(MotorView* view) {

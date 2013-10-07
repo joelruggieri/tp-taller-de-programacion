@@ -15,15 +15,6 @@ private:
 public:
 	FiguraFactory(Rotador * rotador);
 	virtual ~FiguraFactory();
-	Figura * crearCirculo(float x,float y);
-	Figura * crearRueda(float x,float y);
-	Figura * crearGlobo(float x,float y);
-	Figura * crearPelota(float x,float y);
-	Figura * crearResorte(float x,float y);
-	Figura * crearMartillo(float x,float y);
-	Figura * crearBloque(float x,float y);
-	Figura * crearCohete(float x,float y);
-	Figura * crearCarrito(float x,float y);
 	Figura * crearMotor(float x,float y);
 	Figura * crearPlataforma(float x, float y);
 	Figura*  crearGloboHelio(float x, float y);
@@ -33,12 +24,10 @@ public:
 	Figura* crearPelotaJuego(float x, float y);
 	Figura * crear(Plataforma*);
 	Figura * crear(Balancin*);
-	Figura * crear(Rueda*);
-	Figura * crear(Circulo*);
-	Figura * crear(Pelota*);
 	Figura * crear(CintaTransportadora* cinta);
 	Figura* crear(BolaBoliche*);
 	Figura* crear(PelotaJuego*);
+	Figura* crear(GloboHelio*);
 };
 
 #endif /* FIGURAFACTORY_H_ */

@@ -10,10 +10,11 @@
 GloboHelio::GloboHelio(float x, float y, float radio) : Objeto(x,y){
 	this->radio = radio ;
 	this->engancheBajo = new Enganche((int)x, (int)y - (int)radio);
+	this->setRotacion(0);
 }
 
 GloboHelio::~GloboHelio() {
-	this->engancheBajo->~Enganche();
+//	this->engancheBajo->~Enganche();
 	delete this->engancheBajo;
 
 }

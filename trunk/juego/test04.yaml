@@ -1,22 +1,7 @@
+Objetos:
+  GlobosHelio:
+    - x: 88.2
+      y: 69.4
 Nivel:
   Nombre: test04
-  Fondo: resource/fondo.jpg
-Objetos:
-  Bloques:
-    - x: a
-      y: 90
-      rutacion: 0
-    - x: 64.8
-      y: 00
-      rotacion: 0
-    - x: 64.8
-      y: 130
-      rotacion: 0
-  Globos:
-    - x: 130
-      y: 74.4
-      rotacion: 0
-  Martillos:
-    - x: 75.8
-      y: -54.6
-      rotacion: 147.5007027776096
+  Fondo: ""
