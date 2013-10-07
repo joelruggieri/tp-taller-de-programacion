@@ -14,12 +14,8 @@
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
 #include "mouseEventController/MouseEventController.h"
 #include "../vista/figura/FiguraView.h"
-#include "../vista/figura/CirculoView.h"
-#include "../vista/figura/RuedaView.h"
-#include "../vista/figura/PelotaView.h"
 #include "../vista/objeto/PlataformaView.h"
 #include "../vista/objeto/BalancinView.h"
-#include "../vista/figura/RuedaView.h"
 #include "../vista/objeto/BolaBolicheView.h"
 #include <list>
 
@@ -37,9 +33,6 @@ public:
 	virtual ~DropController(){
 
 	}
-	virtual void dropNuevaFigura(RuedaView*) = 0;
-	virtual void dropNuevaFigura(CirculoView*) = 0;
-	virtual void dropNuevaFigura(PelotaView*) = 0;
 	virtual void dropNuevaFigura(MotorView*) = 0;
 	virtual void dropNuevaFigura(PlataformaView*) = 0;
 	virtual void dropNuevaFigura(GloboHelioView*) = 0;

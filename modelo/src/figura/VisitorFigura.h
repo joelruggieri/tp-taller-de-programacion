@@ -9,9 +9,6 @@
 #define VISITORFIGURA_H_
 
 class Plataforma;
-class Circulo;
-class Rueda;
-class Pelota;
 class Motor;
 class Balancin;
 class CintaTransportadora;
@@ -23,9 +20,6 @@ public:
 	virtual ~VisitorFigura(){
 
 	}
-	virtual void visit(Circulo*) = 0;
-	virtual void visit(Rueda*) = 0;
-	virtual void visit(Pelota*) = 0;
 	virtual void visit(Motor*) = 0;
 	virtual void visit(Plataforma*) = 0;
 	virtual void visit(Balancin*) = 0;

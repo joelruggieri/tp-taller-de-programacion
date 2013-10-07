@@ -30,63 +30,6 @@ struct convert<Nivel> {
 };
 
 template<>
-struct convert<Circulo> {
-	static Node encode(const Circulo& objeto) {
-		Node node;
-		node["x"] = objeto.getX();
-		node["y"] = objeto.getY();
-		node["rotacion"] = objeto.getRotacion();
-		return node;
-	}
-
-	static bool decode(const Node& node, Circulo& objeto) {
-		if (node.size() != 3) return false;
-		objeto.setX(node["x"].as<float>());
-		objeto.setY(node["y"].as<float>());
-		objeto.setRotacion(node["rotacion"].as<float>());
-		return true;
-	}
-};
-
-template<>
-struct convert<Rueda> {
-	static Node encode(const Rueda& objeto) {
-		Node node;
-		node["x"] = objeto.getX();
-		node["y"] = objeto.getY();
-		node["rotacion"] = objeto.getRotacion();
-		return node;
-	}
-
-	static bool decode(const Node& node, Rueda& objeto) {
-		if (node.size() != 3) return false;
-		objeto.setX(node["x"].as<float>());
-		objeto.setY(node["y"].as<float>());
-		objeto.setRotacion(node["rotacion"].as<float>());
-		return true;
-	}
-};
-
-template<>
-struct convert<Pelota> {
-	static Node encode(const Pelota& objeto) {
-		Node node;
-		node["x"] = objeto.getX();
-		node["y"] = objeto.getY();
-		node["rotacion"] = objeto.getRotacion();
-		return node;
-	}
-
-	static bool decode(const Node& node, Pelota& objeto) {
-		if (node.size() != 3) return false;
-		objeto.setX(node["x"].as<float>());
-		objeto.setY(node["y"].as<float>());
-		objeto.setRotacion(node["rotacion"].as<float>());
-		return true;
-	}
-};
-
-template<>
 struct convert<BolaBoliche> {
 	static Node encode(const BolaBoliche& objeto) {
 		Node node;
@@ -113,17 +56,13 @@ struct convert<GloboHelio> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["rotacion"] = objeto.getRotacion();
-		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
 	static bool decode(const Node& node, GloboHelio& objeto) {
-		if (node.size() != 3) return false;
+		if (node.size() != 2) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setRotacion(node["rotacion"].as<float>());
-		objeto.setRadio(node["radio"].as<float>());
 		return true;
 	}
 };

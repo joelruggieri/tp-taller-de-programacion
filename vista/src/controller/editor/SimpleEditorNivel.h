@@ -9,10 +9,7 @@
 #define SIMPLEEDITORNIVEL_H_
 
 #include "EditorNivel.h"
-#include "../../vista/figura/RuedaView.h"
-#include "../../vista/figura/CirculoView.h"
 #include "../../vista/figura/FiguraView.h"
-#include "../../vista/figura/PelotaView.h"
 #include "../../vista/objeto/PlataformaView.h"
 #include "../../vista/objeto/GloboHelioView.h"
 #include "../../vista/objeto/BalancinView.h"
@@ -62,9 +59,6 @@ public:
 	virtual bool isEnd();
 	virtual void dibujarEdicion(SDL_Renderer *);
 	virtual void mouseMotion(int x, int y);
-	void dropNuevaFigura(RuedaView*);
-	void dropNuevaFigura(CirculoView*);
-	void dropNuevaFigura(PelotaView*);
 	void dropNuevaFigura(MotorView*);
 	void dropNuevaFigura(PlataformaView*);
 	void dropNuevaFigura(BalancinView*);

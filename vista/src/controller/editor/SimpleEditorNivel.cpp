@@ -72,14 +72,6 @@ void SimpleEditorNivel::dropear(FiguraView* view, Figura* figura) {
 //	}
 }
 
-void SimpleEditorNivel::dropNuevaFigura(CirculoView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearCirculo(x, y));
-}
-
 
 void SimpleEditorNivel::setFigura(FiguraView* f) {
 	this->editado = f;
@@ -95,22 +87,6 @@ void SimpleEditorNivel::dropFigura(FiguraView* view) {
 	modelo->setX(x);
 	modelo->setY(100 - y);
 	this->dropear(view, modelo);
-}
-
-void SimpleEditorNivel::dropNuevaFigura(RuedaView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearRueda(x, y));
-}
-
-void SimpleEditorNivel::dropNuevaFigura(PelotaView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearPelota(x, y));
 }
 
 void SimpleEditorNivel::dropNuevaFigura(MotorView* view) {
