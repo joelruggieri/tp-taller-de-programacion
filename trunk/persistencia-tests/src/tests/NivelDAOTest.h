@@ -11,15 +11,9 @@
 #include "src/NivelDAO.h"
 #include "src/Archivo.h"
 #include "src/controller/RotadorSistemaCoordenadas.h"
-#include "src/figura/Globo.h"
 #include "src/figura/Pelota.h"
 #include "src/figura/Rueda.h"
-#include "src/figura/Bloque.h"
-#include "src/figura/Cohete.h"
-#include "src/figura/Triangulo.h"
 #include "src/figura/Mapa.h"
-#include "src/figura/Martillo.h"
-#include "src/figura/Resorte.h"
 
 class niveldao_test: public testing::Test {
 public:
@@ -43,7 +37,7 @@ TEST_F(niveldao_test, test_niveldao_leer) {
 
 TEST_F(niveldao_test, test_niveldao_guardar_nuevo) {
 	Nivel *nivel2 = new Nivel("test02");
-	nivel2->agregar(new Triangulo(0,0,new RotadorSistemaCoordenadas(), 0,1));
+	nivel2->agregar(new Pelota(0,0,1));
 	nivelDAO.guardarNivel(nivel2);
 
 	nivel2 = nivelDAO.leerNivel("test02");
@@ -53,11 +47,11 @@ TEST_F(niveldao_test, test_niveldao_guardar_nuevo) {
 
 TEST_F(niveldao_test, test_niveldao_sobreescribir_nuevo) {
 	Nivel *nivel3 = new Nivel("test03");
-	nivel3->agregar(new Triangulo(10,10, new RotadorSistemaCoordenadas(), 10,10));
+	nivel3->agregar(new Pelota(10,10, 10));
 	nivelDAO.guardarNivel(nivel3);
 
 	Nivel *otroNivel3 = new Nivel("test03");
-	otroNivel3->agregar(new Triangulo(20,20,new RotadorSistemaCoordenadas(), 20,20));
+	otroNivel3->agregar(new Pelota(20,20,20));
 	nivelDAO.guardarNivel(otroNivel3);
 	otroNivel3 = nivelDAO.leerNivel("test03");
 	ASSERT_EQ(1, otroNivel3->cantidadFiguras());
@@ -68,13 +62,13 @@ TEST_F(niveldao_test, test_niveldao_sobreescribir_nuevo) {
 
 TEST_F(niveldao_test, test_niveldao_guardar_nivel_grande) {
 	Nivel *nivel4 = new Nivel("test04");
-	nivel4->agregar(new Globo(10,10, new RotadorSistemaCoordenadas(), 10));
-	nivel4->agregar(new Pelota(10,10, new RotadorSistemaCoordenadas(),10));
-	nivel4->agregar(new Rueda(10,10, new RotadorSistemaCoordenadas(),10));
-	nivel4->agregar(new Bloque(10,10, new RotadorSistemaCoordenadas(), 10,10));
-	nivel4->agregar(new Cohete(10,10, new RotadorSistemaCoordenadas(), 10,10));
-	nivel4->agregar(new Martillo(10,10, new RotadorSistemaCoordenadas(), 10,10));
-	nivel4->agregar(new Resorte(10,10, new RotadorSistemaCoordenadas(), 10,10));
+	nivel4->agregar(new Pelota(10,10,  10));
+	nivel4->agregar(new Pelota(10,10,  10));
+	nivel4->agregar(new Pelota(10,10,  10));
+	nivel4->agregar(new Pelota(10,10,  10));
+	nivel4->agregar(new Pelota(10,10,  10));
+	nivel4->agregar(new Pelota(10,10,  10));
+	nivel4->agregar(new Pelota(10,10,  10));
 	nivelDAO.guardarNivel(nivel4);
 
 	nivel4 = nivelDAO.leerNivel("test04");
