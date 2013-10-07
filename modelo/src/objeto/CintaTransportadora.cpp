@@ -13,7 +13,9 @@
 #define RADIO (3.0f)
 
 CintaTransportadora::CintaTransportadora(): Objeto (0,0) {
-	this->longitud = 100;
+	this->longitud = 20;
+	this->alto = 2*RADIO;
+	this->ancho=this->longitud;
 }
 
 CintaTransportadora::~CintaTransportadora() {
