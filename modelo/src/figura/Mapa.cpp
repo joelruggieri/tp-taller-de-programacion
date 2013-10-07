@@ -87,10 +87,6 @@ Figura* Mapa::pickUp(float x, float y) {
 	myWorld->QueryAABB(&callback, aabb);
 	if (callback.m_fixture) {
 		b2Body* body = callback.m_fixture->GetBody();
-		cout
-				<< (body->GetUserData() == 0 ?
-						"------------------No hay interseccion" :
-						"--------------Contacto") << endl;
 		// TODO SI HUBIERA JOINTS HABRÍA QUE VER COMO MANEJARLAS, quizas no dejar draguear si hay un joint de soga o algo asi.
 		Figura* figura = (Figura*) (body->GetUserData());
 		return figura;
