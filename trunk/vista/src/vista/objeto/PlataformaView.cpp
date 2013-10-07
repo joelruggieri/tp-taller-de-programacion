@@ -7,6 +7,7 @@
 
 #include "PlataformaView.h"
 #include "../../controller/editor/SimpleEditorEstirar.h"
+#include "src/objeto/Plataforma.h"
 PlataformaView::PlataformaView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorNivel* editor) : ObjetoView(x,y,w,h,textura,editor) {
 
 }
@@ -23,4 +24,11 @@ EditorNivel* PlataformaView::getEditor() {
 	SimpleEditorNivel * editor = (SimpleEditorNivel *)controller;
 	editor->setFigura(this);
 	return editor;
+}
+
+void PlataformaView::setModelo(Figura* fig) {
+	Plataforma * p = (Plataforma* )fig;
+	Resizer * r = Resizer::Instance();
+	this->setW(r->resizearDistanciaLogicaX(p->getAncho()));
+	super::setModelo(fig);
 }

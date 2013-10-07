@@ -1,14 +1,14 @@
 Objetos:
-  BolasBoliche:
-    - rotacion: 0
-      radio: 5
-      y: 58.4
-      x: 80.8
+  Plataformas:
+    - x: 59.2
+      rotacion: 0
+      y: 37.8
+      ancho: 64.8
   GlobosHelio:
-    - x: 88.2
-      y: 69.4
-    - y: 71.8
-      x: 84.8
+    - y: 69.4
+      x: 88.2
+    - y: 72.2
+      x: 66.8
 Nivel:
   Nombre: test04
   Fondo: ""

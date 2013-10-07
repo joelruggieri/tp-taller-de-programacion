@@ -95,17 +95,15 @@ struct convert<Plataforma> {
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
 		node["ancho"] = objeto.getAncho();
-		node["alto"] = objeto.getAlto();
 		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Plataforma& objeto) {
-		if (node.size() != 5) return false;
+		if (node.size() != 4) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setAncho(node["ancho"].as<float>());
-		objeto.setAlto(node["alto"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
 		return true;
 	}
