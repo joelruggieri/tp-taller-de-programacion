@@ -14,6 +14,7 @@
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
 #include "src/objeto/CintaTransportadora.h"
+#include "src/objeto/BolaBoliche.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
