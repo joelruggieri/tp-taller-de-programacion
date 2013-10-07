@@ -9,9 +9,12 @@
 #define BALANCIN_H_
 #include "Objeto.h"
 #include "../figura/Figura.h"
+#include "../figura/Enganche.h"
 
 class Balancin: public Objeto {
 private:
+	//Enganche* engancheDerecho;
+	//Enganche* engancheIzquierdo;
 	float ancho;
 	float alto;
 public:
