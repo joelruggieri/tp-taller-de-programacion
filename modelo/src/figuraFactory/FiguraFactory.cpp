@@ -41,8 +41,9 @@ Figura* FiguraFactory::crearBalancin(float x, float y){
 }
 
 Figura* FiguraFactory::crear(Plataforma* c) {
-	Figura* y = this->crearPlataforma(c->getX(), c->getY());
+	Plataforma* y = (Plataforma*)this->crearPlataforma(c->getX(), c->getY());
 	y->setRotacion(c->getRotacion());
+	y->setAncho(c->getAncho());
 	return y;
 }
 

@@ -28,7 +28,7 @@ public:
 	FiguraView(int x, int y, int w, int h, SDL_Texture* textura, DropController * controller);
 	virtual ~FiguraView();
 	Figura * getModelo();
-	void setModelo(Figura* modelo);
+	virtual void setModelo(Figura* modelo);
 	void drop();
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
