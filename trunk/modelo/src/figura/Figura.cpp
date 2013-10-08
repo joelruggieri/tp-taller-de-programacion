@@ -30,13 +30,31 @@ void Figura::setY(float y){
 }
 
 void Figura::setRotacion(double rotation){
-	this->rotacion = rotation;
-	if(this->rotacion < 0){
-		this->rotacion =  this->rotacion * -1;
-		this->rotacion = 360 - (int)this->rotacion % 360;
-	} else if(this->rotacion >= 360){
-		this->rotacion = (int)this->rotacion % 360;
+	int signo;
+	if(rotation <= -180 ){
+		signo = +1;
+	} else {
+		signo = -1;
 	}
+	this->rotacion = rotation;
+	while(this->rotacion > 180 || this->rotacion <=  -180){
+		rotacion = rotacion + 360*signo;
+		cout << "rotacion fig " << rotacion << endl;
+		if(this->rotacion > 180){
+			cout<< "mierda" << endl;
+		}
+	}
+
+	//	this->rotacion = rotation;
+//	if(this->rotacion < 0){
+//		this->rotacion =  this->rotacion * -1;
+//		this->rotacion = 360 - (int)this->rotacion % 360;
+//	} else if(this->rotacion >= 360){
+//		this->rotacion = (int)this->rotacion % 360;
+//	}
+
+
+
 }
 
 Figura::Figura() {

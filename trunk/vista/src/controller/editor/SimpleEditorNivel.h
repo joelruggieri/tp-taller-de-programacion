@@ -50,7 +50,7 @@ protected:
 	int yMaxDrag;
 public:
 	SimpleEditorNivel(ModeloController * , ZonaTablero *,FiguraFactory* factory, int yMaxDrag);
-	void setFigura(FiguraView *);
+	virtual void setFigura(FiguraView *);
 	virtual ~SimpleEditorNivel();
 	virtual void clickDown(int x, int y);
 	virtual void clickUp(int x, int y);

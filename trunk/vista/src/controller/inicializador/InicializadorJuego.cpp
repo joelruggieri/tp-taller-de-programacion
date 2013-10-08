@@ -157,9 +157,9 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 
 	list<float> angulosPermitidos1;
 	list<float> angulosPermitidos2;
-	angulosPermitidos2.push_back(315);
-	angulosPermitidos2.push_back(0);
-	angulosPermitidos2.push_back(45);
+	angulosPermitidos2.push_back(-45.0);
+	angulosPermitidos2.push_back(0.0);
+	angulosPermitidos2.push_back(45.0);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo1 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos1);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo2 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos2);
 //	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
