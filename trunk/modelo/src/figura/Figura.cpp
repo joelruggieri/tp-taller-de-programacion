@@ -34,7 +34,7 @@ void Figura::setRotacion(double rotation){
 	if(this->rotacion < 0){
 		this->rotacion =  this->rotacion * -1;
 		this->rotacion = 360 - (int)this->rotacion % 360;
-	} else if(this->rotacion > 360){
+	} else if(this->rotacion >= 360){
 		this->rotacion = (int)this->rotacion % 360;
 	}
 }
