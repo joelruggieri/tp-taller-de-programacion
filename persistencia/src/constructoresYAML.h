@@ -36,7 +36,6 @@ struct convert<BolaBoliche> {
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
 		node["rotacion"] = objeto.getRotacion();
-		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
@@ -45,7 +44,6 @@ struct convert<BolaBoliche> {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
-		objeto.setRadio(node["radio"].as<float>());
 		return true;
 	}
 };
@@ -74,7 +72,6 @@ struct convert<PelotaJuego> {
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
 		node["rotacion"] = objeto.getRotacion();
-		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
@@ -83,7 +80,6 @@ struct convert<PelotaJuego> {
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
-		objeto.setRadio(node["radio"].as<float>());
 		return true;
 	}
 };

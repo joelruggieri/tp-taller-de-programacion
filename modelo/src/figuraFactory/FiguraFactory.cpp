@@ -78,7 +78,7 @@ Figura* FiguraFactory::crear(BolaBoliche* c) {
 }
 
 Figura* FiguraFactory::crearPelotaJuego(float x, float y) {
-	return new PelotaJuego(x, y, 5);
+	return new PelotaJuego(x, y, 4.9);
 }
 
 

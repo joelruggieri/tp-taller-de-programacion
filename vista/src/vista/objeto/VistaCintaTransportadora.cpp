@@ -7,10 +7,10 @@
 
 #include "VistaCintaTransportadora.h"
 #include "../../controller/DropController.h"
-#include "../../controller/editor/SimpleEditorNivel.h"
+#include "../../controller/editor/SimpleEditorAnguloFijo.h"
 
 VistaCintaTransportadora::VistaCintaTransportadora(int x, int y, int w, int h,
-		SDL_Texture* textura, DropController* editor) : ObjetoView(x,y,w,h,textura, editor){
+		SDL_Texture* textura, SimpleEditorAnguloFijo* editor) : ObjetoView(x,y,w,h,textura, editor){
 }
 
 VistaCintaTransportadora::~VistaCintaTransportadora() {

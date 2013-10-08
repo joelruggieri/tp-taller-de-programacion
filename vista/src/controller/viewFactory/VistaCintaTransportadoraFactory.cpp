@@ -8,8 +8,7 @@
 #include "VistaCintaTransportadoraFactory.h"
 
 
-VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory(DropController* editor) : ViewFiguraFactory("resource/cinta.png", editor) {
-	this->editor = editor;
+VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory(SimpleEditorAnguloFijo* editor) : ViewFiguraFactory("resource/cinta.png", editor) {
 }
 
 VistaCintaTransportadoraFactory::~VistaCintaTransportadoraFactory() {
@@ -19,7 +18,7 @@ VistaCintaTransportadoraFactory::~VistaCintaTransportadoraFactory() {
 FiguraView* VistaCintaTransportadoraFactory::crear(int x, int y, int w,
 		int h) {
 	Resizer * r = Resizer::Instance();
-	return new VistaCintaTransportadora(x, y, r->resizearDistanciaLogicaX(20), h, this->textura, this->editor);
+	return new VistaCintaTransportadora(x, y, r->resizearDistanciaLogicaX(20), h, this->textura, (SimpleEditorAnguloFijo*)this->controller);
 }
 
 View* VistaCintaTransportadoraFactory::crearVistaPropia(int x, int y,

@@ -151,35 +151,47 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	angulosPermitidos2.push_back(45);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo1 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos1);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo2 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos2);
-	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
+//	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
 	SimpleEditorSoga* editorSogas = new SimpleEditorSoga(modeloController, tablero, this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);
-	ViewFiguraFactory * viewFactory;
-	viewFactory = new ViewGloboFactory(editorSimpleAnguloFijo1);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
-	viewFactory = new ViewPlataformaFactory(editorSimpleEstirar);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PLATAFORMA,viewFactory));
-	viewFactory = new ViewBolaBolicheFactory(editorSimpleAnguloFijo1);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BOLA_BOLICHE,viewFactory));
-	viewFactory = new ViewPelotaJuegoFactory(editorSimpleAnguloFijo1);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA_JUEGO,viewFactory));
-	viewFactory = new ViewBalancinFactory(editorSimpleAnguloFijo2);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BALANCIN,viewFactory));
 
 	list<ViewFiguraFactory*> factories;
+
 	SDL_Texture* herrTextura = texturas->cargarTexture(FONDO_ZONA_CREACION);
+	ViewFiguraFactory * viewFactory;
+
+
+	viewFactory = new ViewGloboFactory(editorSimpleAnguloFijo1);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
+	factories.push_back(viewFactory);
+	viewFactory = new ViewPlataformaFactory(editorSimpleEstirar);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PLATAFORMA,viewFactory));
+	factories.push_back(viewFactory);
+	viewFactory = new ViewBolaBolicheFactory(editorSimpleAnguloFijo1);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BOLA_BOLICHE,viewFactory));
+	factories.push_back(viewFactory);
+	viewFactory = new ViewPelotaJuegoFactory(editorSimpleAnguloFijo1);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA_JUEGO,viewFactory));
+	factories.push_back(viewFactory);
+	viewFactory = new ViewBalancinFactory(editorSimpleAnguloFijo2);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BALANCIN,viewFactory));
+	factories.push_back(viewFactory);
+	viewFactory = new VistaCintaTransportadoraFactory(editorSimpleAnguloFijo1);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CINTA,viewFactory));
+	factories.push_back(viewFactory);
+
+
+
 	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
-//	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
-	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo1));
-	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
-//	factories.push_back(new ViewPelotaFactory(editorSimple,editorSimple));
-	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo1));
-	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
-	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo2));
+//	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo1));
+//	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
+//	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo1));
+//	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
+//	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo2));
 	factories.push_back(new ViewSogaFactory(editorSogas));
-	factories.push_back(new VistaCintaTransportadoraFactory(editorSimple));
-	factories.push_back(new ViewBolaBolicheFactory(editorSimpleAnguloFijo1));
+//	factories.push_back(new VistaCintaTransportadoraFactory(editorSimpleAnguloFijo1));
+//	factories.push_back(new ViewBolaBolicheFactory(editorSimpleAnguloFijo1));
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
 			herrTextura);
