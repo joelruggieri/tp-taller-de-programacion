@@ -37,7 +37,7 @@ Figura* FiguraFactory::crearPlataforma(float x, float y){
 }
 
 Figura* FiguraFactory::crearBalancin(float x, float y){
-	return new Balancin(x,y,30,3);
+	return new Balancin(x,y,34,5);
 }
 
 Figura* FiguraFactory::crear(Plataforma* c) {

@@ -64,7 +64,7 @@ double Rotacion::rotar(double x, double y) {
     	return 0;
     }
 	//calculo la componente z del producto vectorial entre ambos para saber la direccion.
-	double direccion = this->y0 * xN -  this->x0 * yN ;
+	 direccion = this->y0 * xN -  this->x0 * yN ;
 //	direccion = direccion;
 	direccion = direccion >0 ? 1 : -1;
 	this->angulo = direccion * acos(this->x0 * xN + this->y0 * yN) * 180 / 3.14;
@@ -80,6 +80,10 @@ double Rotacion::rotar(double x, double y) {
 
 double Rotacion::getAngulo() const {
 	return angulo;
+}
+
+double Rotacion::getDireccion() const {
+	return direccion;
 }
 
 Rotacion::~Rotacion() {

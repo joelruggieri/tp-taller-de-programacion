@@ -52,6 +52,20 @@ SimpleEditorAnguloFijo::~SimpleEditorAnguloFijo() {
 
 float SimpleEditorAnguloFijo::anguloPermitidoMasCercano(float angulo){
 	list<float>::iterator it;
+	it = angulosPermitidos.begin();
+	while (it.operator *() != angulo)
+		++it;
+
+	if(this->rot->getDireccion() < 0 && it != angulosPermitidos.begin())
+		it.operator --();
+	else if(this->rot->getDireccion() > 0 && it != angulosPermitidos.end())
+		it.operator ++();
+
+	float anguloPermitidoMasCercano = it.operator *();
+	return anguloPermitidoMasCercano;
+
+
+	/*list<float>::iterator it;
 	float anguloPermitidoMasCercano = angulosPermitidos.front();
 	float diferencia = 0;
 	float menorDiferencia = abs(anguloPermitidoMasCercano - angulo);
@@ -63,9 +77,19 @@ float SimpleEditorAnguloFijo::anguloPermitidoMasCercano(float angulo){
 			anguloPermitidoMasCercano = anguloActual;
 			menorDiferencia = diferencia;
 		}
-
 	}
-	return anguloPermitidoMasCercano;
+	std::cout << " h" << anguloPermitidoMasCercano << std::endl;
+	it = angulosPermitidos.begin();
+	while(it.operator *() != anguloPermitidoMasCercano)
+		++it;
+
+	if(this->rot->getDireccion() < 0 && it != angulosPermitidos.begin())
+		it.operator --();
+	if(this->rot->getDireccion() > 0 && it != angulosPermitidos.end())
+		it.operator ++();
+
+	anguloPermitidoMasCercano = it.operator *();
+	return anguloPermitidoMasCercano;*/
 }
 
 void SimpleEditorAnguloFijo::mouseMotion(int x, int y) {
@@ -75,10 +99,11 @@ void SimpleEditorAnguloFijo::mouseMotion(int x, int y) {
 		if(!angulosPermitidos.empty()){
 			Resizer* r = Resizer::Instance();
 			this->rot->rotar(x, r->getAltoPantalla() - y);
-			float angulo = anguloPermitidoMasCercano(this->rot->getAngulo());
-			cout << " " << angulo << endl;
+			//std::cout << " " << this->editado->getModelo()->getRotacion() << std::endl;
+			float angulo = anguloPermitidoMasCercano(this->editado->getModelo()->getRotacion());
+			//cout << " " << angulo << endl;
 			this->editado->getModelo()->setRotacion(angulo);
-			std::cout << "hola  " << this->editado->getModelo()->getRotacion() << endl;;
+			//std::cout << "hola  " << this->editado->getModelo()->getRotacion() << endl;;
 		}
 
 	}
