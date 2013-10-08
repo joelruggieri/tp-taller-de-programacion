@@ -90,3 +90,7 @@ Rotacion::~Rotacion() {
 	// TODO Auto-generated destructor stub
 }
 
+void Rotacion::setAngulo(double angulo) {
+	this->direccion =  this->angulo - angulo;
+	this->angulo = angulo;
+}

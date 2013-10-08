@@ -52,16 +52,25 @@ SimpleEditorAnguloFijo::~SimpleEditorAnguloFijo() {
 
 float SimpleEditorAnguloFijo::anguloPermitidoMasCercano(float angulo){
 	list<float>::iterator it;
-	it = angulosPermitidos.begin();
-	while (it.operator *() != angulo)
-		++it;
+	cout << "angulo " << angulo << endl;
+//	for(it= angulosPermitidos.begin(); it != angulosPermitidos.end(); ++it){
+//		if( *it == angulo){
+//			cout << *it << endl;
+//			encontrado = true;
+//			break;
+//		}
+//	}
 
-	if(this->rot->getDireccion() < 0 && it != angulosPermitidos.begin())
-		it.operator --();
-	else if(this->rot->getDireccion() > 0 && it != angulosPermitidos.end())
-		it.operator ++();
-
-	float anguloPermitidoMasCercano = it.operator *();
+	if(this->rot->getDireccion() < 0 && indice >0)
+		indice--;
+	else if(this->rot->getDireccion() > 0 && indice < (angulosPermitidos.size() -1))
+		indice++;
+    it = angulosPermitidos.begin();
+    advance(it, indice);
+	float anguloPermitidoMasCercano = *it;
+    if(anguloPermitidoMasCercano > 10000){
+    	cout << "m2" << endl;
+    }
 	return anguloPermitidoMasCercano;
 
 
@@ -99,12 +108,30 @@ void SimpleEditorAnguloFijo::mouseMotion(int x, int y) {
 		if(!angulosPermitidos.empty()){
 			Resizer* r = Resizer::Instance();
 			this->rot->rotar(x, r->getAltoPantalla() - y);
-			//std::cout << " " << this->editado->getModelo()->getRotacion() << std::endl;
-			float angulo = anguloPermitidoMasCercano(this->editado->getModelo()->getRotacion());
-			//cout << " " << angulo << endl;
-			this->editado->getModelo()->setRotacion(angulo);
-			//std::cout << "hola  " << this->editado->getModelo()->getRotacion() << endl;;
+			if(abs(rot->getAngulo() - start)> 1.7){
+				cout << "ABS " <<abs(rot->getAngulo() - start) <<endl;
+				//std::cout << " " << this->editado->getModelo()->getRotacion() << std::endl;
+				float angulo = anguloPermitidoMasCercano(this->editado->getModelo()->getRotacion());
+				//cout << " " << angulo << endl;
+				this->editado->getModelo()->setRotacion(angulo);
+				//std::cout << "hola  " << this->editado->getModelo()->getRotacion() << endl;;
+				start = rot->getAngulo();
+			}
 		}
 
+	}
+}
+
+void SimpleEditorAnguloFijo::setFigura(FiguraView*f) {
+	super::setFigura(f);
+	this->start= 0;
+	int i =0;
+	list<float>::iterator it;
+	for(it= angulosPermitidos.begin(); it!= angulosPermitidos.end(); ++it){
+		if(*it== f->getModelo()->getRotacion()){
+			indice = i;
+			break;
+		}
+		i++;
 	}
 }

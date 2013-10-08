@@ -25,6 +25,7 @@ public:
 	virtual ~Rotacion();
 	double getAngulo() const;
 	double getDireccion() const;
+	void setAngulo(double);
 };
 
 #endif /* ROTACION_H_ */
