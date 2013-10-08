@@ -7,7 +7,6 @@
 
 #include "PersistenciaManager.h"
 #include "src/figura/Figura.h"
-#include "src/figura/Circulo.h"
 #include "src/NivelInexistenteException.h"
 #include "src/Logger.h"
 #include "RutasArchivos.h"
