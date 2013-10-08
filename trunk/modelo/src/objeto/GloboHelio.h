@@ -23,7 +23,6 @@ public:
 
 private:
 	float radio;
-	Enganche* engancheBajo;
 };
 
 #endif /* GLOBOHELIO_H_ */

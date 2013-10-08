@@ -16,3 +16,4 @@ Soga::~Soga() {
 	// TODO Auto-generated destructor stub
 }
 
+//TODO IMPLEMENTAR EL CONSTRUCTOR COPIA Y QUE SI O SI TENGA ESTA LINEA this->reg = figura.reg;

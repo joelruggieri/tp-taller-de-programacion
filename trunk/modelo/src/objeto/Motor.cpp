@@ -53,5 +53,7 @@ void Motor::crearFisica(b2World* world) {
 }
 
 void Motor::acept(VisitorFigura* visitor){
-
+	visitor->visit(this);
 }
+
+//TODO IMPLEMENTAR CONSTRUCTOR COPIA Y AGREGAR ESTO this->reg =figura.reg;

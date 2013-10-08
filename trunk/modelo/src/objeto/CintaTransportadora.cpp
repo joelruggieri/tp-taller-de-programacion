@@ -119,6 +119,14 @@ CintaTransportadora::CintaTransportadora(int x, int y, int longitud) : Objeto(x,
 	this->alto = 2*RADIO;
 }
 
+
+CintaTransportadora::CintaTransportadora(const CintaTransportadora& figura):Objeto(x,y) {
+	this->longitud = longitud;
+	this->ancho = longitud;
+	this->alto = 2*RADIO;
+	this->reg = figura.reg;
+}
+
 int CintaTransportadora::getLongitud() const{
 	return longitud;
 }

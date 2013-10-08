@@ -16,6 +16,7 @@ class CintaTransportadora: public Objeto {
 public:
 	CintaTransportadora();
 	CintaTransportadora(int x, int y, int longitud);
+	CintaTransportadora(const CintaTransportadora& figura);
 	virtual ~CintaTransportadora();
 	void crearFisica(b2World *);
 	void acept(VisitorFigura*);

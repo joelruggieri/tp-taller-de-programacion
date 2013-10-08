@@ -13,7 +13,7 @@
 #include "Rotador.h"
 #include "../Vista.h"
 #include "Enganche.h"
-
+#include "Registro.h"
 class Figura: public Posicionable {
 protected:
 	float x;
@@ -22,6 +22,10 @@ protected:
 
 	float xb,yb;
 	double rotacionb;
+
+	//ME RECAGO EN TODA LAS CAPAS.
+	Registro reg;
+
 
 	Lista_Enganches enganches;
 
@@ -52,6 +56,8 @@ public:
 	virtual void makeBackUp();
 	virtual void restoreBackUp();
 	virtual Lista_Enganches getEnganches();
+	Registro & getReg() ;
+	void setReg(Registro r) ;
 };
 
 #endif /* FIGURA_H_ */

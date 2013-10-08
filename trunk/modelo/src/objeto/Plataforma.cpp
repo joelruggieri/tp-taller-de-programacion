@@ -22,9 +22,11 @@ Plataforma::Plataforma(const Plataforma& plataforma){
 	y = plataforma.getY();
 	alto = plataforma.getAlto();
 	ancho = plataforma.getAncho();
+	//TODO estos son medio duros los dos atributos, vista y body. cuidado con los punteros, puede traer problemas
 	body = plataforma.body;
-	rotacion  = plataforma.getRotacion();
 	vista = plataforma.vista;
+	rotacion  = plataforma.getRotacion();
+	this->reg = plataforma.reg;
 }
 
 Plataforma::~Plataforma() {

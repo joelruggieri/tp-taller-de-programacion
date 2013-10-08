@@ -64,10 +64,12 @@ InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEvento
 	this->rotador = new RotadorSistemaCoordenadas();
 	this->factory = new FiguraFactory(this->rotador);
 	this->tablero = NULL;
+	this->validador= new ValidadorEstatico (0,100,0,100);
 }
 
 InicializadorJuego::~InicializadorJuego() {
 	delete this->bbdd;
+	delete validador;
 }
 
 
@@ -93,6 +95,17 @@ void InicializadorJuego::visit(CintaTransportadora* c) {
 void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 		Figura* modelo) {
 	Resizer * r = Resizer::Instance();
+	Logger log;
+	validador->validar(modelo);
+	if(! validador->isValido()){
+		string msj = "Se omite figura de tipo '" + modelo->getReg().getEtiqueta() +"' error en la linea ";
+		log.concatenar(msj, modelo->getReg().getLinea());
+		msj = msj + ". Error: " + validador->getErrorValidacion();
+		log.warning(msj);
+		return;
+	}
+
+
 	Transformacion trans;
 	trans.traslacion(0, 100);
 	trans.escalar(r->getRelacionX(), r->getRelacionY());
@@ -109,12 +122,9 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	bool exitoVista = tablero->agregarFigura(view);
 	bool exitoModelo = this->modeloController->crearFigura(modelo);
 	if (!exitoVista || !exitoModelo) {
-		Logger log;
-		string msj = "Objeto con posicion invalida, es omitido (";
-		log.concatenar(msj, modelo->getX());
-		msj = msj + ";";
-		log.concatenar(msj,modelo->getY());
-		msj = msj + ")";
+		string msj = "La figura de tipo '"+ modelo->getReg().getEtiqueta() +"' en la linea ";
+		log.concatenar(msj, modelo->getReg().getLinea());
+		msj = msj + " Posee un error de solapamiento o de union y es omitida";
 		log.warning(msj);
 
 		if (exitoVista) {
@@ -182,16 +192,9 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	factories.push_back(viewFactory);
 
 
-
+//TODO como todavía no vienen de la persistencia no se las coloca para levantar de la persistencia
 	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
-//	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo1));
-//	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
-//	factories.push_back(new ViewGloboFactory(editorSimpleAnguloFijo1));
-//	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
-//	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo2));
 	factories.push_back(new ViewSogaFactory(editorSogas));
-//	factories.push_back(new VistaCintaTransportadoraFactory(editorSimpleAnguloFijo1));
-//	factories.push_back(new ViewBolaBolicheFactory(editorSimpleAnguloFijo1));
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
 			herrTextura);

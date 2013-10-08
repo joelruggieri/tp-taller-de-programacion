@@ -17,7 +17,7 @@
 #include "../RotadorSistemaCoordenadas.h"
 #include <map>
 #include "../../modelo/Cuadrado.h"
-
+#include "ValidadorEstatico.h"
 
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
@@ -39,6 +39,7 @@ private:
 	ModeloController * modeloController;
 	RotadorSistemaCoordenadas * rotador;
 	FiguraFactory * factory;
+	ValidadorEstatico * validador;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
 public:
 	InicializadorJuego(GeneralEventController * eventsController, ModeloController * modeloController);

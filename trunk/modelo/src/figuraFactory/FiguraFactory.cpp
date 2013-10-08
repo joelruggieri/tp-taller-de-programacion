@@ -44,12 +44,14 @@ Figura* FiguraFactory::crear(Plataforma* c) {
 	Plataforma* y = (Plataforma*)this->crearPlataforma(c->getX(), c->getY());
 	y->setRotacion(c->getRotacion());
 	y->setAncho(c->getAncho());
+	y->setReg(c->getReg());
 	return y;
 }
 
 Figura* FiguraFactory::crear(Balancin* c) {
 	Figura* y = this->crearBalancin(c->getX(), c->getY());
 	y->setRotacion(c->getRotacion());
+	y->setReg(c->getReg());
 	return y;
 }
 
@@ -63,6 +65,7 @@ Figura* FiguraFactory::crearCintaTransportadora(float x, float y) {
 Figura* FiguraFactory::crear(CintaTransportadora* cinta) {
 	Figura* t = this->crearCintaTransportadora(cinta->getX(), cinta->getY());
 	t->setRotacion(0);
+	t->setReg(cinta->getReg());
 	return t;
 }
 Figura* FiguraFactory::crearBolaBoliche(float x, float y) {
@@ -74,6 +77,7 @@ Figura* FiguraFactory::crearBolaBoliche(float x, float y) {
 Figura* FiguraFactory::crear(BolaBoliche* c) {
 	Figura* t = this->crearBolaBoliche(c->getX(), c->getY());
 		t->setRotacion(c->getRotacion());
+		t->setReg(c->getReg());
 		return t;
 }
 
@@ -85,11 +89,13 @@ Figura* FiguraFactory::crearPelotaJuego(float x, float y) {
 Figura* FiguraFactory::crear(PelotaJuego* c) {
 	Figura* t = this->crearPelotaJuego(c->getX(), c->getY());
 		t->setRotacion(c->getRotacion());
+		t->setReg(c->getReg());
 		return t;
 }
 
 Figura* FiguraFactory::crear(GloboHelio*c) {
 	Figura* t = this->crearGloboHelio(c->getX(), c->getY());
 		t->setRotacion(0);
+		t->setReg(c->getReg());
 	return t;
 }

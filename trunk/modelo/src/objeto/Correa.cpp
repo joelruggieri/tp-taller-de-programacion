@@ -16,3 +16,4 @@ Correa::~Correa() {
 	// TODO Auto-generated destructor stub
 }
 
+//TODO IMPLEMENTAR CONSTRUCTOR COPIA, VER EN LAS OTRAS FIGURAS
