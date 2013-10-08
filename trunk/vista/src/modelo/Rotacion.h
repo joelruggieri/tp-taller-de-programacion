@@ -13,7 +13,8 @@ private:
 	double xc, yc;
 	double x0, y0;
 	double angulo;
-int rotaciones;
+	int rotaciones;
+	double direccion;
 
 	void loggear(double xN, double yN);
 
@@ -23,6 +24,7 @@ public:
 	
 	virtual ~Rotacion();
 	double getAngulo() const;
+	double getDireccion() const;
 };
 
 #endif /* ROTACION_H_ */
