@@ -45,6 +45,9 @@ Figura::Figura() {
 	rotacion = 0;
 	vista= 0;
 	this->body =0;
+	xb = x;
+	yb = y;
+	rotacionb =0;
 }
 
 Figura::Figura(float x, float y) {
@@ -53,10 +56,17 @@ Figura::Figura(float x, float y) {
 	this->rotacion = 0;
 	vista= 0;
 	this->body =0;
+	xb = x;
+	yb = y;
+	rotacionb =0;
 }
 
 
 Figura::~Figura() {
+	Lista_Enganches::iterator it;
+	for(it= this->enganches.begin(); it!= enganches.end(); ++it){
+		delete *it;
+	}
 }
 
  Vista* Figura::getVista(){
@@ -111,4 +121,13 @@ void Figura::restoreBackUp() {
 
 Lista_Enganches Figura::getEnganches(){
 	return this->enganches;
+}
+
+Registro& Figura::getReg() {
+	return reg;
+}
+
+void Figura::setReg(Registro r) {
+
+	this->reg = r;
 }

@@ -54,6 +54,7 @@ BolaBoliche::BolaBoliche(const BolaBoliche& figura) {
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
+	this->reg = figura.reg;
 }
 
 float BolaBoliche::getRadio() {

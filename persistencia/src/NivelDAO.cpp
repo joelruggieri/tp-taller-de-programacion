@@ -152,24 +152,24 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 	return lista;
 }
 
-bool NivelDAO::validar(const Figura& obj, const YAML::Node& circulos,
-		std::size_t i) {
-	if (obj.getX() > 100 || obj.getX() < 0 || obj.getY() < 0
-			|| obj.getY() > 100) {
-		Logger log;
-		std::string msj = "Objeto con posicion invalida, es omitido (";
-		log.concatenar(msj, obj.getX());
-		msj = msj + ";";
-		log.concatenar(msj, obj.getY());
-		msj = msj + ")";
-		YAML::Mark marca = circulos[i].Mark();
-		msj = msj + " en la linea ";
-		log.concatenar(msj, marca.line);
-		log.warning(msj);
-		return false;
-	}
-	return true;
-}
+//bool NivelDAO::validar(const Figura& obj, const YAML::Node& circulos,
+//		std::size_t i) {
+//	if (obj.getX() > 100 || obj.getX() < 0 || obj.getY() < 0
+//			|| obj.getY() > 100) {
+//		Logger log;
+//		std::string msj = "Objeto con posicion invalida, es omitido (";
+//		log.concatenar(msj, obj.getX());
+//		msj = msj + ";";
+//		log.concatenar(msj, obj.getY());
+//		msj = msj + ")";
+//		YAML::Mark marca = circulos[i].Mark();
+//		msj = msj + " en la linea ";
+//		log.concatenar(msj, marca.line);
+//		log.warning(msj);
+//		return false;
+//	}
+//	return true;
+//}
 
 
 
@@ -183,8 +183,8 @@ void NivelDAO::obtenerGlobosHelio(std::list<Figura*> &lista, YAML::Node objetos)
 	for (std::size_t i = 0; i < globos.size(); i++) {
 		try {
 			GloboHelio obj = globos[i].as<GloboHelio>();
-			bool salir = validar(obj, globos, i);
-			if(!salir ) continue;
+//			bool salir = validar(obj, globos, i);
+//			if(!salir ) continue;
 			lista.push_back( new GloboHelio(obj));
 			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
@@ -205,8 +205,8 @@ void NivelDAO::obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos)
 	for (std::size_t i = 0; i < plataformas.size(); i++) {
 		try {
 			Plataforma obj = plataformas[i].as<Plataforma>();
-			bool salir = validar(obj, plataformas, i);
-			if(!salir ) continue;
+//			bool salir = validar(obj, plataformas, i);
+//			if(!salir ) continue;
 			lista.push_back( new Plataforma(obj));
 			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
@@ -245,8 +245,8 @@ void NivelDAO::obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos){
 	for (std::size_t i = 0; i < balancines.size(); i++) {
 		try {
 			Balancin obj = balancines[i].as<Balancin>();
-			bool salir = validar(obj,balancines, i);
-			if(!salir ) continue;
+//			bool salir = validar(obj,balancines, i);
+//			if(!salir ) continue;
 			lista.push_back( new Balancin(obj));
 			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
@@ -266,8 +266,8 @@ void NivelDAO::obtenerBolasDeBoliche(std::list<Figura*> &lista, YAML::Node objet
 	for (std::size_t i = 0; i < bolasboliche.size(); i++) {
 		try {
 			BolaBoliche obj = bolasboliche[i].as<BolaBoliche>();
-			bool salir = validar(obj,bolasboliche, i);
-			if(!salir ) continue;
+//			bool salir = validar(obj,bolasboliche, i);
+//			if(!salir ) continue;
 			lista.push_back( new BolaBoliche(obj));
 			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
@@ -295,8 +295,8 @@ void NivelDAO::obtenerPelotasJuego(std::list<Figura*>& lista,
 	for (std::size_t i = 0; i < pelotasJuego.size(); i++) {
 		try {
 			PelotaJuego obj = pelotasJuego[i].as<PelotaJuego>();
-			bool salir = validar(obj, pelotasJuego, i);
-			if(!salir ) continue;
+//			bool salir = validar(obj, pelotasJuego, i);
+//			if(!salir ) continue;
 			lista.push_back( new PelotaJuego(obj));
 			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
 		} catch (YAML::Exception &exc) {

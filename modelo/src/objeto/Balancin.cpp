@@ -11,7 +11,7 @@
 #include <fstream>
 #include <iostream>
 #include <cmath>
-
+#include "../figura/Registro.h"
 
 Balancin::Balancin(): Objeto() {
 	alto = 0;
@@ -34,6 +34,7 @@ Balancin::Balancin(const Balancin& balancin){
 	body = balancin.body;
 	rotacion  = balancin.getRotacion();
 	vista = balancin.vista;
+	this->reg = balancin.reg;
 }
 
 Balancin::~Balancin() {

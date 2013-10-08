@@ -30,8 +30,6 @@ private:
 	void obtenerGlobosHelio(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerPelotasJuego(std::list<Figura*> &lista, YAML::Node objetos);
 	void imprimirLinea(std:: string & msj, YAML::Mark marca);
-	bool validar(const Figura& obj, const YAML::Node& circulos, std::size_t i);
-
 	Logger logg;
 };
 

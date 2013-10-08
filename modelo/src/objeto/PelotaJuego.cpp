@@ -51,6 +51,7 @@ PelotaJuego::PelotaJuego(const PelotaJuego& figura) {
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
+	this->reg = figura.reg;
 }
 
 PelotaJuego::PelotaJuego() {
