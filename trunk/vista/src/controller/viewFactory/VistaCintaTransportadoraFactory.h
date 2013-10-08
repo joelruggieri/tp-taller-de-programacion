@@ -16,12 +16,10 @@
 
 class VistaCintaTransportadoraFactory: public ViewFiguraFactory {
 public:
-	VistaCintaTransportadoraFactory(DropController * editor);
+	VistaCintaTransportadoraFactory(SimpleEditorAnguloFijo * editor);
 	virtual ~VistaCintaTransportadoraFactory();
 	FiguraView * crear(int,int,int,int);
 	View * crearVistaPropia(int,int,int,int);
-private:
-	DropController * editor;
 };
 
 #endif /* VistaCINTATRANSPORTADORAFACTORY_H_ */
