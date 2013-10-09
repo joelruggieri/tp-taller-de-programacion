@@ -7,18 +7,17 @@
 
 #include "ViewBalancinFactory.h"
 #include "../../vista/CargadorDeTextures.h"
+#include "src/Constantes.h"
+#include "../../ConstantesVista.h"
 ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory("resource/barra_f.png",editor) {
 
 }
 
 FiguraView* ViewBalancinFactory::crear(int x, int y, int w, int h) {
 	Resizer* r = Resizer::Instance();
-	float anchoHardcodeado = 15;
-	float  altoHardcodeado = 4;
-	int ancho = 0;
-	int alto = 0;
+	int ancho, alto;
 	CargadorDeTextures* i = CargadorDeTextures::Instance();
-	r->adaptarDimensionLogica(anchoHardcodeado,altoHardcodeado,ancho,alto);
+	r->adaptarDimensionLogica(ANCHO_BALANCIN,ALTO_VISTA_BALANCIN_LOG,ancho,alto);
 	return new BalancinView(x, y, ancho, alto, i->cargarTexture("resource/barra.png"),(SimpleEditorAnguloFijo *) this->controller);
 }
 
