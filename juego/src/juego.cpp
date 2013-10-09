@@ -13,6 +13,7 @@
 #include <iostream>
 #include "src/controller/MainController.h"
 #include "src/AdministradorDeArchivos.h"
+#include "src/ConstantesVista.h"
 
 using namespace std;
 
@@ -21,7 +22,8 @@ void corroborar_existencia(DIR* resource, bool& existe_fuente, bool& existe_imag
 	while((ent = readdir (resource)) != NULL){
 		if(strcmp(ent->d_name, "Arial Bold.ttf")== 0)
 				existe_fuente = true;
-		if(strcmp(ent->d_name, "imagenError.jpg") == 0)
+		std::string nombre = IMG_ERROR;
+		if(strcmp(ent->d_name, nombre.c_str()) == 0)
 				existe_imagen_error = true;
 		if(existe_fuente && existe_imagen_error)
 			break;

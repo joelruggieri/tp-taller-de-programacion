@@ -27,7 +27,6 @@ private:
 	int getCantTextures();	//para prueba fue
 	map<string, SDL_Texture*> Textures;
 	SDL_Renderer* render ;
-	string rutaError;
 	static CargadorDeTextures* pinstance;
 
 protected:

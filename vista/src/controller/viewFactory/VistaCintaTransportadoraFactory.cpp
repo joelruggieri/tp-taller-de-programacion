@@ -6,9 +6,9 @@
  */
 
 #include "VistaCintaTransportadoraFactory.h"
+#include "../../ConstantesVista.h"
 
-
-VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory(SimpleEditorAnguloFijo* editor) : ViewFiguraFactory("resource/cinta.png", editor) {
+VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory(SimpleEditorAnguloFijo* editor) : ViewFiguraFactory(PATH_VISTA_CINTA, editor) {
 }
 
 VistaCintaTransportadoraFactory::~VistaCintaTransportadoraFactory() {

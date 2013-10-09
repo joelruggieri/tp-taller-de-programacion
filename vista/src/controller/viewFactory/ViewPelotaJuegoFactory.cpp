@@ -9,7 +9,8 @@
 #include  "../../vista/objeto/PelotaJuegoView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "src/Constantes.h"
-ViewPelotaJuegoFactory::ViewPelotaJuegoFactory(SimpleEditorAnguloFijo * editor) : ViewFiguraFactory("resource/pelota.png", editor) {
+#include "../../ConstantesVista.h"
+ViewPelotaJuegoFactory::ViewPelotaJuegoFactory(SimpleEditorAnguloFijo * editor) : ViewFiguraFactory(PATH_VISTA_PELOTA, editor) {
 	// TODO Auto-generated constructor stub
 
 }

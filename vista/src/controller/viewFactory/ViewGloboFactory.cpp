@@ -9,7 +9,8 @@
 #include "../../vista/objeto/GloboHelioView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "src/Constantes.h"
-ViewGloboFactory::ViewGloboFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory("resource/globo-3-naranja.png", editor)  {
+#include "../../ConstantesVista.h"
+ViewGloboFactory::ViewGloboFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory(PATH_VISTA_GLOBO, editor)  {
 
 
 }

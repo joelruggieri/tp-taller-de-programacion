@@ -10,8 +10,8 @@
 #include "../../ConstantesVista.h"
 #include "src/Constantes.h"
 
-ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor): ViewFiguraFactory("resource/piso_f.png", editor) {
 
+ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor): ViewFiguraFactory(PATH_VISTA_PLATAFORMA_F, editor) {
 }
 
 FiguraView* ViewPlataformaFactory::crear(int x, int y, int w, int h) {
@@ -20,7 +20,7 @@ FiguraView* ViewPlataformaFactory::crear(int x, int y, int w, int h) {
 	int ancho, alto;
 	CargadorDeTextures* c = CargadorDeTextures::Instance();
 	r->adaptarDimensionLogica(ANCHO_PLATAFORMA,ALTO_VISTA_PLATAFORMA_LOG,ancho,alto);
-	return new PlataformaView(x, y, ancho, alto,c->cargarTexture("resource/piso.png"), (SimpleEditorEstirar *) this->controller);
+	return new PlataformaView(x, y, ancho, alto,c->cargarTexture(PATH_VISTA_PLATAFORMA), (SimpleEditorEstirar *) this->controller);
 }
 
 ViewPlataformaFactory::~ViewPlataformaFactory() {
