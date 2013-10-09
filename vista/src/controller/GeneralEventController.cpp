@@ -269,7 +269,8 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 			switch (evento.window.event) {
 //TODO IMPLEMENTAR RESIZE
 			case SDL_WINDOWEVENT_RESIZED:
-				cout << "resize" << endl;
+				cout << "resize: Eze puto saca esto o usa el logger en debugg" << endl;
+
 				SDL_GetWindowSize(ventana, &tamNuevoX, &tamNuevoY);
 
 				if (tamNuevoX != this->tamAnteriorX
@@ -299,7 +300,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 				cout << tamNuevoX << " " << tamNuevoY << " " << tamAnteriorX
 						<< " " << tamAnteriorY << endl;
 				if ((tamNuevoX == tamNuevoY) && tamNuevoY <= MAX_VENTANA) {
-					cout << "se metio aca" << endl;
+					cout << "se metio aca Eze puto saca esto o usa el logger en debugg" << endl;
 					SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
 					this->resize(tamNuevoX, tamNuevoY);
 				}

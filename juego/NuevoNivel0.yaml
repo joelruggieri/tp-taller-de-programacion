@@ -1,0 +1,18 @@
+Nivel:
+  Nombre: NuevoNivel0
+  Fondo: resource/fondo.jpg
+Objetos:
+  Balancines:
+    - x: 35.2
+      y: 63.8
+      ancho: 30
+      alto: 3
+      rotacion: 0
+  BolasBoliche:
+    - x: 36
+      y: 52.8
+      rotacion: 0
+  Cintas:
+    - x: 36
+      y: 39
+      longitud: 100

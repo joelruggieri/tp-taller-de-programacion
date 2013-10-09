@@ -19,7 +19,7 @@
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
 #include "zonaDragAndDrop/ZonaPlay.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
-
+#include "src/Logger.h"
 using namespace std;
 
 JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
@@ -71,7 +71,8 @@ bool JuegoEventsController::clickDown(int x, int y) {
 			if (view != NULL) {
 				editor = view->getEditor();
 				if (editor == NULL) {
-					cout << "La Vista no tiene un editor";
+					Logger log;
+					log.fatal("La Vista no tiene un editor");
 					throw "La Vista no tiene un editor";
 				}
 				editor->clickDown(x, y);

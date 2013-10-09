@@ -93,7 +93,7 @@ void Balancin::crearFisica(b2World * world){
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(x,y);
 	//bodyDef.fixedRotation = true;
-	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
+	double rotacionRad = this->getRotacion() * -1*b2_pi / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = world->CreateBody(&bodyDef);
 	body->CreateFixture(&fixture);
@@ -112,18 +112,20 @@ void Balancin::crearFisica(b2World * world){
 	rjd.motorSpeed = 1.0f * b2_pi;
 	rjd.maxMotorTorque = 10000.0f;
 	rjd.collideConnected = true;
+
 	//std::cout << " " << this->getRotacion() <<std::endl;
 	if(this->getRotacion() == 0){
 		rjd.lowerAngle = -0.25f * b2_pi;
 		rjd.upperAngle = 0.25f * b2_pi;
 	}else if(this->getRotacion() == 45){
-		rjd.lowerAngle = 0.0f * b2_pi;
-		rjd.upperAngle = 0.50f * b2_pi;//0.0f * (-b2_pi);
-	}else if(this->getRotacion() == 315){
-		std::cout << "entro" << std::endl;
+		rjd.lowerAngle = 0.00f;
+		rjd.upperAngle = 0.50f * b2_pi;
+	}else if(this->getRotacion() == -45){
 		rjd.lowerAngle = -0.50f * b2_pi;
-		rjd.upperAngle = 0.00f * b2_pi;
+		rjd.upperAngle =  0;//0.0f * (-b2_pi);
 	}
+//	rjd.lowerAngle = -0.25*b2_pi - rotacionRad;
+//	rjd.upperAngle = 0.24 * b2_pi
 	rjd.enableLimit = true;
 	world->CreateJoint(&rjd);
 
