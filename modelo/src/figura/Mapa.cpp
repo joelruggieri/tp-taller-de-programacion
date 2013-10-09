@@ -7,6 +7,7 @@
 
 #include "Mapa.h"
 #include <iostream>
+#include "../Constantes.h"
 using namespace std;
 //#include "src/Logger.h"
 Mapa::Mapa(float x, float y, float w, float h,	float32 hz, int32 velocityIterations,int32 positionIterations) {
@@ -14,7 +15,7 @@ Mapa::Mapa(float x, float y, float w, float h,	float32 hz, int32 velocityIterati
 }
 
 Mapa::Mapa(float x, float y, float w, float h) {
-	inicializar(x,y,w,h,1.0/60.0,6,3);
+	inicializar(x,y,w,h,TIEMPO_ITERACION,ITERACIONES_VELOCIDAD,ITERACIONES_POSICION);
 }
 
 Mapa::~Mapa() {
