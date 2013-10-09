@@ -51,13 +51,13 @@ public:
 	void setVista(Vista* vista);
 	b2Body * getBody();
 	void setBody(b2Body *);
-	Rotador * getRotador();
-	virtual void updateModelo(Transformacion &);
+	virtual void updateModelo();
 	virtual void makeBackUp();
 	virtual void restoreBackUp();
 	virtual Lista_Enganches getEnganches();
 	Registro & getReg() ;
 	void setReg(Registro r) ;
+	virtual void updateVista(Transformacion &);
 };
 
 #endif /* FIGURA_H_ */

@@ -8,6 +8,7 @@
 #include "SimpleEditorAnguloFijo.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
+#include "src/Logger.h"
 SimpleEditorAnguloFijo::SimpleEditorAnguloFijo(ModeloController * c,
 		ZonaTablero *t, FiguraFactory* f, int yMaxDrag, list<float>& angulos) :
 		SimpleEditorNivel(c, t, f, yMaxDrag) {
@@ -53,7 +54,6 @@ SimpleEditorAnguloFijo::~SimpleEditorAnguloFijo() {
 //}
 float SimpleEditorAnguloFijo::anguloPermitidoMasCercano(float angulo) {
 	list<float>::iterator it;
-	cout << "angulo " << angulo << endl;
 //	for(it= angulosPermitidos.begin(); it != angulosPermitidos.end(); ++it){
 //		if( *it == angulo){
 //			cout << *it << endl;
@@ -110,13 +110,11 @@ void SimpleEditorAnguloFijo::mouseMotion(int x, int y) {
 			Resizer* r = Resizer::Instance();
 			this->rot->rotar(x, r->getAltoPantalla() - y);
 			if (abs(rot->getAngulo() - start) > 1.7) {
-				cout << "ABS " << abs(rot->getAngulo() - start) << endl;
-				//std::cout << " " << this->editado->getModelo()->getRotacion() << std::endl;
+				Logger log;
+				log.debug("Supera humbral de rotacion, se cambia de angulo");
 				float angulo = anguloPermitidoMasCercano(
 						this->editado->getModelo()->getRotacion());
-				//cout << " " << angulo << endl;
 				this->editado->getModelo()->setRotacion(angulo);
-				//std::cout << "hola  " << this->editado->getModelo()->getRotacion() << endl;;
 //				start = rot->getAngulo();
 				this->rightClickUp(x,y);
 			}

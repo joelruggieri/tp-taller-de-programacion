@@ -1,0 +1,20 @@
+Nivel:
+  Nombre: yaml1
+  Fondo: ""
+Objetos:
+  BolasBoliche:
+    - x: 68.6
+      y: 59.6
+  PelotasJuego:
+    - x: 10
+      y: 57.4
+  Balancines:
+    - x: 62
+      y: 31.4
+      ancho: 34
+      rotacion: 0
+  Plataformas:
+    - x: 61.4
+      y: 46.8
+      ancho: 10
+      rotacion: 755.4248821169978

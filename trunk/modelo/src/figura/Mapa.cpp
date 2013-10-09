@@ -8,13 +8,13 @@
 #include "Mapa.h"
 #include <iostream>
 using namespace std;
-
+//#include "src/Logger.h"
 Mapa::Mapa(float x, float y, float w, float h,	float32 hz, int32 velocityIterations,int32 positionIterations) {
 	inicializar(x,y,w,h,hz,velocityIterations,positionIterations);
 }
 
 Mapa::Mapa(float x, float y, float w, float h) {
-	inicializar(x,y,w,h,1.0/60.0,8,3);
+	inicializar(x,y,w,h,1.0/60.0,6,3);
 }
 
 Mapa::~Mapa() {
@@ -53,18 +53,19 @@ public:
 	}
 
 	bool ReportFixture(b2Fixture* fixture) {
-		cout << "reporta" << endl;
+//		Logger log;
+//		log.debug("El world indica que existe colision con el punto");
 		b2Body* body = fixture->GetBody();
 		if (body->GetType() == b2_dynamicBody || body->GetType() == b2_staticBody) {
 			bool inside = fixture->TestPoint(m_point);
 			if (inside) {
 				m_fixture = fixture;
-
+//				log.debug("La figura confirma la colision");
 				// We are done, terminate the query.
 				return false;
 			}
 		}
-		cout << "se va" << endl;
+//		log.debug("La figura cancela la colision");
 		// Continue the query.
 		return true;
 	}
@@ -144,7 +145,8 @@ void Mapa::step(Transformacion & tl) {
 	Figura * fig;
 	for(it= this->figuras.begin(); it != this->figuras.end(); ++it){
 		fig = *it;
-		fig->updateModelo(tl);
+		fig->updateModelo();
+		fig->updateVista(tl);
 	}
 
 }
@@ -174,15 +176,12 @@ void Mapa::restoreBackUp(Transformacion & tl) {
 	list<Figura*>::iterator it;
 	for(it = figuras.begin(); it != figuras.end(); ++it){
 		(*it)->restoreBackUp();
+		(*it)->updateVista(tl);
 	}
 	delete myWorld;
 	crearMundo();
 	for(it = figuras.begin(); it != figuras.end(); ++it){
 		(*it)->crearFisica(myWorld);
-	}
-
-	for(it = figuras.begin(); it != figuras.end(); ++it){
-		(*it)->updateModelo(tl);
 	}
 }
 

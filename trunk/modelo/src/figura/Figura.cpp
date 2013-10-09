@@ -30,20 +30,22 @@ void Figura::setY(float y){
 }
 
 void Figura::setRotacion(double rotation){
-	int signo;
-	if(rotation <= -180 ){
-		signo = +1;
-	} else {
-		signo = -1;
-	}
+//	int signo;
+//	if(rotation <= -180 ){
+//		signo = +1;
+//	} else {
+//		signo = -1;
+//	}
 	this->rotacion = rotation;
-	while(this->rotacion > 180 || this->rotacion <=  -180){
-		rotacion = rotacion + 360*signo;
-		cout << "rotacion fig " << rotacion << endl;
-		if(this->rotacion > 180){
-			cout<< "mierda" << endl;
-		}
-	}
+////	while(){
+//	if(this->rotacion > 180 || this->rotacion <=  -180){
+//		int multip = (int)this->rotacion % 360;
+//		rotacion = rotacion + 360*signo * multip;
+//		cout << "rotacion fig " << rotacion << endl;
+//		if(this->rotacion > 180){
+//			cout<< "mierda" << endl;
+//		}
+//	}
 
 	//	this->rotacion = rotation;
 //	if(this->rotacion < 0){
@@ -105,15 +107,12 @@ void Figura::setBody(b2Body* b){
 }
 
 
-void Figura::updateModelo(Transformacion & tl) {
+void Figura::updateModelo() {
 	if(this->body != 0){
 		const b2Vec2 p = body->GetPosition();
 		this->setX(p.x);
 		this->setY(p.y);
 		this->setRotacion( -1*radianesAGrados(body->GetAngle()));
-//		cout << "("<<p.x <<","<<p.y << ")"<<endl;
-		if(vista != 0)
-			this->vista->update(tl);
 	}
 }
 
@@ -148,4 +147,10 @@ Registro& Figura::getReg() {
 void Figura::setReg(Registro r) {
 
 	this->reg = r;
+}
+
+void Figura::updateVista(Transformacion& tl) {
+	//		cout << "("<<p.x <<","<<p.y << ")"<<endl;
+			if(vista != 0)
+				this->vista->update(tl);
 }
