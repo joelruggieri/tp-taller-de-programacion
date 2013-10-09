@@ -23,7 +23,14 @@ Balancin::Balancin(): Objeto() {
 Balancin::Balancin(float x, float y, float ancho, float alto): Objeto(x,y) {
 	this->ancho = ancho;
 	this->alto = alto;
-
+	float xDerecho = this->getX() + (this->getAncho()/2);
+	float xIzquierdo = this->getX() - (this->getAncho()/2);
+	float yDerecho = (tan(this->gradosARadianes(this->getRotacion()))) * xDerecho;
+	float yIzquierdo = -yDerecho;
+	Enganche* engancheDerecho = new Enganche(xDerecho,yDerecho);
+	Enganche* engancheIzquierdo = new Enganche(xIzquierdo,yIzquierdo);
+	enganches.push_back(engancheIzquierdo);
+	enganches.push_back(engancheDerecho);
 }
 
 Balancin::Balancin(const Balancin& balancin){
@@ -35,13 +42,23 @@ Balancin::Balancin(const Balancin& balancin){
 	rotacion  = balancin.getRotacion();
 	vista = balancin.vista;
 	this->reg = balancin.reg;
+
+
+	float xDerecho = this->getX() + (this->getAncho()/2);
+	float xIzquierdo = this->getX() - (this->getAncho()/2);
+	float yDerecho = (tan(this->gradosARadianes(this->getRotacion()))) * xDerecho;
+	float yIzquierdo = -yDerecho;
+	Enganche* engancheDerecho = new Enganche(xDerecho,yDerecho);
+	Enganche* engancheIzquierdo = new Enganche(xIzquierdo,yIzquierdo);
+	enganches.push_back(engancheIzquierdo);
+	enganches.push_back(engancheDerecho);
 }
 
 Balancin::~Balancin() {
-	list<Enganche*>::iterator it;
-	for(it = enganches.begin() ; it != enganches.end() ; ++it){
-		//delete (it.operator *()); //TODO SI DELETEO LOS ENGANCHES SE PINCHA EL PROGRAMA AL BORRAR EL BALANCIN
-	}
+//	list<Enganche*>::iterator it;
+//	for(it = enganches.begin() ; it != enganches.end() ; ++it){
+//		delete (*it);
+//	}
 }
 
 float Balancin::getAlto() const{
@@ -114,14 +131,6 @@ void Balancin::crearFisica(b2World * world){
 	rjd.enableLimit = true;
 	world->CreateJoint(&rjd);
 
-	float xDerecho = this->getX() + (this->getAncho()/2);
-	float xIzquierdo = this->getX() - (this->getAncho()/2);
-	float yDerecho = (tan(this->gradosARadianes(this->getRotacion()))) * xDerecho;
-	float yIzquierdo = -yDerecho;
-	Enganche* engancheDerecho = new Enganche(xDerecho,yDerecho);
-	Enganche* engancheIzquierdo = new Enganche(xIzquierdo,yIzquierdo);
-	enganches.push_back(engancheIzquierdo);
-	enganches.push_back(engancheDerecho);
 
 
 }
