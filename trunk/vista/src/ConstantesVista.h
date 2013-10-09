@@ -17,6 +17,6 @@
  * FACTORIES VISTAS
  */
 #define ALTO_VISTA_BALANCIN_LOG 4.0 //U logicas
-
+#define ALTO_VISTA_PLATAFORMA_LOG 4.0 //U logicas
 
 #endif /* CONSTANTESVISTA_H_ */

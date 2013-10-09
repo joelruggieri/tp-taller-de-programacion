@@ -6,16 +6,21 @@
  */
 
 #include "ViewPlataformaFactory.h"
+#include "../../vista/CargadorDeTextures.h"
+#include "../../ConstantesVista.h"
+#include "src/Constantes.h"
 
-
-
-ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor): ViewFiguraFactory("resource/piso.png", editor) {
+ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor): ViewFiguraFactory("resource/piso_f.png", editor) {
 
 }
 
 FiguraView* ViewPlataformaFactory::crear(int x, int y, int w, int h) {
 	//TODO REVEER MEDIDAS DE LA VISTA DE LA FACTORY
-	return new PlataformaView(x, y, w, h, this->textura, (SimpleEditorEstirar *) this->controller);
+	Resizer* r = Resizer::Instance();
+	int ancho, alto;
+	CargadorDeTextures* c = CargadorDeTextures::Instance();
+	r->adaptarDimensionLogica(ANCHO_PLATAFORMA,ALTO_VISTA_PLATAFORMA_LOG,ancho,alto);
+	return new PlataformaView(x, y, ancho, alto,c->cargarTexture("resource/piso.png"), (SimpleEditorEstirar *) this->controller);
 }
 
 ViewPlataformaFactory::~ViewPlataformaFactory() {
