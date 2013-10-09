@@ -117,7 +117,8 @@ void SimpleEditorAnguloFijo::mouseMotion(int x, int y) {
 				//cout << " " << angulo << endl;
 				this->editado->getModelo()->setRotacion(angulo);
 				//std::cout << "hola  " << this->editado->getModelo()->getRotacion() << endl;;
-				start = rot->getAngulo();
+//				start = rot->getAngulo();
+				this->rightClickUp(x,y);
 			}
 		}
 
