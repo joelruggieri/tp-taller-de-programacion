@@ -33,14 +33,17 @@ void SimpleEditorEstirar::rightClickDown(int x, int y){
 }
 
 void SimpleEditorEstirar::actualizarAncho(int delta){
-	this->editado->setW(this->editado->getW() + delta);
+//
+
 	Plataforma* figura = static_cast<Plataforma*>(this->editado->getModelo());
 	Resizer* r = Resizer::Instance();
 	float wNuevo = 0;
 	float hNuevo = 0;
 	int aux = 0;
-	r->adaptarDimensionPixel(this->editado->getW(),aux,wNuevo,hNuevo);
+	r->adaptarDimensionPixel(this->editado->getW() + delta,aux,wNuevo,hNuevo);
 	figura->setAncho(wNuevo);
+
+	this->editado->setW(r->resizearDistanciaLogicaX(figura->getAncho()));
 }
 
 void SimpleEditorEstirar::mouseMotion(int x, int y) {

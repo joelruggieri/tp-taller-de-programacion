@@ -13,7 +13,7 @@
 #include "../objeto/BolaBoliche.h"
 #include "../objeto/PelotaJuego.h"
 #include "../objeto/Balancin.h"
-
+#include "../Constantes.h"
 FiguraFactory::FiguraFactory(Rotador * rotador) {
 	this->rotador = rotador;
 
@@ -29,15 +29,15 @@ Figura* FiguraFactory::crearMotor(float x, float y){
 }
 
 Figura* FiguraFactory::crearGloboHelio(float x, float y){
-	return new GloboHelio(x,y,5);
+	return new GloboHelio(x,y,RADIO_GLOBO);
 }
 
 Figura* FiguraFactory::crearPlataforma(float x, float y){
-	return new Plataforma(x,y,10,5);
+	return new Plataforma(x,y,ANCHO_PLATAFORMA,ALTO_PLATAFORMA);
 }
 
 Figura* FiguraFactory::crearBalancin(float x, float y){
-	return new Balancin(x,y,34,1.6);
+	return new Balancin(x,y,ANCHO_BALANCIN,ALTO_BALANCIN);
 }
 
 Figura* FiguraFactory::crear(Plataforma* c) {
@@ -69,7 +69,7 @@ Figura* FiguraFactory::crear(CintaTransportadora* cinta) {
 	return t;
 }
 Figura* FiguraFactory::crearBolaBoliche(float x, float y) {
-	return new BolaBoliche(x,y,5);
+	return new BolaBoliche(x,y,RADIO_BOLA);
 }
 
 
@@ -82,7 +82,7 @@ Figura* FiguraFactory::crear(BolaBoliche* c) {
 }
 
 Figura* FiguraFactory::crearPelotaJuego(float x, float y) {
-	return new PelotaJuego(x, y, 4.9);
+	return new PelotaJuego(x, y, RADIO_PELOTA);
 }
 
 

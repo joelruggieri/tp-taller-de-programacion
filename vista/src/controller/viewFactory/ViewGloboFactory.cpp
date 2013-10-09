@@ -19,7 +19,13 @@ ViewGloboFactory::~ViewGloboFactory() {
 }
 
 FiguraView* ViewGloboFactory::crear(int x, int y, int w, int h) {
-	return new GloboHelioView(x, y, w, h, this->textura, (SimpleEditorAnguloFijo*)this->controller);
+	Resizer* r = Resizer::Instance();
+	float anchoHardcodeado = 4;
+	float  altoHardcodeado = 4;
+	int ancho = 0;
+	int alto = 0;
+	r->adaptarDimensionLogica(anchoHardcodeado,altoHardcodeado,ancho,alto);
+	return new GloboHelioView(x, y, ancho, alto, this->textura, (SimpleEditorAnguloFijo*)this->controller);
 }
 
 View* ViewGloboFactory::crearVistaPropia(int x, int y, int w,
