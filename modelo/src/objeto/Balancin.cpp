@@ -40,7 +40,7 @@ Balancin::Balancin(const Balancin& balancin){
 Balancin::~Balancin() {
 	list<Enganche*>::iterator it;
 	for(it = enganches.begin() ; it != enganches.end() ; ++it){
-		delete (*it);
+		//delete (it.operator *()); //TODO SI DELETEO LOS ENGANCHES SE PINCHA EL PROGRAMA AL BORRAR EL BALANCIN
 	}
 }
 
