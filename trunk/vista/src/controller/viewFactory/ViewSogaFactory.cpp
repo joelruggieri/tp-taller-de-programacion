@@ -7,10 +7,10 @@
 
 #include "ViewSogaFactory.h"
 #include "../../vista/objeto/SogaView.h"
-
+#include "../../ConstantesVista.h"
 namespace std {
 
-ViewSogaFactory::ViewSogaFactory(SimpleEditorSoga* editor):ViewFiguraFactory("resource/CuerdaFactory.png", controller) {
+ViewSogaFactory::ViewSogaFactory(SimpleEditorSoga* editor):ViewFiguraFactory(PATH_VISTA_CUERDA, controller) {
 	this->editor = editor;
 
 }

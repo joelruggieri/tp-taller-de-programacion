@@ -10,6 +10,7 @@
 #include "../../vista/objeto/MotorView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
+#include "../../ConstantesVista.h"
 SimpleEditorNivel::SimpleEditorNivel(ModeloController * m, ZonaTablero * t,
 		FiguraFactory* factory, int yMaxDrag) {
 	this->modeloController = m;
@@ -189,7 +190,7 @@ void SimpleEditorNivel::rightClickDown(int x, int y) {
 				rotando = true;
 				CargadorDeTextures* l = CargadorDeTextures::Instance();
 				this->visor = new ViewConIcono(editado,
-						l->cargarTexture("resource/rotacion.png"), 2);
+						l->cargarTexture(PATH_ROTACION_IMG), 2);
 			}
 
 		} else {

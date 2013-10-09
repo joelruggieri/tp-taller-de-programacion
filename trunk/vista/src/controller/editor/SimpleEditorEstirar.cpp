@@ -9,7 +9,7 @@
 #include "src/objeto/Plataforma.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
-
+#include "../../ConstantesVista.h"
 SimpleEditorEstirar::SimpleEditorEstirar(ModeloController * controller , ZonaTablero * zona,FiguraFactory* factory, int yMaxDrag) : SimpleEditorNivel(controller,zona,factory,yMaxDrag) {
 	estirando = false;
 }
@@ -26,7 +26,7 @@ void SimpleEditorEstirar::rightClickDown(int x, int y){
 			estirando = true;
 			CargadorDeTextures* l = CargadorDeTextures::Instance();
 			this->visor = new ViewConIcono(editado,
-			l->cargarTexture("resource/Flecha_013.png"),0);
+			l->cargarTexture(PATH_AGRANDAR_IMG),0);
 
 		}else
 			super::rightClickDown(x,y);

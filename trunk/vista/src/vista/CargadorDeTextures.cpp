@@ -8,6 +8,7 @@
 #include "CargadorDeTextures.h"
 #include "src/Logger.h"
 #include <iostream>
+#include "../ConstantesVista.h"
 using namespace std;
 
 CargadorDeTextures* CargadorDeTextures::pinstance = 0; // Inicializar el puntero
@@ -33,12 +34,11 @@ CargadorDeTextures* CargadorDeTextures::Instance() {
 }
 
 CargadorDeTextures::CargadorDeTextures(SDL_Renderer* render) {
-	this->rutaError = "resource/imagenError.jpg";
 	this->render = render;
 	pair<string, SDL_Texture*> par;
 	SDL_Texture* texture;
-	texture = IMG_LoadTexture(this->render, this->rutaError.c_str());
-	this->Textures.insert(pair<string, SDL_Texture*>(rutaError, texture));
+	texture = IMG_LoadTexture(this->render, PATH_ERROR_IMG);
+	this->Textures.insert(pair<string, SDL_Texture*>(PATH_ERROR_IMG, texture));
 	return;
 
 }
@@ -56,7 +56,7 @@ SDL_Texture* CargadorDeTextures::cargarTexture(string ruta) {
 	} else {	//si la textura no esta en el mapa , genero la textura, y la asigno
 		texture = IMG_LoadTexture(this->render, ruta.c_str());
 		if (texture == NULL) { // si la imagen no existe asigno la textura de error y retorno esa.
-			map<string, SDL_Texture*>::iterator iter = this->Textures.find(rutaError);
+			map<string, SDL_Texture*>::iterator iter = this->Textures.find(PATH_ERROR_IMG);
 			this->Textures.insert(pair<string, SDL_Texture*>(ruta, iter->second));
 			msj = "La textura '" + ruta + "' no existe, se retorna la textura por defecto";
 			log.warning(msj);

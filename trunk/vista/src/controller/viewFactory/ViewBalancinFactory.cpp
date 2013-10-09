@@ -9,7 +9,7 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
-ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory("resource/barra_f.png",editor) {
+ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory(PATH_VISTA_BALANCIN_F,editor) {
 
 }
 
@@ -18,7 +18,7 @@ FiguraView* ViewBalancinFactory::crear(int x, int y, int w, int h) {
 	int ancho, alto;
 	CargadorDeTextures* i = CargadorDeTextures::Instance();
 	r->adaptarDimensionLogica(ANCHO_BALANCIN,ALTO_VISTA_BALANCIN_LOG,ancho,alto);
-	return new BalancinView(x, y, ancho, alto, i->cargarTexture("resource/barra.png"),(SimpleEditorAnguloFijo *) this->controller);
+	return new BalancinView(x, y, ancho, alto, i->cargarTexture(PATH_VISTA_BALANCIN),(SimpleEditorAnguloFijo *) this->controller);
 }
 
 ViewBalancinFactory::~ViewBalancinFactory() {
