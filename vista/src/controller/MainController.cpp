@@ -25,6 +25,7 @@
 #include "zonaToolBar/ZonaToolBar.h"
 #include "src/Logger.h"
 #include "UserEventCreator.h"
+#include "../ConstantesVista.h"
 struct SDL_Renderer;
 struct SDL_Window;
 
@@ -86,9 +87,9 @@ int MainController::run() {
 	eventController.addKeyboardController(tbEventController);
 	eventController.setFlujoController(juegoController);
 	eventController.setDrawController(this);
-	int timerID =SDL_AddTimer(1000/60, my_callbackfunc, NULL);
+	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
 	while (!terminar) {
-		SDL_Delay(100.0/48.0);
+		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
 		juegoController->paso();
 		terminar = eventController.procesarEventos(ventana);
 	}

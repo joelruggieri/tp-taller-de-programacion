@@ -8,7 +8,7 @@
 #include "ViewGloboFactory.h"
 #include "../../vista/objeto/GloboHelioView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
-
+#include "src/Constantes.h"
 ViewGloboFactory::ViewGloboFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory("resource/globo-3-naranja.png", editor)  {
 
 
@@ -20,11 +20,8 @@ ViewGloboFactory::~ViewGloboFactory() {
 
 FiguraView* ViewGloboFactory::crear(int x, int y, int w, int h) {
 	Resizer* r = Resizer::Instance();
-	float anchoHardcodeado = 4;
-	float  altoHardcodeado = 4;
-	int ancho = 0;
-	int alto = 0;
-	r->adaptarDimensionLogica(anchoHardcodeado,altoHardcodeado,ancho,alto);
+	int ancho,alto;
+	r->adaptarDimensionLogica(RADIO_GLOBO *2,RADIO_GLOBO *2,ancho,alto);
 	return new GloboHelioView(x, y, ancho, alto, this->textura, (SimpleEditorAnguloFijo*)this->controller);
 }
 

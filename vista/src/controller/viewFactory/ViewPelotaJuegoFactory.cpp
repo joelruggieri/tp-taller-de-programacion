@@ -8,6 +8,7 @@
 #include "ViewPelotaJuegoFactory.h"
 #include  "../../vista/objeto/PelotaJuegoView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
+#include "src/Constantes.h"
 ViewPelotaJuegoFactory::ViewPelotaJuegoFactory(SimpleEditorAnguloFijo * editor) : ViewFiguraFactory("resource/pelota.png", editor) {
 	// TODO Auto-generated constructor stub
 
@@ -20,11 +21,8 @@ ViewPelotaJuegoFactory::~ViewPelotaJuegoFactory() {
 FiguraView* ViewPelotaJuegoFactory::crear(int x, int y, int w,
 		int h) {
 	Resizer* r = Resizer::Instance();
-	float anchoHardcodeado = 6;
-	float  altoHardcodeado = 6;
-	int ancho = 0;
-	int alto = 0;
-	r->adaptarDimensionLogica(anchoHardcodeado,altoHardcodeado,ancho,alto);
+	int ancho, alto;
+	r->adaptarDimensionLogica(RADIO_PELOTA*2,RADIO_PELOTA*2,ancho,alto);
 	return new PelotaJuegoView(x, y, ancho, alto, this->textura, (SimpleEditorAnguloFijo*)this->controller);
 }
 

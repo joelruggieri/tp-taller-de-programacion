@@ -14,6 +14,7 @@ ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor): View
 }
 
 FiguraView* ViewPlataformaFactory::crear(int x, int y, int w, int h) {
+	//TODO REVEER MEDIDAS DE LA VISTA DE LA FACTORY
 	return new PlataformaView(x, y, w, h, this->textura, (SimpleEditorEstirar *) this->controller);
 }
 
