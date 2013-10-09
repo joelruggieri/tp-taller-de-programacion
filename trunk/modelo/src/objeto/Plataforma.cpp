@@ -46,6 +46,12 @@ void Plataforma::setAlto(float alto){
 }
 
 void Plataforma::setAncho(float ancho){
+	if(ancho < 2){
+		ancho = 2;
+	}
+	if(ancho > 100){
+		ancho = 100;
+	}
 	this->ancho = ancho;
 }
 

@@ -8,6 +8,7 @@
 #include "ViewBolaBolicheFactory.h"
 #include  "../../vista/objeto/BolaBolicheView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
+#include "../Resizer.h"
 ViewBolaBolicheFactory::ViewBolaBolicheFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory("resource/bolaBoliche.png", editor) {
 
 }
@@ -18,7 +19,13 @@ ViewBolaBolicheFactory::~ViewBolaBolicheFactory() {
 
 FiguraView* ViewBolaBolicheFactory::crear(int x, int y, int w,
 		int h) {
-	return new BolaBolicheView(x, y, w, h, this->textura, (SimpleEditorAnguloFijo*)this->controller);
+	Resizer* r = Resizer::Instance();
+	float anchoHardcodeado = 6;
+	float  altoHardcodeado = 6;
+	int ancho = 0;
+	int alto = 0;
+	r->adaptarDimensionLogica(anchoHardcodeado,altoHardcodeado,ancho,alto);
+	return new BolaBolicheView(x, y, ancho, alto, this->textura, (SimpleEditorAnguloFijo*)this->controller);
 }
 
 View* ViewBolaBolicheFactory::crearVistaPropia(int x, int y, int h,

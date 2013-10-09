@@ -13,7 +13,7 @@ ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewF
 
 FiguraView* ViewBalancinFactory::crear(int x, int y, int w, int h) {
 	Resizer* r = Resizer::Instance();
-	float anchoHardcodeado = 34;
+	float anchoHardcodeado = 15;
 	float  altoHardcodeado = 4;
 	int ancho = 0;
 	int alto = 0;

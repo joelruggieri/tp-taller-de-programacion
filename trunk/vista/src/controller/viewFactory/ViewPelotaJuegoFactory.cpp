@@ -19,7 +19,13 @@ ViewPelotaJuegoFactory::~ViewPelotaJuegoFactory() {
 
 FiguraView* ViewPelotaJuegoFactory::crear(int x, int y, int w,
 		int h) {
-	return new PelotaJuegoView(x, y, w, h, this->textura, (SimpleEditorAnguloFijo*)this->controller);
+	Resizer* r = Resizer::Instance();
+	float anchoHardcodeado = 6;
+	float  altoHardcodeado = 6;
+	int ancho = 0;
+	int alto = 0;
+	r->adaptarDimensionLogica(anchoHardcodeado,altoHardcodeado,ancho,alto);
+	return new PelotaJuegoView(x, y, ancho, alto, this->textura, (SimpleEditorAnguloFijo*)this->controller);
 }
 
 View* ViewPelotaJuegoFactory::crearVistaPropia(int x, int y, int w,
