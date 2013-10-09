@@ -24,11 +24,8 @@ public:
 	void setLongitud(int longitud);
 private:
 	float longitud;
-	b2Body* piezas[PIEZAS];
-	b2Body* ruedas[2];
-	b2Body* cuerpo;
-	b2Body* base;
-
+	b2Body* ruedas[4];
+	b2World *mundo;
 	float alto;
 	float ancho;
 };
