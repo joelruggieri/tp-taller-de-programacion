@@ -33,7 +33,7 @@ void GloboHelio::crearFisica(b2World* world) {
 			shapeCircle.m_radius = this->radio ;
 			b2FixtureDef bodyBolaBoliche;
 			bodyBolaBoliche.shape = &shapeCircle;
-			bodyBolaBoliche.density = 0.5f;	//poca densidad, la densidad del aire cual es ?
+			bodyBolaBoliche.density = 15.0f;	//poca densidad, la densidad del aire cual es ?
 			bodyBolaBoliche.friction = 0.2f;
 			bodyBolaBoliche.restitution	 = 0.3f;
 			body->CreateFixture(&bodyBolaBoliche);
