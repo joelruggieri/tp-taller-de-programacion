@@ -17,6 +17,7 @@ public:
 	bool contieneCentro(Posicionable *);
 	//estos metodos devuelven el tamaño del cuadrado contenedor;
 	bool contacto(float, float);
+	virtual void modificarSentido();
 };
 
 #endif /* OBJETO_H_ */

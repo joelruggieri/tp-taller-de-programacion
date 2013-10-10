@@ -29,3 +29,5 @@ bool Objeto::contacto(float float1, float float2) {
 	return false;
 }
 
+void Objeto::modificarSentido() {
+}
