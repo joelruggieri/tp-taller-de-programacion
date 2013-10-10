@@ -7,7 +7,12 @@
 
 #include "MotorView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
-MotorView::MotorView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, w, h,textura, editor) {
+#include "../../controller/editor/SimpleEditorOrientacionCambiable.h"
+//MotorView::MotorView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, w, h,textura, editor) {
+//
+//}
+
+MotorView::MotorView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorOrientacionCambiable * editor): ObjetoView(x, y, w, h,textura, editor) {
 
 }
 
@@ -20,7 +25,8 @@ void MotorView::dropTemplate() {
 }
 
 EditorNivel* MotorView::getEditor() {
-	SimpleEditorAnguloFijo * editor = (SimpleEditorAnguloFijo *)controller;
+//	SimpleEditorAnguloFijo * editor = (SimpleEditorAnguloFijo *)controller;
+	SimpleEditorOrientacionCambiable * editor = (SimpleEditorOrientacionCambiable *)controller;
 	editor->setFigura(this);
 	return editor;
 }

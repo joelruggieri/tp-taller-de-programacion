@@ -7,7 +7,10 @@
 
 #include "ViewMotorFactory.h"
 #include "../../vista/objeto/MotorView.h"
-ViewMotorFactory::ViewMotorFactory(SimpleEditorAnguloFijo * editor):ViewFiguraFactory("resource/motor.png", editor) {
+//ViewMotorFactory::ViewMotorFactory(SimpleEditorAnguloFijo * editor):ViewFiguraFactory("resource/pelota.png", editor) {
+//}
+
+ViewMotorFactory::ViewMotorFactory(SimpleEditorOrientacionCambiable * editor):ViewFiguraFactory("resource/pelota.png", editor) {
 }
 
 ViewMotorFactory::~ViewMotorFactory() {
@@ -15,7 +18,8 @@ ViewMotorFactory::~ViewMotorFactory() {
 }
 
 FiguraView* ViewMotorFactory::crear(int x, int y, int w, int h) {
-	return new MotorView(x, y, w, h, this->textura,(SimpleEditorAnguloFijo *) this->controller);
+//	return new MotorView(x, y, w, h, this->textura,(SimpleEditorAnguloFijo *) this->controller);
+		return new MotorView(x, y, w, h, this->textura,(SimpleEditorOrientacionCambiable *) this->controller);
 }
 
 View* ViewMotorFactory::crearVistaPropia(int x, int y, int w,

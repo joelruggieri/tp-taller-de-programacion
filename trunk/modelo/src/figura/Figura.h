@@ -23,7 +23,6 @@ protected:
 	float xb,yb;
 	double rotacionb;
 
-	//ME RECAGO EN TODA LAS CAPAS.
 	Registro reg;
 
 
@@ -58,6 +57,7 @@ public:
 	Registro & getReg() ;
 	void setReg(Registro r) ;
 	virtual void updateVista(Transformacion &);
+	virtual void modificarSentido();
 };
 
 #endif /* FIGURA_H_ */

@@ -48,6 +48,8 @@ using namespace std;
 #include "../editor/SimpleEditorAnguloFijo.h"
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/SimpleEditorSoga.h"
+#include "../editor/SimpleEditorOrientacionCambiable.h"
+
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PLATAFORMA = "PLATAFORMA";
 const string KEY_SOGA = "SOGA";
@@ -165,6 +167,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 //	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
 	SimpleEditorSoga* editorSogas = new SimpleEditorSoga(modeloController, tablero, this->factory, 100);
+	SimpleEditorOrientacionCambiable* editorOrientacionCambiable = new SimpleEditorOrientacionCambiable(modeloController, tablero, this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);
 
 	list<ViewFiguraFactory*> factories;
@@ -194,7 +197,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 
 
 //TODO como todavía no vienen de la persistencia no se las coloca para levantar de la persistencia
-	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
+//	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
+	factories.push_back(new ViewMotorFactory(editorOrientacionCambiable));
 	factories.push_back(new ViewSogaFactory(editorSogas));
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,

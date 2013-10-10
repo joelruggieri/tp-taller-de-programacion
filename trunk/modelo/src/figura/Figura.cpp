@@ -154,3 +154,6 @@ void Figura::updateVista(Transformacion& tl) {
 			if(vista != 0)
 				this->vista->update(tl);
 }
+
+void Figura::modificarSentido() {
+}
