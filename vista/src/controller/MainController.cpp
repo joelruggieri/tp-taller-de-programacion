@@ -65,7 +65,7 @@ int MainController::run() {
 //	int draggin = false;
 	bool terminar = false;
 	SDL_Init(SDL_INIT_VIDEO);
-	ventana = SDL_CreateWindow("Generador Niveles", 400, 400, 600, 600,
+	ventana = SDL_CreateWindow("Generador Niveles", 300, 100, 600, 600,
 			SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1,
 			SDL_RENDERER_ACCELERATED);
@@ -88,6 +88,9 @@ int MainController::run() {
 	eventController.setFlujoController(juegoController);
 	eventController.setDrawController(this);
 	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
+	SDL_SetWindowMaximumSize(ventana, 650, 650);
+	SDL_SetWindowPosition(ventana, 300,100);
+
 	while (!terminar) {
 		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
 		juegoController->paso();
