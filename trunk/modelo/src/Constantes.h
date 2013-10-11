@@ -24,6 +24,8 @@
 #define ALTO_PLATAFORMA 2.5
 #define ANCHO_BALANCIN 15.0
 #define ALTO_BALANCIN 1.6
+#define LONGITUD_CINTA 20
+#define RADIO_EJE_CINTA 3
 
 
 //#define
