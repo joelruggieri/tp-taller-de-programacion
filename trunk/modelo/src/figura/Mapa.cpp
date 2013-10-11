@@ -37,9 +37,11 @@ bool Mapa::addFigura(Figura* figura) {
 	if (!isAdentro(figura->getX(), figura->getY())) {
 		return false;
 	}
-	figura->crearFisica(this->myWorld);
-	this->figuras.push_back(figura);
-	return true;
+	bool result = figura->crearFisicaEstatica(this->myWorld, this->groundBody);
+	if(result){
+		this->figuras.push_back(figura);
+	}
+	return result;
 }
 
 list<Figura*>& Mapa::getFiguras() {
@@ -182,7 +184,7 @@ void Mapa::restoreBackUp(Transformacion & tl) {
 	delete myWorld;
 	crearMundo();
 	for(it = figuras.begin(); it != figuras.end(); ++it){
-		(*it)->crearFisica(myWorld);
+		(*it)->crearFisicaEstatica(myWorld,groundBody);
 	}
 }
 
@@ -191,19 +193,29 @@ void Mapa::crearMundo() {
 	this->myWorld = new b2World(gravity);
 	// Define the ground body.
 	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0.0f, 0.0f);
+//	groundBodyDef.position.Set(50.0f, 50.0f);
 
 	// Call the body mapa which allocates memory for the ground body
 	// from a pool and creates the ground box shape (also from a pool).
 	// The body is also added to the world.
-	b2Body* groundBody = myWorld->CreateBody(&groundBodyDef);
+	groundBody = myWorld->CreateBody(&groundBodyDef);
 
 	// Define the ground box shape.
-	b2PolygonShape groundBox;
+//	b2PolygonShape groundBox;
 
 	// The extents are the half-widths of the box.
-	groundBox.SetAsBox(100.0f, 10.0f);
+//	groundBox.SetAsBox(100.0f, 10.0f);
 
 	// Add the ground fixture to the ground body.
-	groundBody->CreateFixture(&groundBox, 0.0f);
+//	groundBody->CreateFixture(&groundBox, 0.0f);
+}
+
+void Mapa::despertar() {
+	delete myWorld;
+	crearMundo();
+	list<Figura*>::iterator it;
+	for(it = figuras.begin(); it != figuras.end(); ++it){
+		(*it)->crearFisica(myWorld,groundBody);
+	}
+
 }

@@ -36,7 +36,7 @@ CintaTransportadora::~CintaTransportadora() {
 	}
 }
 
-void CintaTransportadora::crearFisica(b2World* m_world) {
+void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 	this->mundo = m_world;
 
 	// Corro el centro de la vista porque en TestBed programe las posiciones

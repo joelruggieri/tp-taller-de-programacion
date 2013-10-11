@@ -38,6 +38,7 @@ void ModeloController::step() {
 
 void ModeloController::start() {
 	mapa->makeBackUp();
+	mapa->despertar();
 }
 
 void ModeloController::stop() {

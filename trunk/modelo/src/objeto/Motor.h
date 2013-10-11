@@ -17,10 +17,9 @@ private:
 public:
 	Motor(float x, float y, float w, float h);
 	virtual ~Motor();
-	void crearFisica(b2World *);
+	void crearFisica(b2World * w, b2Body* ground);
 	void acept(VisitorFigura*);
 	void modificarSentido();
-
 
 };
 

@@ -17,3 +17,7 @@ Soga::~Soga() {
 }
 
 //TODO IMPLEMENTAR EL CONSTRUCTOR COPIA Y QUE SI O SI TENGA ESTA LINEA this->reg = figura.reg;
+
+bool Soga::crearFisicaEstatica(b2World*) {
+	return false;
+}

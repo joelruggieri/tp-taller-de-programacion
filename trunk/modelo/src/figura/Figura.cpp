@@ -150,10 +150,36 @@ void Figura::setReg(Registro r) {
 }
 
 void Figura::updateVista(Transformacion& tl) {
-	//		cout << "("<<p.x <<","<<p.y << ")"<<endl;
 			if(vista != 0)
 				this->vista->update(tl);
 }
 
 void Figura::modificarSentido() {
+}
+
+void Figura::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
+   this->crearFisica(w,ground);
+}
+
+bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
+	this->crearFisicaEstaticaTemplate(w,ground);
+	bool hayContacto = false;
+	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
+		if (b != body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
+			bool overlap = b2TestOverlap(body->GetFixtureList()->GetShape(), 0,
+					b->GetFixtureList()->GetShape(), 0, body->GetTransform(),
+					b->GetTransform());
+			if(overlap ){
+				hayContacto = true;
+				break;
+			}
+		}
+	}
+
+	if (hayContacto) {
+		w->DestroyBody(this->getBody());
+		this->setBody(0);
+		return false;
+	}
+	return true;
 }

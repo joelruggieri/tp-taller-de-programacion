@@ -69,7 +69,8 @@ float Resizer::resizearDistanciaPixelY(int valor)
 void Resizer::setearResizer(int xNuevo, int yNuevo) {
 	this->xViejo = this->xNuevo;
 	this->yViejo = this->yNuevo;
-	this->xNuevo = xNuevo;	this->relacionX = this->xNuevo / this->xViejo;	this->relacionX = this->xNuevo / this->xViejo;
+	this->xNuevo = xNuevo;	this->relacionX = this->xNuevo / this->xViejo;
+	this->relacionX = this->xNuevo / this->xViejo;
 	this->yNuevo = yNuevo;
 	this->relacionX = (float)this->xNuevo / (float) this->xViejo ;
 	this->relacionY = (float)this->yNuevo / (float) this->yViejo ;

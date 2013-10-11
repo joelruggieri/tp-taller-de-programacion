@@ -19,7 +19,7 @@ Motor::~Motor() {
 	// TODO Auto-generated destructor stub
 }
 
-void Motor::crearFisica(b2World* world) {
+void Motor::crearFisica(b2World * w, b2Body* ground) {
 
 	float x = this->getX();
 	float y = this->getY();
@@ -47,7 +47,7 @@ void Motor::crearFisica(b2World* world) {
 	bodyDef.position.Set(x,y);
 	double rotacionRad = this->getRotacion() * 3.14 / 180.0;
 	bodyDef.angle = rotacionRad;
-	b2Body* body = world->CreateBody(&bodyDef);
+	b2Body* body = w->CreateBody(&bodyDef);
 	//body->CreateFixture(polygon, 10.0f);
 	body->CreateFixture(&fixture);
 	body->SetGravityScale(0);
@@ -83,3 +83,4 @@ void Motor::acept(VisitorFigura* visitor){
 void Motor::modificarSentido() {
 	this->direccion = this->direccion * (-1);
 }
+
