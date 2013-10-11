@@ -10,7 +10,7 @@
 
 #include "Objeto.h"
 
-#define PIEZAS 43
+#define PIEZAS 20
 
 class CintaTransportadora: public Objeto {
 public:
@@ -24,8 +24,12 @@ public:
 	void setLongitud(int longitud);
 private:
 	float longitud;
-	b2Body* ruedas[4];
+	b2Body* piezas[PIEZAS];
+	b2Body* ruedas[2];
+	b2Body* cuerpo;
+	b2Body* base;
 	b2World *mundo;
+
 	float alto;
 	float ancho;
 };

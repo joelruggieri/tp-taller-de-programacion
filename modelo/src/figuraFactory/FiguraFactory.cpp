@@ -59,7 +59,7 @@ Figura* FiguraFactory::crear(Balancin* c) {
 
 
 Figura* FiguraFactory::crearCintaTransportadora(float x, float y) {
-	return new CintaTransportadora(x,y,100);
+	return new CintaTransportadora(x,y,LONGITUD_CINTA);
 }
 
 Figura* FiguraFactory::crear(CintaTransportadora* cinta) {
