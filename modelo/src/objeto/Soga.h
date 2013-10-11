@@ -14,6 +14,7 @@ class Soga: public Objeto {
 public:
 	Soga(float x, float y);
 	virtual ~Soga();
+	bool crearFisicaEstatica(b2World *);
 };
 
 #endif /* SOGA_H_ */

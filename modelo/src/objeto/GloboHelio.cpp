@@ -17,7 +17,7 @@ GloboHelio::~GloboHelio() {
 
 }
 
-void GloboHelio::crearFisica(b2World* world) {
+void GloboHelio::crearFisica(b2World * w, b2Body* ground) {
 	float x = this->getX();
 		float y = this->getY();
 		b2Vec2 centro(x,y);
@@ -29,7 +29,7 @@ void GloboHelio::crearFisica(b2World* world) {
 			bodyDef.position.Set(centro.x, centro.y);
 			bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 			bodyDef.fixedRotation = true;
-			b2Body* body = world->CreateBody(&bodyDef);
+			b2Body* body = w->CreateBody(&bodyDef);
 			shapeCircle.m_radius = this->radio ;
 			b2FixtureDef bodyBolaBoliche;
 			bodyBolaBoliche.shape = &shapeCircle;
@@ -37,11 +37,6 @@ void GloboHelio::crearFisica(b2World* world) {
 			bodyBolaBoliche.friction = 0.2f;
 			bodyBolaBoliche.restitution	 = 0.3f;
 			body->CreateFixture(&bodyBolaBoliche);
-			body->SetGravityScale(-1);//por ahora lo resuelvo asi
-//			b2MassData masa;
-//			masa.mass = 4; //chequear la cantidad de masa
-//			masa.I = 0.005; // chequear inercia rotacional
-//			body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
 			body->SetUserData(this);
 			this->setBody(body);
 
@@ -70,4 +65,14 @@ float GloboHelio::getRadio() const{
 
 void GloboHelio::setRadio(float radio) {
 	this->radio = radio ;
+}
+
+void GloboHelio::updateModelo() {
+	super::updateModelo();
+	if(getBody() != NULL && body->GetLinearVelocity().y < 10){
+		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 2500.0));
+		body->ApplyForce(f,p);
+	}
+
 }

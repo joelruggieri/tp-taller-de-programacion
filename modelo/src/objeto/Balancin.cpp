@@ -73,7 +73,7 @@ void Balancin::setAncho(float ancho){
 	this->ancho = ancho;
 }
 
-void Balancin::crearFisica(b2World * world){
+void Balancin::crearFisica(b2World * w, b2Body* ground){
 
 	float x = this->getX();
 	float y = this->getY();
@@ -95,7 +95,7 @@ void Balancin::crearFisica(b2World * world){
 	//bodyDef.fixedRotation = true;
 	double rotacionRad = this->getRotacion() * -1*b2_pi / 180.0;
 	bodyDef.angle = rotacionRad;
-	b2Body* body = world->CreateBody(&bodyDef);
+	b2Body* body = w->CreateBody(&bodyDef);
 	body->CreateFixture(&fixture);
 	body->SetUserData(this);
 	this->setBody(body);
@@ -104,7 +104,7 @@ void Balancin::crearFisica(b2World * world){
 	shape.m_radius = this->getAlto()/2 ;
 	b2BodyDef bd;
 	bd.position.Set(x,y);
-	b2Body* bodyCircle = world->CreateBody(&bd);
+	b2Body* bodyCircle = w->CreateBody(&bd);
 	body->CreateFixture(&shape, 5.0f);
 
 	b2RevoluteJointDef rjd;
@@ -127,7 +127,7 @@ void Balancin::crearFisica(b2World * world){
 //	rjd.lowerAngle = -0.25*b2_pi - rotacionRad;
 //	rjd.upperAngle = 0.24 * b2_pi
 	rjd.enableLimit = true;
-	world->CreateJoint(&rjd);
+	w->CreateJoint(&rjd);
 
 
 
@@ -136,5 +136,3 @@ void Balancin::crearFisica(b2World * world){
 void Balancin::acept(VisitorFigura* visitor){
 	visitor->visit(this);
 }
-
-

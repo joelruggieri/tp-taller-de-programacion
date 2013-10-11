@@ -22,6 +22,7 @@ private:
 	int32 velocidad, posicion;
 	void inicializar(float  x, float y, float w, float h,float32 hz, int32 velocityIterations,int32 positionIterations);
 	void crearMundo();
+	b2Body* groundBody;
 public:
 	Mapa(float  x, float y, float w, float h,float32 hz, int32 velocityIterations,int32 positionIterations);
 	Mapa(float  x, float y, float w, float h);
@@ -39,6 +40,7 @@ public:
 	void makeBackUp();
 	void restoreBackUp(Transformacion & tl);
 	void step(Transformacion & tl);
+	void despertar();
 };
 
 #endif /* MAPA_H_ */

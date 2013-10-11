@@ -12,6 +12,7 @@
 #include <SDL2/SDL_mouse.h>
 #include <SDL2/SDL_scancode.h>
 #include <SDL2/SDL_video.h>
+#include <SDL2/SDL.h>
 #include <iostream>
 #include <list>
 #include <string>
@@ -268,11 +269,16 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 		case SDL_WINDOWEVENT: {
 			switch (evento.window.event) {
 //TODO IMPLEMENTAR RESIZE
+			case SDL_WINDOWEVENT_MAXIMIZED:
+				cout << "maximizada" << endl;
+				break;
 			case SDL_WINDOWEVENT_RESIZED:
+				//SDL_GetVideoInfo();
 				cout << "resize: Eze puto saca esto o usa el logger en debugg" << endl;
 
 				SDL_GetWindowSize(ventana, &tamNuevoX, &tamNuevoY);
-
+				cout << tamNuevoX << " "<< tamNuevoY << endl;
+				SDL_SetWindowFullscreen(ventana,0);
 //				if (tamNuevoX != this->tamAnteriorX
 //						&& tamNuevoY == this->tamAnteriorY)
 //					tamNuevoY = tamNuevoX;

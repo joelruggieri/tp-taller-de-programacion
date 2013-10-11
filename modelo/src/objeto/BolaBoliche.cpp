@@ -18,7 +18,7 @@ this->radio = radio ;
 BolaBoliche::~BolaBoliche() {
 }
 
-void BolaBoliche::crearFisica(b2World* world) {
+void BolaBoliche::crearFisica(b2World * w, b2Body* ground) {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x,y);
@@ -29,7 +29,7 @@ void BolaBoliche::crearFisica(b2World* world) {
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(centro.x, centro.y);
 		bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
-		b2Body* body = world->CreateBody(&bodyDef);
+		b2Body* body = w->CreateBody(&bodyDef);
 		shapeCircle.m_radius = this->radio ;
 		b2FixtureDef bodyBolaBoliche;
 		bodyBolaBoliche.shape = &shapeCircle;
@@ -72,3 +72,4 @@ float BolaBoliche::getRadio() const {
 void BolaBoliche::setRadio(float radio) {
 	this->radio =  radio;
 }
+

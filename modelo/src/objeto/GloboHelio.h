@@ -12,15 +12,16 @@
 
 class GloboHelio : public Objeto {
 public:
+	typedef Objeto super;
 	GloboHelio(const GloboHelio&);
 	GloboHelio();
 	GloboHelio(float x, float y, float radio) ;
 	virtual ~GloboHelio();
-	void crearFisica(b2World* world);
+	void crearFisica(b2World * w, b2Body* ground);
 	void acept(VisitorFigura*);
 	float getRadio() const;
 	void setRadio(float radio);
-
+	void updateModelo();
 private:
 	float radio;
 };

@@ -18,7 +18,7 @@ public:
 	CintaTransportadora(int x, int y, int longitud);
 	CintaTransportadora(const CintaTransportadora& figura);
 	virtual ~CintaTransportadora();
-	void crearFisica(b2World *);
+	void crearFisica(b2World * w, b2Body* ground);
 	void acept(VisitorFigura*);
 	int getLongitud() const;
 	void setLongitud(int longitud);
