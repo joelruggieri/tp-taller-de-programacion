@@ -25,7 +25,7 @@ FiguraFactory::~FiguraFactory() {
 
 
 Figura* FiguraFactory::crearMotor(float x, float y){
-	return new Motor(x,y,10,5);
+	return new Motor(x,y,5,5);
 }
 
 Figura* FiguraFactory::crearGloboHelio(float x, float y){
