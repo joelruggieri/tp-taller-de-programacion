@@ -323,3 +323,11 @@ float y;
 r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 dropear(view, this->figurasFactory->crearPelotaJuego(x, 100 - y));
 }
+
+void SimpleEditorNivel::dropNuevaFigura(VistaEngranaje* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearEngranaje(x,100-y));
+}

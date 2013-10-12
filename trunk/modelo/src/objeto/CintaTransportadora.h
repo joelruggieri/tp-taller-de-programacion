@@ -9,8 +9,7 @@
 #define CINTATRANSPORTADORA_H_
 
 #include "Objeto.h"
-
-#define PIEZAS 20
+#include <vector>
 
 class CintaTransportadora: public Objeto {
 public:
@@ -19,19 +18,19 @@ public:
 	CintaTransportadora(const CintaTransportadora& figura);
 	virtual ~CintaTransportadora();
 	void crearFisica(b2World * w, b2Body* ground);
+	bool crearFisicaEstatica1(b2World*w, b2Body* ground);
+	void crearFisicaEstaticaTemplate(b2World* m_world, b2Body* ground);
 	void acept(VisitorFigura*);
 	int getLongitud() const;
 	void setLongitud(int longitud);
 private:
 	float longitud;
-	b2Body* piezas[PIEZAS];
+	std::vector<b2Body*> piezas;
+	int cantPiezas;
 	b2Body* ruedas[2];
 	b2Body* cuerpo;
 	b2Body* base;
 	b2World *mundo;
-
-	float alto;
-	float ancho;
 };
 
 #endif /* CINTATRANSPORTADORA_H_ */

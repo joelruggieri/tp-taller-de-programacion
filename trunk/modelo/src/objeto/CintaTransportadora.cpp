@@ -15,23 +15,19 @@
 
 CintaTransportadora::CintaTransportadora(): Objeto (0,0) {
 	this->longitud = LONGITUD_CINTA;
-	this->alto = 2*RADIO_EJE_CINTA;
-	this->ancho=this->longitud;
 	ruedas[0] = NULL;
 	ruedas[1]=NULL;
 	base = NULL;
-	for (int i=0; i<PIEZAS; ++i) {
-		piezas[i] = NULL;
-	}
 	cuerpo = NULL;
 	mundo = NULL;
+	cantPiezas=longitud+7;
 }
 
 CintaTransportadora::~CintaTransportadora() {
 	if (ruedas[0] && mundo) this->mundo->DestroyBody(ruedas[0]);
 	if (ruedas[1] && mundo) this->mundo->DestroyBody(ruedas[1]);
 	if (base && mundo) this->mundo->DestroyBody(base);
-	for (int i=0; i<PIEZAS; ++i) {
+	for (unsigned int i=0; i<piezas.size(); ++i) {
 		if (piezas[i] && mundo) this->mundo->DestroyBody(piezas[i]);
 	}
 }
@@ -76,7 +72,7 @@ void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 	cuerpo = m_world->CreateBody(&myBodyDef);
 
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(longitud*0.34f, RADIO_EJE_CINTA * 0.95f);
+	boxShape.SetAsBox((longitud-2*RADIO_EJE_CINTA)/2*0.99, RADIO_EJE_CINTA * 0.95f);
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.friction=0;
 	boxFixtureDef.shape = &boxShape;
@@ -104,26 +100,31 @@ void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 	revoluteJointDef.localAnchorA.Set( 1,0);
 	revoluteJointDef.localAnchorB.Set(-1,0);
 	b2Body *ant=NULL;
-	for (int i=0; i<PIEZAS; ++i) {
+	cantPiezas = ((int)(longitud+1))+7; // Casteo hacia arriba de la longitud
+	piezas.clear();
+	for (int i=0; i <cantPiezas;++i){
+		piezas.push_back(NULL);
+	}
+	for (int i=0; i<cantPiezas; ++i) {
 		if (i==0){
 			myBodyDef.angle=45*DEGTORAD;
 			myBodyDef.position.Set(-RADIO_EJE_CINTA + getX(),RADIO_EJE_CINTA + getY());
-		} else if (i>0 && i < (PIEZAS/2-1)) {
+		} else if (i>0 && i < (cantPiezas/2-1)) {
 			myBodyDef.angle=0;
-			myBodyDef.position.Set(i*longitud/(PIEZAS/2.0f-3) - longitud/(PIEZAS/2.0f-3) + getX(),(RADIO_EJE_CINTA+0.1) + getY());
-		} else if (i==PIEZAS/2-1) {
+			myBodyDef.position.Set(i*longitud/(cantPiezas/2.0f-3) - longitud/(cantPiezas/2.0f-3) + getX(),(RADIO_EJE_CINTA+0.1) + getY());
+		} else if (i==cantPiezas/2-1) {
 			myBodyDef.angle=-45*DEGTORAD;
 			myBodyDef.position.Set(longitud+RADIO_EJE_CINTA+getX(), RADIO_EJE_CINTA+getY());
-		} else if(i==PIEZAS/2){
+		} else if(i==cantPiezas/2){
 			myBodyDef.angle=-90*DEGTORAD;
 			myBodyDef.position.Set(longitud+RADIO_EJE_CINTA+0.1 + getX() ,0 + getY());
-		} else if(i==(PIEZAS/2+1)){
+		} else if(i==(cantPiezas/2+1)){
 			myBodyDef.angle=-135*DEGTORAD;
 			myBodyDef.position.Set(longitud+RADIO_EJE_CINTA+getX(), -RADIO_EJE_CINTA+getY());
-		} else if (i>(PIEZAS/2+1) && i < (PIEZAS-2)) {
+		} else if (i>(cantPiezas/2+1) && i < (cantPiezas-2)) {
 			myBodyDef.angle=-180*DEGTORAD;
-			myBodyDef.position.Set(-i*longitud/(PIEZAS/2.0f-5.0f) + (longitud*(1.0f-3.0f/PIEZAS)/(0.5f-5.0f/PIEZAS)) + getX(), -RADIO_EJE_CINTA-0.1 + getY());
-		} else if (i == (PIEZAS-2)) {
+			myBodyDef.position.Set(-i*longitud/(cantPiezas/2.0f-5.0f) + (longitud*(1.0f-3.0f/cantPiezas)/(0.5f-5.0f/cantPiezas)) + getX(), -RADIO_EJE_CINTA-0.1 + getY());
+		} else if (i == (cantPiezas-2)) {
 			myBodyDef.angle=-225*DEGTORAD;
 			myBodyDef.position.Set(-RADIO_EJE_CINTA+getX(), -RADIO_EJE_CINTA+getY());
 		} else {
@@ -145,24 +146,8 @@ void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 	revoluteJointDef.bodyA = ant;
 	revoluteJointDef.bodyB = piezas[0];
 	m_world->CreateJoint( &revoluteJointDef );
-
-	// Figura poligonal auxiliar para el arrastre.
-//	myBodyDef.type = b2_kinematicBody;
-//	myBodyDef.position.Set(getX() + longitud/2, getY());
-//	myBodyDef.angle = 0;
-//	boxShape.SetAsBox(longitud/2, RADIO_EJE_CINTA);
-//	boxFixtureDef.filter.categoryBits = CATEGORIA_NO_FIGURAS;
-//	boxFixtureDef.shape = &boxShape;
-//	envolvente = m_world->CreateBody(&myBodyDef);
-//	envolvente->SetUserData(this);
-//	this->setBody(envolvente);
-
-//	this->ruedas[0]->SetUserData(this);
-//	this->ruedas[1]->SetUserData(this);
 	cuerpo->SetUserData(this);
 	this->setBody(cuerpo);
-
-
 	this->setX(getX()+longitud/2);
 }
 
@@ -172,22 +157,20 @@ void CintaTransportadora::acept(VisitorFigura* visitor) {
 
 CintaTransportadora::CintaTransportadora(int x, int y, int longitud) : Objeto(x,y) {
 	this->longitud = longitud;
-	this->ancho = longitud + 2*RADIO_EJE_CINTA;
-	this->alto = 2*RADIO_EJE_CINTA;
 	cuerpo = NULL;
 	mundo = NULL;
 	base = NULL;
+	cantPiezas = longitud+7;
 }
 
 
 CintaTransportadora::CintaTransportadora(const CintaTransportadora& figura):Objeto(x,y) {
 	this->longitud = figura.longitud;
-	this->ancho = figura.ancho;
-	this->alto = figura.alto;
 	this->reg = figura.reg;
 	this->cuerpo = figura.cuerpo;
 	this->base = figura.base;
 	this->mundo = figura.mundo;
+	this->cantPiezas = figura.cantPiezas;
 }
 
 int CintaTransportadora::getLongitud() const{
@@ -197,3 +180,22 @@ int CintaTransportadora::getLongitud() const{
 void CintaTransportadora::setLongitud(int longitud) {
 	this->longitud = longitud;
 }
+
+void CintaTransportadora::crearFisicaEstaticaTemplate(b2World* m_world,
+		b2Body* ground) {
+	b2PolygonShape * polygon = new b2PolygonShape();
+
+	b2MassData masa;
+	polygon->SetAsBox(longitud/2, RADIO_EJE_CINTA);
+
+	b2FixtureDef fixture;
+	fixture.shape = polygon;
+	b2BodyDef bodyDef;
+	bodyDef.position.Set(x, y);
+
+	b2Body* body = m_world->CreateBody(&bodyDef);
+	body->CreateFixture(&fixture);
+	setBody(body);
+	body->SetUserData(this);
+}
+

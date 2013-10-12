@@ -22,7 +22,9 @@ public:
 	Figura * crearCintaTransportadora(float x, float y);
 	Figura* crearBolaBoliche(float x, float y);
 	Figura* crearPelotaJuego(float x, float y);
+	Figura* crearEngranaje(float x, float y);
 	Figura * crear(Plataforma*);
+	Figura * crear(Engranaje*);
 	Figura * crear(Balancin*);
 	Figura * crear(CintaTransportadora* cinta);
 	Figura* crear(BolaBoliche*);

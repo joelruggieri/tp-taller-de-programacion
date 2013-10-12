@@ -87,3 +87,9 @@ bool ValidadorEstatico::isValido() {
 void ValidadorEstatico::validar(Figura* f) {
 	f->acept(this);
 }
+
+void ValidadorEstatico::visit(Engranaje* engranaje) {
+	if(!validarPosicion(engranaje)){
+		return;
+	}
+}

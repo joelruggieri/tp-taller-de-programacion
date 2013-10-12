@@ -13,6 +13,7 @@
 #include "../objeto/BolaBoliche.h"
 #include "../objeto/PelotaJuego.h"
 #include "../objeto/Balancin.h"
+#include "../objeto/Engranaje.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory(Rotador * rotador) {
 	this->rotador = rotador;
@@ -100,7 +101,18 @@ Figura* FiguraFactory::crear(GloboHelio*c) {
 	return t;
 }
 
+Figura* FiguraFactory::crearEngranaje(float x, float y) {
+	return new Engranaje(x, y, RADIO_ENGRANAJE);
+}
+
 Figura* FiguraFactory::crear(Motor* c) {
+	Figura* t = this->crearMotor(c->getX(), c->getY());
+		t->setRotacion(0);
+		t->setReg(c->getReg());
+	return t;
+}
+
+Figura* FiguraFactory::crear(Engranaje* c) {
 	Figura* t = this->crearMotor(c->getX(), c->getY());
 		t->setRotacion(0);
 		t->setReg(c->getReg());

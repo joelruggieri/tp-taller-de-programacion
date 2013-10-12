@@ -17,6 +17,7 @@
 #include "../../vista/figura/FiguraView.h"
 #include "../../vista/objeto/BolaBolicheView.h"
 #include "../../vista/objeto/PelotaJuegoView.h"
+#include "../../vista/objeto/VistaEngranaje.h"
 #include "../DropController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "src/ModeloController.h"
@@ -66,6 +67,7 @@ public:
 	void dropNuevaFigura(VistaCintaTransportadora* view);
 	void dropNuevaFigura(BolaBolicheView* view);
 	void dropNuevaFigura(PelotaJuegoView* view);
+	void dropNuevaFigura(VistaEngranaje* view);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 };

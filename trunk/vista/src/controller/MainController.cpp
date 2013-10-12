@@ -68,7 +68,7 @@ int MainController::run() {
 	ventana = SDL_CreateWindow("Generador Niveles", 300, 100, 600, 600,
 			SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1,
-			SDL_RENDERER_ACCELERATED);
+			SDL_RENDERER_SOFTWARE);
 
 	Resizer::Instance(600, 600, 120, 120);
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance(render);
