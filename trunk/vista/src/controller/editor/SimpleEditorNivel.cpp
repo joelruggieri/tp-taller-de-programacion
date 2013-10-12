@@ -73,7 +73,6 @@ void SimpleEditorNivel::dropear(FiguraView* view, Figura* figura) {
 //	}
 }
 
-
 void SimpleEditorNivel::setFigura(FiguraView* f) {
 	this->editado = f;
 	this->finalizado = false;
@@ -176,6 +175,7 @@ void SimpleEditorNivel::rightClickDown(int x, int y) {
 		//TODO NO SE SI HAY Q CHEQUEAR ESTO.
 		if (editado->getModelo() != NULL) {
 			//la remuevo de todos lados.
+			editado->getModelo()->makeBackUp();
 			tablero->removerFigura(editado);
 			this->modeloController->removerFigura(editado->getModelo());
 			//Verifico si se apreto el shift tambien.
@@ -203,79 +203,123 @@ void SimpleEditorNivel::rightClickDown(int x, int y) {
 
 void SimpleEditorNivel::rightClickUp(int int1, int int2) {
 	if (rotando) {
-		tablero->agregarFigura(this->editado);
-		this->modeloController->crearFigura(this->editado->getModelo());
 		rotando = false;
 		delete visor;
 		delete this->rot;
 		finalizado = true;
+		bool exitoVista = tablero->agregarFigura(this->editado);
+		bool exitoModelo = this->modeloController->crearFigura(
+				this->editado->getModelo());
+		if (!exitoVista || !exitoModelo) {
+			//si uno de los dos no tuvo exito probamos rollbackeando.
+			if (exitoVista) {
+				tablero->removerFigura(editado);
+			}
+			if (exitoModelo) {
+				modeloController->removerFigura(editado->getModelo());
+			}
+			Logger log;
+			editado->getModelo()->restoreBackUp();
+
+			exitoVista = tablero->agregarFigura(this->editado);
+			exitoModelo = this->modeloController->crearFigura(
+					this->editado->getModelo());
+			if (!exitoVista || !exitoModelo) {
+				if (exitoVista) {
+					tablero->removerFigura(editado);
+				}
+				if (exitoModelo) {
+					modeloController->removerFigura(editado->getModelo());
+				}
+				delete this->editado->getModelo();
+				delete editado;
+				delete elementoDrag;
+				elementoDrag = NULL;
+				dragueando = false;
+				editado = NULL;
+			}
+
+//			if (!this->elementoDrag->isRolledBack()) {
+//				log.info(
+//						"La rotacion no pudo completarse, se retorna a la posicion anterior");
+//				this->editado->getModelo()->restoreBackUp();
+//			} else {
+//				delete this->editado->getModelo();
+//				delete editado;
+//				delete elementoDrag;
+//				elementoDrag = NULL;
+//				dragueando = false;
+//				editado = NULL;
+
+		}
+		//TODO VER QUE PASA CON LA MEMORIA ACA.
 	}
 }
 
 bool SimpleEditorNivel::isEnd() {
-	return finalizado;
+return finalizado;
 }
 
 void SimpleEditorNivel::dibujarEdicion(SDL_Renderer*r) {
-	if (visor != NULL )	visor->dibujarse(r) ;
+if (visor != NULL)
+	visor->dibujarse(r);
 }
 
 void SimpleEditorNivel::cleanAndDelete() {
-	delete editado->getModelo();
-	delete editado;
-	editado = NULL;
-	finalizado = true;
-	dragueando = false;
-	rotando = false;
+delete editado->getModelo();
+delete editado;
+editado = NULL;
+finalizado = true;
+dragueando = false;
+rotando = false;
 }
 
 void SimpleEditorNivel::dropNuevaFigura(BolaBolicheView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearBolaBoliche(x,100-y));
+Resizer* r = Resizer::Instance();
+float x;
+float y;
+r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+dropear(view, this->figurasFactory->crearBolaBoliche(x, 100 - y));
 }
 
 void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {
-	//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
-	Logger log;
-	Resizer * r = Resizer::Instance();
-	if (!dragueando) {
-		r->adaptarPosicionLogica(x, y, this->posStartDragX,
-				this->posStartDragY);
-		this->elementoDrag = new Drag(editado,
-				Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
-		log.info("Comienza Drag");
-	}
-	tablero->removerFigura(editado);
-	if (editado->getModelo() != NULL) {
-		this->modeloController->removerFigura(editado->getModelo());
-	}
-	mouseMotion(posStartDragX, posStartDragY);
+//TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
+Logger log;
+Resizer * r = Resizer::Instance();
+if (!dragueando) {
+	r->adaptarPosicionLogica(x, y, this->posStartDragX, this->posStartDragY);
+	this->elementoDrag = new Drag(editado,
+			Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
+	log.info("Comienza Drag");
+}
+tablero->removerFigura(editado);
+if (editado->getModelo() != NULL) {
+	this->modeloController->removerFigura(editado->getModelo());
+}
+mouseMotion(posStartDragX, posStartDragY);
 }
 
 void SimpleEditorNivel::dropNuevaFigura(GloboHelioView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearGloboHelio(x,100-y));
+Resizer* r = Resizer::Instance();
+float x;
+float y;
+r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
 //	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
 }
 
 void SimpleEditorNivel::dropNuevaFigura(VistaCintaTransportadora* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearCintaTransportadora(x,100-y));
+Resizer* r = Resizer::Instance();
+float x;
+float y;
+r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+dropear(view, this->figurasFactory->crearCintaTransportadora(x, 100 - y));
 }
 
 void SimpleEditorNivel::dropNuevaFigura(PelotaJuegoView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearPelotaJuego(x,100-y));
+Resizer* r = Resizer::Instance();
+float x;
+float y;
+r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+dropear(view, this->figurasFactory->crearPelotaJuego(x, 100 - y));
 }
