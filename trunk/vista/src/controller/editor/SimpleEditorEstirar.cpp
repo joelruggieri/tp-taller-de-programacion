@@ -35,15 +35,23 @@ void SimpleEditorEstirar::rightClickDown(int x, int y){
 void SimpleEditorEstirar::actualizarAncho(int delta){
 //
 
-	Plataforma* figura = static_cast<Plataforma*>(this->editado->getModelo());
+	Figura* figura = (this->editado->getModelo());
 	Resizer* r = Resizer::Instance();
 	float wNuevo = 0;
 	float hNuevo = 0;
 	int aux = 0;
-	r->adaptarDimensionPixel(this->editado->getW() + delta,aux,wNuevo,hNuevo);
-	figura->setAncho(wNuevo);
+	r->adaptarDimensionPixel(delta,aux,wNuevo,hNuevo);
+	/*Resizer* r = Resizer::Instance();
+	Transformacion trans;
+	trans.traslacion(0, 100);
+	trans.escalar(r->getRelacionX(), r->getRelacionY());
+	trans.invertir(false, true);
+	trans.setVector(x, y);
+	float lX2, lY2;
+	trans.getResultado(lX2, lY2);*/
+	figura->agrandar(wNuevo);
+	this->editado->setW(r->resizearDistanciaLogicaX(figura->getAncho())); //TODO EN vez de esto hay que usar update de la vista con una transformacion para sacar el metodo getAncho de Figura
 
-	this->editado->setW(r->resizearDistanciaLogicaX(figura->getAncho()));
 }
 
 void SimpleEditorEstirar::mouseMotion(int x, int y) {

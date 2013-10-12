@@ -101,3 +101,7 @@ void Plataforma::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 } /* namespace std */
 
+void Plataforma::agrandar(float delta){
+	this->setAncho(this->getAncho() + delta);
+}
+
