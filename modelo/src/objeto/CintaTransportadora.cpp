@@ -76,7 +76,7 @@ void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 	cuerpo = m_world->CreateBody(&myBodyDef);
 
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(longitud/2, RADIO_EJE_CINTA * 0.95f);
+	boxShape.SetAsBox(longitud*0.34f, RADIO_EJE_CINTA * 0.95f);
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.friction=0;
 	boxFixtureDef.shape = &boxShape;
