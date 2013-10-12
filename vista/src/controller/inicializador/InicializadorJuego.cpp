@@ -205,8 +205,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 
 //TODO como todavía no vienen de la persistencia no se las coloca para levantar de la persistencia
 //	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
-
-
+	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
+	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo2));
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
 			herrTextura);

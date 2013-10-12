@@ -44,7 +44,8 @@ public:
 	void setX(float x);
 	void setY(float y);
 	virtual void setRotacion(double rotation);
-
+	virtual void agrandar (float delta);
+	virtual float getAncho() const;
 	virtual void crearFisica(b2World * w, b2Body* ground) = 0;
 	virtual bool crearFisicaEstatica(b2World *, b2Body* ground);
 	virtual void acept(VisitorFigura*) = 0;

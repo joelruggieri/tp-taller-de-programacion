@@ -26,6 +26,7 @@ public:
 	void setAncho(float ancho);
 	void crearFisica(b2World * w, b2Body* ground);
 	void acept(VisitorFigura*);
+	void agrandar(float delta);
 
 };
 

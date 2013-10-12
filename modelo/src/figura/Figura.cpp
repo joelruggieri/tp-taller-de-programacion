@@ -182,3 +182,11 @@ bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
 	}
 	return true;
 }
+
+void Figura::agrandar(float delta){
+
+}
+
+float Figura::getAncho() const {
+	return 0;
+}
