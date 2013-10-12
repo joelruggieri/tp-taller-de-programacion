@@ -17,9 +17,15 @@ private:
 public:
 	Motor(float x, float y, float w, float h);
 	virtual ~Motor();
-	void crearFisica(b2World * w, b2Body* ground);
+	Motor(const Motor& figura);
+	Motor();
+	void crearFisica(b2World *, b2Body*);
 	void acept(VisitorFigura*);
 	void modificarSentido();
+private:
+	float radio ;
+	float getRadio() const ;
+	void setRadio(float radio);
 
 };
 

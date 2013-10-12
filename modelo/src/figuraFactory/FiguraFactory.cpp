@@ -99,3 +99,10 @@ Figura* FiguraFactory::crear(GloboHelio*c) {
 		t->setReg(c->getReg());
 	return t;
 }
+
+Figura* FiguraFactory::crear(Motor* c) {
+	Figura* t = this->crearMotor(c->getX(), c->getY());
+		t->setRotacion(0);
+		t->setReg(c->getReg());
+	return t;
+}

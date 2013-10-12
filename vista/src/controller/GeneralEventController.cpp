@@ -186,7 +186,7 @@ void GeneralEventController::setGuardarController(
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
 //	int tamNuevoX, tamNuevoY;
-	SDL_DisplayMode current;
+//	SDL_DisplayMode current;
 	SDL_Event evento;
 	Logger log;
 	int tamNuevoX, tamNuevoY;
@@ -269,59 +269,30 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 		case SDL_WINDOWEVENT: {
 			switch (evento.window.event) {
 //TODO IMPLEMENTAR RESIZE
-			case SDL_WINDOWEVENT_MAXIMIZED:
-				cout << "maximizada" << endl;
-				break;
+//			case SDL_WINDOWEVENT_MAXIMIZED:
+//				cout << "maximizada" << endl;
+//				break;
 			case SDL_WINDOWEVENT_RESIZED:
 				//SDL_GetVideoInfo();
-				cout << "resize: Eze puto saca esto o usa el logger en debugg" << endl;
-
 				SDL_GetWindowSize(ventana, &tamNuevoX, &tamNuevoY);
-				cout << tamNuevoX << " "<< tamNuevoY << endl;
-				SDL_SetWindowFullscreen(ventana,0);
-//				if (tamNuevoX != this->tamAnteriorX
-//						&& tamNuevoY == this->tamAnteriorY)
-//					tamNuevoY = tamNuevoX;
-//				else if (tamNuevoX == this->tamAnteriorX
-//						&& tamNuevoY != this->tamAnteriorY)
-//					tamNuevoX = tamNuevoY;
-//				else
-//					tamNuevoY = tamNuevoX;
-//				if ((tamNuevoX >= MAX_VENTANA) || (tamNuevoY >= MAX_VENTANA)) {
-//					tamNuevoX = MAX_VENTANA;
-//					tamNuevoY = MAX_VENTANA;
-//				}
-//
-//				if (tamNuevoX <= MIN_VENTANA_X) {
-//					tamNuevoX = MIN_VENTANA_X;
-//					tamNuevoY = MIN_VENTANA_Y;
-//				}
-//				if (tamNuevoY <= MIN_VENTANA_Y) {
-//					tamNuevoY = MIN_VENTANA_Y;
-//					tamNuevoX = MIN_VENTANA_Y;
-//				}
-//				this->tamAnteriorX = tamNuevoX;
-//				this->tamAnteriorY = tamNuevoY;
-
-				cout << tamNuevoX << " " << tamNuevoY << " " << tamAnteriorX
-						<< " " << tamAnteriorY << endl;
 				if (tamNuevoY <= MIN_VENTANA_Y) tamNuevoY = MIN_VENTANA_Y;
 				if (tamNuevoY >= MAX_VENTANA) tamNuevoY = MAX_VENTANA;
 				tamNuevoX = tamNuevoY;
-
-				if (tamNuevoY <= MAX_VENTANA && tamNuevoY >= MIN_VENTANA_Y) {
-					cout << "se metio aca Eze puto saca esto o usa el logger en debugg" << endl;
+//				if (tamNuevoY <= MAX_VENTANA && tamNuevoY >= MIN_VENTANA_Y) {
 					SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
 					this->resize(tamNuevoX, tamNuevoY);
-				}
-//        			if (tamNuevoY >= MAX_VENTANA){
-//        				cout << "paso de largo" << endl ;
-//        				SDL_SetWindowSize(ventana,MAX_VENTANA,MAX_VENTANA);
-//        				 this->resize(MAX_VENTANA, MAX_VENTANA);
-//        			}
+//				}
 				break;
-//
-
+//			case SDL_WINDOWEVENT_MINIMIZED:
+////				SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
+////				this->resize(tamNuevoX, tamNuevoY);
+//				cout << "minimizo"<< endl;
+//				break;
+//			case SDL_WINDOWEVENT_MAXIMIZED:
+////				SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
+////				this->resize(tamNuevoX, tamNuevoY);
+//				cout << "maximizo"<< endl;
+//				break;
 			}
 
 			break;
