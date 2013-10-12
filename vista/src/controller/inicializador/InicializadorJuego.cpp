@@ -36,6 +36,7 @@ using namespace std;
 #include "../viewFactory/VistaCintaTransportadoraFactory.h"
 #include "../viewFactory/ViewBolaBolicheFactory.h"
 #include "../viewFactory/ViewPelotaJuegoFactory.h"
+#include "../viewFactory/VistaEngranajeFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -49,6 +50,7 @@ using namespace std;
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/SimpleEditorSoga.h"
 #include "../editor/SimpleEditorOrientacionCambiable.h"
+#include "../editor/EditorDeEstiramientoDeCinta.h"
 
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PLATAFORMA = "PLATAFORMA";
@@ -57,6 +59,7 @@ const string KEY_BALANCIN = "BALANCIN";
 const string KEY_CINTA = "CINTA";
 const string KEY_BOLA_BOLICHE = "BOLABOLICHE";
 const string KEY_PELOTA_JUEGO = "PELOTA";
+const string KEY_ENGRANAJE = "ENGRANAJE";
 const string KEY_MOTOR = "MOTOR";
 
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
@@ -170,6 +173,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
 	SimpleEditorSoga* editorSogas = new SimpleEditorSoga(modeloController, tablero, this->factory, 100);
 	SimpleEditorOrientacionCambiable* editorOrientacionCambiable = new SimpleEditorOrientacionCambiable(modeloController, tablero, this->factory, 100);
+	EditorDeEstiramientoDeCinta* editorCinta = new EditorDeEstiramientoDeCinta(modeloController, tablero, this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);
 
 	list<ViewFiguraFactory*> factories;
@@ -193,8 +197,11 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	viewFactory = new ViewBalancinFactory(editorSimpleAnguloFijo2);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BALANCIN,viewFactory));
 	factories.push_back(viewFactory);
-	viewFactory = new VistaCintaTransportadoraFactory(editorSimpleAnguloFijo1);
+	viewFactory = new VistaCintaTransportadoraFactory(editorCinta);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CINTA,viewFactory));
+	factories.push_back(viewFactory);
+	viewFactory = new VistaEngranajeFactory(editorSimpleAnguloFijo1);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_ENGRANAJE,viewFactory));
 	factories.push_back(viewFactory);
 	viewFactory = new ViewMotorFactory(editorOrientacionCambiable);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_MOTOR,viewFactory));
@@ -246,5 +253,11 @@ void InicializadorJuego::visit(PelotaJuego* c) {
 void InicializadorJuego::visit(GloboHelio*c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_GLOBO);
+	this->agregarFigura(iter->second, fig);
+}
+
+void InicializadorJuego::visit(Engranaje* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_ENGRANAJE);
 	this->agregarFigura(iter->second, fig);
 }

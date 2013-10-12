@@ -82,3 +82,12 @@ void ObjetoDAO::visit(PelotaJuego* pelotaJuego) {
 void ObjetoDAO::guardar(PelotaJuego* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["PelotasJuego"].push_back(*objeto);
 }
+
+void ObjetoDAO::visit(Engranaje* engranaje) {
+	guardar(engranaje, nodo);
+}
+
+
+void ObjetoDAO::guardar(Engranaje* objeto, YAML::Node* nodoRaiz) {
+
+}

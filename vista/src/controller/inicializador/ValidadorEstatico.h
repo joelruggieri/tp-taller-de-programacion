@@ -20,6 +20,7 @@ using namespace std;
 #include "src/objeto/PelotaJuego.h"
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
+#include "src/objeto/Engranaje.h"
 
 //Esta clase valida cosas como longitud de una figura, angulos validos, radios predefinidos, etc,etc
 //Las validaciones mas complejas como si estan solapadas dos figuras o bien un enganche invalido
@@ -40,6 +41,7 @@ public:
 	void visit (BolaBoliche*);
 	void visit(PelotaJuego*);
 	void visit (GloboHelio*);
+	void visit (Engranaje*);
 	string getErrorValidacion();
 	bool isValido();
 	void validar(Figura *);

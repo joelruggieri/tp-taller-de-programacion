@@ -26,6 +26,7 @@
 #define ALTO_BALANCIN 1.6
 #define LONGITUD_CINTA 20
 #define RADIO_EJE_CINTA 3
+#define RADIO_ENGRANAJE 5
 
 
 //#define
