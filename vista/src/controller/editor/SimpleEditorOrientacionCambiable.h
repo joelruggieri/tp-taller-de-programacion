@@ -17,6 +17,7 @@ public:
 	virtual ~SimpleEditorOrientacionCambiable();
 	void mouseMotion(int x, int y);
 	void rightClickDown(int x, int y);
+//	void clickDown(int x, int y);
 };
 
 #endif /* SIMPLEEDITORORIENTACIONCAMBIABLE_H_ */
