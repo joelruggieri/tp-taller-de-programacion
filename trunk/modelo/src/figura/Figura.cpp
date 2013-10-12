@@ -175,7 +175,6 @@ bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
 			}
 		}
 	}
-
 	if (hayContacto) {
 		w->DestroyBody(this->getBody());
 		this->setBody(0);
