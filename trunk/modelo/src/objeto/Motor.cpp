@@ -13,6 +13,7 @@ Motor::Motor(float x, float y, float w, float h):Objeto(x,y) {
 	this->w = w;
 	this->h = h;
 	this->direccion = -1 ; //por defecto gira en sentido horario
+	this->radio = w ;
 }
 
 Motor::~Motor() {
@@ -24,53 +25,60 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x,y);
-//	b2PolygonShape * polygon= new b2PolygonShape();
-
-	b2MassData masa;
-	/*masa.center = centro;
-	masa.mass = 100.00;
-	masa.I = 0.00;
-	polygon->ComputeMass(&masa,3);*/
+	centro.x = this->getX();
+	centro.y = this->getY();
 	b2CircleShape shapeCircle;
-//	shp(this->w/2,this->h/2);
 	shapeCircle.m_radius = this->w ;
 
 	b2FixtureDef fixture;
-	fixture.density = 60000.00f;
+	fixture.density = 600.00f;
 	fixture.shape = &shapeCircle;
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
 	b2BodyDef bodyDef;
-	bodyDef.angularDamping = 0.00f;
+//	bodyDef.angularDamping = 0.00f;
 	bodyDef.type = b2_dynamicBody;
 //	bodyDef.fixedRotation = false;
 	bodyDef.position.Set(x,y);
 	double rotacionRad = this->getRotacion() * 3.14 / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = w->CreateBody(&bodyDef);
-	//body->CreateFixture(polygon, 10.0f);
 	body->CreateFixture(&fixture);
-	body->SetGravityScale(0);
-	body->SetAngularVelocity(5.0f*this->direccion);
+//	body->SetGravityScale(0);
+//	body->SetAngularVelocity(5.0f*this->direccion);
 
-//	body->SetFixedRotation(false);
 	body->SetUserData(this);
 	this->setBody(body);
-//
-//		b2CircleShape shape;
-//		shape.m_radius = this->h/2 ;
-//		b2BodyDef bd;
-//		bd.position.Set(x,y);
-//		b2Body* bodyCircle = world->CreateBody(&bd);
-//		body->CreateFixture(&shape, 5.0f);
-//		bodyCircle->SetAngularVelocity(5.0f*this->direccion);
-//		b2RevoluteJointDef rjd;
-//		rjd.Initialize(bodyCircle,body,centro);
-//		rjd.motorSpeed = 1.0f * b2_pi;
-//		rjd.maxMotorTorque = 10000.0f;
-//		rjd.collideConnected = true;
-//		rjd.enableLimit = true;
-//		world->CreateJoint(&rjd);
+
+
+	b2CircleShape shapeCircle2;
+	shapeCircle2.m_radius = this->w / 4  ;
+
+		b2FixtureDef fixture2;
+//		fixture.density = 15.00f;
+		fixture2.shape = &shapeCircle2;
+//		fixture.friction = 0.01f;
+//		fixture.restitution = 0.00f;
+		b2BodyDef bodyDef2;
+	//	bodyDef.angularDamping = 0.00f;
+//		bodyDef2.type = b2_staticBody;
+		bodyDef2.fixedRotation = false;
+		bodyDef2.position.Set(x,y);
+		double rotacionRad2 = this->getRotacion() * 3.14 / 180.0;
+		bodyDef2.angle = rotacionRad2;
+		b2Body* bodyCircle = w->CreateBody(&bodyDef2);
+		bodyCircle->CreateFixture(&fixture2);
+
+
+	b2RevoluteJointDef rjd;
+	rjd.Initialize(bodyCircle,body,centro);
+	rjd.motorSpeed =  this->direccion * 100;
+	rjd.maxMotorTorque = 10000.0f;
+	rjd.collideConnected = true;
+	rjd.enableMotor = true;
+	rjd.enableLimit = false;
+//	rjd.
+	w->CreateJoint(&rjd);
 
 }
 
@@ -84,3 +92,26 @@ void Motor::modificarSentido() {
 	this->direccion = this->direccion * (-1);
 }
 
+Motor::Motor(const Motor& figura):Objeto(x,y) {
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->setRotacion(figura.getRotacion());
+	this->setRadio(figura.getRadio());
+	this->reg = figura.reg;
+	this->direccion = -1;
+	this->w = w;
+	this->h = h;
+	this->radio = radio;
+}
+
+Motor::Motor() {
+	this->radio = 0;
+}
+
+float Motor::getRadio() const {
+	return radio;
+}
+
+void Motor::setRadio(float radio) {
+	this->radio = radio;
+}

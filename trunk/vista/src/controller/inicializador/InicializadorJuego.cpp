@@ -57,6 +57,8 @@ const string KEY_BALANCIN = "BALANCIN";
 const string KEY_CINTA = "CINTA";
 const string KEY_BOLA_BOLICHE = "BOLABOLICHE";
 const string KEY_PELOTA_JUEGO = "PELOTA";
+const string KEY_MOTOR = "MOTOR";
+
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->juegoController = NULL;
 	this->eventsController = controllerEventos;
@@ -194,12 +196,17 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	viewFactory = new VistaCintaTransportadoraFactory(editorSimpleAnguloFijo1);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CINTA,viewFactory));
 	factories.push_back(viewFactory);
-
+	viewFactory = new ViewMotorFactory(editorOrientacionCambiable);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_MOTOR,viewFactory));
+	factories.push_back(viewFactory);
+	viewFactory = new ViewSogaFactory(editorSogas);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_SOGA,viewFactory));
+	factories.push_back(viewFactory);
 
 //TODO como todavía no vienen de la persistencia no se las coloca para levantar de la persistencia
 //	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
-	factories.push_back(new ViewMotorFactory(editorOrientacionCambiable));
-	factories.push_back(new ViewSogaFactory(editorSogas));
+
+
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
 			herrTextura);
@@ -222,8 +229,10 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	return this->juegoController;
 }
 
-void InicializadorJuego::visit(Motor*) {
-	//TODO IMPLEMENTAR PERSISTENCIA
+void InicializadorJuego::visit(Motor* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_MOTOR);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(PelotaJuego* c) {

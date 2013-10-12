@@ -28,6 +28,7 @@ public:
 	Figura* crear(BolaBoliche*);
 	Figura* crear(PelotaJuego*);
 	Figura* crear(GloboHelio*);
+	Figura* crear(Motor*);
 };
 
 #endif /* FIGURAFACTORY_H_ */

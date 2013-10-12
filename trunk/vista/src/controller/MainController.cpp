@@ -89,6 +89,7 @@ int MainController::run() {
 	eventController.setDrawController(this);
 	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
 	SDL_SetWindowMaximumSize(ventana, 650, 650);
+//	SDL_SetWindowMaximumSize(ventana, 650, 650);
 	SDL_SetWindowPosition(ventana, 300,100);
 
 	while (!terminar) {
