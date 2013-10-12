@@ -24,12 +24,7 @@ CintaTransportadora::CintaTransportadora(): Objeto (0,0) {
 }
 
 CintaTransportadora::~CintaTransportadora() {
-	if (ruedas[0] && mundo) this->mundo->DestroyBody(ruedas[0]);
-	if (ruedas[1] && mundo) this->mundo->DestroyBody(ruedas[1]);
-	if (base && mundo) this->mundo->DestroyBody(base);
-	for (unsigned int i=0; i<piezas.size(); ++i) {
-		if (piezas[i] && mundo) this->mundo->DestroyBody(piezas[i]);
-	}
+
 }
 
 void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
