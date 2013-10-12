@@ -49,7 +49,7 @@ public:
 	virtual void crearFisica(b2World * w, b2Body* ground) = 0;
 	virtual bool crearFisicaEstatica(b2World *, b2Body* ground);
 	virtual void acept(VisitorFigura*) = 0;
-
+	virtual void removerFisica(b2World * w);
 
 	Vista* getVista();
 	void setVista(Vista* vista);

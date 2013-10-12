@@ -190,3 +190,8 @@ void Figura::agrandar(float delta){
 float Figura::getAncho() const {
 	return 0;
 }
+
+void Figura::removerFisica(b2World* w) {
+	w->DestroyBody(this->getBody());
+	this->setBody(NULL);
+}

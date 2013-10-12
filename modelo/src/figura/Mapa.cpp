@@ -25,8 +25,7 @@ Mapa::~Mapa() {
 bool Mapa::removeFigura(Figura* figura) {
 	if (figura->getBody() != 0) {
 
-		this->myWorld->DestroyBody(figura->getBody());
-		figura->setBody(0);
+		figura->removerFisica(myWorld);
 		this->figuras.remove(figura);
 		return true;
 	}
