@@ -10,6 +10,9 @@
 #include <iostream>
 using namespace std;
 
+
+
+//TODO DELETEAR EL GEAR JOINT ANTES DE SACAR CADA ENGRANAJE.
 Engranaje::Engranaje(int x, int y, int radio): Objeto(x,y) {
 	this->radio = radio;
 	this->radioAccion = NULL;
