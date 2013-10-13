@@ -49,6 +49,7 @@ protected:
 	int posStartDragX;
 	int posStartDragY;
 	int yMaxDrag;
+	void actualizarEstadoDeLaFigura(int int1, int int2);
 public:
 	SimpleEditorNivel(ModeloController * , ZonaTablero *,FiguraFactory* factory, int yMaxDrag);
 	virtual void setFigura(FiguraView *);

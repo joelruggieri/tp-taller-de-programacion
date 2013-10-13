@@ -15,6 +15,8 @@ class Plataforma: public Objeto {
 private:
 	float alto;
 	float ancho;
+	float anchoBack;
+	typedef Figura super;
 public:
 	Plataforma(const Plataforma& plataforma);
 	Plataforma();
@@ -27,6 +29,8 @@ public:
 	void crearFisica(b2World * w, b2Body* ground);
 	void acept(VisitorFigura*);
 	void agrandar(float delta);
+	void makeBackUp();
+	void restoreBackUp();
 
 };
 

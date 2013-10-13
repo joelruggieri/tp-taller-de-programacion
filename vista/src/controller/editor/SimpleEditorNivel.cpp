@@ -208,13 +208,61 @@ void SimpleEditorNivel::rightClickDown(int x, int y) {
 	}
 }
 
+
+void SimpleEditorNivel::actualizarEstadoDeLaFigura(int int1, int int2){
+	bool exitoVista = tablero->agregarFigura(this->editado);
+	bool exitoModelo = this->modeloController->crearFigura(this->editado->getModelo());
+	if (!exitoVista || !exitoModelo) {
+	//si uno de los dos no tuvo exito probamos rollbackeando.
+		if (exitoVista) {
+			tablero->removerFigura(editado);
+		}
+		if (exitoModelo) {
+			modeloController->removerFigura(editado->getModelo());
+		}
+		Logger log;
+		editado->getModelo()->restoreBackUp();
+		std::cout<< " " << editado->getModelo()->getAncho() << std::endl;
+		exitoVista = tablero->agregarFigura(this->editado);
+		exitoModelo = this->modeloController->crearFigura(this->editado->getModelo());
+		if (!exitoVista || !exitoModelo) {
+			if (exitoVista) {
+				tablero->removerFigura(editado);
+			}
+			if (exitoModelo) {
+				modeloController->removerFigura(editado->getModelo());
+			}
+			delete this->editado->getModelo();
+			delete editado;
+			delete elementoDrag;
+			elementoDrag = NULL;
+			dragueando = false;
+			editado = NULL;
+		}
+
+	//			if (!this->elementoDrag->isRolledBack()) {
+	//				log.info(
+	//						"La rotacion no pudo completarse, se retorna a la posicion anterior");
+	//				this->editado->getModelo()->restoreBackUp();
+	//			} else {
+	//				delete this->editado->getModelo();
+	//				delete editado;
+	//				delete elementoDrag;
+	//				elementoDrag = NULL;
+	//				dragueando = false;
+	//				editado = NULL;
+
+	}
+}
+
 void SimpleEditorNivel::rightClickUp(int int1, int int2) {
 	if (rotando) {
 		rotando = false;
 		delete visor;
 		delete this->rot;
 		finalizado = true;
-		bool exitoVista = tablero->agregarFigura(this->editado);
+		this->actualizarEstadoDeLaFigura(int1,int2);
+		/*bool exitoVista = tablero->agregarFigura(this->editado);
 		bool exitoModelo = this->modeloController->crearFigura(
 				this->editado->getModelo());
 		if (!exitoVista || !exitoModelo) {
@@ -258,7 +306,7 @@ void SimpleEditorNivel::rightClickUp(int int1, int int2) {
 //				dragueando = false;
 //				editado = NULL;
 
-		}
+		}*/
 		//TODO VER QUE PASA CON LA MEMORIA ACA.
 	}
 }

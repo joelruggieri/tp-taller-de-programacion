@@ -14,12 +14,14 @@ Plataforma::Plataforma() :
 		Objeto() {
 	this->ancho = 0;
 	this->alto = 0;
+	this->anchoBack = this->ancho;
 }
 
 Plataforma::Plataforma(float x, float y, float ancho, float alto) :
 		Objeto(x, y) {
 	this->ancho = ancho;
 	this->alto = alto;
+	this->anchoBack = this->ancho;
 }
 
 Plataforma::Plataforma(const Plataforma& plataforma) {
@@ -27,6 +29,7 @@ Plataforma::Plataforma(const Plataforma& plataforma) {
 	y = plataforma.getY();
 	alto = plataforma.getAlto();
 	ancho = plataforma.getAncho();
+	anchoBack = plataforma.anchoBack;
 	//TODO estos son medio duros los dos atributos, vista y body. cuidado con los punteros, puede traer problemas
 	body = plataforma.body;
 	vista = plataforma.vista;
@@ -105,5 +108,16 @@ void Plataforma::acept(VisitorFigura* visitor) {
 
 void Plataforma::agrandar(float delta){
 	this->setAncho(this->getAncho() + delta);
+}
+
+void Plataforma::makeBackUp(){
+	super::makeBackUp();
+	anchoBack = ancho;
+
+}
+
+void Plataforma::restoreBackUp(){
+	super::restoreBackUp();
+	ancho = anchoBack;
 }
 
