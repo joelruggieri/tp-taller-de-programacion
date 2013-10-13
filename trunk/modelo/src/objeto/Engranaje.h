@@ -21,6 +21,8 @@ private:
 	b2Body* cuerpoEje;
 	b2Body* cuerpoRueda;
 	int radio;
+protected:
+	void crearLazo(b2Body*, b2World*);
 };
 
 #endif /* ENGRANAJE_H_ */

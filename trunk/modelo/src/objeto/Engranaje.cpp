@@ -68,3 +68,15 @@ void Engranaje::crearFisicaEstaticaTemplate(b2World* m_world, b2Body* ground) {
 	setBody(aux);
 	aux->SetUserData(this);
 }
+
+void Engranaje::crearLazo(b2Body* b, b2World* w) {
+	b2GearJointDef gearJoint;
+	gearJoint.bodyA = this->body;
+	gearJoint.bodyB = b;
+	gearJoint.joint1 = this->body->GetJointList()->joint;
+	gearJoint.joint2 = b->GetJointList()->joint;
+	gearJoint.ratio = 1; //chequear despues
+	b2GearJoint* theGearJoint = (b2GearJoint*)w->CreateJoint(&gearJoint);	//TODO ver si hay que retornar este gearJoint
+//	theGearJoint->m_type =
+
+}
