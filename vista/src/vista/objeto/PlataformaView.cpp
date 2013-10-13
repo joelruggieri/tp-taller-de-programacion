@@ -32,3 +32,14 @@ void PlataformaView::setModelo(Figura* fig) {
 	this->setW(r->resizearDistanciaLogicaX(p->getAncho()));
 	super::setModelo(fig);
 }
+
+void PlataformaView::update(Transformacion & tl){
+	super::update(tl);
+	float y = 0;
+	tl.setVector(this->getModelo()->getAncho(),y);
+	float nuevoAncho;
+	tl.getResultadoInverso(nuevoAncho,y);
+	this->setW(nuevoAncho);
+
+
+}
