@@ -106,34 +106,34 @@ void Engranaje::crearLazo(b2Body* b, b2World* w) {
 //	theGearJoint->m_type =
 
 }
-
-bool Engranaje::crearFisicaEstatica(b2World* w, b2Body* ground) {
-
-	bool hayContacto = false;
-	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
-		if (b != body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
-
-
-			uint16 catA = body->GetFixtureList()->GetFilterData().categoryBits;
-			uint16 maskA = body->GetFixtureList()->GetFilterData().maskBits;
-			uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
-			uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
-
-			bool overlap = b2TestOverlap(body->GetFixtureList()->GetShape(), 0,
-					b->GetFixtureList()->GetShape(), 0, body->GetTransform(),
-					b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
-			if(overlap ){
-				hayContacto = true;
-				break;
-			}
-		}
-	}
-	if (hayContacto) {
-		this->removerFisica(w);
-		return false;
-	}
-
-
-
-	return true;
-}
+//
+//bool Engranaje::crearFisicaEstatica(b2World* w, b2Body* ground) {
+//
+//	bool hayContacto = false;
+//	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
+//		if (b != body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
+//
+//
+//			uint16 catA = body->GetFixtureList()->GetFilterData().categoryBits;
+//			uint16 maskA = body->GetFixtureList()->GetFilterData().maskBits;
+//			uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
+//			uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
+//
+//			bool overlap = b2TestOverlap(body->GetFixtureList()->GetShape(), 0,
+//					b->GetFixtureList()->GetShape(), 0, body->GetTransform(),
+//					b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
+//			if(overlap ){
+//				hayContacto = true;
+//				break;
+//			}
+//		}
+//	}
+//	if (hayContacto) {
+//		this->removerFisica(w);
+//		return false;
+//	}
+//
+//
+//
+//	return true;
+//}
