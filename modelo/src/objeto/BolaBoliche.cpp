@@ -6,7 +6,7 @@
  */
 
 #include "BolaBoliche.h"
-
+#include "../Constantes.h"
 BolaBoliche::BolaBoliche(float x, float y, float radio):Objeto(x,y) {
 //this->x = x ;
 //this->y = y;
@@ -32,6 +32,7 @@ void BolaBoliche::crearFisica(b2World * w, b2Body* ground) {
 		b2Body* body = w->CreateBody(&bodyDef);
 		shapeCircle.m_radius = this->radio ;
 		b2FixtureDef bodyBolaBoliche;
+		bodyBolaBoliche.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyBolaBoliche.shape = &shapeCircle;
 		bodyBolaBoliche.density = 45.0f;
 		bodyBolaBoliche.friction = 0.2f;

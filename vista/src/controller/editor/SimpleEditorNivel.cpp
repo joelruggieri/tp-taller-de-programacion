@@ -67,6 +67,13 @@ void SimpleEditorNivel::dropear(FiguraView* view, Figura* figura) {
 		}
 		//TODO VER QUE PASA CON LA MEMORIA ACA.
 	} else {
+		Resizer * r= Resizer::Instance();
+		Transformacion trans;
+		trans.traslacion(0, 100);
+		trans.escalar(r->getRelacionX(), r->getRelacionY());
+		trans.invertir(false, true);
+		trans.setVector(figura->getX(), figura->getY());
+		view->update(trans);
 		delete elementoDrag;
 		elementoDrag = NULL;
 	}

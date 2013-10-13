@@ -36,49 +36,24 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
 	b2BodyDef bodyDef;
-//	bodyDef.angularDamping = 0.00f;
 	bodyDef.type = b2_dynamicBody;
-//	bodyDef.fixedRotation = false;
 	bodyDef.position.Set(x,y);
 	double rotacionRad = this->getRotacion() * 3.14 / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = w->CreateBody(&bodyDef);
 	body->CreateFixture(&fixture);
-//	body->SetGravityScale(0);
 	body->SetAngularVelocity(3.0f*this->direccion);
 
 	body->SetUserData(this);
 	this->setBody(body);
 
-
-//	b2CircleShape shapeCircle2;
-//	shapeCircle2.m_radius = this->w / 4  ;
-//	b2FixtureDef fixture2;
-//	fixture2.shape = &shapeCircle2;
-//	b2BodyDef bodyDef2;
-//	bodyDef2.fixedRotation = false;
-//	bodyDef2.position.Set(x,y);
-//	double rotacionRad2 = this->getRotacion() * 3.14 / 180.0;
-//	bodyDef2.angle = rotacionRad2;
-//	b2Body* bodyCircle = w->CreateBody(&bodyDef2);
-//	bodyCircle->CreateFixture(&fixture2);
-
-	b2CircleShape shape;
-	shape.m_radius = this->w / 2;
-	b2BodyDef bd;
-	bd.fixedRotation = false;
-	bd.position.Set(x,y);
-	b2Body* bodyCircle = w->CreateBody(&bd);
-	body->CreateFixture(&shape, 1.0f);
-
 	b2RevoluteJointDef rjd;
-	rjd.Initialize(bodyCircle,body,centro);
+	rjd.Initialize(ground,body,centro);
 	rjd.motorSpeed =  this->direccion * 1;
 	rjd.maxMotorTorque = 10000.0f;
 	rjd.collideConnected = false;
 	rjd.enableMotor = true;
 	rjd.enableLimit = false;
-//	rjd.type
 	w->CreateJoint(&rjd);
 
 }
