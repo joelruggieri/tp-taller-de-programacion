@@ -18,13 +18,18 @@ public:
 	void acept(VisitorFigura* visitor);
 	void crearFisicaEstaticaTemplate(b2World* m_world, b2Body* ground);
 	void removerFisica(b2World * w);
-//	bool crearFisicaEstatica(b2World *w, b2Body* ground);
+	bool crearFisicaEstatica(b2World *w, b2Body* ground);
+	b2RevoluteJoint * getJointATierra();
+	b2Body * getDiscoGiro();
+
 private:
+	typedef Objeto super;
 	b2Body* radioAccion;
 	int radio;
 	int direccion;
+	b2RevoluteJoint * jointCuerpoTierra;
 protected:
-	void crearLazo(b2Body*, b2World*);
+	void crearLazo(Engranaje*, b2World*);
 };
 
 #endif /* ENGRANAJE_H_ */

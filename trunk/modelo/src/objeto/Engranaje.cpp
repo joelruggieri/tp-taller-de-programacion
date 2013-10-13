@@ -7,6 +7,8 @@
 
 #include "Engranaje.h"
 #include "../Constantes.h"
+#include <iostream>
+using namespace std;
 
 Engranaje::Engranaje(int x, int y, int radio): Objeto(x,y) {
 	this->radio = radio;
@@ -42,17 +44,13 @@ void Engranaje::crearFisica(b2World* w, b2Body* ground) {
 	body->SetUserData(this);
 
 	//joint cuerpo con la tierra;
-	b2RevoluteJointDef rjd;
-	rjd.Initialize(ground,body,centro);
-	rjd.collideConnected = false;
-	w->CreateJoint(&rjd);
-
-
-
+	b2RevoluteJointDef jointCuerpoTierraDef;
+	jointCuerpoTierraDef.Initialize(ground,body,centro);
+	jointCuerpoTierraDef.collideConnected = false;
+	jointCuerpoTierra = (b2RevoluteJoint*)w->CreateJoint(&jointCuerpoTierraDef);
 
 	//definicion cuerpo radio de accion
 
-	//definicion del cuerpo del engranaje.
 	b2CircleShape shapeAccion;
 	shapeAccion.m_radius = this->radio + 10 ;
 	b2FixtureDef fixtureAccion;
@@ -92,48 +90,67 @@ void Engranaje::removerFisica(b2World* w) {
 	w->DestroyBody(this->radioAccion);
 
 	this->body = NULL;
-//	radioAccion = NULL;
+	radioAccion = NULL;
 }
 
-void Engranaje::crearLazo(b2Body* b, b2World* w) {
-	b2GearJointDef gearJoint;
-	gearJoint.bodyA = this->body;
-	gearJoint.bodyB = b;
-	gearJoint.joint1 = this->body->GetJointList()->joint;
-	gearJoint.joint2 = b->GetJointList()->joint;
-	gearJoint.ratio = 1; //chequear despues
-	(b2GearJoint*)w->CreateJoint(&gearJoint);	//TODO ver si hay que retornar este gearJoint
-//	theGearJoint->m_type =
+void Engranaje::crearLazo(Engranaje * b, b2World* w) {
+//    b2RevoluteJointDef the_rev_joint = new b2RevoluteJointDef();
+
+//	the_rev_joint.Initialize(ground, body, body->GetPosition());
+//	b2RevoluteJoint first_joint = (b2RevoluteJoint) w->CreateJoint(the_rev_joint);
+//    the_rev_joint.Initialize(wground.GetGroundBody(), gear2, new b2Vec2(11,6.5));
+//    var second_joint:b2RevoluteJoint=m_world.CreateJoint(the_rev_joint) as b2RevoluteJoint;
+    // gear joint
+    b2GearJointDef  gear_joint;
+    gear_joint.bodyA=this->getDiscoGiro();
+    gear_joint.bodyB= b->getDiscoGiro();
+    gear_joint.joint1= this->getJointATierra();
+    gear_joint.joint2= b->getJointATierra();
+    gear_joint.ratio=1;
+    w->CreateJoint(&gear_joint);
+
 
 }
-//
-//bool Engranaje::crearFisicaEstatica(b2World* w, b2Body* ground) {
-//
-//	bool hayContacto = false;
-//	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
-//		if (b != body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
-//
-//
-//			uint16 catA = body->GetFixtureList()->GetFilterData().categoryBits;
-//			uint16 maskA = body->GetFixtureList()->GetFilterData().maskBits;
-//			uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
-//			uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
-//
-//			bool overlap = b2TestOverlap(body->GetFixtureList()->GetShape(), 0,
-//					b->GetFixtureList()->GetShape(), 0, body->GetTransform(),
-//					b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
-//			if(overlap ){
-//				hayContacto = true;
-//				break;
-//			}
-//		}
-//	}
-//	if (hayContacto) {
-//		this->removerFisica(w);
-//		return false;
-//	}
-//
-//
-//
-//	return true;
-//}
+
+
+bool Engranaje::crearFisicaEstatica(b2World* w, b2Body* ground) {
+	this->crearFisicaEstaticaTemplate(w,ground);
+	bool hayContacto = false;
+	list<Engranaje *> maquinas;
+	for (b2Body* b = w->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
+		if (b != this->body && b!= this->radioAccion && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
+			if(validarContacto(w,body,b)){
+				hayContacto = true;
+				break;
+			}
+			//solo da que si cuando golpea con otro radio de accion
+			if(validarContacto(w,this->radioAccion,b)){
+				maquinas.push_back((Engranaje*)b->GetUserData());
+			}
+
+		}
+	}
+	if(hayContacto) {
+		removerFisica(w);
+	} else {
+		if(maquinas.size() > 0){
+			list<Engranaje*>::iterator it;
+			for(it=maquinas.begin(); it != maquinas.end(); ++it){
+				 cout << "Crea union" << endl;
+				crearLazo(*it,w);
+			}
+		}
+	}
+
+
+	return !hayContacto;
+
+}
+
+b2RevoluteJoint* Engranaje::getJointATierra() {
+	return this->jointCuerpoTierra;
+}
+
+b2Body* Engranaje::getDiscoGiro() {
+	return this->body;
+}
