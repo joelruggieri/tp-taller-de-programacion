@@ -46,7 +46,7 @@ void Engranaje::crearFisica(b2World* w, b2Body* ground) {
 	//joint cuerpo con la tierra;
 	b2RevoluteJointDef jointCuerpoTierraDef;
 	jointCuerpoTierraDef.Initialize(ground,body,centro);
-	jointCuerpoTierraDef.collideConnected = false;
+//	jointCuerpoTierraDef.collideConnected = false;
 	jointCuerpoTierra = (b2RevoluteJoint*)w->CreateJoint(&jointCuerpoTierraDef);
 
 	//definicion cuerpo radio de accion
