@@ -18,6 +18,7 @@ public:
 	void acept(VisitorFigura* visitor);
 	void crearFisicaEstaticaTemplate(b2World* m_world, b2Body* ground);
 	void removerFisica(b2World * w);
+	bool crearFisicaEstatica(b2World *w, b2Body* ground);
 private:
 	b2Body* radioAccion;
 	int radio;
