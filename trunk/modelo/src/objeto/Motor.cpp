@@ -74,8 +74,8 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(bodyCircle,body,centro);
 	rjd.motorSpeed =  this->direccion * 1;
-	rjd.maxMotorTorque = 1.0f;
-	rjd.collideConnected = true;
+	rjd.maxMotorTorque = 10000.0f;
+	rjd.collideConnected = false;
 	rjd.enableMotor = true;
 	rjd.enableLimit = false;
 //	rjd.type
