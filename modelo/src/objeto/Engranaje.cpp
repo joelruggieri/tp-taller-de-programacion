@@ -33,6 +33,7 @@ void Engranaje::crearFisica(b2World* w, b2Body* ground) {
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
+	fixture.filter.maskBits = CATEGORIA_FIGURAS;
 	b2BodyDef bodyDefCuerpo;
 	bodyDefCuerpo.type = b2_dynamicBody;
 	bodyDefCuerpo.position= centro;
@@ -53,9 +54,10 @@ void Engranaje::crearFisica(b2World* w, b2Body* ground) {
 
 	//definicion del cuerpo del engranaje.
 	b2CircleShape shapeAccion;
-	shapeAccion.m_radius = this->radio + 0.5 ;
+	shapeAccion.m_radius = this->radio + 10 ;
 	b2FixtureDef fixtureAccion;
 	fixtureAccion.filter.categoryBits = 0X0004;
+	fixtureAccion.filter.maskBits = 0X0004;
 	fixtureAccion.density = 1.00f;
 	fixtureAccion.shape = &shapeAccion;
 	fixtureAccion.friction = 0.01f;
@@ -87,7 +89,7 @@ void Engranaje::crearFisicaEstaticaTemplate(b2World* m, b2Body* ground) {
 
 void Engranaje::removerFisica(b2World* w) {
 	w->DestroyBody(this->body);
-//	w->DestroyBody(this->radioAccion);
+	w->DestroyBody(this->radioAccion);
 
 	this->body = NULL;
 //	radioAccion = NULL;
@@ -103,4 +105,35 @@ void Engranaje::crearLazo(b2Body* b, b2World* w) {
 	(b2GearJoint*)w->CreateJoint(&gearJoint);	//TODO ver si hay que retornar este gearJoint
 //	theGearJoint->m_type =
 
+}
+
+bool Engranaje::crearFisicaEstatica(b2World* w, b2Body* ground) {
+
+	bool hayContacto = false;
+	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
+		if (b != body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
+
+
+			uint16 catA = body->GetFixtureList()->GetFilterData().categoryBits;
+			uint16 maskA = body->GetFixtureList()->GetFilterData().maskBits;
+			uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
+			uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
+
+			bool overlap = b2TestOverlap(body->GetFixtureList()->GetShape(), 0,
+					b->GetFixtureList()->GetShape(), 0, body->GetTransform(),
+					b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
+			if(overlap ){
+				hayContacto = true;
+				break;
+			}
+		}
+	}
+	if (hayContacto) {
+		this->removerFisica(w);
+		return false;
+	}
+
+
+
+	return true;
 }
