@@ -33,6 +33,7 @@ protected:
 	double radianesAGrados(float r);
 	double gradosARadianes(float g);
     virtual void crearFisicaEstaticaTemplate(b2World * w, b2Body* ground);
+    bool validarContacto(b2World * w, b2Body * verf, b2Body * b);
 public:
 	Figura();
 	Figura(float x, float y);

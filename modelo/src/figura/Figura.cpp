@@ -165,69 +165,19 @@ bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
 	this->crearFisicaEstaticaTemplate(w,ground);
 	bool hayContacto = false;
 	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
-		if (b != body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
-
-
-			uint16 catA = body->GetFixtureList()->GetFilterData().categoryBits;
-			uint16 maskA = body->GetFixtureList()->GetFilterData().maskBits;
-			uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
-			uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
-
-			bool overlap = b2TestOverlap(body->GetFixtureList()->GetShape(), 0,
-					b->GetFixtureList()->GetShape(), 0, body->GetTransform(),
-					b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
-			if(overlap ){
+		if (b != this->body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
+			if(validarContacto(w,body,b)){
 				hayContacto = true;
 				break;
 			}
 		}
 	}
-	if (hayContacto) {
-		w->DestroyBody(this->getBody());
-		this->setBody(0);
-		return false;
+	if(hayContacto) {
+		removerFisica(w);
 	}
-	return true;
+	return !hayContacto;
 }
 
-//TODO Alternativa de la documentacion
-//bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
-//	this->crearFisicaEstaticaTemplate(w, ground);
-//	bool hayContacto = false;
-//	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
-//		// solucion rapida agregar && b->GetUserData() != body->GetUserData()
-//		if (b!= body&& b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
-//
-//			{
-//				const b2Filter& filterA = b->GetFixtureList()->GetFilterData();
-//				const b2Filter& filterB =
-//						body->GetFixtureList()->GetFilterData();
-//				if (filterA.groupIndex == filterB.groupIndex
-//						&& filterA.groupIndex != 0) {
-//					hayContacto = hayContacto || filterA.groupIndex > 0;
-//				}
-//
-//
-//				hayContacto = hayContacto || (( (filterA.maskBits & filterB.categoryBits) != 0
-//						&& (filterA.categoryBits & filterB.maskBits) != 0) && b2TestOverlap(body->GetFixtureList()->GetShape(), 0,
-//								b->GetFixtureList()->GetShape(), 0,
-//								body->GetTransform(), b->GetTransform()) );
-//
-//				if (hayContacto) {
-//					break;
-//				}
-//			}
-//
-//		}
-//
-//	}
-//	if (hayContacto) {
-////			w->DestroyBody(this->getBody());
-//		this->removerFisica(w);
-//		return false;
-//	}
-//	return true;
-//}
 void Figura::agrandar(float delta){
 
 }
@@ -240,3 +190,19 @@ void Figura::removerFisica(b2World* w) {
 	w->DestroyBody(this->getBody());
 	this->setBody(NULL);
 }
+
+bool Figura::validarContacto(b2World* w, b2Body * verf, b2Body * b) {
+		uint16 catA = verf->GetFixtureList()->GetFilterData().categoryBits;
+		uint16 maskA = verf->GetFixtureList()->GetFilterData().maskBits;
+		uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
+		uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
+
+		return b2TestOverlap(verf->GetFixtureList()->GetShape(), 0,
+				b->GetFixtureList()->GetShape(), 0, verf->GetTransform(),
+				b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
+
+}
+
+
+
+
