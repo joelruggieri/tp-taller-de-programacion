@@ -58,7 +58,8 @@ void SimpleEditorEstirar::mouseMotion(int x, int y) {
 	int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW()/2);
 	int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW()/2);
 	int delta;
-
+	this->posStartDragX = this->editado->getXCentro();
+	this->posStartDragY = this->editado->getYCentro();
 	if (estirando && !dragueando) {
 		if((x > this->editado->getXCentro() + (this->editado->getW()/2)) || (x > this->editado->getXCentro())){
 			delta = x - posFinalDerecha;
@@ -81,6 +82,13 @@ void SimpleEditorEstirar::rightClickUp(int int1, int int2) {
 		visor = NULL;
 		finalizado = true;
 		this->actualizarEstadoDeLaFigura(int1,int2);
+		Resizer * r= Resizer::Instance();
+		Transformacion trans;
+		trans.traslacion(0, 100);
+		trans.escalar(r->getRelacionX(), r->getRelacionY());
+		trans.invertir(false, true);
+		trans.setVector(this->editado->getX(), editado->getY());
+		this->editado->update(trans);
 	}else
 		super::rightClickUp(int1,int2);
 }
