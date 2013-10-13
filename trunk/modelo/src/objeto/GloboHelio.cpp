@@ -6,7 +6,7 @@
  */
 
 #include "GloboHelio.h"
-
+#include "../Constantes.h"
 GloboHelio::GloboHelio(float x, float y, float radio) : Objeto(x,y){
 	this->radio = radio ;
 	this->setRotacion(0);
@@ -33,6 +33,7 @@ void GloboHelio::crearFisica(b2World * w, b2Body* ground) {
 			shapeCircle.m_radius = this->radio ;
 			b2FixtureDef bodyBolaBoliche;
 			bodyBolaBoliche.shape = &shapeCircle;
+			bodyBolaBoliche.filter.categoryBits = CATEGORIA_FIGURAS;
 			bodyBolaBoliche.density = 15.0f;	//poca densidad, la densidad del aire cual es ?
 			bodyBolaBoliche.friction = 0.2f;
 			bodyBolaBoliche.restitution	 = 0.3f;

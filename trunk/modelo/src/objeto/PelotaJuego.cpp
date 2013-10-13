@@ -6,7 +6,7 @@
  */
 
 #include "PelotaJuego.h"
-
+#include "../Constantes.h"
 PelotaJuego::PelotaJuego(float x, float y, float radio) :
 		Objeto(x, y) {
 	this->radio = radio;
@@ -29,6 +29,7 @@ void PelotaJuego::crearFisica(b2World * w, b2Body* ground) {
 	b2Body* body = w->CreateBody(&bodyDef);
 	shapeCircle.m_radius = this->radio;
 	b2FixtureDef bodyPelota;
+	bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
 	bodyPelota.shape = &shapeCircle;
 	bodyPelota.density = 10.0f;
 	bodyPelota.friction = 0.2f;

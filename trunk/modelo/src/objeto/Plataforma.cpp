@@ -7,6 +7,7 @@
 
 #include "Plataforma.h"
 #include <iostream>
+#include "../Constantes.h"
 using namespace std;
 
 Plataforma::Plataforma() :
@@ -77,6 +78,7 @@ void Plataforma::crearFisica(b2World * w, b2Body* ground) {
 	fixture.shape = polygon;
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
+	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody;
 	bodyDef.position.Set(x, y);

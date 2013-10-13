@@ -12,7 +12,7 @@
 #include <iostream>
 #include <cmath>
 #include "../figura/Registro.h"
-
+#include "../Constantes.h"
 Balancin::Balancin(): Objeto() {
 	alto = 0;
 	ancho = 0;
@@ -84,6 +84,7 @@ void Balancin::crearFisica(b2World * w, b2Body* ground){
 	polygon->SetAsBox(this->ancho/2,this->alto/2);
 
 	b2FixtureDef fixture;
+	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.density = 50.00f;
 	fixture.shape = polygon;
 	fixture.friction = 0.01f;
@@ -107,6 +108,7 @@ void Balancin::crearFisica(b2World * w, b2Body* ground){
 	b2Body* bodyCircle = w->CreateBody(&bd);
 	body->CreateFixture(&shape, 5.0f);
 
+	//TODO HACER EL JOINT CON GROUND.
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(bodyCircle,body,centro);
 	rjd.motorSpeed = 1.0f * b2_pi;

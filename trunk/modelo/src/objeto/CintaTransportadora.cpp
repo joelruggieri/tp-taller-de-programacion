@@ -185,6 +185,7 @@ void CintaTransportadora::crearFisicaEstaticaTemplate(b2World* m_world,
 
 	b2FixtureDef fixture;
 	fixture.shape = polygon;
+	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(x, y);
 

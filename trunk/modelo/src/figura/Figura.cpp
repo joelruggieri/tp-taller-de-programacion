@@ -183,6 +183,44 @@ bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
 	return true;
 }
 
+//TODO Alternativa de la documentacion
+//bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
+//	this->crearFisicaEstaticaTemplate(w, ground);
+//	bool hayContacto = false;
+//	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
+//		// solucion rapida agregar && b->GetUserData() != body->GetUserData()
+//		if (b!= body&& b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
+//
+//			{
+//				const b2Filter& filterA = b->GetFixtureList()->GetFilterData();
+//				const b2Filter& filterB =
+//						body->GetFixtureList()->GetFilterData();
+//				if (filterA.groupIndex == filterB.groupIndex
+//						&& filterA.groupIndex != 0) {
+//					hayContacto = hayContacto || filterA.groupIndex > 0;
+//				}
+//
+//
+//				hayContacto = hayContacto || (( (filterA.maskBits & filterB.categoryBits) != 0
+//						&& (filterA.categoryBits & filterB.maskBits) != 0) && b2TestOverlap(body->GetFixtureList()->GetShape(), 0,
+//								b->GetFixtureList()->GetShape(), 0,
+//								body->GetTransform(), b->GetTransform()) );
+//
+//				if (hayContacto) {
+//					break;
+//				}
+//			}
+//
+//		}
+//
+//	}
+//	if (hayContacto) {
+////			w->DestroyBody(this->getBody());
+//		this->removerFisica(w);
+//		return false;
+//	}
+//	return true;
+//}
 void Figura::agrandar(float delta){
 
 }

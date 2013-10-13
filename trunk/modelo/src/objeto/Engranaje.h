@@ -17,10 +17,11 @@ public:
 	void crearFisica(b2World * w, b2Body* ground);
 	void acept(VisitorFigura* visitor);
 	void crearFisicaEstaticaTemplate(b2World* m_world, b2Body* ground);
+	void removerFisica(b2World * w);
 private:
-	b2Body* cuerpoEje;
-	b2Body* cuerpoRueda;
+	b2Body* radioAccion;
 	int radio;
+	int direccion;
 protected:
 	void crearLazo(b2Body*, b2World*);
 };
