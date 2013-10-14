@@ -15,14 +15,14 @@
 class CintaTransportadora: public Objeto {
 public:
 	CintaTransportadora();
-	CintaTransportadora(int x, int y, int longitud);
+	CintaTransportadora(float x, float y, float longitud);
 	CintaTransportadora(const CintaTransportadora& figura);
 	virtual ~CintaTransportadora();
 	void crearFisica(b2World * w, b2Body* ground);
 	void crearFisicaEstaticaTemplate(b2World* m_world, b2Body* ground);
 	void acept(VisitorFigura*);
 	int getLongitud() const;
-	void setLongitud(int longitud);
+	void setLongitud(float longitud);
 	float *getAngulosRuedas();
 	SDL_Rect* getMarcosRuedas();
 	void updateModelo();
