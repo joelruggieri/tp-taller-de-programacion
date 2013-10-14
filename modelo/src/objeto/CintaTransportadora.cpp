@@ -151,7 +151,7 @@ void CintaTransportadora::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 }
 
-CintaTransportadora::CintaTransportadora(int x, int y, int longitud) : Objeto(x,y) {
+CintaTransportadora::CintaTransportadora(float x, float y, float longitud) : Objeto(x,y) {
 	this->longitud = longitud;
 	cuerpo = NULL;
 	mundo = NULL;
@@ -173,7 +173,7 @@ int CintaTransportadora::getLongitud() const{
 	return longitud;
 }
 
-void CintaTransportadora::setLongitud(int longitud) {
+void CintaTransportadora::setLongitud(float longitud) {
 	this->longitud = longitud;
 }
 
