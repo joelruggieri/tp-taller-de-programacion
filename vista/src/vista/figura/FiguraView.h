@@ -35,6 +35,7 @@ public:
 	void click(float x, float y);
 	virtual void update(Transformacion & tl);
 	virtual EditorNivel* getEditor() = 0;
+	SDL_Texture* getTexture();
 };
 
 #endif /* FIGURAVIEW_H_ */

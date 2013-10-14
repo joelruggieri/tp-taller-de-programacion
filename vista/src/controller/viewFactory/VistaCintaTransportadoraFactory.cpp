@@ -16,8 +16,7 @@ VistaCintaTransportadoraFactory::~VistaCintaTransportadoraFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* VistaCintaTransportadoraFactory::crear(int x, int y, int w,
-		int h) {
+FiguraView* VistaCintaTransportadoraFactory::crear(int x, int y, int w, int h) {
 	Resizer * r = Resizer::Instance();
 	int ancho,alto;
 	r->adaptarDimensionLogica(LONGITUD_CINTA + 2.0f * RADIO_EJE_CINTA_LOG, RADIO_EJE_CINTA_LOG * 10.0f, ancho,alto);

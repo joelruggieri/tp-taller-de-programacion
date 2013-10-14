@@ -23,6 +23,7 @@
 #include "../Resizer.h"
 #include "../zonaDragAndDrop/ZonaDragAndDrop.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
+#include "SimpleEditorAnguloFijo.h"
 
 class FiguraFactory;
 
