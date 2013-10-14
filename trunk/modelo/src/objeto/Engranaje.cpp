@@ -10,14 +10,12 @@
 #include <iostream>
 using namespace std;
 
-
-
 //TODO DELETEAR EL GEAR JOINT ANTES DE SACAR CADA ENGRANAJE.
-Engranaje::Engranaje(int x, int y, int radio): Objeto(x,y) {
+Engranaje::Engranaje(float x, float y, float radio): Objeto(x,y) {
 	this->radio = radio;
 	this->radioAccion = NULL;
-	this->direccion = 0;
-
+	this->direccion = NULO;
+	this->jointCuerpoTierra = NULL;
 }
 
 Engranaje::~Engranaje() {
@@ -55,7 +53,7 @@ void Engranaje::crearFisica(b2World* w, b2Body* ground) {
 	//definicion cuerpo radio de accion
 
 	b2CircleShape shapeAccion;
-	shapeAccion.m_radius = this->radio + 10 ;
+	shapeAccion.m_radius = this->radio + 0.3;
 	b2FixtureDef fixtureAccion;
 	fixtureAccion.filter.categoryBits = 0X0004;
 	fixtureAccion.filter.maskBits = 0X0004;
@@ -76,7 +74,15 @@ void Engranaje::crearFisica(b2World* w, b2Body* ground) {
 	rjd2.collideConnected = false;
 	w->CreateJoint(&rjd2);
 
+	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
+		if (b != this->body && b!= this->radioAccion && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
+//			//solo da que si cuando golpea con otro radio de accion
+			if(validarContacto(w,this->radioAccion,b)){
+				crearLazo((Engranaje *) b->GetUserData(),w);
+			}
 
+		}
+	}
 }
 
 void Engranaje::acept(VisitorFigura* visitor) {
@@ -109,7 +115,7 @@ void Engranaje::crearLazo(Engranaje * b, b2World* w) {
     gear_joint.bodyB= b->getDiscoGiro();
     gear_joint.joint1= this->getJointATierra();
     gear_joint.joint2= b->getJointATierra();
-    gear_joint.ratio=1;
+    gear_joint.ratio= 1.0f;
     w->CreateJoint(&gear_joint);
 
 
@@ -119,30 +125,29 @@ void Engranaje::crearLazo(Engranaje * b, b2World* w) {
 bool Engranaje::crearFisicaEstatica(b2World* w, b2Body* ground) {
 	this->crearFisicaEstaticaTemplate(w,ground);
 	bool hayContacto = false;
-	list<Engranaje *> maquinas;
+//	list<Engranaje *> maquinas;
 	for (b2Body* b = w->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
 		if (b != this->body && b!= this->radioAccion && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
 			if(validarContacto(w,body,b)){
 				hayContacto = true;
 				break;
 			}
-			//solo da que si cuando golpea con otro radio de accion
-			if(validarContacto(w,this->radioAccion,b)){
-				maquinas.push_back((Engranaje*)b->GetUserData());
-			}
+//			//solo da que si cuando golpea con otro radio de accion
+//			if(validarContacto(w,this->radioAccion,b)){
+//				maquinas.push_back((Engranaje*)b->GetUserData());
+//			}
 
 		}
 	}
 	if(hayContacto) {
 		removerFisica(w);
-	} else {
-		if(maquinas.size() > 0){
-			list<Engranaje*>::iterator it;
-			for(it=maquinas.begin(); it != maquinas.end(); ++it){
-				 cout << "Crea union" << endl;
-				crearLazo(*it,w);
-			}
-		}
+//	} else {
+//		if(maquinas.size() > 0){
+//			list<Engranaje*>::iterator it;
+//			for(it=maquinas.begin(); it != maquinas.end(); ++it){
+//				crearLazo(*it,w);
+//			}
+//		}
 	}
 
 
@@ -150,10 +155,25 @@ bool Engranaje::crearFisicaEstatica(b2World* w, b2Body* ground) {
 
 }
 
-b2RevoluteJoint* Engranaje::getJointATierra() {
+b2RevoluteJoint* & Engranaje::getJointATierra() {
 	return this->jointCuerpoTierra;
 }
 
 b2Body* Engranaje::getDiscoGiro() {
 	return this->body;
+}
+
+void Engranaje::modificarSentido() {
+	if(direccion == ANTIHORARIO){
+		direccion = HORARIO;
+	} else{
+		direccion =  direccion == HORARIO ? ANTIHORARIO : NULO;
+	}
+}
+
+Engranaje::Engranaje(const Engranaje& engranaje) {
+
+}
+
+Engranaje::Engranaje() {
 }

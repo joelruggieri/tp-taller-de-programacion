@@ -60,7 +60,7 @@ public:
 		b2Body* body = fixture->GetBody();
 		if (body->GetType() == b2_dynamicBody || body->GetType() == b2_staticBody) {
 			bool inside = fixture->TestPoint(m_point);
-			if (inside) {
+			if (inside && ((fixture->GetFilterData().categoryBits &  CATEGORIA_FIGURAS) != 0)){
 				m_fixture = fixture;
 //				log.debug("La figura confirma la colision");
 				// We are done, terminate the query.
@@ -94,23 +94,6 @@ Figura* Mapa::pickUp(float x, float y) {
 		Figura* figura = (Figura*) (body->GetUserData());
 		return figura;
 	}
-//	return NULL;
-//	for(b2Body *b = myWorld->GetBodyList(); b; b=b->GetNext()){
-//
-//		if(b->GetUserData() != 0){
-//			Figura * fig = (Figura*) b->GetUserData();
-//			double xC = x;
-//			double yC = 100 - y;
-//			fig->getRotador()->rotar(fig,xC,yC);
-//			b2Vec2 vec(xC,100 - yC);
-//			b2Shape* shape = b->GetFixtureList()->GetShape();
-//			bool contacto = shape->TestPoint(b->GetTransform(), vec);
-//			if(contacto){
-//				return fig;
-//			}
-//
-//		}
-//	}
 	return NULL;
 
 }
@@ -142,6 +125,7 @@ bool Mapa::isAdentro(float x, float y) {
 
 void Mapa::step(Transformacion & tl) {
 	myWorld->Step(this->frecuencia,this->velocidad,this->posicion);
+	cout << "joints " <<myWorld->GetJointCount() <<  endl;
 	list<Figura*>::iterator it;
 	//TODO VER OTRA FORMA DE HACER EL UPDATE.
 	Figura * fig;
