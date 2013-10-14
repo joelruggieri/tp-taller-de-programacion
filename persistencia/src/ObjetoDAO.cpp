@@ -17,6 +17,8 @@
 #include "src/objeto/BolaBoliche.h"
 #include "src/objeto/GloboHelio.h"
 #include "src/objeto/PelotaJuego.h"
+#include "src/objeto/Engranaje.h"
+#include "src/objeto/Motor.h"
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -35,6 +37,7 @@ void ObjetoDAO::guardarFigura(Figura* objeto, YAML::Node *nodoRaiz) {
 
 
 void ObjetoDAO::visit(Motor* motor) {
+	guardar(motor,nodo);
 }
 
 void ObjetoDAO::visit(Plataforma* plataforma){
@@ -89,5 +92,9 @@ void ObjetoDAO::visit(Engranaje* engranaje) {
 
 
 void ObjetoDAO::guardar(Engranaje* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Engranajes"].push_back(*objeto);
+}
 
+void ObjetoDAO::guardar(Motor* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Motores"].push_back(*objeto);
 }

@@ -203,6 +203,12 @@ bool Figura::validarContacto(b2World* w, b2Body * verf, b2Body * b) {
 
 }
 
-
-
-
+Figura::Figura(const Figura& fig) {
+	this->reg = fig.reg;
+	this->x = fig.x;
+	this->xb = fig.xb;
+	this->y = fig.y;
+	this->yb = fig.y;
+	this->rotacion = fig.rotacion;
+	this->rotacionb = fig.rotacion;
+}

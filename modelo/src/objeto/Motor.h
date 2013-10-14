@@ -11,8 +11,6 @@
 #include "Engranaje.h"
 
 class Motor: public Engranaje {
-private:
-	int direccion;
 public:
 	Motor(float x, float y, float radio);
 	virtual ~Motor();
@@ -22,7 +20,6 @@ public:
 	void acept(VisitorFigura*);
 private:
 	void setRadio(float radio);
-
 };
 
 #endif /* MOTOR_H_ */

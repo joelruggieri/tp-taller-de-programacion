@@ -200,5 +200,6 @@ void Mapa::despertar() {
 	for(it = figuras.begin(); it != figuras.end(); ++it){
 		(*it)->crearFisica(myWorld,groundBody);
 	}
+	cout << myWorld->GetJointCount() << endl;
 
 }

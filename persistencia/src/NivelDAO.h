@@ -29,6 +29,8 @@ private:
 	void obtenerBolasDeBoliche(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerGlobosHelio(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerPelotasJuego(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerEngranajes(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerMotores(std::list<Figura*> &lista, YAML::Node objetos);
 	void imprimirLinea(std:: string & msj, YAML::Mark marca);
 	Logger logg;
 };

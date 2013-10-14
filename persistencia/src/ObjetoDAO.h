@@ -11,6 +11,7 @@
 #include <list>
 #include <string>
 class Figura;
+class Engranaje;
 class Motor;
 class Plataforma;
 class Balancin;
@@ -18,7 +19,6 @@ class CintaTransportadora;
 class BolaBoliche;
 class PelotaJuego;
 class GloboHelio;
-class Engranaje;
 
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
@@ -44,6 +44,7 @@ private:
 	void guardar(GloboHelio *objeto, YAML::Node *nodoRaiz);
 	void guardar(PelotaJuego* objeto, YAML::Node* nodoRaiz);
 	void guardar(Engranaje* objeto, YAML::Node* nodoRaiz);
+	void guardar(Motor* objeto, YAML::Node* nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };
