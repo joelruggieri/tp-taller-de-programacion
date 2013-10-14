@@ -5,9 +5,10 @@
  *      Author: javier
  */
 
-#include <Box2D/Box2D.h>
+
 #include "CintaTransportadora.h"
 #include "../Constantes.h"
+#include <Box2D/Box2D.h>
 
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -193,5 +194,42 @@ void CintaTransportadora::crearFisicaEstaticaTemplate(b2World* m_world,
 	body->CreateFixture(&fixture);
 	setBody(body);
 	body->SetUserData(this);
+}
+
+void CintaTransportadora::updateModelo() {
+	Figura::updateModelo();
+	actualizarAngulos();
+	actualizarMarcos();
+}
+
+float* CintaTransportadora::getAngulosRuedas() {
+	return angulosRuedas;
+}
+
+SDL_Rect* CintaTransportadora::getMarcosRuedas() {
+	return marcosRuedas;
+}
+
+void CintaTransportadora::actualizarAngulos() {
+	if (ruedas[0])
+		angulosRuedas[0] = ruedas[0]->GetAngle();
+	else
+		angulosRuedas[0] = 0;
+	if (ruedas[1])
+		angulosRuedas[1] = ruedas[1]->GetAngle();
+	else
+		angulosRuedas[1] = 0;
+
+}
+
+void CintaTransportadora::actualizarMarcos() {
+	SDL_Rect aux;
+	aux.x = (int) getX() - longitud/2;
+	aux.y = (int) getY();
+	aux.w = aux.h = RADIO_EJE_CINTA;
+	marcosRuedas[0] = aux;
+	aux.x = (int) getX() + longitud/2;
+	marcosRuedas[1] = aux;
+
 }
 

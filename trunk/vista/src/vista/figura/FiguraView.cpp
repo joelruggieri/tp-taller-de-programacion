@@ -73,3 +73,6 @@ void FiguraView::update(Transformacion & tl) {
 
 }
 
+SDL_Texture* FiguraView::getTexture() {
+	return textura;
+}
