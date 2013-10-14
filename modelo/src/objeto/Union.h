@@ -12,7 +12,7 @@
 
 class Union: public Objeto {
 public:
-	Union();
+	Union(float x, float y);
 	virtual ~Union();
 	void setFin(const b2Vec2& fin);
 	void setInicio(const b2Vec2& inicio);
