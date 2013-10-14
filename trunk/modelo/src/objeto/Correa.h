@@ -7,24 +7,30 @@
 
 #ifndef CORREA_H_
 #define CORREA_H_
-
+#include <cmath>
 #include "Objeto.h"
 #include "Engranaje.h"
-class Correa: public Objeto {
+#include "Union.h"
+#include "../figura/Figura.h"
+class Correa:  public Union {
 public:
 	Correa(float x, float y);
 	virtual ~Correa();
 	void crearFisica(b2World* w, b2Body* ground);
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);
+	void setFiguraInicio(Figura*);
+	void setFiguraFin(Figura*);
 	b2RevoluteJoint* getJointATierra();
-	void setInicio(b2Vec2);
-	void setFin(b2Vec2);
+	bool crearFisicaEstatica(b2World* w, b2Body* ground);
 private:
 	Engranaje* engranajeA;
 	Engranaje* engranajeB;
-	b2Vec2 inicio;
-	b2Vec2 fin;
-
+	Figura* figuraInicio;
+	Figura* figuraFin;
+	float calcularDistancia(b2Vec2, b2Vec2);
+	b2Vec2 calcularCentroCuadrado();
+	float calcularAnguloCuadrado();
+	float calcularAnchoCuadrado();
 };
 
 #endif /* CORREA_H_ */

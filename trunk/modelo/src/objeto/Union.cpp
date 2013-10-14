@@ -7,7 +7,7 @@
 
 #include "Union.h"
 
-Union::Union() {
+Union::Union(float x, float y):Objeto(x,y) {
 	// TODO Auto-generated constructor stub
 
 }
