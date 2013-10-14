@@ -125,7 +125,7 @@ bool Mapa::isAdentro(float x, float y) {
 
 void Mapa::step(Transformacion & tl) {
 	myWorld->Step(this->frecuencia,this->velocidad,this->posicion);
-	cout << "joints " <<myWorld->GetJointCount() <<  endl;
+//	cout << "joints " <<myWorld->GetJointCount() <<  endl;
 	list<Figura*>::iterator it;
 	//TODO VER OTRA FORMA DE HACER EL UPDATE.
 	Figura * fig;
