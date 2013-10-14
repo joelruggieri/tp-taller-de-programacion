@@ -87,17 +87,19 @@ int MainController::run() {
 	eventController.addKeyboardController(tbEventController);
 	eventController.setFlujoController(juegoController);
 	eventController.setDrawController(this);
-	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
+//	int timerID =SDL_AddTimer(40, my_callbackfunc, NULL);
 	SDL_SetWindowMaximumSize(ventana, 650, 650);
 //	SDL_SetWindowMaximumSize(ventana, 650, 650);
 	SDL_SetWindowPosition(ventana, 300,100);
-
+	SDL_Event event;
 	while (!terminar) {
-		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
+		SDL_Delay(10);
+		event = crearEvento(USREVENT_DRAW, NULL, NULL);
+		SDL_PushEvent(&event);
 		juegoController->paso();
 		terminar = eventController.procesarEventos(ventana);
 	}
-	SDL_RemoveTimer(timerID);
+//	SDL_RemoveTimer(timerID);
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(ventana);
 
