@@ -9,13 +9,13 @@
 #define VISITORFIGURA_H_
 
 class Plataforma;
+class Engranaje;
 class Motor;
 class Balancin;
 class CintaTransportadora;
 class BolaBoliche;
 class PelotaJuego;
 class GloboHelio;
-class Engranaje;
 
 class VisitorFigura {
 public:

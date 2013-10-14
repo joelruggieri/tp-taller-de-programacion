@@ -9,7 +9,6 @@
 #define ENGRANAJE_H_
 
 #include "Objeto.h"
-enum DIRECCION {HORARIO, NULO, ANTIHORARIO};
 class Engranaje: public Objeto {
 public:
 	Engranaje();
@@ -24,13 +23,15 @@ public:
 	b2RevoluteJoint* & getJointATierra();
 	b2Body * getDiscoGiro();
 	void modificarSentido();
+	int getDireccion() const;
+	void setDireccion(int dir);
 private:
 	typedef Objeto super;
 protected:
 	b2RevoluteJoint * jointCuerpoTierra;
 	float radio;
 	b2Body* radioAccion;
-	DIRECCION direccion;
+	int direccion;
 	void crearLazo(Engranaje*, b2World*);
 };
 

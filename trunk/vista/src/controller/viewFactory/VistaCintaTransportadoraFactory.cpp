@@ -8,7 +8,7 @@
 #include "VistaCintaTransportadoraFactory.h"
 #include "../../ConstantesVista.h"
 #include "../editor/EditorDeEstiramientoDeCinta.h"
-
+#include "src/Constantes.h"
 VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory(EditorDeEstiramientoDeCinta* editor) : ViewFiguraFactory(PATH_VISTA_CINTA, editor) {
 }
 

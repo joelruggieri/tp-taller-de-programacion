@@ -15,6 +15,10 @@ void ValidadorEstatico::visit(Motor* f) {
 	if(!validarPosicion(f)){
 		return;
 	}
+	if(f->getDireccion() != 1 && f->getDireccion() != -1){
+		this->ultimaValidacion  = false;
+		this->errorValidacion = "Direccion invalida";
+	}
 }
 
 void ValidadorEstatico::visit(Plataforma* f) {

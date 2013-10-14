@@ -9,7 +9,7 @@
 using namespace std;
 #include "../Constantes.h"
 Motor::Motor(float x, float y, float radio):Engranaje(x, y, radio) {
-	this->direccion = ANTIHORARIO ; //por defecto gira en sentido horario
+	this->direccion = 1 ; //por defecto gira en sentido horario
 }
 
 Motor::~Motor() {
@@ -41,7 +41,7 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	//joint cuerpo con la tierra;
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(ground,body,centro);
-	rjd.motorSpeed =  this->direccion == ANTIHORARIO ? 5 : -5;
+	rjd.motorSpeed =  this->direccion == 1 ? 5 : -5;
 	rjd.maxMotorTorque = 10000.0f;
 	rjd.collideConnected = false;
 	rjd.enableMotor = true;

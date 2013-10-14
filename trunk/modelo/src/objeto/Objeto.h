@@ -13,11 +13,11 @@ class Objeto: public Figura {
 public:
 	Objeto();
 	Objeto(float x, float y);
+	Objeto(const Objeto & obj);
 	virtual ~Objeto();
 	bool contieneCentro(Posicionable *);
 	//estos metodos devuelven el tamaño del cuadrado contenedor;
 	bool contacto(float, float);
-	virtual void modificarSentido();
 };
 
 #endif /* OBJETO_H_ */

@@ -37,6 +37,7 @@ protected:
 public:
 	Figura();
 	Figura(float x, float y);
+	Figura(const Figura & fig);
 	virtual ~Figura();
 	virtual bool contacto(float, float)= 0;
 	float getX() const;

@@ -1,0 +1,16 @@
+Nivel:
+  Fondo: ""
+  Nombre: test04
+Objetos:
+  Engranajes:
+    - y: 36.6
+      x: 63
+    - x: 72.6
+      y: 39.4
+  Motores:
+    - x: 80.6
+      direccion: 1
+      y: 20.4
+    - direccion: 1
+      y: 32.8
+      x: 53.8

@@ -14,6 +14,8 @@
 #include "src/objeto/BolaBoliche.h"
 #include "src/objeto/GloboHelio.h"
 #include "src/objeto/PelotaJuego.h"
+#include "src/objeto/Motor.h"
+#include "src/objeto/Engranaje.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
@@ -135,6 +137,8 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerBolasDeBoliche(lista,objetos);
 			this->obtenerGlobosHelio(lista,objetos);
 			this->obtenerPelotasJuego(lista,objetos);
+			this->obtenerMotores(lista,objetos);
+			this->obtenerEngranajes(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
@@ -303,6 +307,51 @@ void NivelDAO::obtenerPelotasJuego(std::list<Figura*>& lista,
 			std::string mensaje = "Error al leer pelotas: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje,  pelotasJuego[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerMotores(std::list<Figura*>& lista,
+		YAML::Node objetos) {
+
+	YAML::Node motores = objetos["Motores"];
+	if(motores.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Motores";
+		logg.info(mensaje);
+		}
+	for (std::size_t i = 0; i < motores.size(); i++) {
+		try {
+			Motor obj = motores[i].as<Motor>();
+//			bool salir = validar(obj, motores, i);
+//			if(!salir ) continue;
+			lista.push_back( new Motor(obj));
+			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Motores: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  motores[i].Mark() );
+		}
+	}
+}
+void NivelDAO::obtenerEngranajes(std::list<Figura*>& lista,
+		YAML::Node objetos) {
+
+	YAML::Node engranajes = objetos["Engranajes"];
+	if(engranajes.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Engranajes";
+		logg.info(mensaje);
+		}
+	for (std::size_t i = 0; i < engranajes.size(); i++) {
+		try {
+			Engranaje obj = engranajes[i].as<Engranaje>();
+//			bool salir = validar(obj, pelotasJuego, i);
+//			if(!salir ) continue;
+			lista.push_back( new Engranaje(obj));
+			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Engranajes: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  engranajes[i].Mark() );
 		}
 	}
 }

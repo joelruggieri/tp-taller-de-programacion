@@ -14,7 +14,7 @@ using namespace std;
 Engranaje::Engranaje(float x, float y, float radio): Objeto(x,y) {
 	this->radio = radio;
 	this->radioAccion = NULL;
-	this->direccion = NULO;
+	this->direccion = 0;
 	this->jointCuerpoTierra = NULL;
 }
 
@@ -164,16 +164,24 @@ b2Body* Engranaje::getDiscoGiro() {
 }
 
 void Engranaje::modificarSentido() {
-	if(direccion == ANTIHORARIO){
-		direccion = HORARIO;
+	if(direccion == 1){
+		direccion = -1;
 	} else{
-		direccion =  direccion == HORARIO ? ANTIHORARIO : NULO;
+		direccion =  direccion == -1 ? 1 : 0;
 	}
 }
 
-Engranaje::Engranaje(const Engranaje& engranaje) {
-
+Engranaje::Engranaje(const Engranaje& engranaje):Objeto(engranaje) {
+	this->direccion = engranaje.direccion;
 }
 
 Engranaje::Engranaje() {
+}
+
+int Engranaje::getDireccion() const {
+	return this->direccion;
+}
+
+void Engranaje::setDireccion(int dir) {
+	this->direccion = dir;
 }

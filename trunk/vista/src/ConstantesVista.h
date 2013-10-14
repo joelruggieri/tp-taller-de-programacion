@@ -19,7 +19,6 @@
 #define ALTO_VISTA_BALANCIN_LOG 4.0 //U logicas
 #define ALTO_VISTA_PLATAFORMA_LOG 4.0 //U logicas
 #define RADIO_EJE_CINTA_LOG 3
-#define LONGITUD_CINTA 20
 #define PATH_VISTA_BALANCIN "resource/balancin.png"
 #define PATH_VISTA_BALANCIN_F "resource/balancin_f.png"
 #define PATH_VISTA_PLATAFORMA_F "resource/plataforma_f.png"
