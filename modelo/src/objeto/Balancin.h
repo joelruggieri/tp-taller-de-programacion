@@ -17,6 +17,7 @@ private:
 	//Enganche* engancheIzquierdo;
 	float ancho;
 	float alto;
+	void crearFisicaEstaticaTemplate(b2World * w, b2Body* ground);
 public:
 	Balancin();
 	Balancin(const Balancin& balancin);
@@ -28,6 +29,7 @@ public:
 	void setAncho(float ancho);
 	void crearFisica(b2World * w, b2Body* ground);
 	void acept(VisitorFigura*);
+
 };
 
 #endif /* BALANCIN_H_ */
