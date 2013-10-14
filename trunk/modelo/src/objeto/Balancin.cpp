@@ -131,10 +131,34 @@ void Balancin::crearFisica(b2World * w, b2Body* ground){
 	rjd.enableLimit = true;
 	w->CreateJoint(&rjd);
 
-
-
 }
 
 void Balancin::acept(VisitorFigura* visitor){
 	visitor->visit(this);
+}
+
+
+void Balancin::crearFisicaEstaticaTemplate(b2World * w, b2Body* ground){
+	float x = this->getX();
+		float y = this->getY();
+		b2Vec2 centro(x, y);
+		b2PolygonShape * polygon = new b2PolygonShape();
+
+
+		polygon->SetAsBox(this->ancho / 2, this->alto / 2);
+
+		b2FixtureDef fixture;
+		fixture.shape = polygon;
+		fixture.filter.categoryBits = CATEGORIA_FIGURAS;
+		b2BodyDef bodyDef;
+		bodyDef.type = b2_staticBody;
+		bodyDef.position.Set(x, y);
+		bodyDef.fixedRotation = true;
+
+		double rotacionRad = this->getRotacion() * -3.14 / 180.0;
+		bodyDef.angle = rotacionRad;
+		b2Body* body = w->CreateBody(&bodyDef);
+		body->CreateFixture(&fixture);
+		body->SetUserData(this);
+		this->setBody(body);
 }
