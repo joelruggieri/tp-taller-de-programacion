@@ -41,7 +41,7 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	//joint cuerpo con la tierra;
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(ground,body,centro);
-	rjd.motorSpeed =  this->direccion == ANTIHORARIO ? 10 : -10;
+	rjd.motorSpeed =  this->direccion == ANTIHORARIO ? 5 : -5;
 	rjd.maxMotorTorque = 10000.0f;
 	rjd.collideConnected = false;
 	rjd.enableMotor = true;
