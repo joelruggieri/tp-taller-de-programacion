@@ -160,7 +160,7 @@ CintaTransportadora::CintaTransportadora(float x, float y, float longitud) : Obj
 }
 
 
-CintaTransportadora::CintaTransportadora(const CintaTransportadora& figura):Objeto(x,y) {
+CintaTransportadora::CintaTransportadora(const CintaTransportadora& figura):Objeto(figura.x,figura.y) {
 	this->longitud = figura.longitud;
 	this->reg = figura.reg;
 	this->cuerpo = figura.cuerpo;
