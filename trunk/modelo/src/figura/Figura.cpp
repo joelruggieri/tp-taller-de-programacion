@@ -68,6 +68,7 @@ Figura::Figura() {
 	xb = x;
 	yb = y;
 	rotacionb =0;
+	traccionable = false;
 }
 
 Figura::Figura(float x, float y) {
@@ -212,3 +213,8 @@ Figura::Figura(const Figura& fig) {
 	this->rotacion = fig.rotacion;
 	this->rotacionb = fig.rotacion;
 }
+
+bool Figura::esTraccionable() {
+	return this->traccionable;
+}
+

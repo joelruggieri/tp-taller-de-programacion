@@ -19,7 +19,7 @@ protected:
 	float x;
 	float y;
 	double rotacion;
-
+	bool traccionable;
 	float xb,yb;
 	double rotacionb;
 
@@ -52,12 +52,12 @@ public:
 	virtual bool crearFisicaEstatica(b2World *, b2Body* ground);
 	virtual void acept(VisitorFigura*) = 0;
 	virtual void removerFisica(b2World * w);
+	bool esTraccionable();
 
 	Vista* getVista();
 	void setVista(Vista* vista);
 	b2Body * getBody();
 	void setBody(b2Body *);
-
 
 	virtual void updateModelo();
 	virtual void updateVista(Transformacion &);

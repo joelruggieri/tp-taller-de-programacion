@@ -20,8 +20,8 @@ public:
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);
 	void setFiguraInicio(Figura*);
 	void setFiguraFin(Figura*);
-	b2RevoluteJoint* getJointATierra();
 	bool crearFisicaEstatica(b2World* w, b2Body* ground);
+	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
 private:
 	Engranaje* engranajeA;
 	Engranaje* engranajeB;
