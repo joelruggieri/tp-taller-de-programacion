@@ -16,6 +16,7 @@ Engranaje::Engranaje(float x, float y, float radio): Objeto(x,y) {
 	this->radioAccion = NULL;
 	this->direccion = 0;
 	this->jointCuerpoTierra = NULL;
+	this->traccionable = true;
 }
 
 Engranaje::~Engranaje() {
@@ -173,6 +174,7 @@ void Engranaje::modificarSentido() {
 
 Engranaje::Engranaje(const Engranaje& engranaje):Objeto(engranaje) {
 	this->direccion = engranaje.direccion;
+	traccionable = true;
 }
 
 Engranaje::Engranaje() {

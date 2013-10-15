@@ -6,7 +6,7 @@
  */
 
 #include "Correa.h"
-
+#include "../Constantes.h"
 Correa::Correa(float x, float y):Union(x,y){
 
 }
@@ -18,7 +18,7 @@ Correa::~Correa() {
 
 void Correa::crearFisica(b2World* w, b2Body* ground) {
 		b2Vec2 centro(x,y);
-
+		crearLazo((Engranaje*)this->figuraInicio, (Engranaje*)this->figuraFin,w);
 }
 
 void Correa::crearLazo(Engranaje * a, Engranaje* b, b2World* w) {
@@ -31,8 +31,8 @@ void Correa::crearLazo(Engranaje * a, Engranaje* b, b2World* w) {
 	//    var second_joint:b2RevoluteJoint=m_world.CreateJoint(the_rev_joint) as b2RevoluteJoint;
 	    // gear joint
 	    b2GearJointDef  gear_joint;
-	    gear_joint.bodyA=a->getDiscoGiro();
-	    gear_joint.bodyB= b->getDiscoGiro();
+	    gear_joint.bodyA=a->getBody();
+	    gear_joint.bodyB= b->getBody();
 	    gear_joint.joint1= a->getJointATierra();
 	    gear_joint.joint2= b->getJointATierra();
 	    gear_joint.ratio=-1;
@@ -62,6 +62,7 @@ vecResult.y = (this->inicio.y + this->fin.y)/2;
 return vecResult;
 }
 
+/// POS: devuelve en RADIANES el angulo
 float Correa::calcularAnguloCuadrado() {
 	b2Vec2 dist1, dist2, dist3, dist4;
 dist1.x = 0;
@@ -72,7 +73,7 @@ dist3.x = this->fin.x;
 dist3.y = 0 ;
 dist4.x = this->inicio.x;
 dist4.y= 0;
-return atan(calcularDistancia(dist1, dist2)/ calcularDistancia(dist3, dist4));
+return -atan(calcularDistancia(dist1, dist2)/ calcularDistancia(dist3, dist4));
 }
 
 void Correa::setFiguraInicio(Figura* a) {
@@ -84,11 +85,36 @@ void Correa::setFiguraFin(Figura* a) {
 	this->figuraFin = a ;
 }
 
+void Correa::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
+
+	b2PolygonShape cuadrado;
+	b2BodyDef bodyDef;
+
+	bodyDef.type = b2_dynamicBody;	//dynamic??
+	bodyDef.position = (this->calcularCentroCuadrado());
+	bodyDef.angle = this->calcularAnguloCuadrado();
+	bodyDef.fixedRotation = true;
+	b2Body* body = w->CreateBody(&bodyDef);
+	cuadrado.SetAsBox(this->calcularAnchoCuadrado(),2);
+	b2FixtureDef bodyCuadrado;
+	bodyCuadrado.shape = &cuadrado;
+	bodyCuadrado.filter.categoryBits = CATEGORIA_FIGURAS;
+	bodyCuadrado.filter.maskBits = CATEGORIA_FIGURAS;
+	body->CreateFixture(&bodyCuadrado);
+	  this->crearFisica(w,ground);
+
+}
+
 float Correa::calcularAnchoCuadrado() {
 	return this->calcularDistancia(this->inicio, this->fin);
 }
 
+
 bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
+	if (!this->figuraInicio->esTraccionable() || !this-figuraFin->esTraccionable())
+	{
+		return false;
+	}
 	this->crearFisicaEstaticaTemplate(w,ground);
 	bool hayContacto = false;
 	for (b2Body* b = w->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
@@ -102,25 +128,10 @@ bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
 	}
 	if(hayContacto) {
 		removerFisica(w);
+		/// remover joint tambien
 					}
-	else
-			{
-					b2PolygonShape cuadrado;
-					b2BodyDef bodyDef;
-					bodyDef.type = b2_dynamicBody;	//dynamic??
-					bodyDef.position = (this->calcularCentroCuadrado());
-					bodyDef.angle = this->calcularAnguloCuadrado();
-					bodyDef.fixedRotation = true;
-					b2Body* body = w->CreateBody(&bodyDef);
-					cuadrado.SetAsBox(this->calcularAnchoCuadrado(),2);
-					b2FixtureDef bodyCuadrado;
-					bodyCuadrado.shape = &cuadrado;
-//					bodyBolaBoliche.filter.categoryBits = CATEGORIA_FIGURAS;
-//					bodyBolaBoliche.density = 15.0f;	//poca densidad, la densidad del aire cual es ?
-//					bodyBolaBoliche.friction = 0.2f;
-//					bodyBolaBoliche.restitution	 = 0.3f;
-					body->CreateFixture(&bodyCuadrado);
-			}
+
+
 	return !hayContacto;
 }
 
