@@ -121,7 +121,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	int w,h;
 	trans.setVector(modelo->getX(), modelo->getY());
 	trans.getResultadoInverso(x,y);
-	w = r->resizearDistanciaLogicaY(10);
+	w = r->resizearDistanciaLogicaX(10);
 	h = r->resizearDistanciaLogicaY(10);
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
