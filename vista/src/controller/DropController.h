@@ -17,6 +17,7 @@
 #include "../vista/objeto/PlataformaView.h"
 #include "../vista/objeto/BalancinView.h"
 #include "../vista/objeto/BolaBolicheView.h"
+#include "../vista/objeto/CorreaView.h"
 #include <list>
 
 using namespace std;
