@@ -53,7 +53,8 @@ public:
 	virtual void acept(VisitorFigura*) = 0;
 	virtual void removerFisica(b2World * w);
 	bool esTraccionable();
-
+	bool coincidenMascaras(b2Body*);
+	bool coincidenCategorias(b2Body*);
 	Vista* getVista();
 	void setVista(Vista* vista);
 	b2Body * getBody();
