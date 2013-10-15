@@ -148,13 +148,15 @@ struct convert<CintaTransportadora> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
+		node["longitud"] = objeto.getLongitud();
 		return node;
 	}
 
 	static bool decode(const Node& node, CintaTransportadora& objeto) {
-		if (node.size() != 2) return false;
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
+		objeto.setLongitud(node["longitud"].as<int>());
 		Mark marca = node.Mark();
 		Registro & reg = objeto.getReg();
 		reg.setLinea(marca.line);
@@ -162,6 +164,7 @@ struct convert<CintaTransportadora> {
 		return true;
 	}
 };
+
 template<>
 struct convert<Engranaje> {
 	static Node encode(const Engranaje & objeto) {
