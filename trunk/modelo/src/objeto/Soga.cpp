@@ -9,7 +9,7 @@
 
 Soga::Soga(float x, float y):Objeto(x,y) {
 	// TODO Auto-generated constructor stub
-
+	modificado = true;
 }
 
 Soga::~Soga() {
@@ -19,6 +19,7 @@ Soga::~Soga() {
 
 Soga::Soga(const Soga& figura):Objeto(x,y) {
 	this->reg = figura.reg;
+	this->modificado = figura.modificado;
 }
 
 bool Soga::crearFisicaEstatica(b2World*) {
@@ -91,4 +92,45 @@ b2Body *Soga::crear(b2World *m_world, int x, int y) {
 	b2Body *cuerpo = m_world->CreateBody(&myBodyDef);
 	cuerpo->CreateFixture(&myFixtureDef);
 	return cuerpo;
+}
+
+void Soga::updateModelo() {
+	Figura::updateModelo();
+//	actualizarMarcos();
+//	actualizarAngulos();
+}
+
+void Soga::actualizarMarcos() {
+	if (tramos.size() != marcosTramos.size()) {
+		marcosTramos = std::vector<SDL_Rect>(tramos.size());
+	}
+	SDL_Rect aux;
+	for (unsigned int i=0; i < tramos.size(); ++i){
+		aux.x = (int) tramos[i]->GetPosition().x;
+		aux.y = (int) tramos[i]->GetPosition().y;
+		aux.w = 0.25;
+		aux.h = 1.1;
+		marcosTramos[i] = aux;
+	}
+	modificado = false;
+}
+
+void Soga::actualizarAngulos() {
+	if (tramos.size() != angulosTramos.size()) {
+		angulosTramos = std::vector<float>(tramos.size());
+	}
+	for (unsigned int i=0; i < tramos.size(); ++i){
+		angulosTramos[i] =  tramos[i]->GetAngle();
+	}
+	modificado = false;
+}
+
+std::vector<float>& Soga::getAngulosTramos() {
+	if (modificado) actualizarAngulos();
+	return angulosTramos;
+}
+
+std::vector<SDL_Rect>& Soga::getMarcosTramos() {
+	if (modificado) actualizarMarcos();
+	return marcosTramos;
 }
