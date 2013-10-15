@@ -19,6 +19,10 @@ public:
 	virtual ~SogaView();
 	EditorNivel* getEditor();
 	void dropTemplate();
+	void dibujarse(SDL_Renderer * renderer, SDL_Rect & dest);
+private:
+	void dibujarParte(SDL_Renderer * renderer, SDL_Rect & dest, float angulo, SDL_Texture* text);
+	SDL_Texture * texturaTramo;
 };
 
 #endif /* SOGAVIEW_H_ */
