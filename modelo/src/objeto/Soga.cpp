@@ -16,8 +16,79 @@ Soga::~Soga() {
 	// TODO Auto-generated destructor stub
 }
 
-//TODO IMPLEMENTAR EL CONSTRUCTOR COPIA Y QUE SI O SI TENGA ESTA LINEA this->reg = figura.reg;
+
+Soga::Soga(const Soga& figura):Objeto(x,y) {
+	this->reg = figura.reg;
+}
 
 bool Soga::crearFisicaEstatica(b2World*) {
-	return false;
+	// Minga! La soga puede atravesar objetos
+	return true;
+}
+
+void Soga::cargar(b2Body* origen, b2Body* destino, b2World *m_world) {
+
+	b2Body* techo = origen;
+	b2Body* ultimoEnlace = techo;
+	b2Vec2 ultimoAnclaje = b2Vec2(0, -0.5);
+	b2RevoluteJointDef *unionDeRevolucion = new b2RevoluteJointDef();
+	float altura = 1.1;
+
+
+	float deltaX = destino->GetPosition().x - origen->GetPosition().x;
+	float deltaY = destino->GetPosition().y - origen->GetPosition().y;
+
+	float mayor = (deltaX > deltaY ? deltaX : deltaY);
+
+	float pasoX = deltaX / mayor;
+	float pasoY = deltaY / mayor;
+
+	b2Body* tramoActual;
+	tramos.clear();
+
+    for (int i = 1; i < mayor; ++i) {
+        tramoActual = crear(m_world, origen->GetPosition().x + i * pasoX, origen->GetPosition().y + i * pasoY);
+
+        //revolute joint
+        unionDeRevolucion->bodyA = ultimoEnlace;
+        unionDeRevolucion->bodyB = tramoActual;
+        unionDeRevolucion->localAnchorA = ultimoAnclaje;
+        unionDeRevolucion->localAnchorB = b2Vec2(0 , altura/2);
+
+        ultimoAnclaje = b2Vec2(0, -1 * altura/2);
+
+        //create the joint in world
+        m_world->CreateJoint(unionDeRevolucion);
+
+        // saving the reference of the last placed link
+        ultimoEnlace = tramoActual;
+        tramos.push_back(tramoActual);
+    }
+
+    unionDeRevolucion->bodyA = ultimoEnlace;
+    unionDeRevolucion->bodyB = destino;
+    unionDeRevolucion->localAnchorA = ultimoAnclaje;
+    unionDeRevolucion->localAnchorB = b2Vec2(0 , altura/2);
+
+    ultimoAnclaje = b2Vec2(0, -1 * altura/2);
+
+    //create the joint in world
+    m_world->CreateJoint(unionDeRevolucion);
+}
+
+
+b2Body *Soga::crear(b2World *m_world, int x, int y) {
+	b2BodyDef myBodyDef;
+	myBodyDef.type = b2_dynamicBody;
+	b2FixtureDef myFixtureDef;
+	myFixtureDef.friction = 1;
+	myFixtureDef.density = 1;
+	myFixtureDef.restitution = 0.5;
+	b2PolygonShape boxShape;
+	boxShape.SetAsBox(0.25 / 2,1.1 / 2);
+	myFixtureDef.shape = &boxShape;
+	myBodyDef.position.Set(x , y);
+	b2Body *cuerpo = m_world->CreateBody(&myBodyDef);
+	cuerpo->CreateFixture(&myFixtureDef);
+	return cuerpo;
 }
