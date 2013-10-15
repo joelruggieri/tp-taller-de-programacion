@@ -11,6 +11,7 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 #include "src/figura/Enganche.h"
+#include "../../ConstantesVista.h"
 
 SimpleEditorSoga::SimpleEditorSoga(ModeloController * m, ZonaTablero * t,
 		FiguraFactory* factory, int yMaxDrag) {
@@ -274,7 +275,7 @@ void SimpleEditorSoga::dropNuevaFigura(VistaCintaTransportadora* vista) {
 	float x;
 	float y;
 	r->adaptarPosicionPixel(vista->getXCentro(), vista->getYCentro(), x, y);
-	dropear(vista, this->figurasFactory->crearCintaTransportadora(x, 100 - y));
+	dropear(vista, this->figurasFactory->crearCintaTransportadora(x, 100 - y, LONGITUD_CINTA_LOG));
 }
 
 void SimpleEditorSoga::dropNuevaFigura(VistaEngranaje* vista) {
