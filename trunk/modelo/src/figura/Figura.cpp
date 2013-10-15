@@ -218,3 +218,10 @@ bool Figura::esTraccionable() {
 	return this->traccionable;
 }
 
+bool Figura::coincidenMascaras(b2Body* b) {
+return (this->body->GetFixtureList()->GetFilterData().maskBits == b->GetFixtureList()->GetFilterData().maskBits);
+}
+
+bool Figura::coincidenCategorias(b2Body* b) {
+	return (this->body->GetFixtureList()->GetFilterData().categoryBits == b->GetFixtureList()->GetFilterData().categoryBits);
+}
