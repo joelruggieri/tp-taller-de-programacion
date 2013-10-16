@@ -18,6 +18,15 @@
 #include "../vista/objeto/BalancinView.h"
 #include "../vista/objeto/BolaBolicheView.h"
 #include "../vista/objeto/CorreaView.h"
+#include "../vista/objeto/GloboHelioView.h"
+#include "../vista/objeto/MotorView.h"
+#include "../vista/objeto/PelotaJuegoView.h"
+#include "../vista/objeto/SogaEstaticaView.h"
+#include "../vista/objeto/SogaView.h"
+#include "../vista/objeto/VistaCintaTransportadora.h"
+#include "../vista/objeto/VistaEngranaje.h"
+
+
 #include <list>
 
 using namespace std;
@@ -29,7 +38,9 @@ class VistaCintaTransportadora;
 class BolaBolicheView;
 class PelotaJuegoView;
 class VistaEngranaje;
-
+class SogaView;
+class CorreaView;
+class SogaEstaticaView;
 class DropController {
 
 public:
@@ -44,6 +55,9 @@ public:
 	virtual void dropNuevaFigura(BolaBolicheView*)= 0;
 	virtual void dropNuevaFigura(PelotaJuegoView*) = 0 ;
 	virtual void dropNuevaFigura(VistaEngranaje*) = 0 ;
+	virtual void dropNuevaFigura(SogaView*) = 0 ;
+	virtual void dropNuevaFigura(CorreaView*) = 0 ;
+	virtual void dropNuevaFigura(SogaEstaticaView*) = 0 ;
 	virtual void dropFigura(FiguraView*) = 0;
 	virtual void drag(FiguraView *, float,float) = 0;
 };

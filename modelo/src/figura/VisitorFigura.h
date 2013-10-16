@@ -16,20 +16,22 @@ class CintaTransportadora;
 class BolaBoliche;
 class PelotaJuego;
 class GloboHelio;
+class Soga;
+class Correa;
 
 class VisitorFigura {
 public:
-	virtual ~VisitorFigura(){
+	virtual ~VisitorFigura() {
 
 	}
 	virtual void visit(Motor*) = 0;
 	virtual void visit(Plataforma*) = 0;
 	virtual void visit(Balancin*) = 0;
 	virtual void visit(CintaTransportadora*) = 0;
-	virtual void visit (BolaBoliche*) = 0;
+	virtual void visit(BolaBoliche*) = 0;
 	virtual void visit(PelotaJuego*) = 0;
-	virtual void visit (GloboHelio*) = 0;
-	virtual void visit (Engranaje*) = 0;
+	virtual void visit(GloboHelio*) = 0;
+	virtual void visit(Engranaje*) = 0;
 };
 
 #endif /* VISITORFIGURA_H_ */

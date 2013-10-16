@@ -7,7 +7,7 @@
 
 #include "Soga.h"
 
-Soga::Soga(float x, float y):Objeto(x,y) {
+Soga::Soga(float x, float y):Union(x,y) {
 	// TODO Auto-generated constructor stub
 	modificado = true;
 }
@@ -17,7 +17,7 @@ Soga::~Soga() {
 }
 
 
-Soga::Soga(const Soga& figura):Objeto(x,y) {
+Soga::Soga(const Soga& figura):Union(x,y) {
 	this->reg = figura.reg;
 	this->modificado = figura.modificado;
 }
@@ -133,4 +133,10 @@ std::vector<float>& Soga::getAngulosTramos() {
 std::vector<SDL_Rect>& Soga::getMarcosTramos() {
 	if (modificado) actualizarMarcos();
 	return marcosTramos;
+}
+
+void Soga::acept(VisitorFigura*) {
+}
+
+void Soga::crearFisica(b2World* w, b2Body* g) {
 }

@@ -8,11 +8,11 @@
 #ifndef SOGA_H_
 #define SOGA_H_
 
-#include "Objeto.h"
+#include "Union.h"
 #include <vector>
 #include <SDL2/SDL_rect.h>
 
-class Soga: public Objeto {
+class Soga: public Union {
 public:
 	Soga(float x, float y);
 	Soga(const Soga& figura);
@@ -22,7 +22,8 @@ public:
 	void updateModelo();
 	std::vector<float>& getAngulosTramos();
 	std::vector<SDL_Rect>& getMarcosTramos();
-
+	void crearFisica(b2World * w, b2Body* g);
+	void acept(VisitorFigura*);
 private:
 	void actualizarMarcos();
 	void actualizarAngulos();

@@ -22,6 +22,7 @@ public:
 	void setFiguraFin(Figura*);
 	bool crearFisicaEstatica(b2World* w, b2Body* ground);
 	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
+	void acept(VisitorFigura *);
 private:
 	Engranaje* engranajeA;
 	Engranaje* engranajeB;

@@ -10,7 +10,7 @@
 
 #include "ObjetoView.h"
 
-class SimpleEditorSoga;
+class EditorUnion;
 
 class CorreaView: public ObjetoView {
 private:
@@ -22,7 +22,7 @@ private:
 	typedef FiguraView super;
 	SDL_Color color;
 public:
-	CorreaView(int x, int y, SDL_Texture * textura,SimpleEditorSoga * editor,Uint8 r,Uint8 g,Uint8 b);
+	CorreaView(int x, int y, SDL_Texture * textura,EditorUnion * editor,Uint8 r,Uint8 g,Uint8 b);
 	virtual ~CorreaView();
 	EditorNivel* getEditor();
 	void dropTemplate();

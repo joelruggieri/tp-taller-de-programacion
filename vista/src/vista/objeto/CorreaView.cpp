@@ -6,10 +6,10 @@
  */
 
 #include "CorreaView.h"
-#include "../../controller/editor/SimpleEditorSoga.h"
+#include "../../controller/editor/EditorUnion.h"
 #include "src/objeto/Correa.h"
 
-CorreaView::CorreaView(int x, int y, SDL_Texture * textura,SimpleEditorSoga * editor,Uint8 r,Uint8 g,Uint8 b): ObjetoView(x, y, 2, 3,textura, editor) { //TODO CREO QUE TENDRIA QUE HARDCODEAR EL W Y EL H
+CorreaView::CorreaView(int x, int y, SDL_Texture * textura,EditorUnion* editor,Uint8 r,Uint8 g,Uint8 b): ObjetoView(x, y, 2, 3,textura, editor) { //TODO CREO QUE TENDRIA QUE HARDCODEAR EL W Y EL H
 	xDesde = 0;
 	yDesde = 0;
 	xHasta = 0;
@@ -23,7 +23,7 @@ CorreaView::~CorreaView() {
 }
 
 EditorNivel* CorreaView::getEditor(){
-	SimpleEditorSoga * editor = (SimpleEditorSoga *)controller;
+	EditorUnion * editor = (EditorUnion *)controller;
 	editor->setFigura(this);
 	return editor;
 }

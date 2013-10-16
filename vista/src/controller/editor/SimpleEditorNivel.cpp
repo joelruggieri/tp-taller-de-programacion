@@ -63,7 +63,6 @@ void SimpleEditorNivel::dropear(FiguraView* view, Figura* figura) {
 			elementoDrag = NULL;
 			dragueando = false;
 			editado = NULL;
-
 		}
 		//TODO VER QUE PASA CON LA MEMORIA ACA.
 //	} else {
@@ -208,12 +207,12 @@ void SimpleEditorNivel::rightClickDown(int x, int y) {
 	}
 }
 
-
-void SimpleEditorNivel::actualizarEstadoDeLaFigura(int int1, int int2){
+void SimpleEditorNivel::actualizarEstadoDeLaFigura(int int1, int int2) {
 	bool exitoVista = tablero->agregarFigura(this->editado);
-	bool exitoModelo = this->modeloController->crearFigura(this->editado->getModelo());
+	bool exitoModelo = this->modeloController->crearFigura(
+			this->editado->getModelo());
 	if (!exitoVista || !exitoModelo) {
-	//si uno de los dos no tuvo exito probamos rollbackeando.
+		//si uno de los dos no tuvo exito probamos rollbackeando.
 		if (exitoVista) {
 			tablero->removerFigura(editado);
 		}
@@ -222,9 +221,10 @@ void SimpleEditorNivel::actualizarEstadoDeLaFigura(int int1, int int2){
 		}
 		Logger log;
 		editado->getModelo()->restoreBackUp();
-		std::cout<< " " << editado->getModelo()->getAncho() << std::endl;
+		std::cout << " " << editado->getModelo()->getAncho() << std::endl;
 		exitoVista = tablero->agregarFigura(this->editado);
-		exitoModelo = this->modeloController->crearFigura(this->editado->getModelo());
+		exitoModelo = this->modeloController->crearFigura(
+				this->editado->getModelo());
 		if (!exitoVista || !exitoModelo) {
 			if (exitoVista) {
 				tablero->removerFigura(editado);
@@ -240,17 +240,17 @@ void SimpleEditorNivel::actualizarEstadoDeLaFigura(int int1, int int2){
 			editado = NULL;
 		}
 
-	//			if (!this->elementoDrag->isRolledBack()) {
-	//				log.info(
-	//						"La rotacion no pudo completarse, se retorna a la posicion anterior");
-	//				this->editado->getModelo()->restoreBackUp();
-	//			} else {
-	//				delete this->editado->getModelo();
-	//				delete editado;
-	//				delete elementoDrag;
-	//				elementoDrag = NULL;
-	//				dragueando = false;
-	//				editado = NULL;
+		//			if (!this->elementoDrag->isRolledBack()) {
+		//				log.info(
+		//						"La rotacion no pudo completarse, se retorna a la posicion anterior");
+		//				this->editado->getModelo()->restoreBackUp();
+		//			} else {
+		//				delete this->editado->getModelo();
+		//				delete editado;
+		//				delete elementoDrag;
+		//				elementoDrag = NULL;
+		//				dragueando = false;
+		//				editado = NULL;
 
 	}
 }
@@ -261,122 +261,125 @@ void SimpleEditorNivel::rightClickUp(int int1, int int2) {
 		delete visor;
 		delete this->rot;
 		finalizado = true;
-		this->actualizarEstadoDeLaFigura(int1,int2);
+		this->actualizarEstadoDeLaFigura(int1, int2);
 		/*bool exitoVista = tablero->agregarFigura(this->editado);
-		bool exitoModelo = this->modeloController->crearFigura(
-				this->editado->getModelo());
-		if (!exitoVista || !exitoModelo) {
-			//si uno de los dos no tuvo exito probamos rollbackeando.
-			if (exitoVista) {
-				tablero->removerFigura(editado);
-			}
-			if (exitoModelo) {
-				modeloController->removerFigura(editado->getModelo());
-			}
-			Logger log;
-			editado->getModelo()->restoreBackUp();
+		 bool exitoModelo = this->modeloController->crearFigura(
+		 this->editado->getModelo());
+		 if (!exitoVista || !exitoModelo) {
+		 //si uno de los dos no tuvo exito probamos rollbackeando.
+		 if (exitoVista) {
+		 tablero->removerFigura(editado);
+		 }
+		 if (exitoModelo) {
+		 modeloController->removerFigura(editado->getModelo());
+		 }
+		 Logger log;
+		 editado->getModelo()->restoreBackUp();
 
-			exitoVista = tablero->agregarFigura(this->editado);
-			exitoModelo = this->modeloController->crearFigura(
-					this->editado->getModelo());
-			if (!exitoVista || !exitoModelo) {
-				if (exitoVista) {
-					tablero->removerFigura(editado);
-				}
-				if (exitoModelo) {
-					modeloController->removerFigura(editado->getModelo());
-				}
-				delete this->editado->getModelo();
-				delete editado;
-				delete elementoDrag;
-				elementoDrag = NULL;
-				dragueando = false;
-				editado = NULL;
-			}
+		 exitoVista = tablero->agregarFigura(this->editado);
+		 exitoModelo = this->modeloController->crearFigura(
+		 this->editado->getModelo());
+		 if (!exitoVista || !exitoModelo) {
+		 if (exitoVista) {
+		 tablero->removerFigura(editado);
+		 }
+		 if (exitoModelo) {
+		 modeloController->removerFigura(editado->getModelo());
+		 }
+		 delete this->editado->getModelo();
+		 delete editado;
+		 delete elementoDrag;
+		 elementoDrag = NULL;
+		 dragueando = false;
+		 editado = NULL;
+		 }
 
-//			if (!this->elementoDrag->isRolledBack()) {
-//				log.info(
-//						"La rotacion no pudo completarse, se retorna a la posicion anterior");
-//				this->editado->getModelo()->restoreBackUp();
-//			} else {
-//				delete this->editado->getModelo();
-//				delete editado;
-//				delete elementoDrag;
-//				elementoDrag = NULL;
-//				dragueando = false;
-//				editado = NULL;
+		 //			if (!this->elementoDrag->isRolledBack()) {
+		 //				log.info(
+		 //						"La rotacion no pudo completarse, se retorna a la posicion anterior");
+		 //				this->editado->getModelo()->restoreBackUp();
+		 //			} else {
+		 //				delete this->editado->getModelo();
+		 //				delete editado;
+		 //				delete elementoDrag;
+		 //				elementoDrag = NULL;
+		 //				dragueando = false;
+		 //				editado = NULL;
 
-		}*/
+		 }*/
 		//TODO VER QUE PASA CON LA MEMORIA ACA.
 	}
 }
 
 bool SimpleEditorNivel::isEnd() {
-return finalizado;
+	return finalizado;
 }
 
 void SimpleEditorNivel::dibujarEdicion(SDL_Renderer*r) {
-if (visor != NULL)
-	visor->dibujarse(r);
+	if (visor != NULL)
+		visor->dibujarse(r);
 }
 
 void SimpleEditorNivel::cleanAndDelete() {
-delete editado->getModelo();
-delete editado;
-editado = NULL;
-finalizado = true;
-dragueando = false;
-rotando = false;
+	delete editado->getModelo();
+	delete editado;
+	editado = NULL;
+	finalizado = true;
+	dragueando = false;
+	rotando = false;
 }
 
 void SimpleEditorNivel::dropNuevaFigura(BolaBolicheView* view) {
-Resizer* r = Resizer::Instance();
-float x;
-float y;
-r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-dropear(view, this->figurasFactory->crearBolaBoliche(x, 100 - y));
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearBolaBoliche(x, 100 - y));
 }
 
 void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {
 //TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
-Logger log;
-Resizer * r = Resizer::Instance();
-if (!dragueando) {
-	r->adaptarPosicionLogica(x, y, this->posStartDragX, this->posStartDragY);
-	this->elementoDrag = new Drag(editado,
-			Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
-	log.info("Comienza Drag");
-}
-tablero->removerFigura(editado);
-if (editado->getModelo() != NULL) {
-	this->modeloController->removerFigura(editado->getModelo());
-}
-mouseMotion(posStartDragX, posStartDragY);
+	Logger log;
+	Resizer * r = Resizer::Instance();
+	if (!dragueando) {
+		r->adaptarPosicionLogica(x, y, this->posStartDragX,
+				this->posStartDragY);
+		this->elementoDrag = new Drag(editado,
+				Resizer::Instance()->resizearPosicionLogicaY(yMaxDrag));
+		log.info("Comienza Drag");
+	}
+	tablero->removerFigura(editado);
+	if (editado->getModelo() != NULL) {
+		this->modeloController->removerFigura(editado->getModelo());
+	}
+	mouseMotion(posStartDragX, posStartDragY);
 }
 
 void SimpleEditorNivel::dropNuevaFigura(GloboHelioView* view) {
-Resizer* r = Resizer::Instance();
-float x;
-float y;
-r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
 //	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
 }
 
 void SimpleEditorNivel::dropNuevaFigura(VistaCintaTransportadora* view) {
-Resizer* r = Resizer::Instance();
-float x;
-float y;
-r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-dropear(view, this->figurasFactory->crearCintaTransportadora(x, 100 - y, LONGITUD_CINTA_LOG));
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view,
+			this->figurasFactory->crearCintaTransportadora(x, 100 - y,
+					LONGITUD_CINTA_LOG));
 }
 
 void SimpleEditorNivel::dropNuevaFigura(PelotaJuegoView* view) {
-Resizer* r = Resizer::Instance();
-float x;
-float y;
-r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-dropear(view, this->figurasFactory->crearPelotaJuego(x, 100 - y));
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearPelotaJuego(x, 100 - y));
 }
 
 void SimpleEditorNivel::dropNuevaFigura(VistaEngranaje* view) {
@@ -384,5 +387,30 @@ void SimpleEditorNivel::dropNuevaFigura(VistaEngranaje* view) {
 	float x;
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearEngranaje(x,100-y));
+	dropear(view, this->figurasFactory->crearEngranaje(x, 100 - y));
+}
+
+void SimpleEditorNivel::dropNuevaFigura(SogaView* view) {
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
+}
+
+void SimpleEditorNivel::dropNuevaFigura(CorreaView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCorrea(x, 100 - y));
+
+}
+
+void SimpleEditorNivel::dropNuevaFigura(SogaEstaticaView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
 }
