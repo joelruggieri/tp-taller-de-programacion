@@ -194,6 +194,7 @@ else this->getAnteriorRadio();
 }
 
 float Engranaje::getAncho() {
+//	cout << this->radio << endl;
 	return this->radio;
 }
 
