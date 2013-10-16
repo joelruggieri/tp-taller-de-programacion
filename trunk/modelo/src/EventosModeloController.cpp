@@ -61,6 +61,8 @@ bool ModeloController::crearUnion(Union* figura) {
 		if(fFinal == NULL) {
 			return false;
 		}
+		if (fFinal == fInicial)
+			return false;
 
 		figura->setExtremos(fFinal,fInicial);
 		//recupero los cuerpos que une, se los seteo y verifico.

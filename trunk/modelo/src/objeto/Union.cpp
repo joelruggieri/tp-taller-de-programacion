@@ -81,8 +81,14 @@ void Union::calcularAnguloCuadrado() {
 	dist3.y = 0;
 	dist4.x = this->inicio.x;
 	dist4.y = 0;
-	this->rotacion = -atan(
-			calcularDistancia(dist1, dist2) / calcularDistancia(dist3, dist4));
+	float distanciaA = calcularDistancia(dist1, dist2);
+	float distanciaB = calcularDistancia(dist3, dist4);
+	if (distanciaB == 0)
+	{
+		this->rotacion = 0;
+	}
+	else
+	this->rotacion = -atan(distanciaA/distanciaB);
 }
 
 //void Union::setFiguraInicio(Figura* a) {
