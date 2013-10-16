@@ -54,6 +54,12 @@ void EditorUnion::clickDown(int x, int y) {
 				this->visor = NULL;
 				this->editado = NULL;
 			}
+		} else {
+			Logger log;
+			log.info("Punto final de union invalido");
+			delete this->editado;
+			this->editado = NULL;
+			delete un;
 		}
 		finalizado = true;
 	}

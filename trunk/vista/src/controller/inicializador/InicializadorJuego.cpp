@@ -38,6 +38,7 @@ using namespace std;
 #include "../viewFactory/ViewPelotaJuegoFactory.h"
 #include "../viewFactory/VistaEngranajeFactory.h"
 #include "../viewFactory/ViewCorreaFactory.h"
+#include "../viewFactory/ViewCorreaDinamicaFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -104,7 +105,7 @@ void InicializadorJuego::visit(CintaTransportadora* c) {
 void InicializadorJuego::visit(Correa* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CORREA);
-	this->agregarFigura(iter->second, fig);
+	this->agregarUnion(iter->second, (Correa*)fig);
 }
 
 void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
@@ -153,6 +154,54 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	}
 }
 
+
+void InicializadorJuego::agregarUnion(ViewFiguraFactory* factory,
+		Union* modelo) {
+	Resizer * r = Resizer::Instance();
+	Logger log;
+	validador->validar(modelo);
+	if(! validador->isValido()){
+		string msj = "Se omite figura de tipo '" + modelo->getReg().getEtiqueta() +"' error en la linea ";
+		log.concatenar(msj, modelo->getReg().getLinea());
+		msj = msj + ". Error: " + validador->getErrorValidacion();
+		log.warning(msj);
+		return;
+	}
+
+
+	Transformacion trans;
+	trans.traslacion(0, 100);
+	trans.escalar(r->getRelacionX(), r->getRelacionY());
+	trans.invertir(false, true);
+	float x,y;
+	int w,h;
+	trans.setVector(modelo->getX(), modelo->getY());
+	trans.getResultadoInverso(x,y);
+	w = r->resizearDistanciaLogicaX(10);
+	h = r->resizearDistanciaLogicaY(10);
+	FiguraView * view = factory->crear(x,y,w,h);
+	view->setModelo(modelo);
+	modelo->setVista(view);
+	view->update(trans);
+	bool exitoVista = tablero->agregarFigura(view);
+	bool exitoModelo = this->modeloController->crearUnion(modelo);
+	if (!exitoVista || !exitoModelo) {
+		string msj = "La figura de tipo '"+ modelo->getReg().getEtiqueta() +"' en la linea ";
+		log.concatenar(msj, modelo->getReg().getLinea());
+		msj = msj + " Posee un error de solapamiento o de union y es omitida";
+		log.warning(msj);
+
+		if (exitoVista) {
+			tablero->removerFigura(view);
+		}
+		if (exitoModelo) {
+			modeloController->removerFigura(modelo);
+		}
+		delete view;
+		delete modelo;
+	}
+}
+
 void InicializadorJuego::visit(BolaBoliche* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_BOLA_BOLICHE);
@@ -179,7 +228,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo2 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos2);
 //	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
-	EditorUnion* editorSogas = new EditorUnion(modeloController, tablero, this->factory, 100);
+	EditorUnion* editorunion = new EditorUnion(modeloController, tablero, this->factory, 100);
 	SimpleEditorOrientacionCambiable* editorOrientacionCambiable = new SimpleEditorOrientacionCambiable(modeloController, tablero, this->factory, 100);
 	EditorDeEstiramientoDeCinta* editorCinta = new EditorDeEstiramientoDeCinta(modeloController, tablero, this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);
@@ -214,10 +263,11 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	viewFactory = new ViewMotorFactory(editorOrientacionCambiable);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_MOTOR,viewFactory));
 	factories.push_back(viewFactory);
-	viewFactory = new ViewSogaFactory(editorSogas);
+	viewFactory = new ViewSogaFactory(editorunion);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_SOGA,viewFactory));
 	factories.push_back(viewFactory);
-	viewFactory = new ViewCorreaFactory(editorSogas);
+	viewFactory = new ViewCorreaFactory(editorunion);
+	viewFactory = new ViewCorreaDinamicaFactory(editorunion);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CORREA,viewFactory));
 	factories.push_back(viewFactory);
 	

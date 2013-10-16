@@ -28,6 +28,7 @@
 #include "src/objeto/BolaBoliche.h"
 #include "src/objeto/Engranaje.h"
 #include "src/objeto/Correa.h"
+#include "src/objeto/Union.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 using namespace std;
 
@@ -43,6 +44,7 @@ private:
 	FiguraFactory * factory;
 	ValidadorEstatico * validador;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
+	void agregarUnion(ViewFiguraFactory * factory, Union * modelo);
 public:
 	InicializadorJuego(GeneralEventController * eventsController, ModeloController * modeloController);
 	virtual ~InicializadorJuego();
