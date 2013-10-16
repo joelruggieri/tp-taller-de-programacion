@@ -24,7 +24,7 @@ public:
 	void modificarSentido();
 	int getDireccion() const;
 	void setDireccion(int dir);
-	void updateModelo();
+//	void updateModelo();
 	float getAncho();
 private:
 	typedef Objeto super;

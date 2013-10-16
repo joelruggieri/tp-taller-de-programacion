@@ -188,17 +188,17 @@ void Engranaje::setDireccion(int dir) {
 	this->direccion = dir;
 }
 
-void Engranaje::updateModelo() {
-	if (this->radio == RADIO_ENGRANAJE_CHICO)
-		 this->radio = RADIO_ENGRANAJE_MEDIO;
-	else
-	if (this->radio == RADIO_ENGRANAJE_MEDIO)
-		this->radio = RADIO_ENGRANAJE_GRANDE;
-	else
-	if (this->radio == RADIO_ENGRANAJE_GRANDE)
-		this->radio = RADIO_ENGRANAJE_CHICO;
-/// vario dentro del modelo el radio de los engranajes
-}
+//void Engranaje::updateModelo() {
+////	if (this->radio == RADIO_ENGRANAJE_CHICO)
+////		 this->radio = RADIO_ENGRANAJE_MEDIO;
+////	else
+////	if (this->radio == RADIO_ENGRANAJE_MEDIO)
+////		this->radio = RADIO_ENGRANAJE_GRANDE;
+////	else
+////	if (this->radio == RADIO_ENGRANAJE_GRANDE)
+////		this->radio = RADIO_ENGRANAJE_CHICO;
+///// vario dentro del modelo el radio de los engranajes
+//}
 
 float Engranaje::getAncho() {
 	return this->radio;
