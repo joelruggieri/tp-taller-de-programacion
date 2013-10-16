@@ -70,9 +70,9 @@ float SimpleEditorAnguloFijo::anguloPermitidoMasCercano(float angulo) {
 	it = angulosPermitidos.begin();
 	advance(it, indice);
 	float anguloPermitidoMasCercano = *it;
-	if (anguloPermitidoMasCercano > 10000) {
-		cout << "m2" << endl;
-	}
+//	if (anguloPermitidoMasCercano > 10000) {
+//		cout << "m2" << endl;
+//	}
 	return anguloPermitidoMasCercano;
 
 	/*list<float>::iterator it;

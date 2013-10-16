@@ -22,10 +22,11 @@ public:
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);
 	bool crearFisicaEstatica(b2World* w, b2Body* ground);
 	void acept(VisitorFigura*);
+	bool isExtremoValido(Figura * f);
 //	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
-	bool setearPuntoInicial(Figura*f);
-	bool setearPuntoFinal(Figura *f);
-private:
+protected:
+	void setearPuntoInicial(Figura*f);
+	void setearPuntoFinal(Figura *f);
 //	Engranaje* engranajeA;
 //	Engranaje* engranajeB;
 //	Figura* figuraInicio;

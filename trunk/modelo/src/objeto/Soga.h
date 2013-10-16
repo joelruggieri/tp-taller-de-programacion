@@ -18,15 +18,18 @@ public:
 	Soga(const Soga& figura);
 	virtual ~Soga();
 	bool crearFisicaEstatica(b2World *);
-	void cargar(b2Body* origen, b2Body* destino,  b2World *m_world);
+	void cargar(b2Body* origen, b2Body* destino, b2World *m_world);
 	void updateModelo();
 	std::vector<float>& getAngulosTramos();
 	std::vector<SDL_Rect>& getMarcosTramos();
 	void crearFisica(b2World * w, b2Body* g);
 	void acept(VisitorFigura*);
-	bool setearPuntoInicial(Figura *);
-	bool setearPuntoFinal(Figura *);
+	bool isExtremoValido(Figura * f);
+protected:
+	void setearPuntoInicial(Figura*f);
+	void setearPuntoFinal(Figura *f);
 private:
+
 	void actualizarMarcos();
 	void actualizarAngulos();
 	b2Body *crear(b2World *m_world, int x, int y);

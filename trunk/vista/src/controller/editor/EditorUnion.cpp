@@ -28,23 +28,31 @@ void EditorUnion::clickDown(int x, int y) {
 		Union * un = (Union *) editado->getModelo();
 		Figura* figFinal = modeloController->pickUp(un->getXFinal(),
 				un->getYFinal());
-		if (figFinal != NULL && un->setearPuntoFinal(figFinal)) {
+		if (figFinal != NULL && un->isExtremoValido(figFinal)) {
 			bool exitoVista = tablero->agregarFigura(this->editado);
 			bool exitoModelo = this->modeloController->crearUnion(un);
 			if (!exitoVista || !exitoModelo) {
-				//si uno de los dos no tuvo exito probamos rollbackeando.
+				//si uno de los dos no tuvo exito nos vamos
 				if (exitoVista) {
 					tablero->removerFigura(editado);
 				}
 				if (exitoModelo) {
 					modeloController->removerFigura(un);
 				}
-			} else {
 				Logger log;
 				log.info("Punto final de union invalido");
 				delete this->editado;
 				this->editado = NULL;
 				delete un;
+			} else {
+				Resizer*r = Resizer::Instance();
+				Transformacion trans;
+				trans.traslacion(0, 100);
+				trans.escalar(r->getRelacionX(), r->getRelacionY());
+				trans.invertir(false, true);
+				 this->editado->update(trans);
+				this->visor = NULL;
+				this->editado = NULL;
 			}
 			finalizado = true;
 		}
@@ -70,7 +78,7 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 	vista->setModelo(figura);
 	Union * un = (Union *) figura;
 	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY());
-	if (figInicial != NULL && un->setearPuntoInicial(figInicial)) {
+	if (figInicial != NULL && un->isExtremoValido(figInicial)) {
 		visor = vista;
 		editado = vista;
 		primerClick = false;
@@ -79,8 +87,12 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 		trans.traslacion(0, 100);
 		trans.escalar(r->getRelacionX(), r->getRelacionY());
 		trans.invertir(false, true);
+		un->setXInicial(figInicial->getX());
+		un->setYInicial(figInicial->getY());
+		un->setXFinal(figInicial->getX());
+		un->setYFinal(figInicial->getY());
 
-		un->setFin(figInicial->getX(), figInicial->getY());
+//		un->setFin(figInicial->getX(), figInicial->getY());
 		vista->update(trans);
 	} else {
 		Logger log;
@@ -111,7 +123,9 @@ void EditorUnion::mouseMotion(int x, int y) {
 		float xf, yf;
 		trans.setVector(x, y);
 		trans.getResultado(xf, yf);
-		((Union *) this->editado->getModelo())->setFin(xf, yf);
+		Union * un =((Union *) this->editado->getModelo());
+		un->setXFinal(xf);
+		un->setYFinal(yf);
 		this->editado->update(trans);
 	}
 }

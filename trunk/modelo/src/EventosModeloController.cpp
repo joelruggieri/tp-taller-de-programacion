@@ -62,7 +62,7 @@ bool ModeloController::crearUnion(Union* figura) {
 			return false;
 		}
 
-		//figura->setCorrea(fFinal,fInicial); TODO ALGUIEN SE OLVIDÒ DE DEFINIR ESTE METODO, NO ME BUILDEA A MI
+		figura->setExtremos(fFinal,fInicial);
 		//recupero los cuerpos que une, se los seteo y verifico.
 		return mapa->addFigura(figura);
 }

@@ -1,9 +1,0 @@
-Objetos:
-  Engranajes:
-    - y: 32.8
-      x: 54.4
-    - x: 68.4
-      y: 70.8
-Nivel:
-  Fondo: ""
-  Nombre: yaml1
