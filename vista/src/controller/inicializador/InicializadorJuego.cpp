@@ -267,9 +267,9 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_SOGA,viewFactory));
 	factories.push_back(viewFactory);
 	viewFactory = new ViewCorreaFactory(editorunion);
+	factories.push_back(viewFactory);
 	viewFactory = new ViewCorreaDinamicaFactory(editorunion);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CORREA,viewFactory));
-	factories.push_back(viewFactory);
 	
 
 
