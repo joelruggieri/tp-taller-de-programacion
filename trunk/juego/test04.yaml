@@ -1,0 +1,14 @@
+Nivel:
+  Fondo: ""
+  Nombre: test04
+Objetos:
+  Engranajes:
+    - x: 40.4
+      y: 47.4
+    - y: 70.6
+      x: 81
+  Correas:
+    - xHasta: 81
+      yHasta: 70.6
+      yDesde: 47.4
+      xDesde: 40.4
