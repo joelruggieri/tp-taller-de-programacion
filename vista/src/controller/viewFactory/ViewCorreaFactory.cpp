@@ -15,10 +15,7 @@ ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor): ViewFiguraFactory(PAT
 }
 
 FiguraView* ViewCorreaFactory::crear(int x,int y,int w, int h){
-	Uint8 r = 0;
-	Uint8 g = 0;
-	Uint8 b = 0;
-	return new CorreaView(x, y,this->textura, (EditorUnion*) this->controller,r,g,b);
+	return new CorreaView(x, y,this->textura, (EditorUnion*) this->controller);
 }
 
 ViewCorreaFactory::~ViewCorreaFactory() {

@@ -8,30 +8,22 @@
 #ifndef CORREAVIEW_H_
 #define CORREAVIEW_H_
 
-#include "ObjetoView.h"
+#include "UnionView.h"
 
 class EditorUnion;
 
-class CorreaView: public ObjetoView {
+class CorreaView: public UnionView {
 private:
-	int xDesde;
-	int yDesde;
-	int xHasta;
-	int yHasta;
-	void dibujarse(SDL_Renderer* renderer, SDL_Rect& src, SDL_Rect& dest);
-	typedef FiguraView super;
+
+	typedef UnionView super;
 	SDL_Color color;
 public:
-	CorreaView(int x, int y, SDL_Texture * textura,EditorUnion * editor,Uint8 r,Uint8 g,Uint8 b);
+	CorreaView(int x, int y, SDL_Texture * textura,EditorUnion * editor);
 	virtual ~CorreaView();
 	EditorNivel* getEditor();
 	void dropTemplate();
 	void dibujarse(SDL_Renderer*);
 	void update(Transformacion & tl);
-	void setYDesde(int yDesde);
-	void setXDesde(int xDesde);
-	void setYHasta(int yHasta);
-	void setXHasta(int xHasta);
 };
 
 #endif /* CORREAVIEW_H_ */
