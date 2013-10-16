@@ -32,7 +32,6 @@ JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 	iniciado = false;
 	Resizer*r = Resizer::Instance();
 	r->addResizeable(this);
-
 	trans = new Transformacion();
 	trans->traslacion(0, 100);
 	trans->escalar(r->getRelacionX(), r->getRelacionY());
@@ -82,6 +81,12 @@ bool JuegoEventsController::clickDown(int x, int y) {
 				return false;
 			}
 		}
+	} else {
+		editor->clickDown(x,y);
+		if (editor->isEnd()) {
+			editor = NULL;
+		}
+		return false;
 	}
 	return true;
 }
@@ -120,7 +125,10 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 
 bool JuegoEventsController::rightClickDown(int x, int y) {
 	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
-	if (editor == NULL && !iniciado) {
+	if(iniciado) {
+		return true;
+	}
+	if (editor == NULL) {
 		if (tablero != NULL && creacion != NULL) {
 			Resizer* r = Resizer::Instance();
 			Transformacion trans;
@@ -138,6 +146,12 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 				editor = editor->isEnd() ? NULL : editor;
 			}
 		}
+	} else {
+		editor->rightClickDown(x,y);
+		if (editor->isEnd()) {
+			editor = NULL;
+		}
+		return false;
 	}
 	return true;
 }

@@ -17,13 +17,18 @@ public:
 	virtual ~Union();
 	void setFin(const b2Vec2& fin);
 	void setInicio(const b2Vec2& inicio);
+
+	void setFin(float x, float y);
 	void setFiguraInicio(Figura*);
 	void setFiguraFin(Figura*);
+
 	float getXInicial();
 	float getYInicial();
 	float getXFinal();
 	float getYFinal();
-	virtual bool puntoInicialValido(Figura *) = 0;
+	virtual bool setearPuntoInicial(Figura *) = 0;
+	virtual bool setearPuntoFinal(Figura *) = 0;
+
 	void setExtremos(Figura*, Figura*);
 	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
 protected:
@@ -31,7 +36,7 @@ protected:
 	b2Vec2 fin;
 	Figura* figuraInicio;
 	Figura* figuraFin;
-	float w,h;
+	float w, h;
 	float calcularDistancia(b2Vec2, b2Vec2);
 	void calcularCentroCuadrado();
 	void calcularAnguloCuadrado();

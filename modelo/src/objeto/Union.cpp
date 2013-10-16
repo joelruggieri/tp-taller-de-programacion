@@ -106,3 +106,7 @@ b2Vec2 centro(x,y);
 	  this->crearFisica(w,ground);
 
 }
+
+void Union::setFin(float x, float y) {
+	this->setFin(b2Vec2(x,y));
+}

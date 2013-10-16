@@ -124,6 +124,7 @@ void SimpleEditorNivel::dropNuevaFigura(BalancinView* view) {
 void SimpleEditorNivel::clickDown(int x, int y) {
 	//si no esta haciendo nada
 	if (!rotando && !finalizado && !dragueando) {
+		//TODO ESTE PASAJE DE COORDENADAS QUEDÓ VIEJO, USAR LA TL.
 		Resizer* r = Resizer::Instance();
 		float lX = r->resizearDistanciaPixelX(x);
 		float lY = r->resizearPosicionPixelY(y);

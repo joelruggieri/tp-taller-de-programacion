@@ -48,3 +48,21 @@ void ModeloController::stop() {
 void ModeloController::setTransformacion(Transformacion * tl) {
 	this->tl = tl;
 }
+
+bool ModeloController::crearUnion(Union* figura) {
+
+		Figura* fInicial = this->pickUp(figura->getXInicial(),
+				figura->getYInicial());
+		if(fInicial == NULL) {
+			return false;
+		}
+		Figura* fFinal = this->pickUp(figura->getXFinal(),
+				figura->getYFinal());
+		if(fFinal == NULL) {
+			return false;
+		}
+
+		figura->setCorrea(fFinal,fInicial);
+		//recupero los cuerpos que une, se los seteo y verifico.
+		return mapa->addFigura(figura);
+}

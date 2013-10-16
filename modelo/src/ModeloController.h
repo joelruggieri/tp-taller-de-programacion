@@ -10,6 +10,7 @@
 #include "figura/Figura.h"
 #include "figura/Mapa.h"
 #include "Transformacion.h"
+#include "objeto/Union.h"
 #include <list>
 using namespace std;
 
@@ -22,6 +23,7 @@ public:
 	virtual ~ModeloController();
 	//Instancia una figura en el modelo y retora true si la operacion fue correcta.
 	bool crearFigura(Figura* figura);
+	bool crearUnion(Union* figura);
 	bool removerFigura(Figura* figura);
 	list<Figura*>& getFiguras();
 	Figura * pickUp(float, float);

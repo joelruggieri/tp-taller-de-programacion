@@ -19,9 +19,10 @@ public:
 	void crearFisica(b2World* w, b2Body* ground);
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);
 	bool crearFisicaEstatica(b2World* w, b2Body* ground);
-//	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
 	void acept(VisitorFigura*);
-	bool puntoInicialValido(Figura *);
+//	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
+	bool setearPuntoInicial(Figura*f);
+	bool setearPuntoFinal(Figura *f);
 private:
 //	Engranaje* engranajeA;
 //	Engranaje* engranajeB;
