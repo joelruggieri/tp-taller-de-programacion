@@ -7,10 +7,10 @@
 
 #include "EditorUnion.h"
 #include "src/Logger.h"
-#include "../../vista/objeto/MotorView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 #include "../../ConstantesVista.h"
+#include "../../vista/objeto/UnionEstaticaView.h"
 EditorUnion::EditorUnion(ModeloController * m, ZonaTablero * t,
 		FiguraFactory* factory, int yMaxDrag):SimpleEditorNivel(m,t,factory,yMaxDrag) {
 	primerClick = true;
@@ -46,5 +46,11 @@ void EditorUnion::setFigura(FiguraView* f) {
 }
 
 void EditorUnion::dropear(FiguraView* view, Figura* figura) {
-	 cout << "Droppea soga" << endl;
+	Logger log;
+//	view->setModelo(figura);
+	UnionView * vista = ((UnionEstaticaView *) view)->toDinamica();
+	figura->setVista(vista);
+	vista->setModelo(figura);
+//	Union * un =(Union *) figura;
+
 }
