@@ -21,7 +21,7 @@
 #define RADIO_EJE_CINTA_LOG 3
 #define LONGITUD_CINTA_LOG 15
 #define PATH_VISTA_BALANCIN "resource/balancin.png"
-#define PATH_VISTA_CORREA "resource/linea.png"
+#define PATH_VISTA_CORREA "resource/correa.png"
 #define PATH_VISTA_BALANCIN_F "resource/balancin_f.png"
 #define PATH_VISTA_PLATAFORMA_F "resource/plataforma_f.png"
 #define PATH_VISTA_PLATAFORMA "resource/plataforma.png"

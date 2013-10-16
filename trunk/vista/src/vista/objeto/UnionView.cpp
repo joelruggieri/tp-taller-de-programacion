@@ -21,7 +21,8 @@ UnionView::~UnionView() {
 }
 
 void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
-		//TODO SETEAR EL COLOR AL RENDERER Y HACER EL DRAWLINE.
+	SDL_SetRenderDrawColor(ren,r,g,b,0);
+	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
 }
 
 EditorNivel* UnionView::getEditor() {
@@ -39,8 +40,8 @@ void UnionView::update(Transformacion & tl){
 	int xDesdePixel;
 	int yDesdePixel;
 	r->adaptarPosicionLogica(xDesde,yDesde,xDesdePixel,yDesdePixel);
-	xDesde = xDesdePixel;
-	yDesde = yDesdePixel;
+	this->xDesde = xDesdePixel;
+	this->yDesde = yDesdePixel;
 	tl.setVector(un->getXFinal(),un->getYFinal());
 	float xHasta;
 	float yHasta;
@@ -48,6 +49,6 @@ void UnionView::update(Transformacion & tl){
 	int xHastaPixel;
 	int yHastaPixel;
 	r->adaptarPosicionLogica(xHasta,yHasta,xHastaPixel,yHastaPixel);
-	xHasta =xHastaPixel;
-	yHasta =yHastaPixel;
+	this->xHasta =xHastaPixel;
+	this->yHasta =yHastaPixel;
 }

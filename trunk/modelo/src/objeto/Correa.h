@@ -19,6 +19,7 @@ public:
 	void crearFisica(b2World* w, b2Body* ground);
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);
 	bool crearFisicaEstatica(b2World* w, b2Body* ground);
+	void acept(VisitorFigura*);
 //	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
 private:
 //	Engranaje* engranajeA;
