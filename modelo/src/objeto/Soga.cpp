@@ -95,7 +95,7 @@ b2Body *Soga::crear(b2World *m_world, int x, int y) {
 }
 
 void Soga::updateModelo() {
-	Figura::updateModelo();
+	Union::updateModelo();
 //	actualizarMarcos();
 //	actualizarAngulos();
 }

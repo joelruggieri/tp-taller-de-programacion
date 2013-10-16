@@ -135,7 +135,12 @@ void Union::setExtremos(Figura* f1, Figura* f2) {
 }
 
 void Union::updateCaracteristicas() {
+
 	this->calcularAnchoCuadrado();
 	this->calcularAnguloCuadrado();
 	this->calcularCentroCuadrado();
+}
+
+void Union::updateModelo() {
+	this->updateCaracteristicas();
 }

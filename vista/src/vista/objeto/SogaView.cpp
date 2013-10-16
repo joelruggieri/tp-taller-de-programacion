@@ -29,13 +29,7 @@ SogaView::~SogaView() {
 }
 
 void SogaView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
-	Soga *soga = (Soga*) getModelo();
-	if (!soga) return;
-	std::vector<float>& angulos = soga->getAngulosTramos();
-	std::vector<SDL_Rect>& marcos = soga->getMarcosTramos();
-	for (unsigned int i=0; i < marcos.size(); ++i){
-		dibujarParte(renderer, marcos[i], angulos[i], texturaTramo);
-	}
+super::dibujarse(renderer, 30, 30 ,30);
 }
 
 
