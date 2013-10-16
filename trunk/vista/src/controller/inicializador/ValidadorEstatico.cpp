@@ -49,9 +49,29 @@ void ValidadorEstatico::visit(BolaBoliche* f) {
 
 }
 
+bool ValidadorEstatico::extremosXDeCorreaValidos(const Correa* c){
+	bool validos = true;
+	if((c->getXFinal() <= this->xmin) || (c->getXFinal() >= this->xmax) || (c->getXInicial() <= this->xmin) || (c->getXInicial() >= this->xmax))
+		validos = false;
+
+	return validos;
+}
+
+bool ValidadorEstatico::extremosYDeCorreaValidos(const Correa* c){
+	bool validos = true;
+	if(c->getYFinal() <= ymin || c->getYFinal() >= ymax || c->getYInicial() <= ymin || c->getYInicial() >= ymax)
+		validos = false;
+
+	return validos;
+}
+
 void ValidadorEstatico::visit(Correa* f) {
 	if(!validarPosicion(f)){
 		return;
+	}
+	if (!extremosXDeCorreaValidos(f) || !extremosYDeCorreaValidos(f)){
+		this->ultimaValidacion  = false;
+		this->errorValidacion = "extremos de correa invalidos";
 	}
 
 }

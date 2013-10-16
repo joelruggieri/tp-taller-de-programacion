@@ -30,6 +30,8 @@ class ValidadorEstatico: public VisitorFigura {
 private:
 	bool ultimaValidacion;
 	bool validarPosicion(Figura *);
+	bool extremosYDeCorreaValidos(const Correa* c);
+	bool extremosXDeCorreaValidos(const Correa* c);
 	string errorValidacion;
 	float xmin,xmax,ymin,ymax;
 public:
