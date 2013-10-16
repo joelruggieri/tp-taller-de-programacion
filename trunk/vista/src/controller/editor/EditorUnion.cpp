@@ -11,6 +11,7 @@
 #include "../../vista/ViewConIcono.h"
 #include "../../ConstantesVista.h"
 #include "../../vista/objeto/UnionEstaticaView.h"
+#include "src/objeto/Union.h"
 EditorUnion::EditorUnion(ModeloController * m, ZonaTablero * t,
 		FiguraFactory* factory, int yMaxDrag):SimpleEditorNivel(m,t,factory,yMaxDrag) {
 	primerClick = true;
@@ -47,10 +48,22 @@ void EditorUnion::setFigura(FiguraView* f) {
 
 void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 	Logger log;
-//	view->setModelo(figura);
+	// agarro una vista que se banque la edicion de la soga.
 	UnionView * vista = ((UnionEstaticaView *) view)->toDinamica();
+	delete view;
 	figura->setVista(vista);
 	vista->setModelo(figura);
-//	Union * un =(Union *) figura;
-
+	Union * un =(Union *) figura;
+	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY());
+	if(figInicial != NULL && un->puntoInicialValido(figInicial)){
+		visor = vista;
+		editado = vista;
+		primerClick = false;
+	} else {
+		Logger log;
+		log.info("Punto inicial de union invalido");
+		delete vista;
+		delete figura;
+		finalizado = true;
+	}
 }

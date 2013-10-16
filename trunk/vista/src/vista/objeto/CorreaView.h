@@ -23,7 +23,6 @@ public:
 	EditorNivel* getEditor();
 	void dropTemplate();
 	void dibujarse(SDL_Renderer*);
-	void update(Transformacion & tl);
 };
 
 #endif /* CORREAVIEW_H_ */

@@ -21,6 +21,7 @@ public:
 	bool crearFisicaEstatica(b2World* w, b2Body* ground);
 	void acept(VisitorFigura*);
 //	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
+	bool puntoInicialValido(Figura*);
 private:
 //	Engranaje* engranajeA;
 //	Engranaje* engranajeB;

@@ -140,3 +140,7 @@ void Soga::acept(VisitorFigura*) {
 
 void Soga::crearFisica(b2World* w, b2Body* g) {
 }
+
+bool Soga::puntoInicialValido(Figura*f) {
+	return f->getEnganches().size() > 0;
+}

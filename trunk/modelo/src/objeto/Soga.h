@@ -24,6 +24,7 @@ public:
 	std::vector<SDL_Rect>& getMarcosTramos();
 	void crearFisica(b2World * w, b2Body* g);
 	void acept(VisitorFigura*);
+	bool puntoInicialValido(Figura *);
 private:
 	void actualizarMarcos();
 	void actualizarAngulos();
