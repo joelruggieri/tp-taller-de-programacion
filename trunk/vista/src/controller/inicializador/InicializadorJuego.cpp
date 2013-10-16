@@ -101,6 +101,12 @@ void InicializadorJuego::visit(CintaTransportadora* c) {
 	this->agregarFigura(iter->second, fig);
 }
 
+void InicializadorJuego::visit(Correa* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CORREA);
+	this->agregarFigura(iter->second, fig);
+}
+
 void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 		Figura* modelo) {
 	Resizer * r = Resizer::Instance();
@@ -214,12 +220,8 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	viewFactory = new ViewCorreaFactory(editorSogas);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CORREA,viewFactory));
 	factories.push_back(viewFactory);
+	
 
-
-//TODO como todavía no vienen de la persistencia no se las coloca para levantar de la persistencia
-//	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
-	factories.push_back(new ViewPlataformaFactory(editorSimpleEstirar));
-	factories.push_back(new ViewBalancinFactory(editorSimpleAnguloFijo2));
 
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(&factories, 110, 10,
 			herrTextura);

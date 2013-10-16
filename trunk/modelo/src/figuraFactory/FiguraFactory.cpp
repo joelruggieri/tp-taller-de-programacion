@@ -130,3 +130,9 @@ Figura* FiguraFactory::crearSoga(float x, float y) {
 Figura* FiguraFactory::crearCorrea(float x, float y) {
 	return new Correa(x,y);
 }
+
+Figura* FiguraFactory::crear(Correa* c) {
+	Figura* t = this->crearCorrea(c->getX(), c->getY());
+		t->setReg(c->getReg());
+	return t;
+}

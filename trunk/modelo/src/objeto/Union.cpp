@@ -12,6 +12,10 @@ Union::Union(float x, float y):Objeto(x,y) {
 
 }
 
+Union::Union(): Objeto(){
+
+}
+
 Union::~Union() {
 	// TODO Auto-generated destructor stub
 }
@@ -24,20 +28,52 @@ void Union::setInicio(const b2Vec2& inicio) {
 	this->inicio = inicio;
 }
 
-float Union::getXInicial() {
+float Union::getXInicial(){
 	return inicio.x;
 }
 
-float Union::getYInicial() {
+float Union::getYInicial(){
 	return inicio.y;
 }
 
-float Union::getXFinal() {
+float Union::getXFinal(){
 	return fin.x;
 }
 
-float Union::getYFinal() {
+float Union::getYFinal(){
 	return fin.y;
+}
+
+float Union::getXInicial() const{
+	return inicio.x;
+}
+
+float Union::getYInicial() const{
+	return inicio.y;
+}
+
+float Union::getXFinal() const{
+	return fin.x;
+}
+
+float Union::getYFinal() const{
+	return fin.y;
+}
+
+void Union::setXInicial(float xInicial) {
+	this->inicio.x = xInicial;
+}
+
+void Union::setYInicial(float yInicial) {
+	inicio.y = yInicial;
+}
+
+void Union::setXFinal(float xFinal) {
+	fin.x = xFinal;
+}
+
+void Union::setYFinal(float yFinal) {
+	fin.y = yFinal;
 }
 
 float Union::calcularDistancia(b2Vec2 a, b2Vec2 b) {

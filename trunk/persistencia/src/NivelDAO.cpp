@@ -15,6 +15,7 @@
 #include "src/objeto/GloboHelio.h"
 #include "src/objeto/PelotaJuego.h"
 #include "src/objeto/Motor.h"
+#include "src/objeto/Correa.h"
 #include "src/objeto/Engranaje.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
@@ -139,6 +140,7 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerPelotasJuego(lista,objetos);
 			this->obtenerMotores(lista,objetos);
 			this->obtenerEngranajes(lista,objetos);
+			this->obtenerCorreas(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
@@ -217,6 +219,27 @@ void NivelDAO::obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos)
 			std::string mensaje = "Error al leer Plataformas: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje, plataformas[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerCorreas(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node correas = objetos["Correas"];
+	if(correas.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Plataformas";
+		logg.info(mensaje);
+	}
+	for (std::size_t i = 0; i < correas.size(); i++) {
+		try {
+			Correa obj = correas[i].as<Correa>();
+//			bool salir = validar(obj, plataformas, i);
+//			if(!salir ) continue;
+			lista.push_back( new Correa(obj));
+			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Plataformas: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje, correas[i].Mark() );
 		}
 	}
 }

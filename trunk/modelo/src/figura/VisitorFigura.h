@@ -32,6 +32,7 @@ public:
 	virtual void visit(PelotaJuego*) = 0;
 	virtual void visit(GloboHelio*) = 0;
 	virtual void visit(Engranaje*) = 0;
+	virtual void visit(Correa*) = 0;
 };
 
 #endif /* VISITORFIGURA_H_ */

@@ -15,6 +15,8 @@
 class Correa:  public Union {
 public:
 	Correa(float x, float y);
+	Correa(const Correa& correa);
+	Correa();
 	virtual ~Correa();
 	void crearFisica(b2World* w, b2Body* ground);
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);

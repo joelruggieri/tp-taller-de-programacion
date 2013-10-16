@@ -27,6 +27,7 @@
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
 #include "src/objeto/Engranaje.h"
+#include "src/objeto/Correa.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 using namespace std;
 
@@ -53,6 +54,7 @@ public:
 	void visit(BolaBoliche*);
 	void visit(PelotaJuego*);
 	void visit(Engranaje*);
+	void visit(Correa*);
 	JuegoEventsController * crearZonaJuego();
 };
 
