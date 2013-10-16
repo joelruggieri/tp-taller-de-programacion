@@ -18,6 +18,7 @@ public:
 	virtual ~VistaEngranaje();
 	void dropTemplate();
 	EditorNivel * getEditor();
+	void  update(Transformacion*);
 };
 
 #endif /* VISTAENGRANAJE_H_ */

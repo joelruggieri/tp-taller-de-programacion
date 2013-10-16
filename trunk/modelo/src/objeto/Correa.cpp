@@ -92,11 +92,8 @@ bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
 	return !hayContacto;
 }
 
-
-void Correa::acept(VisitorFigura*){
-
+void Correa::acept(VisitorFigura*) {
 }
 
-bool Correa::puntoInicialValido(Figura*f ) {
-	return f->esTraccionable();
+bool Correa::puntoInicialValido(Figura*) {
 }

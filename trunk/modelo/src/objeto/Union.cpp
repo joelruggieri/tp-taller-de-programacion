@@ -74,7 +74,7 @@ void Union::setFiguraFin(Figura* a) {
 	this->fin.y = a->getY();
 }
 
-void Union::setCorrea(Figura* a, Figura* b) {
+void Union::setExtremos(Figura* a, Figura* b) {
 	this->setFiguraInicio(a);
 	this->setFiguraFin(b);
 	this->calcularAnchoCuadrado();
