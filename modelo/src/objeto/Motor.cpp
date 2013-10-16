@@ -10,6 +10,7 @@ using namespace std;
 #include "../Constantes.h"
 Motor::Motor(float x, float y, float radio):Engranaje(x, y, radio) {
 	this->direccion = 1 ; //por defecto gira en sentido horario
+	this->traccionable = true;
 }
 
 Motor::~Motor() {

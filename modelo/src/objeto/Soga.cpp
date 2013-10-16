@@ -141,11 +141,16 @@ void Soga::acept(VisitorFigura*) {
 void Soga::crearFisica(b2World* w, b2Body* g) {
 }
 
-bool Soga::setearPuntoInicial(Figura* f) {
-	//TODO SETEAR LA POSICION CORRECTA.
-	return f->getEnganches().size() > 0;
+void Soga::setearPuntoInicial(Figura* f) {
+	//TODO VERIFICAR LOS ENGANCHES Y VER QUE ONDA.
+//	return f->getEnganches().size() > 0;
 }
 
-bool Soga::setearPuntoFinal(Figura* f) {
+void Soga::setearPuntoFinal(Figura* f) {
+	//TODO VERIFICAR LOS ENGANCHES Y VER QUE ONDA.
+//	return f->getEnganches().size() > 0;
+}
+
+bool Soga::isExtremoValido(Figura* f) {
 	return f->getEnganches().size() > 0;
 }
