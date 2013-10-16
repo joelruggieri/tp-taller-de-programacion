@@ -15,8 +15,8 @@ Correa::Correa(float x, float y) :
 Correa::Correa(const Correa& correa) {
 	this->body = correa.body;
 	this->enganches = correa.enganches;
-	this->figuraFin = correa.figuraFin;
-	this->figuraInicio = correa.figuraInicio;
+//	this->figuraFin = correa.figuraFin;
+//	this->figuraInicio = correa.figuraInicio;
 	b2Vec2 inicio(correa.getXInicial(), correa.getYInicial());
 	this->inicio = inicio;
 	b2Vec2 fin(correa.getXFinal(), correa.getYFinal());
@@ -25,7 +25,7 @@ Correa::Correa(const Correa& correa) {
 	this->w = correa.getAncho();
 	this->reg = correa.reg;
 	this->rotacion = correa.getRotacion();
-	this->rotacionb = correa.rotacionb;
+	this->rotacionb = correa.rotacion;
 	this->traccionable = correa.traccionable;
 	this->vista = correa.vista;
 	this->x = correa.getX();

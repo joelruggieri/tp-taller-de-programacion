@@ -132,7 +132,12 @@ Figura* FiguraFactory::crearCorrea(float x, float y) {
 }
 
 Figura* FiguraFactory::crear(Correa* c) {
-	Figura* t = this->crearCorrea(c->getX(), c->getY());
+	Correa* t =(Correa*) this->crearCorrea(c->getX(), c->getY());
+	t->setXInicial(c->getXInicial());
+	t->setYInicial(c->getYInicial());
+	t->setXFinal(c->getXFinal());
+	t->setYFinal(c->getYFinal());
+
 		t->setReg(c->getReg());
 	return t;
 }
