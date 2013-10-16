@@ -21,11 +21,11 @@ public:
 	void setFigura(FiguraView *);
 	virtual ~EditorUnion();
 	void clickDown(int x, int y);
+	void clickUp(int x, int y);
 	void rightClickUp(int x, int y);
 	void rightClickDown(int x, int y);
-	void dibujarEdicion(SDL_Renderer *);
 	void dropear(FiguraView* view, Figura* figura);
-
+	void mouseMotion(int x, int y);
 };
 
 #endif /* EDITORUNION_H_ */

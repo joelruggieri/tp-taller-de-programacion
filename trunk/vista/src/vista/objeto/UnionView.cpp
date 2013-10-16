@@ -31,24 +31,17 @@ EditorNivel* UnionView::getEditor() {
 
 void UnionView::update(Transformacion & tl){
 	super::update(tl);
-	Resizer* r = Resizer::Instance();
 	Union* un = (Union*)this->getModelo();
 	tl.setVector(un->getXInicial(),un->getYInicial());
 	float xDesde;
 	float yDesde;
 	tl.getResultadoInverso(xDesde,yDesde);
-	int xDesdePixel;
-	int yDesdePixel;
-	r->adaptarPosicionLogica(xDesde,yDesde,xDesdePixel,yDesdePixel);
-	this->xDesde = xDesdePixel;
-	this->yDesde = yDesdePixel;
+	this->xDesde = xDesde;
+	this->yDesde = yDesde;
 	tl.setVector(un->getXFinal(),un->getYFinal());
 	float xHasta;
 	float yHasta;
 	tl.getResultadoInverso(xHasta,yHasta);
-	int xHastaPixel;
-	int yHastaPixel;
-	r->adaptarPosicionLogica(xHasta,yHasta,xHastaPixel,yHastaPixel);
-	this->xHasta =xHastaPixel;
-	this->yHasta =yHastaPixel;
+	this->xHasta =xHasta;
+	this->yHasta =yHasta;
 }

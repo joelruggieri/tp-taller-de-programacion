@@ -13,7 +13,8 @@
 #include "../../vista/objeto/UnionEstaticaView.h"
 #include "src/objeto/Union.h"
 EditorUnion::EditorUnion(ModeloController * m, ZonaTablero * t,
-		FiguraFactory* factory, int yMaxDrag):SimpleEditorNivel(m,t,factory,yMaxDrag) {
+		FiguraFactory* factory, int yMaxDrag) :
+		SimpleEditorNivel(m, t, factory, yMaxDrag) {
 	primerClick = true;
 }
 
@@ -21,24 +22,38 @@ EditorUnion::~EditorUnion() {
 }
 
 void EditorUnion::clickDown(int x, int y) {
-	if(primerClick) {
-		super::clickDown(x,y);
+	if (primerClick) {
+		super::clickDown(x, y);
 	} else {
-		cout<< "voy por el segundo" << endl;
+		Union * un = (Union *) editado->getModelo();
+		Figura* figFinal = modeloController->pickUp(un->getXFinal(),
+				un->getYFinal());
+		if (figFinal != NULL && un->setearPuntoFinal(figFinal)) {
+			bool exitoVista = tablero->agregarFigura(this->editado);
+			bool exitoModelo = this->modeloController->crearUnion(un);
+			if (!exitoVista || !exitoModelo) {
+				//si uno de los dos no tuvo exito probamos rollbackeando.
+				if (exitoVista) {
+					tablero->removerFigura(editado);
+				}
+				if (exitoModelo) {
+					modeloController->removerFigura(un);
+				}
+			} else {
+				Logger log;
+				log.info("Punto final de union invalido");
+				delete this->editado;
+				this->editado = NULL;
+				delete un;
+			}
+			finalizado = true;
+		}
 	}
 }
-
-
 void EditorUnion::rightClickUp(int x, int y) {
 }
 
 void EditorUnion::rightClickDown(int x, int y) {
-}
-
-void EditorUnion::dibujarEdicion(SDL_Renderer*r) {
-	if(primerClick) {
-		super::dibujarEdicion(r);
-	}
 }
 
 void EditorUnion::setFigura(FiguraView* f) {
@@ -53,17 +68,50 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 	delete view;
 	figura->setVista(vista);
 	vista->setModelo(figura);
-	Union * un =(Union *) figura;
+	Union * un = (Union *) figura;
 	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY());
-	if(figInicial != NULL && un->puntoInicialValido(figInicial)){
+	if (figInicial != NULL && un->setearPuntoInicial(figInicial)) {
 		visor = vista;
 		editado = vista;
 		primerClick = false;
+		Resizer*r = Resizer::Instance();
+		Transformacion trans;
+		trans.traslacion(0, 100);
+		trans.escalar(r->getRelacionX(), r->getRelacionY());
+		trans.invertir(false, true);
+
+		un->setFin(figInicial->getX(), figInicial->getY());
+		vista->update(trans);
 	} else {
 		Logger log;
 		log.info("Punto inicial de union invalido");
 		delete vista;
 		delete figura;
 		finalizado = true;
+	}
+}
+
+void EditorUnion::clickUp(int x, int y) {
+	if (dragueando) {
+		this->elementoDrag->drop();
+		delete this->elementoDrag;
+		this->dragueando = false;
+	}
+}
+
+void EditorUnion::mouseMotion(int x, int y) {
+	if (primerClick) {
+		super::mouseMotion(x, y);
+	} else {
+		Resizer*r = Resizer::Instance();
+		Transformacion trans;
+		trans.traslacion(0, 100);
+		trans.escalar(r->getRelacionX(), r->getRelacionY());
+		trans.invertir(false, true);
+		float xf, yf;
+		trans.setVector(x, y);
+		trans.getResultado(xf, yf);
+		((Union *) this->editado->getModelo())->setFin(xf, yf);
+		this->editado->update(trans);
 	}
 }
