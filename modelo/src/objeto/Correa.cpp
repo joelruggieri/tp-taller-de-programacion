@@ -97,3 +97,6 @@ void Correa::acept(VisitorFigura*){
 
 }
 
+bool Correa::puntoInicialValido(Figura*f ) {
+	return f->esTraccionable();
+}

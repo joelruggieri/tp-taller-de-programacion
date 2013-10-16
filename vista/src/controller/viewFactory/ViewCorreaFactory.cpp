@@ -6,7 +6,7 @@
  */
 
 #include "ViewCorreaFactory.h"
-#include "../../vista/objeto/CorreaView.h"
+#include "../../vista/objeto/CorreaEstaticaView.h"
 #include "../../ConstantesVista.h"
 
 ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor): ViewFiguraFactory(PATH_VISTA_CORREA,editor) {
@@ -15,7 +15,7 @@ ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor): ViewFiguraFactory(PAT
 }
 
 FiguraView* ViewCorreaFactory::crear(int x,int y,int w, int h){
-	return new CorreaView(x, y,this->textura, (EditorUnion*) this->controller);
+	return new CorreaEstaticaView(x, y,w,h,this->textura, (EditorUnion*) this->controller);
 }
 
 ViewCorreaFactory::~ViewCorreaFactory() {

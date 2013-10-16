@@ -23,9 +23,9 @@ public:
 	float getYInicial();
 	float getXFinal();
 	float getYFinal();
+	virtual bool puntoInicialValido(Figura *) = 0;
 	void setCorrea(Figura*, Figura*);
 	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
-//	void crearFisicaTemplate
 protected:
 	b2Vec2 inicio;
 	b2Vec2 fin;

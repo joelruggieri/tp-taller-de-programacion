@@ -37,6 +37,7 @@ using namespace std;
 #include "../viewFactory/ViewBolaBolicheFactory.h"
 #include "../viewFactory/ViewPelotaJuegoFactory.h"
 #include "../viewFactory/VistaEngranajeFactory.h"
+#include "../viewFactory/ViewCorreaFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -61,6 +62,7 @@ const string KEY_BOLA_BOLICHE = "BOLABOLICHE";
 const string KEY_PELOTA_JUEGO = "PELOTA";
 const string KEY_ENGRANAJE = "ENGRANAJE";
 const string KEY_MOTOR = "MOTOR";
+const string KEY_CORREA = "CORREA";
 
 InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEventos, ModeloController * modeloController) {
 	this->juegoController = NULL;
@@ -209,6 +211,10 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	viewFactory = new ViewSogaFactory(editorSogas);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_SOGA,viewFactory));
 	factories.push_back(viewFactory);
+	viewFactory = new ViewCorreaFactory(editorSogas);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CORREA,viewFactory));
+	factories.push_back(viewFactory);
+
 
 //TODO como todavía no vienen de la persistencia no se las coloca para levantar de la persistencia
 //	factories.push_back(new ViewMotorFactory(editorSimpleAnguloFijo1));
