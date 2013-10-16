@@ -30,10 +30,9 @@ EditorNivel* VistaEngranaje::getEditor() {
 
 void VistaEngranaje::update(Transformacion& tl) {
 		super::update(tl);
-		float y = 0;
-		tl.setVector(this->getModelo()->getAncho(),y);
-		float radioPixels;
-		tl.getResultadoInverso(radioPixels,y);
-		this->setW(radioPixels * 2);
-		this->setH(radioPixels * 2);
+//		tl.setVector(this->getModelo()->getAncho(),this->getModelo()->getAncho());
+//		float radioPixels;
+//		tl.getResultadoInverso(radioPixels,radio);
+//		this->setW(radioPixels * 2);
+//		this->setH(radioPixels * 2);
 }
