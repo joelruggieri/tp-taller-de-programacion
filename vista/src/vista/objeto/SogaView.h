@@ -8,12 +8,12 @@
 #ifndef SOGAVIEW_H_
 #define SOGAVIEW_H_
 
-#include "ObjetoView.h"
+#include "UnionView.h"
 
 class EditorUnion;
 struct SDL_Texture;
 
-class SogaView: public ObjetoView {
+class SogaView: public UnionView {
 public:
 	SogaView(int x, int y, int w, int h, SDL_Texture * textura, EditorUnion * editor);
 	virtual ~SogaView();

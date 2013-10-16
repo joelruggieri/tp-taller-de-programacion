@@ -22,7 +22,7 @@
 #include "../vista/objeto/MotorView.h"
 #include "../vista/objeto/PelotaJuegoView.h"
 #include "../vista/objeto/SogaEstaticaView.h"
-#include "../vista/objeto/SogaView.h"
+#include "../vista/objeto/CorreaEstaticaView.h"
 #include "../vista/objeto/VistaCintaTransportadora.h"
 #include "../vista/objeto/VistaEngranaje.h"
 
@@ -38,8 +38,7 @@ class VistaCintaTransportadora;
 class BolaBolicheView;
 class PelotaJuegoView;
 class VistaEngranaje;
-class SogaView;
-class CorreaView;
+class CorreaEstaticaView;
 class SogaEstaticaView;
 class DropController {
 
@@ -55,8 +54,7 @@ public:
 	virtual void dropNuevaFigura(BolaBolicheView*)= 0;
 	virtual void dropNuevaFigura(PelotaJuegoView*) = 0 ;
 	virtual void dropNuevaFigura(VistaEngranaje*) = 0 ;
-	virtual void dropNuevaFigura(SogaView*) = 0 ;
-	virtual void dropNuevaFigura(CorreaView*) = 0 ;
+	virtual void dropNuevaFigura(CorreaEstaticaView*) = 0 ;
 	virtual void dropNuevaFigura(SogaEstaticaView*) = 0 ;
 	virtual void dropFigura(FiguraView*) = 0;
 	virtual void drag(FiguraView *, float,float) = 0;

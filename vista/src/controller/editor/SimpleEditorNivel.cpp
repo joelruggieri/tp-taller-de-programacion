@@ -7,7 +7,6 @@
 
 #include "SimpleEditorNivel.h"
 #include "src/Logger.h"
-#include "../../vista/objeto/MotorView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 #include "../../ConstantesVista.h"
@@ -390,27 +389,21 @@ void SimpleEditorNivel::dropNuevaFigura(VistaEngranaje* view) {
 	dropear(view, this->figurasFactory->crearEngranaje(x, 100 - y));
 }
 
-void SimpleEditorNivel::dropNuevaFigura(SogaView* view) {
-//	Resizer* r = Resizer::Instance();
-//	float x;
-//	float y;
-//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-//	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
-}
-
-void SimpleEditorNivel::dropNuevaFigura(CorreaView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearCorrea(x, 100 - y));
-
-}
 
 void SimpleEditorNivel::dropNuevaFigura(SogaEstaticaView* view) {
 	Resizer* r = Resizer::Instance();
 	float x;
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
+	dropear(view, this->figurasFactory->crearSoga(x, 100 - y));
+}
+
+void SimpleEditorNivel::dropNuevaFigura(CorreaEstaticaView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCorrea(x, 100 - y));
+
+
 }

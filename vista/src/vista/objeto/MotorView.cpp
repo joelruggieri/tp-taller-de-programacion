@@ -25,7 +25,6 @@ void MotorView::dropTemplate() {
 }
 
 EditorNivel* MotorView::getEditor() {
-//	SimpleEditorAnguloFijo * editor = (SimpleEditorAnguloFijo *)controller;
 	SimpleEditorOrientacionCambiable * editor = (SimpleEditorOrientacionCambiable *)controller;
 	editor->setFigura(this);
 	return editor;

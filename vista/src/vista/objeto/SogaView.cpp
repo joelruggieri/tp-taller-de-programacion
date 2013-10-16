@@ -10,7 +10,7 @@
 #include <src/objeto/Soga.h>
 #include "../CargadorDeTextures.h"
 
-SogaView::SogaView(int x, int y, int w, int h, SDL_Texture * textura, EditorUnion * editor): ObjetoView(x, y, w, h,textura, editor) {
+SogaView::SogaView(int x, int y, int w, int h, SDL_Texture * textura, EditorUnion * editor): UnionView(x, y, textura, editor) {
 	texturaTramo = CargadorDeTextures::Instance()->cargarTexture("resource/eslabon_cinta.png");
 }
 
