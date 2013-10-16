@@ -167,8 +167,8 @@ void Soga::crearLazo(b2World* w) {
 }
 
 bool Soga::crearFisicaEstatica(b2World* w, b2Body* ground) {
-	if (!this->figuraInicio->esUnibleConSoga()
-			|| !figuraFin->esUnibleConSoga()) {
+	if (this->figuraInicio->getEnganches().size() == 0
+			|| this->figuraFin->getEnganches().size() == 0 ) {
 		return false;
 	}
 	this->crearFisicaEstaticaTemplate(w, ground);
