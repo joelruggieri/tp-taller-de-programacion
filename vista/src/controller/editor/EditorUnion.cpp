@@ -54,8 +54,8 @@ void EditorUnion::clickDown(int x, int y) {
 				this->visor = NULL;
 				this->editado = NULL;
 			}
-			finalizado = true;
 		}
+		finalizado = true;
 	}
 }
 void EditorUnion::rightClickUp(int x, int y) {
