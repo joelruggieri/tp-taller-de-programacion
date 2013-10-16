@@ -54,8 +54,7 @@ public:
 	void dropNuevaFigura(BolaBolicheView* view);
 	void dropNuevaFigura(PelotaJuegoView* view);
 	void dropNuevaFigura(VistaEngranaje* view);
-	void dropNuevaFigura(SogaView* view);
-	void dropNuevaFigura(CorreaView* view);
+	void dropNuevaFigura(CorreaEstaticaView* view);
 	void dropNuevaFigura(SogaEstaticaView* view);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
