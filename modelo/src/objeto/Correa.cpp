@@ -11,6 +11,33 @@ Correa::Correa(float x, float y):Union(x,y){
 	this->h = 2; 	//harcodeado
 }
 
+
+Correa::Correa(const Correa& correa){
+	this->body = correa.body;
+	this->enganches = correa.enganches;
+	this->figuraFin = correa.figuraFin;
+	this->figuraInicio = correa.figuraInicio;
+	b2Vec2 inicio(correa.getXInicial(),correa.getYInicial());
+	this->inicio = inicio;
+	b2Vec2 fin(correa.getXFinal(),correa.getYFinal());
+	this->fin = fin;
+	this->h = correa.h;
+	this->w = correa.getAncho();
+	this->reg = correa.reg;
+	this->rotacion = correa.getRotacion();
+	this->rotacionb = correa.rotacionb;
+	this->traccionable = correa.traccionable;
+	this->vista = correa.vista;
+	this->x = correa.getX();
+	this->y = correa.getY();
+	this->xb = correa.xb;
+	this->yb = correa.yb;
+}
+
+Correa::Correa(): Union(){
+
+}
+
 Correa::~Correa() {
 	// TODO Auto-generated destructor stub
 }
@@ -93,7 +120,8 @@ bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
 }
 
 
-void Correa::acept(VisitorFigura* v){
+void Correa::acept(VisitorFigura* visitor){
+	visitor->visit(this);
 }
 
 bool Correa::setearPuntoInicial(Figura*f ) {

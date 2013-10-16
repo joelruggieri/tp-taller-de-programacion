@@ -210,6 +210,33 @@ struct convert<Motor> {
 	}
 };
 
+template<>
+struct convert<Correa> {
+	static Node encode(const Correa& objeto) {
+		Node node;
+		node["xDesde"] = objeto.getXInicial();
+		node["yDesde"] = objeto.getYInicial();
+		node["xHasta"] = objeto.getXFinal();
+		node["yHasta"] = objeto.getYFinal();
+		return node;
+	}
+
+	static bool decode(const Node& node, Correa& objeto) {
+		if (node.size() != 4) return false;
+		objeto.setXInicial(node["xDesde"].as<float>());
+		objeto.setYInicial(node["yDesde"].as<float>());
+		objeto.setXFinal(node["xHasta"].as<float>());
+		objeto.setYFinal(node["yHasta"].as<float>());
+
+
+		Mark marca = node.Mark();
+		Registro & reg = objeto.getReg();
+		reg.setLinea(marca.line);
+		reg.setEtiqueta("Correa");
+		return true;
+	}
+};
+
 }
 
 #endif /* CONSTRUCTORESYAML_H_ */

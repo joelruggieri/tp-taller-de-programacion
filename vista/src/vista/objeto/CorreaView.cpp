@@ -43,4 +43,3 @@ void CorreaView::dibujarse(SDL_Renderer* renderer){
 	super::dibujarse(renderer,10,10,10);
 }
 
-

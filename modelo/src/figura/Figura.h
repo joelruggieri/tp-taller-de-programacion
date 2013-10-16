@@ -67,7 +67,7 @@ public:
 	virtual void restoreBackUp();
 
 	virtual Lista_Enganches getEnganches();
-	Registro & getReg() ;
+	Registro & getReg();
 	void setReg(Registro r) ;
 
 

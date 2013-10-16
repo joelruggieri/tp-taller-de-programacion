@@ -14,6 +14,7 @@
 class Union: public Objeto {
 public:
 	Union(float x, float y);
+	Union();
 	virtual ~Union();
 	void setFin(const b2Vec2& fin);
 	void setInicio(const b2Vec2& inicio);
@@ -26,6 +27,14 @@ public:
 	float getYInicial();
 	float getXFinal();
 	float getYFinal();
+	float getXInicial() const;
+	float getYInicial() const;
+	float getXFinal() const;
+	float getYFinal() const;
+	void setXInicial(float);
+	void setYInicial(float);
+	void setXFinal(float);
+	void setYFinal(float);
 	virtual bool setearPuntoInicial(Figura *) = 0;
 	virtual bool setearPuntoFinal(Figura *) = 0;
 

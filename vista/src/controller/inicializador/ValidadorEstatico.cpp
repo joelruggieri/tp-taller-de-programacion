@@ -49,6 +49,13 @@ void ValidadorEstatico::visit(BolaBoliche* f) {
 
 }
 
+void ValidadorEstatico::visit(Correa* f) {
+	if(!validarPosicion(f)){
+		return;
+	}
+
+}
+
 void ValidadorEstatico::visit(PelotaJuego* f) {
 	if(!validarPosicion(f)){
 		return;

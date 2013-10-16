@@ -33,6 +33,7 @@ public:
 	Figura* crear(PelotaJuego*);
 	Figura* crear(GloboHelio*);
 	Figura* crear(Motor*);
+	Figura* crear(Correa*);
 };
 
 #endif /* FIGURAFACTORY_H_ */
