@@ -19,7 +19,7 @@ public:
 	virtual ~Soga();
 	bool crearFisicaEstatica(b2World *);
 	void cargar(b2Body* origen, b2Body* destino, b2World *m_world);
-	void updateModelo();
+//	void updateModelo();
 	std::vector<float>& getAngulosTramos();
 	std::vector<SDL_Rect>& getMarcosTramos();
 	void crearFisica(b2World * w, b2Body* g);

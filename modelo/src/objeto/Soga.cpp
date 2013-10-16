@@ -94,11 +94,11 @@ b2Body *Soga::crear(b2World *m_world, int x, int y) {
 	return cuerpo;
 }
 
-void Soga::updateModelo() {
-	Union::updateModelo();
-//	actualizarMarcos();
-//	actualizarAngulos();
-}
+//void Soga::updateModelo() {
+//	Union::updateModelo();
+////	actualizarMarcos();
+////	actualizarAngulos();
+//}
 
 void Soga::actualizarMarcos() {
 	if (tramos.size() != marcosTramos.size()) {

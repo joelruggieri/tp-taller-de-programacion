@@ -83,12 +83,10 @@ void Union::calcularAnguloCuadrado() {
 	dist4.y = 0;
 	float distanciaA = calcularDistancia(dist1, dist2);
 	float distanciaB = calcularDistancia(dist3, dist4);
-	if (distanciaB == 0)
-	{
+	if (distanciaB == 0) {
 		this->rotacion = 0;
-	}
-	else
-	this->rotacion = -atan(distanciaA/distanciaB);
+	} else
+		this->rotacion = -atan(distanciaA / distanciaB);
 }
 
 //void Union::setFiguraInicio(Figura* a) {
@@ -120,7 +118,7 @@ void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
 	cuadrado.SetAsBox(this->w, this->h);
 	b2FixtureDef bodyCuadrado;
 	bodyCuadrado.shape = &cuadrado;
-	bodyCuadrado.filter.categoryBits = CATEGORIA_CORREA;//TODO cambiar categorias
+	bodyCuadrado.filter.categoryBits = CATEGORIA_CORREA; //TODO cambiar categorias
 	bodyCuadrado.filter.maskBits = 0X0008;
 	body->CreateFixture(&bodyCuadrado);
 
@@ -139,8 +137,35 @@ void Union::updateCaracteristicas() {
 	this->calcularAnchoCuadrado();
 	this->calcularAnguloCuadrado();
 	this->calcularCentroCuadrado();
+	this->updatePosicionesFiguras();
 }
 
 void Union::updateModelo() {
+	super::updateModelo();
 	this->updateCaracteristicas();
+
+}
+
+void Union::updatePosicionesFiguras() {
+	this->inicio.x = this->figuraInicio->getX();
+	this->inicio.y = this->figuraInicio->getY();
+	this->fin.x = this->figuraFin->getX();
+	this->fin.y = this->figuraFin->getY();
+
+}
+
+void Union::makeBackUp() {
+this->inicioB = this->inicio ;
+this->finB = this->fin;
+this->wB = this->w;
+this->hB = this->h;
+super::makeBackUp();
+}
+
+void Union::restoreBackUp() {
+	this->inicio = this->inicioB;
+	this->fin = this->finB;
+	this->w = this->wB;
+	this->h = this->hB;
+	super::restoreBackUp();
 }

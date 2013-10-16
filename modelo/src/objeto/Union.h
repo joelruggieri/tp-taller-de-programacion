@@ -10,7 +10,8 @@
 
 #include "Objeto.h"
 #include "../Constantes.h"
-
+#include <iostream>
+using namespace std;
 class Union: public Objeto {
 public:
 	Union(float x, float y);
@@ -36,6 +37,8 @@ protected:
 	b2Vec2 fin;
 	Figura* figuraInicio;
 	Figura* figuraFin;
+	b2Vec2 inicioB, finB;
+	float wB, hB;
 	float w, h;
 	virtual void setearPuntoInicial(Figura *) = 0;
 	virtual void setearPuntoFinal(Figura *) = 0;
@@ -44,7 +47,11 @@ protected:
 	void calcularCentroCuadrado();
 	void calcularAnguloCuadrado();
 	void calcularAnchoCuadrado();
+	void updatePosicionesFiguras();
 	void updateModelo();
+	 void makeBackUp();
+	 void restoreBackUp();
+	typedef Figura super;
 };
 
 #endif /* UNION_H_ */
