@@ -28,7 +28,7 @@ EditorNivel* VistaEngranaje::getEditor() {
 	return editor;
 }
 
-void VistaEngranaje::update(Transformacion* tr) {
-	this->setH(this->getModelo()->getAncho());
-	this->setW(this->getModelo()->getAncho());
-}
+//void VistaEngranaje::update(Transformacion* tr) {
+//	this->setH(this->getModelo()->getAncho());
+//	this->setW(this->getModelo()->getAncho());
+//}
