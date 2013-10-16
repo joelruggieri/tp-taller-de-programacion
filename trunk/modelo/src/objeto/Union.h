@@ -44,6 +44,7 @@ protected:
 	void calcularCentroCuadrado();
 	void calcularAnguloCuadrado();
 	void calcularAnchoCuadrado();
+	void updateModelo();
 };
 
 #endif /* UNION_H_ */
