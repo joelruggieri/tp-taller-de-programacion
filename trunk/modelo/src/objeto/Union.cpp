@@ -131,7 +131,7 @@ void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
 	b2FixtureDef bodyCuadrado;
 	bodyCuadrado.shape = &cuadrado;
 	bodyCuadrado.filter.categoryBits = CATEGORIA_CORREA;//TODO cambiar categorias
-	bodyCuadrado.filter.maskBits = CATEGORIA_CORREA;
+	bodyCuadrado.filter.maskBits = 0X0008;
 	body->CreateFixture(&bodyCuadrado);
 
 //	this->crearFisica(w, ground);
