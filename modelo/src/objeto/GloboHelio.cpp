@@ -11,6 +11,7 @@ GloboHelio::GloboHelio(float x, float y, float radio) : Objeto(x,y){
 	this->radio = radio ;
 	this->setRotacion(0);
 	this->enganches.push_back(new Enganche((int)x, (int)y - (int)radio));
+	this->unibleConSoga = true;
 }
 
 GloboHelio::~GloboHelio() {
@@ -52,6 +53,7 @@ GloboHelio::GloboHelio(const GloboHelio&  figura) {
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
+	this->unibleConSoga = true;
 	this->reg =figura.reg;
 	this->enganches.push_back(new Enganche((int)x, (int)y - (int)radio));
 }

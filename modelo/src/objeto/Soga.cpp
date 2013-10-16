@@ -139,18 +139,53 @@ void Soga::acept(VisitorFigura*) {
 }
 
 void Soga::crearFisica(b2World* w, b2Body* g) {
+this->crearLazo(w);
 }
 
 void Soga::setearPuntoInicial(Figura* f) {
-	//TODO VERIFICAR LOS ENGANCHES Y VER QUE ONDA.
-//	return f->getEnganches().size() > 0;
+	this->figuraInicio =f;
+	this->setInicio(b2Vec2(f->getX(), f->getY()));
 }
 
 void Soga::setearPuntoFinal(Figura* f) {
-	//TODO VERIFICAR LOS ENGANCHES Y VER QUE ONDA.
-//	return f->getEnganches().size() > 0;
+	this->figuraFin =f;
+	this->setFin(b2Vec2(f->getX(), f->getY()));
 }
 
 bool Soga::isExtremoValido(Figura* f) {
-	return f->getEnganches().size() > 0;
+//	return f->getEnganches().size() > 0;
+	return true;
+}
+
+void Soga::crearLazo(b2World* w) {
+			b2RopeJointDef ropeJoint;
+			ropeJoint.bodyA = this->figuraInicio->getBody();
+			ropeJoint.bodyB = this->figuraFin->getBody();
+			ropeJoint.collideConnected = true;
+			ropeJoint.maxLength = this->w;	// el maximo sale del calculo de la distancia en union
+		    w->CreateJoint(&ropeJoint);
+}
+
+bool Soga::crearFisicaEstatica(b2World* w, b2Body* ground) {
+	if (!this->figuraInicio->esUnibleConSoga()
+			|| !figuraFin->esUnibleConSoga()) {
+		return false;
+	}
+	this->crearFisicaEstaticaTemplate(w, ground);
+	bool hayContacto = false;
+	for (b2Body* b = w->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
+		if (b!= this->body && b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
+			if (validarContacto(w, body, b)) {
+				hayContacto = true;
+				break;
+			}
+
+		}
+	}
+	if (hayContacto) {
+		removerFisica(w);
+		/// remover joint tambien
+	}
+
+	return !hayContacto;
 }

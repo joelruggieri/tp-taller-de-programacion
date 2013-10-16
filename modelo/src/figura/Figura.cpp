@@ -69,6 +69,7 @@ Figura::Figura() {
 	yb = y;
 	rotacionb =0;
 	traccionable = false;
+	unibleConSoga = false;
 }
 
 Figura::Figura(float x, float y) {
@@ -224,4 +225,8 @@ return (this->body->GetFixtureList()->GetFilterData().maskBits == b->GetFixtureL
 
 bool Figura::coincidenCategorias(b2Body* b) {
 	return (this->body->GetFixtureList()->GetFilterData().categoryBits == b->GetFixtureList()->GetFilterData().categoryBits);
+}
+
+bool Figura::esUnibleConSoga() {
+	return this->unibleConSoga;
 }
