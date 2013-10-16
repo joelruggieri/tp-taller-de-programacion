@@ -18,20 +18,14 @@ public:
 	virtual ~Correa();
 	void crearFisica(b2World* w, b2Body* ground);
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);
-	void setFiguraInicio(Figura*);
-	void setFiguraFin(Figura*);
 	bool crearFisicaEstatica(b2World* w, b2Body* ground);
-	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
-	void acept(VisitorFigura *);
+//	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
 private:
-	Engranaje* engranajeA;
-	Engranaje* engranajeB;
-	Figura* figuraInicio;
-	Figura* figuraFin;
-	float calcularDistancia(b2Vec2, b2Vec2);
-	b2Vec2 calcularCentroCuadrado();
-	float calcularAnguloCuadrado();
-	float calcularAnchoCuadrado();
+//	Engranaje* engranajeA;
+//	Engranaje* engranajeB;
+//	Figura* figuraInicio;
+//	Figura* figuraFin;
+
 };
 
 #endif /* CORREA_H_ */
