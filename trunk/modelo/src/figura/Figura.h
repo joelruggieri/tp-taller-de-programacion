@@ -22,7 +22,7 @@ protected:
 	bool traccionable;
 	float xb,yb;
 	double rotacionb;
-
+	bool unibleConSoga;
 	Registro reg;
 
 
@@ -53,6 +53,7 @@ public:
 	virtual void acept(VisitorFigura*) = 0;
 	virtual void removerFisica(b2World * w);
 	bool esTraccionable();
+	bool esUnibleConSoga();
 	bool coincidenMascaras(b2Body*);
 	bool coincidenCategorias(b2Body*);
 	Vista* getVista();

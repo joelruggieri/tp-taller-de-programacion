@@ -10,6 +10,7 @@
 PelotaJuego::PelotaJuego(float x, float y, float radio) :
 		Objeto(x, y) {
 	this->radio = radio;
+	this->unibleConSoga = true;
 }
 
 PelotaJuego::~PelotaJuego() {
@@ -53,6 +54,7 @@ PelotaJuego::PelotaJuego(const PelotaJuego& figura) {
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
 	this->reg = figura.reg;
+	this->unibleConSoga = true;
 }
 
 PelotaJuego::PelotaJuego() {

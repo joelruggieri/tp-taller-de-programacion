@@ -25,6 +25,8 @@ public:
 	void crearFisica(b2World * w, b2Body* g);
 	void acept(VisitorFigura*);
 	bool isExtremoValido(Figura * f);
+	void crearLazo(b2World*);
+	bool crearFisicaEstatica(b2World*, b2Body* ground);
 protected:
 	void setearPuntoInicial(Figura*f);
 	void setearPuntoFinal(Figura *f);
