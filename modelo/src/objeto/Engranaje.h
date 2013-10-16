@@ -7,7 +7,6 @@
 
 #ifndef ENGRANAJE_H_
 #define ENGRANAJE_H_
-
 #include "Objeto.h"
 class Engranaje: public Objeto {
 public:
@@ -25,6 +24,8 @@ public:
 	void modificarSentido();
 	int getDireccion() const;
 	void setDireccion(int dir);
+	void updateModelo();
+	float getAncho();
 private:
 	typedef Objeto super;
 protected:
