@@ -10,12 +10,12 @@
 
 #include "ObjetoView.h"
 
-class SimpleEditorSoga;
+class EditorUnion;
 struct SDL_Texture;
 
 class SogaView: public ObjetoView {
 public:
-	SogaView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorSoga * editor);
+	SogaView(int x, int y, int w, int h, SDL_Texture * textura, EditorUnion * editor);
 	virtual ~SogaView();
 	EditorNivel* getEditor();
 	void dropTemplate();

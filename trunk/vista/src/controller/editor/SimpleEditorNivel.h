@@ -10,14 +10,6 @@
 
 #include "EditorNivel.h"
 #include "../../vista/figura/FiguraView.h"
-#include "../../vista/objeto/PlataformaView.h"
-#include "../../vista/objeto/GloboHelioView.h"
-#include "../../vista/objeto/BalancinView.h"
-#include "../../vista/objeto/VistaCintaTransportadora.h"
-#include "../../vista/figura/FiguraView.h"
-#include "../../vista/objeto/BolaBolicheView.h"
-#include "../../vista/objeto/PelotaJuegoView.h"
-#include "../../vista/objeto/VistaEngranaje.h"
 #include "../DropController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "src/ModeloController.h"
@@ -25,13 +17,6 @@
 #include "../../modelo/Rotacion.h"
 
 class SimpleEditorNivel: public EditorNivel,public DropController {
-/*private:
-	FiguraFactory * figurasFactory;
-	Drag * elementoDrag;
-	Rotacion * rot;
-	int posStartDragX;
-	int posStartDragY;
-	int yMaxDrag;*/
 protected:
 	ModeloController * modeloController;
 	virtual void dropear(FiguraView* view, Figura* figura);
@@ -69,6 +54,9 @@ public:
 	void dropNuevaFigura(BolaBolicheView* view);
 	void dropNuevaFigura(PelotaJuegoView* view);
 	void dropNuevaFigura(VistaEngranaje* view);
+	void dropNuevaFigura(SogaView* view);
+	void dropNuevaFigura(CorreaView* view);
+	void dropNuevaFigura(SogaEstaticaView* view);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 };

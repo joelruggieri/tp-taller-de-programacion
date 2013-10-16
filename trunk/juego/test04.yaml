@@ -1,16 +1,31 @@
 Nivel:
-  Fondo: ""
   Nombre: test04
+  Fondo: ""
 Objetos:
-  Engranajes:
-    - y: 36.6
-      x: 63
-    - x: 72.6
-      y: 39.4
   Motores:
-    - x: 80.6
+    - x: 59.6
+      y: 55.2
       direccion: 1
-      y: 20.4
-    - direccion: 1
-      y: 32.8
-      x: 53.8
+  Balancines:
+    - x: 29.6
+      y: 60.2
+      ancho: 15
+      rotacion: 45
+  PelotasJuego:
+    - x: 26.4
+      y: 84
+  Engranajes:
+    - x: 79.2
+      y: 55.2
+    - y: 45.8
+      x: 56.2
+    - x: 69.4
+      y: 57.4
+    - y: 46.8
+      x: 84.2
+  GlobosHelio:
+    - x: 34.2
+      y: 9.800003
+  BolasBoliche:
+    - x: 63.4
+      y: 84.4

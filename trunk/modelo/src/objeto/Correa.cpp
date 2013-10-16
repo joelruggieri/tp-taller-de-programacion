@@ -135,6 +135,5 @@ bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
 	return !hayContacto;
 }
 
-
-
-
+void Correa::acept(VisitorFigura*) {
+}

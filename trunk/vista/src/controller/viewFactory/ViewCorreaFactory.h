@@ -8,12 +8,12 @@
 #ifndef VIEWCORREAFACTORY_H_
 #define VIEWCORREAFACTORY_H_
 #include "ViewFiguraFactory.h"
-#include "../editor/SimpleEditorSoga.h"
+#include "../editor/EditorUnion.h"
 
 class ViewCorreaFactory: public ViewFiguraFactory{
 
 public:
-	ViewCorreaFactory(SimpleEditorSoga* editor);
+	ViewCorreaFactory(EditorUnion* editor);
 	virtual ~ViewCorreaFactory();
 	FiguraView * crear(int, int, int, int);
 	View * crearVistaPropia(int,int,int,int);

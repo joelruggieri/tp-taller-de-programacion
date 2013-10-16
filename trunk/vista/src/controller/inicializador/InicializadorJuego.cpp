@@ -48,7 +48,7 @@ using namespace std;
 #include "../editor/SimpleEditorNivel.h"
 #include "../editor/SimpleEditorAnguloFijo.h"
 #include "../editor/SimpleEditorEstirar.h"
-#include "../editor/SimpleEditorSoga.h"
+#include "../editor/EditorUnion.h"
 #include "../editor/SimpleEditorOrientacionCambiable.h"
 #include "../editor/EditorDeEstiramientoDeCinta.h"
 
@@ -171,7 +171,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo2 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos2);
 //	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
-	SimpleEditorSoga* editorSogas = new SimpleEditorSoga(modeloController, tablero, this->factory, 100);
+	EditorUnion* editorSogas = new EditorUnion(modeloController, tablero, this->factory, 100);
 	SimpleEditorOrientacionCambiable* editorOrientacionCambiable = new SimpleEditorOrientacionCambiable(modeloController, tablero, this->factory, 100);
 	EditorDeEstiramientoDeCinta* editorCinta = new EditorDeEstiramientoDeCinta(modeloController, tablero, this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);

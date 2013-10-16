@@ -14,6 +14,8 @@
 #include "../objeto/PelotaJuego.h"
 #include "../objeto/Balancin.h"
 #include "../objeto/Engranaje.h"
+#include "../objeto/Soga.h"
+#include "../objeto/Correa.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory(Rotador * rotador) {
 	this->rotador = rotador;
@@ -117,4 +119,14 @@ Figura* FiguraFactory::crear(Engranaje* c) {
 		t->setRotacion(0);
 		t->setReg(c->getReg());
 	return t;
+}
+
+Figura* FiguraFactory::crearSoga(float x, float y) {
+	Figura * f = new Soga(x,y);
+	return f;
+
+}
+
+Figura* FiguraFactory::crearCorrea(float x, float y) {
+	return new Correa(x,y);
 }
