@@ -24,10 +24,12 @@ public:
 	void modificarSentido();
 	int getDireccion() const;
 	void setDireccion(int dir);
-//	void updateModelo();
 	float getAncho();
+	void agrandar(float delta);
 private:
 	typedef Objeto super;
+	void getSiguienteRadio();
+	void getAnteriorRadio();
 protected:
 	b2RevoluteJoint * jointCuerpoTierra;
 	float radio;

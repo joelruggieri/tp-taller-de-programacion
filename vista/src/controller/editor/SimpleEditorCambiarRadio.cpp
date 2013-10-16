@@ -30,6 +30,11 @@ void SimpleEditorCambiarRadio::rightClickDown(int x, int y) {
 
 void SimpleEditorCambiarRadio::actualizarRadio() {
 	Figura* figura = (this->editado->getModelo());
-	figura->updateModelo();
-//	this->editado->update()	// La transformacion de donde la saco??
+	Resizer*r = Resizer::Instance();
+	figura->agrandar(1); //siempre agranda
+	Transformacion trans;
+	trans.traslacion(0, 100);
+	trans.escalar(r->getRelacionX(), r->getRelacionY());
+	trans.invertir(false, true);
+	this->editado->update(trans);	// La transformacion de donde la saco??
 }

@@ -13,12 +13,13 @@ class SimpleEditorAnguloFijo;
 class SDL_Texture;
 
 class VistaEngranaje: public ObjetoView {
+	typedef FiguraView super;
 public:
 	VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
 	virtual ~VistaEngranaje();
 	void dropTemplate();
 	EditorNivel * getEditor();
-//	void  update(Transformacion*);
+	void  update(Transformacion&);
 };
 
 #endif /* VISTAENGRANAJE_H_ */
