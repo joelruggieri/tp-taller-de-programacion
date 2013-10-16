@@ -19,10 +19,7 @@ public:
 	void setFin(const b2Vec2& fin);
 	void setInicio(const b2Vec2& inicio);
 
-	float getXInicial();
-	float getYInicial();
-	float getXFinal();
-	float getYFinal();
+
 	float getXInicial() const;
 	float getYInicial() const;
 	float getXFinal() const;

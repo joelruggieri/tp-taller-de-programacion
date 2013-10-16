@@ -30,22 +30,6 @@ void Union::setInicio(const b2Vec2& inicio) {
 	this->inicio = inicio;
 }
 
-float Union::getXInicial() {
-	return inicio.x;
-}
-
-float Union::getYInicial() {
-	return inicio.y;
-}
-
-float Union::getXFinal() {
-	return fin.x;
-}
-
-float Union::getYFinal() {
-	return fin.y;
-}
-
 float Union::getXInicial() const {
 	return inicio.x;
 }
