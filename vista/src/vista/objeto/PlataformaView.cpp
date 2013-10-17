@@ -8,7 +8,7 @@
 #include "PlataformaView.h"
 #include "../../controller/editor/SimpleEditorEstirar.h"
 #include "src/objeto/Plataforma.h"
-PlataformaView::PlataformaView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorNivel* editor) : ObjetoView(x,y,w,h,textura,editor) {
+PlataformaView::PlataformaView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorEstirar* editor) : ObjetoView(x,y,w,h,textura,editor) {
 
 }
 
@@ -17,11 +17,11 @@ PlataformaView::~PlataformaView() {
 }
 
 void 	PlataformaView::dropTemplate() {
-	((SimpleEditorNivel * )this->controller)->dropNuevaFigura(this);
+	((SimpleEditorEstirar * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* PlataformaView::getEditor() {
-	SimpleEditorNivel * editor = (SimpleEditorNivel *)controller;
+	SimpleEditorEstirar * editor = (SimpleEditorEstirar *)controller;
 	editor->setFigura(this);
 	return editor;
 }

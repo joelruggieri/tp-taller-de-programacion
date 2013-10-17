@@ -1,14 +1,19 @@
 Nivel:
-  Fondo: ""
   Nombre: test04
+  Fondo: ""
 Objetos:
+  Plataformas:
+    - y: 40.2
+      x: 51
+      ancho: 10
+      rotacion: 0
+  Correas:
+    - yHasta: 47.4
+      xHasta: 40.4
+      yDesde: 70.6
+      xDesde: 81
   Engranajes:
     - x: 40.4
       y: 47.4
     - y: 70.6
       x: 81
-  Correas:
-    - xHasta: 81
-      yHasta: 70.6
-      yDesde: 47.4
-      xDesde: 40.4

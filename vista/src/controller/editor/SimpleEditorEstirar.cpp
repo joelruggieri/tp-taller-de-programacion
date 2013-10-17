@@ -101,3 +101,10 @@ void SimpleEditorEstirar::dropNuevaFigura(VistaCintaTransportadora* view) {
 
 }
 
+void SimpleEditorEstirar::dropNuevaFigura(PlataformaView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearPlataforma(x, 100 - y));
+}

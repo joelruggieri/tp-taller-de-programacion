@@ -9,6 +9,7 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../../ConstantesVista.h"
 #include "src/Constantes.h"
+#include "../../controller/editor/SimpleEditorEstirar.h"
 
 
 ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor): ViewFiguraFactory(PATH_VISTA_PLATAFORMA_F, editor) {

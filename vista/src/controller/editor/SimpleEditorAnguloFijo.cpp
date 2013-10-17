@@ -9,6 +9,7 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 #include "src/Logger.h"
+#include "../../vista/objeto/BalancinView.h"
 SimpleEditorAnguloFijo::SimpleEditorAnguloFijo(ModeloController * c,
 		ZonaTablero *t, FiguraFactory* f, int yMaxDrag, list<float>& angulos) :
 		SimpleEditorNivel(c, t, f, yMaxDrag) {

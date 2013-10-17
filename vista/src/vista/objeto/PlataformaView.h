@@ -9,12 +9,12 @@
 #define PLATAFORMAVIEW_H_
 #include "ObjetoView.h"
 
-class SimpleEditorNivel;
+class SimpleEditorEstirar;
 class PlataformaView: public ObjetoView {
 private:
 	typedef FiguraView super;
 public:
-	PlataformaView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorNivel* controller);
+	PlataformaView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorEstirar* controller);
 	virtual ~PlataformaView();
 	void dropTemplate();
 	EditorNivel * getEditor();
