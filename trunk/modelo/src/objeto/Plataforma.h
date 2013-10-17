@@ -11,7 +11,7 @@
 #include "../figura/Figura.h"
 #include "Estirable.h"
 
-class Plataforma: public Objeto, public Estirable {
+class Plataforma:  public Estirable,public Objeto {
 private:
 	float alto;
 	float ancho;

@@ -8,8 +8,8 @@
 #ifndef VIEWPLATAFORMAFACTORY_H_
 #define VIEWPLATAFORMAFACTORY_H_
 #include "ViewFiguraFactory.h"
-#include "../editor/SimpleEditorEstirar.h"
 
+class SimpleEditorEstirar;
 class ViewPlataformaFactory: public ViewFiguraFactory{
 
 public:

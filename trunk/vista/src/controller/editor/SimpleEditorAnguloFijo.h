@@ -9,7 +9,7 @@
 #define SIMPLEEDITORANGULOFIJO_H_
 
 #include "SimpleEditorNivel.h"
-
+class BalancinView;
 class SimpleEditorAnguloFijo: public SimpleEditorNivel {
 private:
    typedef SimpleEditorNivel super;
