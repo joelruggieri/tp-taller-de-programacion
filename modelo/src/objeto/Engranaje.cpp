@@ -188,7 +188,7 @@ void Engranaje::setDireccion(int dir) {
 	this->direccion = dir;
 }
 
-void Engranaje::agrandar(float delta) {
+void Engranaje::estirar(float delta) {
 if (delta >= 0 ) this->getSiguienteRadio();
 else this->getAnteriorRadio();
 }

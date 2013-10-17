@@ -9,9 +9,9 @@
 #define PLATAFORMA_H_
 #include "Objeto.h"
 #include "../figura/Figura.h"
+#include "Estirable.h"
 
-
-class Plataforma: public Objeto {
+class Plataforma: public Objeto, public Estirable {
 private:
 	float alto;
 	float ancho;
@@ -28,7 +28,7 @@ public:
 	void setAncho(float ancho);
 	void crearFisica(b2World * w, b2Body* ground);
 	void acept(VisitorFigura*);
-	void agrandar(float delta);
+	void estirar(float delta);
 	void makeBackUp();
 	void restoreBackUp();
 

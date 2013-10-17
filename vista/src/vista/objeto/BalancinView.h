@@ -9,13 +9,13 @@
 #define BALANCINVIEW_H_
 
 
-class SimpleEditorNivel;
+class SimpleEditorAnguloFijo;
 struct SDL_Texture;
 #include "ObjetoView.h"
 
 class BalancinView: public ObjetoView {
 public:
-	BalancinView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorNivel * editor);
+	BalancinView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
 	virtual ~BalancinView();
 	void dropTemplate();
 	EditorNivel * getEditor();

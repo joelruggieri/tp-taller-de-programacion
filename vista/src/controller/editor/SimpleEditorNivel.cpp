@@ -94,15 +94,15 @@ void SimpleEditorNivel::dropFigura(FiguraView* view) {
 	this->dropear(view, modelo);
 }
 
-void SimpleEditorNivel::dropNuevaFigura(MotorView* view) {
-
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearMotor(x, 100 - y));
-}
-
+//void SimpleEditorNivel::dropNuevaFigura(MotorView* view) {
+//
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view, this->figurasFactory->crearMotor(x, 100 - y));
+//}
+//
 void SimpleEditorNivel::dropNuevaFigura(PlataformaView* view) {
 
 	Resizer* r = Resizer::Instance();
@@ -111,15 +111,15 @@ void SimpleEditorNivel::dropNuevaFigura(PlataformaView* view) {
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 	dropear(view, this->figurasFactory->crearPlataforma(x, 100 - y));
 }
-
-void SimpleEditorNivel::dropNuevaFigura(BalancinView* view) {
-
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearBalancin(x, 100 - y));
-}
+//
+//void SimpleEditorNivel::dropNuevaFigura(BalancinView* view) {
+//
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view, this->figurasFactory->crearBalancin(x, 100 - y));
+//}
 
 void SimpleEditorNivel::clickDown(int x, int y) {
 	//si no esta haciendo nada
@@ -329,13 +329,13 @@ void SimpleEditorNivel::cleanAndDelete() {
 	rotando = false;
 }
 
-void SimpleEditorNivel::dropNuevaFigura(BolaBolicheView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearBolaBoliche(x, 100 - y));
-}
+//void SimpleEditorNivel::dropNuevaFigura(BolaBolicheView* view) {
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view, this->figurasFactory->crearBolaBoliche(x, 100 - y));
+//}
 
 void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {
 //TENGO QUE AVISAR AL JUEGO QUE SUSPENDA VISTA.
@@ -354,57 +354,57 @@ void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {
 	}
 	mouseMotion(posStartDragX, posStartDragY);
 }
-
-void SimpleEditorNivel::dropNuevaFigura(GloboHelioView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
+//
+//void SimpleEditorNivel::dropNuevaFigura(GloboHelioView* view) {
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 //	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
-}
-
-void SimpleEditorNivel::dropNuevaFigura(VistaCintaTransportadora* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view,
-			this->figurasFactory->crearCintaTransportadora(x, 100 - y,
-					LONGITUD_CINTA_LOG));
-}
-
-void SimpleEditorNivel::dropNuevaFigura(PelotaJuegoView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearPelotaJuego(x, 100 - y));
-}
-
-void SimpleEditorNivel::dropNuevaFigura(VistaEngranaje* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearEngranaje(x, 100 - y));
-}
-
-
-void SimpleEditorNivel::dropNuevaFigura(SogaEstaticaView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearSoga(x, 100 - y));
-}
-
-void SimpleEditorNivel::dropNuevaFigura(CorreaEstaticaView* view) {
-	Resizer* r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	dropear(view, this->figurasFactory->crearCorrea(x, 100 - y));
-
-
-}
+////	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
+//}
+//
+//void SimpleEditorNivel::dropNuevaFigura(VistaCintaTransportadora* view) {
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view,
+//			this->figurasFactory->crearCintaTransportadora(x, 100 - y,
+//					LONGITUD_CINTA_LOG));
+//}
+//
+//void SimpleEditorNivel::dropNuevaFigura(PelotaJuegoView* view) {
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view, this->figurasFactory->crearPelotaJuego(x, 100 - y));
+//}
+//
+//void SimpleEditorNivel::dropNuevaFigura(VistaEngranaje* view) {
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view, this->figurasFactory->crearEngranaje(x, 100 - y));
+//}
+//
+//
+//void SimpleEditorNivel::dropNuevaFigura(SogaEstaticaView* view) {
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view, this->figurasFactory->crearSoga(x, 100 - y));
+//}
+//
+//void SimpleEditorNivel::dropNuevaFigura(CorreaEstaticaView* view) {
+//	Resizer* r = Resizer::Instance();
+//	float x;
+//	float y;
+//	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+//	dropear(view, this->figurasFactory->crearCorrea(x, 100 - y));
+//
+//
+//}

@@ -21,7 +21,7 @@ MotorView::~MotorView() {
 }
 
 void MotorView::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((SimpleEditorOrientacionCambiable * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* MotorView::getEditor() {

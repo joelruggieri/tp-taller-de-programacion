@@ -19,7 +19,7 @@ VistaEngranaje::~VistaEngranaje() {
 }
 
 void VistaEngranaje::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((SimpleEditorAnguloFijo * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* VistaEngranaje::getEditor() {

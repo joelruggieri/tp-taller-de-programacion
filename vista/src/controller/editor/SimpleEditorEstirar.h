@@ -20,6 +20,7 @@ public:
 	void rightClickDown(int x, int y);
 	void mouseMotion(int x, int y);
 	void rightClickUp(int int1, int int2);
+	void dropNuevaFigura(VistaCintaTransportadora * v);
 };
 
 #endif /* SIMPLEEDITORESTIRAR_H_ */

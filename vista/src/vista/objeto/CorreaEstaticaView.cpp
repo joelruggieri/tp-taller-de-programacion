@@ -18,7 +18,7 @@ CorreaEstaticaView::~CorreaEstaticaView() {
 }
 
 void CorreaEstaticaView::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((EditorUnion * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* CorreaEstaticaView::getEditor() {

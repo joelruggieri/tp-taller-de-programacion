@@ -180,16 +180,14 @@ bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
 	return !hayContacto;
 }
 
-void Figura::agrandar(float delta){
-
-}
-
 float Figura::getAncho() const {
 	return 0;
 }
 
 void Figura::removerFisica(b2World* w) {
-	w->DestroyBody(this->getBody());
+	if(body != NULL){
+		w->DestroyBody(this->getBody());
+	}
 	this->setBody(NULL);
 }
 

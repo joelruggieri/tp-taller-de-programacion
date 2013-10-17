@@ -135,3 +135,20 @@ void EditorUnion::mouseMotion(int x, int y) {
 		this->editado->update(trans);
 	}
 }
+
+
+void EditorUnion::dropNuevaFigura(SogaEstaticaView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearSoga(x, 100 - y));
+}
+
+void EditorUnion::dropNuevaFigura(CorreaEstaticaView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCorrea(x, 100 - y));
+}

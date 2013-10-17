@@ -16,7 +16,7 @@ GloboHelioView::~GloboHelioView() {
 }
 
 void GloboHelioView::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((SimpleEditorAnguloFijo * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* GloboHelioView::getEditor() {

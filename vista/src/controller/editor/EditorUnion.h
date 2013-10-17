@@ -26,6 +26,8 @@ public:
 	void rightClickDown(int x, int y);
 	void dropear(FiguraView* view, Figura* figura);
 	void mouseMotion(int x, int y);
+	void dropNuevaFigura(SogaEstaticaView * s);
+	void dropNuevaFigura(CorreaEstaticaView * s);
 };
 
 #endif /* EDITORUNION_H_ */
