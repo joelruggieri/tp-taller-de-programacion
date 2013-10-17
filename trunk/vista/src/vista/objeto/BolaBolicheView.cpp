@@ -17,7 +17,7 @@ BolaBolicheView::~BolaBolicheView() {
 }
 
 void BolaBolicheView::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((SimpleEditorAnguloFijo * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* BolaBolicheView::getEditor() {

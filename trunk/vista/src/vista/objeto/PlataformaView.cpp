@@ -17,7 +17,7 @@ PlataformaView::~PlataformaView() {
 }
 
 void 	PlataformaView::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((SimpleEditorNivel * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* PlataformaView::getEditor() {

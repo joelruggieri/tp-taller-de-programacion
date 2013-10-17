@@ -19,7 +19,7 @@ public:
 	Figura * crearPlataforma(float x, float y);
 	Figura*  crearGloboHelio(float x, float y);
 	Figura * crearBalancin(float x, float y);
-	Figura * crearCintaTransportadora(float x, float y, int longitud);
+	Figura * crearCintaTransportadora(float x, float y);
 	Figura* crearBolaBoliche(float x, float y);
 	Figura* crearPelotaJuego(float x, float y);
 	Figura* crearEngranaje(float x, float y);

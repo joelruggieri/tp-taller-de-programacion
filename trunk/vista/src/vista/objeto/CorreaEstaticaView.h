@@ -17,6 +17,7 @@ public:
 	void dropTemplate();
 	EditorNivel * getEditor();
 	UnionView * toDinamica();
+
 };
 
 #endif /* CORREAESTATICAVIEW_H_ */

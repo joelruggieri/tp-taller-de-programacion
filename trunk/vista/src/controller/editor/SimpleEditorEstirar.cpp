@@ -35,22 +35,21 @@ void SimpleEditorEstirar::rightClickDown(int x, int y){
 void SimpleEditorEstirar::actualizarAncho(int delta){
 //
 
-	Figura* figura = (this->editado->getModelo());
+	Estirable* figura = (Estirable*)(this->editado->getModelo());
 	Resizer* r = Resizer::Instance();
 	float wNuevo = 0;
 	float hNuevo = 0;
 	int aux = 0;
 	r->adaptarDimensionPixel(delta,aux,wNuevo,hNuevo);
-	/*Resizer* r = Resizer::Instance();
 	Transformacion trans;
 	trans.traslacion(0, 100);
 	trans.escalar(r->getRelacionX(), r->getRelacionY());
 	trans.invertir(false, true);
-	trans.setVector(x, y);
 	float lX2, lY2;
-	trans.getResultado(lX2, lY2);*/
-	figura->agrandar(wNuevo);
-	this->editado->setW(r->resizearDistanciaLogicaX(figura->getAncho())); //TODO EN vez de esto hay que usar update de la vista con una transformacion para sacar el metodo getAncho de Figura
+	trans.getResultado(lX2, lY2);
+	figura->estirar(wNuevo);
+	this->editado->update(trans);
+//	this->editado->setW(r->resizearDistanciaLogicaX(figura->getAncho())); //TODO EN vez de esto hay que usar update de la vista con una transformacion para sacar el metodo getAncho de Figura
 
 }
 
@@ -91,5 +90,14 @@ void SimpleEditorEstirar::rightClickUp(int int1, int int2) {
 		this->editado->update(trans);
 	}else
 		super::rightClickUp(int1,int2);
+}
+
+void SimpleEditorEstirar::dropNuevaFigura(VistaCintaTransportadora* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearCintaTransportadora(x, 100 - y));
+
 }
 

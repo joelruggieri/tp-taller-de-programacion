@@ -16,7 +16,7 @@ PelotaJuegoView::~PelotaJuegoView() {
 }
 
 void PelotaJuegoView::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((SimpleEditorAnguloFijo * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* PelotaJuegoView::getEditor() {

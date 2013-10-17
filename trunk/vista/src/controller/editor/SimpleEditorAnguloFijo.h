@@ -22,6 +22,12 @@ public:
 	virtual ~SimpleEditorAnguloFijo();
 	void mouseMotion(int x, int y);
 	void setFigura(FiguraView *);
+	void dropNuevaFigura(BalancinView*);
+	void dropNuevaFigura(BolaBolicheView*);
+	void dropNuevaFigura(GloboHelioView*);
+	void dropNuevaFigura(PelotaJuegoView*);
+	void dropNuevaFigura(VistaEngranaje*);
 };
 
 #endif /* SIMPLEEDITORANGULOFIJO_H_ */
+

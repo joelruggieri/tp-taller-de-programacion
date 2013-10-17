@@ -9,11 +9,11 @@
 #define VISTACINTATRANSPORTADORA_H_
 
 #include "ObjetoView.h"
-class EditorDeEstiramientoDeCinta;
+class SimpleEditorEstirar;
 
 class VistaCintaTransportadora: public ObjetoView {
 public:
-	VistaCintaTransportadora(int x, int y, int w, int h, SDL_Texture * textura,EditorDeEstiramientoDeCinta* controller);
+	VistaCintaTransportadora(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorEstirar* controller);
 	virtual ~VistaCintaTransportadora();
 	void dropTemplate();
 	EditorNivel * getEditor();

@@ -25,7 +25,7 @@ public:
 	int getDireccion() const;
 	void setDireccion(int dir);
 	float getAncho();
-	void agrandar(float delta);
+	void estirar(float delta);
 private:
 	typedef Objeto super;
 	void getSiguienteRadio();

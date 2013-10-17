@@ -6,15 +6,17 @@
  */
 
 #include "BalancinView.h"
-#include "../../controller/editor/SimpleEditorNivel.h"
+#include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "src/objeto/Balancin.h"
 
-BalancinView::BalancinView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorNivel * editor): ObjetoView(x, y, w, h,textura, editor) {
+BalancinView::BalancinView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, w, h,textura, editor) {
 
 }
 
 void BalancinView::dropTemplate(){
-	this->controller->dropNuevaFigura(this);
+
+
+	((SimpleEditorAnguloFijo * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel * BalancinView::getEditor(){

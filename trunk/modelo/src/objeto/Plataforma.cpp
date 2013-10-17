@@ -54,6 +54,7 @@ void Plataforma::setAlto(float alto) {
 }
 
 void Plataforma::setAncho(float ancho) {
+	cout << "llama setAncho" << endl;
 	if (ancho < 2) {
 		ancho = 2;
 	}
@@ -106,8 +107,15 @@ void Plataforma::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 } /* namespace std */
 
-void Plataforma::agrandar(float delta){
-	this->setAncho(this->getAncho() + delta);
+void Plataforma::estirar(float delta){
+	cout << "Llama a delta " << delta << endl;
+	this->ancho = ancho + delta;
+	if (ancho < 2) {
+		ancho = 2;
+	}
+	if (ancho > 100) {
+		ancho = 100;
+	}
 }
 
 void Plataforma::makeBackUp(){

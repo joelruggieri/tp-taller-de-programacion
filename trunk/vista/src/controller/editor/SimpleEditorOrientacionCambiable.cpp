@@ -27,3 +27,11 @@ void SimpleEditorOrientacionCambiable::rightClickDown(int x, int y) {
 	super::rightClickDown(x, y);
 
 }
+
+void SimpleEditorOrientacionCambiable::dropNuevaFigura(MotorView* view) {
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearMotor(x, 100 - y));
+}

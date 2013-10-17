@@ -139,3 +139,48 @@ void SimpleEditorAnguloFijo::setFigura(FiguraView*f) {
 		}
 	}
 }
+
+
+void SimpleEditorAnguloFijo::dropNuevaFigura(BalancinView* view) {
+
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearBalancin(x, 100 - y));
+}
+
+
+void SimpleEditorAnguloFijo::dropNuevaFigura(BolaBolicheView* view) {
+
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearBolaBoliche(x, 100 - y));
+}
+
+void SimpleEditorAnguloFijo::dropNuevaFigura(GloboHelioView* view) {
+
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
+}
+void SimpleEditorAnguloFijo::dropNuevaFigura(PelotaJuegoView* view) {
+
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearPelotaJuego(x, 100 - y));
+}
+void SimpleEditorAnguloFijo::dropNuevaFigura(VistaEngranaje* view) {
+
+	Resizer* r = Resizer::Instance();
+	float x;
+	float y;
+	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
+	dropear(view, this->figurasFactory->crearEngranaje(x, 100 - y));
+}

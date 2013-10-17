@@ -11,11 +11,11 @@
 #include "ViewFiguraFactory.h"
 #include "../DropController.h"
 
-class EditorDeEstiramientoDeCinta;
+class SimpleEditorEstirar;
 
 class VistaCintaTransportadoraFactory: public ViewFiguraFactory {
 public:
-	VistaCintaTransportadoraFactory( EditorDeEstiramientoDeCinta* editor);
+	VistaCintaTransportadoraFactory( SimpleEditorEstirar* editor);
 	virtual ~VistaCintaTransportadoraFactory();
 	FiguraView * crear(int,int,int,int);
 	View * crearVistaPropia(int,int,int,int);

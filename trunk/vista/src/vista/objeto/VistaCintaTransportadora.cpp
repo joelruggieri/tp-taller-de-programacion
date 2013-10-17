@@ -8,9 +8,7 @@
 #include "VistaCintaTransportadora.h"
 
 #include "../../controller/DropController.h"
-#include "../../controller/editor/EditorDeEstiramientoDeCinta.h"
-#include "../../controller/editor/EditorNivel.h"
-#include "../../controller/editor/SimpleEditorNivel.h"
+#include "../../controller/editor/SimpleEditorEstirar.h"
 #include "../figura/FiguraView.h"
 #include "ObjetoView.h"
 #include "../CargadorDeTextures.h"
@@ -19,7 +17,7 @@
 #define RADTODEG 57.295779513082320876f
 
 VistaCintaTransportadora::VistaCintaTransportadora(int x, int y, int w, int h,
-		SDL_Texture* textura, EditorDeEstiramientoDeCinta* editor) : ObjetoView(x,y,w,h,textura, editor){
+		SDL_Texture* textura, SimpleEditorEstirar* editor) : ObjetoView(x,y,w,h,textura, editor){
 	pieza = CargadorDeTextures::Instance()->cargarTexture("resource/eslabon_cinta.png");
 	rueda = CargadorDeTextures::Instance()->cargarTexture("resource/eje_cinta.png");
 }
@@ -29,12 +27,12 @@ VistaCintaTransportadora::~VistaCintaTransportadora() {
 }
 
 void VistaCintaTransportadora::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((SimpleEditorEstirar * )this->controller)->dropNuevaFigura(this);
 }
 
 
 EditorNivel* VistaCintaTransportadora::getEditor() {
-	EditorDeEstiramientoDeCinta * editor = (EditorDeEstiramientoDeCinta *)controller;
+	SimpleEditorEstirar * editor = (SimpleEditorEstirar *)controller;
 	editor->setFigura(this);
 	return editor;
 }

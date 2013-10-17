@@ -15,7 +15,7 @@ SogaEstaticaView::SogaEstaticaView(int x, int y, int w, int h, SDL_Texture * tex
 }
 
 void SogaEstaticaView::dropTemplate() {
-	controller->dropNuevaFigura(this);
+	((EditorUnion * )this->controller)->dropNuevaFigura(this);
 }
 
 EditorNivel* SogaEstaticaView::getEditor() {

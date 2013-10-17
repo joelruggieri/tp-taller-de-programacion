@@ -230,7 +230,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
 	EditorUnion* editorunion = new EditorUnion(modeloController, tablero, this->factory, 100);
 	SimpleEditorOrientacionCambiable* editorOrientacionCambiable = new SimpleEditorOrientacionCambiable(modeloController, tablero, this->factory, 100);
-	EditorDeEstiramientoDeCinta* editorCinta = new EditorDeEstiramientoDeCinta(modeloController, tablero, this->factory, 100);
+//	EditorDeEstiramientoDeCinta* editorCinta = new EditorDeEstiramientoDeCinta(modeloController, tablero, this->factory, 100);
 	this->juegoController = new JuegoEventsController(modeloController, zp);
 
 	list<ViewFiguraFactory*> factories;
@@ -254,7 +254,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	viewFactory = new ViewBalancinFactory(editorSimpleAnguloFijo2);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BALANCIN,viewFactory));
 	factories.push_back(viewFactory);
-	viewFactory = new VistaCintaTransportadoraFactory(editorCinta);
+	viewFactory = new VistaCintaTransportadoraFactory(editorSimpleEstirar);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CINTA,viewFactory));
 	factories.push_back(viewFactory);
 	viewFactory = new VistaEngranajeFactory(editorSimpleAnguloFijo1);
