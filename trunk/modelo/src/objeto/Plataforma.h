@@ -8,10 +8,9 @@
 #ifndef PLATAFORMA_H_
 #define PLATAFORMA_H_
 #include "Objeto.h"
-#include "../figura/Figura.h"
 #include "Estirable.h"
 
-class Plataforma:  public Estirable,public Objeto {
+class Plataforma:  public Objeto, public virtual Estirable{
 private:
 	float alto;
 	float ancho;

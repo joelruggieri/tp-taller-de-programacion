@@ -108,8 +108,6 @@ void Plataforma::acept(VisitorFigura* visitor) {
 } /* namespace std */
 
 void Plataforma::estirar(float delta){
-	cout<< "delta "  << delta << endl;
-	cout << "Llama a delta " << delta << endl;
 	this->ancho = ancho + delta;
 	if (ancho < 2) {
 		ancho = 2;

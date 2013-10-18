@@ -1,9 +1,0 @@
-Nivel:
-  Nombre: yaml1
-  Fondo: ""
-Objetos:
-  Plataformas:
-    - x: 72
-      y: 69.2
-      ancho: 10
-      rotacion: 0

@@ -26,12 +26,6 @@ EditorNivel* PlataformaView::getEditor() {
 	return editor;
 }
 
-void PlataformaView::setModelo(Figura* fig) {
-	Plataforma * p = (Plataforma* )fig;
-	Resizer * r = Resizer::Instance();
-	this->setW(r->resizearDistanciaLogicaX(p->getAncho()));
-	super::setModelo(fig);
-}
 
 void PlataformaView::update(Transformacion & tl){
 	super::update(tl);

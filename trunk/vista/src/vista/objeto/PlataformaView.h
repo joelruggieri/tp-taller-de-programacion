@@ -18,7 +18,6 @@ public:
 	virtual ~PlataformaView();
 	void dropTemplate();
 	EditorNivel * getEditor();
-	void setModelo(Figura*fig);
 	void update(Transformacion & tl);
 };
 

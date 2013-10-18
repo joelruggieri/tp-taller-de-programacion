@@ -6,7 +6,7 @@
  */
 
 #include "SimpleEditorEstirar.h"
-#include "src/objeto/Plataforma.h"
+#include "src/objeto/Estirable.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 #include "../../ConstantesVista.h"
@@ -35,7 +35,7 @@ void SimpleEditorEstirar::rightClickDown(int x, int y){
 void SimpleEditorEstirar::actualizarAncho(int delta){
 //
 
-	Estirable* figura = (Estirable*)(this->editado->getModelo());
+	Estirable* figura = dynamic_cast<Estirable*>(this->editado->getModelo());
 	Resizer* r = Resizer::Instance();
 	float wNuevo = 0;
 	float hNuevo = 0;
@@ -107,4 +107,9 @@ void SimpleEditorEstirar::dropNuevaFigura(PlataformaView* view) {
 	float y;
 	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
 	dropear(view, this->figurasFactory->crearPlataforma(x, 100 - y));
+}
+
+void SimpleEditorEstirar::setFigura(FiguraView* f) {
+	super::setFigura(f);
+	estirando = false;
 }
