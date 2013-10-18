@@ -77,5 +77,15 @@ void GloboHelio::updateModelo() {
 		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 2500.0));
 		body->ApplyForce(f,p);
 	}
+	if(getBody() != NULL && body->GetLinearVelocity().x > 0.1){
+		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(-750.0f, 0));
+		body->ApplyForce(f,p);
+	}
+	if(getBody() != NULL && body->GetLinearVelocity().x <  -0.1){
+		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(750.0f, 0));
+		body->ApplyForce(f,p);
+	}
 
 }
