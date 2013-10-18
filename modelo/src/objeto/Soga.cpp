@@ -6,186 +6,157 @@
  */
 
 #include "Soga.h"
+#include <cfloat>
+Soga::Soga(float x, float y) :
+		Union(x, y) {
 
-Soga::Soga(float x, float y):Union(x,y) {
-	// TODO Auto-generated constructor stub
-	modificado = true;
+	origen = NULL;
+	destino = NULL;
 }
 
 Soga::~Soga() {
 	// TODO Auto-generated destructor stub
 }
 
-
-Soga::Soga(const Soga& figura):Union(x,y) {
+Soga::Soga(const Soga& figura) :
+		Union(x, y) {
 	this->reg = figura.reg;
-	this->modificado = figura.modificado;
+	origen = NULL;
+	destino = NULL;
 }
 
-bool Soga::crearFisicaEstatica(b2World*) {
-	// Minga! La soga puede atravesar objetos
+bool Soga::crearFisicaEstatica(b2World* w, b2Body * ground) {
+	if (figuraInicio == figuraFin) {
+		return false;
+	}
+//	Enganche* in = this->getEngancheMasCercano(figuraInicio, 0, 0,true);
+//	Enganche* fin = this->getEngancheMasCercano(figuraFin, 0, 0,true);
+//	if (in == fin || in == NULL || fin == NULL) {
+//		return false;
+//	}
+
+
+//SETEO BIEN LOS VECTORES INICIO Y FIN
+//	this->inicio = figuraInicio->getBody()->GetWorldPoint(
+//			b2Vec2(in->getPosX(), in->getPosY()));
+//	this->fin = figuraFin->getBody()->GetWorldPoint(
+//			b2Vec2(fin->getPosX(), fin->getPosY()));
+//	this->origen = in;
+//	this->destino= fin;
+//	in->ocupar();
+//	fin->ocupar();
+	this->crearFisicaEstaticaTemplate(w, ground);
 	return true;
 }
 
-void Soga::cargar(b2Body* origen, b2Body* destino, b2World *m_world) {
-
-	b2Body* techo = origen;
-	b2Body* ultimoEnlace = techo;
-	b2Vec2 ultimoAnclaje = b2Vec2(0, -0.5);
-	b2RevoluteJointDef *unionDeRevolucion = new b2RevoluteJointDef();
-	float altura = 1.1;
-
-
-	float deltaX = destino->GetPosition().x - origen->GetPosition().x;
-	float deltaY = destino->GetPosition().y - origen->GetPosition().y;
-
-	float mayor = (deltaX > deltaY ? deltaX : deltaY);
-
-	float pasoX = deltaX / mayor;
-	float pasoY = deltaY / mayor;
-
-	b2Body* tramoActual;
-	tramos.clear();
-
-    for (int i = 1; i < mayor; ++i) {
-        tramoActual = crear(m_world, origen->GetPosition().x + i * pasoX, origen->GetPosition().y + i * pasoY);
-
-        //revolute joint
-        unionDeRevolucion->bodyA = ultimoEnlace;
-        unionDeRevolucion->bodyB = tramoActual;
-        unionDeRevolucion->localAnchorA = ultimoAnclaje;
-        unionDeRevolucion->localAnchorB = b2Vec2(0 , altura/2);
-
-        ultimoAnclaje = b2Vec2(0, -1 * altura/2);
-
-        //create the joint in world
-        m_world->CreateJoint(unionDeRevolucion);
-
-        // saving the reference of the last placed link
-        ultimoEnlace = tramoActual;
-        tramos.push_back(tramoActual);
-    }
-
-    unionDeRevolucion->bodyA = ultimoEnlace;
-    unionDeRevolucion->bodyB = destino;
-    unionDeRevolucion->localAnchorA = ultimoAnclaje;
-    unionDeRevolucion->localAnchorB = b2Vec2(0 , altura/2);
-
-    ultimoAnclaje = b2Vec2(0, -1 * altura/2);
-
-    //create the joint in world
-    m_world->CreateJoint(unionDeRevolucion);
-}
-
-
-b2Body *Soga::crear(b2World *m_world, int x, int y) {
-	b2BodyDef myBodyDef;
-	myBodyDef.type = b2_dynamicBody;
-	b2FixtureDef myFixtureDef;
-	myFixtureDef.friction = 1;
-	myFixtureDef.density = 1;
-	myFixtureDef.restitution = 0.5;
-	b2PolygonShape boxShape;
-	boxShape.SetAsBox(0.25 / 2,1.1 / 2);
-	myFixtureDef.shape = &boxShape;
-	myBodyDef.position.Set(x , y);
-	b2Body *cuerpo = m_world->CreateBody(&myBodyDef);
-	cuerpo->CreateFixture(&myFixtureDef);
-	return cuerpo;
-}
-
-//void Soga::updateModelo() {
-//	Union::updateModelo();
-////	actualizarMarcos();
-////	actualizarAngulos();
-//}
-
-void Soga::actualizarMarcos() {
-	if (tramos.size() != marcosTramos.size()) {
-		marcosTramos = std::vector<SDL_Rect>(tramos.size());
-	}
-	SDL_Rect aux;
-	for (unsigned int i=0; i < tramos.size(); ++i){
-		aux.x = (int) tramos[i]->GetPosition().x;
-		aux.y = (int) tramos[i]->GetPosition().y;
-		aux.w = 0.25;
-		aux.h = 1.1;
-		marcosTramos[i] = aux;
-	}
-	modificado = false;
-}
-
-void Soga::actualizarAngulos() {
-	if (tramos.size() != angulosTramos.size()) {
-		angulosTramos = std::vector<float>(tramos.size());
-	}
-	for (unsigned int i=0; i < tramos.size(); ++i){
-		angulosTramos[i] =  tramos[i]->GetAngle();
-	}
-	modificado = false;
-}
-
-std::vector<float>& Soga::getAngulosTramos() {
-	if (modificado) actualizarAngulos();
-	return angulosTramos;
-}
-
-std::vector<SDL_Rect>& Soga::getMarcosTramos() {
-	if (modificado) actualizarMarcos();
-	return marcosTramos;
-}
 
 void Soga::acept(VisitorFigura*) {
+
 }
 
 void Soga::crearFisica(b2World* w, b2Body* g) {
-this->crearLazo(w);
+	this->crearLazo(w);
 }
 
 void Soga::setearPuntoInicial(Figura* f) {
-	this->figuraInicio =f;
-	this->setInicio(b2Vec2(f->getX(), f->getY()));
+	this->figuraInicio = f;
+	this->origen = getEngancheMasCercano(f,inicio.x, inicio.y,true);
+	this->inicio = f->getBody()->GetWorldPoint(origen->getPos());
+
 }
 
 void Soga::setearPuntoFinal(Figura* f) {
-	this->figuraFin =f;
-	this->setFin(b2Vec2(f->getX(), f->getY()));
-}
-
-bool Soga::isExtremoValido(Figura* f) {
-//	return f->getEnganches().size() > 0;
-	return true;
+	this->figuraFin = f;
+	this->destino = getEngancheMasCercano(f,fin.x, fin.y,true);
+	this->fin = f->getBody()->GetWorldPoint(destino->getPos());
 }
 
 void Soga::crearLazo(b2World* w) {
-			b2RopeJointDef ropeJoint;
-			ropeJoint.bodyA = this->figuraInicio->getBody();
-			ropeJoint.bodyB = this->figuraFin->getBody();
-			ropeJoint.collideConnected = true;
-			ropeJoint.maxLength = this->w;	// el maximo sale del calculo de la distancia en union
-		    w->CreateJoint(&ropeJoint);
+	b2RopeJointDef ropeJoint;
+	ropeJoint.bodyA = this->figuraInicio->getBody();
+	ropeJoint.bodyB = this->figuraFin->getBody();
+	ropeJoint.collideConnected = true;
+	b2Vec2 dif = inicio - fin;
+	ropeJoint.maxLength = dif.Length();// el maximo sale del calculo de la distancia en union
+	ropeJoint.localAnchorA = origen->getPos();
+	ropeJoint.localAnchorB = destino->getPos();
+
+	w->CreateJoint(&ropeJoint);
+
 }
 
-bool Soga::crearFisicaEstatica(b2World* w, b2Body* ground) {
-	if (this->figuraInicio->getEnganches().size() == 0
-			|| this->figuraFin->getEnganches().size() == 0 ) {
-		return false;
-	}
-	this->crearFisicaEstaticaTemplate(w, ground);
-	bool hayContacto = false;
-	for (b2Body* b = w->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
-		if (b!= this->body && b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
-			if (validarContacto(w, body, b)) {
-				hayContacto = true;
-				break;
-			}
+//bool Soga::crearFisicaEstatica(b2World* w, b2Body* ground) {
+//	if (this->figuraInicio->getEnganches().size() == 0
+//			|| this->figuraFin->getEnganches().size() == 0) {
+//		return false;
+//	}
+//	this->crearFisicaEstaticaTemplate(w, ground);
+//	bool hayContacto = false;
+//	for (b2Body* b = w->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
+//		if (b
+//				!= this->body&& b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
+//			if (validarContacto(w, body, b)) {
+//				hayContacto = true;
+//				break;
+//			}
+//
+//		}
+//	}
+//	if (hayContacto) {
+//		removerFisica(w);
+//		/// remover joint tambien
+//	}
+//
+//	return !hayContacto;
+//}
 
+Enganche* Soga::getEngancheMasCercano(Figura* figura, float x, float y, bool desocupado) {
+	Enganche * eng = NULL;
+	float distanciaMin = FLT_MAX;
+	Lista_Enganches::iterator it;
+	b2Vec2 pos(x, y);
+	for (it = figura->getEnganches().begin();
+			it != figura->getEnganches().end(); ++it) {
+		b2Body* bd = figura->getBody();
+
+		b2Vec2 posicionEnganche = bd->GetWorldPoint(
+				b2Vec2((*it)->getPosX(), (*it)->getPosY()));
+
+		b2Vec2 diferencia = posicionEnganche - pos;
+		float distancia = diferencia.Length();
+		if (distancia < distanciaMin && !((*it)->estaOcupado() && desocupado)) {
+			eng = *it;
+			distanciaMin = distancia;
 		}
 	}
-	if (hayContacto) {
-		removerFisica(w);
-		/// remover joint tambien
-	}
+	return eng;
 
-	return !hayContacto;
+}
+
+
+void Soga::updatePosicionesFiguras() {
+   this->inicio = this->figuraInicio->getBody()->GetWorldPoint(origen->getPos());
+   this->fin = this->figuraFin->getBody()->GetWorldPoint(destino->getPos());
+
+}
+
+bool Soga::isInicioValido(Figura* f, float x, float y) {
+	Enganche* eng = getEngancheMasCercano(f, x, y, true);
+	return eng != NULL;
+}
+
+bool Soga::isFinValido(Figura* f, float x, float y) {
+	Enganche* eng = getEngancheMasCercano(f, x, y, true);
+	return eng != NULL;
+}
+
+void Soga::extraerPosInicial(Figura* f, float x, float y) {
+	Enganche * en = getEngancheMasCercano(f,x, y,true);
+	this->inicio = f->getBody()->GetWorldPoint(en->getPos());
+}
+
+void Soga::extraerPosFinal(Figura* f, float x, float y) {
+	Enganche * en = getEngancheMasCercano(f,x, y,true);
+	this->fin= f->getBody()->GetWorldPoint(en->getPos());
+
 }

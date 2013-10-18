@@ -22,13 +22,23 @@ EditorUnion::~EditorUnion() {
 }
 
 void EditorUnion::clickDown(int x, int y) {
+	Transformacion trans;
+	Resizer*r = Resizer::Instance();
+	trans.traslacion(0, 100);
+	trans.escalar(r->getRelacionX(), r->getRelacionY());
+	trans.invertir(false, true);
 	if (primerClick) {
+		trans.setVector(x, y);
 		super::clickDown(x, y);
 	} else {
 		Union * un = (Union *) editado->getModelo();
 		Figura* figFinal = modeloController->pickUp(un->getXFinal(),
 				un->getYFinal());
-		if (figFinal != NULL && un->isExtremoValido(figFinal)) {
+		trans.setVector(x,y);
+		float xf, yf;
+		trans.getResultado(xf,yf);
+		if (figFinal != NULL && un->isFinValido(figFinal,xf,yf)) {
+			un->extraerPosFinal(figFinal,xf,yf);
 			bool exitoVista = tablero->agregarFigura(this->editado);
 			bool exitoModelo = this->modeloController->crearUnion(un);
 			if (!exitoVista || !exitoModelo) {
@@ -45,12 +55,7 @@ void EditorUnion::clickDown(int x, int y) {
 				this->editado = NULL;
 				delete un;
 			} else {
-				Resizer*r = Resizer::Instance();
-				Transformacion trans;
-				trans.traslacion(0, 100);
-				trans.escalar(r->getRelacionX(), r->getRelacionY());
-				trans.invertir(false, true);
-				 this->editado->update(trans);
+				this->editado->update(trans);
 				this->visor = NULL;
 				this->editado = NULL;
 			}
@@ -84,7 +89,9 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 	vista->setModelo(figura);
 	Union * un = (Union *) figura;
 	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY());
-	if (figInicial != NULL && un->isExtremoValido(figInicial)) {
+	if (figInicial != NULL
+			&& un->isInicioValido(figInicial, this->clickDownX,
+					this->clickDownY)) {
 		visor = vista;
 		editado = vista;
 		primerClick = false;
@@ -93,12 +100,8 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 		trans.traslacion(0, 100);
 		trans.escalar(r->getRelacionX(), r->getRelacionY());
 		trans.invertir(false, true);
-		un->setXInicial(figInicial->getX());
-		un->setYInicial(figInicial->getY());
-		un->setXFinal(figInicial->getX());
-		un->setYFinal(figInicial->getY());
-
-//		un->setFin(figInicial->getX(), figInicial->getY());
+		un->extraerPosInicial(figInicial, this->clickDownX, this->clickDownY);
+		un->extraerPosFinal(figInicial, this->clickDownX, this->clickDownY);
 		vista->update(trans);
 	} else {
 		Logger log;
@@ -111,6 +114,13 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 
 void EditorUnion::clickUp(int x, int y) {
 	if (dragueando) {
+		Transformacion trans;
+		Resizer*r = Resizer::Instance();
+		trans.traslacion(0, 100);
+		trans.escalar(r->getRelacionX(), r->getRelacionY());
+		trans.invertir(false, true);
+		trans.setVector(x,y);
+		trans.getResultado(this->clickDownX, this->clickDownY);
 		this->elementoDrag->drop();
 		delete this->elementoDrag;
 		this->dragueando = false;
@@ -129,13 +139,12 @@ void EditorUnion::mouseMotion(int x, int y) {
 		float xf, yf;
 		trans.setVector(x, y);
 		trans.getResultado(xf, yf);
-		Union * un =((Union *) this->editado->getModelo());
+		Union * un = ((Union *) this->editado->getModelo());
 		un->setXFinal(xf);
 		un->setYFinal(yf);
 		this->editado->update(trans);
 	}
 }
-
 
 void EditorUnion::dropNuevaFigura(SogaEstaticaView* view) {
 	Resizer* r = Resizer::Instance();

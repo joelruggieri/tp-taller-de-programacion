@@ -17,11 +17,11 @@ ModeloController::~ModeloController() {
 }
 
 bool ModeloController::crearFigura(Figura* figura) {
-	return this->mapa->addFigura(figura);;
+	return this->mapa->add(figura);;
 }
 
 bool ModeloController::removerFigura(Figura* figura) {
-	return this->mapa->removeFigura(figura);;
+	return this->mapa->remove(figura);;
 }
 
 list<Figura*>& ModeloController::getFiguras() {
@@ -64,7 +64,7 @@ bool ModeloController::crearUnion(Union* figura) {
 		if (fFinal == fInicial)
 			return false;
 
-		figura->setExtremos(fFinal,fInicial);
+		figura->setExtremos(fInicial,fFinal);
 		//recupero los cuerpos que une, se los seteo y verifico.
-		return mapa->addFigura(figura);
+		return mapa->add(figura);
 }

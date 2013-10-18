@@ -14,6 +14,7 @@
 #include "../Vista.h"
 #include "Enganche.h"
 #include "Registro.h"
+#include "Mapa.h"
 class Figura: public Posicionable {
 protected:
 	float x;
@@ -66,15 +67,17 @@ public:
 	virtual void makeBackUp();
 	virtual void restoreBackUp();
 
-	virtual Lista_Enganches getEnganches();
+	virtual Lista_Enganches& getEnganches();
 	Registro & getReg();
 	void setReg(Registro r) ;
 
 
 	virtual void modificarSentido();
 
-
+	virtual bool agregar(Mapa *);
+	virtual bool remover(Mapa *);
 };
 
 #endif /* FIGURA_H_ */
+
 

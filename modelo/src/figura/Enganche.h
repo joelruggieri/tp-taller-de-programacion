@@ -8,18 +8,19 @@
 #ifndef ENGANCHE_H_
 #define ENGANCHE_H_
 #include <list>
+#include "Box2D/Box2D.h"
 using namespace std;
 
 class Enganche {
 private:
 	bool ocupado;
-	int posX;
-	int posY;
+	b2Vec2 pos;
 public:
-	Enganche(int posX, int posY);
+	Enganche(float posX, float posY);
 	virtual ~Enganche();
-	int getPosX();
-	int getPosY();
+	float getPosX();
+	float getPosY();
+	b2Vec2 & getPos();
 	bool estaOcupado();
 	void ocupar();
 	void liberar();

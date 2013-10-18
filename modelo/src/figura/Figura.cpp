@@ -7,6 +7,7 @@
  */
 #include "Figura.h"
 #include <iostream>
+#include "Mapa.h"
 using namespace std;
 
 float Figura::getX() const {
@@ -138,7 +139,7 @@ void Figura::restoreBackUp() {
 	rotacion = rotacionb;
 }
 
-Lista_Enganches Figura::getEnganches(){
+Lista_Enganches & Figura::getEnganches(){
 	return this->enganches;
 }
 
@@ -227,4 +228,12 @@ bool Figura::coincidenCategorias(b2Body* b) {
 
 bool Figura::esUnibleConSoga() {
 	return this->unibleConSoga;
+}
+
+bool Figura::agregar(Mapa* m) {
+	return m->addFigura(this);
+}
+
+bool Figura::remover(Mapa*m) {
+	return m->removeFigura(this);
 }
