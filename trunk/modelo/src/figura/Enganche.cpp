@@ -7,9 +7,8 @@
 
 #include "Enganche.h"
 
-Enganche::Enganche(int posX, int posY) {
-	this->posX = posX;
-	this->posY = posY;
+Enganche::Enganche(float posX, float posY) {
+	this->pos = b2Vec2(posX,posY);
 	this->ocupado = false;
 }
 
@@ -17,12 +16,26 @@ Enganche::~Enganche() {
 	// TODO Auto-generated destructor stub
 }
 
-int Enganche::getPosX(){ return this->posX;}
+float Enganche::getPosX() {
+	return this->pos.x;
+}
 
-int Enganche::getPosY(){return this->posY;}
+float Enganche::getPosY() {
+	return this->pos.y;
+}
 
-bool Enganche::estaOcupado(){return this->ocupado;}
+bool Enganche::estaOcupado() {
+	return this->ocupado;
+}
 
-void Enganche::ocupar(){ this->ocupado = true;}
+void Enganche::ocupar() {
+	this->ocupado = true;
+}
 
-void Enganche::liberar(){this->ocupado = false;}
+void Enganche::liberar() {
+	this->ocupado = false;
+}
+
+b2Vec2& Enganche::getPos() {
+	return this->pos;
+}

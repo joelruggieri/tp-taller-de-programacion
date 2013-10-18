@@ -8,38 +8,31 @@
 #include "Mapa.h"
 #include <iostream>
 #include "../Constantes.h"
+#include "../objeto/Union.h"
+#include "../figura/Figura.h"
 using namespace std;
 //#include "src/Logger.h"
-Mapa::Mapa(float x, float y, float w, float h,	float32 hz, int32 velocityIterations,int32 positionIterations) {
-	inicializar(x,y,w,h,hz,velocityIterations,positionIterations);
+Mapa::Mapa(float x, float y, float w, float h, float32 hz,
+		int32 velocityIterations, int32 positionIterations) {
+	inicializar(x, y, w, h, hz, velocityIterations, positionIterations);
 }
 
 Mapa::Mapa(float x, float y, float w, float h) {
-	inicializar(x,y,w,h,TIEMPO_ITERACION,ITERACIONES_VELOCIDAD,ITERACIONES_POSICION);
+	inicializar(x, y, w, h, TIEMPO_ITERACION, ITERACIONES_VELOCIDAD,
+	ITERACIONES_POSICION);
 }
 
 Mapa::~Mapa() {
 	delete myWorld;
 }
 
-bool Mapa::removeFigura(Figura* figura) {
-	if (figura->getBody() != 0) {
+bool Mapa::remove(Figura* figura) {
 
-		figura->removerFisica(myWorld);
-		this->figuras.remove(figura);
-		return true;
-	}
-	return false;
+	return figura->remover(this);
 }
 
-bool Mapa::addFigura(Figura* figura) {
-	if (!isAdentro(figura->getX(), figura->getY())) {
-		return false;
-	}
-	bool result = figura->crearFisicaEstatica(this->myWorld, this->groundBody);
-	if(result){
-		this->figuras.push_back(figura);
-	}
+bool Mapa::add(Figura* figura) {
+	bool result = figura->agregar(this);
 	return result;
 }
 
@@ -58,9 +51,12 @@ public:
 //		Logger log;
 //		log.debug("El world indica que existe colision con el punto");
 		b2Body* body = fixture->GetBody();
-		if (body->GetType() == b2_dynamicBody || body->GetType() == b2_staticBody) {
+		if (body->GetType() == b2_dynamicBody
+				|| body->GetType() == b2_staticBody) {
 			bool inside = fixture->TestPoint(m_point);
-			if (inside && ((fixture->GetFilterData().categoryBits &  CATEGORIA_FIGURAS) != 0)){
+			if (inside
+					&& ((fixture->GetFilterData().categoryBits
+							& CATEGORIA_FIGURAS) != 0)) {
 				m_fixture = fixture;
 //				log.debug("La figura confirma la colision");
 				// We are done, terminate the query.
@@ -124,13 +120,19 @@ bool Mapa::isAdentro(float x, float y) {
 }
 
 void Mapa::step(Transformacion & tl) {
-	myWorld->Step(this->frecuencia,this->velocidad,this->posicion);
+	myWorld->Step(this->frecuencia, this->velocidad, this->posicion);
 //	cout << "joints " <<myWorld->GetJointCount() <<  endl;
 	list<Figura*>::iterator it;
 	//TODO VER OTRA FORMA DE HACER EL UPDATE.
 	Figura * fig;
-	for(it= this->figuras.begin(); it != this->figuras.end(); ++it){
+	for (it = this->figuras.begin(); it != this->figuras.end(); ++it) {
 		fig = *it;
+		fig->updateModelo();
+		fig->updateVista(tl);
+	}
+	list<Union*>::iterator it2;
+	for (it2 = this->uniones.begin(); it2 != this->uniones.end(); ++it2) {
+		fig = *it2;
 		fig->updateModelo();
 		fig->updateVista(tl);
 	}
@@ -153,21 +155,33 @@ void Mapa::inicializar(float x, float y, float w, float h, float32 hz,
 void Mapa::makeBackUp() {
 	//TODO POR AHORA NO HAY FIGURAS QUE SE VAYAN EN LOS STEPS.
 	list<Figura*>::iterator it;
-	for(it = figuras.begin(); it != figuras.end(); ++it){
+	for (it = figuras.begin(); it != figuras.end(); ++it) {
 		(*it)->makeBackUp();
+	}
+	list<Union*>::iterator it2;
+	for (it2 = this->uniones.begin(); it2 != this->uniones.end(); ++it2) {
+		(*it2)->makeBackUp();
 	}
 }
 
 void Mapa::restoreBackUp(Transformacion & tl) {
 	list<Figura*>::iterator it;
-	for(it = figuras.begin(); it != figuras.end(); ++it){
+	for (it = figuras.begin(); it != figuras.end(); ++it) {
 		(*it)->restoreBackUp();
 		(*it)->updateVista(tl);
 	}
+	list<Union*>::iterator it2;
+	for (it2 = this->uniones.begin(); it2 != this->uniones.end(); ++it2) {
+		(*it2)->restoreBackUp();
+		(*it2)->updateVista(tl);
+	}
 	delete myWorld;
 	crearMundo();
-	for(it = figuras.begin(); it != figuras.end(); ++it){
-		(*it)->crearFisicaEstatica(myWorld,groundBody);
+	for (it = figuras.begin(); it != figuras.end(); ++it) {
+		(*it)->crearFisicaEstatica(myWorld, groundBody);
+	}
+	for (it2 = uniones.begin(); it2 != uniones.end(); ++it2) {
+		(*it2)->crearFisicaEstatica(myWorld, groundBody);
 	}
 }
 
@@ -197,9 +211,56 @@ void Mapa::despertar() {
 	delete myWorld;
 	crearMundo();
 	list<Figura*>::iterator it;
-	for(it = figuras.begin(); it != figuras.end(); ++it){
-		(*it)->crearFisica(myWorld,groundBody);
+	for (it = figuras.begin(); it != figuras.end(); ++it) {
+		(*it)->crearFisica(myWorld, groundBody);
 	}
-//	cout << myWorld->GetJointCount() << endl;
+	list<Union*>::iterator it2;
+	for (it2 = uniones.begin(); it2 != uniones.end(); ++it2) {
+		(*it2)->crearFisica(myWorld, groundBody);
+	}
+
+}
+
+bool Mapa::addFigura(Figura* figura) {
+	if (!isAdentro(figura->getX(), figura->getY())) {
+		return false;
+	}
+	bool result = figura->crearFisicaEstatica(this->myWorld, this->groundBody);
+	if (result) {
+		this->figuras.push_back(figura);
+	}
+	return result;
+
+}
+
+bool Mapa::removeFigura(Figura* figura) {
+	if (figura->getBody() != 0) {
+		figura->removerFisica(myWorld);
+		this->figuras.remove(figura);
+		return true;
+	}
+	return false;
+}
+
+bool Mapa::addUnion(Union* u) {
+	if (!isAdentro(u->getX(), u->getY())) {
+		return false;
+	}
+	bool result = u->crearFisicaEstatica(this->myWorld, this->groundBody);
+	if (result) {
+		this->uniones.push_back(u);
+	}
+	return result;
+
+}
+
+bool Mapa::removeUnion(Union* figura) {
+	if (figura->getBody() != 0) {
+		figura->removerFisica(myWorld);
+		this->uniones.remove(figura);
+		return true;
+	}
+	return false;
+
 
 }

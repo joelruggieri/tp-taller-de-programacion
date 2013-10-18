@@ -1,0 +1,18 @@
+Objetos:
+  Balancines:
+    - x: 50
+      y: 20
+      ancho: 15
+      rotacion: 0
+    - x: 28.8
+      y: 49.8
+      ancho: 15
+      rotacion: 0
+  GlobosHelio:
+    - x: 30
+      y: 80
+    - x: 70
+      y: 80
+Nivel:
+  Nombre: yaml1
+  Fondo: ""

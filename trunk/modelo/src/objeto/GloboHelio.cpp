@@ -10,7 +10,7 @@
 GloboHelio::GloboHelio(float x, float y, float radio) : Objeto(x,y){
 	this->radio = radio ;
 	this->setRotacion(0);
-	this->enganches.push_back(new Enganche((int)x, (int)y - (int)radio));
+	this->enganches.push_back(new Enganche(0, -1*radio));
 	this->unibleConSoga = true;
 }
 
@@ -55,7 +55,8 @@ GloboHelio::GloboHelio(const GloboHelio&  figura) {
 	this->setRadio(figura.getRadio());
 	this->unibleConSoga = true;
 	this->reg =figura.reg;
-	this->enganches.push_back(new Enganche((int)x, (int)y - (int)radio));
+//	this->enganches.push_back(new Enganche((int)x, (int)y - (int)radio));
+	this->enganches.push_back(new Enganche(0, -1*radio));
 }
 
 GloboHelio::GloboHelio():  Objeto() {
@@ -77,15 +78,15 @@ void GloboHelio::updateModelo() {
 		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 2500.0));
 		body->ApplyForce(f,p);
 	}
-	if(getBody() != NULL && body->GetLinearVelocity().x > 0.1){
-		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
-		b2Vec2 f = body->GetWorldVector(b2Vec2(-750.0f, 0));
-		body->ApplyForce(f,p);
-	}
-	if(getBody() != NULL && body->GetLinearVelocity().x <  -0.1){
-		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
-		b2Vec2 f = body->GetWorldVector(b2Vec2(750.0f, 0));
-		body->ApplyForce(f,p);
-	}
+//	if(getBody() != NULL && body->GetLinearVelocity().x > 0.1){
+//		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
+//		b2Vec2 f = body->GetWorldVector(b2Vec2(-750.0f, 0));
+//		body->ApplyForce(f,p);
+//	}
+//	if(getBody() != NULL && body->GetLinearVelocity().x <  -0.1){
+//		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
+//		b2Vec2 f = body->GetWorldVector(b2Vec2(750.0f, 0));
+//		body->ApplyForce(f,p);
+//	}
 
 }

@@ -14,9 +14,8 @@ class EditorUnion: public SimpleEditorNivel{
 private:
 	bool primerClick;
 	typedef SimpleEditorNivel super;
+	float clickDownX, clickDownY;
 public:
-
-
 	EditorUnion(ModeloController * , ZonaTablero *,FiguraFactory* factory, int yMaxDrag);
 	void setFigura(FiguraView *);
 	virtual ~EditorUnion();

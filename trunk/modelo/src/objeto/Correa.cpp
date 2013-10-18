@@ -65,23 +65,8 @@ bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
 		return false;
 	}
 	this->crearFisicaEstaticaTemplate(w, ground);
-	bool hayContacto = false;
-	for (b2Body* b = w->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
-		if (b
-				!= this->body && b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
-			if (validarContacto(w, body, b)) {
-				hayContacto = true;
-				break;
-			}
 
-		}
-	}
-	if (hayContacto) {
-		removerFisica(w);
-		/// remover joint tambien
-	}
-
-	return !hayContacto;
+	return true;
 }
 
 void Correa::acept(VisitorFigura* visitor) {
@@ -90,14 +75,30 @@ void Correa::acept(VisitorFigura* visitor) {
 
 void Correa::setearPuntoInicial(Figura*f) {
 	this->figuraInicio =f;
-	this->setInicio(b2Vec2(f->getX(), f->getY()));
+	this->inicio = b2Vec2(f->getX(), f->getY());
 }
 
 void Correa::setearPuntoFinal(Figura* f) {
 	this->figuraFin =f;
-	this->setFin(b2Vec2(f->getX(), f->getY()));
+	this->fin= b2Vec2(f->getX(), f->getY());
 }
 
 bool Correa::isExtremoValido(Figura* f) {
 	return f->esTraccionable();
+}
+
+bool Correa::isInicioValido(Figura* f, float x, float y) {
+	return isExtremoValido(f);
+}
+
+bool Correa::isFinValido(Figura* f, float x, float y) {
+	return isExtremoValido(f);
+}
+
+void Correa::extraerPosInicial(Figura* f, float x, float y) {
+	this->inicio = b2Vec2 (f->getX(),f->getY());
+}
+
+void Correa::extraerPosFinal(Figura* f, float x, float y) {
+	this->fin = b2Vec2 (f->getX(),f->getY());
 }

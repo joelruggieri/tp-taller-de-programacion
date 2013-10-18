@@ -22,11 +22,17 @@ public:
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);
 	bool crearFisicaEstatica(b2World* w, b2Body* ground);
 	void acept(VisitorFigura*);
-	bool isExtremoValido(Figura * f);
-//	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
+
+	bool isInicioValido(Figura * f, float x, float y);
+	bool isFinValido(Figura * f, float x, float y);
+
+	void extraerPosInicial(Figura * f, float x, float y);
+	void extraerPosFinal(Figura * f, float x, float y);
+
 protected:
 	void setearPuntoInicial(Figura*f);
 	void setearPuntoFinal(Figura *f);
+	bool isExtremoValido(Figura * f);
 //	Engranaje* engranajeA;
 //	Engranaje* engranajeB;
 //	Figura* figuraInicio;
@@ -35,3 +41,4 @@ protected:
 };
 
 #endif /* CORREA_H_ */
+

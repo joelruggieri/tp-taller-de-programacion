@@ -17,20 +17,29 @@ public:
 	Union(float x, float y);
 	Union();
 	virtual ~Union();
-	void setFin(const b2Vec2& fin);
-	void setInicio(const b2Vec2& inicio);
-
-
 	float getXInicial() const;
 	float getYInicial() const;
 	float getXFinal() const;
 	float getYFinal() const;
+
 	void setXInicial(float);
 	void setYInicial(float);
 	void setXFinal(float);
 	void setYFinal(float);
+
+	virtual bool isInicioValido(Figura * f, float x, float y) = 0;
+	virtual bool isFinValido(Figura * f, float x, float y) = 0;
 	void setExtremos(Figura*, Figura*);
-	virtual bool isExtremoValido(Figura * f) = 0;
+
+	virtual void extraerPosInicial(Figura * f, float x, float y) = 0;
+	virtual void extraerPosFinal(Figura * f, float x, float y)= 0;
+
+
+	bool agregar(Mapa *);
+	bool remover(Mapa *);
+    void makeBackUp();
+	void restoreBackUp();
+
 protected:
 	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
 	b2Vec2 inicio;
@@ -47,10 +56,8 @@ protected:
 	void calcularCentroCuadrado();
 	void calcularAnguloCuadrado();
 	void calcularAnchoCuadrado();
-	void updatePosicionesFiguras();
+	virtual void updatePosicionesFiguras();
 	void updateModelo();
-	 void makeBackUp();
-	 void restoreBackUp();
 	typedef Figura super;
 };
 

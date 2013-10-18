@@ -22,13 +22,13 @@ Union::~Union() {
 	// TODO Auto-generated destructor stub
 }
 
-void Union::setFin(const b2Vec2& fin) {
-	this->fin = fin;
-}
-
-void Union::setInicio(const b2Vec2& inicio) {
-	this->inicio = inicio;
-}
+//void Union::setFin(const b2Vec2& fin) {
+//	this->fin = fin;
+//}
+//
+//void Union::setInicio(const b2Vec2& inicio) {
+//	this->inicio = inicio;
+//}
 
 float Union::getXInicial() const {
 	return inicio.x;
@@ -63,7 +63,8 @@ void Union::setYFinal(float yFinal) {
 }
 
 float Union::calcularDistancia(b2Vec2 a, b2Vec2 b) {
-	return (float) sqrt(pow((a.x - b.x), 2) + pow((a.y - b.y), 2));
+	b2Vec2 dif = a - b;
+	return dif.Length();
 }
 
 void Union::calcularCentroCuadrado() {
@@ -81,8 +82,8 @@ void Union::calcularAnguloCuadrado() {
 	dist3.y = 0;
 	dist4.x = this->inicio.x;
 	dist4.y = 0;
-	float distanciaA = calcularDistancia(dist1, dist2);
-	float distanciaB = calcularDistancia(dist3, dist4);
+	float distanciaA = (dist1 - dist2).Length();
+	float distanciaB = (dist3 - dist4).Length();
 	if (distanciaB == 0) {
 		this->rotacion = 0;
 	} else
@@ -121,9 +122,6 @@ void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
 	bodyCuadrado.filter.categoryBits = CATEGORIA_CORREA; //TODO cambiar categorias
 	bodyCuadrado.filter.maskBits = 0X0008;
 	body->CreateFixture(&bodyCuadrado);
-
-//	this->crearFisica(w, ground);
-
 }
 
 void Union::setExtremos(Figura* f1, Figura* f2) {
@@ -133,11 +131,10 @@ void Union::setExtremos(Figura* f1, Figura* f2) {
 }
 
 void Union::updateCaracteristicas() {
-
+	this->updatePosicionesFiguras();
 	this->calcularAnchoCuadrado();
 	this->calcularAnguloCuadrado();
 	this->calcularCentroCuadrado();
-	this->updatePosicionesFiguras();
 }
 
 void Union::updateModelo() {
@@ -155,11 +152,11 @@ void Union::updatePosicionesFiguras() {
 }
 
 void Union::makeBackUp() {
-this->inicioB = this->inicio ;
-this->finB = this->fin;
-this->wB = this->w;
-this->hB = this->h;
-super::makeBackUp();
+	this->inicioB = this->inicio;
+	this->finB = this->fin;
+	this->wB = this->w;
+	this->hB = this->h;
+	super::makeBackUp();
 }
 
 void Union::restoreBackUp() {
@@ -168,4 +165,12 @@ void Union::restoreBackUp() {
 	this->w = this->wB;
 	this->h = this->hB;
 	super::restoreBackUp();
+}
+
+bool Union::agregar(Mapa* m) {
+	return m->addUnion(this);
+}
+
+bool Union::remover(Mapa* m) {
+	return m->removeUnion(this);
 }

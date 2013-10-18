@@ -10,12 +10,15 @@
 
 #include <list>
 #include "Box2D/Box2D.h"
-#include "Figura.h"
+#include "../Transformacion.h"
 using namespace std;
 
+class Union;
+class Figura;
 class Mapa {
 private:
 	list<Figura*> figuras;
+	list<Union*> uniones;
 	b2World* myWorld;
 	float x,y, w,h;
 	float32 frecuencia;
@@ -27,8 +30,12 @@ public:
 	Mapa(float  x, float y, float w, float h,float32 hz, int32 velocityIterations,int32 positionIterations);
 	Mapa(float  x, float y, float w, float h);
 	virtual ~Mapa();
+	bool add(Figura*);
+	bool remove(Figura*);
 	bool addFigura(Figura*);
 	bool removeFigura(Figura*);
+	bool addUnion(Union*);
+	bool removeUnion(Union*);
 	list<Figura*> & getFiguras();
 	Figura * pickUp(float x, float y);
 	float getX() const;
