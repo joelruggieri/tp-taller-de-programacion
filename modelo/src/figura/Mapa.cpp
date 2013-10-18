@@ -12,8 +12,7 @@
 #include "../figura/Figura.h"
 using namespace std;
 //#include "src/Logger.h"
-Mapa::Mapa(float x, float y, float w, float h, float32 hz,
-		int32 velocityIterations, int32 positionIterations) {
+Mapa::Mapa(float x, float y, float w, float h, float32 hz, int32 velocityIterations, int32 positionIterations) {
 	inicializar(x, y, w, h, hz, velocityIterations, positionIterations);
 }
 
@@ -51,12 +50,11 @@ public:
 //		Logger log;
 //		log.debug("El world indica que existe colision con el punto");
 		b2Body* body = fixture->GetBody();
-		if (body->GetType() == b2_dynamicBody
-				|| body->GetType() == b2_staticBody) {
+		if (body->GetType() == b2_dynamicBody || body->GetType() == b2_staticBody) {
 			bool inside = fixture->TestPoint(m_point);
 			if (inside
-					&& ((fixture->GetFilterData().categoryBits
-							& CATEGORIA_FIGURAS) != 0)) {
+					&& ((fixture->GetFilterData().categoryBits & CATEGORIA_FIGURAS) != 0
+							|| (fixture->GetFilterData().categoryBits & CATEGORIA_UNION) != 0)) {
 				m_fixture = fixture;
 //				log.debug("La figura confirma la colision");
 				// We are done, terminate the query.
@@ -115,8 +113,7 @@ void Mapa::setY(float y) {
 }
 
 bool Mapa::isAdentro(float x, float y) {
-	return isAdentro1D(x, this->getX(), this->w)
-			&& isAdentro1D(y, this->getY(), this->h);
+	return isAdentro1D(x, this->getX(), this->w) && isAdentro1D(y, this->getY(), this->h);
 }
 
 void Mapa::step(Transformacion & tl) {
@@ -139,8 +136,8 @@ void Mapa::step(Transformacion & tl) {
 
 }
 
-void Mapa::inicializar(float x, float y, float w, float h, float32 hz,
-		int32 velocityIterations, int32 positionIterations) {
+void Mapa::inicializar(float x, float y, float w, float h, float32 hz, int32 velocityIterations,
+		int32 positionIterations) {
 	this->x = x;
 	this->y = y;
 	this->w = w;
@@ -261,6 +258,5 @@ bool Mapa::removeUnion(Union* figura) {
 		return true;
 	}
 	return false;
-
 
 }

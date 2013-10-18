@@ -8,7 +8,7 @@
 #include "Soga.h"
 #include <cfloat>
 Soga::Soga(float x, float y) :
-		Union(x, y) {
+		Union(x, y, 1.5) {
 
 	origen = NULL;
 	destino = NULL;
@@ -19,7 +19,7 @@ Soga::~Soga() {
 }
 
 Soga::Soga(const Soga& figura) :
-		Union(x, y) {
+		Union(x, y,1.5) {
 	this->reg = figura.reg;
 	origen = NULL;
 	destino = NULL;

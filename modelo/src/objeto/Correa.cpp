@@ -8,8 +8,7 @@
 #include "Correa.h"
 #include "../Constantes.h"
 Correa::Correa(float x, float y) :
-		Union(x, y) {
-	this->h = 2; 	//harcodeado
+		Union(x, y,3) {
 }
 
 Correa::Correa(const Correa& correa) {

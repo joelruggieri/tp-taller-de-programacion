@@ -7,8 +7,11 @@
 
 #include "Union.h"
 
-Union::Union(float x, float y) :
+Union::Union(float x, float y, float h) :
 		Objeto(x, y) {
+	this->h = h;
+	this->figuraFin = NULL;
+	this->figuraInicio = NULL;
 	// TODO Auto-generated constructor stub
 
 }
@@ -119,9 +122,10 @@ void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
 	cuadrado.SetAsBox(this->w, this->h);
 	b2FixtureDef bodyCuadrado;
 	bodyCuadrado.shape = &cuadrado;
-	bodyCuadrado.filter.categoryBits = CATEGORIA_CORREA; //TODO cambiar categorias
+	bodyCuadrado.filter.categoryBits = CATEGORIA_UNION; //TODO cambiar categorias
 	bodyCuadrado.filter.maskBits = 0X0008;
 	body->CreateFixture(&bodyCuadrado);
+	body->SetUserData(this);
 }
 
 void Union::setExtremos(Figura* f1, Figura* f2) {

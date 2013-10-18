@@ -46,16 +46,8 @@ public:
 	virtual bool isEnd();
 	virtual void dibujarEdicion(SDL_Renderer *);
 	virtual void mouseMotion(int x, int y);
-//	void dropNuevaFigura(MotorView*);
 	void dropNuevaFigura(PlataformaView*);
 //
-//	void dropNuevaFigura(GloboHelioView* view);
-//	void dropNuevaFigura(VistaCintaTransportadora* view);
-//	void dropNuevaFigura(BolaBolicheView* view);
-//	void dropNuevaFigura(PelotaJuegoView* view);
-//	void dropNuevaFigura(VistaEngranaje* view);
-//	void dropNuevaFigura(CorreaEstaticaView* view);
-//	void dropNuevaFigura(SogaEstaticaView* view);
 	void dropFigura(FiguraView*);
 	void drag(FiguraView*, float, float);
 };
