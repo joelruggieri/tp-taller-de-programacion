@@ -14,7 +14,6 @@
 #include "../PersistenciaManager.h"
 #include "../JuegoEventsController.h"
 #include "../GeneralEventController.h"
-#include "../RotadorSistemaCoordenadas.h"
 #include <map>
 #include "../../modelo/Cuadrado.h"
 #include "ValidadorEstatico.h"
@@ -29,6 +28,7 @@
 #include "src/objeto/Engranaje.h"
 #include "src/objeto/Correa.h"
 #include "src/objeto/Union.h"
+#include "src/objeto/Soga.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 using namespace std;
 
@@ -40,7 +40,6 @@ private:
 	GeneralEventController * eventsController;
 	PersistenciaManager * bbdd;
 	ModeloController * modeloController;
-	RotadorSistemaCoordenadas * rotador;
 	FiguraFactory * factory;
 	ValidadorEstatico * validador;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
@@ -57,6 +56,7 @@ public:
 	void visit(PelotaJuego*);
 	void visit(Engranaje*);
 	void visit(Correa*);
+	void visit(Soga*);
 	JuegoEventsController * crearZonaJuego();
 };
 

@@ -124,3 +124,9 @@ void ValidadorEstatico::visit(Engranaje* engranaje) {
 		return;
 	}
 }
+
+void ValidadorEstatico::visit(Soga* f) {
+//	if(!validarPosicion(f)){
+//		return;
+//	}
+}

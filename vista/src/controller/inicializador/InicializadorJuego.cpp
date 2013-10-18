@@ -11,17 +11,13 @@
 #include <src/ModeloController.h>
 //#include <iostream>
 #include <map>
-#include <memory>
-#include <new>
 #include <string>
-#include <utility>
 
 #include "../../vista/Canvas.h"
 #include "../CanvasController.h"
 #include "../GeneralEventController.h"
 #include "../JuegoEventsController.h"
 #include "../PersistenciaManager.h"
-#include "../RotadorSistemaCoordenadas.h"
 #include "../viewFactory/ViewFiguraFactory.h"
 #include "../zonaDragAndDrop/ZonaDragAndDrop.h"
 
@@ -39,6 +35,7 @@ using namespace std;
 #include "../viewFactory/VistaEngranajeFactory.h"
 #include "../viewFactory/ViewCorreaFactory.h"
 #include "../viewFactory/ViewCorreaDinamicaFactory.h"
+#include "../viewFactory/ViewSogaDinamicaFactory.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -70,9 +67,7 @@ InicializadorJuego::InicializadorJuego(GeneralEventController * controllerEvento
 	this->eventsController = controllerEventos;
 	this->bbdd = new PersistenciaManager();
 	this->modeloController = modeloController;
-	//TODO EL ROTADOR NO SE BORRA, DONDE SE BORRA?
-	this->rotador = new RotadorSistemaCoordenadas();
-	this->factory = new FiguraFactory(this->rotador);
+	this->factory = new FiguraFactory();
 	this->tablero = NULL;
 	this->validador= new ValidadorEstatico (0,100,0,100);
 }
@@ -263,9 +258,15 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	viewFactory = new ViewMotorFactory(editorOrientacionCambiable);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_MOTOR,viewFactory));
 	factories.push_back(viewFactory);
+
+
 	viewFactory = new ViewSogaFactory(editorunion);
-	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_SOGA,viewFactory));
 	factories.push_back(viewFactory);
+
+	viewFactory = new ViewSogaDinamicaFactory(editorunion);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_SOGA,viewFactory));
+
+
 	viewFactory = new ViewCorreaFactory(editorunion);
 	factories.push_back(viewFactory);
 	viewFactory = new ViewCorreaDinamicaFactory(editorunion);
@@ -318,4 +319,10 @@ void InicializadorJuego::visit(Engranaje* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_ENGRANAJE);
 	this->agregarFigura(iter->second, fig);
+}
+
+void InicializadorJuego::visit(Soga* c) {
+		Figura * fig = this->factory->crear(c);
+		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_SOGA);
+		this->agregarUnion(iter->second, (Soga*)fig);
 }

@@ -16,6 +16,7 @@
 #include "src/objeto/PelotaJuego.h"
 #include "src/objeto/Motor.h"
 #include "src/objeto/Correa.h"
+#include "src/objeto/Soga.h"
 #include "src/objeto/Engranaje.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
@@ -141,6 +142,7 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerMotores(lista,objetos);
 			this->obtenerEngranajes(lista,objetos);
 			this->obtenerCorreas(lista,objetos);
+			this->obtenerSogas(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
@@ -226,18 +228,33 @@ void NivelDAO::obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos)
 void NivelDAO::obtenerCorreas(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node correas = objetos["Correas"];
 	if(correas.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Plataformas";
+		std::string mensaje = "No se encuentrò la etiqueta Correas";
 		logg.info(mensaje);
 	}
 	for (std::size_t i = 0; i < correas.size(); i++) {
 		try {
 			Correa obj = correas[i].as<Correa>();
-//			bool salir = validar(obj, plataformas, i);
-//			if(!salir ) continue;
 			lista.push_back( new Correa(obj));
-			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Plataformas: ";
+			std::string mensaje = "Error al leer Correas: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje, correas[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerSogas(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node correas = objetos["Sogas"];
+	if(correas.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Sogas";
+		logg.info(mensaje);
+	}
+	for (std::size_t i = 0; i < correas.size(); i++) {
+		try {
+			Soga obj = correas[i].as<Soga>();
+			lista.push_back( new Soga(obj));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Sogas: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje, correas[i].Mark() );
 		}
@@ -247,7 +264,7 @@ void NivelDAO::obtenerCorreas(std::list<Figura*> &lista, YAML::Node objetos){
 void NivelDAO::obtenerCintas(std::list<Figura*> &lista, YAML::Node objetos){
 	YAML::Node cintas = objetos["Cintas"];
 	if(cintas.Mark().line == -1 ){
-		std::string mensaje = "No se encuentrò la etiqueta Plataformas";
+		std::string mensaje = "No se encuentrò la etiqueta Cintas";
 		logg.info(mensaje);
 	}
 	for (std::size_t i = 0; i < cintas.size(); i++) {
@@ -378,3 +395,4 @@ void NivelDAO::obtenerEngranajes(std::list<Figura*>& lista,
 		}
 	}
 }
+

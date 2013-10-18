@@ -29,5 +29,5 @@ SogaEstaticaView::~SogaEstaticaView() {
 }
 
 UnionView* SogaEstaticaView::toDinamica() {
-	return new SogaView(this->getX(),this->getY(),this->getW(),this->getH(),this->getTexture(), (EditorUnion*) this->controller);
+	return new SogaView(this->getX(),this->getY(),this->getTexture(), (EditorUnion*) this->controller);
 }

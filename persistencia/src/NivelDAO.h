@@ -32,6 +32,7 @@ private:
 	void obtenerEngranajes(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerMotores(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerCorreas(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerSogas(std::list<Figura*> &lista, YAML::Node objetos);
 	void imprimirLinea(std:: string & msj, YAML::Mark marca);
 	Logger logg;
 };

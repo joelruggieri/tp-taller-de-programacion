@@ -20,7 +20,7 @@ class BolaBoliche;
 class PelotaJuego;
 class GloboHelio;
 class Correa;
-
+class Soga;
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
 
@@ -38,6 +38,7 @@ public:
 	void visit (GloboHelio* globoHelio);
 	void visit (Engranaje* engranaje);
 	void visit (Correa* correa);
+	void visit (Soga* correa);
 private:
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);
@@ -48,6 +49,7 @@ private:
 	void guardar(Engranaje* objeto, YAML::Node* nodoRaiz);
 	void guardar(Motor* objeto, YAML::Node* nodoRaiz);
 	void guardar(Correa* objeto, YAML::Node* nodoRaiz);
+	void guardar(Soga* objeto, YAML::Node* nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };

@@ -33,6 +33,7 @@ public:
 	virtual void visit(GloboHelio*) = 0;
 	virtual void visit(Engranaje*) = 0;
 	virtual void visit(Correa*) = 0;
+	virtual void visit(Soga*) = 0;
 };
 
 #endif /* VISITORFIGURA_H_ */

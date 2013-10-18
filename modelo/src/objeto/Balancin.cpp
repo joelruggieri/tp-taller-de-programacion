@@ -40,12 +40,8 @@ Balancin::Balancin(const Balancin& balancin){
 	this->reg = balancin.reg;
 
 
-	float xDerecho = this->getX() + (this->getAncho()/2);
-	float xIzquierdo = this->getX() - (this->getAncho()/2);
-	float yDerecho = (tan(this->gradosARadianes(this->getRotacion()))) * xDerecho;
-	float yIzquierdo = -yDerecho;
-	Enganche* engancheDerecho = new Enganche(xDerecho,yDerecho);
-	Enganche* engancheIzquierdo = new Enganche(xIzquierdo,yIzquierdo);
+	Enganche* engancheDerecho = new Enganche(-1* ancho/2,0);
+	Enganche* engancheIzquierdo = new Enganche(ancho/2, 0 );
 	enganches.push_back(engancheIzquierdo);
 	enganches.push_back(engancheDerecho);
 }

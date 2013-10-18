@@ -20,6 +20,7 @@
 #include "src/objeto/Engranaje.h"
 #include "src/objeto/Motor.h"
 #include "src/objeto/Correa.h"
+#include "src/objeto/Soga.h"
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -53,6 +54,11 @@ void ObjetoDAO::visit(Correa* correa){
 	guardar(correa,nodo);
 }
 
+void ObjetoDAO::visit(Soga* soga){
+	guardar(soga,nodo);
+}
+
+
 void ObjetoDAO::guardar(Plataforma* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Plataformas"].push_back(*objeto);
 }
@@ -63,6 +69,10 @@ void ObjetoDAO::guardar(Balancin* objeto, YAML::Node* nodoRaiz) {
 
 void ObjetoDAO::guardar(Correa* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Correas"].push_back(*objeto);
+}
+
+void ObjetoDAO::guardar(Soga* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Sogas"].push_back(*objeto);
 }
 
 void ObjetoDAO::visit(CintaTransportadora* cinta) {
