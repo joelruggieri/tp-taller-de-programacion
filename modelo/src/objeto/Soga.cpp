@@ -22,6 +22,7 @@ Soga::Soga(const Soga& figura) :
 		Union(x, y, 1.5) {
 	this->inicio = figura.inicio;
 	this->fin = figura.fin;
+	this->calcularCentroCuadrado();
 	this->reg = figura.reg;
 	origen = NULL;
 	destino = NULL;
