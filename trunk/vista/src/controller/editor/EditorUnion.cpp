@@ -12,8 +12,7 @@
 #include "../../ConstantesVista.h"
 #include "../../vista/objeto/UnionEstaticaView.h"
 #include "src/objeto/Union.h"
-EditorUnion::EditorUnion(ModeloController * m, ZonaTablero * t,
-		FiguraFactory* factory, int yMaxDrag) :
+EditorUnion::EditorUnion(ModeloController * m, ZonaTablero * t, FiguraFactory* factory, int yMaxDrag) :
 		SimpleEditorNivel(m, t, factory, yMaxDrag) {
 	primerClick = true;
 }
@@ -27,18 +26,21 @@ void EditorUnion::clickDown(int x, int y) {
 	trans.traslacion(0, 100);
 	trans.escalar(r->getRelacionX(), r->getRelacionY());
 	trans.invertir(false, true);
+	if (primerClick && this->editado->getModelo() != NULL) {
+		//si tiene body y es el primer click no hago nada.
+		return;
+	}
 	if (primerClick) {
 		trans.setVector(x, y);
 		super::clickDown(x, y);
 	} else {
 		Union * un = (Union *) editado->getModelo();
-		Figura* figFinal = modeloController->pickUp(un->getXFinal(),
-				un->getYFinal());
-		trans.setVector(x,y);
+		Figura* figFinal = modeloController->pickUp(un->getXFinal(), un->getYFinal());
+		trans.setVector(x, y);
 		float xf, yf;
-		trans.getResultado(xf,yf);
-		if (figFinal != NULL && un->isFinValido(figFinal,xf,yf)) {
-			un->extraerPosFinal(figFinal,xf,yf);
+		trans.getResultado(xf, yf);
+		if (figFinal != NULL && un->isFinValido(figFinal, xf, yf)) {
+			un->extraerPosFinal(figFinal, xf, yf);
 			bool exitoVista = tablero->agregarFigura(this->editado);
 			bool exitoModelo = this->modeloController->crearUnion(un);
 			if (!exitoVista || !exitoModelo) {
@@ -73,6 +75,23 @@ void EditorUnion::rightClickUp(int x, int y) {
 }
 
 void EditorUnion::rightClickDown(int x, int y) {
+	if (!dragueando && !finalizado) {
+		//TODO NO SE SI HAY Q CHEQUEAR ESTO.
+		if (editado->getModelo() != NULL) {
+			//la remuevo de todos lados.
+
+			const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+			if (keyboardState[SDL_SCANCODE_LSHIFT]) {
+				editado->getModelo()->makeBackUp();
+				tablero->removerFigura(editado);
+				this->modeloController->removerFigura(editado->getModelo());
+				//Verifico si se apreto el shift tambien.
+				cleanAndDelete();
+				return;
+			}
+		}
+
+	}
 }
 
 void EditorUnion::setFigura(FiguraView* f) {
@@ -89,9 +108,7 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 	vista->setModelo(figura);
 	Union * un = (Union *) figura;
 	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY());
-	if (figInicial != NULL
-			&& un->isInicioValido(figInicial, this->clickDownX,
-					this->clickDownY)) {
+	if (figInicial != NULL && un->isInicioValido(figInicial, this->clickDownX, this->clickDownY)) {
 		visor = vista;
 		editado = vista;
 		primerClick = false;
@@ -119,7 +136,7 @@ void EditorUnion::clickUp(int x, int y) {
 		trans.traslacion(0, 100);
 		trans.escalar(r->getRelacionX(), r->getRelacionY());
 		trans.invertir(false, true);
-		trans.setVector(x,y);
+		trans.setVector(x, y);
 		trans.getResultado(this->clickDownX, this->clickDownY);
 		this->elementoDrag->drop();
 		delete this->elementoDrag;

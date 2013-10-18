@@ -14,7 +14,7 @@
 using namespace std;
 class Union: public Objeto {
 public:
-	Union(float x, float y);
+	Union(float x, float y, float h);
 	Union();
 	virtual ~Union();
 	float getXInicial() const;
