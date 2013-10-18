@@ -18,6 +18,7 @@ class ModeloController {
 private:
 	Mapa * mapa;
 	Transformacion *tl;
+	list<Figura*> figuras;
 public:
 	ModeloController();
 	virtual ~ModeloController();

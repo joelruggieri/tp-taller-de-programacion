@@ -25,7 +25,18 @@ bool ModeloController::removerFigura(Figura* figura) {
 }
 
 list<Figura*>& ModeloController::getFiguras() {
-	return mapa->getFiguras();
+	this->figuras.clear();
+	std::list<Figura*>figurasMapa = mapa->getFiguras();
+	list<Figura*>::iterator it;
+	for(it= figurasMapa.begin(); it!= figurasMapa.end(); ++it){
+		figuras.push_back(*it);
+	}
+	std::list<Union*>unionesMapa = mapa->getUniones();
+	list<Union*>::iterator it2;
+	for(it2= unionesMapa.begin(); it2!= unionesMapa.end(); ++it2){
+		figuras.push_back(*it2);
+	}
+	return this->figuras;
 }
 
 Figura* ModeloController::pickUp(float x, float y) {

@@ -63,6 +63,9 @@ bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
 			|| !figuraFin->esTraccionable()) {
 		return false;
 	}
+	if(this->figuraFin == this->figuraInicio){
+		return false;
+	}
 	this->crearFisicaEstaticaTemplate(w, ground);
 
 	return true;

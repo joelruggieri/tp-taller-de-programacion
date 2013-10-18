@@ -17,8 +17,7 @@
 #include "../objeto/Soga.h"
 #include "../objeto/Correa.h"
 #include "../Constantes.h"
-FiguraFactory::FiguraFactory(Rotador * rotador) {
-	this->rotador = rotador;
+FiguraFactory::FiguraFactory() {
 
 }
 
@@ -140,5 +139,15 @@ Figura* FiguraFactory::crear(Correa* c) {
 	t->setYFinal(c->getYFinal());
 
 		t->setReg(c->getReg());
+	return t;
+}
+
+Figura* FiguraFactory::crear(Soga* c) {
+	Correa* t =(Correa*) this->crearSoga(c->getX(), c->getY());
+	t->setXInicial(c->getXInicial());
+	t->setYInicial(c->getYInicial());
+	t->setXFinal(c->getXFinal());
+	t->setYFinal(c->getYFinal());
+	t->setReg(c->getReg());
 	return t;
 }

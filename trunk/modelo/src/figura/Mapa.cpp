@@ -260,3 +260,7 @@ bool Mapa::removeUnion(Union* figura) {
 	return false;
 
 }
+
+list<Union*>& Mapa::getUniones() {
+	return uniones;
+}

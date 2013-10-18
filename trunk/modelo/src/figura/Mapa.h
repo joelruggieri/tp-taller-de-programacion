@@ -37,6 +37,7 @@ public:
 	bool addUnion(Union*);
 	bool removeUnion(Union*);
 	list<Figura*> & getFiguras();
+	list<Union*> & getUniones();
 	Figura * pickUp(float x, float y);
 	float getX() const;
 	void setX(float x);

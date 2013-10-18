@@ -237,6 +237,32 @@ struct convert<Correa> {
 	}
 };
 
+
+template<>
+struct convert<Soga> {
+	static Node encode(const Soga& objeto) {
+		Node node;
+		node["xDesde"] = objeto.getXInicial();
+		node["yDesde"] = objeto.getYInicial();
+		node["xHasta"] = objeto.getXFinal();
+		node["yHasta"] = objeto.getYFinal();
+		return node;
+	}
+
+	static bool decode(const Node& node, Soga& objeto) {
+		if (node.size() != 4) return false;
+		objeto.setXInicial(node["xDesde"].as<float>());
+		objeto.setYInicial(node["yDesde"].as<float>());
+		objeto.setXFinal(node["xHasta"].as<float>());
+		objeto.setYFinal(node["yHasta"].as<float>());
+		Mark marca = node.Mark();
+		Registro & reg = objeto.getReg();
+		reg.setLinea(marca.line);
+		reg.setEtiqueta("Soga");
+		return true;
+	}
+};
+
 }
 
 #endif /* CONSTRUCTORESYAML_H_ */

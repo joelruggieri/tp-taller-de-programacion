@@ -8,12 +8,9 @@
 #ifndef FIGURAFACTORY_H_
 #define FIGURAFACTORY_H_
 #include "../figura/Figura.h"
-#include "../figura/Rotador.h"
 class FiguraFactory {
-private:
-	Rotador * rotador;
 public:
-	FiguraFactory(Rotador * rotador);
+	FiguraFactory();
 	virtual ~FiguraFactory();
 	Figura * crearMotor(float x,float y);
 	Figura * crearPlataforma(float x, float y);
@@ -34,6 +31,7 @@ public:
 	Figura* crear(GloboHelio*);
 	Figura* crear(Motor*);
 	Figura* crear(Correa*);
+	Figura* crear(Soga*);
 };
 
 #endif /* FIGURAFACTORY_H_ */

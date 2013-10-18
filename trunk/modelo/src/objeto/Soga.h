@@ -16,6 +16,7 @@ class Soga: public Union {
 public:
 	Soga(float x, float y);
 	Soga(const Soga& figura);
+	Soga();
 	virtual ~Soga();
 	bool crearFisicaEstatica(b2World *);
 	void crearFisica(b2World * w, b2Body* g);
@@ -26,9 +27,8 @@ public:
 	void extraerPosInicial(Figura * f, float x, float y);
 	void extraerPosFinal(Figura * f, float x, float y);
 
-
-
 	bool crearFisicaEstatica(b2World*, b2Body* ground);
+	void removerFisica(b2World * w);
 protected:
 	void crearLazo(b2World*);
 	void updatePosicionesFiguras();

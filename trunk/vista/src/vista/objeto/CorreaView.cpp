@@ -29,17 +29,6 @@ void CorreaView::dropTemplate(){
 
 
 void CorreaView::dibujarse(SDL_Renderer* renderer){
-//	SDL_Rect dest;
-//	dest.h = this->getH();
-//	dest.w = this->getW();
-//	dest.x = xHasta;
-//	dest.y = yHasta;
-//	SDL_Rect src;
-//	src.h = this->getH();
-//	src.w = this->getW();
-//	src.x = xDesde;
-//	src.y = yDesde;
-//	this->dibujarse(renderer, src, dest);
 	super::dibujarse(renderer,10,10,10);
 }
 
