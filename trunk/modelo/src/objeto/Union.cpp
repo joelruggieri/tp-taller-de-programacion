@@ -90,7 +90,7 @@ void Union::calcularAnguloCuadrado() {
 	if (distanciaB == 0) {
 		this->rotacion = 0;
 	} else
-		this->rotacion = -atan(distanciaA / distanciaB);
+		this->rotacion = atan(distanciaA / distanciaB);
 }
 
 //void Union::setFiguraInicio(Figura* a) {
