@@ -43,8 +43,8 @@ bool Soga::crearFisicaEstatica(b2World* w, b2Body * ground) {
 //			b2Vec2(fin->getPosX(), fin->getPosY()));
 //	this->origen = in;
 //	this->destino= fin;
-//	in->ocupar();
-//	fin->ocupar();
+	origen->ocupar();
+	destino->ocupar();
 	this->crearFisicaEstaticaTemplate(w, ground);
 	return true;
 }
