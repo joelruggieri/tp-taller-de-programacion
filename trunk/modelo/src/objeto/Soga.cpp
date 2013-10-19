@@ -124,6 +124,7 @@ Soga::Soga() {
 }
 
 void Soga::removerFisica(b2World* w) {
+	super::removerFisica(w);
 	if(origen != NULL){
 		origen->liberar();
 	}

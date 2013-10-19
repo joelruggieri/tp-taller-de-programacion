@@ -1,8 +1,19 @@
 Objetos:
   Balancines:
-    - y: 53
+    - x: 45.4
+      y: 53
       rotacion: 0
-      x: 45.4
+  GlobosHelio:
+    - x: 59.2
+      y: 83.4
+  BolasBoliche:
+    - x: 76
+      y: 61.6
+  Sogas:
+    - xDesde: 59.2
+      yDesde: 79.9
+      xHasta: 52.9
+      yHasta: 53
 Nivel:
   Nombre: yaml1
   Fondo: ""

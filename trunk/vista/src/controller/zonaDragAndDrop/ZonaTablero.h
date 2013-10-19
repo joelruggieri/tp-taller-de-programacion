@@ -25,7 +25,6 @@ private:
 	FiguraView * getFiguraTemplate(float x, float y);
 	Canvas * canvas;
 	ViewConBorde * viewCanvas;
-	list<FiguraView*> deleteables;
 public:
 	ZonaTablero(float, float, SDL_Texture *);
 	virtual ~ZonaTablero();
@@ -37,7 +36,6 @@ public:
 	bool mouseScroll(float x, float y, int amountScrolled);
 //	void notify(Observable* o, event_type t);
 	void notifyEvent(ObservableModelo* o, Evento_type t);
-	void cleanDelets();
 };
 
 #endif /* ZONATABLERO_H_ */

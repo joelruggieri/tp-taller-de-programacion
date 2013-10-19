@@ -85,17 +85,6 @@ void ZonaTablero::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
 	this->dibujarse(renderer);
 }
 
-//void ZonaTablero::notify(Observable* o, event_type t) {
-//	if(t == DESTRUIR_VISTA){
-//		cout << "llego a poner la vista para destruirse" << endl;
-//		FiguraView * view = (FiguraView*)o;
-//		this->canvas->remover(view);
-//
-//		deleteables.push_back(view);
-////		delete view;
-//	}
-//}
-
 void ZonaTablero::notifyEvent(ObservableModelo* o, Evento_type t) {
 	if(t == DESTRUCCION_FORZADA){
 		Figura * fig = (Figura*) o;
@@ -105,11 +94,3 @@ void ZonaTablero::notifyEvent(ObservableModelo* o, Evento_type t) {
 	}
 }
 
-void ZonaTablero::cleanDelets() {
-	cout <<"deletea la vista antes" << endl;
-	list<FiguraView*>::iterator it;
-	for(it= deleteables.begin(); it != deleteables.end(); ++it){
-		delete (*it);
-	}
-	deleteables.clear();
-}

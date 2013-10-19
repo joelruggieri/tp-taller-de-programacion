@@ -33,6 +33,7 @@ void BolaBoliche::crearFisica(b2World * w, b2Body* ground) {
 		shapeCircle.m_radius = this->radio ;
 		b2FixtureDef bodyBolaBoliche;
 		bodyBolaBoliche.filter.categoryBits = CATEGORIA_FIGURAS;
+//		bodyBolaBoliche.filter.maskBits = CATEGORIA_FIGURAS;
 		bodyBolaBoliche.shape = &shapeCircle;
 		bodyBolaBoliche.density = 45.0f;
 		bodyBolaBoliche.friction = 0.2f;
