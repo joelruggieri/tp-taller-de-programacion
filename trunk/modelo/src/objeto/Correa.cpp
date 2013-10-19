@@ -42,8 +42,8 @@ Correa::Correa() :
 Correa::~Correa() {
 }
 
-void Correa::crearFisica(b2World* w, b2Body* ground) {
-	crearLazo((Engranaje*) this->figuraInicio, (Engranaje*) this->figuraFin, w);
+void Correa::crearFisica() {
+	crearLazo((Engranaje*) this->figuraInicio, (Engranaje*) this->figuraFin, myWorld);
 }
 
 void Correa::crearLazo(Engranaje * a, Engranaje* b, b2World* w) {
@@ -58,7 +58,7 @@ void Correa::crearLazo(Engranaje * a, Engranaje* b, b2World* w) {
 
 }
 
-bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
+bool Correa::crearFisicaEstatica() {
 	if (!this->figuraInicio->esTraccionable()
 			|| !figuraFin->esTraccionable()) {
 		return false;
@@ -66,7 +66,7 @@ bool Correa::crearFisicaEstatica(b2World* w, b2Body* ground) {
 	if(this->figuraFin == this->figuraInicio){
 		return false;
 	}
-	this->crearFisicaEstaticaTemplate(w, ground);
+	this->crearFisicaEstaticaTemplate();
 
 	return true;
 }

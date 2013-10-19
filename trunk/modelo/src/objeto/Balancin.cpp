@@ -69,7 +69,7 @@ void Balancin::setAncho(float ancho){
 	this->ancho = ancho;
 }
 
-void Balancin::crearFisica(b2World * w, b2Body* ground){
+void Balancin::crearFisica(){
 
 	float x = this->getX();
 	float y = this->getY();
@@ -93,7 +93,7 @@ void Balancin::crearFisica(b2World * w, b2Body* ground){
 	//bodyDef.fixedRotation = true;
 	double rotacionRad = this->getRotacion() * -1*b2_pi / 180.0;
 	bodyDef.angle = rotacionRad;
-	b2Body* body = w->CreateBody(&bodyDef);
+	b2Body* body = myWorld->CreateBody(&bodyDef);
 	body->CreateFixture(&fixture);
 	body->SetUserData(this);
 	this->setBody(body);
@@ -115,7 +115,7 @@ void Balancin::crearFisica(b2World * w, b2Body* ground){
 		rjd.upperAngle =  0;//0.0f * (-b2_pi);
 	}
 	rjd.enableLimit = true;
-	w->CreateJoint(&rjd);
+	myWorld->CreateJoint(&rjd);
 
 }
 

@@ -16,7 +16,7 @@ public:
 	PelotaJuego();
 	PelotaJuego(float x, float y, float radio);
 	virtual ~PelotaJuego();
-	void crearFisica(b2World * w, b2Body* ground);
+	void crearFisica();
 	void acept(VisitorFigura* visitor);
 	float getRadio() const;
 	void setRadio(float radio);

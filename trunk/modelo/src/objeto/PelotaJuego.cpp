@@ -10,14 +10,13 @@
 PelotaJuego::PelotaJuego(float x, float y, float radio) :
 		Objeto(x, y) {
 	this->radio = radio;
-	this->unibleConSoga = true;
 }
 
 PelotaJuego::~PelotaJuego() {
 	// TODO Auto-generated destructor stub
 }
 
-void PelotaJuego::crearFisica(b2World * w, b2Body* ground) {
+void PelotaJuego::crearFisica() {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x, y);
@@ -27,7 +26,7 @@ void PelotaJuego::crearFisica(b2World * w, b2Body* ground) {
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(centro.x, centro.y);
 	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
-	b2Body* body = w->CreateBody(&bodyDef);
+	b2Body* body = myWorld->CreateBody(&bodyDef);
 	shapeCircle.m_radius = this->radio;
 	b2FixtureDef bodyPelota;
 	bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
@@ -55,7 +54,6 @@ PelotaJuego::PelotaJuego(const PelotaJuego& figura) {
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
 	this->reg = figura.reg;
-	this->unibleConSoga = true;
 }
 
 PelotaJuego::PelotaJuego() {

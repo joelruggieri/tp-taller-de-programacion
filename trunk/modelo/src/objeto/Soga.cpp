@@ -24,13 +24,13 @@ Soga::Soga(const Soga& figura) :
 	destino = NULL;
 }
 
-bool Soga::crearFisicaEstatica(b2World* w, b2Body * ground) {
+bool Soga::crearFisicaEstatica() {
 	if (figuraInicio == figuraFin) {
 		return false;
 	}
 	origen->ocupar();
 	destino->ocupar();
-	this->crearFisicaEstaticaTemplate(w, ground);
+	this->crearFisicaEstaticaTemplate();
 	return true;
 }
 
@@ -38,8 +38,8 @@ void Soga::acept(VisitorFigura*v) {
 	v->visit(this);
 }
 
-void Soga::crearFisica(b2World* w, b2Body* g) {
-	this->crearLazo(w);
+void Soga::crearFisica() {
+	this->crearLazo(myWorld);
 }
 
 void Soga::setearPuntoInicial(Figura* f) {
@@ -123,8 +123,8 @@ Soga::Soga() {
 	destino = NULL;
 }
 
-void Soga::removerFisica(b2World* w) {
-	super::removerFisica(w);
+void Soga::removerFisica() {
+	super::removerFisica();
 	if(origen != NULL){
 		origen->liberar();
 	}

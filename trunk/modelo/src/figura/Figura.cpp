@@ -70,7 +70,6 @@ Figura::Figura() {
 	yb = y;
 	rotacionb =0;
 	traccionable = false;
-	unibleConSoga = false;
 }
 
 Figura::Figura(float x, float y) {
@@ -163,23 +162,23 @@ void Figura::updateVista(Transformacion& tl) {
 void Figura::modificarSentido() {
 }
 
-void Figura::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
-   this->crearFisica(w,ground);
+void Figura::crearFisicaEstaticaTemplate() {
+   this->crearFisica();
 }
 
-bool Figura::crearFisicaEstatica(b2World*w, b2Body* ground) {
-	this->crearFisicaEstaticaTemplate(w,ground);
+bool Figura::crearFisicaEstatica() {
+	this->crearFisicaEstaticaTemplate();
 	bool hayContacto = false;
-	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
+	for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
 		if (b != this->body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
-			if(validarContacto(w,body,b)){
+			if(validarContacto(this->body, b)){
 				hayContacto = true;
 				break;
 			}
 		}
 	}
 	if(hayContacto) {
-		removerFisica(w);
+		removerFisica();
 	}
 	return !hayContacto;
 }
@@ -188,16 +187,16 @@ float Figura::getAncho() const {
 	return 0;
 }
 
-void Figura::removerFisica(b2World* w) {
+void Figura::removerFisica() {
 
 	if(body != NULL){
 		notify(FISICA_REMOVIDA);
-		w->DestroyBody(this->getBody());
+		myWorld->DestroyBody(this->getBody());
 	}
 	this->setBody(NULL);
 }
 
-bool Figura::validarContacto(b2World* w, b2Body * verf, b2Body * b) {
+bool Figura::validarContacto(b2Body * verf, b2Body * b) {
 		uint16 catA = verf->GetFixtureList()->GetFilterData().categoryBits;
 		uint16 maskA = verf->GetFixtureList()->GetFilterData().maskBits;
 		uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
@@ -223,17 +222,6 @@ bool Figura::esTraccionable() {
 	return this->traccionable;
 }
 
-bool Figura::coincidenMascaras(b2Body* b) {
-return (this->body->GetFixtureList()->GetFilterData().maskBits == b->GetFixtureList()->GetFilterData().maskBits);
-}
-
-bool Figura::coincidenCategorias(b2Body* b) {
-	return (this->body->GetFixtureList()->GetFilterData().categoryBits == b->GetFixtureList()->GetFilterData().categoryBits);
-}
-
-bool Figura::esUnibleConSoga() {
-	return this->unibleConSoga;
-}
 
 bool Figura::agregar(Mapa* m) {
 	return m->addFigura(this);
@@ -241,4 +229,9 @@ bool Figura::agregar(Mapa* m) {
 
 bool Figura::remover(Mapa*m) {
 	return m->removeFigura(this);
+}
+
+void Figura::setWorld(b2World* w, b2Body * g) {
+	this->myWorld = w;
+	this->ground = g;
 }

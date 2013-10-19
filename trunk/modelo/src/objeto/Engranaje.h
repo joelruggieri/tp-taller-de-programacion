@@ -14,11 +14,11 @@ public:
 	Engranaje(const Engranaje & engranaje);
 	Engranaje(float x, float, float radio);
 	virtual ~Engranaje();
-	void crearFisica(b2World * w, b2Body* ground);
+	void crearFisica();
 	void acept(VisitorFigura* visitor);
-	void crearFisicaEstaticaTemplate(b2World* m_world, b2Body* ground);
-	void removerFisica(b2World * w);
-	bool crearFisicaEstatica(b2World *w, b2Body* ground);
+	void crearFisicaEstaticaTemplate();
+	void removerFisica();
+	bool crearFisicaEstatica();
 	b2RevoluteJoint* & getJointATierra();
 	b2Body * getDiscoGiro();
 	void modificarSentido();

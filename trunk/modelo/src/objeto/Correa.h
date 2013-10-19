@@ -18,9 +18,9 @@ public:
 	Correa(const Correa& correa);
 	Correa();
 	virtual ~Correa();
-	void crearFisica(b2World* w, b2Body* ground);
+	void crearFisica();
 	void crearLazo(Engranaje * a, Engranaje* b, b2World* w);
-	bool crearFisicaEstatica(b2World* w, b2Body* ground);
+	bool crearFisicaEstatica();
 	void acept(VisitorFigura*);
 
 	bool isInicioValido(Figura * f, float x, float y);

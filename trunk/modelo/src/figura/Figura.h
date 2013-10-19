@@ -25,9 +25,10 @@ protected:
 	bool traccionable;
 	float xb,yb;
 	double rotacionb;
-	bool unibleConSoga;
 	Registro reg;
 
+	b2World * myWorld;
+	b2Body * ground;
 
 	Lista_Enganches enganches;
 
@@ -35,8 +36,8 @@ protected:
 	b2Body * body;
 	double radianesAGrados(float r);
 	double gradosARadianes(float g);
-    virtual void crearFisicaEstaticaTemplate(b2World * w, b2Body* ground);
-    bool validarContacto(b2World * w, b2Body * verf, b2Body * b);
+    virtual void crearFisicaEstaticaTemplate();
+    bool validarContacto(b2Body * verf, b2Body * b);
 public:
 	Figura();
 	Figura(float x, float y);
@@ -50,14 +51,12 @@ public:
 	void setY(float y);
 	virtual void setRotacion(double rotation);
 	virtual float getAncho() const;
-	virtual void crearFisica(b2World * w, b2Body* ground) = 0;
-	virtual bool crearFisicaEstatica(b2World *, b2Body* ground);
+	virtual void crearFisica() = 0;
+	virtual bool crearFisicaEstatica();
 	virtual void acept(VisitorFigura*) = 0;
-	virtual void removerFisica(b2World * w);
+	virtual void removerFisica();
 	bool esTraccionable();
 	bool esUnibleConSoga();
-	bool coincidenMascaras(b2Body*);
-	bool coincidenCategorias(b2Body*);
 	Vista* getVista();
 	void setVista(Vista* vista);
 	b2Body * getBody();
@@ -78,6 +77,7 @@ public:
 
 	virtual bool agregar(Mapa *);
 	virtual bool remover(Mapa *);
+	void setWorld(b2World * w, b2Body * ground);
 };
 
 #endif /* FIGURA_H_ */
