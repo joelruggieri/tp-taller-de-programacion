@@ -31,8 +31,8 @@ EditorNivel* UnionView::getEditor() {
 	return (EditorNivel*)this->controller;
 }
 
-void UnionView::update(Transformacion & tl){
-	super::update(tl);
+void UnionView::update(){
+	super::update();
 	Union* un = (Union*)this->getModelo();
 	tl.setVector(un->getXInicial(),un->getYInicial());
 	float xDesde;
@@ -59,4 +59,9 @@ void UnionView::notifyEvent(ObservableModelo* o, Evento_type type) {
 //		o->removeObserver(this);
 //		notifY(DESTRUIR_VISTA);
 //	}
+}
+
+void UnionView::resizear() {
+	super::resizear();
+	update();
 }

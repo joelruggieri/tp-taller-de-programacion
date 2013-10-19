@@ -14,7 +14,7 @@ public:
 	virtual ~Vista(){
 
 	};
-	virtual void update(Transformacion &) = 0;
+	virtual void update() = 0;
 };
 
 #endif /* VISTA_H_ */

@@ -46,7 +46,7 @@ Figura* ModeloController::pickUp(float x, float y, uint16 mascara) {
 }
 
 void ModeloController::step() {
-	mapa->step(*tl);
+	mapa->step();
 }
 
 void ModeloController::start() {
@@ -55,11 +55,7 @@ void ModeloController::start() {
 }
 
 void ModeloController::stop() {
-	mapa->restoreBackUp(*tl);
-}
-
-void ModeloController::setTransformacion(Transformacion * tl) {
-	this->tl = tl;
+	mapa->restoreBackUp();
 }
 
 bool ModeloController::crearUnion(Union* figura) {

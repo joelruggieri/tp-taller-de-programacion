@@ -27,8 +27,8 @@ EditorNivel* PlataformaView::getEditor() {
 }
 
 
-void PlataformaView::update(Transformacion & tl){
-	super::update(tl);
+void PlataformaView::update(){
+	super::update();
 	float y = 0;
 	tl.setVector(this->getModelo()->getAncho(),y);
 	float nuevoAncho;

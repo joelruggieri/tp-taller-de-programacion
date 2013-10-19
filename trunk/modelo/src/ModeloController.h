@@ -32,7 +32,6 @@ public:
 	void start();
 	void step();
 	void stop();
-	void setTransformacion(Transformacion *);
 	void cleanDeletes();
 };
 

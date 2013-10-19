@@ -10,7 +10,6 @@
 
 #include <list>
 #include "Box2D/Box2D.h"
-#include "../Transformacion.h"
 #include "../observer/ObserverModelo.h"
 using namespace std;
 
@@ -48,8 +47,8 @@ public:
 	bool isAdentro1D(float pos, float posCentro, float ancho);
 	bool isAdentro(float,float);
 	void makeBackUp();
-	void restoreBackUp(Transformacion & tl);
-	void step(Transformacion & tl);
+	void restoreBackUp();
+	void step();
 	void despertar();
 	void notifyEvent(ObservableModelo*, Evento_type);
 	void cleanDeletes();

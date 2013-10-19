@@ -57,7 +57,7 @@ void EditorUnion::clickDown(int x, int y) {
 				this->editado = NULL;
 				delete un;
 			} else {
-				this->editado->update(trans);
+				this->editado->update();
 				this->visor = NULL;
 				this->editado = NULL;
 			}
@@ -118,7 +118,7 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 		trans.invertir(false, true);
 		un->extraerPosInicial(figInicial, this->clickDownX, this->clickDownY);
 		un->extraerPosFinal(figInicial, this->clickDownX, this->clickDownY);
-		vista->update(trans);
+		vista->update();
 	} else {
 		Logger log;
 		log.info("Punto inicial de union invalido");
@@ -158,7 +158,7 @@ void EditorUnion::mouseMotion(int x, int y) {
 		Union * un = ((Union *) this->editado->getModelo());
 		un->setXFinal(xf);
 		un->setYFinal(yf);
-		this->editado->update(trans);
+		this->editado->update();
 	}
 }
 

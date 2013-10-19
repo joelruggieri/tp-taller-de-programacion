@@ -76,7 +76,9 @@ void Resizer::setearResizer(int xNuevo, int yNuevo) {
 	this->relacionY = (float)this->yNuevo / (float) this->yViejo ;
 	this->relacionXLogica = (float)this->xNuevo / (float) this->xLogico;
 	this->relacionYLogica = (float)this->yNuevo / (float) this->yLogico;
-
+	transf.traslacion(0, 100);
+	transf.escalar(getRelacionX(), getRelacionY());
+	transf.invertir(false, true);
 }
 
 
@@ -94,6 +96,9 @@ void Resizer::quitarResizeable(Resizeable* resizeable) {
 }
 
 void Resizer::resizearResizeables() {
+	transf.traslacion(0, 100);
+	transf.escalar(getRelacionX(), getRelacionY());
+	transf.invertir(false, true);
 	list<Resizeable* >::iterator iter;
 		 for(iter = this->resizeables.begin();iter != this->resizeables.end();iter++)
 		{
@@ -126,7 +131,10 @@ Resizer::Resizer(int x, int y,float xLogico, float yLogico)
 	this->yLogico = yLogico;
 	this->relacionXLogica = (float)this->xNuevo / (float) this->xLogico;
 	this->relacionYLogica = (float)this->yNuevo / (float) this->yLogico;
-
+	transf.traslacion(0, 100);
+	transf.escalar(getRelacionX(), getRelacionY());
+	transf.invertir(false, true);
+	transf.setVector(0,0);
 
 }
 
@@ -169,4 +177,9 @@ float Resizer::getRelacionX() {
 
 float Resizer::getRelacionY() {
 	return 1/this->relacionYLogica;
+}
+
+Transformacion& Resizer::getTransformacionToModelo() {
+	transf.setVector(0,0);
+	return this->transf;
 }

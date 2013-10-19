@@ -48,7 +48,7 @@ void SimpleEditorEstirar::actualizarAncho(int delta){
 	float lX2, lY2;
 	trans.getResultado(lX2, lY2);
 	figura->estirar(wNuevo);
-	this->editado->update(trans);
+	this->editado->update();
 //	this->editado->setW(r->resizearDistanciaLogicaX(figura->getAncho())); //TODO EN vez de esto hay que usar update de la vista con una transformacion para sacar el metodo getAncho de Figura
 
 }
@@ -87,7 +87,7 @@ void SimpleEditorEstirar::rightClickUp(int int1, int int2) {
 		trans.escalar(r->getRelacionX(), r->getRelacionY());
 		trans.invertir(false, true);
 		trans.setVector(this->editado->getX(), editado->getY());
-		this->editado->update(trans);
+		this->editado->update();
 	}else
 		super::rightClickUp(int1,int2);
 }

@@ -129,7 +129,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	h = r->resizearDistanciaLogicaY(10);
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
-	view->update(trans);
+	view->update();
 	modelo->setVista(view);
 	bool exitoVista = tablero->agregarFigura(view);
 	bool exitoModelo = this->modeloController->crearFigura(modelo);
@@ -178,7 +178,7 @@ void InicializadorJuego::agregarUnion(ViewFiguraFactory* factory,
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
 	modelo->setVista(view);
-	view->update(trans);
+	view->update();
 	bool exitoVista = tablero->agregarFigura(view);
 	bool exitoModelo = this->modeloController->crearUnion(modelo);
 	if (!exitoVista || !exitoModelo) {
