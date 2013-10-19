@@ -17,7 +17,7 @@ public:
 	GloboHelio();
 	GloboHelio(float x, float y, float radio) ;
 	virtual ~GloboHelio();
-	void crearFisica(b2World * w, b2Body* ground);
+	void crearFisica();
 	void acept(VisitorFigura*);
 	float getRadio() const;
 	void setRadio(float radio);

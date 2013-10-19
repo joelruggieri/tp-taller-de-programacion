@@ -12,14 +12,13 @@ GloboHelio::GloboHelio(float x, float y, float radio) :
 	this->radio = radio;
 	this->setRotacion(0);
 	this->enganches.push_back(new Enganche(0, -1 * radio));
-	this->unibleConSoga = true;
 }
 
 GloboHelio::~GloboHelio() {
 
 }
 
-void GloboHelio::crearFisica(b2World * w, b2Body* ground) {
+void GloboHelio::crearFisica() {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x, y);
@@ -30,7 +29,7 @@ void GloboHelio::crearFisica(b2World * w, b2Body* ground) {
 	bodyDef.position.Set(centro.x, centro.y);
 	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 	bodyDef.fixedRotation = true;
-	b2Body* body = w->CreateBody(&bodyDef);
+	b2Body* body = myWorld->CreateBody(&bodyDef);
 	shapeCircle.m_radius = this->radio;
 	b2FixtureDef bodyBolaBoliche;
 	bodyBolaBoliche.shape = &shapeCircle;
@@ -54,7 +53,6 @@ GloboHelio::GloboHelio(const GloboHelio& figura) {
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
-	this->unibleConSoga = true;
 	this->reg = figura.reg;
 //	this->enganches.push_back(new Enganche((int)x, (int)y - (int)radio));
 	this->enganches.push_back(new Enganche(0, -1 * radio));

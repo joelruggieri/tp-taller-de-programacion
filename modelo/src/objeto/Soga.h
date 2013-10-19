@@ -18,8 +18,8 @@ public:
 	Soga(const Soga& figura);
 	Soga();
 	virtual ~Soga();
-	bool crearFisicaEstatica(b2World *);
-	void crearFisica(b2World * w, b2Body* g);
+	bool crearFisicaEstatica();
+	void crearFisica();
 	void acept(VisitorFigura*);
 
 	bool isInicioValido(Figura * f, float x, float y);
@@ -27,8 +27,7 @@ public:
 	void extraerPosInicial(Figura * f, float x, float y);
 	void extraerPosFinal(Figura * f, float x, float y);
 
-	bool crearFisicaEstatica(b2World*, b2Body* ground);
-	void removerFisica(b2World * w);
+	void removerFisica();
 //	void notifyEvent(ObservableModelo*, Evento_type);
 protected:
 	void crearLazo(b2World*);

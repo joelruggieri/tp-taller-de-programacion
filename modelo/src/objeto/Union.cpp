@@ -115,7 +115,7 @@ void Union::calcularAnchoCuadrado() {
 	this->w = this->calcularDistancia(this->inicio, this->fin);
 }
 
-void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
+void Union::crearFisicaEstaticaTemplate() {
 	b2Vec2 centro(x, y);
 	b2PolygonShape cuadrado;
 	b2BodyDef bodyDef;
@@ -124,7 +124,7 @@ void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
 	bodyDef.position = centro;
 	bodyDef.angle = this->rotacion;
 	bodyDef.fixedRotation = true;
-	body = w->CreateBody(&bodyDef);
+	body = myWorld->CreateBody(&bodyDef);
 	cuadrado.SetAsBox(this->w, this->h);
 	b2FixtureDef bodyCuadrado;
 	bodyCuadrado.shape = &cuadrado;

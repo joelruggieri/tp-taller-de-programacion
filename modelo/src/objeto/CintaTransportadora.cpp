@@ -20,7 +20,6 @@ CintaTransportadora::CintaTransportadora(): Objeto (0,0) {
 	ruedas[1]=NULL;
 	base = NULL;
 	cuerpo = NULL;
-	mundo = NULL;
 	cantPiezas=longitud+7;
 }
 
@@ -28,8 +27,7 @@ CintaTransportadora::~CintaTransportadora() {
 
 }
 
-void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
-	this->mundo = m_world;
+void CintaTransportadora::crearFisica() {
 
 	// Corro el centro de la vista porque en TestBed programe las posiciones
 	// de las piezas haciendo referencia a la rueda izquierda.
@@ -42,11 +40,11 @@ void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 	myBodyDef.angle = 0;
 
 	// rueda izq
-	ruedas[0] = m_world->CreateBody(&myBodyDef);
+	ruedas[0] = myWorld->CreateBody(&myBodyDef);
 
 	// rueda derecha
 	myBodyDef.position.Set(getX() + longitud, getY());
-	ruedas[1] = m_world->CreateBody(&myBodyDef);
+	ruedas[1] = myWorld->CreateBody(&myBodyDef);
 
 	ruedas[0]->SetAngularVelocity( 360 * DEGTORAD );
 	ruedas[1]->SetAngularVelocity( 360 * DEGTORAD );
@@ -65,7 +63,7 @@ void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 	// Cuerpo de la cinta
 	myBodyDef.type = b2_staticBody;
 	myBodyDef.position.Set(getX()+longitud/2, getY());
-	cuerpo = m_world->CreateBody(&myBodyDef);
+	cuerpo = myWorld->CreateBody(&myBodyDef);
 
 	b2PolygonShape boxShape;
 	boxShape.SetAsBox((longitud-2*RADIO_EJE_CINTA)/2*0.99, RADIO_EJE_CINTA * 0.95f);
@@ -77,7 +75,7 @@ void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 
 	// Base
 	myBodyDef.position.Set(getX()+longitud/2, getY() - RADIO_EJE_CINTA - 0.85);
-	base = m_world->CreateBody(&myBodyDef);
+	base = myWorld->CreateBody(&myBodyDef);
 	boxShape.SetAsBox(longitud/2, 0.25f);
 	boxFixtureDef.friction=0;
 	boxFixtureDef.shape = &boxShape;
@@ -127,21 +125,21 @@ void CintaTransportadora::crearFisica(b2World* m_world, b2Body * ground) {
 			myBodyDef.angle=-270*DEGTORAD;
 			myBodyDef.position.Set(-RADIO_EJE_CINTA-0.1 + getX(), 0 + getY());
 		}
-		piezas[i] = m_world->CreateBody(&myBodyDef);
+		piezas[i] = myWorld->CreateBody(&myBodyDef);
 		piezas[i]->CreateFixture(&boxFixtureDef);
 		if (ant==NULL) {
 			ant = piezas[0];
 		} else {
 			revoluteJointDef.bodyA = ant;
 			revoluteJointDef.bodyB = piezas[i];
-			m_world->CreateJoint( &revoluteJointDef );
+			myWorld->CreateJoint( &revoluteJointDef );
 			ant = piezas[i];
 		}
 	}
 	myBodyDef.angle=0;
 	revoluteJointDef.bodyA = ant;
 	revoluteJointDef.bodyB = piezas[0];
-	m_world->CreateJoint( &revoluteJointDef );
+	myWorld->CreateJoint( &revoluteJointDef );
 	cuerpo->SetUserData(this);
 	this->setBody(cuerpo);
 	this->setX(getX()+longitud/2);
@@ -154,7 +152,6 @@ void CintaTransportadora::acept(VisitorFigura* visitor) {
 CintaTransportadora::CintaTransportadora(float x, float y, float longitud) : Objeto(x,y) {
 	this->longitud = longitud;
 	cuerpo = NULL;
-	mundo = NULL;
 	base = NULL;
 	cantPiezas = longitud+7;
 }
@@ -165,7 +162,6 @@ CintaTransportadora::CintaTransportadora(const CintaTransportadora& figura):Obje
 	this->reg = figura.reg;
 	this->cuerpo = figura.cuerpo;
 	this->base = figura.base;
-	this->mundo = figura.mundo;
 	this->cantPiezas = figura.cantPiezas;
 }
 
@@ -177,8 +173,7 @@ void CintaTransportadora::setLongitud(float longitud) {
 	this->longitud = longitud;
 }
 
-void CintaTransportadora::crearFisicaEstaticaTemplate(b2World* m_world,
-		b2Body* ground) {
+void CintaTransportadora::crearFisicaEstaticaTemplate() {
 	b2PolygonShape * polygon = new b2PolygonShape();
 
 	b2MassData masa;
@@ -190,7 +185,7 @@ void CintaTransportadora::crearFisicaEstaticaTemplate(b2World* m_world,
 	b2BodyDef bodyDef;
 	bodyDef.position.Set(x, y);
 
-	b2Body* body = m_world->CreateBody(&bodyDef);
+	b2Body* body = myWorld->CreateBody(&bodyDef);
 	body->CreateFixture(&fixture);
 	setBody(body);
 	body->SetUserData(this);

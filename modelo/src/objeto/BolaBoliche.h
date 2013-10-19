@@ -17,7 +17,7 @@ public:
 	virtual ~BolaBoliche();
 	BolaBoliche(const BolaBoliche& figura);
 	float getRadio();
-	void crearFisica(b2World * w, b2Body* ground);
+	void crearFisica();
 	void acept(VisitorFigura*);
 	float getRadio() const;
 	void setRadio(float radio);

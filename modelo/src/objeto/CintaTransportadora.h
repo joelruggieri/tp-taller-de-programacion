@@ -18,8 +18,8 @@ public:
 	CintaTransportadora(float x, float y, float longitud);
 	CintaTransportadora(const CintaTransportadora& figura);
 	virtual ~CintaTransportadora();
-	void crearFisica(b2World * w, b2Body* ground);
-	void crearFisicaEstaticaTemplate(b2World* m_world, b2Body* ground);
+	void crearFisica();
+	void crearFisicaEstaticaTemplate();
 	void acept(VisitorFigura*);
 	int getLongitud() const;
 	void setLongitud(float longitud);
@@ -35,7 +35,6 @@ private:
 	b2Body* ruedas[2];
 	b2Body* cuerpo;
 	b2Body* base;
-	b2World *mundo;
 	float angulosRuedas[2];
 	SDL_Rect marcosRuedas[2];
 };

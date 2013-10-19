@@ -25,7 +25,7 @@ public:
 	float getAncho() const;
 	void setAlto(float alto);
 	void setAncho(float ancho);
-	void crearFisica(b2World * w, b2Body* ground);
+	void crearFisica();
 	void acept(VisitorFigura*);
 	void estirar(float delta);
 	void makeBackUp();

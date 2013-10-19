@@ -76,7 +76,7 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
 		if (b != this->body && b!= this->radioAccion && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
 //			//solo da que si cuando golpea con otro radio de accion
-			if(validarContacto(w,this->radioAccion,b)){
+			if(validarContacto(this->radioAccion,b)){
 				crearLazo((Engranaje *) b->GetUserData(),w);
 			}
 

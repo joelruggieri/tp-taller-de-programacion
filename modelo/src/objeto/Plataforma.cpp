@@ -64,7 +64,7 @@ void Plataforma::setAncho(float ancho) {
 	this->ancho = ancho;
 }
 
-void Plataforma::crearFisica(b2World * w, b2Body* ground) {
+void Plataforma::crearFisica() {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x, y);
@@ -91,7 +91,7 @@ void Plataforma::crearFisica(b2World * w, b2Body* ground) {
 
 	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
 	bodyDef.angle = rotacionRad;
-	b2Body* body = w->CreateBody(&bodyDef);
+	b2Body* body = myWorld->CreateBody(&bodyDef);
 	//body->CreateFixture(polygon, 10.0f);
 	body->CreateFixture(&fixture);
 	body->SetUserData(this);
@@ -100,7 +100,7 @@ void Plataforma::crearFisica(b2World * w, b2Body* ground) {
 //	b2Body* ground = NULL;
 //		b2BodyDef bd;
 //		bd.position = centro;
-//		ground = w->CreateBody(&bd);
+//		ground = myWorld->CreateBody(&bd);
 
 }
 

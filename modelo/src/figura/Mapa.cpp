@@ -176,10 +176,12 @@ void Mapa::restoreBackUp(Transformacion & tl) {
 	delete myWorld;
 	crearMundo();
 	for (it = figuras.begin(); it != figuras.end(); ++it) {
-		(*it)->crearFisicaEstatica(myWorld, groundBody);
+		(*it)->setWorld(myWorld, groundBody);
+		(*it)->crearFisicaEstatica();
 	}
 	for (it2 = uniones.begin(); it2 != uniones.end(); ++it2) {
-		(*it2)->crearFisicaEstatica(myWorld, groundBody);
+		(*it2)->setWorld(myWorld, groundBody);
+		(*it2)->crearFisicaEstatica();
 	}
 }
 
@@ -210,11 +212,13 @@ void Mapa::despertar() {
 	crearMundo();
 	list<Figura*>::iterator it;
 	for (it = figuras.begin(); it != figuras.end(); ++it) {
-		(*it)->crearFisica(myWorld, groundBody);
+		(*it)->setWorld(myWorld, groundBody);
+		(*it)->crearFisica();
 	}
 	list<Union*>::iterator it2;
 	for (it2 = uniones.begin(); it2 != uniones.end(); ++it2) {
-		(*it2)->crearFisica(myWorld, groundBody);
+		(*it2)->setWorld(myWorld, groundBody);
+		(*it2)->crearFisica();
 	}
 
 }
@@ -223,7 +227,8 @@ bool Mapa::addFigura(Figura* figura) {
 	if (!isAdentro(figura->getX(), figura->getY())) {
 		return false;
 	}
-	bool result = figura->crearFisicaEstatica(this->myWorld, this->groundBody);
+	figura->setWorld(myWorld, groundBody);
+	bool result = figura->crearFisicaEstatica();
 	if (result) {
 		this->figuras.push_back(figura);
 	}
@@ -233,7 +238,7 @@ bool Mapa::addFigura(Figura* figura) {
 
 bool Mapa::removeFigura(Figura* figura) {
 	if (figura->getBody() != 0) {
-		figura->removerFisica(myWorld);
+		figura->removerFisica();
 		this->figuras.remove(figura);
 		return true;
 	}
@@ -244,7 +249,8 @@ bool Mapa::addUnion(Union* u) {
 	if (!isAdentro(u->getX(), u->getY())) {
 		return false;
 	}
-	bool result = u->crearFisicaEstatica(this->myWorld, this->groundBody);
+	u->setWorld(myWorld, groundBody);
+	bool result = u->crearFisicaEstatica();
 	if (result) {
 		this->uniones.push_back(u);
 		u->addObserver(this);
@@ -256,7 +262,7 @@ bool Mapa::addUnion(Union* u) {
 
 bool Mapa::removeUnion(Union* figura) {
 	if (figura->getBody() != 0) {
-		figura->removerFisica(myWorld);
+		figura->removerFisica();
 		this->uniones.remove(figura);
 		figura->removeObserver(this);
 		return true;
@@ -274,7 +280,7 @@ void Mapa::notifyEvent(ObservableModelo* o, Evento_type type) {
 	if(type == DESTRUCCION_FORZADA){
 		cout << "Se entera el mapa y agrega a los deleteables" << endl;;
 		Union * u = dynamic_cast<Union*> (o);
-		u->removerFisica(this->myWorld);
+		u->removerFisica();
 		uniones.remove(u);
 		figurasBorrar.push_back(u);
 	}

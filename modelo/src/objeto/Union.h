@@ -46,7 +46,7 @@ public:
 	void restoreBackUp();
 	void notifyEvent(Evento_type);
 protected:
-	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
+	void crearFisicaEstaticaTemplate();
 	b2Vec2 inicio;
 	b2Vec2 fin;
 	Figura* figuraInicio;
