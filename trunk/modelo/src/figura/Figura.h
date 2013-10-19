@@ -15,7 +15,9 @@
 #include "Enganche.h"
 #include "Registro.h"
 #include "Mapa.h"
-class Figura: public Posicionable {
+#include "../observer/ObservableModelo.h"
+#include "../observer/Evento.h"
+class Figura: public Posicionable, public ObservableModelo {
 protected:
 	float x;
 	float y;

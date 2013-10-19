@@ -69,30 +69,6 @@ void Soga::crearLazo(b2World* w) {
 
 }
 
-//bool Soga::crearFisicaEstatica(b2World* w, b2Body* ground) {
-//	if (this->figuraInicio->getEnganches().size() == 0
-//			|| this->figuraFin->getEnganches().size() == 0) {
-//		return false;
-//	}
-//	this->crearFisicaEstaticaTemplate(w, ground);
-//	bool hayContacto = false;
-//	for (b2Body* b = w->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
-//		if (b
-//				!= this->body&& b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
-//			if (validarContacto(w, body, b)) {
-//				hayContacto = true;
-//				break;
-//			}
-//
-//		}
-//	}
-//	if (hayContacto) {
-//		removerFisica(w);
-//		/// remover joint tambien
-//	}
-//
-//	return !hayContacto;
-//}
 
 Enganche* Soga::getEngancheMasCercano(Figura* figura, float x, float y, bool desocupado) {
 	Enganche * eng = NULL;
