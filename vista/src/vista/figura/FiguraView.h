@@ -13,11 +13,11 @@
 #include "src/Vista.h"
 #include "SDL2/SDL.h"
 #include "../../controller/editor/EditorNivel.h"
-
+#include "../../modelo/Observable.h"
 using namespace std;
 
 class DropController;
-class FiguraView: public View, public Vista {
+class FiguraView: public View, public Vista, public Observable{
 private:
 	Figura * modelo;
 	SDL_Texture * textura;

@@ -210,7 +210,13 @@ uint16 Union::getMascaraExtremos() {
 void Union::notifyEvent(Evento_type enumEvento) {
 	ObservableModelo * o = this->eventHelper->getLastObservable();
 	if(enumEvento == DESPUES_DESTRUCCION &&(o == figuraFin || o == figuraInicio)){
-		cout << "llegamos a la union" << endl;
-		notify(ANTES_DESTRUCCION);
+		if(o == figuraFin){
+			figuraFin = NULL;
+		}
+		if(o == figuraInicio){
+			figuraInicio = NULL;
+		}
+		cout << "la union se entera de la destruccion del extremo y solicita su destruccion" << endl;
+		notify(DESTRUCCION_FORZADA);
 	}
 }

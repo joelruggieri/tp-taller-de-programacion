@@ -32,15 +32,17 @@ void ScrollView::dibujarse(SDL_Renderer* renderer) {
 	this->arriba->dibujarse(renderer);
 }
 
-void ScrollView::notify(Observable* obs) {
-	Scroll * scroll = (Scroll *) obs;
-	if(scroll->getltimoClick() > 0){
-		this->contArriba = 1;
-		this->arriba->setPresionado(true);
-	}
-	if(scroll->getltimoClick() < 0){
-		this->contAbajo = 0;
-		this->abajo->setPresionado(true);
+void ScrollView::notify(Observable* obs, event_type T) {
+	if(T == CAMBIO_VISTA){
+		Scroll * scroll = (Scroll *) obs;
+		if(scroll->getltimoClick() > 0){
+			this->contArriba = 1;
+			this->arriba->setPresionado(true);
+		}
+		if(scroll->getltimoClick() < 0){
+			this->contAbajo = 0;
+			this->abajo->setPresionado(true);
+		}
 	}
 }
 

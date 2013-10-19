@@ -40,7 +40,6 @@ Correa::Correa() :
 }
 
 Correa::~Correa() {
-	// TODO Auto-generated destructor stub
 }
 
 void Correa::crearFisica(b2World* w, b2Body* ground) {

@@ -11,14 +11,16 @@
 #include <list>
 #include "Box2D/Box2D.h"
 #include "../Transformacion.h"
+#include "../observer/ObserverModelo.h"
 using namespace std;
 
 class Union;
 class Figura;
-class Mapa {
+class Mapa: public ObserverModelo {
 private:
 	list<Figura*> figuras;
 	list<Union*> uniones;
+	list<Figura*> figurasBorrar;
 	b2World* myWorld;
 	float x,y, w,h;
 	float32 frecuencia;
@@ -49,6 +51,8 @@ public:
 	void restoreBackUp(Transformacion & tl);
 	void step(Transformacion & tl);
 	void despertar();
+	void notifyEvent(ObservableModelo*, Evento_type);
+	void cleanDeletes();
 };
 
 #endif /* MAPA_H_ */

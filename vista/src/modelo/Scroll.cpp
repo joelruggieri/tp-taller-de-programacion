@@ -36,7 +36,7 @@ void Scroll::desplazarBarra(int sentido){
 	corrimiento = this->posicion - posAnterior;
 	this->actualizarVistas(corrimiento);
 
-	this->notifY();
+	this->notifY(CAMBIO_VISTA);
 }
 
 bool Scroll::click(float x, float y) {

@@ -7,8 +7,8 @@
 
 #ifndef EVENTO_H_
 #define EVENTO_H_
-
-enum Evento_type {ANTES_DESTRUCCION, DESPUES_DESTRUCCION, FISICA_REMOVIDA, FISICA_CREADA, CAMBIO_ESPACIAL, DESACTIVADO};
+//El evento destruir el unico que debe capturarlo es el mapa, porque da la orden de destruir al objeto.
+enum Evento_type {DESTRUCCION_FORZADA, ANTES_DESTRUCCION, DESPUES_DESTRUCCION, FISICA_REMOVIDA, FISICA_CREADA, CAMBIO_ESPACIAL, DESACTIVADO};
 class Evento {
 public:
 	Evento();
