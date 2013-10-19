@@ -21,9 +21,11 @@ class FiguraView: public View, public Vista, public Observable{
 private:
 	Figura * modelo;
 	SDL_Texture * textura;
+	typedef View super;
 protected:
 	DropController * controller;
 	virtual void dropTemplate() = 0;
+	Transformacion tl;
 public:
 	FiguraView(int x, int y, int w, int h, SDL_Texture* textura, DropController * controller);
 	virtual ~FiguraView();
@@ -33,9 +35,10 @@ public:
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void click(float x, float y);
-	virtual void update(Transformacion & tl);
+	virtual void update();
 	virtual EditorNivel* getEditor() = 0;
 	SDL_Texture* getTexture();
+	void resizear();
 };
 
 #endif /* FIGURAVIEW_H_ */

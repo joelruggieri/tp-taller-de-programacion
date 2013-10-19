@@ -63,7 +63,7 @@ public:
 	void setBody(b2Body *);
 
 	virtual void updateModelo();
-	virtual void updateVista(Transformacion &);
+	virtual void updateVista();
 
 	virtual void makeBackUp();
 	virtual void restoreBackUp();

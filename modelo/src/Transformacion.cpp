@@ -124,3 +124,17 @@ void Transformacion::getResultadoInverso(float& x, float& y) {
 	x = xActual;
 	y = yActual;
 }
+
+Transformacion::Transformacion(const Transformacion& t2) {
+	angulo = t2.angulo;
+	transx = t2.transx;
+	transy = t2.transy;
+	escalax = t2.escalax;
+	escalay = t2.escalay;
+	x = t2.x;
+	y = t2.y;
+	ejex = t2.ejex;
+	ejey = t2.ejey;
+	this->invertirx = t2.invertirx;
+	this->invertiry = t2.invertiry;
+}

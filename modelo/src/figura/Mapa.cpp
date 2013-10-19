@@ -117,7 +117,7 @@ bool Mapa::isAdentro(float x, float y) {
 	return isAdentro1D(x, this->getX(), this->w) && isAdentro1D(y, this->getY(), this->h);
 }
 
-void Mapa::step(Transformacion & tl) {
+void Mapa::step() {
 	myWorld->Step(this->frecuencia, this->velocidad, this->posicion);
 //	cout << "joints " <<myWorld->GetJointCount() <<  endl;
 	list<Figura*>::iterator it;
@@ -126,13 +126,13 @@ void Mapa::step(Transformacion & tl) {
 	for (it = this->figuras.begin(); it != this->figuras.end(); ++it) {
 		fig = *it;
 		fig->updateModelo();
-		fig->updateVista(tl);
+		fig->updateVista();
 	}
 	list<Union*>::iterator it2;
 	for (it2 = this->uniones.begin(); it2 != this->uniones.end(); ++it2) {
 		fig = *it2;
 		fig->updateModelo();
-		fig->updateVista(tl);
+		fig->updateVista();
 	}
 
 }
@@ -162,16 +162,16 @@ void Mapa::makeBackUp() {
 	}
 }
 
-void Mapa::restoreBackUp(Transformacion & tl) {
+void Mapa::restoreBackUp() {
 	list<Figura*>::iterator it;
 	for (it = figuras.begin(); it != figuras.end(); ++it) {
 		(*it)->restoreBackUp();
-		(*it)->updateVista(tl);
+		(*it)->updateVista();
 	}
 	list<Union*>::iterator it2;
 	for (it2 = this->uniones.begin(); it2 != this->uniones.end(); ++it2) {
 		(*it2)->restoreBackUp();
-		(*it2)->updateVista(tl);
+		(*it2)->updateVista();
 	}
 	delete myWorld;
 	crearMundo();

@@ -9,9 +9,12 @@
 #define RESIZER_H_
 #include <list>
 #include "../vista/Resizeable.h"
+#include <src/Transformacion.h>
 using namespace std;
 
 class Resizer {
+private:
+	Transformacion transf;
 public:
 	static Resizer* Instance(int x, int y, float xLogico, float yLogico);
 	static Resizer* Instance();
@@ -42,6 +45,7 @@ public:
 
 	float getRelacionX();
 	float getRelacionY();
+	Transformacion & getTransformacionToModelo();
 	//Resizer();
 	//virtual ~Resizer();
 protected:

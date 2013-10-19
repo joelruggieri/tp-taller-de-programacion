@@ -154,9 +154,9 @@ void Figura::setReg(Registro r) {
 	this->reg = r;
 }
 
-void Figura::updateVista(Transformacion& tl) {
+void Figura::updateVista() {
 			if(vista != 0)
-				this->vista->update(tl);
+				this->vista->update();
 }
 
 void Figura::modificarSentido() {

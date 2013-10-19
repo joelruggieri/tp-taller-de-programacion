@@ -18,7 +18,7 @@ public:
 	virtual ~PlataformaView();
 	void dropTemplate();
 	EditorNivel * getEditor();
-	void update(Transformacion & tl);
+	void update();
 };
 
 #endif /* PLATAFORMAVIEW_H_ */

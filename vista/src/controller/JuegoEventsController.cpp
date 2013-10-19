@@ -37,7 +37,6 @@ JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 	trans->traslacion(0, 100);
 	trans->escalar(r->getRelacionX(), r->getRelacionY());
 	trans->invertir(false, true);
-	this->modeloController->setTransformacion(trans);
 
 }
 
@@ -210,5 +209,4 @@ void JuegoEventsController::resizear() {
 	trans->traslacion(0, 100);
 	trans->escalar(r->getRelacionX(), r->getRelacionY());
 	trans->invertir(false, true);
-	this->modeloController->setTransformacion(trans);
 }

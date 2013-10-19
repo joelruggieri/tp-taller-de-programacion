@@ -23,9 +23,10 @@ public:
 	UnionView(int x, int y, SDL_Texture * textura, EditorUnion * controller);
 	virtual ~UnionView();
 	EditorNivel * getEditor();
-	void update(Transformacion &);
+	void update();
 	void setModelo(Figura * f);
 	void notifyEvent(ObservableModelo*, Evento_type);
+	void resizear();
 };
 
 #endif /* UNIONVIEW_H_ */

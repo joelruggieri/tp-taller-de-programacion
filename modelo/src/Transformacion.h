@@ -14,6 +14,7 @@ private:
 	bool invertirx,invertiry;
 public:
 	Transformacion();
+	Transformacion (const Transformacion & t2);
 	virtual ~Transformacion();
 	void rotar(float angulo);
 	void escalar(float x, float y);

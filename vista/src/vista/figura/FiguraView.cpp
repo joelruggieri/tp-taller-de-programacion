@@ -30,6 +30,8 @@ void FiguraView::drop() {
 	}
 }
 FiguraView::FiguraView(int x, int y, int w, int h,SDL_Texture* textura,DropController * controller ): View(x,y,w,h) {
+	this->tl = Resizer::Instance()->getTransformacionToModelo();
+
 	this->modelo = NULL;
 	this->textura = textura;
 	this->controller = controller;
@@ -62,7 +64,7 @@ void FiguraView::click(float x, float y) {
 	this->controller->drag(this,x,y);
 }
 
-void FiguraView::update(Transformacion & tl) {
+void FiguraView::update() {
 	tl.setVector((float)this->modelo->getX(), (float)this->modelo->getY());
 	float x,y;
 	tl.getResultadoInverso(x,y);
@@ -75,4 +77,9 @@ void FiguraView::update(Transformacion & tl) {
 
 SDL_Texture* FiguraView::getTexture() {
 	return textura;
+}
+
+void FiguraView::resizear() {
+	super::resizear();
+	this->tl = Resizer::Instance()->getTransformacionToModelo();
 }
