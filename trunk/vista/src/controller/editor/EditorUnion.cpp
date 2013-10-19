@@ -85,7 +85,6 @@ void EditorUnion::rightClickDown(int x, int y) {
 				editado->getModelo()->makeBackUp();
 				tablero->removerFigura(editado);
 				this->modeloController->removerFigura(editado->getModelo());
-				//Verifico si se apreto el shift tambien.
 				cleanAndDelete();
 				return;
 			}

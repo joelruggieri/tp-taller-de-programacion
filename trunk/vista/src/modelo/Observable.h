@@ -11,13 +11,12 @@
 #include "Observer.h"
 using namespace std;
 
-class Observer;
 class Observable {
 	list<Observer*> observers;
 public:
 	Observable();
 	virtual ~Observable();
-	void notifY();
+	void notifY(event_type);
 	void addObserver(Observer*);
 };
 

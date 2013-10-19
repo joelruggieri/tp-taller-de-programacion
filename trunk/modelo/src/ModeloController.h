@@ -33,6 +33,7 @@ public:
 	void step();
 	void stop();
 	void setTransformacion(Transformacion *);
+	void cleanDeletes();
 };
 
 #endif /* EVENTOSMODELOCONTROLLER_H_ */

@@ -8,7 +8,7 @@
 #include "ZonaTablero.h"
 #include "../Resizer.h"
 #include "src/Logger.h"
-
+#include <src/figura/Figura.h>
 //UN CUADRADO DE 100X100 CENTRADO EN X,Y
 ZonaTablero::ZonaTablero(float x, float y , SDL_Texture * imagenFondo):Zona(new Cuadrado(x,y,100,100)) {
 	Resizer * instance = Resizer::Instance();
@@ -32,6 +32,7 @@ bool ZonaTablero::agregarTemplate(FiguraView* view) {
 	if(view->getModelo() == NULL){
 		return false;
 	}
+	view->getModelo()->addObserver(this);
 	this->canvas->agregar(view);
 	return true;
 }
@@ -65,6 +66,9 @@ void ZonaTablero::dibujarse(SDL_Renderer* renderer) {
 
 bool ZonaTablero::removerFigura(FiguraView* figura) {
 	int unsigned cantInicial = this->canvas->getDibujables().size();
+	if(figura->getModelo() != NULL){
+		figura->getModelo()->removeObserver(this);
+	}
 	this->canvas->remover(figura);
 	return cantInicial != this->canvas->getDibujables().size();
 }
@@ -81,3 +85,31 @@ void ZonaTablero::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
 	this->dibujarse(renderer);
 }
 
+//void ZonaTablero::notify(Observable* o, event_type t) {
+//	if(t == DESTRUIR_VISTA){
+//		cout << "llego a poner la vista para destruirse" << endl;
+//		FiguraView * view = (FiguraView*)o;
+//		this->canvas->remover(view);
+//
+//		deleteables.push_back(view);
+////		delete view;
+//	}
+//}
+
+void ZonaTablero::notifyEvent(ObservableModelo* o, Evento_type t) {
+	if(t == DESTRUCCION_FORZADA){
+		Figura * fig = (Figura*) o;
+		FiguraView * view = (FiguraView *)fig->getVista();
+		this->canvas->remover(view);
+		delete view;
+	}
+}
+
+void ZonaTablero::cleanDelets() {
+	cout <<"deletea la vista antes" << endl;
+	list<FiguraView*>::iterator it;
+	for(it= deleteables.begin(); it != deleteables.end(); ++it){
+		delete (*it);
+	}
+	deleteables.clear();
+}

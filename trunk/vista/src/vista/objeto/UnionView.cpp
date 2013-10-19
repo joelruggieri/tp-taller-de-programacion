@@ -17,7 +17,9 @@ UnionView::UnionView(int x,int y, SDL_Texture * textura, EditorUnion * controlle
 }
 
 UnionView::~UnionView() {
-	// TODO Auto-generated destructor stub
+	if(getModelo() != NULL){
+		getModelo()->removeObserver(this);
+	}
 }
 
 void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
@@ -44,4 +46,17 @@ void UnionView::update(Transformacion & tl){
 	tl.getResultadoInverso(xHasta,yHasta);
 	this->xHasta =xHasta;
 	this->yHasta =yHasta;
+}
+
+void UnionView::setModelo(Figura* f) {
+	f->addObserver(this);
+	super::setModelo(f);
+}
+
+void UnionView::notifyEvent(ObservableModelo* o, Evento_type type) {
+//	if(type == DESTRUCCION_FORZADA){
+//		cout << "se entera la vista y solicita su destruccion" << endl;
+//		o->removeObserver(this);
+//		notifY(DESTRUIR_VISTA);
+//	}
 }

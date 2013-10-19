@@ -1,14 +1,8 @@
-Nivel:
-  Fondo: ""
-  Nombre: yaml1
 Objetos:
-  Engranajes:
-    - x: 52
-      y: 50.8
-    - x: 82.4
-      y: 58.2
-  Correas:
-    - xDesde: 82.4
-      yDesde: 58.2
-      xHasta: 52
-      yHasta: 50.8
+  Balancines:
+    - y: 53
+      rotacion: 0
+      x: 45.4
+Nivel:
+  Nombre: yaml1
+  Fondo: ""

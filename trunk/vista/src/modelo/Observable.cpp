@@ -16,10 +16,10 @@ Observable::~Observable() {
 	// TODO Auto-generated destructor stub
 }
 
-void Observable::notifY() {
+void Observable::notifY(event_type t) {
 	list<Observer*>::iterator it;
 	for(it=this->observers.begin(); it!= this->observers.end(); ++it){
-		(*it)->notify(this);
+		(*it)->notify(this, t);
 	}
 }
 
