@@ -11,26 +11,27 @@ Correa::Correa(float x, float y) :
 		Union(x, y,3) {
 }
 
-Correa::Correa(const Correa& correa) {
-	this->body = correa.body;
-	this->enganches = correa.enganches;
-//	this->figuraFin = correa.figuraFin;
-//	this->figuraInicio = correa.figuraInicio;
-	b2Vec2 inicio(correa.getXInicial(), correa.getYInicial());
-	this->inicio = inicio;
-	b2Vec2 fin(correa.getXFinal(), correa.getYFinal());
-	this->fin = fin;
-	this->h = correa.h;
-	this->w = correa.getAncho();
-	this->reg = correa.reg;
-	this->rotacion = correa.getRotacion();
-	this->rotacionb = correa.rotacion;
-	this->traccionable = correa.traccionable;
-	this->vista = correa.vista;
-	this->x = correa.getX();
-	this->y = correa.getY();
-	this->xb = correa.xb;
-	this->yb = correa.yb;
+Correa::Correa(const Correa& correa):Union(correa) {
+//	this->body = correa.body;
+//	this->enganches = correa.enganches;
+////	this->figuraFin = correa.figuraFin;
+////	this->figuraInicio = correa.figuraInicio;
+//	b2Vec2 inicio(correa.getXInicial(), correa.getYInicial());
+//	this->inicio = inicio;
+//	b2Vec2 fin(correa.getXFinal(), correa.getYFinal());
+//	this->fin = fin;
+//	this->h = correa.h;
+//	this->w = correa.getAncho();
+//	this->reg = correa.reg;
+//	this->rotacion = correa.getRotacion();
+//	this->rotacionb = correa.rotacion;
+//	this->traccionable = correa.traccionable;
+//	this->vista = correa.vista;
+//	this->x = correa.getX();
+//	this->y = correa.getY();
+//	this->xb = correa.xb;
+//	this->yb = correa.yb;
+
 }
 
 Correa::Correa() :

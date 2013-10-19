@@ -9,9 +9,19 @@
 
 Union::Union(float x, float y, float h) :
 		Objeto(x, y) {
+//	this->inicio = figura.inicio;
+//	this->fin = figura.fin;
+//	this->calcularCentroCuadrado();
+//	this->reg = figura.reg;
+//	this->h = figura.h;
+//	this->calcularAnchoCuadrado();
+//	this->calcularAnguloCuadrado();
+//	this->calcularCentroCuadrado();
 	this->h = h;
 	this->figuraFin = NULL;
 	this->figuraInicio = NULL;
+	this->wB = this->w;
+	this->hB = this->h;
 	// TODO Auto-generated constructor stub
 
 }
@@ -177,4 +187,19 @@ bool Union::agregar(Mapa* m) {
 
 bool Union::remover(Mapa* m) {
 	return m->removeUnion(this);
+}
+
+Union::Union(const Union& figura): Objeto(figura) {
+	this->inicio = figura.inicio;
+	this->fin = figura.fin;
+	this->calcularCentroCuadrado();
+	this->reg = figura.reg;
+	this->h = figura.h;
+	this->calcularAnchoCuadrado();
+	this->calcularAnguloCuadrado();
+	this->calcularCentroCuadrado();
+	this->figuraFin = NULL;
+	this->figuraInicio = NULL;
+	this->wB = this->w;
+	this->hB = this->h;
 }

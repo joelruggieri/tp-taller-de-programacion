@@ -19,11 +19,7 @@ Soga::~Soga() {
 }
 
 Soga::Soga(const Soga& figura) :
-		Union(x, y, 1.5) {
-	this->inicio = figura.inicio;
-	this->fin = figura.fin;
-	this->calcularCentroCuadrado();
-	this->reg = figura.reg;
+		Union(figura) {
 	origen = NULL;
 	destino = NULL;
 }
@@ -32,19 +28,6 @@ bool Soga::crearFisicaEstatica(b2World* w, b2Body * ground) {
 	if (figuraInicio == figuraFin) {
 		return false;
 	}
-//	Enganche* in = this->getEngancheMasCercano(figuraInicio, 0, 0,true);
-//	Enganche* fin = this->getEngancheMasCercano(figuraFin, 0, 0,true);
-//	if (in == fin || in == NULL || fin == NULL) {
-//		return false;
-//	}
-
-//SETEO BIEN LOS VECTORES INICIO Y FIN
-//	this->inicio = figuraInicio->getBody()->GetWorldPoint(
-//			b2Vec2(in->getPosX(), in->getPosY()));
-//	this->fin = figuraFin->getBody()->GetWorldPoint(
-//			b2Vec2(fin->getPosX(), fin->getPosY()));
-//	this->origen = in;
-//	this->destino= fin;
 	origen->ocupar();
 	destino->ocupar();
 	this->crearFisicaEstaticaTemplate(w, ground);
