@@ -35,7 +35,7 @@ public:
 	virtual void extraerPosInicial(Figura * f, float x, float y) = 0;
 	virtual void extraerPosFinal(Figura * f, float x, float y)= 0;
 
-
+	virtual uint16 getMascaraExtremos();
 	bool agregar(Mapa *);
 	bool remover(Mapa *);
     void makeBackUp();

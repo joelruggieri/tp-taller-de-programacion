@@ -133,7 +133,7 @@ void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
 	b2FixtureDef bodyCuadrado;
 	bodyCuadrado.shape = &cuadrado;
 	bodyCuadrado.filter.categoryBits = CATEGORIA_UNION; //TODO cambiar categorias
-	bodyCuadrado.filter.maskBits = 0X0008;
+//	bodyCuadrado.filter.maskBits = 0X0008;
 	body->CreateFixture(&bodyCuadrado);
 	body->SetUserData(this);
 }
@@ -202,4 +202,8 @@ Union::Union(const Union& figura): Objeto(figura) {
 	this->figuraInicio = NULL;
 	this->wB = this->w;
 	this->hB = this->h;
+}
+
+uint16 Union::getMascaraExtremos() {
+	return CATEGORIA_FIGURAS;
 }

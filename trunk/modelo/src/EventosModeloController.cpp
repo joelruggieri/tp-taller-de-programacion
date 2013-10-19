@@ -39,8 +39,8 @@ list<Figura*>& ModeloController::getFiguras() {
 	return this->figuras;
 }
 
-Figura* ModeloController::pickUp(float x, float y) {
-	return mapa->pickUp(x,y);
+Figura* ModeloController::pickUp(float x, float y, uint16 mascara) {
+	return mapa->pickUp(x,y, mascara);
 }
 
 void ModeloController::step() {
@@ -63,12 +63,12 @@ void ModeloController::setTransformacion(Transformacion * tl) {
 bool ModeloController::crearUnion(Union* figura) {
 
 		Figura* fInicial = this->pickUp(figura->getXInicial(),
-				figura->getYInicial());
+				figura->getYInicial(), figura->getMascaraExtremos());
 		if(fInicial == NULL) {
 			return false;
 		}
 		Figura* fFinal = this->pickUp(figura->getXFinal(),
-				figura->getYFinal());
+				figura->getYFinal(), figura->getMascaraExtremos());
 		if(fFinal == NULL) {
 			return false;
 		}

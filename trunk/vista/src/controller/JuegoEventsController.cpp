@@ -20,6 +20,7 @@
 #include "zonaDragAndDrop/ZonaPlay.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
 #include "src/Logger.h"
+#include "src/Constantes.h"
 using namespace std;
 
 JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
@@ -37,6 +38,7 @@ JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 	trans->escalar(r->getRelacionX(), r->getRelacionY());
 	trans->invertir(false, true);
 	this->modeloController->setTransformacion(trans);
+
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -59,7 +61,7 @@ bool JuegoEventsController::clickDown(int x, int y) {
 			float lX2, lY2;
 			trans.getResultado(lX2, lY2);
 			FiguraView * view = NULL;
-			Figura * fig = this->modeloController->pickUp(lX2, lY2);
+			Figura * fig = this->modeloController->pickUp(lX2, lY2,CATEGORIA_UNION | CATEGORIA_FIGURAS);
 			// VOY A BUSCAR TANTO A ZONA DE CREACION COMO A ZONA DE TABLERO EN BUSCA DE UNA VISTA, YA QUE CLICK IZQUIERDO PUEDE CREAR VISTA.
 			if (fig != NULL) {
 				view = (FiguraView *) fig->getVista();
@@ -138,7 +140,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 			trans.setVector(x, y);
 			float lX2, lY2;
 			trans.getResultado(lX2, lY2);
-			Figura * fig = this->modeloController->pickUp(lX2, lY2);
+			Figura * fig = this->modeloController->pickUp(lX2, lY2,CATEGORIA_UNION | CATEGORIA_FIGURAS);
 			// VOY A BUSCAR SOLO A LA ZONA DE TABLERO
 			if (fig != NULL) {
 				editor = ((FiguraView *) fig->getVista())->getEditor();

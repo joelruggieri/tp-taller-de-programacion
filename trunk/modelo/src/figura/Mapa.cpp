@@ -41,9 +41,10 @@ list<Figura*>& Mapa::getFiguras() {
 
 class QueryCallback: public b2QueryCallback {
 public:
-	QueryCallback(const b2Vec2& point) {
+	QueryCallback(const b2Vec2& point,uint16 mascara) {
 		m_point = point;
 		m_fixture = NULL;
+		m_mascara = mascara;
 	}
 
 	bool ReportFixture(b2Fixture* fixture) {
@@ -53,8 +54,7 @@ public:
 		if (body->GetType() == b2_dynamicBody || body->GetType() == b2_staticBody) {
 			bool inside = fixture->TestPoint(m_point);
 			if (inside
-					&& ((fixture->GetFilterData().categoryBits & CATEGORIA_FIGURAS) != 0
-							|| (fixture->GetFilterData().categoryBits & CATEGORIA_UNION) != 0)) {
+					&& ((fixture->GetFilterData().categoryBits & m_mascara) != 0)) {
 				m_fixture = fixture;
 //				log.debug("La figura confirma la colision");
 				// We are done, terminate the query.
@@ -68,9 +68,10 @@ public:
 
 	b2Vec2 m_point;
 	b2Fixture* m_fixture;
+	uint16 m_mascara;
 };
 
-Figura* Mapa::pickUp(float x, float y) {
+Figura* Mapa::pickUp(float x, float y, uint16 mascara) {
 	if (!isAdentro(x, y)) {
 		return NULL;
 	}
@@ -80,7 +81,7 @@ Figura* Mapa::pickUp(float x, float y) {
 	d.Set(0.001f, 0.001f);
 	aabb.lowerBound = p - d;
 	aabb.upperBound = p + d;
-	QueryCallback callback(p);
+	QueryCallback callback(p, mascara);
 	myWorld->QueryAABB(&callback, aabb);
 	if (callback.m_fixture) {
 		b2Body* body = callback.m_fixture->GetBody();

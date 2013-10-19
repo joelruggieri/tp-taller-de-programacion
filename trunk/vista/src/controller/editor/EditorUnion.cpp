@@ -35,7 +35,7 @@ void EditorUnion::clickDown(int x, int y) {
 		super::clickDown(x, y);
 	} else {
 		Union * un = (Union *) editado->getModelo();
-		Figura* figFinal = modeloController->pickUp(un->getXFinal(), un->getYFinal());
+		Figura* figFinal = modeloController->pickUp(un->getXFinal(), un->getYFinal(), un->getMascaraExtremos());
 		trans.setVector(x, y);
 		float xf, yf;
 		trans.getResultado(xf, yf);
@@ -107,7 +107,7 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 	figura->setVista(vista);
 	vista->setModelo(figura);
 	Union * un = (Union *) figura;
-	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY());
+	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY(), un->getMascaraExtremos());
 	if (figInicial != NULL && un->isInicioValido(figInicial, this->clickDownX, this->clickDownY)) {
 		visor = vista;
 		editado = vista;
