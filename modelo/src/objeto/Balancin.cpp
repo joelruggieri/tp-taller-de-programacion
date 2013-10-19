@@ -97,21 +97,12 @@ void Balancin::crearFisica(b2World * w, b2Body* ground){
 	body->SetUserData(this);
 	this->setBody(body);
 
-	b2CircleShape shape;
-	shape.m_radius = this->getAlto()/2 ;
-	b2BodyDef bd;
-	bd.position.Set(x,y);
-	b2Body* bodyCircle = w->CreateBody(&bd);
-	body->CreateFixture(&shape, 5.0f);
-
-	//TODO HACER EL JOINT CON GROUND.
 	b2RevoluteJointDef rjd;
-	rjd.Initialize(bodyCircle,body,centro);
+	rjd.Initialize(ground,body,centro);
 	rjd.motorSpeed = 1.0f * b2_pi;
 	rjd.maxMotorTorque = 10000.0f;
 	rjd.collideConnected = true;
 
-	//std::cout << " " << this->getRotacion() <<std::endl;
 	if(this->getRotacion() == 0){
 		rjd.lowerAngle = -0.25f * b2_pi;
 		rjd.upperAngle = 0.25f * b2_pi;
@@ -122,8 +113,6 @@ void Balancin::crearFisica(b2World * w, b2Body* ground){
 		rjd.lowerAngle = -0.50f * b2_pi;
 		rjd.upperAngle =  0;//0.0f * (-b2_pi);
 	}
-//	rjd.lowerAngle = -0.25*b2_pi - rotacionRad;
-//	rjd.upperAngle = 0.24 * b2_pi
 	rjd.enableLimit = true;
 	w->CreateJoint(&rjd);
 
