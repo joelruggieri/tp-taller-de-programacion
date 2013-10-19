@@ -87,11 +87,11 @@ Figura::Figura(float x, float y) {
 
 
 Figura::~Figura() {
-//	notify(ANTES_DESTRUCCION);
 	Lista_Enganches::iterator it;
 	for(it= this->enganches.begin(); it!= enganches.end(); ++it){
 		delete *it;
 	}
+	notify(DESPUES_DESTRUCCION);
 
 }
 
@@ -191,7 +191,7 @@ float Figura::getAncho() const {
 void Figura::removerFisica(b2World* w) {
 
 	if(body != NULL){
-//		notify(FISICA_REMOVIDA);
+		notify(FISICA_REMOVIDA);
 		w->DestroyBody(this->getBody());
 	}
 	this->setBody(NULL);

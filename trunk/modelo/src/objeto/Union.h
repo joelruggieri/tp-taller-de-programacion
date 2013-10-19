@@ -16,7 +16,7 @@ using namespace std;
 #include "../observer/FiguraObserver.h"
 #include "../observer/ObserverFiguraHelper.h"
 
-class Union: public Objeto{
+class Union: public Objeto, public FiguraObserver{
 public:
 	Union(float x, float y, float h);
 	Union(const Union & u);
@@ -44,7 +44,7 @@ public:
 	bool remover(Mapa *);
     void makeBackUp();
 	void restoreBackUp();
-//	void notifyEvent(Evento_type);
+	void notifyEvent(Evento_type);
 protected:
 	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
 	b2Vec2 inicio;
