@@ -74,6 +74,7 @@ Figura::Figura() {
 }
 
 Figura::Figura(float x, float y) {
+	traccionable = false;
 	this->x = x;
 	this->y = y;
 	this->rotacion = 0;
