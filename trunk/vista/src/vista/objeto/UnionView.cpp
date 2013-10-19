@@ -17,9 +17,9 @@ UnionView::UnionView(int x,int y, SDL_Texture * textura, EditorUnion * controlle
 }
 
 UnionView::~UnionView() {
-	if(getModelo() != NULL){
-		getModelo()->removeObserver(this);
-	}
+//	if(getModelo() != NULL){
+//		getModelo()->removeObserver(this);
+//	}
 }
 
 void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
@@ -49,7 +49,7 @@ void UnionView::update(Transformacion & tl){
 }
 
 void UnionView::setModelo(Figura* f) {
-	f->addObserver(this);
+//	f->addObserver(this);
 	super::setModelo(f);
 }
 
