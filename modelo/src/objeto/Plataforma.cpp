@@ -83,6 +83,7 @@ void Plataforma::crearFisica(b2World * w, b2Body* ground) {
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
+	fixture.filter.maskBits = CATEGORIA_FIGURAS;
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_staticBody;
 	bodyDef.position.Set(x, y);

@@ -189,7 +189,6 @@ void SimpleEditorNivel::rightClickDown(int x, int y) {
 			if (keyboardState[SDL_SCANCODE_LSHIFT]) {
 				cleanAndDelete();
 				modeloController->cleanDeletes();
-				tablero->cleanDelets();
 				return;
 			} else {
 				this->rot = new Rotacion(this->editado->getXCentro(),

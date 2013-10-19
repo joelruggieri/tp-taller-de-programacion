@@ -81,6 +81,7 @@ void Balancin::crearFisica(b2World * w, b2Body* ground){
 
 	b2FixtureDef fixture;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
+	fixture.filter.maskBits = CATEGORIA_FIGURAS;
 	fixture.density = 50.00f;
 	fixture.shape = polygon;
 	fixture.friction = 0.01f;

@@ -274,9 +274,9 @@ void Mapa::notifyEvent(ObservableModelo* o, Evento_type type) {
 	if(type == DESTRUCCION_FORZADA){
 		cout << "Se entera el mapa y agrega a los deleteables" << endl;;
 		Union * u = dynamic_cast<Union*> (o);
+		u->removerFisica(this->myWorld);
 		uniones.remove(u);
 		figurasBorrar.push_back(u);
-		u->removerFisica(this->myWorld);
 	}
 }
 
