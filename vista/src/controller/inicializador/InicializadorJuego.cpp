@@ -129,6 +129,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	h = r->resizearDistanciaLogicaY(10);
 	FiguraView * view = factory->crear(x,y,w,h);
 	view->setModelo(modelo);
+	view->update(trans);
 	modelo->setVista(view);
 	bool exitoVista = tablero->agregarFigura(view);
 	bool exitoModelo = this->modeloController->crearFigura(modelo);

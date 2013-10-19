@@ -12,6 +12,7 @@
 #include "Transformacion.h"
 #include "objeto/Union.h"
 #include <list>
+#include "Box2D/Box2D.h"
 using namespace std;
 
 class ModeloController {
@@ -27,7 +28,7 @@ public:
 	bool crearUnion(Union* figura);
 	bool removerFigura(Figura* figura);
 	list<Figura*>& getFiguras();
-	Figura * pickUp(float, float);
+	Figura * pickUp(float, float, uint16 mascara);
 	void start();
 	void step();
 	void stop();
