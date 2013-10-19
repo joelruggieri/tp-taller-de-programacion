@@ -6,42 +6,30 @@
  */
 
 #include "Union.h"
-
+#include "../observer/ObservableModelo.h"
 Union::Union(float x, float y, float h) :
 		Objeto(x, y) {
-//	this->inicio = figura.inicio;
-//	this->fin = figura.fin;
-//	this->calcularCentroCuadrado();
-//	this->reg = figura.reg;
-//	this->h = figura.h;
-//	this->calcularAnchoCuadrado();
-//	this->calcularAnguloCuadrado();
-//	this->calcularCentroCuadrado();
 	this->h = h;
 	this->figuraFin = NULL;
 	this->figuraInicio = NULL;
 	this->wB = this->w;
 	this->hB = this->h;
+//	eventHelper = new ObserverFiguraHelper(this);
 	// TODO Auto-generated constructor stub
 
 }
 
 Union::Union() :
 		Objeto() {
+//	eventHelper = new ObserverFiguraHelper(this);
 
 }
 
 Union::~Union() {
+	//RESPONSABILIDAD DE LA CLASE HIJA QUE LO USA DE SACARLO DE DONDE SEA, SINO VUELA TODO CUANDO SE DELETEA LA UNION.
+//	delete eventHelper;
 	// TODO Auto-generated destructor stub
 }
-
-//void Union::setFin(const b2Vec2& fin) {
-//	this->fin = fin;
-//}
-//
-//void Union::setInicio(const b2Vec2& inicio) {
-//	this->inicio = inicio;
-//}
 
 float Union::getXInicial() const {
 	return inicio.x;
@@ -202,8 +190,17 @@ Union::Union(const Union& figura): Objeto(figura) {
 	this->figuraInicio = NULL;
 	this->wB = this->w;
 	this->hB = this->h;
+//	eventHelper = new ObserverFiguraHelper(this);
 }
 
 uint16 Union::getMascaraExtremos() {
 	return CATEGORIA_FIGURAS;
 }
+
+//void Union::notifyEvent(Evento_type enumEvento) {
+//	ObservableModelo * o = this->eventHelper->getLastObservable();
+//	if(enumEvento == DESPUES_DESTRUCCION &&(o == figuraFin || o == figuraInicio)){
+//		cout << "llegamos a la union" << endl;
+//		notify(ANTES_DESTRUCCION);
+//	}
+//}

@@ -29,6 +29,7 @@ public:
 
 	bool crearFisicaEstatica(b2World*, b2Body* ground);
 	void removerFisica(b2World * w);
+//	void notifyEvent(ObservableModelo*, Evento_type);
 protected:
 	void crearLazo(b2World*);
 	void updatePosicionesFiguras();

@@ -123,16 +123,14 @@ struct convert<Balancin> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["ancho"] = objeto.getAncho();
 		node["rotacion"] = objeto.getRotacion();
 		return node;
 	}
 
 	static bool decode(const Node& node, Balancin& objeto) {
-		if (node.size() != 4) return false;
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setAncho(node["ancho"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());
 		Mark marca = node.Mark();
 		Registro & reg = objeto.getReg();

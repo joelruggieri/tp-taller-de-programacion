@@ -1,16 +1,18 @@
 /*
- * ObserverModelo.cpp
+ * Evento.cpp
  *
  *  Created on: 19/10/2013
  *      Author: jonathan
  */
 
-#include "ObserverModelo.h"
-ObserverModelo::ObserverModelo() {
+#include "Evento.h"
+
+Evento::Evento() {
 	// TODO Auto-generated constructor stub
 
 }
 
-ObserverModelo::~ObserverModelo() {
+Evento::~Evento() {
 	// TODO Auto-generated destructor stub
 }
+

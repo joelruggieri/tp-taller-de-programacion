@@ -11,8 +11,12 @@
 #include "Objeto.h"
 #include "../Constantes.h"
 #include <iostream>
+
 using namespace std;
-class Union: public Objeto {
+#include "../observer/FiguraObserver.h"
+#include "../observer/ObserverFiguraHelper.h"
+
+class Union: public Objeto{
 public:
 	Union(float x, float y, float h);
 	Union(const Union & u);
@@ -40,7 +44,7 @@ public:
 	bool remover(Mapa *);
     void makeBackUp();
 	void restoreBackUp();
-
+//	void notifyEvent(Evento_type);
 protected:
 	void crearFisicaEstaticaTemplate(b2World* w, b2Body* ground);
 	b2Vec2 inicio;
@@ -48,6 +52,7 @@ protected:
 	Figura* figuraInicio;
 	Figura* figuraFin;
 	b2Vec2 inicioB, finB;
+	ObserverFiguraHelper * eventHelper;
 	float wB, hB;
 	float w, h;
 	virtual void setearPuntoInicial(Figura *) = 0;
