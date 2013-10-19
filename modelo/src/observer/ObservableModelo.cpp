@@ -12,6 +12,14 @@ ObservableModelo::ObservableModelo() {
 
 }
 
+void ObservableModelo::addObserver(ObserverModelo* o) {
+	this->observers.push_back(o);
+}
+
+void ObservableModelo::removeObserver(ObserverModelo* o) {
+	this->observers.remove(o);
+}
+
 ObservableModelo::~ObservableModelo() {
 	// TODO Auto-generated destructor stub
 }

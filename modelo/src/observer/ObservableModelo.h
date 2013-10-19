@@ -17,6 +17,8 @@ private:
 	list<ObserverModelo *> observers;
 public:
 	ObservableModelo();
+	void addObserver(ObserverModelo * o);
+	void removeObserver(ObserverModelo * o);
 	void notify(Evento_type);
 	virtual ~ObservableModelo();
 };

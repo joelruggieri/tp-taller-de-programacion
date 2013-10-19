@@ -14,21 +14,29 @@ Union::Union(float x, float y, float h) :
 	this->figuraInicio = NULL;
 	this->wB = this->w;
 	this->hB = this->h;
-//	eventHelper = new ObserverFiguraHelper(this);
+	eventHelper = new ObserverFiguraHelper(this);
 	// TODO Auto-generated constructor stub
 
 }
 
 Union::Union() :
 		Objeto() {
-//	eventHelper = new ObserverFiguraHelper(this);
+	figuraInicio= NULL;
+	figuraFin = NULL;
+	eventHelper = new ObserverFiguraHelper(this);
 
 }
 
 Union::~Union() {
 	//RESPONSABILIDAD DE LA CLASE HIJA QUE LO USA DE SACARLO DE DONDE SEA, SINO VUELA TODO CUANDO SE DELETEA LA UNION.
-//	delete eventHelper;
-	// TODO Auto-generated destructor stub
+	if(figuraInicio != NULL){
+		figuraInicio->removeObserver(eventHelper);
+	}
+	if(figuraFin!= NULL){
+		figuraFin->removeObserver(eventHelper);
+	}
+
+	delete eventHelper;
 }
 
 float Union::getXInicial() const {
@@ -120,7 +128,7 @@ void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
 	cuadrado.SetAsBox(this->w, this->h);
 	b2FixtureDef bodyCuadrado;
 	bodyCuadrado.shape = &cuadrado;
-	bodyCuadrado.filter.categoryBits = CATEGORIA_UNION; //TODO cambiar categorias
+	bodyCuadrado.filter.categoryBits = CATEGORIA_UNION;
 //	bodyCuadrado.filter.maskBits = 0X0008;
 	body->CreateFixture(&bodyCuadrado);
 	body->SetUserData(this);
@@ -128,7 +136,9 @@ void Union::crearFisicaEstaticaTemplate(b2World* w, b2Body* ground) {
 
 void Union::setExtremos(Figura* f1, Figura* f2) {
 	setearPuntoInicial(f1);
+	f1->addObserver(this->eventHelper);
 	setearPuntoFinal(f2);
+	f2->addObserver(this->eventHelper);
 	updateCaracteristicas();
 }
 
@@ -190,17 +200,17 @@ Union::Union(const Union& figura): Objeto(figura) {
 	this->figuraInicio = NULL;
 	this->wB = this->w;
 	this->hB = this->h;
-//	eventHelper = new ObserverFiguraHelper(this);
+	eventHelper = new ObserverFiguraHelper(this);
 }
 
 uint16 Union::getMascaraExtremos() {
 	return CATEGORIA_FIGURAS;
 }
 
-//void Union::notifyEvent(Evento_type enumEvento) {
-//	ObservableModelo * o = this->eventHelper->getLastObservable();
-//	if(enumEvento == DESPUES_DESTRUCCION &&(o == figuraFin || o == figuraInicio)){
-//		cout << "llegamos a la union" << endl;
-//		notify(ANTES_DESTRUCCION);
-//	}
-//}
+void Union::notifyEvent(Evento_type enumEvento) {
+	ObservableModelo * o = this->eventHelper->getLastObservable();
+	if(enumEvento == DESPUES_DESTRUCCION &&(o == figuraFin || o == figuraInicio)){
+		cout << "llegamos a la union" << endl;
+		notify(ANTES_DESTRUCCION);
+	}
+}
