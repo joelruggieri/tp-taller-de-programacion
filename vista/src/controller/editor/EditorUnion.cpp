@@ -21,11 +21,7 @@ EditorUnion::~EditorUnion() {
 }
 
 void EditorUnion::clickDown(int x, int y) {
-	Transformacion trans;
-	Resizer*r = Resizer::Instance();
-	trans.traslacion(0, 100);
-	trans.escalar(r->getRelacionX(), r->getRelacionY());
-	trans.invertir(false, true);
+	Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
 	if (primerClick && this->editado->getModelo() != NULL) {
 		//si tiene body y es el primer click no hago nada.
 		return;
@@ -111,11 +107,6 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 		visor = vista;
 		editado = vista;
 		primerClick = false;
-		Resizer*r = Resizer::Instance();
-		Transformacion trans;
-		trans.traslacion(0, 100);
-		trans.escalar(r->getRelacionX(), r->getRelacionY());
-		trans.invertir(false, true);
 		un->extraerPosInicial(figInicial, this->clickDownX, this->clickDownY);
 		un->extraerPosFinal(figInicial, this->clickDownX, this->clickDownY);
 		vista->update();
@@ -130,11 +121,7 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 
 void EditorUnion::clickUp(int x, int y) {
 	if (dragueando) {
-		Transformacion trans;
-		Resizer*r = Resizer::Instance();
-		trans.traslacion(0, 100);
-		trans.escalar(r->getRelacionX(), r->getRelacionY());
-		trans.invertir(false, true);
+		Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
 		trans.setVector(x, y);
 		trans.getResultado(this->clickDownX, this->clickDownY);
 		this->elementoDrag->drop();
@@ -147,11 +134,7 @@ void EditorUnion::mouseMotion(int x, int y) {
 	if (primerClick) {
 		super::mouseMotion(x, y);
 	} else {
-		Resizer*r = Resizer::Instance();
-		Transformacion trans;
-		trans.traslacion(0, 100);
-		trans.escalar(r->getRelacionX(), r->getRelacionY());
-		trans.invertir(false, true);
+		Transformacion trans = Resizer::Instance()->getTransformacionToModelo();
 		float xf, yf;
 		trans.setVector(x, y);
 		trans.getResultado(xf, yf);

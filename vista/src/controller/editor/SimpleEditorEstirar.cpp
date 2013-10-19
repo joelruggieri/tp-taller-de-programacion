@@ -10,7 +10,9 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConIcono.h"
 #include "../../ConstantesVista.h"
-SimpleEditorEstirar::SimpleEditorEstirar(ModeloController * controller , ZonaTablero * zona,FiguraFactory* factory, int yMaxDrag) : SimpleEditorNivel(controller,zona,factory,yMaxDrag) {
+SimpleEditorEstirar::SimpleEditorEstirar(ModeloController * controller, ZonaTablero * zona, FiguraFactory* factory,
+		int yMaxDrag) :
+		SimpleEditorNivel(controller, zona, factory, yMaxDrag) {
 	estirando = false;
 }
 
@@ -18,7 +20,7 @@ SimpleEditorEstirar::~SimpleEditorEstirar() {
 	// TODO Auto-generated destructor stub
 }
 
-void SimpleEditorEstirar::rightClickDown(int x, int y){
+void SimpleEditorEstirar::rightClickDown(int x, int y) {
 	this->editado->getModelo()->makeBackUp();
 	tablero->removerFigura(editado);
 	this->modeloController->removerFigura(editado->getModelo());
@@ -26,50 +28,39 @@ void SimpleEditorEstirar::rightClickDown(int x, int y){
 	if (keyboardState[SDL_SCANCODE_LCTRL]) {
 		estirando = true;
 		CargadorDeTextures* l = CargadorDeTextures::Instance();
-		this->visor = new ViewConIcono(editado,
-		l->cargarTexture(PATH_AGRANDAR_IMG),0);
-	}else
-		super::rightClickDown(x,y);
+		this->visor = new ViewConIcono(editado, l->cargarTexture(PATH_AGRANDAR_IMG), 0);
+	} else
+		super::rightClickDown(x, y);
 }
 
-void SimpleEditorEstirar::actualizarAncho(int delta){
-//
-
+void SimpleEditorEstirar::actualizarAncho(int delta) {
 	Estirable* figura = dynamic_cast<Estirable*>(this->editado->getModelo());
 	Resizer* r = Resizer::Instance();
 	float wNuevo = 0;
 	float hNuevo = 0;
 	int aux = 0;
-	r->adaptarDimensionPixel(delta,aux,wNuevo,hNuevo);
-	Transformacion trans;
-	trans.traslacion(0, 100);
-	trans.escalar(r->getRelacionX(), r->getRelacionY());
-	trans.invertir(false, true);
-	float lX2, lY2;
-	trans.getResultado(lX2, lY2);
+	r->adaptarDimensionPixel(delta, aux, wNuevo, hNuevo);
 	figura->estirar(wNuevo);
 	this->editado->update();
-//	this->editado->setW(r->resizearDistanciaLogicaX(figura->getAncho())); //TODO EN vez de esto hay que usar update de la vista con una transformacion para sacar el metodo getAncho de Figura
-
 }
 
 void SimpleEditorEstirar::mouseMotion(int x, int y) {
-	int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW()/2);
-	int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW()/2);
+	int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW() / 2);
+	int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW() / 2);
 	int delta;
 	this->posStartDragX = this->editado->getXCentro();
 	this->posStartDragY = this->editado->getYCentro();
 	if (estirando && !dragueando) {
-		if((x > this->editado->getXCentro() + (this->editado->getW()/2)) || (x > this->editado->getXCentro())){
+		if ((x > this->editado->getXCentro() + (this->editado->getW() / 2)) || (x > this->editado->getXCentro())) {
 			delta = x - posFinalDerecha;
 			this->actualizarAncho(delta);
-		}
-		else if((x < this->editado->getXCentro() - (this->editado->getW()/2)) || (x < this->editado->getXCentro())){
+		} else if ((x < this->editado->getXCentro() - (this->editado->getW() / 2))
+				|| (x < this->editado->getXCentro())) {
 			delta = posFinalIzquierda - x;
 			this->actualizarAncho(delta);
 		}
-	}else
-		super::mouseMotion(x,y);
+	} else
+		super::mouseMotion(x, y);
 }
 
 void SimpleEditorEstirar::rightClickUp(int int1, int int2) {
@@ -80,16 +71,10 @@ void SimpleEditorEstirar::rightClickUp(int int1, int int2) {
 		delete visor;
 		visor = NULL;
 		finalizado = true;
-		this->actualizarEstadoDeLaFigura(int1,int2);
-		Resizer * r= Resizer::Instance();
-		Transformacion trans;
-		trans.traslacion(0, 100);
-		trans.escalar(r->getRelacionX(), r->getRelacionY());
-		trans.invertir(false, true);
-		trans.setVector(this->editado->getX(), editado->getY());
+		this->actualizarEstadoDeLaFigura(int1, int2);
 		this->editado->update();
-	}else
-		super::rightClickUp(int1,int2);
+	} else
+		super::rightClickUp(int1, int2);
 }
 
 void SimpleEditorEstirar::dropNuevaFigura(VistaCintaTransportadora* view) {

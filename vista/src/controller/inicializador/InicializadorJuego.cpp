@@ -117,10 +117,7 @@ void InicializadorJuego::agregarFigura(ViewFiguraFactory* factory,
 	}
 
 
-	Transformacion trans;
-	trans.traslacion(0, 100);
-	trans.escalar(r->getRelacionX(), r->getRelacionY());
-	trans.invertir(false, true);
+	Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
 	float x,y;
 	int w,h;
 	trans.setVector(modelo->getX(), modelo->getY());
@@ -165,10 +162,7 @@ void InicializadorJuego::agregarUnion(ViewFiguraFactory* factory,
 	}
 
 
-	Transformacion trans;
-	trans.traslacion(0, 100);
-	trans.escalar(r->getRelacionX(), r->getRelacionY());
-	trans.invertir(false, true);
+	Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
 	float x,y;
 	int w,h;
 	trans.setVector(modelo->getX(), modelo->getY());
