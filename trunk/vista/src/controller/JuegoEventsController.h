@@ -21,7 +21,7 @@
 #include "zonaDragAndDrop/ZonaTablero.h"
 
 
-class JuegoEventsController: public MouseEventController, public Dibujable, public FlujoDeJuegoController, public Resizeable {
+class JuegoEventsController: public MouseEventController, public Dibujable, public FlujoDeJuegoController {
 private:
 	ZonaTablero * tablero;
 	ZonaCreacion * creacion;
@@ -29,7 +29,6 @@ private:
 	ModeloController * modeloController;
 	bool iniciado;
 	EditorNivel * editor;
-	Transformacion * trans;
 public:
 	JuegoEventsController(ModeloController*,ZonaPlay * zplay);
 	virtual ~JuegoEventsController();
@@ -46,6 +45,5 @@ public:
 	void stop();
 	void paso();
 	bool corriendo();
-	void resizear();
 };
 #endif /* JuegoEventsController_H_ */

@@ -17,8 +17,7 @@ Motor::~Motor() {
 	// TODO Auto-generated destructor stub
 }
 
-void Motor::crearFisica(b2World * w, b2Body* ground) {
-
+void Motor::crearFisica() {
 
 
 	//definicion del cuerpo del engranaje.
@@ -35,7 +34,7 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	b2BodyDef bodyDefCuerpo;
 	bodyDefCuerpo.type = b2_dynamicBody;
 	bodyDefCuerpo.position= centro;
-	body = w->CreateBody(&bodyDefCuerpo);
+	body = myWorld->CreateBody(&bodyDefCuerpo);
 	body->CreateFixture(&fixture);
 	body->SetUserData(this);
 
@@ -47,7 +46,7 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	rjd.collideConnected = false;
 	rjd.enableMotor = true;
 	rjd.enableLimit = false;
-	this->jointCuerpoTierra =(b2RevoluteJoint *) w->CreateJoint(&rjd);
+	this->jointCuerpoTierra =(b2RevoluteJoint *) myWorld->CreateJoint(&rjd);
 
 	//definicion cuerpo radio de accion
 
@@ -63,7 +62,7 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	b2BodyDef bodyDefAccion;
 	bodyDefAccion.type = b2_dynamicBody;
 	bodyDefAccion.position= centro;
-	radioAccion = w->CreateBody(&bodyDefAccion);
+	radioAccion = myWorld->CreateBody(&bodyDefAccion);
 	radioAccion->CreateFixture(&fixtureAccion);
 	radioAccion->SetUserData(this);
 
@@ -71,13 +70,13 @@ void Motor::crearFisica(b2World * w, b2Body* ground) {
 	b2RevoluteJointDef rjd2;
 	rjd2.Initialize(ground,radioAccion,centro);
 	rjd2.collideConnected = false;
-	w->CreateJoint(&rjd2);
+	myWorld->CreateJoint(&rjd2);
 
-	for (b2Body* b = w->GetBodyList(); b; b = b->GetNext()) {
+	for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
 		if (b != this->body && b!= this->radioAccion && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
 //			//solo da que si cuando golpea con otro radio de accion
 			if(validarContacto(this->radioAccion,b)){
-				crearLazo((Engranaje *) b->GetUserData(),w);
+				crearLazo((Engranaje *) b->GetUserData(),myWorld);
 			}
 
 		}
@@ -91,14 +90,12 @@ void Motor::acept(VisitorFigura* visitor){
 	visitor->visit(this);
 }
 
-//TODO IMPLEMENTAR CONSTRUCTOR COPIA Y AGREGAR ESTO this->reg =figura.reg;
-
 Motor::Motor(const Motor& figura):Engranaje(figura) {
 	this->x = figura.getX();
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
 	this->reg = figura.reg;
-	this->direccion = -1;
+	this->direccion = figura.direccion;
 	this->radio = radio;
 }
 

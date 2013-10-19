@@ -31,17 +31,9 @@ JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 	this->zplay = zplay;
 	editor = NULL;
 	iniciado = false;
-	Resizer*r = Resizer::Instance();
-	r->addResizeable(this);
-	trans = new Transformacion();
-	trans->traslacion(0, 100);
-	trans->escalar(r->getRelacionX(), r->getRelacionY());
-	trans->invertir(false, true);
-
 }
 
 JuegoEventsController::~JuegoEventsController() {
-	delete trans;
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
@@ -52,10 +44,7 @@ bool JuegoEventsController::clickDown(int x, int y) {
 		float lY = r->resizearPosicionPixelY(y);
 		if (tablero != NULL && creacion != NULL && !zplay->click(lX, lY) &&!iniciado
 				&& !creacion->click(lX, lY) ) {
-			Transformacion trans;
-			trans.traslacion(0, 100);
-			trans.escalar(r->getRelacionX(), r->getRelacionY());
-			trans.invertir(false, true);
+			Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
 			trans.setVector(x, y);
 			float lX2, lY2;
 			trans.getResultado(lX2, lY2);
@@ -131,11 +120,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 	}
 	if (editor == NULL) {
 		if (tablero != NULL && creacion != NULL) {
-			Resizer* r = Resizer::Instance();
-			Transformacion trans;
-			trans.traslacion(0, 100);
-			trans.escalar(r->getRelacionX(), r->getRelacionY());
-			trans.invertir(false, true);
+			Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
 			trans.setVector(x, y);
 			float lX2, lY2;
 			trans.getResultado(lX2, lY2);
@@ -204,9 +189,3 @@ bool JuegoEventsController::corriendo() {
 	return iniciado;
 }
 
-void JuegoEventsController::resizear() {
-	Resizer * r = Resizer::Instance();
-	trans->traslacion(0, 100);
-	trans->escalar(r->getRelacionX(), r->getRelacionY());
-	trans->invertir(false, true);
-}

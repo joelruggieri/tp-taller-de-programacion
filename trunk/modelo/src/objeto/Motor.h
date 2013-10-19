@@ -16,7 +16,7 @@ public:
 	virtual ~Motor();
 	Motor(const Motor& figura);
 	Motor();
-	void crearFisica(b2World *, b2Body*);
+	void crearFisica();
 	void acept(VisitorFigura*);
 private:
 	void setRadio(float radio);
