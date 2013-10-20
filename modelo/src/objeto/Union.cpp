@@ -15,8 +15,7 @@ Union::Union(float x, float y, float h) :
 	this->wB = this->w;
 	this->hB = this->h;
 	eventHelper = new ObserverFiguraHelper(this);
-	// TODO Auto-generated constructor stub
-
+	joint = NULL;
 }
 
 Union::Union() :
@@ -24,7 +23,7 @@ Union::Union() :
 	figuraInicio= NULL;
 	figuraFin = NULL;
 	eventHelper = new ObserverFiguraHelper(this);
-
+	joint = NULL;
 }
 
 Union::~Union() {
@@ -132,6 +131,7 @@ void Union::crearFisicaEstaticaTemplate() {
 //	fixture.filter.maskBits = 0;
 //	body->CreateFixture(&fixture);
 //	body->SetUserData(this);
+	joint = NULL;
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x, y);
@@ -217,6 +217,7 @@ Union::Union(const Union& figura): Objeto(figura) {
 	this->figuraInicio = NULL;
 	this->wB = this->w;
 	this->hB = this->h;
+	joint = NULL;
 	eventHelper = new ObserverFiguraHelper(this);
 }
 
@@ -261,8 +262,8 @@ void Union::updatePosicionesFigurasSinFisica() {
 
 }
 
-bool Union::tieneCuerpo() {
-	return body != NULL;
+bool Union::estaEstatica() {
+	return joint == NULL;
 }
 
 float Union::getRadio() {

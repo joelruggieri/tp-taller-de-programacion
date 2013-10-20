@@ -118,7 +118,7 @@ void Figura::updateModelo() {
 		const b2Vec2 p = body->GetPosition();
 		this->setX(p.x);
 		this->setY(p.y);
-		this->setRotacion( -1*radianesAGrados(body->GetAngle()));
+		this->rotacion = -1*radianesAGrados(body->GetAngle());
 	}
 }
 
