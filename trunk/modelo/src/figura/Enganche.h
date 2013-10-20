@@ -9,18 +9,22 @@
 #define ENGANCHE_H_
 #include <list>
 #include "Box2D/Box2D.h"
+
+class Figura;
 using namespace std;
 
 class Enganche {
 private:
 	bool ocupado;
 	b2Vec2 pos;
+	Figura* centro;
 public:
-	Enganche(float posX, float posY);
+	Enganche(Figura* centro, float posX, float posY);
 	virtual ~Enganche();
 	float getPosX();
 	float getPosY();
 	b2Vec2 & getPos();
+	b2Vec2 getWorldPos();
 	bool estaOcupado();
 	void ocupar();
 	void liberar();

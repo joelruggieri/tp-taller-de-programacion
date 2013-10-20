@@ -6,10 +6,11 @@
  */
 
 #include "Enganche.h"
-
-Enganche::Enganche(float posX, float posY) {
+#include "Figura.h"
+Enganche::Enganche(Figura * centro, float posX, float posY) {
 	this->pos = b2Vec2(posX,posY);
 	this->ocupado = false;
+	this->centro = centro;
 }
 
 Enganche::~Enganche() {
@@ -38,4 +39,12 @@ void Enganche::liberar() {
 
 b2Vec2& Enganche::getPos() {
 	return this->pos;
+}
+
+b2Vec2 Enganche::getWorldPos() {
+	b2Vec2 centroVec(centro->getX(), centro->getY());
+	double radianes = centro->gradosARadianes(centro->getRotacion());
+	b2Rot rotacion(radianes);
+	b2Vec2 rotado = b2Mul(rotacion, pos);
+	return rotado + centroVec;
 }

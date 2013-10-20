@@ -26,7 +26,7 @@ public:
 	bool isFinValido(Figura * f, float x, float y);
 	void extraerPosInicial(Figura * f, float x, float y);
 	void extraerPosFinal(Figura * f, float x, float y);
-
+	void updatePosicionesFigurasSinFisica();
 	void removerFisica();
 //	void notifyEvent(ObservableModelo*, Evento_type);
 protected:

@@ -132,3 +132,8 @@ void Soga::removerFisica() {
 		destino->liberar();
 	}
 }
+
+void Soga::updatePosicionesFigurasSinFisica() {
+	this->inicio = this->origen->getWorldPos();
+	this->fin = this->destino->getWorldPos();
+}
