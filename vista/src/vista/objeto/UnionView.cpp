@@ -27,7 +27,14 @@ UnionView::~UnionView() {
 
 void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
 	SDL_SetRenderDrawColor(ren,r,g,b,0);
-	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
+	if(this->yDesde == this->yHasta){
+		SDL_RenderDrawLine(ren,this->xDesde,this->yDesde + this->getH(),this->xHasta,this->yHasta + this->getH());
+		SDL_RenderDrawLine(ren,this->xDesde,this->yDesde - this->getH(),this->xHasta,this->yHasta - this->getH());
+	}else{
+		SDL_RenderDrawLine(ren,this->xDesde + this->getW(),this->yDesde + this->getH(),this->xHasta + this->getW(),this->yHasta + this->getH());
+		SDL_RenderDrawLine(ren,this->xDesde - this->getW(),this->yDesde - this->getH(),this->xHasta - this->getW(),this->yHasta - this->getH());
+	}
+
 	Union* u = (Union *)this->getModelo();
 
 
