@@ -222,7 +222,7 @@ void SimpleEditorNivel::actualizarEstadoDeLaFigura(int int1, int int2) {
 		}
 		Logger log;
 		editado->getModelo()->restoreBackUp();
-		std::cout << " " << editado->getModelo()->getAncho() << std::endl;
+//		std::cout << " " << editado->getModelo()->getAncho() << std::endl;
 		exitoVista = tablero->agregarFigura(this->editado);
 		exitoModelo = this->modeloController->crearFigura(
 				this->editado->getModelo());

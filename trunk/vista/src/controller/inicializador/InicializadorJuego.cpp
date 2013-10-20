@@ -49,7 +49,6 @@ using namespace std;
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/EditorUnion.h"
 #include "../editor/SimpleEditorOrientacionCambiable.h"
-#include "../editor/EditorDeEstiramientoDeCinta.h"
 
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PLATAFORMA = "PLATAFORMA";

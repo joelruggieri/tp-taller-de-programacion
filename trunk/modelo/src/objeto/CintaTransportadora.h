@@ -8,35 +8,27 @@
 #ifndef CINTATRANSPORTADORA_H_
 #define CINTATRANSPORTADORA_H_
 
-#include "Objeto.h"
+#include "Engranaje.h"
 #include <vector>
 #include <SDL2/SDL.h>
-
-class CintaTransportadora: public Objeto {
+class CintaTransportadora: public Engranaje {
 public:
 	CintaTransportadora();
-	CintaTransportadora(float x, float y, float longitud);
+	CintaTransportadora(float x, float y, float ancho, float alto);
 	CintaTransportadora(const CintaTransportadora& figura);
 	virtual ~CintaTransportadora();
 	void crearFisica();
-	void crearFisicaEstaticaTemplate();
 	void acept(VisitorFigura*);
-	int getLongitud() const;
-	void setLongitud(float longitud);
-	float *getAngulosRuedas();
-	SDL_Rect* getMarcosRuedas();
+	float getAncho() const;
+	void setAncho(float ancho);
 	void updateModelo();
+	void removerFisica();
 private:
-	void actualizarAngulos();
-	void actualizarMarcos();
-	float longitud;
-	std::vector<b2Body*> piezas;
-	int cantPiezas;
-	b2Body* ruedas[2];
-	b2Body* cuerpo;
-	b2Body* base;
-	float angulosRuedas[2];
-	SDL_Rect marcosRuedas[2];
+	typedef Engranaje super;
+	float alto;
+	float ancho;
+	float anchoBack;
+	b2Body * bodyEngranaje;
 };
 
 #endif /* CINTATRANSPORTADORA_H_ */

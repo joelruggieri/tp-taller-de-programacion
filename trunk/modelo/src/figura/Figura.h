@@ -52,7 +52,6 @@ public:
 	void setX(float x);
 	void setY(float y);
 	virtual void setRotacion(double rotation);
-	virtual float getAncho() const;
 	virtual void crearFisica() = 0;
 	virtual bool crearFisicaEstatica();
 	virtual void acept(VisitorFigura*) = 0;
