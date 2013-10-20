@@ -68,6 +68,9 @@ bool Correa::crearFisicaEstatica() {
 	}
 	this->crearFisicaEstaticaTemplate();
 
+	((Engranaje *)figuraInicio)->ocupar();
+	((Engranaje *)figuraFin)->ocupar();
+
 	return true;
 }
 
@@ -86,7 +89,11 @@ void Correa::setearPuntoFinal(Figura* f) {
 }
 
 bool Correa::isExtremoValido(Figura* f) {
-	return f->esTraccionable();
+	if(!f->esTraccionable()){
+		return false;
+	}
+	bool libre = ((Engranaje *)f)->estaLibre();
+	return  libre;
 }
 
 bool Correa::isInicioValido(Figura* f, float x, float y) {
@@ -103,4 +110,14 @@ void Correa::extraerPosInicial(Figura* f, float x, float y) {
 
 void Correa::extraerPosFinal(Figura* f, float x, float y) {
 	this->fin = b2Vec2 (f->getX(),f->getY());
+}
+
+void Correa::removerFisica() {
+	super::removerFisica();
+	if(figuraInicio != NULL){
+		((Engranaje *)figuraInicio)->liberar();
+	}
+	if(figuraFin){
+		((Engranaje *)figuraFin)->liberar();
+	}
 }
