@@ -2,11 +2,6 @@ Nivel:
   Nombre: yaml1
   Fondo: ""
 Objetos:
-  Engranajes:
-    - x: 63
-      y: 38.8
-    - x: 32.2
-      y: 64
   Balancines:
     - x: 72.4
       y: 55.8
@@ -14,6 +9,13 @@ Objetos:
   GlobosHelio:
     - x: 82.4
       y: 88.6
+    - x: 41.8
+      y: 38.4
+  Engranajes:
+    - x: 63
+      y: 38.8
+    - x: 32.2
+      y: 64
   Correas:
     - xDesde: 63
       yDesde: 38.8
@@ -24,3 +26,7 @@ Objetos:
       yDesde: 85.1
       xHasta: 79.9
       yHasta: 55.8
+    - xDesde: 64.9
+      yDesde: 55.8
+      xHasta: 41.8
+      yHasta: 34.9

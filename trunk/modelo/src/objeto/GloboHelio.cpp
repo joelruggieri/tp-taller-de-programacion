@@ -29,6 +29,8 @@ void GloboHelio::crearFisica() {
 	bodyDef.position.Set(centro.x, centro.y);
 	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 	bodyDef.fixedRotation = true;
+	bodyDef.linearDamping = 0.15;
+
 	b2Body* body = myWorld->CreateBody(&bodyDef);
 	shapeCircle.m_radius = this->radio;
 	b2FixtureDef bodyBolaBoliche;
@@ -75,18 +77,18 @@ void GloboHelio::updateModelo() {
 	super::updateModelo();
 	if (getBody() != NULL && body->GetLinearVelocity().y < 10) {
 		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
-		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 2500.0));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 2500.0  /( body->GetPosition().y * 0.01)));
 		body->ApplyForce(f, p);
 	}
-//	if(getBody() != NULL && body->GetLinearVelocity().x > 0.1){
-//		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
-//		b2Vec2 f = body->GetWorldVector(b2Vec2(-750.0f, 0));
-//		body->ApplyForce(f,p);
-//	}
-//	if(getBody() != NULL && body->GetLinearVelocity().x <  -0.1){
-//		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
-//		b2Vec2 f = body->GetWorldVector(b2Vec2(750.0f, 0));
-//		body->ApplyForce(f,p);
-//	}
+	if(getBody() != NULL && body->GetLinearVelocity().x > 0.1){
+		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0, 1.0f));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(-100.0f, 0));
+		body->ApplyForce(f,p);
+	}
+	if(getBody() != NULL && body->GetLinearVelocity().x <  -0.1){
+		b2Vec2 p = body->GetWorldPoint(b2Vec2(-1.0f, 0.0f));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(100.0f, 0));
+		body->ApplyForce(f,p);
+	}
 
 }
