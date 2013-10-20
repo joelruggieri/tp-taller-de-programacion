@@ -75,7 +75,7 @@ void SimpleEditorEstirar::rightClickUp(int int1, int int2) {
 		super::rightClickUp(int1, int2);
 }
 
-void SimpleEditorEstirar::dropNuevaFigura(VistaCintaTransportadora* view) {
+void SimpleEditorEstirar::dropNuevaFigura(CintaTransportadoraView* view) {
 	Resizer* r = Resizer::Instance();
 	float x;
 	float y;

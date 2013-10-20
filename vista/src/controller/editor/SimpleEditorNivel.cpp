@@ -365,7 +365,7 @@ void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {
 ////	dropear(view, this->figurasFactory->crearGloboHelio(x, 100 - y));
 //}
 //
-//void SimpleEditorNivel::dropNuevaFigura(VistaCintaTransportadora* view) {
+//void SimpleEditorNivel::dropNuevaFigura(CintaTransportadoraView* view) {
 //	Resizer* r = Resizer::Instance();
 //	float x;
 //	float y;
