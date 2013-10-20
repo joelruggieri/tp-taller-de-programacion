@@ -146,7 +146,7 @@ struct convert<CintaTransportadora> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
-		node["longitud"] = objeto.getLongitud();
+		node["ancho"] = objeto.getAncho();
 		return node;
 	}
 
@@ -154,7 +154,7 @@ struct convert<CintaTransportadora> {
 		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-		objeto.setLongitud(node["longitud"].as<int>());
+		objeto.setAncho(node["ancho"].as<float>());
 		Mark marca = node.Mark();
 		Registro & reg = objeto.getReg();
 		reg.setLinea(marca.line);

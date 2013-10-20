@@ -48,8 +48,6 @@ void SimpleEditorEstirar::mouseMotion(int x, int y) {
 	int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW() / 2);
 	int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW() / 2);
 	int delta;
-	this->posStartDragX = this->editado->getXCentro();
-	this->posStartDragY = this->editado->getYCentro();
 	if (estirando && !dragueando) {
 		if ((x > this->editado->getXCentro() + (this->editado->getW() / 2)) || (x > this->editado->getXCentro())) {
 			delta = x - posFinalDerecha;

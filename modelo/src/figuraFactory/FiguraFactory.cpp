@@ -61,13 +61,13 @@ Figura* FiguraFactory::crear(Balancin* c) {
 
 
 Figura* FiguraFactory::crearCintaTransportadora(float x, float y) {
-	return new CintaTransportadora(x,y,10);
+	return new CintaTransportadora(x,y,ANCHO_CINTA,ALTO_CINTA);
 }
 
 Figura* FiguraFactory::crear(CintaTransportadora* cinta) {
 	CintaTransportadora* t = (CintaTransportadora *)this->crearCintaTransportadora(cinta->getX(), cinta->getY());
 	t->setRotacion(0);
-	t->setLongitud(cinta->getLongitud());
+	t->setAncho(cinta->getAncho());
 	t->setReg(cinta->getReg());
 	return t;
 }

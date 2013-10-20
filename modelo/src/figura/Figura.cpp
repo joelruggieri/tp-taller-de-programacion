@@ -186,10 +186,6 @@ bool Figura::crearFisicaEstatica() {
 	return !hayContacto;
 }
 
-float Figura::getAncho() const {
-	return 0;
-}
-
 void Figura::removerFisica() {
 
 	if(body != NULL){

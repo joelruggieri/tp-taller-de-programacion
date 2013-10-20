@@ -48,7 +48,7 @@ void Engranaje::crearFisica() {
 	//joint cuerpo con la tierra;
 	b2RevoluteJointDef jointCuerpoTierraDef;
 	jointCuerpoTierraDef.Initialize(ground, body, centro);
-//	jointCuerpoTierraDef.collideConnected = false;
+	jointCuerpoTierraDef.collideConnected = false;
 	jointCuerpoTierra = (b2RevoluteJoint*) myWorld->CreateJoint(&jointCuerpoTierraDef);
 
 	//definicion cuerpo radio de accion
@@ -56,8 +56,8 @@ void Engranaje::crearFisica() {
 	b2CircleShape shapeAccion;
 	shapeAccion.m_radius = this->radio + 0.3;
 	b2FixtureDef fixtureAccion;
-	fixtureAccion.filter.categoryBits = 0X0004;
-	fixtureAccion.filter.maskBits = 0X0004;
+	fixtureAccion.filter.categoryBits = CATEGORIA_RANGO_ENGRANAJE;
+	fixtureAccion.filter.maskBits = CATEGORIA_RANGO_ENGRANAJE;
 	fixtureAccion.density = 1.00f;
 	fixtureAccion.shape = &shapeAccion;
 	fixtureAccion.friction = 0.01f;
@@ -99,7 +99,6 @@ void Engranaje::crearFisicaEstaticaTemplate() {
 void Engranaje::removerFisica() {
 	super::removerFisica();
 	myWorld->DestroyBody(this->radioAccion);
-
 	radioAccion = NULL;
 }
 
@@ -124,7 +123,6 @@ void Engranaje::crearLazo(Engranaje * b, b2World* w) {
 bool Engranaje::crearFisicaEstatica() {
 	this->crearFisicaEstaticaTemplate();
 	bool hayContacto = false;
-//	list<Engranaje *> maquinas;
 	for (b2Body* b = myWorld->GetBodyList(); b && !hayContacto; b = b->GetNext()) {
 		if (b
 				!= this->body&& b!= this->radioAccion && b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
@@ -132,26 +130,13 @@ bool Engranaje::crearFisicaEstatica() {
 				hayContacto = true;
 				break;
 			}
-//			//solo da que si cuando golpea con otro radio de accion
-//			if(validarContacto(w,this->radioAccion,b)){
-//				maquinas.push_back((Engranaje*)b->GetUserData());
-//			}
-
 		}
 	}
 	if (hayContacto) {
 		removerFisica();
-//	} else {
-//		if(maquinas.size() > 0){
-//			list<Engranaje*>::iterator it;
-//			for(it=maquinas.begin(); it != maquinas.end(); ++it){
-//				crearLazo(*it,w);
-//			}
-//		}
 	} else {
 		notify(FISICA_E_CREADA);
 	}
-
 	return !hayContacto;
 
 }

@@ -30,10 +30,9 @@ EditorNivel* PlataformaView::getEditor() {
 void PlataformaView::update(){
 	super::update();
 	float y = 0;
-	tl.setVector(this->getModelo()->getAncho(),y);
+	Plataforma * p = (Plataforma *)this->getModelo();
+	tl.setVector(p->getAncho(),y);
 	float nuevoAncho;
 	tl.getResultadoInverso(nuevoAncho,y);
 	this->setW(nuevoAncho);
-
-
 }
