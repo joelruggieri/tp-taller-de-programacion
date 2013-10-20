@@ -56,7 +56,6 @@ void FiguraView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
 		SDL_RenderCopyEx(renderer,this->textura, NULL, &dest,this->getModelo()->getRotacion(),NULL,SDL_FLIP_NONE);
 	} else {
 		SDL_RenderCopy(renderer,this->textura,NULL,&dest);
-
 	}
 }
 

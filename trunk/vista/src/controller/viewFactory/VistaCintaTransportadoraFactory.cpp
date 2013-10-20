@@ -7,6 +7,7 @@
 
 #include "VistaCintaTransportadoraFactory.h"
 #include "../../ConstantesVista.h"
+#include "../../vista/objeto/CintaTransportadoraView.h"
 #include "../editor/SimpleEditorEstirar.h"
 #include "src/Constantes.h"
 VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory(SimpleEditorEstirar* editor) : ViewFiguraFactory(PATH_VISTA_CINTA, editor) {
@@ -18,9 +19,10 @@ VistaCintaTransportadoraFactory::~VistaCintaTransportadoraFactory() {
 
 FiguraView* VistaCintaTransportadoraFactory::crear(int x, int y, int w, int h) {
 	Resizer * r = Resizer::Instance();
-	int ancho,alto;
+	int ancho,alto,altoModelo;
 	r->adaptarDimensionLogica(ANCHO_CINTA,ALTO_VISTA_CINTA_LOG,ancho,alto);
-	return new VistaCintaTransportadora(x, y, ancho, alto,this->textura, (SimpleEditorEstirar *) this->controller);
+	altoModelo = r->resizearDistanciaLogicaY(ALTO_CINTA);
+	return new CintaTransportadoraView(x, y, ancho, alto,altoModelo,this->textura, (SimpleEditorEstirar *) this->controller);
 }
 
 View* VistaCintaTransportadoraFactory::crearVistaPropia(int x, int y,

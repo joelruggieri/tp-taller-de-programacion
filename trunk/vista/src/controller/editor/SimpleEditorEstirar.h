@@ -21,7 +21,7 @@ public:
 	void mouseMotion(int x, int y);
 	void rightClickUp(int int1, int int2);
 	void setFigura(FiguraView *);
-	void dropNuevaFigura(VistaCintaTransportadora * v);
+	void dropNuevaFigura(CintaTransportadoraView * v);
 	void dropNuevaFigura(PlataformaView * v);
 };
 
