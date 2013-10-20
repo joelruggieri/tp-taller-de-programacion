@@ -179,6 +179,8 @@ bool Figura::crearFisicaEstatica() {
 	}
 	if(hayContacto) {
 		removerFisica();
+	} else {
+	   notify(FISICA_E_CREADA);
 	}
 	return !hayContacto;
 }
@@ -234,4 +236,10 @@ bool Figura::remover(Mapa*m) {
 void Figura::setWorld(b2World* w, b2Body * g) {
 	this->myWorld = w;
 	this->ground = g;
+}
+
+void Figura::setPosicion(float x, float y) {
+	setX(x);
+	setY(y);
+	notify(CAMBIO_ESPACIAL_FORZADO);
 }

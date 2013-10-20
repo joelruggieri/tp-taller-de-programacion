@@ -36,6 +36,16 @@ int Drag::desplazarCentroA(int &x, int &y) {
 		x = 0;
 	}
 	view->desplazarCentroA(x,y);
+	if(view->getModelo()){
+		Transformacion tl = Resizer::Instance()->getTransformacionToModelo();
+		tl.setVector(x,y);
+		float xf,yf;
+		tl.getResultado(xf,yf);
+		view->getModelo()->setPosicion(xf,yf);
+	}
+
+
+
 	return y;
 }
 
