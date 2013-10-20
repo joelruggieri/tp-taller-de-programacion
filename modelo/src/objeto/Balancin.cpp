@@ -87,7 +87,6 @@ void Balancin::crearFisica(){
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
 	b2BodyDef bodyDef;
-	bodyDef.bullet = true;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(x,y);
 	//bodyDef.fixedRotation = true;
@@ -100,8 +99,8 @@ void Balancin::crearFisica(){
 
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(ground,body,centro);
-	rjd.motorSpeed = 1.0f * b2_pi;
-	rjd.maxMotorTorque = 10000.0f;
+//	rjd.motorSpeed = 1.0f * b2_pi;
+//	rjd.maxMotorTorque = 10000.0f;
 	rjd.collideConnected = true;
 
 	if(this->getRotacion() == 0){
