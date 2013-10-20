@@ -98,14 +98,14 @@ void CorreaView::proyeccion2(SDL_Renderer* renderer, double angulo){
 void CorreaView::dibujarse(SDL_Renderer* renderer){
 	//super::dibujarse(renderer,10,10,10);
 	SDL_SetRenderDrawColor(renderer,10,10,10,0);
-	double xHastaRespectoXDesde = this->xHasta - this->xDesde;
-	double yHastaRespectoYDesde = this->yHasta - this->xDesde;
+	double xHastaRespectoXDesde = (float)this->xHasta - (float)this->xDesde;
+	double yHastaRespectoYDesde = (float)this->yHasta - (float)this->yDesde;
 	double norma = sqrt((xHastaRespectoXDesde*xHastaRespectoXDesde) + (yHastaRespectoYDesde*yHastaRespectoYDesde));
 	xHastaRespectoXDesde = xHastaRespectoXDesde / norma;
 	yHastaRespectoYDesde = yHastaRespectoYDesde / norma;
 	//V1o
-	double v1oX = (-yHastaRespectoYDesde) * (this->getW()/2);
-	double v1oY = xHastaRespectoXDesde * (this->getW()/2);
+	double v1oX = (-yHastaRespectoYDesde) * ((float)this->getW()/2);
+	double v1oY = xHastaRespectoXDesde * ((float)this->getW()/2);
 	//V2o
 	double v2oX = -v1oX;
 	double v2oY = -v1oY;
