@@ -77,7 +77,7 @@ void GloboHelio::updateModelo() {
 	super::updateModelo();
 	if (getBody() != NULL && body->GetLinearVelocity().y < 10) {
 		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
-		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 2500.0  /( body->GetPosition().y * 0.01)));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 2500.0  ));
 		body->ApplyForce(f, p);
 	}
 	if(getBody() != NULL && body->GetLinearVelocity().x > 0.1){
