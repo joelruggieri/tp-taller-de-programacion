@@ -14,7 +14,10 @@ class EditorUnion;
 
 class CorreaView: public UnionView {
 private:
-
+	double v1oX;
+	double v1oY;
+	double v2oX;
+	double v2oY;
 	typedef UnionView super;
 	SDL_Color color;
 public:
@@ -23,9 +26,7 @@ public:
 	EditorNivel* getEditor();
 	void dropTemplate();
 	void dibujarse(SDL_Renderer*);
-	double obtenerAnguloEnRadianes();
-	void proyeccion1(SDL_Renderer* renderer, double angulo);
-	void proyeccion2(SDL_Renderer* renderer, double angulo);
+	void update();
 };
 
 #endif /* CORREAVIEW_H_ */

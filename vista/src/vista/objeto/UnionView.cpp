@@ -26,13 +26,8 @@ UnionView::~UnionView() {
 //	}
 }
 
-
-void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
-	SDL_SetRenderDrawColor(ren,r,g,b,0);
-	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
-
+void UnionView::dibujarseEstatica(SDL_Renderer* ren){
 	Union* u = (Union *)this->getModelo();
-
 
 	if(u->estaEstatica()){
 		SDL_Rect dest;
@@ -48,6 +43,14 @@ void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
 		SDL_RenderCopyEx(ren,this->getTexture(), NULL, &dest,this->getModelo()->getRotacion(),NULL,SDL_FLIP_NONE);
 		SDL_RenderCopy(ren,this->getTexture(),NULL,&dest);
 	}
+}
+
+void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
+	SDL_SetRenderDrawColor(ren,r,g,b,0);
+	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
+
+	this->dibujarseEstatica(ren);
+
 }
 
 EditorNivel* UnionView::getEditor() {
