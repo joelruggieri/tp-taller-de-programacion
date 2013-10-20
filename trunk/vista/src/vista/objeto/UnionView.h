@@ -27,6 +27,7 @@ public:
 	void setModelo(Figura * f);
 	void notifyEvent(ObservableModelo*, Evento_type);
 	void resizear();
+	int getLayer();
 };
 
 #endif /* UNIONVIEW_H_ */
