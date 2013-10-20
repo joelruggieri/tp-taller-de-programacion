@@ -18,6 +18,7 @@ Engranaje::Engranaje(float x, float y, float radio) :
 	this->direccion = 0;
 	this->jointCuerpoTierra = NULL;
 	this->traccionable = true;
+	libre = true;
 }
 
 Engranaje::~Engranaje() {
@@ -175,9 +176,11 @@ Engranaje::Engranaje(const Engranaje& engranaje) :
 		Objeto(engranaje) {
 	this->direccion = engranaje.direccion;
 	traccionable = true;
+	libre = true;
 }
 
-Engranaje::Engranaje() {
+Engranaje::Engranaje():Objeto() {
+	libre = true;
 }
 
 int Engranaje::getDireccion() const {
@@ -216,4 +219,16 @@ void Engranaje::getAnteriorRadio() {
 		this->radio = RADIO_ENGRANAJE_CHICO;
 	else if (this->radio == RADIO_ENGRANAJE_GRANDE)
 		this->radio = RADIO_ENGRANAJE_MEDIO;
+}
+
+void Engranaje::ocupar() {
+	this->libre = false;
+}
+
+void Engranaje::liberar() {
+	this->libre= true;
+}
+
+bool Engranaje::estaLibre() {
+	return libre;
 }

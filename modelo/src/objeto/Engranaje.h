@@ -26,10 +26,14 @@ public:
 	void setDireccion(int dir);
 	float getAncho();
 	void estirar(float delta);
+	void ocupar();
+	void liberar();
+	bool estaLibre();
 private:
 	typedef Objeto super;
 	void getSiguienteRadio();
 	void getAnteriorRadio();
+	bool libre;
 protected:
 	b2RevoluteJoint * jointCuerpoTierra;
 	float radio;

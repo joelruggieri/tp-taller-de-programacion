@@ -28,7 +28,7 @@ public:
 
 	void extraerPosInicial(Figura * f, float x, float y);
 	void extraerPosFinal(Figura * f, float x, float y);
-
+	void removerFisica();
 protected:
 	void setearPuntoInicial(Figura*f);
 	void setearPuntoFinal(Figura *f);
