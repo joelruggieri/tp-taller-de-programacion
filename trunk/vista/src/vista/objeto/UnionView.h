@@ -19,6 +19,7 @@ private:
 protected:
 	int xDesde,yDesde,xHasta,yHasta;
 	void dibujarse(SDL_Renderer * ren,Uint8 r,Uint8 g,Uint8 b);
+	void dibujarseEstatica(SDL_Renderer* ren);
 public:
 	UnionView(int x, int y, SDL_Texture * textura, EditorUnion * controller);
 	virtual ~UnionView();
