@@ -11,6 +11,7 @@
 #include "src/objeto/Union.h"
 #include "../../ConstantesVista.h"
 #include "../CargadorDeTextures.h"
+
 UnionView::UnionView(int x,int y, SDL_Texture * textura, EditorUnion * controller):ObjetoView(x,y,20,20,CargadorDeTextures::Instance()->cargarTexture(PATH_EDICION_UNION), controller) {
 	xDesde = 0;
 	yDesde = 0;
@@ -25,15 +26,10 @@ UnionView::~UnionView() {
 //	}
 }
 
+
 void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
 	SDL_SetRenderDrawColor(ren,r,g,b,0);
-	if(this->yDesde == this->yHasta){
-		SDL_RenderDrawLine(ren,this->xDesde,this->yDesde + this->getH(),this->xHasta,this->yHasta + this->getH());
-		SDL_RenderDrawLine(ren,this->xDesde,this->yDesde - this->getH(),this->xHasta,this->yHasta - this->getH());
-	}else{
-		SDL_RenderDrawLine(ren,this->xDesde + this->getW(),this->yDesde + this->getH(),this->xHasta + this->getW(),this->yHasta + this->getH());
-		SDL_RenderDrawLine(ren,this->xDesde - this->getW(),this->yDesde - this->getH(),this->xHasta - this->getW(),this->yHasta - this->getH());
-	}
+	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
 
 	Union* u = (Union *)this->getModelo();
 
