@@ -1,11 +1,11 @@
 /*
- * VistaCintaTransportadora.cpp
+ * CintaTransportadoraView.cpp
  *
  *  Created on: 05/10/2013
  *      Author: javier
  */
 
-#include "VistaCintaTransportadora.h"
+#include "CintaTransportadoraView.h"
 
 #include "../../controller/DropController.h"
 #include "../../controller/editor/SimpleEditorEstirar.h"
@@ -16,27 +16,64 @@
 
 #define RADTODEG 57.295779513082320876f
 
-VistaCintaTransportadora::VistaCintaTransportadora(int x, int y, int w, int h,
-		SDL_Texture* textura, SimpleEditorEstirar* editor) : ObjetoView(x,y,w,h,textura, editor){
+CintaTransportadoraView::CintaTransportadoraView(int x, int y, int w, int h,int altoModelo, SDL_Texture* textura,
+		SimpleEditorEstirar* editor) :
+		ObjetoView(x, y, w, h, textura, editor) {
+	this->alto = altoModelo;
 //	pieza = CargadorDeTextures::Instance()->cargarTexture("resource/eslabon_cinta.png");
-//	rueda = CargadorDeTextures::Instance()->cargarTexture("resource/eje_cinta.png");
+	rueda = CargadorDeTextures::Instance()->cargarTexture("resource/eje_cinta.png");
+	recalcular();
 }
 
-VistaCintaTransportadora::~VistaCintaTransportadora() {
+CintaTransportadoraView::~CintaTransportadoraView() {
 	// TODO Auto-generated destructor stub
 }
 
-void VistaCintaTransportadora::dropTemplate() {
-	((SimpleEditorEstirar * )this->controller)->dropNuevaFigura(this);
+void CintaTransportadoraView::dropTemplate() {
+	((SimpleEditorEstirar *) this->controller)->dropNuevaFigura(this);
 }
 
-
-EditorNivel* VistaCintaTransportadora::getEditor() {
-	SimpleEditorEstirar * editor = (SimpleEditorEstirar *)controller;
+EditorNivel* CintaTransportadoraView::getEditor() {
+	SimpleEditorEstirar * editor = (SimpleEditorEstirar *) controller;
 	editor->setFigura(this);
 	return editor;
 }
 
+void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
+	SDL_Rect dest;
+	dest.x = this->xEngrIzq;
+	dest.y = yEngranajes;
+	dest.w = this->alto;
+	dest.h = this->alto;
+	recalcular();
+	if (getModelo() != NULL) {
+		CintaTransportadora * ci = dynamic_cast<CintaTransportadora*>(this->getModelo());
+		if (ci->getRotacionEje()) {
+			SDL_RenderCopyEx(r, rueda, NULL, &dest, ci->getRotacionEje(), NULL, SDL_FLIP_NONE);
+			dest.x = this->getXCentro() - alto / 2;
+			SDL_RenderCopyEx(r, rueda, NULL, &dest, ci->getRotacionEje(), NULL, SDL_FLIP_NONE);
+			dest.x = this->xEngrDer;
+			SDL_RenderCopyEx(r, rueda, NULL, &dest, ci->getRotacionEje(), NULL, SDL_FLIP_NONE);
+		} else {
+			SDL_RenderCopy(r, rueda, NULL, &dest);
+			dest.x = this->getXCentro() - alto / 2;
+			SDL_RenderCopy(r, rueda, NULL, &dest);
+			dest.x = this->xEngrDer;
+			SDL_RenderCopy(r, rueda, NULL, &dest);
+		}
+	} else {
+		SDL_RenderCopy(r, rueda, NULL, &dest);
+		dest.x = this->getXCentro() - alto / 2;
+		SDL_RenderCopy(r, rueda, NULL, &dest);
+		dest.x = this->xEngrDer;
+		SDL_RenderCopy(r, rueda, NULL, &dest);
+	}
+}
+
+void CintaTransportadoraView::resizear() {
+	super::resizear();
+	alto = Resizer::Instance()->resizearDistanciaY(alto);
+}
 
 //	FiguraView::dibujarse(renderer, dest);
 //
@@ -84,18 +121,24 @@ EditorNivel* VistaCintaTransportadora::getEditor() {
 ////		dibujarParte(renderer, marcosRuedas[1], angulosRuedas[1], rueda);
 //	}
 
+void CintaTransportadoraView::dibujarParte(SDL_Renderer * renderer, SDL_Rect & dest, float angulo, SDL_Texture* text) {
+	SDL_RenderCopyEx(renderer, text, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
+}
 
-void VistaCintaTransportadora::dibujarParte(SDL_Renderer * renderer, SDL_Rect & dest, float angulo, SDL_Texture* text) {
-	SDL_RenderCopyEx(renderer,text, NULL, &dest,angulo,NULL,SDL_FLIP_NONE);
+void CintaTransportadoraView::update() {
+	super::update();
+	float y = 0;
+	CintaTransportadora * p = (CintaTransportadora *) this->getModelo();
+	tl.setVector(p->getAncho(), y);
+	float nuevoAncho;
+	tl.getResultadoInverso(nuevoAncho, y);
+	this->setW(nuevoAncho);
+	recalcular();
 }
 
 
-void VistaCintaTransportadora::update(){
-	super::update();
-	float y = 0;
-	CintaTransportadora * p = (CintaTransportadora *)this->getModelo();
-	tl.setVector(p->getAncho(),y);
-	float nuevoAncho;
-	tl.getResultadoInverso(nuevoAncho,y);
-	this->setW(nuevoAncho);
+void CintaTransportadoraView::recalcular() {
+	this->yEngranajes = this->getYCentro() - alto / 2;
+	this->xEngrIzq = this->getXCentro() - (this->getW() / 2);
+	this->xEngrDer = this->getXCentro() + (this->getW() / 2) - alto;
 }
