@@ -27,8 +27,8 @@
 #define ANCHO_BALANCIN 15.0
 #define ALTO_BALANCIN 1.6
 
-#define ALTO_CINTA 2.5
-#define ANCHO_CINTA 10
+#define ALTO_CINTA 5
+#define ANCHO_CINTA 20
 #define RADIO_EJE_CINTA 3.0
 
 #define RADIO_ENGRANAJE 4.8

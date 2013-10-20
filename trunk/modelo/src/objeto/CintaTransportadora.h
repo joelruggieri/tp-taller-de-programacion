@@ -11,11 +11,12 @@
 #include "Engranaje.h"
 #include <vector>
 #include <SDL2/SDL.h>
-class CintaTransportadora: public Engranaje {
+#include "Estirable.h"
+class CintaTransportadora: public Engranaje, public Estirable {
 public:
 	CintaTransportadora();
-	CintaTransportadora(float x, float y, float ancho, float alto);
 	CintaTransportadora(const CintaTransportadora& figura);
+	CintaTransportadora(float x, float y, float ancho, float alto);
 	virtual ~CintaTransportadora();
 	void crearFisica();
 	void acept(VisitorFigura*);
@@ -23,11 +24,15 @@ public:
 	void setAncho(float ancho);
 	void updateModelo();
 	void removerFisica();
+	float getAlto() const;
+	double getRotacionEje() const;
+	void estirar(float delta);
 private:
 	typedef Engranaje super;
 	float alto;
 	float ancho;
 	float anchoBack;
+	float rotacionEje;
 	b2Body * bodyEngranaje;
 };
 

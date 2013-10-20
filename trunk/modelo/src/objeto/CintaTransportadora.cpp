@@ -18,6 +18,7 @@ CintaTransportadora::CintaTransportadora(): Engranaje () {
 	this->ancho = 0;
 	this->alto = 0;
 	this->anchoBack = this->ancho;
+	this->rotacionEje = 0;
 }
 
 CintaTransportadora::~CintaTransportadora() {
@@ -111,6 +112,7 @@ CintaTransportadora::CintaTransportadora(float x, float y, float ancho, float al
 	this->ancho = ancho;
 	this->alto = alto;
 	this->anchoBack = ancho;
+	this->rotacionEje = 0;
 }
 
 
@@ -119,6 +121,7 @@ CintaTransportadora::CintaTransportadora(const CintaTransportadora& figura):Engr
 	this->anchoBack = ancho;
 	this->alto = figura.alto;
 	this->reg = figura.reg;
+	this->rotacionEje = 0;
 }
 
 
@@ -126,6 +129,7 @@ CintaTransportadora::CintaTransportadora(const CintaTransportadora& figura):Engr
 
 void CintaTransportadora::updateModelo() {
 	Figura::updateModelo();
+	this->rotacionEje = -1*radianesAGrados(bodyEngranaje->GetAngle());
 }
 
 void CintaTransportadora::setAncho(float ancho) {
@@ -140,4 +144,23 @@ void CintaTransportadora::removerFisica() {
 	super::removerFisica();
 	myWorld->DestroyBody(this->bodyEngranaje);
 	this->bodyEngranaje = NULL;
+}
+
+float CintaTransportadora::getAlto() const {
+	return alto;
+}
+
+double CintaTransportadora::getRotacionEje() const {
+	return this->rotacionEje;
+}
+
+
+void CintaTransportadora::estirar(float delta){
+	this->ancho = ancho + delta;
+	if (ancho < 15) {
+		ancho = 15;
+	}
+	if (ancho > 50) {
+		ancho = 50;
+	}
 }
