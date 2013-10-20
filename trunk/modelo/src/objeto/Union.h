@@ -48,7 +48,7 @@ public:
 
 
 	//estos son para poder indicar donde esta el cuerpo.
-	bool tieneCuerpo();
+	bool estaEstatica();
 	float getRadio();
 	void calcularCentroCuadrado();
 
@@ -72,6 +72,7 @@ protected:
 	virtual void updatePosicionesFigurasSinFisica();
 	void updateModelo();
 	typedef Figura super;
+	b2Joint * joint;
 };
 
 #endif /* UNION_H_ */

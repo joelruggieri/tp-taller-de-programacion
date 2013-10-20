@@ -31,7 +31,7 @@ void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
 	Union* u = (Union *)this->getModelo();
 
 
-//	if(u->tieneCuerpo()){
+	if(u->estaEstatica()){
 		SDL_Rect dest;
 		int wi,hi;
 		float xi,yi;
@@ -43,8 +43,8 @@ void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
 		dest.x = xi - wi/2;
 		dest.y = yi - hi/2;
 		SDL_RenderCopyEx(ren,this->getTexture(), NULL, &dest,this->getModelo()->getRotacion(),NULL,SDL_FLIP_NONE);
-//		SDL_RenderCopy(ren,this->getTexture(),NULL,&dest);
-//	}
+		SDL_RenderCopy(ren,this->getTexture(),NULL,&dest);
+	}
 }
 
 EditorNivel* UnionView::getEditor() {

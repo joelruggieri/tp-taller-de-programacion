@@ -65,7 +65,7 @@ void Soga::crearLazo(b2World* w) {
 	ropeJoint.localAnchorA = origen->getPos();
 	ropeJoint.localAnchorB = destino->getPos();
 
-	w->CreateJoint(&ropeJoint);
+	joint = w->CreateJoint(&ropeJoint);
 
 }
 
