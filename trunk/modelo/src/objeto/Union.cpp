@@ -116,22 +116,39 @@ void Union::calcularAnchoCuadrado() {
 }
 
 void Union::crearFisicaEstaticaTemplate() {
+//	b2Vec2 centro(x, y);
+//	b2PolygonShape shape;
+//	b2BodyDef bodyDef;
+//
+////	bodyDef.type = b2_dynamicBody;	//dynamic??
+//	bodyDef.position = centro;
+//	bodyDef.angle = this->rotacion;
+//	bodyDef.fixedRotation = true;
+//	body = myWorld->CreateBody(&bodyDef);
+//	shape.m_radius = this->getRadio();
+//	b2FixtureDef fixture;
+//	fixture.shape = &shape;
+//	fixture.filter.categoryBits = CATEGORIA_UNION;
+//	fixture.filter.maskBits = 0;
+//	body->CreateFixture(&fixture);
+//	body->SetUserData(this);
+	float x = this->getX();
+	float y = this->getY();
 	b2Vec2 centro(x, y);
-	b2PolygonShape cuadrado;
+	b2CircleShape shapeCircle;
 	b2BodyDef bodyDef;
-
-//	bodyDef.type = b2_dynamicBody;	//dynamic??
-	bodyDef.position = centro;
-	bodyDef.angle = this->rotacion;
-	bodyDef.fixedRotation = true;
-	body = myWorld->CreateBody(&bodyDef);
-	cuadrado.SetAsBox(this->w, this->h);
-	b2FixtureDef bodyCuadrado;
-	bodyCuadrado.shape = &cuadrado;
-	bodyCuadrado.filter.categoryBits = CATEGORIA_UNION;
-//	bodyCuadrado.filter.maskBits = 0X0008;
-	body->CreateFixture(&bodyCuadrado);
+	bodyDef.type = b2_dynamicBody;
+	bodyDef.position.Set(centro.x, centro.y);
+	b2Body* body = myWorld->CreateBody(&bodyDef);
+	shapeCircle.m_radius = this->h/2;
+	b2FixtureDef bodyBolaBoliche;
+	bodyBolaBoliche.filter.categoryBits = CATEGORIA_UNION;
+		bodyBolaBoliche.filter.maskBits = 0;
+	bodyBolaBoliche.shape = &shapeCircle;
+	body->CreateFixture(&bodyBolaBoliche);
 	body->SetUserData(this);
+	this->setBody(body);
+
 }
 
 void Union::setExtremos(Figura* f1, Figura* f2) {
@@ -226,6 +243,7 @@ void Union::notifyEvent(Evento_type enumEvento) {
 	if(enumEvento == CAMBIO_ESPACIAL_FORZADO){
 		cout << "me entere cambio espacial forzado" << endl;
 		updatePosicionesFigurasSinFisica();
+		calcularCentroCuadrado();
 		vista->update();
 	}
 	if(enumEvento == FISICA_E_CREADA){
@@ -241,4 +259,12 @@ void Union::notifyEvent(Evento_type enumEvento) {
 void Union::updatePosicionesFigurasSinFisica() {
 	updatePosicionesFiguras();
 
+}
+
+bool Union::tieneCuerpo() {
+	return body != NULL;
+}
+
+float Union::getRadio() {
+	return this->h/2;
 }

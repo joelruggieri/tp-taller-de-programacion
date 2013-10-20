@@ -142,6 +142,7 @@ void EditorUnion::mouseMotion(int x, int y) {
 		Union * un = ((Union *) this->editado->getModelo());
 		un->setXFinal(xf);
 		un->setYFinal(yf);
+		un->calcularCentroCuadrado();
 		this->editado->update();
 	}
 }
