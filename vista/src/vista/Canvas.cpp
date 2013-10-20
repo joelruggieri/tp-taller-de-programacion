@@ -7,6 +7,7 @@
 
 #include "Canvas.h"
 #include "SDL2/SDL.h"
+#include "LayerDibujablesComparator.h"
 
 //SDL_Texture* cargarTexture (char* file, SDL_Renderer* ren){
 ////	SDL_Texture* texture = IMG_LoadTexture(ren, file );
@@ -25,10 +26,12 @@ Canvas::~Canvas() {
 
 void Canvas::remover(Dibujable* vista) {
 	this->vistas.remove(vista);
+	this->vistas.sort(comparar_layers);
 }
 
 void Canvas::agregar(Dibujable* vista) {
 	this->vistas.push_back(vista);
+	this->vistas.sort(comparar_layers);
 }
 
 const list<Dibujable*>& Canvas::getDibujables() const {

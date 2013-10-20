@@ -6,7 +6,7 @@
  */
 
 #include "Dibujable.h"
-
+#include "../ConstantesVista.h"
 
 Dibujable::Dibujable() {
 
@@ -16,3 +16,6 @@ Dibujable::~Dibujable() {
 
 }
 
+int Dibujable::getLayer() {
+	return LAYER_DEFAULT;
+}

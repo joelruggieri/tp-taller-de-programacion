@@ -38,6 +38,7 @@ void Figura::setRotacion(double rotation){
 //		signo = -1;
 //	}
 	this->rotacion = rotation;
+	notify(CAMBIO_ESPACIAL_FORZADO);
 ////	while(){
 //	if(this->rotacion > 180 || this->rotacion <=  -180){
 //		int multip = (int)this->rotacion % 360;

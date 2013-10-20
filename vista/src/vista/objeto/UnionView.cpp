@@ -9,6 +9,7 @@
 #include "SDL2/SDL.h"
 #include "../../controller/editor/EditorUnion.h"
 #include "src/objeto/Union.h"
+#include "../../ConstantesVista.h"
 UnionView::UnionView(int x,int y, SDL_Texture * textura, EditorUnion * controller):ObjetoView(x,y,20,20,textura, controller) {
 	xDesde = 0;
 	yDesde = 0;
@@ -64,4 +65,8 @@ void UnionView::notifyEvent(ObservableModelo* o, Evento_type type) {
 void UnionView::resizear() {
 	super::resizear();
 	update();
+}
+
+int UnionView::getLayer() {
+	return LAYER_UNIONES;
 }

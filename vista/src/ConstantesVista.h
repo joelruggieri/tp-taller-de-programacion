@@ -35,4 +35,8 @@
 #define PATH_ROTACION_IMG "resource/rotacion.png"
 #define PATH_ERROR_IMG "resource/error.jpg"
 #define IMG_ERROR "error.jpg"
+
+#define LAYER_DEFAULT 0
+#define LAYER_UNIONES 1
+
 #endif /* CONSTANTESVISTA_H_ */
