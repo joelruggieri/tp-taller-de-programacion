@@ -8,7 +8,7 @@
 #include "Correa.h"
 #include "../Constantes.h"
 Correa::Correa(float x, float y) :
-		Union(x, y,3) {
+		Union(x, y,4.0) {
 }
 
 Correa::Correa(const Correa& correa):Union(correa) {

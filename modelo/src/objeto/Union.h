@@ -45,6 +45,13 @@ public:
     void makeBackUp();
 	void restoreBackUp();
 	void notifyEvent(Evento_type);
+
+
+	//estos son para poder indicar donde esta el cuerpo.
+	bool tieneCuerpo();
+	float getRadio();
+	void calcularCentroCuadrado();
+
 protected:
 	void crearFisicaEstaticaTemplate();
 	b2Vec2 inicio;
@@ -59,7 +66,6 @@ protected:
 	virtual void setearPuntoFinal(Figura *) = 0;
 	void updateCaracteristicas();
 	float calcularDistancia(b2Vec2, b2Vec2);
-	void calcularCentroCuadrado();
 	void calcularAnguloCuadrado();
 	void calcularAnchoCuadrado();
 	virtual void updatePosicionesFiguras();

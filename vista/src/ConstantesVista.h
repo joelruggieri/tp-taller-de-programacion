@@ -31,6 +31,7 @@
 #define PATH_VISTA_CINTA "resource/cinta.png"
 #define PATH_VISTA_CUERDA "resource/cuerda.png"
 #define PATH_VISTA_ENGRANAJE "resource/engranaje.png"
+#define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
 #define PATH_ROTACION_IMG "resource/rotacion.png"
 #define PATH_ERROR_IMG "resource/error.jpg"
