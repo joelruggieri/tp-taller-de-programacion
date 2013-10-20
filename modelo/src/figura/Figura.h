@@ -35,10 +35,10 @@ protected:
 	Vista * vista;
 	b2Body * body;
 	double radianesAGrados(float r);
-	double gradosARadianes(float g);
     virtual void crearFisicaEstaticaTemplate();
     bool validarContacto(b2Body * verf, b2Body * b);
 public:
+	static double gradosARadianes(float g);
 	Figura();
 	Figura(float x, float y);
 	Figura(const Figura & fig);
