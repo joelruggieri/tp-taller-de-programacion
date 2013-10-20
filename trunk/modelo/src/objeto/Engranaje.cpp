@@ -147,6 +147,8 @@ bool Engranaje::crearFisicaEstatica() {
 //				crearLazo(*it,w);
 //			}
 //		}
+	} else {
+		notify(FISICA_E_CREADA);
 	}
 
 	return !hayContacto;

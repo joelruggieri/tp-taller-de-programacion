@@ -24,6 +24,7 @@ void EditorUnion::clickDown(int x, int y) {
 	Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
 	if (primerClick && this->editado->getModelo() != NULL) {
 		//si tiene body y es el primer click no hago nada.
+		finalizado = true;
 		return;
 	}
 	if (primerClick) {

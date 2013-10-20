@@ -85,12 +85,12 @@ void SimpleEditorNivel::setFigura(FiguraView* f) {
 
 void SimpleEditorNivel::dropFigura(FiguraView* view) {
 	Figura* modelo = view->getModelo();
-	Resizer * r = Resizer::Instance();
-	float x;
-	float y;
-	r->adaptarPosicionPixel(view->getXCentro(), view->getYCentro(), x, y);
-	modelo->setX(x);
-	modelo->setY(100 - y);
+	Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
+
+	trans.setVector(view->getXCentro(), view->getYCentro());
+	float x,y;
+	trans.getResultado(x,y);
+	modelo->setPosicion(x,y);
 	this->dropear(view, modelo);
 }
 

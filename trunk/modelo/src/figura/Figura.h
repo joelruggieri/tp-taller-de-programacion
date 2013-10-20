@@ -47,6 +47,8 @@ public:
 	float getX() const;
 	float getY() const;
 	double getRotacion() const;
+	//actualiza a quienes estan observando la figura
+	void setPosicion(float, float);
 	void setX(float x);
 	void setY(float y);
 	virtual void setRotacion(double rotation);
@@ -56,7 +58,6 @@ public:
 	virtual void acept(VisitorFigura*) = 0;
 	virtual void removerFisica();
 	bool esTraccionable();
-	bool esUnibleConSoga();
 	Vista* getVista();
 	void setVista(Vista* vista);
 	b2Body * getBody();

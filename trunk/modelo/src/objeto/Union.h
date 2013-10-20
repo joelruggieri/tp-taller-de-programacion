@@ -63,6 +63,7 @@ protected:
 	void calcularAnguloCuadrado();
 	void calcularAnchoCuadrado();
 	virtual void updatePosicionesFiguras();
+	virtual void updatePosicionesFigurasSinFisica();
 	void updateModelo();
 	typedef Figura super;
 };

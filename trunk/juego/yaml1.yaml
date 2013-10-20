@@ -2,22 +2,30 @@ Nivel:
   Nombre: yaml1
   Fondo: ""
 Objetos:
+  Balancines:
+    - x: 45.4
+      y: 53
+      rotacion: 0
   BolasBoliche:
     - x: 75.2
       y: 71.6
   GlobosHelio:
     - x: 58.8
       y: 88.2
-  Balancines:
-    - x: 45.4
-      y: 53
-      rotacion: 0
   Motores:
     - x: 86.6
       y: 27.4
-      direccion: -1
+      direccion: 1
+  Engranajes:
+    - x: 42.4
+      y: 25.4
   Sogas:
     - xDesde: 58.8
       yDesde: 84.7
       xHasta: 52.9
       yHasta: 53
+  Correas:
+    - xDesde: 86.6
+      yDesde: 27.4
+      xHasta: 42.4
+      yHasta: 25.4
