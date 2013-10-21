@@ -234,21 +234,21 @@ void Union::notifyEvent(Evento_type enumEvento) {
 		if(o == figuraInicio){
 			figuraInicio = NULL;
 		}
-		cout << "la union se entera de la destruccion del extremo y solicita su destruccion" << endl;
+//		cout << "la union se entera de la destruccion del extremo y solicita su destruccion" << endl;
 		notify(DESTRUCCION_FORZADA);
 	}
 	if(enumEvento == FISICA_REMOVIDA){
-		cout << "me entere remocion fisica" << endl;
+//		cout << "me entere remocion fisica" << endl;
 		this->removerFisica();
 	}
 	if(enumEvento == CAMBIO_ESPACIAL_FORZADO){
-		cout << "me entere cambio espacial forzado" << endl;
+//		cout << "me entere cambio espacial forzado" << endl;
 		updatePosicionesFigurasSinFisica();
 		calcularCentroCuadrado();
 		vista->update();
 	}
 	if(enumEvento == FISICA_E_CREADA){
-		cout << "me entere creacion fisica" << endl;
+//		cout << "me entere creacion fisica" << endl;
 		updateCaracteristicas();
 		this->crearFisicaEstatica();
 		vista->update();

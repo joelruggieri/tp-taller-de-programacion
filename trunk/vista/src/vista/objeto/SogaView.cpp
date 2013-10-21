@@ -27,6 +27,6 @@ SogaView::~SogaView() {
 }
 
 void SogaView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
-	super::dibujarse(renderer, 30, 30 ,30);
+	super::dibujarse(renderer, 100, 100, 100);
 }
 
