@@ -36,7 +36,7 @@ void VistaEngranaje::update() {
 		super::update();
 		Engranaje* e = (Engranaje*) this->getModelo();
 		float y = 0 ;
-		tl.setVector(e->getAncho(),e->getAncho());
+		tl.setVector(e->getRadio()*2,0);
 		float nuevoRadio;
 		tl.getResultadoInverso(nuevoRadio,y);
 		this->setW(nuevoRadio);

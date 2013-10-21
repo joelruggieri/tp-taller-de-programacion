@@ -25,7 +25,7 @@ public:
 	void modificarSentido();
 	int getDireccion() const;
 	void setDireccion(int dir);
-	float getAncho();
+	float getRadio();
 	void estirar(float delta);
 	void ocupar();
 	void liberar();

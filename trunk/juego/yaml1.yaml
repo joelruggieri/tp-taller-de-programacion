@@ -1,66 +1,22 @@
 Nivel:
-  Nombre: yaml1
   Fondo: resource/fondo.jpg
+  Nombre: yaml1
 Objetos:
-  Plataformas:
-    - x: 60.4
-      y: 60.6
-      ancho: 46
-      rotacion: 0
   Balancines:
     - x: 72.6
       y: 6.799995
       rotacion: 0
   BolasBoliche:
-    - x: 59.6
-      y: 89.8
-  GlobosHelio:
-    - x: 82.4
-      y: 88.6
-    - x: 90.8
-      y: 68.6
+    - x: 63
+      y: 94.6
+  Motores:
+    - x: 21.8
+      y: 32
+      direccion: 1
+  Engranajes:
+    - x: 52.8
+      y: 59.2
   Cintas:
-    - y: 81.4
-      ancho: 48.8
-      x: 40.4
     - x: 46.4
       y: 11
       ancho: 20
-  Motores:
-    - x: 24.6
-      y: 57.2
-      direccion: 1
-    - x: 61.4
-      y: 47.4
-      direccion: -1
-  Engranajes:
-    - x: 26.2
-      y: 47.4
-    - x: 29.4
-      y: 38.2
-    - x: 53.2
-      y: 42
-    - x: 90.8
-      y: 22
-  Correas:
-    - xDesde: 40.4
-      yDesde: 81.4
-      xHasta: 26.2
-      yHasta: 47.4
-    - xDesde: 29.4
-      yDesde: 38.2
-      xHasta: 46.4
-      yHasta: 11
-    - xDesde: 90.8
-      yDesde: 22
-      xHasta: 53.2
-      yHasta: 42
-  Sogas:
-    - xDesde: 82.4
-      yDesde: 85.1
-      xHasta: 65.1
-      yHasta: 6.799995
-    - xDesde: 90.8
-      yDesde: 65.1
-      xHasta: 80.1
-      yHasta: 6.799995
