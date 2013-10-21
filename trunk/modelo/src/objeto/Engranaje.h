@@ -31,6 +31,9 @@ public:
 	void liberar();
 	bool estaLibre();
 	void setRotacion(double rotation);
+	void makeBackUp();
+	void restoreBackUp();
+
 private:
 	typedef Objeto super;
 	void getSiguienteRadio();
@@ -38,7 +41,7 @@ private:
 	bool libre;
 protected:
 	b2RevoluteJoint * jointCuerpoTierra;
-	float radio;
+	float radio, radiob;
 	b2Body* radioAccion;
 	int direccion;
 	void crearLazo(Engranaje*, b2World*);

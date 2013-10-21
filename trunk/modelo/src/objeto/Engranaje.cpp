@@ -192,20 +192,20 @@ float Engranaje::getAncho() {
 void Engranaje::getSiguienteRadio() {
 	cout << this->radio << endl;
 	if (this->radio == (float)RADIO_ENGRANAJE_CHICO)
-		this->radio = RADIO_ENGRANAJE_MEDIO;
-	else if (this->radio == (float)RADIO_ENGRANAJE_MEDIO)
+		this->radio = RADIO_ENGRANAJE;
+	else if (this->radio == (float)RADIO_ENGRANAJE)
 		this->radio = RADIO_ENGRANAJE_GRANDE;
 	else if (this->radio == (float)RADIO_ENGRANAJE_GRANDE)
-		this->radio = RADIO_ENGRANAJE_CHICO;
+		this->radio = RADIO_ENGRANAJE_GRANDE;
 }
 
 void Engranaje::getAnteriorRadio() {
 	if (this->radio == RADIO_ENGRANAJE_CHICO)
 		this->radio = RADIO_ENGRANAJE_GRANDE;
-	else if (this->radio == RADIO_ENGRANAJE_MEDIO)
+	else if (this->radio == RADIO_ENGRANAJE)
 		this->radio = RADIO_ENGRANAJE_CHICO;
 	else if (this->radio == RADIO_ENGRANAJE_GRANDE)
-		this->radio = RADIO_ENGRANAJE_MEDIO;
+		this->radio = RADIO_ENGRANAJE;
 }
 
 void Engranaje::ocupar() {
@@ -221,4 +221,14 @@ bool Engranaje::estaLibre() {
 }
 
 void Engranaje::setRotacion(double rotation) {
+}
+
+void Engranaje::makeBackUp() {
+	super::makeBackUp();
+	radiob = radio;
+}
+
+void Engranaje::restoreBackUp() {
+	super::restoreBackUp();
+	radio = radiob;
 }

@@ -13,6 +13,7 @@
 #include "ObjetoView.h"
 #include "../CargadorDeTextures.h"
 #include <src/objeto/CintaTransportadora.h>
+#include "../../ConstantesVista.h"
 
 #define RADTODEG 57.295779513082320876f
 
@@ -22,7 +23,7 @@ CintaTransportadoraView::CintaTransportadoraView(int x, int y, int w, int h,int 
 	this->alto = altoModelo;
 	this->altoPlataforma = altoPlataforma;
 //	pieza = CargadorDeTextures::Instance()->cargarTexture("resource/eslabon_cinta.png");
-	rueda = CargadorDeTextures::Instance()->cargarTexture("resource/eje_cinta.png");
+	rueda = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_ENGRANAJE);
 	recalcular();
 }
 
