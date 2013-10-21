@@ -26,6 +26,7 @@ private:
 	void recalcular();
 	void resizear();
 	void dibujarParte(SDL_Renderer * renderer, SDL_Rect & dest, float angulo, SDL_Texture* text);
+	int getLayer();
 };
 
 #endif /* VISTACINTATRANSPORTADORA_H_ */

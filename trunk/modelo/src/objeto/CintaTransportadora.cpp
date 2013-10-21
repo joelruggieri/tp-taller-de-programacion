@@ -176,4 +176,5 @@ void CintaTransportadora::makeBackUp() {
 void CintaTransportadora::restoreBackUp() {
 	super::restoreBackUp();
 	ancho = anchoBack;
+	rotacionEje = 0;
 }
