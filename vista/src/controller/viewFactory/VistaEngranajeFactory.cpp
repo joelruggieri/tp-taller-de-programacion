@@ -19,9 +19,11 @@ VistaEngranajeFactory::~VistaEngranajeFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* VistaEngranajeFactory::crear(int x, int y, int w,
-		int h) {
-	return new VistaEngranaje(x, y, w, h, this->textura, dynamic_cast<SimpleEditorAnguloFijo*>(this->controller));
+FiguraView* VistaEngranajeFactory::crear(int x, int y, int w,int h) {
+	Resizer* r = Resizer::Instance();
+	int ancho, alto;
+	r->adaptarDimensionLogica(ANCHO_ENGRANAJE,ANCHO_ENGRANAJE,ancho,alto);
+	return new VistaEngranaje(x, y, ancho, alto, this->textura, dynamic_cast<SimpleEditorAnguloFijo*>(this->controller));
 }
 
 View* VistaEngranajeFactory::crearVistaPropia(int x, int y, int w,
