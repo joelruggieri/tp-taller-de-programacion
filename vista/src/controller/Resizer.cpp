@@ -38,6 +38,9 @@ Resizer* Resizer::Instance ()
 
 int Resizer::resizearDistanciaX(int valor) {
 	float valorFloat = (float) valor ;
+	if(valor == 0) {
+		return 0;
+	}
 	return round(this->relacionX * valorFloat)  ;
 }
 
@@ -84,6 +87,10 @@ void Resizer::setearResizer(int xNuevo, int yNuevo) {
 
 
 int Resizer::resizearDistanciaY(int valor) {
+	if(valor == 0) {
+		return 0;
+	}
+
 	return round(this->relacionY * valor);
 }
 
