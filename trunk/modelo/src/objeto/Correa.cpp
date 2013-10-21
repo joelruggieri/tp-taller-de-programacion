@@ -53,7 +53,9 @@ void Correa::crearLazo(Engranaje * a, Engranaje* b, b2World* w) {
 	gear_joint.bodyB = b->getBody();
 	gear_joint.joint1 = a->getJointATierra();
 	gear_joint.joint2 = b->getJointATierra();
-	gear_joint.ratio = -1;
+	if (a->getAncho() > b->getAncho())
+	gear_joint.ratio = -(a->getAncho()/b->getAncho());
+	else gear_joint.ratio = -(b->getAncho()/a->getAncho());
 	joint = w->CreateJoint(&gear_joint);
 
 }
