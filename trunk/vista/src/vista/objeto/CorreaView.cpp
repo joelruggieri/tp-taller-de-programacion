@@ -65,11 +65,11 @@ void CorreaView::update(){
 	} else {
 		Correa* c = (Correa*)this->getModelo();
 		float radio,foo;
-		tl.setVector(c->getRadioInicial(),0.0f);
+		tl.setVector(c->getRadioInicial() * 0.8,0.0f);
 		tl.getResultadoInverso(radio,foo);
 		v1iX = v1oX * radio;
 		v1iY = v1oY * radio;
-		tl.setVector(c->getRadioFinal(),0.0f);
+		tl.setVector(c->getRadioFinal() * 0.8,0.0f);
 		tl.getResultadoInverso(radio,foo);
 		v1fX = v1oX * radio;
 		v1fY = v1oY * radio;
