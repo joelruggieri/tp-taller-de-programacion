@@ -14,10 +14,7 @@ class EditorUnion;
 
 class CorreaView: public UnionView {
 private:
-	double v1oX;
-	double v1oY;
-	double v2oX;
-	double v2oY;
+	double v1iX,v1iY,v1fX,v1fY,v2iX,v2iY,v2fX,v2fY;
 	typedef UnionView super;
 	SDL_Color color;
 public:
