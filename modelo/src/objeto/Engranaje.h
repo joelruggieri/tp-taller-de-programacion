@@ -8,7 +8,8 @@
 #ifndef ENGRANAJE_H_
 #define ENGRANAJE_H_
 #include "Objeto.h"
-class Engranaje: public Objeto {
+#include "Estirable.h"
+class Engranaje: public Objeto, public virtual Estirable {
 public:
 	Engranaje();
 	Engranaje(const Engranaje & engranaje);

@@ -7,8 +7,7 @@
 
 #ifndef VISTAENGRANAJE_H_
 #define VISTAENGRANAJE_H_
-
-#include "ObjetoView.h"
+	#include "ObjetoView.h"
 class SimpleEditorAnguloFijo;
 class SDL_Texture;
 

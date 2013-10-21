@@ -6,7 +6,7 @@
  */
 
 #include "SimpleEditorCambiarRadio.h"
-
+#include "src/objeto/Estirable.h"
 SimpleEditorCambiarRadio::SimpleEditorCambiarRadio(ModeloController * controller , ZonaTablero * zona,FiguraFactory* factory, int yMaxDrag): SimpleEditorEstirar(controller, zona, factory, yMaxDrag) {
 	// TODO Auto-generated constructor stub
 
@@ -29,10 +29,10 @@ void SimpleEditorCambiarRadio::rightClickDown(int x, int y) {
 
 
 void SimpleEditorCambiarRadio::actualizarRadio() {
-////	Figura* figura = (this->editado->getModelo());
-//	Resizer*r = Resizer::Instance();
-////	figura->estirar(1); //siempre agranda
-//	Transformacion trans;
+	Estirable* figura = dynamic_cast<Estirable*>(this->editado->getModelo());//	Resizer*r = Resizer::Instance();
+	figura->estirar(1); //siempre agranda
+	this->editado->update();
+	//	Transformacion trans;
 //	trans.traslacion(0, 100);
 //	trans.escalar(r->getRelacionX(), r->getRelacionY());
 //	trans.invertir(false, true);
