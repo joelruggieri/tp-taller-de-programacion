@@ -28,6 +28,8 @@ public:
 	double getRotacionEje() const;
 	void estirar(float delta);
 	void setRotacion(double );
+	void makeBackUp();
+	void restoreBackUp();
 private:
 	typedef Engranaje super;
 	float alto;
