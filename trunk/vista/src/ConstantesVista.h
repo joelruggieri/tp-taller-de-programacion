@@ -19,6 +19,7 @@
 #define ALTO_VISTA_BALANCIN_LOG 4.0 //U logicas
 #define ALTO_VISTA_PLATAFORMA_LOG 4.0 //U logicas
 #define ALTO_VISTA_CINTA_LOG 8.0 //U logicas
+#define ANCHO_ENGRANAJE 13
 #define ALTO_VISTA_CINTA_RAMPA_LOG 1.0
 #define RADIO_EJE_CINTA_LOG 3
 #define PATH_VISTA_BALANCIN "resource/balancin.png"
@@ -32,7 +33,7 @@
 #define PATH_VISTA_CINTA "resource/cinta.png"
 #define PATH_VISTA_CINTA_PLATAF "resource/baseCinta.png"
 #define PATH_VISTA_CUERDA "resource/cuerda.png"
-#define PATH_VISTA_ENGRANAJE "resource/engranaje.png"
+#define PATH_VISTA_ENGRANAJE "resource/engranaje1.png"
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
 #define PATH_ROTACION_IMG "resource/rotacion.png"
