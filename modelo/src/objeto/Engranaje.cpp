@@ -185,7 +185,7 @@ void Engranaje::estirar(float delta) {
 
 float Engranaje::getAncho() {
 //	cout << this->radio << endl;
-	return this->radio;
+	return this->radio * 2 ;
 }
 
 void Engranaje::getSiguienteRadio() {

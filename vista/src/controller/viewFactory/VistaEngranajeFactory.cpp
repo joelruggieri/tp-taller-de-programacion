@@ -22,7 +22,7 @@ VistaEngranajeFactory::~VistaEngranajeFactory() {
 FiguraView* VistaEngranajeFactory::crear(int x, int y, int w,int h) {
 	Resizer* r = Resizer::Instance();
 	int ancho, alto;
-	r->adaptarDimensionLogica(ANCHO_ENGRANAJE,ANCHO_ENGRANAJE,ancho,alto);
+	r->adaptarDimensionLogica(RADIO_ENGRANAJE*2,RADIO_ENGRANAJE*2,ancho,alto);
 	return new VistaEngranaje(x, y, ancho, alto, this->textura, dynamic_cast<SimpleEditorAnguloFijo*>(this->controller));
 }
 

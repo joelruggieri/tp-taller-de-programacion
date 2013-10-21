@@ -12,7 +12,7 @@
 #include <vector>
 #include <SDL2/SDL.h>
 #include "Estirable.h"
-class CintaTransportadora: public Engranaje, public Estirable {
+class CintaTransportadora: public Engranaje {
 public:
 	CintaTransportadora();
 	CintaTransportadora(const CintaTransportadora& figura);
