@@ -22,7 +22,7 @@ public:
 	virtual ~MotorView();
 	void dropTemplate();
 	EditorNivel * getEditor();
-
+	int getLayer();
 };
 
 #endif /* MOTORVIEW_H_ */

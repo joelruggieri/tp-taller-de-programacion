@@ -42,5 +42,5 @@
 
 #define LAYER_DEFAULT 0
 #define LAYER_UNIONES 1
-
+#define LAYER_ENGRANAJES 2
 #endif /* CONSTANTESVISTA_H_ */
