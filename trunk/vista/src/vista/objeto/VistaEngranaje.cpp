@@ -10,6 +10,7 @@
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "../../controller/editor/SimpleEditorCambiarRadio.h"
 #include "src/objeto/Engranaje.h"
+#include "../../ConstantesVista.h"
 #include <iostream>
 using namespace std;
 
@@ -47,4 +48,8 @@ void VistaEngranaje::update() {
 //		cout << a << " " << b << endl;
 //				this->setW(a);
 //				this->setH(b);
+}
+
+int VistaEngranaje::getLayer() {
+	return LAYER_ENGRANAJES;
 }

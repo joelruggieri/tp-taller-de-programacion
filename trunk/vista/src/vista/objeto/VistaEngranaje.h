@@ -20,6 +20,7 @@ public:
 	void dropTemplate();
 	EditorNivel * getEditor();
 	void  update();
+	int getLayer();
 };
 
 #endif /* VISTAENGRANAJE_H_ */

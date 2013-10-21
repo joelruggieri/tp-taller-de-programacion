@@ -8,6 +8,7 @@
 #include "MotorView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "../../controller/editor/SimpleEditorOrientacionCambiable.h"
+#include "../../ConstantesVista.h"
 //MotorView::MotorView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, w, h,textura, editor) {
 //
 //}
@@ -28,4 +29,8 @@ EditorNivel* MotorView::getEditor() {
 	SimpleEditorOrientacionCambiable * editor = (SimpleEditorOrientacionCambiable *)controller;
 	editor->setFigura(this);
 	return editor;
+}
+
+int MotorView::getLayer() {
+	return LAYER_ENGRANAJES;
 }
