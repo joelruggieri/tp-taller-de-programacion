@@ -167,3 +167,13 @@ void CintaTransportadora::estirar(float delta){
 
 void CintaTransportadora::setRotacion(double rot) {
 }
+
+void CintaTransportadora::makeBackUp() {
+	super::makeBackUp();
+	anchoBack = this->getAncho();
+}
+
+void CintaTransportadora::restoreBackUp() {
+	super::restoreBackUp();
+	ancho = anchoBack;
+}
