@@ -164,3 +164,6 @@ void CintaTransportadora::estirar(float delta){
 		ancho = 50;
 	}
 }
+
+void CintaTransportadora::setRotacion(double rot) {
+}

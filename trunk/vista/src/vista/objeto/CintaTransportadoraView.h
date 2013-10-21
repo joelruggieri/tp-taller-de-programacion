@@ -13,14 +13,14 @@ class SimpleEditorEstirar;
 
 class CintaTransportadoraView: public ObjetoView {
 public:
-	CintaTransportadoraView(int x, int y, int w, int h,int altoModelo, SDL_Texture * textura,SimpleEditorEstirar* controller);
+	CintaTransportadoraView(int x, int y, int w, int h,int altoModelo,int altoPlataforma, SDL_Texture * textura,SimpleEditorEstirar* controller);
 	virtual ~CintaTransportadoraView();
 	void dropTemplate();
 	EditorNivel * getEditor();
 	void update();
 	void dibujarse(SDL_Renderer*);
 private:
-	int xEngrIzq, xEngrDer, alto, yEngranajes;
+	int xEngrIzq, xEngrDer, alto, yEngranajes,altoPlataforma;
 	SDL_Texture * rueda;
 	typedef ObjetoView super;
 	void recalcular();

@@ -27,6 +27,7 @@ public:
 	float getAlto() const;
 	double getRotacionEje() const;
 	void estirar(float delta);
+	void setRotacion(double );
 private:
 	typedef Engranaje super;
 	float alto;
