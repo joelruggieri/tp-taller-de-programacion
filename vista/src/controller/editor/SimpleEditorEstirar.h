@@ -12,8 +12,10 @@
 class SimpleEditorEstirar: public SimpleEditorNivel{
 private:
    typedef SimpleEditorNivel super;
-   bool estirando;
    void actualizarAncho(int delta);
+protected:
+   bool estirando;
+   int ultimoX, ultimoY;
 public:
 	SimpleEditorEstirar(ModeloController * , ZonaTablero *,FiguraFactory* factory, int yMaxDrag);
 	virtual ~SimpleEditorEstirar();

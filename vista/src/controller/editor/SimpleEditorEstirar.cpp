@@ -24,6 +24,8 @@ void SimpleEditorEstirar::rightClickDown(int x, int y) {
 	this->editado->getModelo()->makeBackUp();
 	tablero->removerFigura(editado);
 	this->modeloController->removerFigura(editado->getModelo());
+	ultimoX = x;
+	ultimoY = y;
 	const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
 	if (keyboardState[SDL_SCANCODE_LCTRL]) {
 		estirando = true;
@@ -45,18 +47,21 @@ void SimpleEditorEstirar::actualizarAncho(int delta) {
 }
 
 void SimpleEditorEstirar::mouseMotion(int x, int y) {
-	int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW() / 2);
-	int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW() / 2);
+//	int posFinalDerecha = this->editado->getXCentro() + (this->editado->getW() / 2);
+//	int posFinalIzquierda = this->editado->getXCentro() - (this->editado->getW() / 2);
 	int delta;
 	if (estirando && !dragueando) {
+//		this->actualizarAncho(x - ultimoX);
+
 		if ((x > this->editado->getXCentro() + (this->editado->getW() / 2)) || (x > this->editado->getXCentro())) {
-			delta = x - posFinalDerecha;
+			delta = x - ultimoX;
 			this->actualizarAncho(delta);
 		} else if ((x < this->editado->getXCentro() - (this->editado->getW() / 2))
 				|| (x < this->editado->getXCentro())) {
-			delta = posFinalIzquierda - x;
+			delta = ultimoX - x;
 			this->actualizarAncho(delta);
 		}
+		ultimoX = x;
 	} else
 		super::mouseMotion(x, y);
 }

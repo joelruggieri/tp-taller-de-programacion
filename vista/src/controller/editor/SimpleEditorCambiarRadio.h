@@ -8,13 +8,13 @@
 #ifndef SIMPLEEDITORCAMBIARRADIO_H_
 #define SIMPLEEDITORCAMBIARRADIO_H_
 class SimpleEditorCambiarRadio  : public SimpleEditorEstirar {
-	typedef SimpleEditorNivel super;
+	typedef SimpleEditorEstirar super;
 public:
 	SimpleEditorCambiarRadio(ModeloController * controller , ZonaTablero * zona,FiguraFactory* factory, int yMaxDrag);
 	virtual ~SimpleEditorCambiarRadio();
 	void mouseMotion(int x, int y);
 
-	void rightClickDown(int x, int y);
+//	void rightClickDown(int x, int y);
 	void actualizarRadio();
 };
 
