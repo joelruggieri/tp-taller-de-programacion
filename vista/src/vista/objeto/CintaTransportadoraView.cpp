@@ -16,10 +16,11 @@
 
 #define RADTODEG 57.295779513082320876f
 
-CintaTransportadoraView::CintaTransportadoraView(int x, int y, int w, int h,int altoModelo, SDL_Texture* textura,
+CintaTransportadoraView::CintaTransportadoraView(int x, int y, int w, int h,int altoModelo, int altoPlataforma, SDL_Texture* textura,
 		SimpleEditorEstirar* editor) :
 		ObjetoView(x, y, w, h, textura, editor) {
 	this->alto = altoModelo;
+	this->altoPlataforma = altoPlataforma;
 //	pieza = CargadorDeTextures::Instance()->cargarTexture("resource/eslabon_cinta.png");
 	rueda = CargadorDeTextures::Instance()->cargarTexture("resource/eje_cinta.png");
 	recalcular();
@@ -40,12 +41,24 @@ EditorNivel* CintaTransportadoraView::getEditor() {
 }
 
 void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
+
 	SDL_Rect dest;
+	//calculo el alto donde va a estar la plataforma
+	dest.x = this->getX() + alto / 2;
+	dest.y = this->getY();
+	dest.w = this->getW() - alto;
+	dest.h = this->altoPlataforma;
+	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
+	dest.y = this->getY() + this->getH() - altoPlataforma;
+	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
 	dest.x = this->xEngrIzq;
 	dest.y = yEngranajes;
 	dest.w = this->alto;
 	dest.h = this->alto;
 	recalcular();
+
+
+
 	if (getModelo() != NULL) {
 		CintaTransportadora * ci = dynamic_cast<CintaTransportadora*>(this->getModelo());
 		if (ci->getRotacionEje()) {
@@ -73,6 +86,7 @@ void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
 void CintaTransportadoraView::resizear() {
 	super::resizear();
 	alto = Resizer::Instance()->resizearDistanciaY(alto);
+	altoPlataforma = Resizer::Instance()->resizearDistanciaY(altoPlataforma);
 }
 
 //	FiguraView::dibujarse(renderer, dest);
