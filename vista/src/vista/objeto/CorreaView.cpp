@@ -34,13 +34,15 @@ void CorreaView::dibujarse(SDL_Renderer* renderer){
 
 
 	SDL_SetRenderDrawColor(renderer,10,10,10,0);
-	/*SDL_RenderDrawLine(renderer,this->xDesde + v1oX +5,this->yDesde + v1oY -5,this->xHasta + v1oX +5,this->yHasta + v1oY -5);
-	SDL_RenderDrawLine(renderer,this->xDesde + v1oX +4,this->yDesde + v1oY -4,this->xHasta + v1oX +4,this->yHasta + v1oY -4);
-	SDL_RenderDrawLine(renderer,this->xDesde + v1oX +3,this->yDesde + v1oY -3,this->xHasta + v1oX +1,this->yHasta + v1oY -3);
-	SDL_RenderDrawLine(renderer,this->xDesde + v1oX +2,this->yDesde + v1oY -2,this->xHasta + v1oX +2,this->yHasta + v1oY -2);
-	SDL_RenderDrawLine(renderer,this->xDesde + v1oX +1,this->yDesde + v1oY -1,this->xHasta + v1oX +1,this->yHasta + v1oY -1);*/
 	SDL_RenderDrawLine(renderer,this->xDesde + v1iX,this->yDesde + v1iY,this->xHasta + v1fX,this->yHasta + v1fY);
 	SDL_RenderDrawLine(renderer,this->xDesde + v2iX,this->yDesde + v2iY,this->xHasta + v2fX,this->yHasta + v2fY);
+	float longitud = 0.9;
+	for (int i = 0; i < 9; ++i) {
+		longitud += 0.01;
+		SDL_RenderDrawLine(renderer,this->xDesde + v1iX *longitud,this->yDesde + v1iY*longitud,this->xHasta + v1fX*longitud,this->yHasta + v1fY*longitud);
+		SDL_RenderDrawLine(renderer,this->xDesde + v2iX*longitud,this->yDesde + v2iY*longitud,this->xHasta + v2fX*longitud,this->yHasta + v2fY*longitud);
+
+	}
 
 	this->dibujarseEstatica(renderer);
 
