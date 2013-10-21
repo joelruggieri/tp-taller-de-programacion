@@ -8,11 +8,12 @@
 #include "VistaEngranaje.h"
 #include "SDL2/SDL.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
+#include "../../controller/editor/SimpleEditorCambiarRadio.h"
 #include "src/objeto/Engranaje.h"
 #include <iostream>
 using namespace std;
 
-VistaEngranaje::VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor): ObjetoView(x, y, w, h,textura, editor) {
+VistaEngranaje::VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorCambiarRadio * editor): ObjetoView(x, y, w, h,textura, editor) {
 	// TODO Auto-generated constructor stub
 
 }

@@ -18,20 +18,29 @@ SimpleEditorCambiarRadio::~SimpleEditorCambiarRadio() {
 
 void SimpleEditorCambiarRadio::mouseMotion(int x, int y) {
 	super::mouseMotion(x,y);
-	this->finalizado = true;
+//	this->finalizado = true;
 //	return true;
 }
 
 void SimpleEditorCambiarRadio::rightClickDown(int x, int y) {
 	super::rightClickDown(x,y);
+//		const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+//	if (keyboardState[SDL_SCANCODE_LCTRL])
+//	this->finalizado = true;
+
+
+
 	this->actualizarRadio();
+	cout << "actualizado" << endl;
+
 }
 
 
 void SimpleEditorCambiarRadio::actualizarRadio() {
+	if(!finalizado){
 	Estirable* figura = dynamic_cast<Estirable*>(this->editado->getModelo());//	Resizer*r = Resizer::Instance();
 	figura->estirar(1); //siempre agranda
-	this->editado->update();
+	this->editado->update();}
 	//	Transformacion trans;
 //	trans.traslacion(0, 100);
 //	trans.escalar(r->getRelacionX(), r->getRelacionY());

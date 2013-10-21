@@ -181,6 +181,7 @@ void Engranaje::estirar(float delta) {
 		this->getSiguienteRadio();
 	else
 		this->getAnteriorRadio();
+	cout << this->radio << endl;
 }
 
 float Engranaje::getAncho() {
@@ -189,11 +190,12 @@ float Engranaje::getAncho() {
 }
 
 void Engranaje::getSiguienteRadio() {
-	if (this->radio == RADIO_ENGRANAJE_CHICO)
+	cout << this->radio << endl;
+	if (this->radio == (float)RADIO_ENGRANAJE_CHICO)
 		this->radio = RADIO_ENGRANAJE_MEDIO;
-	else if (this->radio == RADIO_ENGRANAJE_MEDIO)
+	else if (this->radio == (float)RADIO_ENGRANAJE_MEDIO)
 		this->radio = RADIO_ENGRANAJE_GRANDE;
-	else if (this->radio == RADIO_ENGRANAJE_GRANDE)
+	else if (this->radio == (float)RADIO_ENGRANAJE_GRANDE)
 		this->radio = RADIO_ENGRANAJE_CHICO;
 }
 
@@ -216,4 +218,7 @@ void Engranaje::liberar() {
 
 bool Engranaje::estaLibre() {
 	return libre;
+}
+
+void Engranaje::setRotacion(double rotation) {
 }

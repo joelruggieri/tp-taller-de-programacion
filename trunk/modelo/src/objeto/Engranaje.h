@@ -30,6 +30,7 @@ public:
 	void ocupar();
 	void liberar();
 	bool estaLibre();
+	void setRotacion(double rotation);
 private:
 	typedef Objeto super;
 	void getSiguienteRadio();
