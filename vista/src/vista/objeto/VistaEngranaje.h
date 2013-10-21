@@ -10,11 +10,12 @@
 	#include "ObjetoView.h"
 class SimpleEditorAnguloFijo;
 class SDL_Texture;
+class SimpleEditorCambiarRadio;
 
 class VistaEngranaje: public ObjetoView {
 	typedef FiguraView super;
 public:
-	VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
+	VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorCambiarRadio * editor);
 	virtual ~VistaEngranaje();
 	void dropTemplate();
 	EditorNivel * getEditor();

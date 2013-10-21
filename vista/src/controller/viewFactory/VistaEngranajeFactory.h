@@ -14,7 +14,7 @@ class SimpleEditorAnguloFijo;
 
 class VistaEngranajeFactory: public ViewFiguraFactory {
 public:
-	VistaEngranajeFactory(SimpleEditorAnguloFijo * editor);
+	VistaEngranajeFactory(SimpleEditorCambiarRadio * editor);
 	virtual ~VistaEngranajeFactory();
 	FiguraView * crear(int, int, int, int);
 	View * crearVistaPropia(int,int,int,int);

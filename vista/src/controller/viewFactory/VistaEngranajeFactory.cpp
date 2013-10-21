@@ -9,8 +9,8 @@
 #include "../editor/SimpleEditorAnguloFijo.h"
 #include "../../vista/objeto/VistaEngranaje.h"
 #include "../../ConstantesVista.h"
-
-VistaEngranajeFactory::VistaEngranajeFactory(SimpleEditorAnguloFijo *editor): ViewFiguraFactory(PATH_VISTA_ENGRANAJE, editor) {
+#include "../editor/SimpleEditorCambiarRadio.h"
+VistaEngranajeFactory::VistaEngranajeFactory(SimpleEditorCambiarRadio *editor): ViewFiguraFactory(PATH_VISTA_ENGRANAJE, editor) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -23,7 +23,7 @@ FiguraView* VistaEngranajeFactory::crear(int x, int y, int w,int h) {
 	Resizer* r = Resizer::Instance();
 	int ancho, alto;
 	r->adaptarDimensionLogica(RADIO_ENGRANAJE*2,RADIO_ENGRANAJE*2,ancho,alto);
-	return new VistaEngranaje(x, y, ancho, alto, this->textura, dynamic_cast<SimpleEditorAnguloFijo*>(this->controller));
+	return new VistaEngranaje(x, y, ancho, alto, this->textura, dynamic_cast<SimpleEditorCambiarRadio*>(this->controller));
 }
 
 View* VistaEngranajeFactory::crearVistaPropia(int x, int y, int w,

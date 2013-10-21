@@ -49,7 +49,7 @@ using namespace std;
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/EditorUnion.h"
 #include "../editor/SimpleEditorOrientacionCambiable.h"
-
+#include "../editor/SimpleEditorCambiarRadio.h"
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PLATAFORMA = "PLATAFORMA";
 const string KEY_SOGA = "SOGA";
@@ -213,6 +213,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	angulosPermitidos2.push_back(-45.0);
 	angulosPermitidos2.push_back(0.0);
 	angulosPermitidos2.push_back(45.0);
+	SimpleEditorCambiarRadio* editorCambiarRadio = new SimpleEditorCambiarRadio(modeloController,tablero,this->factory, 100);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo1 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos1);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo2 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos2);
 //	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
@@ -246,7 +247,7 @@ JuegoEventsController * InicializadorJuego::crearZonaJuego() {
 	viewFactory = new VistaCintaTransportadoraFactory(editorSimpleEstirar);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CINTA,viewFactory));
 	factories.push_back(viewFactory);
-	viewFactory = new VistaEngranajeFactory(editorSimpleAnguloFijo1);
+	viewFactory = new VistaEngranajeFactory(editorCambiarRadio);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_ENGRANAJE,viewFactory));
 	factories.push_back(viewFactory);
 	viewFactory = new ViewMotorFactory(editorOrientacionCambiable);
