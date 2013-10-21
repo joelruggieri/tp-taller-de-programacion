@@ -53,9 +53,7 @@ void Correa::crearLazo(Engranaje * a, Engranaje* b, b2World* w) {
 	gear_joint.bodyB = b->getBody();
 	gear_joint.joint1 = a->getJointATierra();
 	gear_joint.joint2 = b->getJointATierra();
-	if (a->getAncho() > b->getAncho())
-	gear_joint.ratio = -(a->getAncho()/b->getAncho());
-	else gear_joint.ratio = -(b->getAncho()/a->getAncho());
+	gear_joint.ratio = -1;
 	joint = w->CreateJoint(&gear_joint);
 
 }
@@ -122,4 +120,18 @@ void Correa::removerFisica() {
 	if(figuraFin){
 		((Engranaje *)figuraFin)->liberar();
 	}
+}
+
+float Correa::getRadioInicial() {
+	if(figuraInicio != NULL){
+		return ((Engranaje *)figuraInicio)->getRadio();
+	}
+	return this->h;
+}
+
+float Correa::getRadioFinal() {
+	if(figuraFin != NULL){
+		return ((Engranaje *)figuraFin)->getRadio();
+	}
+	return this->h;
 }
