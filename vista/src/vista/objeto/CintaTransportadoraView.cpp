@@ -157,3 +157,7 @@ void CintaTransportadoraView::recalcular() {
 	this->xEngrIzq = this->getXCentro() - (this->getW() / 2);
 	this->xEngrDer = this->getXCentro() + (this->getW() / 2) - alto;
 }
+
+int CintaTransportadoraView::getLayer() {
+	return LAYER_CINTA;
+}
