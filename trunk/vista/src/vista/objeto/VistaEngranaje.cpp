@@ -8,6 +8,9 @@
 #include "VistaEngranaje.h"
 #include "SDL2/SDL.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
+#include "src/objeto/Engranaje.h"
+#include <iostream>
+using namespace std;
 
 VistaEngranaje::VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor): ObjetoView(x, y, w, h,textura, editor) {
 	// TODO Auto-generated constructor stub
@@ -30,9 +33,17 @@ EditorNivel* VistaEngranaje::getEditor() {
 
 void VistaEngranaje::update() {
 		super::update();
-//		tl.setVector(this->getModelo()->getAncho(),this->getModelo()->getAncho());
-//		float radioPixels;
-//		tl.getResultadoInverso(radioPixels,radio);
-//		this->setW(radioPixels * 2);
-//		this->setH(radioPixels * 2);
+		Engranaje* e = (Engranaje*) this->getModelo();
+		float y = 0 ;
+		tl.setVector(e->getAncho(),e->getAncho());
+		float nuevoRadio;
+		tl.getResultadoInverso(nuevoRadio,y);
+		this->setW(nuevoRadio);
+		this->setH(nuevoRadio);
+
+//		float a,b;
+//		tl.getResultadoInverso(a,b);
+//		cout << a << " " << b << endl;
+//				this->setW(a);
+//				this->setH(b);
 }
