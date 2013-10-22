@@ -15,10 +15,10 @@ using namespace std;
 
 class Union;
 class Figura;
-//class ReglasContactoSolver;
+class ReglasContactoSolver;
 class Mapa: public ObserverModelo {
 private:
-//	ReglasContactoSolver * contactSolver;
+	ReglasContactoSolver * contactSolver;
 	list<Figura*> figuras;
 	list<Union*> uniones;
 	list<Figura*> figurasBorrar;

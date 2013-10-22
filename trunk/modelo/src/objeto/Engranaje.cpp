@@ -190,7 +190,7 @@ float Engranaje::getRadio() {
 }
 
 void Engranaje::getSiguienteRadio() {
-	cout << this->radio << endl;
+//	cout << this->radio << endl;
 	if (this->radio == (float)RADIO_ENGRANAJE_CHICO)
 		this->radio = RADIO_ENGRANAJE;
 	else if (this->radio == (float)RADIO_ENGRANAJE)
