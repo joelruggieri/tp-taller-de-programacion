@@ -115,7 +115,7 @@ void Engranaje::crearLazo(Engranaje * b, b2World* w) {
 	gear_joint.bodyB = b->getDiscoGiro();
 	gear_joint.joint1 = this->getJointATierra();
 	gear_joint.joint2 = b->getJointATierra();
-	gear_joint.ratio = 1.0f;
+	gear_joint.ratio =  b->getRadio() / this->getRadio();
 	w->CreateJoint(&gear_joint);
 
 }
