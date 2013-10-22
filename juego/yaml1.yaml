@@ -2,38 +2,55 @@ Nivel:
   Nombre: yaml1
   Fondo: resource/fondo.jpg
 Objetos:
+  BolasBoliche:
+    - x: 40.4
+      y: 57.6
+    - x: 92.8
+      y: 47.6
+    - x: 89.6
+      y: 63.4
+    - x: 88
+      y: 51.6
+  Cintas:
+    - x: 42.4
+      y: 49
+      ancho: 29.8
+    - x: 77.6
+      y: 23.2
+      ancho: 20
   Plataformas:
     - x: 49.6
       y: 76.2
       ancho: 55.59998
       rotacion: 30.76148223876953
-  Balancines:
-    - x: 72.6
-      y: 6.799995
+    - x: 86.8
+      y: 80.2
+      ancho: 10
       rotacion: 0
-  Correas:
-    - xDesde: 21.8
-      yDesde: 32
-      xHasta: 42.4
-      yHasta: 49
+  Balancines:
+    - rotacion: 0
+      x: 72.6
+      y: 6.799995
+    - y: 45.2
+      x: 82
+      rotacion: 0
   Sogas:
     - xDesde: 58.4
       yDesde: 30.3
-      xHasta: 65.1
       yHasta: 6.799995
-  Cintas:
-    - x: 42.4
-      y: 49
-      ancho: 29.8
-  BolasBoliche:
-    - x: 40.4
-      y: 57.6
+      xHasta: 65.1
   GlobosHelio:
     - x: 58.4
       y: 33.8
-  Engranajes:
-    - x: 52.8
-      y: 59.2
+    - x: 72.4
+      y: 86.2
+    - x: 73
+      y: 76.4
+  PelotasJuego:
+    - x: 86
+      y: 34.6
+    - x: 66.6
+      y: 55.2
   Motores:
     - x: 21.8
       y: 32
@@ -41,3 +58,31 @@ Objetos:
     - x: 44.2
       y: 17
       direccion: -1
+    - x: 69.4
+      y: 37.6
+      direccion: 1
+    - x: 31
+      y: 67.6
+      direccion: 1
+  Engranajes:
+    - x: 20
+      y: 77
+      radio: 5.5
+    - x: 44.8
+      y: 30.2
+      radio: 2.5
+    - x: 92.8
+      y: 10.8
+      radio: 3.5
+    - x: 15.2
+      y: 12
+      radio: 5.5
+  Correas:
+    - xDesde: 21.8
+      yDesde: 32
+      xHasta: 42.4
+      yHasta: 49
+    - xHasta: 69.4
+      xDesde: 77.6
+      yHasta: 37.6
+      yDesde: 23.2
