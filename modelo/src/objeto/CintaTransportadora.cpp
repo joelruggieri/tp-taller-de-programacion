@@ -51,7 +51,7 @@ void CintaTransportadora::crearFisica() {
 	double rotacionRad = this->getRotacion() * -1 *DEGTORAD;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = myWorld->CreateBody(&bodyDef);
-	body->CreateFixture(&fixture);
+	body->CreateFixture(&fixture)->SetUserData(this);
 	body->SetUserData(this);
 	this->setBody(body);
 
@@ -177,4 +177,11 @@ void CintaTransportadora::restoreBackUp() {
 	super::restoreBackUp();
 	ancho = anchoBack;
 	rotacionEje = 0;
+}
+
+float CintaTransportadora::getVelocidadCinta() {
+	if(this->bodyEngranaje != NULL){
+		return bodyEngranaje->GetAngularVelocity() == 0 ? 0 : bodyEngranaje->GetAngularVelocity() * getRadio() * -1;
+	}
+	return 0;
 }

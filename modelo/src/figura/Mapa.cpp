@@ -10,6 +10,7 @@
 #include "../Constantes.h"
 #include "../objeto/Union.h"
 #include "../figura/Figura.h"
+//#include "../contact/ReglasContactoSolver.h"
 using namespace std;
 //#include "src/Logger.h"
 Mapa::Mapa(float x, float y, float w, float h, float32 hz, int32 velocityIterations, int32 positionIterations) {
@@ -23,6 +24,7 @@ Mapa::Mapa(float x, float y, float w, float h) {
 
 Mapa::~Mapa() {
 	delete myWorld;
+//	delete contactSolver;
 }
 
 bool Mapa::remove(Figura* figura) {
@@ -143,7 +145,7 @@ void Mapa::inicializar(float x, float y, float w, float h, float32 hz, int32 vel
 	this->y = y;
 	this->w = w;
 	this->h = h;
-
+//	this->contactSolver = new ReglasContactoSolver();
 	this->frecuencia = hz;
 	this->velocidad = velocityIterations;
 	this->posicion = positionIterations;
@@ -188,6 +190,7 @@ void Mapa::restoreBackUp() {
 void Mapa::crearMundo() {
 	b2Vec2 gravity(0.0f, -10.0f);
 	this->myWorld = new b2World(gravity);
+//	myWorld->SetContactListener(this->contactSolver);
 	// Define the ground body.
 	b2BodyDef groundBodyDef;
 //	groundBodyDef.position.Set(50.0f, 50.0f);

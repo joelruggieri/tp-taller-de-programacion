@@ -10,7 +10,7 @@
 
 #include "ObjetoView.h"
 #include "SDL2/SDL.h"
-#include <src/observer/ObservableModelo.h>
+#include <src/observer/ObserverModelo.h>
 class EditorUnion;
 class UnionView: public ObjetoView, public ObserverModelo {
 private:

@@ -37,7 +37,7 @@ void BolaBoliche::crearFisica() {
 	bodyBolaBoliche.density = 45.0f;
 	bodyBolaBoliche.friction = 0.2f;
 	bodyBolaBoliche.restitution = 0.05;	//poco coeficiente de restitucion
-	body->CreateFixture(&bodyBolaBoliche);
+	body->CreateFixture(&bodyBolaBoliche)->SetUserData(this);
 //		b2MassData masa;
 //		masa.mass = 50; //chequear la cantidad de masa
 //		masa.I = 0.005; // chequear inercia rotacional

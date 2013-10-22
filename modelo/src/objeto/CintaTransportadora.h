@@ -30,6 +30,7 @@ public:
 	void setRotacion(double );
 	void makeBackUp();
 	void restoreBackUp();
+	float getVelocidadCinta();
 private:
 	typedef Engranaje super;
 	float alto;

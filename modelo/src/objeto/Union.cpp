@@ -6,6 +6,7 @@
  */
 
 #include "Union.h"
+#include "../figura/Mapa.h"
 #include "../observer/ObservableModelo.h"
 Union::Union(float x, float y, float h) :
 		Objeto(x, y) {

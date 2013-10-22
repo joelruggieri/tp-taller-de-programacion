@@ -35,7 +35,7 @@ void PelotaJuego::crearFisica() {
 	bodyPelota.density = 10.0f;
 	bodyPelota.friction = 0.2f;
 	bodyPelota.restitution = 0.85f;	//mucho coeficiente de restitucion
-	body->CreateFixture(&bodyPelota);
+	body->CreateFixture(&bodyPelota)->SetUserData(this);
 //		b2MassData masa;
 //		masa.mass = 50.0f; //chequear la cantidad de masa
 //		masa.I = 0.04; // chequear inercia rotacional
