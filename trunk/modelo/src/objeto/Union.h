@@ -15,7 +15,7 @@
 using namespace std;
 #include "../observer/FiguraObserver.h"
 #include "../observer/ObserverFiguraHelper.h"
-
+class Mapa;
 class Union: public Objeto, public FiguraObserver{
 public:
 	Union(float x, float y, float h);

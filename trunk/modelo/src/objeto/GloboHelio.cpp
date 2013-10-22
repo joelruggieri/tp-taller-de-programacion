@@ -40,7 +40,7 @@ void GloboHelio::crearFisica() {
 	bodyBolaBoliche.density = 1.0f;	//poca densidad, la densidad del aire cual es ?
 	bodyBolaBoliche.friction = 0.2f;
 	bodyBolaBoliche.restitution = 0.3f;
-	body->CreateFixture(&bodyBolaBoliche);
+	body->CreateFixture(&bodyBolaBoliche)->SetUserData(this);
 	body->SetUserData(this);
 	this->setBody(body);
 

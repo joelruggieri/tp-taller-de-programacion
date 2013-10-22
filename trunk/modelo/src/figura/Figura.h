@@ -14,9 +14,13 @@
 #include "../Vista.h"
 #include "Enganche.h"
 #include "Registro.h"
-#include "Mapa.h"
+
+
+
 #include "../observer/ObservableModelo.h"
 #include "../observer/Evento.h"
+
+class Mapa;
 class Figura: public Posicionable, public ObservableModelo {
 protected:
 	float x;
