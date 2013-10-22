@@ -123,6 +123,12 @@ void ValidadorEstatico::visit(Engranaje* engranaje) {
 	if(!validarPosicion(engranaje)){
 		return;
 	}
+	if (engranaje->getRadio() != RADIO_ENGRANAJE && engranaje->getRadio() != RADIO_ENGRANAJE_CHICO && engranaje->getRadio() != RADIO_ENGRANAJE_GRANDE)
+	{
+		ultimaValidacion = false;
+		this->errorValidacion = "radio de correa invalido";
+		return;
+	}
 }
 
 void ValidadorEstatico::visit(Soga* f) {

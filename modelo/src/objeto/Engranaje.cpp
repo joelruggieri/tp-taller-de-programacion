@@ -162,6 +162,7 @@ Engranaje::Engranaje(const Engranaje& engranaje) :
 	this->direccion = engranaje.direccion;
 	traccionable = true;
 	libre = true;
+	this->radio = engranaje.getRadio();
 }
 
 Engranaje::Engranaje():Objeto() {
@@ -181,7 +182,6 @@ void Engranaje::estirar(float delta) {
 		this->getSiguienteRadio();
 	else
 		this->getAnteriorRadio();
-	cout << this->radio << endl;
 }
 
 float Engranaje::getRadio() {
@@ -196,7 +196,7 @@ void Engranaje::getSiguienteRadio() {
 	else if (this->radio == (float)RADIO_ENGRANAJE)
 		this->radio = RADIO_ENGRANAJE_GRANDE;
 	else if (this->radio == (float)RADIO_ENGRANAJE_GRANDE)
-		this->radio = RADIO_ENGRANAJE_GRANDE;
+		this->radio = RADIO_ENGRANAJE_CHICO;
 }
 
 void Engranaje::getAnteriorRadio() {
@@ -231,4 +231,12 @@ void Engranaje::makeBackUp() {
 void Engranaje::restoreBackUp() {
 	super::restoreBackUp();
 	radio = radiob;
+}
+
+float Engranaje::getRadio() const {
+	return this->radio;
+}
+
+void Engranaje::setRadio(float radio) {
+	this->radio = radio ;
 }

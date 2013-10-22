@@ -50,6 +50,7 @@ public:
 	virtual bool contacto(float, float)= 0;
 	float getX() const;
 	float getY() const;
+//	float getRadio() const;
 	double getRotacion() const;
 	//actualiza a quienes estan observando la figura
 	void setPosicion(float, float);

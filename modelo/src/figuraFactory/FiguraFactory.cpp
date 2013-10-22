@@ -116,9 +116,10 @@ Figura* FiguraFactory::crear(Motor* c) {
 }
 
 Figura* FiguraFactory::crear(Engranaje* c) {
-	Figura* t = this->crearEngranaje(c->getX(), c->getY());
+	Engranaje* t = this->crearEngranaje(c->getX(), c->getY());
 		t->setRotacion(0);
 		t->setReg(c->getReg());
+		t->setRadio(c->getRadio());
 	return t;
 }
 

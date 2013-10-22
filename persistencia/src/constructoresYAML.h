@@ -169,14 +169,16 @@ struct convert<Engranaje> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
+		node["radio"] = objeto.getRadio();
 		return node;
 	}
 
 	static bool decode(const Node& node, Engranaje& objeto) {
-		if (node.size() != 2) return false;
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
-
+		objeto.setRadio(node["radio"].as<float>());
+//		objeto
 		Mark marca = node.Mark();
 		Registro & reg = objeto.getReg();
 		reg.setLinea(marca.line);

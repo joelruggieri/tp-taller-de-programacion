@@ -33,7 +33,8 @@ public:
 	void setRotacion(double rotation);
 	void makeBackUp();
 	void restoreBackUp();
-
+	float getRadio() const;
+	void setRadio(float radio);
 private:
 	typedef Objeto super;
 	void getSiguienteRadio();
@@ -45,6 +46,7 @@ protected:
 	b2Body* radioAccion;
 	int direccion;
 	void crearLazo(Engranaje*, b2World*);
+
 };
 
 #endif /* ENGRANAJE_H_ */
