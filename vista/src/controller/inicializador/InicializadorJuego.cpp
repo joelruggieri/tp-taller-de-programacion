@@ -188,6 +188,8 @@ void InicializadorJuego::agregarUnion(ViewFiguraFactory* factory,
 		}
 		delete view;
 		delete modelo;
+	} else {
+		view->update();
 	}
 }
 

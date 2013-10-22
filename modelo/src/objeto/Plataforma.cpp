@@ -54,7 +54,7 @@ void Plataforma::setAlto(float alto) {
 }
 
 void Plataforma::setAncho(float ancho) {
-	cout << "llama setAncho" << endl;
+//	cout << "llama setAncho" << endl;
 	if (ancho < 2) {
 		ancho = 2;
 	}

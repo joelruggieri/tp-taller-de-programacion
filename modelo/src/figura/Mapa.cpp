@@ -10,7 +10,7 @@
 #include "../Constantes.h"
 #include "../objeto/Union.h"
 #include "../figura/Figura.h"
-//#include "../contact/ReglasContactoSolver.h"
+#include "../contact/ReglasContactoSolver.h"
 using namespace std;
 //#include "src/Logger.h"
 Mapa::Mapa(float x, float y, float w, float h, float32 hz, int32 velocityIterations, int32 positionIterations) {
@@ -24,7 +24,7 @@ Mapa::Mapa(float x, float y, float w, float h) {
 
 Mapa::~Mapa() {
 	delete myWorld;
-//	delete contactSolver;
+	delete contactSolver;
 }
 
 bool Mapa::remove(Figura* figura) {
@@ -145,7 +145,7 @@ void Mapa::inicializar(float x, float y, float w, float h, float32 hz, int32 vel
 	this->y = y;
 	this->w = w;
 	this->h = h;
-//	this->contactSolver = new ReglasContactoSolver();
+	this->contactSolver = new ReglasContactoSolver();
 	this->frecuencia = hz;
 	this->velocidad = velocityIterations;
 	this->posicion = positionIterations;
@@ -190,7 +190,7 @@ void Mapa::restoreBackUp() {
 void Mapa::crearMundo() {
 	b2Vec2 gravity(0.0f, -10.0f);
 	this->myWorld = new b2World(gravity);
-//	myWorld->SetContactListener(this->contactSolver);
+	myWorld->SetContactListener(this->contactSolver);
 	// Define the ground body.
 	b2BodyDef groundBodyDef;
 //	groundBodyDef.position.Set(50.0f, 50.0f);
@@ -281,7 +281,7 @@ list<Union*>& Mapa::getUniones() {
 //solo me engancho a las uniones por ahora
 void Mapa::notifyEvent(ObservableModelo* o, Evento_type type) {
 	if(type == DESTRUCCION_FORZADA){
-		cout << "Se entera el mapa y agrega a los deleteables" << endl;;
+//		cout << "Se entera el mapa y agrega a los deleteables" << endl;;
 		Union * u = dynamic_cast<Union*> (o);
 		u->removerFisica();
 		uniones.remove(u);
@@ -291,11 +291,11 @@ void Mapa::notifyEvent(ObservableModelo* o, Evento_type type) {
 
 
 void Mapa::cleanDeletes() {
-	cout << "deletea los deleteables el mapa antes" << endl;
+//	cout << "deletea los deleteables el mapa antes" << endl;
 	list<Figura*>::iterator it;
 	for(it= this->figurasBorrar.begin(); it != figurasBorrar.end(); ++it){
 		delete(*it);
 	}
-	cout << "deletea los deleteables el mapa " << endl;
+//	cout << "deletea los deleteables el mapa " << endl;
 	figurasBorrar.clear();
 }
