@@ -240,3 +240,5 @@ void Figura::setPosicion(float x, float y) {
 	setY(y);
 	notify(CAMBIO_ESPACIAL_FORZADO);
 }
+
+

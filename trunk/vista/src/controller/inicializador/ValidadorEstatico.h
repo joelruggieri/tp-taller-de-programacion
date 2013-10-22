@@ -12,7 +12,7 @@
 #include "src/figura/Figura.h"
 #include <string>
 using namespace std;
-
+#include "src/Constantes.h"
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
