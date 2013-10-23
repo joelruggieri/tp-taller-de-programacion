@@ -35,7 +35,7 @@ void BolaBoliche::crearFisica() {
 		bodyBolaBoliche.filter.maskBits = CATEGORIA_FIGURAS;
 	bodyBolaBoliche.shape = &shapeCircle;
 	bodyBolaBoliche.density = 45.0f;
-	bodyBolaBoliche.friction = 0.2f;
+	bodyBolaBoliche.friction = 0.3f;
 	bodyBolaBoliche.restitution = 0.05;	//poco coeficiente de restitucion
 	body->CreateFixture(&bodyBolaBoliche)->SetUserData(this);
 //		b2MassData masa;
