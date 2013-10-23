@@ -44,7 +44,7 @@ b2Vec2& Enganche::getPos() {
 b2Vec2 Enganche::getWorldPos() {
 	b2Vec2 centroVec(centro->getX(), centro->getY());
 	double radianes = centro->gradosARadianes(centro->getRotacion());
-	b2Rot rotacion(radianes);
+	b2Rot rotacion(-1 * radianes);
 	b2Vec2 rotado = b2Mul(rotacion, pos);
 	return rotado + centroVec;
 }
