@@ -34,7 +34,7 @@ void Engranaje::crearFisica() {
 	b2FixtureDef fixture;
 	fixture.density = 1.00f;
 	fixture.shape = &shapeCuerpo;
-	fixture.friction = 0.01f;
+	fixture.friction = 0.9f;
 	fixture.restitution = 0.00f;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;

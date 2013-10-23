@@ -27,7 +27,7 @@ void Motor::crearFisica() {
 	b2FixtureDef fixture;
 	fixture.density = 1.00f;
 	fixture.shape = &shapeCuerpo;
-	fixture.friction = 0.01f;
+	fixture.friction = 0.1f;
 	fixture.restitution = 0.00f;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;
@@ -51,7 +51,7 @@ void Motor::crearFisica() {
 	//definicion cuerpo radio de accion
 
 	b2CircleShape shapeAccion;
-	shapeAccion.m_radius = this->radio;
+	shapeAccion.m_radius = this->radio +0.3;
 	b2FixtureDef fixtureAccion;
 	fixtureAccion.filter.categoryBits = 0X0004;
 	fixtureAccion.filter.maskBits = 0X0004;

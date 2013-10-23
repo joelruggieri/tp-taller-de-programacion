@@ -34,7 +34,7 @@ void PelotaJuego::crearFisica() {
 	bodyPelota.shape = &shapeCircle;
 	bodyPelota.density = 10.0f;
 	bodyPelota.friction = 0.2f;
-	bodyPelota.restitution = 0.85f;	//mucho coeficiente de restitucion
+	bodyPelota.restitution = 0.6f;	//mucho coeficiente de restitucion
 	body->CreateFixture(&bodyPelota)->SetUserData(this);
 //		b2MassData masa;
 //		masa.mass = 50.0f; //chequear la cantidad de masa

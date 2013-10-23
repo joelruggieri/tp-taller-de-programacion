@@ -24,9 +24,12 @@ Canvas::~Canvas() {
 	}
 }
 
-void Canvas::remover(Dibujable* vista) {
+bool Canvas::remover(Dibujable* vista) {
+	int cant = this->vistas.size();
 	this->vistas.remove(vista);
+	int cantNueva= this->vistas.size();
 	this->vistas.sort(comparar_layers);
+	return cant > cantNueva;
 }
 
 void Canvas::agregar(Dibujable* vista) {

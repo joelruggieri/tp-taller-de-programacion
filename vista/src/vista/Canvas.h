@@ -34,7 +34,7 @@ public:
 	virtual ~Canvas();
 	void ModificarFondo(SDL_Texture* nuevaImagen);
 	void agregar(Dibujable *);
-	void remover(Dibujable *);
+	bool remover(Dibujable *);
 	//void Resizear(int x, int y);
 	const list<Dibujable*>& getDibujables() const;
 	const list<Dibujable*>& getVistas();

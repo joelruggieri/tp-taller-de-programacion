@@ -1,10 +1,23 @@
 Nivel:
-  Nombre: yaml1
   Fondo: ""
+  Nombre: yaml2
 Objetos:
+  Plataformas:
+    - x: 33.4
+      y: 14.4
+      ancho: 10
+      rotacion: 0
+    - x: 46
+      y: 24.6
+      ancho: 23.19999
+      rotacion: -53.33080673217773
+    - x: 24
+      y: 26
+      ancho: 24.59999
+      rotacion: 81.98892211914062
   Balancines:
-    - x: 45.4
-      y: 53
+    - x: 78.8
+      y: 52.8
       rotacion: 0
   BolasBoliche:
     - x: 75.2
@@ -12,20 +25,22 @@ Objetos:
   GlobosHelio:
     - x: 58.8
       y: 88.2
-  Motores:
-    - x: 86.6
-      y: 27.4
-      direccion: 1
+  PelotasJuego:
+    - x: 24.8
+      y: 44
   Engranajes:
-    - x: 42.4
-      y: 25.4
+    - x: 41.8
+      y: 31
+      radio: 3.5
+  Motores:
+    - x: 38.4
+      y: 64.39999
+      direccion: 1
+    - x: 47.2
+      y: 59.4
+      direccion: 1
   Sogas:
     - xDesde: 58.8
       yDesde: 84.7
-      xHasta: 52.9
-      yHasta: 53
-  Correas:
-    - xDesde: 86.6
-      yDesde: 27.4
-      xHasta: 42.4
-      yHasta: 25.4
+      xHasta: 86.3
+      yHasta: 52.8
