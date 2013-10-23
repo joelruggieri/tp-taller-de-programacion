@@ -16,8 +16,8 @@
 #include <iostream>
 #include <list>
 #include <string>
-#define  MIN_VENTANA_Y 400
-#define MIN_VENTANA_X 400
+#define  MIN_VENTANA_Y 480
+#define MIN_VENTANA_X 480
 #define MAX_VENTANA 900
 #include "../controller/UserEventCreator.h"
 #include "CanvasController.h"
