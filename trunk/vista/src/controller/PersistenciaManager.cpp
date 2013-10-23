@@ -55,6 +55,7 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 void PersistenciaManager::setFiguras(list<Figura*>& figuras) {
 	Logger log;
 	if(this->nivel != NULL){
+		//TODO MEMORY LEAK. LA PRIMERA VEZ Q SE GUARDA, ESOS PUNTEROS SE PIERDEN PERO NO ES MUCHA MEMORIA :P
 		nivel->getFiguras().clear();
 		nivel->getFiguras().insert(nivel->getFiguras().begin(),figuras.begin(),figuras.end());
 	} else {

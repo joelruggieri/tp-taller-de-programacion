@@ -89,8 +89,10 @@ void ZonaTablero::notifyEvent(ObservableModelo* o, Evento_type t) {
 	if(t == DESTRUCCION_FORZADA){
 		Figura * fig = (Figura*) o;
 		FiguraView * view = (FiguraView *)fig->getVista();
-		this->canvas->remover(view);
-		delete view;
+
+		if(this->canvas->remover(view)){
+			delete view;
+		}
 	}
 }
 

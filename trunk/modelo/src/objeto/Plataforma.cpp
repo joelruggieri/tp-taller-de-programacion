@@ -80,7 +80,7 @@ void Plataforma::crearFisica() {
 	b2FixtureDef fixture;
 	fixture.density = 50.00f;
 	fixture.shape = polygon;
-	fixture.friction = 0.01f;
+	fixture.friction = 0.4f;
 	fixture.restitution = 0.00f;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;

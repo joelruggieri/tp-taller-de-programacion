@@ -25,6 +25,7 @@ Mapa::Mapa(float x, float y, float w, float h) {
 Mapa::~Mapa() {
 	delete myWorld;
 	delete contactSolver;
+	//TODO MEMORY LEAK: NO DELETEA LAS FIGURAS PERO SE DELETEAN EN EL NIVEL SI GUARDASTE. SEDEBERÍAN DELETEAR ACA SI DELETEAS EL MAPA Y EN EL NIVEL SE DEBERÍA HACER UNA COPIA.
 }
 
 bool Mapa::remove(Figura* figura) {
