@@ -18,7 +18,7 @@
 #include <string>
 #define  MIN_VENTANA_Y 480
 #define MIN_VENTANA_X 480
-#define MAX_VENTANA 900
+#define MAX_VENTANA 1500
 #include "../controller/UserEventCreator.h"
 #include "CanvasController.h"
 #include "keyboardEventController/KeyBoardEventController.h"
