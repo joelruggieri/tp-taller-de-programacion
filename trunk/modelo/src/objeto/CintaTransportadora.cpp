@@ -61,7 +61,7 @@ void CintaTransportadora::crearFisica() {
 	b2FixtureDef fixtureEngranaje;
 	fixtureEngranaje.density = 1.00f;
 	fixtureEngranaje.shape = &shapeEngranaje;
-	fixtureEngranaje.friction = 0.01f;
+	fixtureEngranaje.friction = 0.8f;
 	fixtureEngranaje.restitution = 0.00f;
 	fixtureEngranaje.filter.categoryBits = CATEGORIA_CENTRO_CINTA;
 	fixtureEngranaje.filter.maskBits = CATEGORIA_CENTRO_CINTA;
