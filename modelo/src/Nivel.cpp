@@ -51,3 +51,11 @@ void Nivel::setFondo(std::string fondo) {
 
 Nivel::Nivel() {
 }
+
+int Nivel::getJugadores() const {
+	return jugadores;
+}
+
+void Nivel::setJugadores(int jugadores) {
+	this->jugadores = jugadores;
+}
