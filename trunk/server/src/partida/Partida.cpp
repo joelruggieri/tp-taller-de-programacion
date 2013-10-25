@@ -8,6 +8,7 @@
 #include "Partida.h"
 
 Partida::Partida(Nivel* n) {
+
 }
 
 Partida::~Partida() {

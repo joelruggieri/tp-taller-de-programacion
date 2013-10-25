@@ -24,11 +24,15 @@ public:
 	void setNombre(const std::string& nombre);
 	void setFondo(std::string fondo);
 	std::string getFondo() const;
+	int getJugadores() const;
+	void setJugadores(int jugadores);
 
 private:
 	std::list<Figura*> objetos;
 	std::string nombre;
 	std::string fondo;
+	int jugadores;
+
 };
 
 #endif /* NIVEL_H_ */
