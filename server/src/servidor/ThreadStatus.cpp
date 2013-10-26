@@ -9,7 +9,7 @@
 #include <ratio>
 using namespace std;
 using namespace chrono;
-
+#include "JugadorThread.h"
 ThreadStatus::ThreadStatus(int timeout, int nro): puntoControl(chrono::duration<int>(1)){
 	this->timeout = timeout;
 	this->listener = NULL;

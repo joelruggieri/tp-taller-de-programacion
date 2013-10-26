@@ -16,7 +16,6 @@ private:
 	thread * th;
 	int nroJugador;
 	int socketDesc;
-	void join();
 	ColaEntrada * cola;
 public:
 	//ENTREGA3 RECIBIR EL SOCKET PARA ESCUCHAR LAS PETICIONES DEL CLIENTE QUE ATIENDE Y LA COLA DE ENTRADA DE EVENTOS para ir cargando..
@@ -25,6 +24,7 @@ public:
 	//MORIR Y PERMITIR EL LUGAR A OTRO.
 	JugadorThread(ColaEntrada*c,int jugador, int socketDesc);
 	void run();
+	void exit();
 	virtual ~JugadorThread();
 };
 

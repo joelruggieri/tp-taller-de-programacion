@@ -35,10 +35,15 @@ void JugadorThread::run() {
 
 }
 
+void JugadorThread::exit() {
+	delete th;
+	th = NULL;
+}
+
 JugadorThread::~JugadorThread() {
 	if(th != NULL){
-		th->join();
-		delete th;
+		//MANDALE HACHA
+		exit();
 	}
 }
 

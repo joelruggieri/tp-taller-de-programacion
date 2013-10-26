@@ -9,7 +9,7 @@
 #include "ThreadStatus.h"
 Disponibilidad::Disponibilidad(int maxJugadores) {
 	for (int i = 0; i < maxJugadores; ++i) {
-		relaciones.insert(pair<int,ThreadStatus*>(i,new ThreadStatus(10000)));
+		relaciones.insert(pair<int,ThreadStatus*>(i,new ThreadStatus(i,10000)));
 	}
 }
 
@@ -37,7 +37,7 @@ ThreadStatus* Disponibilidad::getNextFree() {
 			return actual;
 		}
 		if(!actual->isAlive()) {
-			delete actual->getThread();
+			delete (actual->getThread());
 			actual->setThread(NULL);
 			return actual;
 		}
