@@ -24,6 +24,7 @@ void ThreadStatus::refresh() {
 	puntoControl = system_clock::now();
 }
 
+//NO SEAS HIJO DE PUTA Y A T PONELE EL NRO DE JUGADOR QUE TIENE EL STATUS.
 void ThreadStatus::setThread(JugadorThread* t) {
 	this->refresh();
 	this->listener= t;
@@ -35,4 +36,8 @@ ThreadStatus::~ThreadStatus() {
 
 JugadorThread* ThreadStatus::getThread() {
 	return this->listener;
+}
+
+int ThreadStatus::getNroJugador() {
+	return jugador;
 }
