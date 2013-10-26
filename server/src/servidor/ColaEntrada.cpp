@@ -5,7 +5,7 @@
  *      Author: joel
  */
 
-#include "ColaSalida.h"
+#include "ColaEntrada.h"
 
 ColaEntrada::ColaEntrada() {
 	// TODO Auto-generated constructor stub
