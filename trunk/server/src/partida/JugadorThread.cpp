@@ -7,7 +7,7 @@
 
 #include "JugadorThread.h"
 
-JugadorThread::JugadorThread() {
+JugadorThread::JugadorThread(int socketClientId) {
 	// TODO Auto-generated constructor stub
 
 }

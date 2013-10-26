@@ -10,7 +10,7 @@
 #include <src/Nivel.h>
 class Partida {
 
-
+//La partida comienza a recibir a los clientes y empieza a pasarle el control a cada  thread que atiende y controlar el numero maximo de clientes.
 
 public:
 	Partida(Nivel * n);
