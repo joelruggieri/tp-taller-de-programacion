@@ -13,7 +13,7 @@ using namespace std;
 //LIBERADO tengo que deletear el que estaba y crear uno nuevo.
 //LIBRE tengo que crear solamente.
 enum ESTADO {LIBERADO=-2, LIBRE=-1};
-class Disponibilidad {
+class Disponibilidad: public ObjetoCompartido {
 private:
 	map<int,int> relaciones;
 public:

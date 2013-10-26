@@ -7,9 +7,10 @@
 
 #include "JugadorThread.h"
 
-JugadorThread::JugadorThread(int jugador, int socketDesc) {
+JugadorThread::JugadorThread(Disponibilidad* d, ColaEntrada*c,int jugador, int socketDesc) {
 	this->nroJugador = jugador;
 	this->socketDesc = socketDesc;
+	th = NULL;
 }
 
 void JugadorThread::run() {
@@ -26,7 +27,7 @@ void JugadorThread::run() {
 			//continuar = false;
 		}
 		dispo->lock();
-		dispo->setDisponibilidad(this->nroJugador, -2);
+		dispo->setDisponibilidad(nroJugador, -2);
 		dispo->unlock();
 	});
 
