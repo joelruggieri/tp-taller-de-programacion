@@ -13,7 +13,9 @@
 #define PUERTO 5001
 
 Partida::Partida(Nivel* n) {
-
+	nivel = n;
+	dispo = new Disponibilidad(n->getJugadores());
+	cola = new ColaEntrada();
 }
 
 Partida::~Partida() {

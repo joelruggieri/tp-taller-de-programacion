@@ -6,22 +6,31 @@
  */
 
 #include "Disponibilidad.h"
-
-Disponibilidad::Disponibilidad() {
-	// TODO Auto-generated constructor stub
-
+#include "ThreadStatus.h"
+Disponibilidad::Disponibilidad(int maxJugadores) {
+	for (int i = 0; i < maxJugadores; ++i) {
+		relaciones.insert(pair<int,ThreadStatus*>(i,new ThreadStatus(10000)));
+	}
 }
 
 Disponibilidad::~Disponibilidad() {
-	// TODO Auto-generated destructor stub
+	// TODO destruir los threadStatus.
 }
 
-void Disponibilidad::setDisponibilidad(int jug, int dispo) {
-	std::map<int,int>::iterator elemento = relaciones.find(jug);
+//void Disponibilidad::setDisponibilidad(int jug, int dispo) {
+//	std::map<int,int>::iterator elemento = relaciones.find(jug);
+//
+//	if(elemento != relaciones.end()){
+//		(*elemento).second = dispo;
+//	} else {
+//		relaciones.insert(pair<int,int>(jug,dispo));
+//	}
+//}
 
+ThreadStatus* Disponibilidad::getStatus(int jugador) {
+	std::map<int,ThreadStatus*>::iterator elemento = relaciones.find(jugador);
 	if(elemento != relaciones.end()){
-		(*elemento).second = dispo;
-	} else {
-		relaciones.insert(pair<int,int>(jug,dispo));
+		return (*elemento).second;
 	}
+	return NULL;
 }
