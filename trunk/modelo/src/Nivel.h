@@ -12,6 +12,18 @@
 #include "figura/Figura.h"
 #include <string>
 
+//ENTREGA3 hay que hacer que tenga:
+//Por lo tanto el nivel consta de:
+//
+//1. La cantidad de jugadores que participan de él
+//
+//2. La configuración inicial de ítems fijos
+//
+//3. Las áreas del escenario que cada jugador puede modificar
+//
+//4. Los ítems que corresponden a cada área
+//
+//5. Un objetivo
 class Nivel {
 public:
 	Nivel();
