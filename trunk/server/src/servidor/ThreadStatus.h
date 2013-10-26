@@ -22,6 +22,7 @@ public:
 	void setThread(JugadorThread*);
 	bool isAlive();
 	void refresh();
+	int getNroJugador();
 	JugadorThread * getThread();
 	virtual ~ThreadStatus();
 };
