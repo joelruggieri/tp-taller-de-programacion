@@ -6,6 +6,7 @@
  */
 
 #include "ThreadStatus.h"
+#include <ratio>
 using namespace std;
 using namespace chrono;
 
@@ -14,9 +15,8 @@ ThreadStatus::ThreadStatus(int timeout): puntoControl(chrono::duration<int>(1)){
 	this->listener = NULL;
 };
 bool ThreadStatus::isAlive() {
-//	chrono::duration<int,std::milli> transcurrido = system_clock::now() - puntoControl ;
-//	return transcurrido.count() < this->timeout;
-	return false;
+     int transcurrido = duration_cast<milliseconds>(system_clock::now() - puntoControl).count();
+	return transcurrido < this->timeout;
 }
 
 void ThreadStatus::refresh() {

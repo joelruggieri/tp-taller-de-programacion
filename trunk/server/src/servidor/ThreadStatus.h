@@ -10,15 +10,6 @@
 #include <chrono>
 #include "Disponibilidad.h"
 using namespace std;
-//using namespace chrono;
-//
-//
-//typedef duration<signed int-type >= 64 bits,nano>        nanoseconds;
-//typedef duration<signed int-type >= 55 bits,micro>       microseconds;
-//typedef duration<signed int-type >= 45 bits,milli>       milliseconds;
-//typedef duration<signed int-type >= 35 bits>             seconds;
-//typedef duration<signed int-type >= 29 bits,ratio<60>>   minutes;
-//typedef duration<signed int-type >= 23 bits,ratio<3600>> hours;
 class JugadorThread;
 
 class ThreadStatus {
