@@ -23,6 +23,7 @@
 #include "src/Constantes.h"
 using namespace std;
 
+
 JuegoEventsController::JuegoEventsController(ModeloController *modeloController,
 		ZonaPlay * zplay) {
 	this->tablero = NULL;
