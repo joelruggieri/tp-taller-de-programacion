@@ -13,13 +13,14 @@ using namespace std;
 //LIBERADO tengo que deletear el que estaba y crear uno nuevo.
 //LIBRE tengo que crear solamente.
 enum ESTADO {LIBERADO=-2, LIBRE=-1};
+class ThreadStatus;
 class Disponibilidad: public ObjetoCompartido {
 private:
-	map<int,int> relaciones;
+	map<int,ThreadStatus *> relaciones;
 public:
-	Disponibilidad();
+	Disponibilidad(int maxJugadores);
 	virtual ~Disponibilidad();
-	void setDisponibilidad(int, int);
+	ThreadStatus * getStatus(int jugador);
 };
 
 #endif /* DISPONIBILIDAD_H_ */

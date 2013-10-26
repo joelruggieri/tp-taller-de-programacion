@@ -7,10 +7,11 @@
 
 #include "JugadorThread.h"
 
-JugadorThread::JugadorThread(Disponibilidad* d, ColaEntrada*c,int jugador, int socketDesc) {
+JugadorThread::JugadorThread(ColaEntrada*c,int jugador, int socketDesc) {
 	this->nroJugador = jugador;
 	this->socketDesc = socketDesc;
 	th = NULL;
+	cola=c;
 }
 
 void JugadorThread::run() {
@@ -26,9 +27,9 @@ void JugadorThread::run() {
 			//ENTREGA3 si paso x tiempo de time out y no mando nada.
 			//continuar = false;
 		}
-		dispo->lock();
-		dispo->setDisponibilidad(nroJugador, -2);
-		dispo->unlock();
+//		dispo->lock();
+//		dispo->setDisponibilidad(nroJugador, -2);
+//		dispo->unlock();
 	});
 
 
