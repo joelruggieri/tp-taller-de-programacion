@@ -17,7 +17,7 @@ Disponibilidad::~Disponibilidad() {
 }
 
 void Disponibilidad::setDisponibilidad(int jug, int dispo) {
-	std::map::iterator elemento = relaciones.find(jug);
+	std::map<int,int>::iterator elemento = relaciones.find(jug);
 
 	if(elemento != relaciones.end()){
 		(*elemento).second = dispo;
