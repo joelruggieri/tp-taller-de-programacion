@@ -41,6 +41,7 @@ Nivel* NivelDAO::leerNivel(const std::string &nombre) {
 }
 
 Nivel* NivelDAO::leerNivel(const char *nombre) {
+
 	Archivo *a = administrador.obtenerArchivoNivel(nombre);
 	YAML::Node nodoRaiz;
 	YAML::Node nodo;

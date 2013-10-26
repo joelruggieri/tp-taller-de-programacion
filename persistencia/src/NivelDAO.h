@@ -12,6 +12,7 @@
 #include "AdministradorDeArchivos.h"
 #include "src/Logger.h"
 
+//ENTREGA3 HAY QUE PERSISTIR/LEVANTAR LAS COSAS NUEVAS DEL NIVEL
 class NivelDAO {
 public:
 	NivelDAO();
