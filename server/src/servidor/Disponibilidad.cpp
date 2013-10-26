@@ -14,18 +14,11 @@ Disponibilidad::Disponibilidad(int maxJugadores) {
 }
 
 Disponibilidad::~Disponibilidad() {
-	// TODO destruir los threadStatus.
+	map<int,ThreadStatus*>::iterator it;
+	for(it=relaciones.begin(); it!= relaciones.end(); ++it){
+		delete (*it).second;
+	}
 }
-
-//void Disponibilidad::setDisponibilidad(int jug, int dispo) {
-//	std::map<int,int>::iterator elemento = relaciones.find(jug);
-//
-//	if(elemento != relaciones.end()){
-//		(*elemento).second = dispo;
-//	} else {
-//		relaciones.insert(pair<int,int>(jug,dispo));
-//	}
-//}
 
 ThreadStatus* Disponibilidad::getStatus(int jugador) {
 	std::map<int,ThreadStatus*>::iterator elemento = relaciones.find(jugador);
@@ -33,4 +26,7 @@ ThreadStatus* Disponibilidad::getStatus(int jugador) {
 		return (*elemento).second;
 	}
 	return NULL;
+}
+
+ThreadStatus* Disponibilidad::getNextFree() {
 }

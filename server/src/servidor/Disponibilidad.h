@@ -21,6 +21,7 @@ public:
 	Disponibilidad(int maxJugadores);
 	virtual ~Disponibilidad();
 	ThreadStatus * getStatus(int jugador);
+	ThreadStatus * getNextFree();
 };
 
 #endif /* DISPONIBILIDAD_H_ */
