@@ -64,8 +64,6 @@ void TextBox::dibujarse(SDL_Renderer* render) {
 	dstTxt.x = this->getX()+7;
 	dstTxt.y = this->getY() ;
 	dstTxt.h = this->getH() - 4 ;
-//	dstTxt.w = this->textoCurrent.size() * 8 ;	//TODO
-//	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &(dstTxt.w), NULL);
 	TTF_SizeText(this->fuente, this->textoCurrent.c_str(), &(dstTxt.w), NULL);
 
 
@@ -254,7 +252,6 @@ void TextBox::ejecutarTecla(char key) {
 	}
 	}
 	}
-	//TODO cuando el key es un "enter" tengo que deseleccionarlo
 
 
 void TextBox::clickeoFueraDeHerramienta() {
