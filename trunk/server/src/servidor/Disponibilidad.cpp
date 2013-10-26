@@ -29,4 +29,30 @@ ThreadStatus* Disponibilidad::getStatus(int jugador) {
 }
 
 ThreadStatus* Disponibilidad::getNextFree() {
+	map<int,ThreadStatus*>::iterator it;
+	ThreadStatus * actual;
+	for(it=relaciones.begin(); it!= relaciones.end(); ++it){
+		actual =(*it).second;
+		if(actual->getThread() == NULL){
+			return actual;
+		}
+		if(!actual->isAlive()) {
+			delete actual->getThread();
+			actual->setThread(NULL);
+			return actual;
+		}
+	}
+	return NULL;
+}
+
+void Disponibilidad::cleanDeaths() {
+	map<int,ThreadStatus*>::iterator it;
+	ThreadStatus * actual;
+	for(it=relaciones.begin(); it!= relaciones.end(); ++it){
+		actual =(*it).second;
+		if(actual->getThread() && !actual->isAlive()){
+			delete actual->getThread();
+			actual->setThread(NULL);
+		}
+	}
 }

@@ -10,9 +10,10 @@
 using namespace std;
 using namespace chrono;
 
-ThreadStatus::ThreadStatus(int timeout): puntoControl(chrono::duration<int>(1)){
+ThreadStatus::ThreadStatus(int timeout, int nro): puntoControl(chrono::duration<int>(1)){
 	this->timeout = timeout;
 	this->listener = NULL;
+	this->jugador = nro;
 };
 bool ThreadStatus::isAlive() {
      int transcurrido = duration_cast<milliseconds>(system_clock::now() - puntoControl).count();
@@ -32,3 +33,6 @@ ThreadStatus::~ThreadStatus() {
 	// TODO Auto-generated destructor stub
 }
 
+JugadorThread* ThreadStatus::getThread() {
+	return this->listener;
+}
