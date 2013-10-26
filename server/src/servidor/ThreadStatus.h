@@ -16,12 +16,13 @@ class ThreadStatus {
 	chrono::system_clock::time_point puntoControl;
 private:
 	JugadorThread * listener;
-	int timeout;
+	int timeout, jugador;
 public:
-	ThreadStatus(int timeout);
+	ThreadStatus(int timeout, int nro);
 	void setThread(JugadorThread*);
 	bool isAlive();
 	void refresh();
+	JugadorThread * getThread();
 	virtual ~ThreadStatus();
 };
 

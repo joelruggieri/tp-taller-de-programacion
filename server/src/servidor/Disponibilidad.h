@@ -22,6 +22,7 @@ public:
 	virtual ~Disponibilidad();
 	ThreadStatus * getStatus(int jugador);
 	ThreadStatus * getNextFree();
+	void cleanDeaths();
 };
 
 #endif /* DISPONIBILIDAD_H_ */
