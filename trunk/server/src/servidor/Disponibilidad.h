@@ -12,7 +12,6 @@
 using namespace std;
 //LIBERADO tengo que deletear el que estaba y crear uno nuevo.
 //LIBRE tengo que crear solamente.
-enum ESTADO {LIBERADO=-2, LIBRE=-1};
 class ThreadStatus;
 class Disponibilidad: public ObjetoCompartido {
 private:
