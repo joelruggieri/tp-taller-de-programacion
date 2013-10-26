@@ -104,7 +104,6 @@ return;
 }
 
 bool Boton::fueSeleccionado(int x, int y) {
-	//TODO calcular la seleccion con el radio, por ser redondos
 	int radio = this->getH() / 2 ;
 	int xc = this->getXCentro();
 	int yc = this->getYCentro();
