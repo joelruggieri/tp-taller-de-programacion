@@ -15,6 +15,7 @@ class Partida {
 public:
 	Partida(Nivel * n);
 	virtual ~Partida();
+	void run();
 };
 
 #endif /* PARTIDA_H_ */
