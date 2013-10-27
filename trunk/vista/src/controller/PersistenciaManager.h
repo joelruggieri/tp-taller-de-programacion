@@ -29,6 +29,8 @@ public:
 	void cambiarImagenFondo(string);
 	void persistir();
 	string getImagenFondo();
+	Nivel * getNivel();
+	void liberarNivel();
 };
 
 #endif /* PERSISTENCIAMANAGER_H_ */

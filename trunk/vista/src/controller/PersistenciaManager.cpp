@@ -19,7 +19,7 @@ PersistenciaManager::PersistenciaManager() {
 }
 
 PersistenciaManager::~PersistenciaManager() {
-	if(nivel != NULL){
+	if (nivel != NULL) {
 		delete nivel;
 	}
 	delete dao;
@@ -27,7 +27,7 @@ PersistenciaManager::~PersistenciaManager() {
 
 list<Figura*> & PersistenciaManager::getFiguras() {
 	Logger log;
-	if(nivel== NULL){
+	if (nivel == NULL) {
 		if (AdministradorDeArchivos::cantidadNiveles() == 0) {
 			// No hay niveles, se creara uno nuevo.
 			log.warning("No existe el nivel, se procede a crear uno vacio");
@@ -54,14 +54,14 @@ list<Figura*> & PersistenciaManager::getFiguras() {
 
 void PersistenciaManager::setFiguras(list<Figura*>& figuras) {
 	Logger log;
-	if(this->nivel != NULL){
+	if (this->nivel != NULL) {
 		//TODO MEMORY LEAK. LA PRIMERA VEZ Q SE GUARDA, ESOS PUNTEROS SE PIERDEN PERO NO ES MUCHA MEMORIA :P
 		nivel->getFiguras().clear();
-		nivel->getFiguras().insert(nivel->getFiguras().begin(),figuras.begin(),figuras.end());
+		nivel->getFiguras().insert(nivel->getFiguras().begin(), figuras.begin(), figuras.end());
 	} else {
-		try{
+		try {
 			nivel = dao->leerNivel(nivelActual);
-		} catch (NivelInexistenteException& e){
+		} catch (NivelInexistenteException& e) {
 			log.warning("No existe el nivel, se procede a crear uno vacio");
 			nivel = new Nivel(nivelActual);
 			nivel->setFondo(FONDO_DEFECTO);
@@ -83,7 +83,7 @@ void PersistenciaManager::persistir() {
 	string msj = "Se van a persistir ";
 	float size = nivel->getFiguras().size();
 	log.concatenar(msj, size);
-	msj = msj +" Figuras";
+	msj = msj + " Figuras";
 	log.info(msj);
 	dao->guardarNivel(nivel);
 }
@@ -92,3 +92,20 @@ string PersistenciaManager::getImagenFondo() {
 	return nivel->getFondo();
 }
 
+Nivel* PersistenciaManager::getNivel() {
+	Logger log;
+	if(nivel != NULL){
+		return nivel;
+	}
+	if (AdministradorDeArchivos::cantidadNiveles() == 0) {
+		log.error("No hay ningun nivel cargado.");
+		throw "No hay ningun nivel cargado";
+	}
+	nivel = dao->cargarPrimerNivel();
+	return nivel;
+
+}
+
+void PersistenciaManager::liberarNivel() {
+	this->nivel = NULL;
+}

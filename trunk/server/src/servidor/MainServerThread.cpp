@@ -6,13 +6,34 @@
  */
 
 #include "MainServerThread.h"
-
+#include "src/Logger.h"
+#include "src/controller/PersistenciaManager.h"
+#include "Partida.h"
 MainServerThread::MainServerThread() {
-	// TODO Auto-generated constructor stub
+	PersistenciaManager bbdd;
+	n = bbdd.getNivel();
+	bbdd.liberarNivel();
+
+}
+
+void MainServerThread::run() {
+
+
+	while(true){
+		//ENTREGA3 EZE:
+
+		// socket espera nueva conexion, borrar sleep
+		sleep(500);
+		log.info("Nuevo cliente conectado");
+		// responder partida creada
+		log.info("Nueva partida creada");
+		Partida partida(this->n);
+		partida.run();
+	}
 
 }
 
 MainServerThread::~MainServerThread() {
-	// TODO Auto-generated destructor stub
+	delete n;
 }
 
