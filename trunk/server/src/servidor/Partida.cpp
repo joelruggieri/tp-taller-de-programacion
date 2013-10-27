@@ -10,8 +10,9 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <errno.h>
+#include "JugadorThread.h"
+#include "ThreadStatus.h"
 using namespace std;
-
 #define PUERTO 5001
 
 Partida::Partida(Nivel* n) {
@@ -26,7 +27,8 @@ Partida::~Partida() {
 
 void Partida::run() {
 	int fd1, puerto;
-	struct sockaddr_in serv_addr;
+	unsigned int clilen;
+	struct sockaddr_in serv_addr, cli_addr;
 	fd1 = socket(AF_INET, SOCK_STREAM, 0);
 	 if (fd1 < 0)
 	    {
@@ -39,14 +41,35 @@ void Partida::run() {
 	    serv_addr.sin_addr.s_addr = INADDR_ANY;
 	    serv_addr.sin_port = htons(puerto);
 
-//	    if (bind(fd1, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
-//	        {
-//	             perror("ERROR on binding");
-//	             exit(1);		//TODO loguear errores
-//	        }
+	    if (bind(fd1, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
+	        {
+	             perror("ERROR on binding");
+	             exit(1);		//TODO loguear errores
+	        }
 
-//	    	    listen(fd1,nivel->getJugadores);
-	    //Ciclo para aceptar jugadores va aca ?  ->>>>> SI
+	    	    listen(fd1,nivel->getJugadores());
+	    	   clilen = sizeof(cli_addr);
+	    //Ciclo para aceptar jugadores va aca ?
+
+	    	    while(true)
+	    	    {
+
+	    	    	ThreadStatus* status = this->dispo->getNextFree();
+	    	    	if (status == NULL)
+	    	    	{
+	    	    		//abortar conexion
+	    	    	}
+	    	    	else
+	    	    	{
+	    	    		int fd2 = accept(fd1, (struct sockaddr *) &cli_addr, &clilen);
+	    	    		JugadorThread* jugadorNuevo = new  JugadorThread(this->cola,status->getNroJugador(), fd2);
+	    	    		jugadorNuevo->run();
+	    	    		status->setThread(jugadorNuevo);
+
+	    	    	}
+
+
+	    	    }
 
 
 }

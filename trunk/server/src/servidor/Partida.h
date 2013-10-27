@@ -8,7 +8,6 @@
 #ifndef PARTIDA_H_
 #define PARTIDA_H_
 #include <src/Nivel.h>
-#include "JugadorThread.h"
 #include "ColaEntrada.h"
 #include "Disponibilidad.h"
 #include <list>
@@ -20,7 +19,6 @@ class Partida {
 private:
 	ColaEntrada * cola;
 	Disponibilidad * dispo;
-	list<JugadorThread> jugadores;
 	Nivel * nivel;
 public:
 	Partida(Nivel * n);
