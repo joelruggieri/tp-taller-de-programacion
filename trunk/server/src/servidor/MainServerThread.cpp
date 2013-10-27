@@ -26,6 +26,7 @@ void MainServerThread::run() {
 		sleep(500);
 		log.info("Nuevo cliente conectado");
 		// responder partida creada
+		// cerrar conexion del cliente
 		log.info("Nueva partida creada");
 		Partida partida(this->n);
 		partida.run();
