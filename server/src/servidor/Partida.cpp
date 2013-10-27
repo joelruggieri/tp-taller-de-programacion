@@ -10,6 +10,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <errno.h>
+using namespace std;
+
 #define PUERTO 5001
 
 Partida::Partida(Nivel* n) {
@@ -37,14 +39,14 @@ void Partida::run() {
 	    serv_addr.sin_addr.s_addr = INADDR_ANY;
 	    serv_addr.sin_port = htons(puerto);
 
-	    if (bind(fd1, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
-	        {
-	             perror("ERROR on binding");
-	             exit(1);		//TODO loguear errores
-	        }
+//	    if (bind(fd1, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
+//	        {
+//	             perror("ERROR on binding");
+//	             exit(1);		//TODO loguear errores
+//	        }
 
 //	    	    listen(fd1,nivel->getJugadores);
-	    //Ciclo para aceptar jugadores va aca ?
+	    //Ciclo para aceptar jugadores va aca ?  ->>>>> SI
 
 
 }
