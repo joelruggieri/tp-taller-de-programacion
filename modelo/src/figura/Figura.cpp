@@ -156,8 +156,8 @@ void Figura::setReg(Registro r) {
 }
 
 void Figura::updateVista() {
-			if(vista != 0)
-				this->vista->update();
+//			if(vista != 0)
+//				this->vista->update();
 }
 
 void Figura::modificarSentido() {

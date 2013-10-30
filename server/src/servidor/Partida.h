@@ -8,18 +8,20 @@
 #ifndef PARTIDA_H_
 #define PARTIDA_H_
 #include <src/Nivel.h>
-#include "ColaEntrada.h"
+#include "ColaEventos.h"
 #include "Disponibilidad.h"
 #include <list>
+#include "EventDispatcherThread.h"
 using namespace std;
 
 class Partida {
 
 //La partida comienza a recibir a los clientes y empieza a pasarle el control a cada  thread que atiende. controla el numero maximo de clientes.
 private:
-	ColaEntrada * cola;
+	ColaEventos * cola;
 	Disponibilidad * dispo;
 	Nivel * nivel;
+	EventDispatcherThread * dispatcher;
 public:
 	Partida(Nivel * n);
 	virtual ~Partida();

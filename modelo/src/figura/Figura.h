@@ -10,7 +10,6 @@
 #include "../Posicionable.h"
 #include "VisitorFigura.h"
 #include "Box2D/Box2D.h"
-#include "Rotador.h"
 #include "../Vista.h"
 #include "Enganche.h"
 #include "Registro.h"

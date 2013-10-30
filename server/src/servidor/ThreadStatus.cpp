@@ -14,6 +14,8 @@ ThreadStatus::ThreadStatus(int timeout, int nro): puntoControl(chrono::duration<
 	this->timeout = timeout;
 	this->listener = NULL;
 	this->jugador = nro;
+	this->socketDesc = 0;
+	this->colaSalida=new ColaEventos();
 };
 bool ThreadStatus::isAlive() {
      int transcurrido = duration_cast<milliseconds>(system_clock::now() - puntoControl).count();
@@ -40,4 +42,16 @@ JugadorThread* ThreadStatus::getThread() {
 
 int ThreadStatus::getNroJugador() {
 	return jugador;
+}
+
+void ThreadStatus::setSocketDesc(int desc) {
+	this->socketDesc = desc;
+}
+
+int ThreadStatus::getSockedDesc() {
+	return socketDesc;
+}
+
+ColaEventos* ThreadStatus::getColaSalida() {
+	return this->colaSalida;
 }

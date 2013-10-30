@@ -37,11 +37,14 @@ ThreadStatus* Disponibilidad::getNextFree() {
 		if(actual->getThread() == NULL){
 			return actual;
 		}
+		actual->lock();
 		if(!actual->isAlive()) {
 			delete (actual->getThread());
 			actual->setThread(NULL);
+			actual->unlock();
 			return actual;
 		}
+		actual->unlock();
 	}
 	return NULL;
 }

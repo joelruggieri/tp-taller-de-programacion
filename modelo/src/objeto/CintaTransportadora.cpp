@@ -136,7 +136,7 @@ void CintaTransportadora::setAncho(float ancho) {
 	this->ancho = ancho;
 }
 
-float CintaTransportadora::getAncho() const {
+float CintaTransportadora::getAncho() const{
 	return this->ancho;
 }
 
@@ -185,3 +185,4 @@ float CintaTransportadora::getVelocidadCinta() {
 	}
 	return 0;
 }
+

@@ -6,42 +6,63 @@
  */
 
 #include "JugadorThread.h"
-
-JugadorThread::JugadorThread(ColaEntrada*c,int jugador, int socketDesc) {
-	this->nroJugador = jugador;
-	this->socketDesc = socketDesc;
-	th = NULL;
-	cola=c;
+#include "ThreadStatus.h"
+JugadorThread::JugadorThread(ColaEventos*c, ThreadStatus *status) {
+	this->nroJugador = status->getNroJugador();
+	this->status = status;
+	this->socketDesc = status->getSockedDesc();
+	thEntrada = NULL;
+	colaEntrada = c;
+	colaSalida = status->getColaSalida();
 }
 
 void JugadorThread::run() {
+	if (thSalida != NULL || thEntrada != NULL) {
 
-	th = new thread ([this](){
-		bool continuar = true;
-		while(continuar){
-			//ENTREGA3 Escuchar pedidos y deserializar
-			cola->lock();
-			//ENTREGA3  poner pedido en la cola
-			cola->unlock();
+		thEntrada = new thread([this]() {
+			bool continuar = true;
+			while(continuar) {
+				//ENTREGA3 Escuchar pedidos y deserializar
+				colaEntrada->lock();
+				//ENTREGA3  poner pedido en la colaEntrada
+				colaEntrada->unlock();
+				//refrezco el status para que no muera el thread
+				status->lock();
+				status->refresh();
+				status->unlock();
+				this_thread::yield();
+			}
+		});
+
+		//TODO PUEDE FALLAR ESTO porque estan leyendo los dos threads a este objeto JugadorThread?
+		thSalida = new thread([this]() {
+			bool continuar = true;
+			while(continuar) {
+				colaSalida->lock();
+				NetworkMensaje* pop = colaSalida->front();
+				colaSalida->unlock();
+				if (pop != NULL) {
+					//ENTREGA3 ENVIAR A TRAVEZ DEL SOCKET.
+				}
+			//refrezco el status para que no muera el thread
+			status->lock();
+			status->refresh();
+			status->unlock();
 			this_thread::yield();
-			//ENTREGA3 si paso x tiempo de time out y no mando nada.
-			//continuar = false;
-		}
-//		dispo->lock();
-//		dispo->setDisponibilidad(nroJugador, -2);
-//		dispo->unlock();
-	});
-
-
+			}
+		});
+	}
 }
 
 void JugadorThread::exit() {
-	delete th;
-	th = NULL;
+	delete thEntrada;
+	thEntrada = NULL;
+	delete thSalida;
+	thSalida = NULL;
 }
 
 JugadorThread::~JugadorThread() {
-	if(th != NULL){
+	if (thEntrada != NULL) {
 		//MANDALE HACHA
 		exit();
 	}
