@@ -1,0 +1,120 @@
+Nivel:
+  Nombre: yaml1
+  Fondo: resource/fondo.jpg
+Objetos:
+  Balancines:
+    - x: 81.8
+      y: 47.8
+      rotacion: 0
+    - x: 55.4
+      y: 37
+      rotacion: 0
+    - y: 59
+      x: 64.8
+      rotacion: 0
+  BolasBoliche:
+    - x: 72.8
+      y: 82.2
+    - x: 57.6
+      y: 79.6
+    - x: 44
+      y: 77.4
+  Cintas:
+    - x: 22.2
+      y: 91.2
+      ancho: 32.6
+    - x: 78
+      y: 35.2
+      ancho: 25.8
+    - y: 65
+      x: 9.8
+      ancho: 20
+    - x: 66.8
+      y: 20.8
+      ancho: 34.60001
+  GlobosHelio:
+    - x: 54.4
+      y: 66.4
+    - x: 49.4
+      y: 89.2
+    - x: 32.4
+      y: 28.6
+    - x: 84.6
+      y: 27
+    - x: 80
+      y: 56
+    - x: 88.4
+      y: 75
+  PelotasJuego:
+    - x: 70
+      y: 89.6
+  Motores:
+    - x: 21.8
+      y: 32
+      direccion: 1
+    - x: 26.8
+      y: 48.8
+      direccion: 1
+    - x: 46
+      y: 50.6
+      direccion: 1
+    - x: 32.6
+      y: 64.2
+      direccion: 1
+    - x: 40.8
+      y: 23.8
+      direccion: -1
+  Engranajes:
+    - x: 20
+      y: 77
+      radio: 5.5
+    - x: 44.8
+      y: 30.2
+      radio: 2.5
+    - x: 92.8
+      y: 10.8
+      radio: 3.5
+    - x: 15.2
+      y: 12
+      radio: 5.5
+    - x: 42
+      y: 13.2
+      radio: 5.5
+  Correas:
+    - xDesde: 46
+      yDesde: 50.6
+      xHasta: 26.8
+      yHasta: 48.8
+    - xDesde: 92.8
+      yDesde: 10.8
+      xHasta: 15.2
+      yHasta: 12
+    - xDesde: 21.8
+      yDesde: 32
+      xHasta: 20
+      yHasta: 77
+    - xDesde: 22.2
+      yDesde: 91.2
+      xHasta: 32.6
+      yHasta: 64.2
+    - xDesde: 44.8
+      yDesde: 30.2
+      xHasta: 78
+      yHasta: 35.2
+    - xDesde: 42
+      yDesde: 13.2
+      xHasta: 66.8
+      yHasta: 20.8
+  Sogas:
+    - xDesde: 47.9
+      yDesde: 37
+      xHasta: 72.3
+      yHasta: 59
+    - xDesde: 84.6
+      yDesde: 23.5
+      xHasta: 62.9
+      yHasta: 37
+    - xDesde: 88.4
+      yDesde: 71.5
+      xHasta: 74.3
+      yHasta: 47.8
