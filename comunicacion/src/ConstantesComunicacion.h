@@ -1,1 +1,2 @@
-#define TAG_VIEW_GLOBO "VGLB"
+#define TAG_VIEW_GLOBO "VGL"
+#define TAG_MSJ_PLANO "MPL"
