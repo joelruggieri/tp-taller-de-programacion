@@ -19,6 +19,7 @@ Partida::Partida(Nivel* n) {
 	nivel = n;
 	dispo = new Disponibilidad(n->getJugadores());
 	cola = new ColaEventos();
+
 }
 
 Partida::~Partida() {
