@@ -12,6 +12,7 @@
 #include "Disponibilidad.h"
 #include <list>
 #include "EventDispatcherThread.h"
+#include "EventReceptorThread.h"
 using namespace std;
 
 class Partida {
@@ -22,6 +23,7 @@ private:
 	Disponibilidad * dispo;
 	Nivel * nivel;
 	EventDispatcherThread * dispatcher;
+	EventReceptorThread * receiver;
 public:
 	Partida(Nivel * n);
 	virtual ~Partida();

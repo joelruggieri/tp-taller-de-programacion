@@ -1,20 +1,20 @@
 /*
- * GeneralEventReceptorThread.cpp
+ * EventReceptorThread.cpp
  *
  *  Created on: 26/10/2013
  *      Author: jonathan
  */
 
-#include "GeneralEventReceptorThread.h"
+#include "EventReceptorThread.h"
 
-GeneralEventReceptorThread::GeneralEventReceptorThread(GeneralEventController *, ColaEventos * in, ColaEventos out) {
+EventReceptorThread::EventReceptorThread(GeneralEventController *, ColaEventos * in, ColaEventos * out) {
 	th = NULL;
 	this->colaIn = in;
 	this->colaOut = out;
 
 }
 
-void GeneralEventReceptorThread::run() {
+void EventReceptorThread::run() {
 	if (th != NULL) {
 		th = new thread([this]() {
 			bool continuar = true;
@@ -49,7 +49,7 @@ void GeneralEventReceptorThread::run() {
 		});
 	}}
 
-GeneralEventReceptorThread::~GeneralEventReceptorThread() {
+EventReceptorThread::~EventReceptorThread() {
 	if(this->th != NULL){
 		delete th;
 		th =NULL;
