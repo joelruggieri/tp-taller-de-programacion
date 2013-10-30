@@ -7,7 +7,7 @@
 
 #include "NetworkMensajeCompuesto.h"
 #include "NetworkMensaje.h"
-NetworkMensajeCompuesto::NetworkMensajeCompuesto(int destinatario):NetworkMensaje(destinatario) {
+NetworkMensajeCompuesto::NetworkMensajeCompuesto() {
 	// TODO Auto-generated constructor stub
 
 }

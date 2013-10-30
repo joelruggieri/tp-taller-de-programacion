@@ -8,6 +8,7 @@
 #ifndef NETWORKMENSAJE_H_
 #define NETWORKMENSAJE_H_
 #include <string>
+#include "yaml-cpp/yaml.h"
 using namespace std;
 
 class NetworkMensaje {
@@ -16,13 +17,15 @@ private:
 	int destinatario;
 
 public:
-	NetworkMensaje(int destinatario);
+	NetworkMensaje();
 	//TODO ESTO PODRÍA SER UN ARRAY DE BITS O ALGO ASI??? TIENE QUE SER SI O SI STRING? QUE PROBLEMAS TENEMOS?
 	virtual string serialize();
 	virtual ~NetworkMensaje();
 	int getDestinatario();
 	void setDestinatario(int destinatario);
-
+	virtual void serialize(YAML::Node * nodo) = 0;
+	//RECIBE UN ITERADOR DESDE DONDE LEER SUS VALORES, EL TAG DEL MSJ YA ESTA LEIDO A ESTA ALTURA.
+	virtual NetworkMensaje * deserialize(YAML::const_iterator &) = 0;
 
 };
 
