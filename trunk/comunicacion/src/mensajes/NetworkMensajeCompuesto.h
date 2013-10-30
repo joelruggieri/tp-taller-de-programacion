@@ -12,7 +12,7 @@
 #include "NetworkMensaje.h"
 using namespace std;
 
-
+//ENTREGA3 TODO BORRAR, ME PARECE QUE NO ES NECESARIO ESTO YA.
 
 class NetworkMensajeCompuesto: public NetworkMensaje {
 private:
