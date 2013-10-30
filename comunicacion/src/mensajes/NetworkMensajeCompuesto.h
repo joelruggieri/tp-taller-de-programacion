@@ -18,7 +18,7 @@ class NetworkMensajeCompuesto: public NetworkMensaje {
 private:
 	list<NetworkMensaje*> mensajes;
 public:
-	NetworkMensajeCompuesto(int);
+	NetworkMensajeCompuesto();
 	virtual ~NetworkMensajeCompuesto();
 	void addMensaje(NetworkMensaje * mensaje);
 	string serialize();

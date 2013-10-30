@@ -4,8 +4,8 @@ int NetworkMensaje::getDestinatario() {
 	return destinatario;
 }
 
-NetworkMensaje::NetworkMensaje(int destinatario) {
-	this->destinatario = destinatario;
+NetworkMensaje::NetworkMensaje() {
+	destinatario = -1;
 }
 
 
