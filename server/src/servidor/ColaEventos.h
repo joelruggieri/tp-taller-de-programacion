@@ -5,16 +5,22 @@
  *      Author: joel
  */
 
-#ifndef COLASALIDA_H_
-#define COLASALIDA_H_
-#include "../comunicacion/NetworkMensaje.h"
+#ifndef COLAEVENTOS_H_
+#define COLAEVENTOS_H_
+#include "src/NetworkMensaje.h"
 #include "ObjetoCompartido.h"
+
+//ENTREGA3 LA COLA DEBERIA INICIALIZARSE CON UN LIMITE. SI PASA ESE LIMITE DE MSJS, HACE CLEAN PARA NO SATURARSE CON COSAS QUE YA NO VAN.
+//LOS MENSAJES PODRIAN TENER UN METODO QUE SEA LENGHT E INTERNAMENTE IR SUMANDO Y RESTANDO EN LOS SUCESIVOS PUSH Y FRONT
+//PARA SABER EXACTAMENTE A CUANTO SE FUE LA COLA.
+
 class ColaEventos: public ObjetoCompartido {
 public:
 	ColaEventos();
 	void push(NetworkMensaje * msj);
 	NetworkMensaje * front();
 	virtual ~ColaEventos();
+	void clear();
 };
 
-#endif /* COLASALIDA_H_ */
+#endif /* COLAEVENTOS_H_ */

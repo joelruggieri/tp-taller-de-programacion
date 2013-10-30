@@ -29,6 +29,10 @@ void ThreadStatus::refresh() {
 //NO SEAS HIJO DE PUTA Y A T PONELE EL NRO DE JUGADOR QUE TIENE EL STATUS.
 void ThreadStatus::setThread(JugadorThread* t) {
 	this->refresh();
+	//ENTREGA3 REVISAR, PERO VOY A HACER CLEAN DE LA COLA CUANDO ME SETEAN UN THREAD NUEVO, ASI NO LE LLEGA INFO VIEJA
+	this->colaSalida->lock();
+	this->colaSalida->clear();
+	this->colaSalida->unlock();
 	this->listener= t;
 }
 

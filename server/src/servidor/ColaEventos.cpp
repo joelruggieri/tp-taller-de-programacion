@@ -22,3 +22,7 @@ void ColaEventos::push(NetworkMensaje* msj) {
 NetworkMensaje* ColaEventos::front() {
 	return NULL;
 }
+
+void ColaEventos::clear() {
+	//ENTREGA3 LIMPIAR LA COLA DE EVENTOS TOTALMENTE DELETEANDO PUNTEROS.
+}
