@@ -35,6 +35,7 @@ public:
 	void restoreBackUp();
 	float getRadio() const;
 	void setRadio(float radio);
+	float getAncho() const;
 private:
 	typedef Objeto super;
 	void getSiguienteRadio();

@@ -11,7 +11,7 @@
 #include <list>
 #include "figura/Figura.h"
 #include <string>
-
+#include "Jugador.h"
 //ENTREGA3 hay que hacer que tenga:
 //Por lo tanto el nivel consta de:
 //

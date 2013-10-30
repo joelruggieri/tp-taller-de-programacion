@@ -23,7 +23,7 @@ void MainServerThread::run() {
 		//ENTREGA3 EZE:
 
 		// socket espera nueva conexion, borrar sleep
-		sleep(500);
+		sleep(1);
 		log.info("Nuevo cliente conectado");
 		// responder partida creada
 		// cerrar conexion del cliente

@@ -10,10 +10,11 @@
 
 class Estirable {
 public:
+	virtual void estirar (float delta) = 0;
+	virtual float getAncho() const = 0;
 	virtual ~Estirable(){
 
 	};
-	virtual void estirar (float delta) = 0;
 };
 
 #endif /* ESTIRABLE_H_ */

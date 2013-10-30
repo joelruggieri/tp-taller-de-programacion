@@ -240,3 +240,7 @@ float Engranaje::getRadio() const {
 void Engranaje::setRadio(float radio) {
 	this->radio = radio ;
 }
+
+float Engranaje::getAncho()const {
+	return getRadio()*2;
+}

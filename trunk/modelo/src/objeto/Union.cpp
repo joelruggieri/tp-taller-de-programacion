@@ -246,13 +246,13 @@ void Union::notifyEvent(Evento_type enumEvento) {
 //		cout << "me entere cambio espacial forzado" << endl;
 		updatePosicionesFigurasSinFisica();
 		calcularCentroCuadrado();
-		vista->update();
+//		vista->update();
 	}
 	if(enumEvento == FISICA_E_CREADA){
 //		cout << "me entere creacion fisica" << endl;
 		updateCaracteristicas();
 		this->crearFisicaEstatica();
-		vista->update();
+//		vista->update();
 	}
 
 
