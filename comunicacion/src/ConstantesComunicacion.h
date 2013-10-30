@@ -1,2 +1,5 @@
 #define TAG_VIEW_GLOBO "VGL"
 #define TAG_MSJ_PLANO "MPL"
+#define TAG_VIEW_BOLA "VBO"
+#define TAG_VIEW_PELOTA "VPE"
+#define TAG_VIEW_PLATAFORMA "VPL"
