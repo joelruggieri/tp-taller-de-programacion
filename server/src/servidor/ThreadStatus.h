@@ -9,8 +9,8 @@
 #define THREDSTATUS_H_
 #include <chrono>
 #include "Disponibilidad.h"
-#include "ObjetoCompartido.h"
-#include "ColaEventos.h"
+#include "src/threading/ObjetoCompartido.h"
+#include "src/threading/ColaEventos.h"
 using namespace std;
 class JugadorThread;
 

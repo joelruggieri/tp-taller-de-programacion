@@ -7,7 +7,7 @@
 
 #ifndef COLAEVENTOS_H_
 #define COLAEVENTOS_H_
-#include "src/mensajes/NetworkMensaje.h"
+#include "../mensajes/NetworkMensaje.h"
 #include "ObjetoCompartido.h"
 
 //ENTREGA3 LA COLA DEBERIA INICIALIZARSE CON UN LIMITE. SI PASA ESE LIMITE DE MSJS, HACE CLEAN PARA NO SATURARSE CON COSAS QUE YA NO VAN.

@@ -8,18 +8,18 @@
 #ifndef JUGADORTHREAD_H_
 #define JUGADORTHREAD_H_
 #include <thread>
-#include "ColaEventos.h"
+#include "src/threading/ColaEventos.h"
 using namespace std;
 
 class ThreadStatus;
 class JugadorThread {
 private:
 	thread * thEntrada, *thSalida;
-	ThreadStatus * status;
 	int nroJugador;
 	int socketDesc;
 	ColaEventos * colaEntrada;
 	ColaEventos * colaSalida;
+	ThreadStatus * status;
 public:
 	//ENTREGA3 RECIBIR EL SOCKET PARA ESCUCHAR LAS PETICIONES DEL CLIENTE QUE ATIENDE Y LA COLA DE ENTRADA DE EVENTOS para ir cargando..
 	//Este muchacho debería abrirse un thread separado PARA LABURAR.

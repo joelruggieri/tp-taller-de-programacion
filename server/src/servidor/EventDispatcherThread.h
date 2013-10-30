@@ -8,7 +8,7 @@
 #ifndef EVENTDISPATCHERTHREAD_H_
 #define EVENTDISPATCHERTHREAD_H_
 #include "Disponibilidad.h"
-#include "ColaEventos.h"
+#include "src/threading/ColaEventos.h"
 #include "src/Logger.h"
 #include "thread"
 //

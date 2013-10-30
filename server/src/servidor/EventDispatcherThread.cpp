@@ -41,9 +41,9 @@ void EventDispatcherThread::run() {
 				disponibilidad->unlock();
 
 				//TODO EL LOGGER NO ES MULTITHREAD :O
-				string msj = "Despacho mensaje a ";
-				log.concatenar(msj, front->getDestinatario());
-				log.debug(msj);
+//				string msj = "Despacho mensaje a ";
+//				log.concatenar(msj, front->getDestinatario());
+//				log.debug(msj);
 				destinatario->lock();
 				ColaEventos* colaEvento = destinatario->getColaSalida();
 				destinatario->unlock();

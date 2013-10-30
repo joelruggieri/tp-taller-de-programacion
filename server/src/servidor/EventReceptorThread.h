@@ -9,7 +9,7 @@
 #define EVENTRECEPTORTHREAD_H_
 #include "src/controller/GeneralEventController.h"
 #include <thread>
-#include "ColaEventos.h"
+#include "src/threading/ColaEventos.h"
 class EventReceptorThread {
 
 private:
