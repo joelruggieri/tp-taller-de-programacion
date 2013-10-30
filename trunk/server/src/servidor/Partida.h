@@ -8,7 +8,7 @@
 #ifndef PARTIDA_H_
 #define PARTIDA_H_
 #include <src/Nivel.h>
-#include "ColaEventos.h"
+#include "src/threading/ColaEventos.h"
 #include "Disponibilidad.h"
 #include <list>
 #include "EventDispatcherThread.h"

@@ -7,7 +7,7 @@
 
 #ifndef DISPONIBILIDAD_H_
 #define DISPONIBILIDAD_H_
-#include "ObjetoCompartido.h"
+#include "src/threading/ObjetoCompartido.h"
 #include <map>
 using namespace std;
 //LIBERADO tengo que deletear el que estaba y crear uno nuevo.

@@ -19,7 +19,6 @@ private:
 public:
 	NetworkMensaje();
 	//TODO ESTO PODRÍA SER UN ARRAY DE BITS O ALGO ASI??? TIENE QUE SER SI O SI STRING? QUE PROBLEMAS TENEMOS?
-	virtual string serialize();
 	virtual ~NetworkMensaje();
 	int getDestinatario();
 	void setDestinatario(int destinatario);
