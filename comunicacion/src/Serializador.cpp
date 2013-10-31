@@ -15,6 +15,9 @@ this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_PELOTA), new
 this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_PLATAFORMA), new ViewPlataformaUpdateMsj(0,0,0,0)));
 this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_MOTOR), new ViewMotorUpdateMsj(0,0,0)));
 this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_CINTA), new ViewCintaUpdateMsj(0,0,0,0)));
+this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_ENGRANAJE), new ViewEngranajeUpdateMsj(0,0,0,0)));
+this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_BALANCIN), new ViewBalancinUpdateMsj(0,0,0)));
+this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_SOGA), new ViewSogaUpdateMje(0,0,0,0)));
 }
 
 Serializador::~Serializador() {
