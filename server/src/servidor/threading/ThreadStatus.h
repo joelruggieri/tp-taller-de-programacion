@@ -7,7 +7,7 @@
 
 #ifndef THREDSTATUS_H_
 #define THREDSTATUS_H_
-#include <chrono>
+//#include <chrono>
 #include "Disponibilidad.h"
 #include "src/threading/ObjetoCompartido.h"
 #include "src/threading/ColaEventos.h"
@@ -15,7 +15,7 @@ using namespace std;
 class JugadorThread;
 
 class ThreadStatus: public ObjetoCompartido {
-	chrono::system_clock::time_point puntoControl;
+//	chrono::system_clock::time_point puntoControl;
 private:
 	JugadorThread * listener;
 	int timeout, jugador, socketDesc;

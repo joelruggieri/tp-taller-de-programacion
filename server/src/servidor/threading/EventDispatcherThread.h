@@ -9,19 +9,32 @@
 #define EVENTDISPATCHERTHREAD_H_
 #include "Disponibilidad.h"
 #include "src/threading/ColaEventos.h"
+#include "src/threading/ThreadPTM.h"
 #include "src/Logger.h"
-#include "thread"
-//
+
+class EventDispatcherThreadParams {
+private:
+	ColaEventos * cola;
+	Disponibilidad * dispo;
+public:
+	EventDispatcherThreadParams(ColaEventos * cola, Disponibilidad * disponibilidad);
+	virtual ~EventDispatcherThreadParams();
+	ColaEventos* getCola();
+	Disponibilidad* getDispo();
+};
+
 class EventDispatcherThread {
 private:
-	Disponibilidad * disponibilidad;
-	ColaEventos * cola;
-	thread * th;
+	EventDispatcherThreadParams * params;
+	ThreadPTM * th;
 	Logger log;
+	void cleanAll();
 public:
 	EventDispatcherThread(ColaEventos * colaSalida, Disponibilidad * dispo);
 	virtual ~EventDispatcherThread();
 	void run();
+	void cancel();
+
 };
 
 #endif /* EVENTDISPATCHERTHREAD_H_ */

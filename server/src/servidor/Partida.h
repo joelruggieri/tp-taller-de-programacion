@@ -9,10 +9,10 @@
 #define PARTIDA_H_
 #include <src/Nivel.h>
 #include "src/threading/ColaEventos.h"
-#include "Disponibilidad.h"
+#include "threading/Disponibilidad.h"
 #include <list>
-#include "EventDispatcherThread.h"
-#include "EventReceptorThread.h"
+#include "threading/EventDispatcherThread.h"
+#include "threading/EventReceptorThread.h"
 using namespace std;
 
 class Partida {

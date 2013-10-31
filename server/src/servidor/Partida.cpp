@@ -10,8 +10,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <errno.h>
-#include "JugadorThread.h"
-#include "ThreadStatus.h"
+#include "threading/JugadorThread.h"
+#include "threading/ThreadStatus.h"
 using namespace std;
 #define PUERTO 5001
 
@@ -33,7 +33,7 @@ void Partida::run() {
 	fd1 = socket(AF_INET, SOCK_STREAM, 0);
 	if (fd1 < 0) {
 		perror("ERROR abriendo socket.\n");	//TODO loguear errores
-		exit(1);
+//		cancel(1);
 	}
 	bzero((char *) &serv_addr, sizeof(serv_addr));
 	puerto = PUERTO;
@@ -43,7 +43,7 @@ void Partida::run() {
 
 //	if (bind(fd1, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
 //		perror("ERROR on binding");
-//		exit(1);		//TODO loguear errores
+//		cancel(1);		//TODO loguear errores
 //	}
 
 	listen(fd1, nivel->getJugadores());

@@ -6,11 +6,11 @@
  */
 
 #include "ThreadStatus.h"
-#include <ratio>
+//#include <ratio>
 using namespace std;
-using namespace chrono;
+//using namespace chrono;
 #include "JugadorThread.h"
-ThreadStatus::ThreadStatus(int timeout, int nro): puntoControl(chrono::duration<int>(1)){
+ThreadStatus::ThreadStatus(int timeout, int nro){// :puntoControl(chrono::duration<int>(1)){
 	this->timeout = timeout;
 	this->listener = NULL;
 	this->jugador = nro;
@@ -18,12 +18,13 @@ ThreadStatus::ThreadStatus(int timeout, int nro): puntoControl(chrono::duration<
 	this->colaSalida=new ColaEventos();
 };
 bool ThreadStatus::isAlive() {
-     int transcurrido = duration_cast<milliseconds>(system_clock::now() - puntoControl).count();
-	return transcurrido < this->timeout;
+//     int transcurrido = duration_cast<milliseconds>(system_clock::now() - puntoControl).count();
+//	return transcurrido < this->timeout;
+	return true;
 }
 
 void ThreadStatus::refresh() {
-	puntoControl = system_clock::now();
+//	puntoControl = system_clock::now();
 }
 
 //NO SEAS HIJO DE PUTA Y A T PONELE EL NRO DE JUGADOR QUE TIENE EL STATUS.
