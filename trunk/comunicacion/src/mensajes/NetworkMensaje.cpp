@@ -12,3 +12,6 @@ NetworkMensaje::NetworkMensaje() {
 void NetworkMensaje::setDestinatario(int destinatario) {
 	this->destinatario = destinatario;
 }
+
+NetworkMensaje::~NetworkMensaje() {
+}
