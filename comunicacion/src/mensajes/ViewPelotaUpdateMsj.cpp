@@ -7,19 +7,20 @@
 
 #include "ViewPelotaUpdateMsj.h"
 #include "../ConstantesComunicacion.h"
-ViewPelotaUpdateMsj::ViewPelotaUpdateMsj(float x, float y) {
-	this->x = x;
-	this->y = y;
+ViewPelotaUpdateMsj::ViewPelotaUpdateMsj(float x, float y, float angulo) : ViewObjetoUpdateMsj(x,y,angulo){
+//	this->x = x;
+//	this->y = y;
 }
 
 ViewPelotaUpdateMsj::~ViewPelotaUpdateMsj() {
 	// TODO Auto-generated destructor stub
 }
 
-void ViewPelotaUpdateMsj::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_VIEW_GLOBO);
-	nodo->push_back(this->x);
-	nodo->push_back(this->y);
+void ViewPelotaUpdateMsj::serialize(YAML::Node* nodo){
+//	nodo->push_back(TAG_VIEW_GLOBO);
+//	nodo->push_back(this->x);
+//	nodo->push_back(this->y);
+	super::serialize(nodo);
 
 }
 
@@ -27,6 +28,17 @@ NetworkMensaje* ViewPelotaUpdateMsj::deserialize(YAML::const_iterator & it) {
 	float xl = it->as<float>();
 	it++;
 	float yl = it->as<float>();
-	NetworkMensaje * salida = new ViewPelotaUpdateMsj(xl,yl);
+	it++;
+	float angulol = it->as<float>();
+	it++;
+	NetworkMensaje * salida = new ViewPelotaUpdateMsj(xl,yl, angulol);
 	return salida;
+}
+
+string ViewPelotaUpdateMsj::getTag() {
+return TAG_VIEW_PELOTA;
+}
+
+void ViewPelotaUpdateMsj::getMensaje() {
+	cout << this->x << " " << this->y << " " << this->angulo << endl;
 }

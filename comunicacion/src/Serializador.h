@@ -16,6 +16,8 @@
 #include "mensajes/ViewBolaBolicheUpdateMsj.h"
 #include "mensajes/ViewPelotaUpdateMsj.h"
 #include "mensajes/ViewPlataformaUpdateMsj.h"
+#include "mensajes/ViewMotorUpdateMsj.h"
+#include "mensajes/ViewCintaUpdateMsj.h"
 #include <string>
 #include "yaml-cpp/yaml.h"
 #include <sys/socket.h>

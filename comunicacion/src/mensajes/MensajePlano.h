@@ -22,6 +22,7 @@ public:
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 	string getMensaje();
+	string getTag();
 };
 
 #endif /* MENSAJEPLANO_H_ */

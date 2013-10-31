@@ -17,9 +17,13 @@ private:
 	int destinatario;
 
 public:
-	NetworkMensaje();
+
 	//TODO ESTO PODRÍA SER UN ARRAY DE BITS O ALGO ASI??? TIENE QUE SER SI O SI STRING? QUE PROBLEMAS TENEMOS?
-	virtual ~NetworkMensaje();
+
+	NetworkMensaje();
+	virtual string serialize();
+
+	virtual ~NetworkMensaje() ;
 	int getDestinatario();
 	void setDestinatario(int destinatario);
 	virtual void serialize(YAML::Node * nodo) = 0;

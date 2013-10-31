@@ -3,3 +3,5 @@
 #define TAG_VIEW_BOLA "VBO"
 #define TAG_VIEW_PELOTA "VPE"
 #define TAG_VIEW_PLATAFORMA "VPL"
+#define TAG_VIEW_MOTOR "VMO"
+#define TAG_VIEW_CINTA "VCI"
