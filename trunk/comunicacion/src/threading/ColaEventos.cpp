@@ -17,12 +17,29 @@ ColaEventos::~ColaEventos() {
 }
 
 void ColaEventos::push(NetworkMensaje* msj) {
+	this->lock();
+	this->msjs.push_back(msj);
+	this->unlock();
 }
 
 NetworkMensaje* ColaEventos::front() {
-	return NULL;
+	this->lock();
+	NetworkMensaje * msj =this->msjs.front();
+	this->msjs.remove(msj);
+	this->unlock();
+	return msj;
 }
 
 void ColaEventos::clear() {
-	//ENTREGA3 LIMPIAR LA COLA DE EVENTOS TOTALMENTE DELETEANDO PUNTEROS.
+	this->lock();
+	list<NetworkMensaje*>::iterator it;
+	for(it= this->msjs.begin(); it != this->msjs.end(); ++it){
+		delete (*it);
+	}
+	msjs.clear();
+	this->unlock();
+}
+
+bool ColaEventos::hasNext() {
+	return !msjs.empty();
 }

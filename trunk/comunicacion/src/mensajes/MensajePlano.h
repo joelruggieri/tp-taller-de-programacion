@@ -21,6 +21,7 @@ public:
 	virtual ~MensajePlano();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
+	string getMensaje();
 };
 
 #endif /* MENSAJEPLANO_H_ */

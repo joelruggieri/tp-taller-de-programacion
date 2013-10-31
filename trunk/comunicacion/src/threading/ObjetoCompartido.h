@@ -7,12 +7,12 @@
 
 #ifndef OBJETOCOMPARTIDO_H_
 #define OBJETOCOMPARTIDO_H_
-#include <mutex>
+#include <pthread.h>
 using namespace std;
 
 class ObjetoCompartido {
 private:
-	mutex traba;
+	pthread_mutex_t mutex;
 public:
 	ObjetoCompartido();
 	virtual ~ObjetoCompartido();

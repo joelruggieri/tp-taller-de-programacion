@@ -24,3 +24,7 @@ NetworkMensaje* MensajePlano::deserialize(YAML::const_iterator & it) {
 	NetworkMensaje * salida = new MensajePlano(msj);
 	return salida;
 }
+
+string MensajePlano::getMensaje() {
+	return msj;
+}
