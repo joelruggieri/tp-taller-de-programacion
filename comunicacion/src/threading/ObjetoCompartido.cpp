@@ -8,18 +8,18 @@
 #include "ObjetoCompartido.h"
 
 ObjetoCompartido::ObjetoCompartido() {
-	// TODO Auto-generated constructor stub
+	pthread_mutex_init(&(this->mutex), NULL);
 
 }
 
 ObjetoCompartido::~ObjetoCompartido() {
-	// TODO Auto-generated destructor stub
+	pthread_mutex_destroy(&(this->mutex));
 }
 
 void ObjetoCompartido::lock() {
-	this->traba.lock();
+	pthread_mutex_lock(&(this->mutex));
 }
 
 void ObjetoCompartido::unlock() {
-	this->traba.unlock();
+	pthread_mutex_unlock(&(this->mutex));
 }
