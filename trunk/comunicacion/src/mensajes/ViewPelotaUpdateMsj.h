@@ -8,14 +8,19 @@
 #ifndef VIEWPELOTAUPDATEMSJ_H_
 #define VIEWPELOTAUPDATEMSJ_H_
 #include "NetworkMensaje.h"
-class ViewPelotaUpdateMsj : public NetworkMensaje{
+#include "ViewObjetoUpdateMsj.h"
+class ViewPelotaUpdateMsj : public ViewObjetoUpdateMsj{
 public:
-	ViewPelotaUpdateMsj(float x, float y);
+	ViewPelotaUpdateMsj(float x, float y, float angulo);
 	virtual ~ViewPelotaUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
+	void getMensaje();
+	string getTag();
 private:
-	float x,y;
+//	float x,y;
+
+	typedef ViewObjetoUpdateMsj super;
 };
 
 #endif /* VIEWPELOTAUPDATEMSJ_H_ */

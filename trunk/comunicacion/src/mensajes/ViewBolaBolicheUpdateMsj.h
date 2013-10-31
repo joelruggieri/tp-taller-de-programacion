@@ -8,14 +8,18 @@
 #ifndef VIEWBOLABOLICHEUPDATEMSJ_H_
 #define VIEWBOLABOLICHEUPDATEMSJ_H_
 #include "NetworkMensaje.h"
-class ViewBolaBolicheUpdateMsj : public NetworkMensaje {
+#include "ViewObjetoUpdateMsj.h"
+class ViewBolaBolicheUpdateMsj: public ViewObjetoUpdateMsj {
 public:
-	ViewBolaBolicheUpdateMsj(float, float);
+	ViewBolaBolicheUpdateMsj(float, float, float);
 	virtual ~ViewBolaBolicheUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
+	string getTag();
+	void getMensaje();
 private:
-	float x,y ;
+//	float x, y, angulo;
+	typedef ViewObjetoUpdateMsj super;
 };
 
 #endif /* VIEWBOLABOLICHEUPDATEMSJ_H_ */

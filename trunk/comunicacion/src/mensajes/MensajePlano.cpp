@@ -21,10 +21,15 @@ void MensajePlano::serialize(YAML::Node* nodo) {
 
 NetworkMensaje* MensajePlano::deserialize(YAML::const_iterator & it) {
 	string msj = it->as<string>();
+	it++;
 	NetworkMensaje * salida = new MensajePlano(msj);
 	return salida;
 }
 
 string MensajePlano::getMensaje() {
 	return msj;
+}
+
+string MensajePlano::getTag() {
+	return TAG_MSJ_PLANO;
 }

@@ -7,9 +7,9 @@
 
 #include "ViewBolaBolicheUpdateMsj.h"
 #include "../ConstantesComunicacion.h"
-ViewBolaBolicheUpdateMsj::ViewBolaBolicheUpdateMsj(float x, float y) {
-this->x = x;
-this->y = y;
+ViewBolaBolicheUpdateMsj::ViewBolaBolicheUpdateMsj(float x, float y, float angulo):ViewObjetoUpdateMsj(x,y, angulo) {
+//this->x = x;
+//this->y = y;
 }
 
 ViewBolaBolicheUpdateMsj::~ViewBolaBolicheUpdateMsj() {
@@ -17,10 +17,10 @@ ViewBolaBolicheUpdateMsj::~ViewBolaBolicheUpdateMsj() {
 }
 
 void ViewBolaBolicheUpdateMsj::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_VIEW_BOLA);
-	nodo->push_back(this->x);
-	nodo->push_back(this->y);
-
+//	nodo->push_back(TAG_VIEW_BOLA);
+//	nodo->push_back(this->x);
+//	nodo->push_back(this->y);
+	super::serialize(nodo);
 }
 
 NetworkMensaje* ViewBolaBolicheUpdateMsj::deserialize(
@@ -28,6 +28,17 @@ NetworkMensaje* ViewBolaBolicheUpdateMsj::deserialize(
 	float xl = it->as<float>();
 	it++;
 	float yl = it->as<float>();
-	NetworkMensaje * salida = new ViewBolaBolicheUpdateMsj(xl,yl);
+	it++;
+	float angulo = it->as<float>();
+	it++;
+	NetworkMensaje * salida = new ViewBolaBolicheUpdateMsj(xl,yl, angulo );
 	return salida;
+}
+
+string ViewBolaBolicheUpdateMsj::getTag() {
+	return TAG_VIEW_BOLA;
+}
+
+void ViewBolaBolicheUpdateMsj::getMensaje() {
+	cout << this->x << " " << this->y << " " << this->angulo<< endl;
 }
