@@ -7,12 +7,12 @@
 
 #ifndef STATUS_H_
 #define STATUS_H_
-#include <chrono>
+//#include <chrono>
 #include "src/threading/ObjetoCompartido.h"
 using namespace std;
 
 class Status: public ObjetoCompartido {
-	chrono::system_clock::time_point puntoControl;
+//	chrono::system_clock::time_point puntoControl;
 private:
 	int timeout;
 public:
