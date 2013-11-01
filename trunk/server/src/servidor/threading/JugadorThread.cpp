@@ -30,7 +30,7 @@ void * func_entrada(void * arg) {
 	Serializador serializador;
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
-		usleep(500);
+		usleep(250);
 		//ENTREGA3  poner pedido en la colaEntrada
 		//refrezco el status para que no muera el thread
 		status->lock();
