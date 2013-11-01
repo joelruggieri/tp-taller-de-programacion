@@ -32,13 +32,14 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 	list<NetworkMensaje*> retorno;
 
 //	string buffer;
-	int longitud;
-	int bLeidos = 0;
+//	int longitud;
+//	int bLeidos = 0;
 //	read(sock, &longitud, 4);
 	char buffer[MAX_BUFFER];
 //	if (longitud < 450){
 //	while (bLeidos < longitud){
-	bLeidos = read(sock, &buffer,MAX_BUFFER);
+//	bLeidos = read(sock, &buffer,MAX_BUFFER);
+	read(sock, &buffer,MAX_BUFFER);
 	//ENTREG3EZE armar el buffer con lo que va llegando
 //	}
 //	}
@@ -61,7 +62,6 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 		retorno.push_back(this->mensajes.find(clave)->second->deserialize(it));
 
 	}
-cout << "sali" << endl;
 return retorno;
 }
 
@@ -80,8 +80,12 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	 const char * str = envio.str().c_str();
 	 int len = strlen(envio.str().c_str());
 //	 send(socket, &len, sizeof(int), 0);
-	 int bytes_sent = send(socket, str, MAX_BUFFER, 0);
+//	 int bytes_sent =
+	 send(socket, str, len, 0);
+}
 
-
-
+void Serializador::escribir(NetworkMensaje* msj, int socket) {
+	list<NetworkMensaje*> lista;
+	lista.push_back(msj);
+	this->escribir(lista,socket);
 }

@@ -11,10 +11,16 @@
 #include "Partida.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <src/Serializador.h>
+#include "yaml-cpp/yaml.h"
+#include "src/mensajes/MensajePlano.h"
+#include <string>
+#include <unistd.h>
+using namespace std;
 
-#define PUERTO 6005
-
-
+//#define PUERTO 6005
+//#define PUERTO 6006
+#define PUERTO 6007
 MainServerThread::MainServerThread() {
 	PersistenciaManager bbdd;
 	n = bbdd.getNivel();
@@ -23,7 +29,7 @@ MainServerThread::MainServerThread() {
 }
 
 void MainServerThread::run() {
-
+	Serializador serializador;
     int fd1, fd2, puerto ;
     unsigned int clilen;
     struct sockaddr_in serv_addr, cli_addr;
@@ -42,10 +48,11 @@ void MainServerThread::run() {
 
     /* Initialize socket structure */
     bzero((char *) &serv_addr, sizeof(serv_addr));
-    puerto = 5001;
+    puerto = PUERTO;
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons(puerto);
+    memset(&(serv_addr.sin_zero), '\0', 8);
 
         /* Now bind the host address using bind() call.*/
     if (bind(fd1, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
@@ -67,13 +74,15 @@ void MainServerThread::run() {
                 perror("ERROR on accept");
                 break;
             }
-
 		log.info("Nuevo cliente conectado");
-		// responder partida creada
-		// cerrar conexion del cliente
-		log.info("Nueva partida creada");
-//		Partida partida(this->n);
-//		partida.run();
+		//responder partida creada
+         MensajePlano msj("PARTIDA_CREADA");
+         serializador.escribir(&msj,fd2);
+		//cerrar conexion del cliente
+         close(fd2);
+         log.info("Nueva partida creada");
+         Partida partida(this->n,fd1);
+         partida.run();
 	}
 
 }

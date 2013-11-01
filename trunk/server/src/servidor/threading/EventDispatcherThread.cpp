@@ -36,9 +36,9 @@ void * funcThread(void * arg) {
 //	TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		//a repartir mijo.
-		cola->lock();
+//		cola->lock();
 		NetworkMensaje* front = cola->front();
-		cola->unlock();
+//		cola->unlock();
 		disponibilidad->lock();
 		ThreadStatus* destinatario = disponibilidad->getStatus(front->getDestinatario());
 		disponibilidad->unlock();
@@ -46,9 +46,9 @@ void * funcThread(void * arg) {
 		ColaEventos* colaEvento = destinatario->getColaSalida();
 		destinatario->unlock();
 
-		colaEvento->lock();
+//		colaEvento->lock();
 		colaEvento->push(front);
-		colaEvento->unlock();
+//		colaEvento->unlock();
 	}
 	pthread_exit(NULL);
 }
