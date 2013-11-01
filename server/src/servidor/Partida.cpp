@@ -38,10 +38,6 @@ void Partida::run() {
 		clilen = sizeof(cli_addr);
 		int fd2 = accept(socket, (struct sockaddr *) &cli_addr, &clilen);
 		log.info("Cliente intentado conectar");
-		if(this->dispo->exist(fd2)){
-			log.info("Cliente ya conectado");
-			continue;
-		}
 
 		ThreadStatus* status = this->dispo->getNextFree();
 		if (status == NULL) {
