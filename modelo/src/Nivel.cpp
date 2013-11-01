@@ -11,7 +11,7 @@ using namespace std;
 
 Nivel::Nivel(std::string nombre) {
 	this->nombre = nombre;
-	this->jugadores = 2;
+	this->jugadores = 10;
 }
 
 Nivel::~Nivel() {
