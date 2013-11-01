@@ -24,8 +24,11 @@ void ColaEventos::push(NetworkMensaje* msj) {
 
 NetworkMensaje* ColaEventos::front() {
 	this->lock();
-	NetworkMensaje * msj =this->msjs.front();
-	this->msjs.remove(msj);
+	NetworkMensaje * msj = NULL;
+	if(msjs.size() != 0) {
+		msj=this->msjs.front();
+		this->msjs.remove(msj);
+	}
 	this->unlock();
 	return msj;
 }
