@@ -8,26 +8,28 @@
 #include "JugadorThread.h"
 #include "ThreadStatus.h"
 #include "src/Serializador.h"
+#include "src/SerializacionException.h"
+#include <unistd.h>
 JugadorThread::JugadorThread(ColaEventos*c, ThreadStatus *status) {
 	this->nroJugador = status->getNroJugador();
 	this->status = status;
 	this->socketDesc = status->getSockedDesc();
 	thEntrada = NULL;
 	thSalida = NULL;
-	params1=NULL;
-	params2=NULL;
+	params1 = NULL;
+	params2 = NULL;
 	colaEntrada = c;
 	colaSalida = status->getColaSalida();
 }
 
-void * func_entrada(void * arg){
-	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria * )arg;
-	JugadorThreadParams * params = (JugadorThreadParams * )(zona->getParams());
+void * func_entrada(void * arg) {
+	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
+	JugadorThreadParams * params = (JugadorThreadParams *) (zona->getParams());
 //	ColaEventos* colaEntrada = params->getCola();
 	ThreadStatus * status = params->getStatus();
 	Serializador serializador;
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
-	while(true) {
+	while (true) {
 
 		//ENTREGA3  poner pedido en la colaEntrada
 		//refrezco el status para que no muera el thread
@@ -39,59 +41,61 @@ void * func_entrada(void * arg){
 	pthread_exit(NULL);
 }
 
-void * func_salida(void * arg){
-	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria * )arg;
-	JugadorThreadParams * params = (JugadorThreadParams * )(zona->getParams());
+void * func_salida(void * arg) {
+	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
+	JugadorThreadParams * params = (JugadorThreadParams *) (zona->getParams());
 	ColaEventos* colaSalida = params->getCola();
 	ThreadStatus * status = params->getStatus();
 	int socketDesc = params->getSocketDesc();
 	Serializador serializador;
+	int contador = 0;
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
-	while(true) {
-		usleep(10000);
+	while (contador < 20) {
+		usleep(100000);
 		NetworkMensaje* pop = colaSalida->front();
-		MensajePlano msj ("EZE COMETRABA");
-		serializador.escribir(&msj,socketDesc);
+		MensajePlano msj("EZE COMETRABA");
+		try {
+			serializador.escribir(&msj, socketDesc);
+		} catch (SerializacionException & e) {
+			cout << e.what() << endl;
+			contador++;
+		}
 		if (pop != NULL) {
 			//ENTREGA3 ENVIAR A TRAVEZ DEL SOCKET antes del delete
 			delete pop;
 		}
-	//refrezco el status para que no muera el thread
-	status->lock();
-	status->refresh();
-	status->unlock();
+		//refrezco el status para que no muera el thread
+		status->lock();
+		status->refresh();
+		status->unlock();
 	}
+	close(socketDesc);
 	pthread_exit(NULL);
 }
 
-
-void * clean(void * arg){
+void * clean(void * arg) {
 	//esto se va a ejecutar si se llama al cancel de los threads.
 	Serializador * ser = (Serializador*) arg;
 	delete ser;
 	return 0;
 }
 
-
-
 void JugadorThread::run() {
 	if (thSalida == NULL) {
-		this->params1 = new JugadorThreadParams(this->colaEntrada,this->status,this->nroJugador,this->socketDesc);
-		thEntrada = new ThreadPTM(func_entrada,clean,(void *) params1);
+		this->params1 = new JugadorThreadParams(this->colaEntrada, this->status, this->nroJugador, this->socketDesc);
+		thEntrada = new ThreadPTM(func_entrada, clean, (void *) params1);
 
-		this->params2 = new JugadorThreadParams(this->colaSalida,this->status,this->nroJugador,this->socketDesc);
-		thSalida = new ThreadPTM (func_salida,clean, (void *) params2);
+		this->params2 = new JugadorThreadParams(this->colaSalida, this->status, this->nroJugador, this->socketDesc);
+		thSalida = new ThreadPTM(func_salida, clean, (void *) params2);
 	}
 }
 
 void JugadorThread::cancel() {
-	if(thEntrada ) {
+	if (thEntrada) {
 		thEntrada->cancel();
 		thSalida->cancel();
 		deleteAll();
 	}
-
-
 
 }
 
@@ -113,8 +117,6 @@ JugadorThread::~JugadorThread() {
 	}
 }
 
-
-
 JugadorThreadParams::JugadorThreadParams(ColaEventos * cola, ThreadStatus * status, int nrojug, int socketDesc) {
 	this->cola = cola;
 	this->nroJug = nrojug;
@@ -133,10 +135,10 @@ int JugadorThreadParams::getNroJug() {
 	return nroJug;
 }
 
-ThreadStatus* JugadorThreadParams::getStatus(){
+ThreadStatus* JugadorThreadParams::getStatus() {
 	return status;
 }
 
-int JugadorThreadParams::getSocketDesc(){
+int JugadorThreadParams::getSocketDesc() {
 	return socketDesc;
 }
