@@ -23,9 +23,7 @@ void * funcThread(void *arg) {
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		//TODO PONER SLEEP
-		colaEntrada->lock();
 		NetworkMensaje* pop = colaEntrada->front();
-		colaEntrada->unlock();
 		if (pop != NULL) {
 			//ENTREGA3 enviar controller
 			delete pop;

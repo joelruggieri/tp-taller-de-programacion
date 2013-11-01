@@ -24,8 +24,9 @@ private:
 	Nivel * nivel;
 	EventDispatcherThread * dispatcher;
 	EventReceptorThread * receiver;
+	int socket;
 public:
-	Partida(Nivel * n);
+	Partida(Nivel * n, int socket);
 	virtual ~Partida();
 	void run();
 };

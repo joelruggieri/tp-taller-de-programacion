@@ -38,6 +38,7 @@ public:
 	virtual ~Serializador();
 	list<NetworkMensaje*> leer(int sock);
 	void escribir(list<NetworkMensaje*>& lista, int socket);
+	void escribir(NetworkMensaje * msj, int socket);
 private:
 	map<string, NetworkMensaje*> mensajes;
 };

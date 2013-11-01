@@ -23,22 +23,18 @@ JugadorThread::JugadorThread(ColaEventos*c, ThreadStatus *status) {
 void * func_entrada(void * arg){
 	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria * )arg;
 	JugadorThreadParams * params = (JugadorThreadParams * )(zona->getParams());
-	ColaEventos* colaEntrada = params->getCola();
+//	ColaEventos* colaEntrada = params->getCola();
 	ThreadStatus * status = params->getStatus();
-	Serializador * serializador = new Serializador();
-	zona->setDatosLiberables((void *) serializador);
+	Serializador serializador;
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while(true) {
-		//ENTREGA3 Escuchar pedidos y deserializar
-		colaEntrada->lock();
+
 		//ENTREGA3  poner pedido en la colaEntrada
-		colaEntrada->unlock();
 		//refrezco el status para que no muera el thread
 		status->lock();
 		status->refresh();
 		status->unlock();
 	}
-	delete	serializador;
 
 	pthread_exit(NULL);
 }
@@ -48,13 +44,14 @@ void * func_salida(void * arg){
 	JugadorThreadParams * params = (JugadorThreadParams * )(zona->getParams());
 	ColaEventos* colaSalida = params->getCola();
 	ThreadStatus * status = params->getStatus();
-	Serializador * serializador = new Serializador();
-	zona->setDatosLiberables((void *) serializador);
+	int socketDesc = params->getSocketDesc();
+	Serializador serializador;
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while(true) {
-		colaSalida->lock();
+		usleep(10000);
 		NetworkMensaje* pop = colaSalida->front();
-		colaSalida->unlock();
+		MensajePlano msj ("EZE COMETRABA");
+		serializador.escribir(&msj,socketDesc);
 		if (pop != NULL) {
 			//ENTREGA3 ENVIAR A TRAVEZ DEL SOCKET antes del delete
 			delete pop;
@@ -64,7 +61,6 @@ void * func_salida(void * arg){
 	status->refresh();
 	status->unlock();
 	}
-	delete serializador;
 	pthread_exit(NULL);
 }
 
@@ -79,7 +75,7 @@ void * clean(void * arg){
 
 
 void JugadorThread::run() {
-	if (thSalida != NULL || thEntrada != NULL) {
+	if (thSalida == NULL) {
 		this->params1 = new JugadorThreadParams(this->colaEntrada,this->status,this->nroJugador,this->socketDesc);
 		thEntrada = new ThreadPTM(func_entrada,clean,(void *) params1);
 

@@ -12,13 +12,15 @@
 #include <errno.h>
 #include "threading/JugadorThread.h"
 #include "threading/ThreadStatus.h"
+#include "src/mensajes/MensajePlano.h"
+#include "src/Serializador.h"
 using namespace std;
-#define PUERTO 5001
 
-Partida::Partida(Nivel* n) {
+Partida::Partida(Nivel* n, int socket) {
 	nivel = n;
 	dispo = new Disponibilidad(n->getJugadores());
 	cola = new ColaEventos();
+	this->socket = socket;
 
 }
 
@@ -27,36 +29,23 @@ Partida::~Partida() {
 }
 
 void Partida::run() {
-	int fd1, puerto;
-	unsigned int clilen;
-	struct sockaddr_in serv_addr, cli_addr;
-	fd1 = socket(AF_INET, SOCK_STREAM, 0);
-	if (fd1 < 0) {
-		perror("ERROR abriendo socket.\n");	//TODO loguear errores
-//		cancel(1);
-	}
-	bzero((char *) &serv_addr, sizeof(serv_addr));
-	puerto = PUERTO;
-	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_addr.s_addr = INADDR_ANY;
-	serv_addr.sin_port = htons(puerto);
-
-//	if (bind(fd1, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
-//		perror("ERROR on binding");
-//		cancel(1);		//TODO loguear errores
-//	}
-
-	listen(fd1, nivel->getJugadores());
-	clilen = sizeof(cli_addr);
-	//Ciclo para aceptar jugadores va aca ?
-
+	Logger log;
+	Serializador serializador;
 	while (true) {
-
+		sleep(2);
+		struct sockaddr_in cli_addr;
+		unsigned int clilen;
+		clilen = sizeof(cli_addr);
+		int fd2 = accept(socket, (struct sockaddr *) &cli_addr, &clilen);
+		log.info("cliente conectado");
 		ThreadStatus* status = this->dispo->getNextFree();
 		if (status == NULL) {
-			//abortar conexion
+	         MensajePlano msj("PARTIDA_CREADA");
+	         serializador.escribir(&msj,fd2);
+			close(fd2);
 		} else {
-			int fd2 = accept(fd1, (struct sockaddr *) &cli_addr, &clilen);
+	        MensajePlano msj("JUGADOR_ACEPTADO");
+	        serializador.escribir(&msj,fd2);
 			status->lock();
 			status->setSocketDesc(fd2);
 			JugadorThread* jugadorNuevo = new JugadorThread(this->cola, status);
