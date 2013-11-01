@@ -33,24 +33,25 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 	list<NetworkMensaje*> retorno;
 
 //	string buffer;
-	int longitud;
-//	int bLeidos = 0;
-	read(sock, &longitud, sizeof(int));
-	char buffer[1024];
-//	string buffer;
-//	if (longitud < 450){
-//	while (bLeidos < longitud){
-//	bLeidos = read(sock, &buffer,MAX_BUFFER);
-	read(sock, &buffer,longitud);
-	//ENTREG3EZE armar el buffer con lo que va llegando
-//	}
-//	}
+	char buffer[1024] = "";
+	char bufferAux[1024] = "";
+	int longitudTotal;
+	int longRecibida;
+	int recibidos = 0;
+	read(sock, &longitudTotal, sizeof(int));
 
+	while(recibidos < longitudTotal){
+	read(sock, &longRecibida, sizeof(int));
+	recibidos += read(sock, &bufferAux,longRecibida);
+
+	if (recibidos == -1) throw SerializacionException("No se pudo recibir el mensaje al host");
+	strcat(buffer, bufferAux);
+	}
 	string clave;
 
 	string aux = buffer;
 //	cout <<  longitud << endl;
-	YAML::Node lineup = YAML::Load(aux.substr(0, longitud));
+	YAML::Node lineup = YAML::Load(aux.substr(0, longitudTotal));
 
 	YAML::const_iterator it=lineup.begin();
 
@@ -79,12 +80,19 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 
 	}
 	 envio << *nodo;
-	 const char * str = envio.str().c_str();
+	 int enviados = 0;
+//	 const char * str = envio.str().c_str();
 	 int len = strlen(envio.str().c_str());
-	 send(socket, &len, sizeof(int), 0);
-	 int bytes_sent = send(socket, str, len, 0);
-	 if(bytes_sent == -1){
+	 int longEnviada;
+	 send(socket, &len, sizeof(int), 0);	//envio longitud total
+	 while(enviados < len){
+		 longEnviada = len - enviados;
+	 send(socket, &(longEnviada), sizeof(int), 0);
+	 enviados += send(socket, envio.str().substr(enviados, len).c_str(), longEnviada, 0);
+
+	 if(enviados == -1){
 		 throw SerializacionException("No se pudo enviar el mensaje al host");
+	 }
 	 }
 }
 
