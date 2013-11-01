@@ -39,6 +39,7 @@ ThreadStatus* Disponibilidad::getNextFree() {
 		}
 		actual->lock();
 		if(!actual->isAlive()) {
+			actual->getThread()->cancel();
 			delete (actual->getThread());
 			actual->setThread(NULL);
 			actual->unlock();
@@ -59,4 +60,18 @@ void Disponibilidad::cleanDeaths() {
 			actual->setThread(NULL);
 		}
 	}
+}
+
+bool Disponibilidad::exist(int socket) {
+	map<int,ThreadStatus*>::iterator it;
+	bool encontrado = false;
+	for(it=relaciones.begin(); it!= relaciones.end() && !encontrado; ++it){
+		ThreadStatus* second = (*it).second;
+		second->lock();
+		if(second->getThread() != NULL){
+			encontrado= second->getSockedDesc() == socket;
+		}
+		second->unlock();
+	}
+	return encontrado;
 }

@@ -37,13 +37,20 @@ void Partida::run() {
 		unsigned int clilen;
 		clilen = sizeof(cli_addr);
 		int fd2 = accept(socket, (struct sockaddr *) &cli_addr, &clilen);
-		log.info("cliente conectado");
+		log.info("Cliente intentado conectar");
+		if(this->dispo->exist(fd2)){
+			log.info("Cliente ya conectado");
+			continue;
+		}
+
 		ThreadStatus* status = this->dispo->getNextFree();
 		if (status == NULL) {
-	         MensajePlano msj("PARTIDA_CREADA");
+	         MensajePlano msj("REBOTE");
 	         serializador.escribir(&msj,fd2);
+	         log.info("Se rechaza cliente por maximo de conexiones");
 			close(fd2);
 		} else {
+			log.info("Se acepta nuevo cliente");
 	        MensajePlano msj("JUGADOR_ACEPTADO");
 	        serializador.escribir(&msj,fd2);
 			status->lock();

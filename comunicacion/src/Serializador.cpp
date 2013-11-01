@@ -6,6 +6,7 @@
  */
 
 #include "Serializador.h"
+#include "SerializacionException.h"
 #define MAX_BUFFER 1024
 Serializador::Serializador() {
 this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_GLOBO), new ViewGloboUpdateMsj(0,0,0)));
@@ -80,8 +81,10 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	 const char * str = envio.str().c_str();
 	 int len = strlen(envio.str().c_str());
 //	 send(socket, &len, sizeof(int), 0);
-//	 int bytes_sent =
-	 send(socket, str, len, 0);
+	 int bytes_sent = send(socket, str, len, 0);
+	 if(bytes_sent == -1){
+		 throw SerializacionException("No se pudo enviar el mensaje al host");
+	 }
 }
 
 void Serializador::escribir(NetworkMensaje* msj, int socket) {
