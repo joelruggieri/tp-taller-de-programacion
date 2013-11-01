@@ -34,15 +34,15 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 //	string buffer;
 	int longitud;
 	int bLeidos = 0;
-	read(sock, &longitud, 4);
-	char buffer[longitud];
-	if (longitud < 450){
-	while (bLeidos < longitud){
-	bLeidos = read(sock, &buffer,longitud);
+//	read(sock, &longitud, 4);
+	char buffer[MAX_BUFFER];
+//	if (longitud < 450){
+//	while (bLeidos < longitud){
+	bLeidos = read(sock, &buffer,MAX_BUFFER);
 	//ENTREG3EZE armar el buffer con lo que va llegando
-	}
-	}
-	cout << bLeidos << " " << longitud << endl;
+//	}
+//	}
+//	cout << bLeidos << " " << longitud << endl;
 	string clave;
 
 	string aux = buffer;
@@ -79,8 +79,8 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	 envio << *nodo;
 	 const char * str = envio.str().c_str();
 	 int len = strlen(envio.str().c_str());
-
-	 int bytes_sent = send(socket, str, len, 0);
+//	 send(socket, &len, sizeof(int), 0);
+	 int bytes_sent = send(socket, str, MAX_BUFFER, 0);
 
 
 
