@@ -27,13 +27,17 @@
 #include <sys/socket.h>
 #include <list>
 #include <iostream>
-
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 using namespace std;
 class Serializador {
 public:
 	Serializador();
 	virtual ~Serializador();
 	list<NetworkMensaje*> leer(int sock);
+	void escribir(list<NetworkMensaje*>& lista, int socket);
 private:
 	map<string, NetworkMensaje*> mensajes;
 };
