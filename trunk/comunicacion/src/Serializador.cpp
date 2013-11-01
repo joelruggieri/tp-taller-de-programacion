@@ -6,7 +6,7 @@
  */
 
 #include "Serializador.h"
-
+#define MAX_BUFFER 1024
 Serializador::Serializador() {
 this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_GLOBO), new ViewGloboUpdateMsj(0,0,0)));
 this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MSJ_PLANO), new MensajePlano("")));
@@ -30,13 +30,23 @@ Serializador::~Serializador() {
 
 list<NetworkMensaje*> Serializador::leer(int sock) {
 	list<NetworkMensaje*> retorno;
-	char buffer[1024];
+
 //	string buffer;
-	read(sock, &buffer,1023);
+	int longitud;
+	int bLeidos = 0;
+	read(sock, &longitud, 4);
+	char buffer[longitud];
+	if (longitud < 450){
+	while (bLeidos < longitud){
+	bLeidos = read(sock, &buffer,longitud);
+	//ENTREG3EZE armar el buffer con lo que va llegando
+	}
+	}
+	cout << bLeidos << " " << longitud << endl;
 	string clave;
-//	cout << buffer << endl;
-	string aux;
-	aux = buffer;
+
+	string aux = buffer;
+
 	YAML::Node lineup = YAML::Load(aux);
 
 	YAML::const_iterator it=lineup.begin();
@@ -51,6 +61,27 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 		retorno.push_back(this->mensajes.find(clave)->second->deserialize(it));
 
 	}
-//cout << "sali" << endl;
+cout << "sali" << endl;
 return retorno;
+}
+
+void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
+	list<NetworkMensaje*>::iterator it = lista.begin();
+	YAML::Node * nodo = new YAML::Node() ;
+	stringstream envio;
+
+	while(it != lista.end())
+	{
+		(*it)->serialize(nodo);
+		it++;
+
+	}
+	 envio << *nodo;
+	 const char * str = envio.str().c_str();
+	 int len = strlen(envio.str().c_str());
+
+	 int bytes_sent = send(socket, str, len, 0);
+
+
+
 }
