@@ -23,6 +23,8 @@ void * func_entrada(void * arg) {
 	while (true) {
 		usleep(250);
 		list<NetworkMensaje*> leer = serializador->leer(socket);
+		MensajePlano* msj = (MensajePlano *)leer.front();
+		cout << msj->getMensaje() << endl;
 		colaEntrada->push(leer);
 		//refrezco el status para que no muera el thread
 		status->lock();

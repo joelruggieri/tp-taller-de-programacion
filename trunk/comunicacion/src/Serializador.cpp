@@ -43,7 +43,7 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 
 	while (recibidos < longitudTotal) {
 		read(sock, &longRecibida, sizeof(int));
-		recibidos += recv(sock, &bufferAux, longRecibida,0);
+		recibidos += recv(sock, &bufferAux, longRecibida, 0);
 //		errno;
 
 		if (recibidos == -1)
@@ -60,12 +60,34 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 	YAML::const_iterator it = lineup.begin();
 
 	while (it != lineup.end()) {
+		bool tagEncontrado = false;
+		while (!tagEncontrado && it != lineup.end()) {
+			try {
+				tagEncontrado = true;
+				clave = it->as<string>();
+				it++;
+			} catch (YAML::Exception &exc) {
+				//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
+				tagEncontrado = false;
+				it++;
+			}
+		}
 
-		clave = it->as<string>();
-		it++;
-//		cout << clave << endl;
-		retorno.push_back(this->mensajes.find(clave)->second->deserialize(it));
+		if (tagEncontrado) {
 
+			std::map<string, NetworkMensaje*>::iterator msjCreator = this->mensajes.find(clave);
+			if (msjCreator != mensajes.end()) {
+				try {
+					retorno.push_back(msjCreator->second->deserialize(it));
+				} catch (YAML::Exception &exc) {
+					//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
+					it++;
+				}
+			} else {
+				//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
+				it++;
+			}
+		}
 	}
 	return retorno;
 }
