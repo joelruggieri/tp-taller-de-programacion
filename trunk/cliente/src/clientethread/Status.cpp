@@ -18,9 +18,9 @@ bool Status::isAlive() {
 return true;
 }
 //
-//void Status::refresh() {
+void Status::refresh() {
 //	puntoControl = system_clock::now();
-//}
+}
 //
 //Status::~Status() {
 //	// TODO Auto-generated destructor stub
