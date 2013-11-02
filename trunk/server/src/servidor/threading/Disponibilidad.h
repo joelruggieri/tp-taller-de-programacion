@@ -19,7 +19,7 @@ private:
 public:
 	Disponibilidad(int maxJugadores);
 	virtual ~Disponibilidad();
-	bool exist(int socket);
+//	bool exist(int socket);
 	ThreadStatus * getStatus(int jugador);
 	ThreadStatus * getNextFree();
 	void cleanDeaths();

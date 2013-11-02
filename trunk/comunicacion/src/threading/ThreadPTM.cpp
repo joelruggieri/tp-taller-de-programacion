@@ -25,6 +25,7 @@ void ThreadPTM::cancel() {
 	if (!cancelado) {
 		cancelado = true;
 		pthread_cancel(this->th);
+		pthread_join(this->th,0);
 		this->zona->cancel();
 	}
 }

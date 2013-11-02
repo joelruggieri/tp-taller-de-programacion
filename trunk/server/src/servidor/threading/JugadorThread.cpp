@@ -23,11 +23,12 @@ JugadorThread::JugadorThread(ColaEventos*c, ThreadStatus *status) {
 }
 
 void * func_entrada(void * arg) {
-//	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
+	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
 //	JugadorThreadParams * params = (JugadorThreadParams *) (zona->getParams());
 //	ColaEventos* colaEntrada = params->getCola();
 //	ThreadStatus * status = params->getStatus();
-	Serializador serializador;
+	Serializador * serializador = new Serializador();
+	zona->setDatosLiberables((void*) serializador);
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(250);
@@ -47,14 +48,15 @@ void * func_salida(void * arg) {
 	ColaEventos* colaSalida = params->getCola();
 //	ThreadStatus * status = params->getStatus();
 	int socketDesc = params->getSocketDesc();
-	Serializador serializador;
+	Serializador*  serializador = new Serializador();
+	zona->setDatosLiberables((void *) serializador);
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(100000);
 		NetworkMensaje* pop = colaSalida->front();
 		MensajePlano msj("EZE COMETRABA");
 		try {
-			serializador.escribir(&msj, socketDesc);
+			serializador->escribir(&msj, socketDesc);
 			if (pop != NULL) {
 				//ENTREGA3 ENVIAR A TRAVEZ DEL SOCKET antes del delete
 				delete pop;
