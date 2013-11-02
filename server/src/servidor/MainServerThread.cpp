@@ -18,8 +18,8 @@
 #include <unistd.h>
 using namespace std;
 
-#define PUERTO 6005
-//#define PUERTO 6006
+//#define PUERTO 6005
+#define PUERTO 6006
 //#define PUERTO 6007
 MainServerThread::MainServerThread() {
 	PersistenciaManager bbdd;

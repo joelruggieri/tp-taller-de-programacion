@@ -12,7 +12,7 @@ void * func_entrada(void * arg) {
 	IOThreadParams * params = (IOThreadParams *) (zona->getParams());
 //	ColaEventos* colaEntrada = params->getCola();
 	Status * status = params->getStatus();
-Serializador serializador;
+	Serializador serializador;
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(250);
@@ -85,15 +85,15 @@ void IOThread::run(Status* status) {
 		this->param1 = new IOThreadParams(this->colaEntrada, status, this->socket);
 		thEntrada = new ThreadPTM(func_entrada, clean, (void *) param1);
 
-		this->param2 = new IOThreadParams(this->colaSalida, status,this->socket);
+		this->param2 = new IOThreadParams(this->colaSalida, status, this->socket);
 		thSalida = new ThreadPTM(func_salida, clean, (void *) param2);
 	}
 }
 
 IOThreadParams::IOThreadParams(ColaEventos* cola, Status* status, int socketDesc) {
 	this->cola = cola;
-this->status = status;
-this->socketDesc = socketDesc;
+	this->status = status;
+	this->socketDesc = socketDesc;
 }
 
 ColaEventos* IOThreadParams::getCola() {
