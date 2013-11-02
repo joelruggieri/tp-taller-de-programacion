@@ -58,7 +58,7 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 	YAML::Node lineup = YAML::Load(aux.substr(0, longitudTotal));
 
 	YAML::const_iterator it = lineup.begin();
-
+	//TODO PROBAR ESTO DE ENVIAR MIERDA A VER QUE HACE
 	while (it != lineup.end()) {
 		bool tagEncontrado = false;
 		while (!tagEncontrado && it != lineup.end()) {
@@ -111,6 +111,7 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	while (enviados < len) {
 		longEnviada = len - enviados;
 		send(socket, &(longEnviada), sizeof(int), 0);
+		//ENTREGA3 CHEQUEAR ESTO PORQUE NO ESTA PROBADO.
 		enviados += send(socket, envio.str().substr(enviados, len).c_str(), longEnviada, 0);
 		//TODO CHEQUEAR ERRNO PARA VER QUE ACCION TOMAR:   http://www.cisco.com/en/US/docs/ios/sw_upgrades/interlink/r2_0/unpremsg/mucsock.html
 		if (enviados == -1) {

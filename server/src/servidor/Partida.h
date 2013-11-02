@@ -14,6 +14,7 @@
 #include "threading/EventDispatcherThread.h"
 #include "threading/EventReceptorThread.h"
 #include "threading/ThreadCleaner.h"
+#include "src/Serializador.h"
 using namespace std;
 
 class Partida {
@@ -27,10 +28,12 @@ private:
 	EventReceptorThread * receiver;
 	ThreadCleaner * cleaner;
 	int socket;
+	Logger log;
+	void procesarRequest(int socketDesc, Serializador & serializador);
 public:
 	Partida(Nivel * n, int socket);
 	virtual ~Partida();
-	void run();
+	void run(int fdJugador1);
 };
 
 #endif /* PARTIDA_H_ */

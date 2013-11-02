@@ -9,6 +9,13 @@
 #define MAINCLIENTETHREAD_H_
 #include "src/threading/ColaEventos.h"
 #include "src/threading/IOThread.h"
+#include <sys/socket.h>
+#include <string>
+#include "src/Logger.h"
+using namespace std;
+
+enum RESULTADO_CONEXION {SERVIDOR_ERROR, SERVIDOR_OCUPADO, SERVIDOR_CONECTADO};
+
 class MainClienteThread {
 public:
 	MainClienteThread();
@@ -16,7 +23,10 @@ public:
 	void run();
 private:
 	IOThread * thread;
+	Logger log;
 	ColaEventos* colaEntrada;
+	RESULTADO_CONEXION conectar(int &socket);
+	string tryConnect(int &socketfd);
 	ColaEventos* colaSalida;
 };
 
