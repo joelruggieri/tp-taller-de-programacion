@@ -13,6 +13,7 @@
 #include <list>
 #include "threading/EventDispatcherThread.h"
 #include "threading/EventReceptorThread.h"
+#include "threading/ThreadCleaner.h"
 using namespace std;
 
 class Partida {
@@ -24,6 +25,7 @@ private:
 	Nivel * nivel;
 	EventDispatcherThread * dispatcher;
 	EventReceptorThread * receiver;
+	ThreadCleaner * cleaner;
 	int socket;
 public:
 	Partida(Nivel * n, int socket);

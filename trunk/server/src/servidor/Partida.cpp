@@ -21,7 +21,7 @@ Partida::Partida(Nivel* n, int socket) {
 	dispo = new Disponibilidad(n->getJugadores());
 	cola = new ColaEventos();
 	this->socket = socket;
-
+	cleaner = new ThreadCleaner (dispo);
 }
 
 Partida::~Partida() {
@@ -31,6 +31,7 @@ Partida::~Partida() {
 void Partida::run() {
 	Logger log;
 	Serializador serializador;
+	cleaner->run(5);
 	while (true) {
 		sleep(2);
 		struct sockaddr_in cli_addr;
