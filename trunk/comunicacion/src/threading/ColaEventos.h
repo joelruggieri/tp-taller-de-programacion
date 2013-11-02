@@ -22,6 +22,7 @@ private:
 public:
 	ColaEventos();
 	void push(NetworkMensaje * msj);
+	void push(list<NetworkMensaje *> msjs);
 	NetworkMensaje * front();
 	bool hasNext();
 	virtual ~ColaEventos();

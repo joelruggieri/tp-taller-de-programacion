@@ -11,25 +11,21 @@
 #include "Disponibilidad.h"
 #include "src/threading/ObjetoCompartido.h"
 #include "src/threading/ColaEventos.h"
+#include "src/threading/IOThread.h"
+#include "src/threading/Status.h"
 using namespace std;
 class JugadorThread;
 
-class ThreadStatus: public ObjetoCompartido {
-	time_t puntoControl;
+class ThreadStatus: public Status {
 private:
-	JugadorThread * listener;
-	int timeout, jugador, socketDesc;
+	int jugador;
 	ColaEventos * colaSalida;
+	typedef Status super;
 public:
 	ThreadStatus(int timeout, int nro);
-	void setThread(JugadorThread*);
-	void setSocketDesc(int desc);
-	bool isAlive();
-	void refresh();
+	void setThread(IOThread*);
 	int getNroJugador();
-	int getSockedDesc();
 	ColaEventos * getColaSalida();
-	JugadorThread * getThread();
 	virtual ~ThreadStatus();
 };
 
