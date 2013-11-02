@@ -7,9 +7,10 @@
 //============================================================================
 
 #include <iostream>
+#include "clientethread/MainClienteThread.h"
 using namespace std;
 
 int main() {
-	cout << "" << endl; // prints 
-	return 0;
+	MainClienteThread main;
+	main.run();
 }
