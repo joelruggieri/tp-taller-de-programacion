@@ -10,7 +10,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <errno.h>
-#include "threading/JugadorThread.h"
+#include "src/threading/IOThread.h"
 #include "threading/ThreadStatus.h"
 #include "src/mensajes/MensajePlano.h"
 #include "src/Serializador.h"
@@ -51,8 +51,7 @@ void Partida::run() {
 	        MensajePlano msj("JUGADOR_ACEPTADO");
 	        serializador.escribir(&msj,fd2);
 			status->lock();
-			status->setSocketDesc(fd2);
-			JugadorThread* jugadorNuevo = new JugadorThread(this->cola, status);
+			IOThread* jugadorNuevo = new IOThread(this->cola, status->getColaSalida(),status,fd2);
 			status->setThread(jugadorNuevo);
 			status->unlock();
 			jugadorNuevo->run();

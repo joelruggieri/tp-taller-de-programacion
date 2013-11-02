@@ -46,3 +46,10 @@ void ColaEventos::clear() {
 bool ColaEventos::hasNext() {
 	return !msjs.empty();
 }
+
+void ColaEventos::push(list<NetworkMensaje*> msjsin) {
+	list<NetworkMensaje*>::iterator it;
+	for(it=msjsin.begin(); it!= msjsin.end(); ++it){
+		push(*it);
+	}
+}
