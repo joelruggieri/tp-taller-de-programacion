@@ -5,25 +5,25 @@
  *      Author: jonathan
  */
 
-#ifndef SERIALIZACIONEXCEPTION_H_
-#define SERIALIZACIONEXCEPTION_H_
+#ifndef CONEXIONEXCEPTION_H_
+#define CONEXIONEXCEPTION_H_
 
 #include <exception>
 #include <string>
-class SerializacionException: public std::exception {
+class ConexionException: public std::exception {
 private:
     std::string message_;
 public:
-	SerializacionException(const std::string& message){
+	ConexionException(const std::string& message){
 		this->message_ = message;
 	}
     virtual const char* what() const throw() {
         return message_.c_str();
     }
-	virtual ~SerializacionException() throw(){
+	virtual ~ConexionException() throw(){
 
 	}
 };
 
-#endif /* SERIALIZACIONEXCEPTION_H_ */
+#endif /* CONEXIONEXCEPTION_H_ */
 

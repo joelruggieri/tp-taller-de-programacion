@@ -11,12 +11,12 @@ using namespace std;
 
 Nivel::Nivel(std::string nombre) {
 	this->nombre = nombre;
-	this->jugadores = 10;
+	this->jugadores = 4;
 }
 
 Nivel::~Nivel() {
 	std::list<Figura*>::iterator it;
-	for(it = this->objetos.begin(); it!= this->objetos.end(); ++it ){
+	for (it = this->objetos.begin(); it != this->objetos.end(); ++it) {
 		delete (*it);
 	}
 
@@ -26,7 +26,7 @@ void Nivel::agregar(Figura* figura) {
 	objetos.push_back(figura);
 }
 
-int Nivel::cantidadFiguras() const{
+int Nivel::cantidadFiguras() const {
 	return objetos.size();
 }
 
@@ -46,7 +46,7 @@ void Nivel::setFondo(std::string fondo) {
 	this->fondo = fondo;
 }
 
- std::string Nivel::getFondo() const{
+std::string Nivel::getFondo() const {
 	return fondo;
 }
 

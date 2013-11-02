@@ -28,10 +28,30 @@ Partida::~Partida() {
 	// TODO Auto-generated destructor stub
 }
 
-void Partida::run() {
-	Logger log;
+void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
+	ThreadStatus* status = this->dispo->getNextFree();
+	if (status == NULL) {
+         log.info("Se rechaza cliente por maximo de conexiones");
+         MensajePlano msj(MSJ_JUGADOR_RECHAZADO);
+         serializador.escribir(&msj,socketDesc);
+         close(socketDesc);
+	} else {
+		log.info("Se acepta nuevo cliente");
+        MensajePlano msj(MSJ_JUGADOR_ACEPTADO);
+        serializador.escribir(&msj,socketDesc);
+		status->lock();
+		IOThread* jugadorNuevo = new IOThread(this->cola, status->getColaSalida(),status,socketDesc);
+		status->setThread(jugadorNuevo);
+		status->unlock();
+		jugadorNuevo->run();
+	}
+
+}
+
+void Partida::run(int fdJugador1) {
 	Serializador serializador;
 	cleaner->run(5);
+	procesarRequest(fdJugador1,serializador);
 	while (true) {
 		sleep(2);
 		struct sockaddr_in cli_addr;
@@ -39,25 +59,7 @@ void Partida::run() {
 		clilen = sizeof(cli_addr);
 		int fd2 = accept(socket, (struct sockaddr *) &cli_addr, &clilen);
 		log.info("Cliente intentado conectar");
-
-		ThreadStatus* status = this->dispo->getNextFree();
-		if (status == NULL) {
-	         MensajePlano msj("REBOTE");
-	         serializador.escribir(&msj,fd2);
-	         log.info("Se rechaza cliente por maximo de conexiones");
-			close(fd2);
-		} else {
-			log.info("Se acepta nuevo cliente");
-	        MensajePlano msj("JUGADOR_ACEPTADO");
-	        serializador.escribir(&msj,fd2);
-			status->lock();
-			IOThread* jugadorNuevo = new IOThread(this->cola, status->getColaSalida(),status,fd2);
-			status->setThread(jugadorNuevo);
-			status->unlock();
-			jugadorNuevo->run();
-
-		}
-
+		procesarRequest(fd2,serializador);
 	}
 
 }
