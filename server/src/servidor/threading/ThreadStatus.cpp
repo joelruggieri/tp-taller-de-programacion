@@ -16,15 +16,17 @@ ThreadStatus::ThreadStatus(int timeout, int nro){// :puntoControl(chrono::durati
 	this->jugador = nro;
 	this->socketDesc = 0;
 	this->colaSalida=new ColaEventos();
+	time(&puntoControl);
 };
 bool ThreadStatus::isAlive() {
-//     int transcurrido = duration_cast<milliseconds>(system_clock::now() - puntoControl).count();
-//	return transcurrido < this->timeout;
-	return true;
+	time_t now;
+	time(&now);
+	double seconds = difftime(now,puntoControl);
+	return seconds < timeout;
 }
 
 void ThreadStatus::refresh() {
-//	puntoControl = system_clock::now();
+	time(&puntoControl);
 }
 
 //NO SEAS HIJO DE PUTA Y A T PONELE EL NRO DE JUGADOR QUE TIENE EL STATUS.

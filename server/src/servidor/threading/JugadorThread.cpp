@@ -23,19 +23,19 @@ JugadorThread::JugadorThread(ColaEventos*c, ThreadStatus *status) {
 }
 
 void * func_entrada(void * arg) {
-	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
-	JugadorThreadParams * params = (JugadorThreadParams *) (zona->getParams());
+//	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
+//	JugadorThreadParams * params = (JugadorThreadParams *) (zona->getParams());
 //	ColaEventos* colaEntrada = params->getCola();
-	ThreadStatus * status = params->getStatus();
+//	ThreadStatus * status = params->getStatus();
 	Serializador serializador;
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(250);
 		//ENTREGA3  poner pedido en la colaEntrada
 		//refrezco el status para que no muera el thread
-		status->lock();
-		status->refresh();
-		status->unlock();
+//		status->lock();
+//		status->refresh();
+//		status->unlock();
 	}
 
 	pthread_exit(NULL);
@@ -45,29 +45,28 @@ void * func_salida(void * arg) {
 	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
 	JugadorThreadParams * params = (JugadorThreadParams *) (zona->getParams());
 	ColaEventos* colaSalida = params->getCola();
-	ThreadStatus * status = params->getStatus();
+//	ThreadStatus * status = params->getStatus();
 	int socketDesc = params->getSocketDesc();
 	Serializador serializador;
-	int contador = 0;
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
-	while (contador < 20) {
+	while (true) {
 		usleep(100000);
 		NetworkMensaje* pop = colaSalida->front();
 		MensajePlano msj("EZE COMETRABA");
 		try {
 			serializador.escribir(&msj, socketDesc);
+			if (pop != NULL) {
+				//ENTREGA3 ENVIAR A TRAVEZ DEL SOCKET antes del delete
+				delete pop;
+			}
+//			//refrezco el status para que no muera el thread o no?
+//			status->lock();
+//			status->refresh();
+//			status->unlock();
 		} catch (SerializacionException & e) {
 			cout << e.what() << endl;
-			contador++;
 		}
-		if (pop != NULL) {
-			//ENTREGA3 ENVIAR A TRAVEZ DEL SOCKET antes del delete
-			delete pop;
-		}
-		//refrezco el status para que no muera el thread
-		status->lock();
-		status->refresh();
-		status->unlock();
+
 	}
 	close(socketDesc);
 	pthread_exit(NULL);
@@ -100,6 +99,7 @@ void JugadorThread::cancel() {
 }
 
 void JugadorThread::deleteAll() {
+	close(this->socketDesc);
 	delete thEntrada;
 	delete thSalida;
 	delete params1;

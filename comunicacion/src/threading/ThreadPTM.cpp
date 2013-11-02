@@ -33,5 +33,6 @@ ThreadPTM::~ThreadPTM() {
 	if (!cancelado) {
 		pthread_join(this->th, 0);
 	}
+	delete zona;
 }
 

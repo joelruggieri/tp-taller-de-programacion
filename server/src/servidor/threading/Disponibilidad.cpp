@@ -10,7 +10,7 @@
 #include "JugadorThread.h"
 Disponibilidad::Disponibilidad(int maxJugadores) {
 	for (int i = 0; i < maxJugadores; ++i) {
-		relaciones.insert(pair<int,ThreadStatus*>(i,new ThreadStatus(i,10000)));
+		relaciones.insert(pair<int,ThreadStatus*>(i,new ThreadStatus(20,i)));
 	}
 }
 
@@ -34,10 +34,11 @@ ThreadStatus* Disponibilidad::getNextFree() {
 	ThreadStatus * actual;
 	for(it=relaciones.begin(); it!= relaciones.end(); ++it){
 		actual =(*it).second;
+		actual->lock();
 		if(actual->getThread() == NULL){
+			actual->unlock();
 			return actual;
 		}
-		actual->lock();
 		if(!actual->isAlive()) {
 			actual->getThread()->cancel();
 			delete (actual->getThread());
@@ -55,10 +56,14 @@ void Disponibilidad::cleanDeaths() {
 	ThreadStatus * actual;
 	for(it=relaciones.begin(); it!= relaciones.end(); ++it){
 		actual =(*it).second;
+		actual->lock();
 		if(actual->getThread() && !actual->isAlive()){
+			cout << "se cancela jugador " << actual->getNroJugador() << endl;
+			actual->getThread()->cancel();
 			delete actual->getThread();
 			actual->setThread(NULL);
 		}
+		actual->unlock();
 	}
 }
 
