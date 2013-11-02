@@ -37,7 +37,7 @@ private:
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> *, float x, float margenSuperior);
 	virtual ~ZonaCreacion();
-	void dibujarse(SDL_Renderer *);
+	void dibujarse(list<ViewMsj*> & lista);
 	bool click(float x, float y);
 	bool mouseScroll(float x, float y, int amountScrolled);
 	bool enContacto(float posX, float posY);

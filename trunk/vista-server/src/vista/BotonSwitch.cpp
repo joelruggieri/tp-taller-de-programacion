@@ -16,7 +16,7 @@ BotonSwitch::~BotonSwitch() {
 
 }
 
-void BotonSwitch::dibujarse(SDL_Renderer* r) {
+void BotonSwitch::dibujarse(list<ViewMsj*> & lista){
 //	SDL_Rect dest;
 //	dest.h = this->getH();
 //	dest.w = this->getW();

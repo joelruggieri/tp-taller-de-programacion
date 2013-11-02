@@ -19,7 +19,7 @@ public:
 	virtual ~PlataformaView();
 	void dropTemplate();
 	EditorNivel * getEditor();
-	void dibujarse(SDL_Renderer *);
+	void dibujarse(list<ViewMsj*> & lista);
 //	void update();
 };
 

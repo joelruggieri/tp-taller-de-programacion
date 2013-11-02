@@ -18,7 +18,7 @@ public:
 	virtual ~SogaView();
 	EditorNivel* getEditor();
 	void dropTemplate();
-	void dibujarse(SDL_Renderer * renderer, SDL_Rect & dest);
+	void dibujarse(list<ViewMsj *> &);
 private:
 	typedef UnionView super;
 };

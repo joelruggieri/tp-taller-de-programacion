@@ -34,7 +34,7 @@ EditorNivel* CintaTransportadoraView::getEditor() {
 	return editor;
 }
 
-void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
+void CintaTransportadoraView::dibujarse(list<ViewMsj*> & lista){
 	cout << "PLATAFORMA: ";
 	if(getModelo() != NULL){
 		CintaTransportadora * p = (CintaTransportadora *) this->getModelo();

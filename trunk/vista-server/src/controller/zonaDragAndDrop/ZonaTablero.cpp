@@ -45,11 +45,11 @@ ZonaTablero::~ZonaTablero() {
 	std::list<FiguraView*>::const_iterator iterator;
 }
 
-void ZonaTablero::dibujarse(SDL_Renderer* renderer) {
+void ZonaTablero::dibujarse(list<ViewMsj*> & lista){
 //	this->canvas->dibujar(renderer);()
 	list<View*>::iterator it;
 	for (it = this->canvas.begin(); it != this->canvas.end(); ++it) {
-		(*it)->dibujarse(renderer);
+		(*it)->dibujarse(lista);
 	}
 }
 

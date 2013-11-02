@@ -54,7 +54,7 @@ int VistaEngranaje::getLayer() {
 	return LAYER_ENGRANAJES;
 }
 
-void VistaEngranaje::dibujarse(SDL_Renderer*) {
+void VistaEngranaje::dibujarse(list<ViewMsj*> & lista){
 	cout << "EngranajeView";
 	if(getModelo() == NULL){
 		cout << this->diametro << endl;

@@ -16,7 +16,7 @@ ScrollView::ScrollView(Scroll* scroll, int sleep):View(0,0) {
 ScrollView::~ScrollView() {
 }
 
-void ScrollView::dibujarse(SDL_Renderer* renderer) {
+void ScrollView::dibujarse(list<ViewMsj*> & lista){
 //	if(this->abajo->isPresionado() && contAbajo++ == sleep){
 //		this->abajo->setPresionado(false);
 //	}
@@ -52,6 +52,6 @@ void ScrollView::notify(Observable* obs, event_type T) {
 //	this->setYc(Resizer::Instance()->resizearPosicionY(this->getYCentro()));
 //}
 //
-//void ScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
+//void ScrollView::dibujarse(list<ViewMsj*> & lista){
 //	this->dibujarse(renderer);
 //}

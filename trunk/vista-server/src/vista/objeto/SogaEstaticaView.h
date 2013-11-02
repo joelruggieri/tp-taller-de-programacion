@@ -18,8 +18,7 @@ public:
 	EditorNivel* getEditor();
 	void dropTemplate();
 	UnionView * toDinamica();
-	void dibujarse(SDL_Renderer *);
-private:
+	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* SOGAESTATICAVIEW_H_ */

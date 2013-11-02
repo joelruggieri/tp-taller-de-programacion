@@ -12,6 +12,10 @@
 #include "../modelo/Observer.h"
 #include "../modelo/Observable.h"
 #include "../modelo/Scroll.h"
+#include "src/mensajes/ViewMsj.h"
+#include <list>
+using namespace std;
+
 class ScrollView: public View, public Observer {
 private:
 //	int contArriba;
@@ -21,8 +25,7 @@ private:
 public:
 	ScrollView(Scroll* scroll, int sleep);
 	virtual ~ScrollView();
-	void dibujarse(SDL_Renderer*);
-//	void dibujarse(SDL_Renderer*, SDL_Rect &);
+	void dibujarse(list<ViewMsj*> & lista);
 	void notify(Observable*, event_type);
 //	void resizear();
 };

@@ -39,15 +39,6 @@ FiguraView::~FiguraView(){
 }
 
 
-void FiguraView::dibujarse(SDL_Renderer * renderer){
-//	SDL_Rect dest;
-//	dest.h = this->getH();
-//	dest.w = this->getW();
-//	dest.x = this->getX();
-//	dest.y = this->getY();
-//	this->dibujarse(renderer, dest);
-}
-
 void FiguraView::click(float x, float y) {
 	this->controller->drag(this,x,y);
 }

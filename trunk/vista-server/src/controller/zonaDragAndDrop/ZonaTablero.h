@@ -26,7 +26,7 @@ private:
 public:
 	ZonaTablero(float, float);
 	virtual ~ZonaTablero();
-	void dibujarse(SDL_Renderer *);
+	void dibujarse(list<ViewMsj*> & lista);
 	bool removerFigura(FiguraView*);
 	bool click(float x, float y);
 	bool mouseScroll(float x, float y, int amountScrolled);

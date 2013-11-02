@@ -15,8 +15,7 @@ private:
 public:
 	BotonSwitch(float x,float y,float w,float h,int eventoUno, int eventoDos);
 	virtual ~BotonSwitch();
-	void dibujarse(SDL_Renderer*);
-	void dibujarse(SDL_Renderer*, SDL_Rect&);
+	void dibujarse(list<ViewMsj*> & lista);
 	void click();
 };
 

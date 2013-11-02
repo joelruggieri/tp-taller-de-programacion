@@ -92,10 +92,10 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 	}
 }
 
-void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
+void ZonaCreacion::dibujarse(list<ViewMsj*> & lista){
 	list<View *>::iterator it;
 	for (it = canvas.begin(); it != canvas.end(); ++it) {
-		(*it)->dibujarse(renderer);
+		(*it)->dibujarse(lista);
 	}
 }
 

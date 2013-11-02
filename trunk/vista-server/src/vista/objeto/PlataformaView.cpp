@@ -37,7 +37,7 @@ EditorNivel* PlataformaView::getEditor() {
 //	this->setW(nuevoAncho);
 //}
 
-void PlataformaView::dibujarse(SDL_Renderer*) {
+void PlataformaView::dibujarse(list<ViewMsj*> & lista){
 	cout << "PLATAFORMA: ";
 	if (getModelo() == NULL) {
 		cout << getXCentro() << " ";

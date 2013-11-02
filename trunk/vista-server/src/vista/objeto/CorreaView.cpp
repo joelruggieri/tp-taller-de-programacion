@@ -30,7 +30,7 @@ void CorreaView::dropTemplate(){
 }
 
 
-void CorreaView::dibujarse(SDL_Renderer* renderer){
+void CorreaView::dibujarse(list<ViewMsj*> & lista){
 	cout << "CorreaView: ";
 	if(getModelo() == NULL){
 		cout << getXCentro() << " ";

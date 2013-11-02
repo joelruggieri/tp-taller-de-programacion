@@ -8,7 +8,8 @@
 #include "SogaView.h"
 #include "../../controller/editor/EditorUnion.h"
 #include <src/objeto/Soga.h>
-SogaView::SogaView(float x, float y,EditorUnion * editor): UnionView(x, y,editor) {
+SogaView::SogaView(float x, float y, EditorUnion * editor) :
+		UnionView(x, y, editor) {
 }
 
 void SogaView::dropTemplate() {
@@ -16,7 +17,7 @@ void SogaView::dropTemplate() {
 }
 
 EditorNivel* SogaView::getEditor() {
-	EditorUnion* editor = (EditorUnion*)controller;
+	EditorUnion* editor = (EditorUnion*) controller;
 	editor->setFigura(this);
 	return editor;
 }
@@ -25,7 +26,6 @@ SogaView::~SogaView() {
 	// TODO Auto-generated destructor stub
 }
 
-void SogaView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
-	super::dibujarse(renderer, 100, 100, 100);
-}
+void SogaView::dibujarse(list<ViewMsj *> &) {
 
+}

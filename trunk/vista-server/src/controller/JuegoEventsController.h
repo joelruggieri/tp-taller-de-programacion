@@ -40,7 +40,7 @@ public:
 	bool rightClickUp(float,float);
 	bool mouseWheelMoved(float, float, int);
 	void setZonas(ZonaTablero *tablero, ZonaCreacion * creacion);
-	void dibujarse(SDL_Renderer *);
+	void dibujarse(list<ViewMsj*> & lista);
 	void start();
 	void stop();
 	void paso();
