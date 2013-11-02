@@ -9,7 +9,7 @@
 #include "ThreadStatus.h"
 Disponibilidad::Disponibilidad(int maxJugadores) {
 	for (int i = 0; i < maxJugadores; ++i) {
-		relaciones.insert(pair<int,ThreadStatus*>(i,new ThreadStatus(5,i)));
+		relaciones.insert(pair<int,ThreadStatus*>(i,new ThreadStatus(90,i)));
 	}
 }
 

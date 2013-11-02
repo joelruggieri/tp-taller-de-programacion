@@ -9,36 +9,18 @@
 #include "SerializacionException.h"
 #define MAX_BUFFER 1024
 Serializador::Serializador() {
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_GLOBO), new ViewGloboUpdateMsj(0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MSJ_PLANO), new MensajePlano("")));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_BOLA), new ViewBolaBolicheUpdateMsj(0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_PELOTA), new ViewPelotaUpdateMsj(0, 0, 0)));
 	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_GLOBO),
-					new ViewGloboUpdateMsj(0, 0, 0)));
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_PLATAFORMA), new ViewPlataformaUpdateMsj(0, 0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_MOTOR), new ViewMotorUpdateMsj(0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_CINTA), new ViewCintaUpdateMsj(0, 0, 0, 0)));
 	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_MSJ_PLANO),
-					new MensajePlano("")));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_BOLA),
-					new ViewBolaBolicheUpdateMsj(0, 0, 0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_PELOTA),
-					new ViewPelotaUpdateMsj(0, 0, 0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_PLATAFORMA),
-					new ViewPlataformaUpdateMsj(0, 0, 0, 0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_MOTOR),
-					new ViewMotorUpdateMsj(0, 0, 0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_CINTA),
-					new ViewCintaUpdateMsj(0, 0, 0, 0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_ENGRANAJE),
-					new ViewEngranajeUpdateMsj(0, 0, 0, 0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_BALANCIN),
-					new ViewBalancinUpdateMsj(0, 0, 0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_SOGA),
-					new ViewSogaUpdateMje(0, 0, 0, 0)));
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_ENGRANAJE), new ViewEngranajeUpdateMsj(0, 0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_BALANCIN), new ViewBalancinUpdateMsj(0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_SOGA), new ViewSogaUpdateMje(0, 0, 0, 0)));
 }
 
 Serializador::~Serializador() {
@@ -61,11 +43,12 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 
 	while (recibidos < longitudTotal) {
 		read(sock, &longRecibida, sizeof(int));
-		recibidos += read(sock, &bufferAux, longRecibida);
+		recibidos += recv(sock, &bufferAux, longRecibida,0);
+//		errno;
 
 		if (recibidos == -1)
-			throw SerializacionException(
-					"No se pudo recibir el mensaje al host");
+			//TODO CHEQUEAR ERRNO PARA VER QUE ACCION TOMAR:   http://www.cisco.com/en/US/docs/ios/sw_upgrades/interlink/r2_0/unpremsg/mucsock.html
+			throw SerializacionException("No se pudo recibir el mensaje al host");
 		strcat(buffer, bufferAux);
 	}
 	string clave;
@@ -106,12 +89,10 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	while (enviados < len) {
 		longEnviada = len - enviados;
 		send(socket, &(longEnviada), sizeof(int), 0);
-		enviados += send(socket, envio.str().substr(enviados, len).c_str(),
-				longEnviada, 0);
-
+		enviados += send(socket, envio.str().substr(enviados, len).c_str(), longEnviada, 0);
+		//TODO CHEQUEAR ERRNO PARA VER QUE ACCION TOMAR:   http://www.cisco.com/en/US/docs/ios/sw_upgrades/interlink/r2_0/unpremsg/mucsock.html
 		if (enviados == -1) {
-			throw SerializacionException(
-					"No se pudo enviar el mensaje al host");
+			throw SerializacionException("No se pudo enviar el mensaje al host");
 		}
 	}
 }
