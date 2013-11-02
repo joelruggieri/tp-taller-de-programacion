@@ -16,8 +16,7 @@ private:
 public:
 	DraggingView(Dragueable*);
 	virtual ~DraggingView();
-	void dibujarse(SDL_Renderer*);
-	void dibujarse(SDL_Renderer*, SDL_Rect &);
+	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* DRAGGINGVIEW_H_ */

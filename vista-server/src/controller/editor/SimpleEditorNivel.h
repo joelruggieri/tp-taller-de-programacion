@@ -41,7 +41,7 @@ public:
 	virtual void rightClickUp(float x, float y);
 	virtual void rightClickDown(float x, float y);
 	virtual bool isEnd();
-	virtual void dibujarEdicion(SDL_Renderer *);
+	virtual void dibujarEdicion(list<ViewMsj* > &);
 	virtual void mouseMotion(float x, float y);
 	void dropNuevaFigura(PlataformaView*);
 //

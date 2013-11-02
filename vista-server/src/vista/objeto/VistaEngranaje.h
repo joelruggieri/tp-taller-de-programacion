@@ -22,7 +22,7 @@ public:
 	EditorNivel * getEditor();
 //	void  update();
 	int getLayer();
-	void dibujarse(SDL_Renderer *);
+	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* VISTAENGRANAJE_H_ */

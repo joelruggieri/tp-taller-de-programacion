@@ -32,8 +32,8 @@ bool ZonaPlay::click(float x, float y) {
 	return false;
 }
 
-void ZonaPlay::dibujarse(SDL_Renderer*r) {
-	this->boton->dibujarse(r);
+void ZonaPlay::dibujarse(list<ViewMsj*> & lista){
+	this->boton->dibujarse(lista);
 }
 
 bool ZonaPlay::mouseScroll(float x, float y, int amountScrolled) {

@@ -264,9 +264,9 @@ bool SimpleEditorNivel::isEnd() {
 	return finalizado;
 }
 
-void SimpleEditorNivel::dibujarEdicion(SDL_Renderer*r) {
+void SimpleEditorNivel::dibujarEdicion(list<ViewMsj *> & lista) {
 	if (editado != NULL)
-		editado->dibujarse(r);
+		editado->dibujarse(lista);
 }
 
 void SimpleEditorNivel::cleanAndDelete() {

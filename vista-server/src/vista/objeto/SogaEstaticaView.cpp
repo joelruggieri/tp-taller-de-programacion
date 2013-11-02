@@ -30,5 +30,5 @@ UnionView* SogaEstaticaView::toDinamica() {
 	return new SogaView(this->getXCentro(),this->getYCentro(),(EditorUnion*) this->controller);
 }
 
-void SogaEstaticaView::dibujarse(SDL_Renderer*) {
+void SogaEstaticaView::dibujarse(list<ViewMsj*> & lista){
 }

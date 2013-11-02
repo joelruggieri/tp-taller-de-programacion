@@ -32,8 +32,7 @@ public:
 
 	// puede estar recibiendo en unidades logicas.
 	virtual FiguraView * getVista(float, float);
-	virtual void dibujarse(SDL_Renderer *) = 0;
-	virtual void dibujarse(SDL_Renderer *, SDL_Rect &) = 0;
+	virtual void dibujarse(list<ViewMsj*> & lista) = 0;
 	Cuadrado*& getCuerpo();
 	virtual bool click(float x, float y) = 0;
 	virtual bool mouseScroll(float x, float y, int amountScrolled) = 0;

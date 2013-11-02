@@ -15,7 +15,7 @@ private:
 public:
 	FactoryView(float x, float y);
 	virtual ~FactoryView();
-	void dibujarse(SDL_Renderer*);
+	void dibujarse(list<ViewMsj*> & lista);
 //	void resizear();
 };
 

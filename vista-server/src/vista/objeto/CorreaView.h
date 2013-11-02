@@ -22,7 +22,7 @@ public:
 	virtual ~CorreaView();
 	EditorNivel* getEditor();
 	void dropTemplate();
-	void dibujarse(SDL_Renderer*);
+	void dibujarse(list<ViewMsj*> & lista);
 //	void update();
 };
 

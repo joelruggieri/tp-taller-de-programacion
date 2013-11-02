@@ -18,12 +18,9 @@ DraggingView::DraggingView(Dragueable * dragueable) {
 DraggingView::~DraggingView() {
 }
 
-void DraggingView::dibujarse(SDL_Renderer* renderer) {
+void DraggingView::dibujarse(list<ViewMsj*> & lista){
 	if(this->dragueable->isDragging()){
-		this->dragueable->getDragueado()->dibujarse(renderer);
+		this->dragueable->getDragueado()->dibujarse(lista);
 	}
 }
 
-void DraggingView::dibujarse(SDL_Renderer* rnd, SDL_Rect&) {
-	this->dibujarse(rnd);
-}

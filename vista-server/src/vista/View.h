@@ -16,7 +16,7 @@ private:
 public:
 	View(float x, float y);
 	virtual ~View();
-	virtual void dibujarse(SDL_Renderer *)=0;
+	virtual void dibujarse(list<ViewMsj*> & lista)=0;
 	virtual float getXCentro();
 	virtual float getYCentro();
 	//desplaza la vista en x y en y;

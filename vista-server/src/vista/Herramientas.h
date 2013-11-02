@@ -17,7 +17,7 @@ public:
 
 
 
-	virtual void dibujarse(SDL_Renderer *) = 0;
+	virtual void dibujarse(list<ViewMsj*> & lista) = 0;
 	virtual bool fueSeleccionado(int x, int y) = 0;
 	virtual void presionarMouse() = 0 ;
 	virtual void desPresionarMouse() = 0;

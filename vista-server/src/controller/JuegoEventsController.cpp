@@ -137,12 +137,12 @@ bool JuegoEventsController::rightClickUp(float x, float y) {
 	}
 	return true;
 }
-void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
-	tablero->dibujarse(renderer);
-	creacion->dibujarse(renderer);
-	zplay->dibujarse(renderer);
+void JuegoEventsController::dibujarse(list<ViewMsj*> & lista){
+	tablero->dibujarse(lista);
+	creacion->dibujarse(lista);
+	zplay->dibujarse(lista);
 	if (editor != NULL) {
-		editor->dibujarEdicion(renderer);
+		editor->dibujarEdicion(lista);
 	}
 }
 

@@ -14,6 +14,8 @@
 #include "SDL2/SDL.h"
 #include "../../controller/editor/EditorNivel.h"
 #include "../../modelo/Observable.h"
+
+#include <list>
 using namespace std;
 
 class DropController;
@@ -30,8 +32,7 @@ public:
 	Figura * getModelo();
 	virtual void setModelo(Figura* modelo);
 	void drop();
-	void dibujarse(SDL_Renderer*);
-//	void dibujarse(SDL_Renderer*, SDL_Rect&);
+	void dibujarse(list<ViewMsj*> & lista);
 	void click(float x, float y);
 //	virtual void update();
 	virtual EditorNivel* getEditor() = 0;

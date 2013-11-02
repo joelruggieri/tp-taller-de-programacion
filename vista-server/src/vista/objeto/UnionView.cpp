@@ -25,33 +25,6 @@ UnionView::~UnionView() {
 //	}
 }
 
-void UnionView::dibujarseEstatica(SDL_Renderer* ren){
-//	Union* u = (Union *)this->getModelo();
-//
-//	if(u->estaEstatica()){
-//		SDL_Rect dest;
-//		int wi,hi;
-//		float xi,yi;
-//		Resizer::Instance()->adaptarDimensionLogica(u->getRadio()*2,u->getRadio()*2,wi,hi);
-//		tl.setVector(u->getX(),u->getY());
-//		tl.getResultadoInverso(xi,yi);
-//		dest.h = hi;
-//		dest.w = wi;
-//		dest.x = xi - wi/2;
-//		dest.y = yi - hi/2;
-//		SDL_RenderCopyEx(ren,this->getTexture(), NULL, &dest,this->getModelo()->getRotacion(),NULL,SDL_FLIP_NONE);
-//		SDL_RenderCopy(ren,this->getTexture(),NULL,&dest);
-//	}
-}
-
-void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
-//	SDL_SetRenderDrawColor(ren,r,g,b,0);
-//	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
-//
-//	this->dibujarseEstatica(ren);
-
-}
-
 EditorNivel* UnionView::getEditor() {
 	return (EditorNivel*)this->controller;
 }

@@ -19,7 +19,7 @@ public:
 	ZonaPlay(float x, float y);
 	virtual ~ZonaPlay();
 	bool mouseScroll(float x, float y, int amountScrolled);
-	void dibujarse(SDL_Renderer *);
+	void dibujarse(list<ViewMsj*> & lista);
 	bool click(float x, float y);
 };
 

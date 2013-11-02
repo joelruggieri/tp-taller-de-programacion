@@ -22,6 +22,10 @@
 #include "src/Logger.h"
 #include "UserEventCreator.h"
 #include "../ConstantesVista.h"
+#include "src/mensajes/ViewMsj.h"
+#include <list>
+using namespace std;
+
 struct SDL_Renderer;
 struct SDL_Window;
 
@@ -42,7 +46,8 @@ Uint32 my_callbackfunc(Uint32 interval, void *param)
 void MainController::dibujar() {
 	SDL_SetRenderDrawColor(render, 1, 1, 1, 1);
 	SDL_RenderClear(render);
-	juegoController->dibujarse(render);
+	list<ViewMsj*> lista;
+	juegoController->dibujarse(lista);
 	SDL_RenderPresent(render);
 }
 int MainController::run() {

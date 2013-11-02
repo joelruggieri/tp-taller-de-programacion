@@ -18,7 +18,7 @@ public:
 	void dropTemplate();
 	EditorNivel * getEditor();
 //	void update();
-	void dibujarse(SDL_Renderer*);
+	void dibujarse(list<ViewMsj*> & lista);
 private:
 	float ancho;
 	typedef ObjetoView super;
