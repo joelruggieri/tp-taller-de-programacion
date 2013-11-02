@@ -7,6 +7,8 @@
 
 #include "ViewObjetoUpdateMsj.h"
 
+
+//ENTREGA3 AGREGAR LA HERENCIA A VIEWMSJ CON ID
 ViewObjetoUpdateMsj::ViewObjetoUpdateMsj(float x , float y, float angulo) {
 this->x = x;
 this->y = y;
