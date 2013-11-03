@@ -7,7 +7,7 @@
 
 #ifndef VIEWMSJ_H_
 #define VIEWMSJ_H_
-#include "NetworkMensaje.h"
+#include "../NetworkMensaje.h"
 class ViewMsj: public NetworkMensaje {
 protected:
 	int id;

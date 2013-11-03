@@ -6,7 +6,7 @@
  */
 
 #include "ViewCintaUpdateMsj.h"
-#include "../ConstantesComunicacion.h"
+#include "../../ConstantesComunicacion.h"
 ViewCintaUpdateMsj::ViewCintaUpdateMsj(float x, float y, float angulo, float ancho, int id):ViewObjetoUpdateMsj(x,y,angulo,id) {
 this->ancho = ancho;
 }

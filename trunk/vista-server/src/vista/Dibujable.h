@@ -10,7 +10,7 @@
 #include "SDL2/SDL_image.h"
 #include "SDL2/SDL.h"
 #include <iostream>
-#include "src/mensajes/ViewMsj.h"
+#include "src/mensajes/viewMensaje/ViewMsj.h"
 #include <list>
 using namespace std;
 

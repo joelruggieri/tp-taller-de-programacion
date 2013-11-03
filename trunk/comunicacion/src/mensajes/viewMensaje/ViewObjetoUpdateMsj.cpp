@@ -40,3 +40,8 @@ NetworkMensaje* ViewObjetoUpdateMsj::deserialize(YAML::const_iterator& it) {
 	NetworkMensaje * salida = new ViewObjetoUpdateMsj(xl,yl, angulo, id);
 	return salida;
 }
+
+void ViewObjetoUpdateMsj::getMensaje() {
+	cout << this->x << " " << this->y << " " << this->angulo << endl;
+
+}

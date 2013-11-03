@@ -8,7 +8,7 @@
 #ifndef EDITORNIVEL_H_
 #define EDITORNIVEL_H_
 #include "SDL2/SDL.h"
-#include "src/mensajes/ViewMsj.h"
+#include "src/mensajes/viewMensaje/ViewMsj.h"
 #include <list>
 using namespace std;
 class EditorNivel {
