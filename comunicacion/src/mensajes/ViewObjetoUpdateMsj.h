@@ -8,6 +8,8 @@
 #ifndef VIEWOBJETOUPDATEMSJ_H_
 #define VIEWOBJETOUPDATEMSJ_H_
 #include "ViewMsj.h"
+#include "yaml-cpp/yaml.h"
+
 class ViewObjetoUpdateMsj : public ViewMsj {
 public:
 	ViewObjetoUpdateMsj(float x, float y, float angulo, int id);

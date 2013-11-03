@@ -25,13 +25,15 @@ void ViewGloboUpdateMsj::serialize(YAML::Node* nodo) {
 }
 
 NetworkMensaje* ViewGloboUpdateMsj::deserialize(YAML::const_iterator & it) {
+	int id = it->as<int>();
+	it++;
 	float xl = it->as<float>();
 	it++;
 	float yl = it->as<float>();
 	it++;
 	float angulo = it->as<float>();
 	it++;
-	NetworkMensaje * salida = new ViewGloboUpdateMsj(xl,yl,angulo);
+	NetworkMensaje * salida = new ViewGloboUpdateMsj(xl,yl,angulo, id);
 	return salida;
 }
 

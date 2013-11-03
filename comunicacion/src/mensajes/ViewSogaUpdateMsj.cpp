@@ -31,16 +31,18 @@ void ViewSogaUpdateMsj::serialize(YAML::Node* nodo) {
 }
 
 NetworkMensaje* ViewSogaUpdateMsj::deserialize(YAML::const_iterator& it) {
-		float xD = it->as<float>();
-		it++;
-		float yD = it->as<float>();
-		it++;
-		float xH = it->as<float>();
-		it++;
-		float yH = it->as<float>();
-		it++;
-		NetworkMensaje * salida = new ViewSogaUpdateMje(xD,yD, xH, yH );
-		return salida;
+	int id = it->as<int>();
+	it++;
+	float xD = it->as<float>();
+	it++;
+	float yD = it->as<float>();
+	it++;
+	float xH = it->as<float>();
+	it++;
+	float yH = it->as<float>();
+	it++;
+	NetworkMensaje * salida = new ViewSogaUpdateMsj(xD,yD, xH, yH,id);
+	return salida;
 }
 
 string ViewSogaUpdateMsj::getTag() {

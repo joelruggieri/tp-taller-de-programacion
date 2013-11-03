@@ -25,13 +25,15 @@ void ViewPelotaUpdateMsj::serialize(YAML::Node* nodo){
 }
 
 NetworkMensaje* ViewPelotaUpdateMsj::deserialize(YAML::const_iterator & it) {
+	int id = it->as<int>();
+	it++;
 	float xl = it->as<float>();
 	it++;
 	float yl = it->as<float>();
 	it++;
 	float angulol = it->as<float>();
 	it++;
-	NetworkMensaje * salida = new ViewPelotaUpdateMsj(xl,yl, angulol);
+	NetworkMensaje * salida = new ViewPelotaUpdateMsj(xl,yl, angulol, id);
 	return salida;
 }
 

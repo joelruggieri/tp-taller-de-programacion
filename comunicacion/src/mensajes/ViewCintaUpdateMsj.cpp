@@ -20,16 +20,18 @@ void ViewCintaUpdateMsj::serialize(YAML::Node* nodo) {
 }
 
 NetworkMensaje* ViewCintaUpdateMsj::deserialize(YAML::const_iterator& it) {
+	int id = it->as<int>();
+	it++;
 	float xl = it->as<float>();
-		it++;
-		float yl = it->as<float>();
-		it++;
-		float angulol = it->as<float>();
-		it++;
-		float anchol = it->as<float>();
-		it++;
-		NetworkMensaje * salida = new ViewCintaUpdateMsj(xl,yl,angulol, anchol);
-		return salida;
+	it++;
+	float yl = it->as<float>();
+	it++;
+	float angulol = it->as<float>();
+	it++;
+	float anchol = it->as<float>();
+	it++;
+	NetworkMensaje * salida = new ViewCintaUpdateMsj(xl,yl,angulol, anchol, id);
+	return salida;
 }
 
 string ViewCintaUpdateMsj::getTag() {

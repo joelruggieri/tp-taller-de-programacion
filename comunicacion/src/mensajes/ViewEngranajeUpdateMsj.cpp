@@ -21,6 +21,8 @@ void ViewEngranajeUpdateMsj::serialize(YAML::Node* nodo) {
 }
 
 NetworkMensaje* ViewEngranajeUpdateMsj::deserialize(YAML::const_iterator& it) {
+	int id = it->as<int>();
+	it++;
 	float xl = it->as<float>();
 	it++;
 	float yl = it->as<float>();
@@ -29,7 +31,7 @@ NetworkMensaje* ViewEngranajeUpdateMsj::deserialize(YAML::const_iterator& it) {
 	it++;
 	float radio = it->as<float>();
 	it++;
-	NetworkMensaje * salida = new ViewEngranajeUpdateMsj(xl,yl, angulo, radio );
+	NetworkMensaje * salida = new ViewEngranajeUpdateMsj(xl,yl, angulo, radio, id);
 	return salida;
 }
 

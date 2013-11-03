@@ -21,6 +21,7 @@ ViewObjetoUpdateMsj::~ViewObjetoUpdateMsj() {
 
 void ViewObjetoUpdateMsj::serialize(YAML::Node* nodo) {
 	nodo->push_back(this->getTag());
+	nodo->push_back(this->id);
 	nodo->push_back(this->x);
 	nodo->push_back(this->y);
 	nodo->push_back(this->angulo);
