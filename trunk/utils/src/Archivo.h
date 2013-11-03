@@ -17,7 +17,7 @@ class Archivo {
 public:
 	Archivo(const char* nombre, TIPO tipo);
 	virtual ~Archivo();
-	void escribir(std::string dato);
+	void escribir(std::string & dato);
 	std::string leer();
 	std::string getNombre();
 	YAML::Node obtenerNodo(std::string nombre);

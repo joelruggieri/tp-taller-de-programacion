@@ -34,8 +34,7 @@ void MainServerThread::run() {
 	unsigned int clilen;
 	struct sockaddr_in serv_addr, cli_addr;
 //    int  n;
-
-	printf("Iniciando servidor...\n");
+	log.info("Iniciando servidor...");
 
 	/* First call to socket() function */
 	fd1 = socket(AF_INET, SOCK_STREAM, 0);
@@ -62,7 +61,9 @@ void MainServerThread::run() {
 	listen(fd1, 10);
 	clilen = sizeof(cli_addr);
 //    char auxBuffer[1024];
-
+	string msj = "Servidor escuchando pedidos en el puerto ";
+	log.concatenar(msj, puerto);
+	log.info(msj);
 	while (true) {
 		//ENTREGA3 ESTO SE PUEDE COLGAR, LOS ACEPTS PODRÍAN IR EN OTRO THREAD.
 		fd2 = accept(fd1, (struct sockaddr *) &cli_addr, &clilen);

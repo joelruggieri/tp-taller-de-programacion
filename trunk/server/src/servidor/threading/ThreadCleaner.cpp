@@ -32,14 +32,13 @@ void * cleanDeaths(void * arg) {
 	ThreadCleanerParams * params = (ThreadCleanerParams *) zona->getParams();
 	Disponibilidad * dispo =  params->getDisponibilidad();
 	int segs = params->getSegundos();
+	Logger log;
 	while(true){
 		sleep(segs);
-//		Logger log;
-//		log.info("Ejecuta cleaner");
+		log.debug("Ejecutando servicio de limpieza de threads muertos");
 		dispo->lock();
 		dispo->cleanDeaths();
 		dispo->unlock();
-		cout << "Ejecuto cleaner" << endl;
 	}
 	pthread_exit(NULL);
 }
