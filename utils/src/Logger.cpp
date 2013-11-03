@@ -13,6 +13,7 @@
 #include "Archivo.h"
 
 using namespace std;
+using namespace LOG;
 
 NIVEL_LOGGER Logger::nivel = DEBUG_N;
 
@@ -93,8 +94,7 @@ void Logger::setNivel(NIVEL_LOGGER n) {
 
 void Logger::log(std::string mensaje, TIPO_LOGGER tLogger,	NIVEL_LOGGER nLog) {
 	if(Logger::nivel <= nLog ){
-		Archivo *a = AdministradorDeLoggers::getLogger(tLogger);
-		cout<< mensaje<< endl;
-		a->escribir(mensaje);
+		ColaLogs * cola = LoggingService::colaLogs;
+		cola->push(mensaje);
 	}
 }

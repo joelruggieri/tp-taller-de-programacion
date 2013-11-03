@@ -50,7 +50,7 @@ void Status::kill() {
 void Status::clean() {
 	lock();
 	if(this->getThread() && !isAlive()){
-		cout << "se cancela jugador Thread" << endl;
+		log.debug("Thread liberado por dejar de estar vivo");
 		getThread()->cancel();
 		delete getThread();
 		setThread(NULL);

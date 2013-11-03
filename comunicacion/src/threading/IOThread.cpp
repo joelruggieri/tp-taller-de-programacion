@@ -48,11 +48,11 @@ void * func_salida(void * arg) {
 	status->lock();
 	bool continuar = status->isAlive();
 	status->unlock();
+	NetworkMensaje* pop;
 	while (continuar) {
-		usleep(100000);
-		NetworkMensaje* pop = colaSalida->front();
+		usleep(1000);
+		pop = colaSalida->front();
 		try {
-			pop = new MensajePlano ("pruieba");
 			if (pop != NULL) {
 				serializador->escribir(pop,socketDesc);
 				delete pop;

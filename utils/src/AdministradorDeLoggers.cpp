@@ -23,7 +23,7 @@ AdministradorDeLoggers::~AdministradorDeLoggers() {
 	// TODO Auto-generated destructor stub
 }
 
-Archivo *AdministradorDeLoggers::getLogger(TIPO_LOGGER tipo) {
+Archivo *AdministradorDeLoggers::getLogger() {
 //	if (tipo == ERROR) {
 //		return logError;
 //	} else if (tipo == WARN) {

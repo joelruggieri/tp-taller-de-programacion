@@ -36,7 +36,7 @@ Archivo::Archivo(const char* nombre, TIPO tipo) {
 	}
 }
 
-void Archivo::escribir(std::string dato) {
+void Archivo::escribir(std::string & dato) {
 	archivo << dato << std::endl;
 }
 

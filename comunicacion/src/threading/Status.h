@@ -9,6 +9,7 @@
 #define STATUS_H_
 #include <ctime>
 #include "ObjetoCompartido.h"
+#include "src/Logger.h"
 using namespace std;
 
 class IOThread;
@@ -18,6 +19,7 @@ private:
 	int timeout;
 	IOThread * listener;
 	bool vivo;
+	Logger log;
 public:
 	Status(int timeout);
 	bool isAlive();

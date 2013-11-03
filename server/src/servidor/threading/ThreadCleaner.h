@@ -9,11 +9,12 @@
 #define THREADCLEANER_H_
 #include "Disponibilidad.h"
 #include "src/threading/ThreadPTM.h"
-
+#include "src/Logger.h"
 class ThreadCleanerParams {
 private:
 	Disponibilidad * disponibilidad;
 	int segundos;
+	Logger log;
 public:
 	ThreadCleanerParams(Disponibilidad*, int seg);
 	virtual ~ThreadCleanerParams();

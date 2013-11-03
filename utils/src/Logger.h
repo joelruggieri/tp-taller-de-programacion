@@ -12,7 +12,7 @@
 #include <fstream>
 #include <sstream>
 #include "AdministradorDeLoggers.h"
-
+#include "LoggingService.h"
 
 enum NIVEL_LOGGER {DEBUG_N, INFO_N, WARN_N, ERROR_N, FATAL_N};
 class Logger {

@@ -15,7 +15,7 @@ enum TIPO_LOGGER { ERROR, DEBUG, FATAL, INFO, WARN};
 
 class AdministradorDeLoggers {
 public:
-	static Archivo *getLogger(TIPO_LOGGER tipo);
+	static Archivo *getLogger();
 	static Archivo *getLoggerUnificado();
 	static void cerrarTodo();
 private:
