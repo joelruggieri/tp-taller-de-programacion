@@ -33,3 +33,7 @@ string MensajePlano::getMensaje() {
 string MensajePlano::getTag() {
 	return TAG_MSJ_PLANO;
 }
+
+void MensajePlano::acept(MensajeVisitor* v) {
+	v->visit(this);
+}

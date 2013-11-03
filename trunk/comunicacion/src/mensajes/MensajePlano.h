@@ -23,6 +23,7 @@ public:
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 	string getMensaje();
 	string getTag();
+	void acept(MensajeVisitor *);
 };
 
 #endif /* MENSAJEPLANO_H_ */

@@ -7,7 +7,6 @@
 
 #include "ViewMsj.h"
 
-
 ViewMsj::ViewMsj(int id) {
 	this->id = id;
 }
@@ -16,3 +15,6 @@ ViewMsj::~ViewMsj() {
 	// TODO Auto-generated destructor stub
 }
 
+void ViewMsj::acept(MensajeVisitor* v) {
+	v->visit(this);
+}

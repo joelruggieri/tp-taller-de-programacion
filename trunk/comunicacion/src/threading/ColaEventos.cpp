@@ -44,7 +44,10 @@ void ColaEventos::clear() {
 }
 
 bool ColaEventos::hasNext() {
-	return !msjs.empty();
+	lock();
+	bool result = !msjs.empty();
+	unlock();
+	return result;
 }
 
 void ColaEventos::push(list<NetworkMensaje*> msjsin) {
