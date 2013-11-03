@@ -22,7 +22,7 @@
 #include "src/Logger.h"
 #include "UserEventCreator.h"
 #include "../ConstantesVista.h"
-#include "src/mensajes/ViewMsj.h"
+#include "src/mensajes/viewMensaje/ViewMsj.h"
 #include <list>
 using namespace std;
 

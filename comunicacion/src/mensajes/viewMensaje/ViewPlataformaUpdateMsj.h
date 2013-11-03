@@ -7,7 +7,7 @@
 
 #ifndef VIEWPLATAFORMAUPDATEMSJ_H_
 #define VIEWPLATAFORMAUPDATEMSJ_H_
-#include "NetworkMensaje.h"
+#include "../NetworkMensaje.h"
 #include "ViewObjetoUpdateMsj.h"
 class ViewPlataformaUpdateMsj : public ViewObjetoUpdateMsj {
 public:

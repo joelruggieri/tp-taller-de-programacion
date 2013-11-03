@@ -5,7 +5,7 @@
  *      Author: joel
  */
 #include "ViewSogaUpdateMsj.h"
-#include "../ConstantesComunicacion.h"
+#include "../../ConstantesComunicacion.h"
 
 using namespace std;
 

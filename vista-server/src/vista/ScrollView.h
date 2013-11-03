@@ -12,7 +12,7 @@
 #include "../modelo/Observer.h"
 #include "../modelo/Observable.h"
 #include "../modelo/Scroll.h"
-#include "src/mensajes/ViewMsj.h"
+#include "src/mensajes/viewMensaje/ViewMsj.h"
 #include <list>
 using namespace std;
 
