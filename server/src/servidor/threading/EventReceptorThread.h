@@ -11,16 +11,16 @@
 //#include <thread>
 #include "src/threading/ColaEventos.h"
 #include "src/threading/ThreadPTM.h"
-
+#include "EjecutorMensajes.h"
 class EventReceptorThreadParams {
 private:
 	ColaEventos * colaIn;
-	GeneralEventController * controller;
+	EjecutorMensajes * ejecutor;
 public:
-	EventReceptorThreadParams(GeneralEventController * c, ColaEventos * cola);
+	EventReceptorThreadParams(EjecutorMensajes * c, ColaEventos * cola);
 	virtual ~EventReceptorThreadParams();
 	ColaEventos* getColaIn();
-	GeneralEventController* getController();
+	EjecutorMensajes * getEjecutor();
 };
 
 class EventReceptorThread {
@@ -30,6 +30,7 @@ private:
 	ColaEventos * colaIn, *colaOut;
 	GeneralEventController * controller;
 	EventReceptorThreadParams * params;
+	EjecutorMensajes * ejecutor;
 	void clearAll();
 public:
 

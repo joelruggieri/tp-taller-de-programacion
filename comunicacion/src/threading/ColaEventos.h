@@ -10,6 +10,7 @@
 #include "../mensajes/NetworkMensaje.h"
 #include "ObjetoCompartido.h"
 #include <list>
+#include "src/Logger.h"
 using namespace std;
 
 //ENTREGA3 LA COLA DEBERIA INICIALIZARSE CON UN LIMITE. SI PASA ESE LIMITE DE MSJS, HACE CLEAN PARA NO SATURARSE CON COSAS QUE YA NO VAN.
@@ -19,6 +20,7 @@ using namespace std;
 class ColaEventos: public ObjetoCompartido {
 private:
 	list<NetworkMensaje*> msjs;
+	Logger log;
 public:
 	ColaEventos();
 	void push(NetworkMensaje * msj);
