@@ -8,8 +8,15 @@
 #include "Dibujable.h"
 #include "../ConstantesVista.h"
 
-Dibujable::Dibujable() {
+int Dibujable::idSequence = 0;
 
+void Dibujable::incrementarIdSequence(){
+	Dibujable::idSequence ++;
+}
+
+Dibujable::Dibujable() {
+	Dibujable::incrementarIdSequence();
+	this->id = Dibujable::idSequence;
 }
 
 Dibujable::~Dibujable() {
@@ -18,4 +25,9 @@ Dibujable::~Dibujable() {
 
 int Dibujable::getLayer() {
 	return LAYER_DEFAULT;
+}
+
+int Dibujable::getId(){
+
+	return this->id;
 }

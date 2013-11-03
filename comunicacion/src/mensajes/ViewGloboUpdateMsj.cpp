@@ -7,7 +7,7 @@
 
 #include "ViewGloboUpdateMsj.h"
 #include "../ConstantesComunicacion.h"
-ViewGloboUpdateMsj::ViewGloboUpdateMsj(float x, float y, float angulo) : ViewObjetoUpdateMsj(x,y,angulo) {
+ViewGloboUpdateMsj::ViewGloboUpdateMsj(float x, float y, float angulo, int id) : ViewObjetoUpdateMsj(x,y,angulo,id) {
 //	this->x = x;
 //	this->y = y;
 }

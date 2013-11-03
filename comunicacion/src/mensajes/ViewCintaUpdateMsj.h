@@ -10,7 +10,7 @@
 #include "ViewObjetoUpdateMsj.h"
 class ViewCintaUpdateMsj : public ViewObjetoUpdateMsj {
 public:
-	ViewCintaUpdateMsj(float, float, float, float);
+	ViewCintaUpdateMsj(float, float, float, float, int);
 	virtual ~ViewCintaUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);

@@ -7,10 +7,10 @@
 
 #ifndef VIEWOBJETOUPDATEMSJ_H_
 #define VIEWOBJETOUPDATEMSJ_H_
-#include "NetworkMensaje.h"
-class ViewObjetoUpdateMsj : public NetworkMensaje {
+#include "ViewMsj.h"
+class ViewObjetoUpdateMsj : public ViewMsj {
 public:
-	ViewObjetoUpdateMsj(float x, float y, float angulo);
+	ViewObjetoUpdateMsj(float x, float y, float angulo, int id);
 	virtual ~ViewObjetoUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	virtual NetworkMensaje * deserialize(YAML::const_iterator & it)=0;

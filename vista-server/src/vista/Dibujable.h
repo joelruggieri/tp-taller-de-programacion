@@ -15,12 +15,21 @@
 using namespace std;
 
 class Dibujable{
+private:
+	int id;
+ static int idSequence;
+ static void incrementarIdSequence();
 
 public:
 	Dibujable();
 	virtual ~Dibujable();
 	virtual int getLayer();
+	int getNext();
 	virtual void dibujarse(list<ViewMsj*> & lista) = 0;
+	int getId();
+
+
 };
+
 
 #endif /* DIBUJABLE_H_ */

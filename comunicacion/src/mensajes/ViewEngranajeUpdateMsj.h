@@ -10,7 +10,7 @@
 #include "ViewObjetoUpdateMsj.h"
 class ViewEngranajeUpdateMsj : public ViewObjetoUpdateMsj {
 public:
-	ViewEngranajeUpdateMsj(float, float ,float, float);
+	ViewEngranajeUpdateMsj(float, float ,float, float, int);
 	virtual ~ViewEngranajeUpdateMsj();
 	void serialize(YAML::Node * nodo);
 		NetworkMensaje * deserialize(YAML::const_iterator & it);

@@ -7,7 +7,7 @@
 
 #include "ViewBolaBolicheUpdateMsj.h"
 #include "../ConstantesComunicacion.h"
-ViewBolaBolicheUpdateMsj::ViewBolaBolicheUpdateMsj(float x, float y, float angulo):ViewObjetoUpdateMsj(x,y, angulo) {
+ViewBolaBolicheUpdateMsj::ViewBolaBolicheUpdateMsj(float x, float y, float angulo,int id):ViewObjetoUpdateMsj(x,y, angulo,id) {
 //this->x = x;
 //this->y = y;
 }

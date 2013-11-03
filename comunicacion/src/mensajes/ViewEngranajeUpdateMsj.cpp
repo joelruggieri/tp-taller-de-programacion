@@ -7,7 +7,7 @@
 
 #include "ViewEngranajeUpdateMsj.h"
 #include "../ConstantesComunicacion.h"
-ViewEngranajeUpdateMsj::ViewEngranajeUpdateMsj(float x, float y, float angulo, float radio) : ViewObjetoUpdateMsj(x,y,angulo) {
+ViewEngranajeUpdateMsj::ViewEngranajeUpdateMsj(float x, float y, float angulo, float radio, int id) : ViewObjetoUpdateMsj(x,y,angulo,id) {
 this->radio = radio;
 }
 
