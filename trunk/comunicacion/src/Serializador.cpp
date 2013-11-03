@@ -9,17 +9,9 @@
 #include "SerializacionException.h"
 #define MAX_BUFFER 1024
 Serializador::Serializador() {
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO), new ViewObjetoUpdateMsj(0, 0, 0,0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0,0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MSJ_PLANO), new MensajePlano("")));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO), new ViewObjetoUpdateMsj(0, 0, 0,0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO), new ViewObjetoUpdateMsj(0, 0, 0,0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_PLATAFORMA), new ViewPlataformaUpdateMsj(0, 0, 0, 0,0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO), new ViewObjetoUpdateMsj(0, 0, 0,0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_CINTA), new ViewCintaUpdateMsj(0, 0, 0, 0,0)));
-	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_ENGRANAJE), new ViewEngranajeUpdateMsj(0, 0, 0, 0,0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO), new ViewObjetoUpdateMsj(0, 0, 0,0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_CON_ANCHO), new ViewObjetoConAnchoUpdateMsj(0, 0, 0,0,0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_SOGA), new ViewSogaUpdateMsj(0, 0, 0, 0,0)));
 }
 

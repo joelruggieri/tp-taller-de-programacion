@@ -14,9 +14,7 @@
 #include <utility>
 #include "mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 #include "mensajes/MensajePlano.h"
-#include "mensajes/viewMensaje/ViewPlataformaUpdateMsj.h"
-#include "mensajes/viewMensaje/ViewCintaUpdateMsj.h"
-#include "mensajes/viewMensaje/ViewEngranajeUpdateMsj.h"
+#include "mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 #include "mensajes/viewMensaje/ViewSogaUpdateMsj.h"
 #include <string>
 #include "yaml-cpp/yaml.h"

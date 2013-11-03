@@ -6,6 +6,7 @@
  */
 
 #include "ViewObjetoUpdateMsj.h"
+#include "../../ConstantesComunicacion.h"
 
 
 //ENTREGA3 AGREGAR LA HERENCIA A VIEWMSJ CON ID
@@ -20,7 +21,7 @@ ViewObjetoUpdateMsj::~ViewObjetoUpdateMsj() {
 }
 
 void ViewObjetoUpdateMsj::serialize(YAML::Node* nodo) {
-	//nodo->push_back(this->getTag());
+	nodo->push_back(this->getTag());
 	nodo->push_back(this->id);
 	nodo->push_back(this->x);
 	nodo->push_back(this->y);
@@ -44,4 +45,8 @@ NetworkMensaje* ViewObjetoUpdateMsj::deserialize(YAML::const_iterator& it) {
 void ViewObjetoUpdateMsj::getMensaje() {
 	cout << this->x << " " << this->y << " " << this->angulo << endl;
 
+}
+
+string ViewObjetoUpdateMsj::getTag(){
+	return TAG_VIEW_OBJETO_SIMPLE;
 }
