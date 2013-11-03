@@ -9,7 +9,7 @@
 
 
 //ENTREGA3 AGREGAR LA HERENCIA A VIEWMSJ CON ID
-ViewObjetoUpdateMsj::ViewObjetoUpdateMsj(float x , float y, float angulo) {
+ViewObjetoUpdateMsj::ViewObjetoUpdateMsj(float x , float y, float angulo, int id): ViewMsj(id){
 this->x = x;
 this->y = y;
 this->angulo = angulo;

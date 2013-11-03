@@ -7,7 +7,7 @@
 
 #include "ViewPlataformaUpdateMsj.h"
 #include "../ConstantesComunicacion.h"
-ViewPlataformaUpdateMsj::ViewPlataformaUpdateMsj(float x, float y, float angulo, float ancho) : ViewObjetoUpdateMsj(x,y,angulo)  {
+ViewPlataformaUpdateMsj::ViewPlataformaUpdateMsj(float x, float y, float angulo, float ancho, int id) : ViewObjetoUpdateMsj(x,y,angulo,id)  {
 //	this->x = x;
 //	this->y = y;
 	this->ancho = ancho;

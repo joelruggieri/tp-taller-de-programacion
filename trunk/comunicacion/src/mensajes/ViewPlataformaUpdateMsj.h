@@ -11,7 +11,7 @@
 #include "ViewObjetoUpdateMsj.h"
 class ViewPlataformaUpdateMsj : public ViewObjetoUpdateMsj {
 public:
-	ViewPlataformaUpdateMsj(float, float, float, float);
+	ViewPlataformaUpdateMsj(float, float, float, float, int);
 //	virtual ~ViewPlataformaUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);

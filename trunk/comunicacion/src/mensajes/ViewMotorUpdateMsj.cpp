@@ -7,7 +7,7 @@
 
 #include "ViewMotorUpdateMsj.h"
 #include "../ConstantesComunicacion.h"
-ViewMotorUpdateMsj::ViewMotorUpdateMsj(float x, float y, float angulo) : ViewObjetoUpdateMsj(x,y,angulo) {
+ViewMotorUpdateMsj::ViewMotorUpdateMsj(float x, float y, float angulo, int id) : ViewObjetoUpdateMsj(x,y,angulo,id) {
 
 }
 

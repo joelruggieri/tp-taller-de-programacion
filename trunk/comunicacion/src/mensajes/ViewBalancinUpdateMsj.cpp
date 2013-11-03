@@ -7,7 +7,7 @@
 
 #include "ViewBalancinUpdateMsj.h"
 #include "../ConstantesComunicacion.h"
-ViewBalancinUpdateMsj::ViewBalancinUpdateMsj(float x, float y, float angulo) : ViewObjetoUpdateMsj(x,y,angulo) {
+ViewBalancinUpdateMsj::ViewBalancinUpdateMsj(float x, float y, float angulo, int id) : ViewObjetoUpdateMsj(x,y,angulo,id) {
 
 }
 

@@ -7,7 +7,7 @@
 
 #include "View.h"
 
-View::View(float x, float y) {
+View::View(float x, float y): Dibujable() {
 	this->xc = x;
 	this->yc = y;
 }

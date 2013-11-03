@@ -11,7 +11,7 @@
 #include "ViewObjetoUpdateMsj.h"
 class ViewBolaBolicheUpdateMsj: public ViewObjetoUpdateMsj {
 public:
-	ViewBolaBolicheUpdateMsj(float, float, float);
+	ViewBolaBolicheUpdateMsj(float, float, float,int);
 	virtual ~ViewBolaBolicheUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);

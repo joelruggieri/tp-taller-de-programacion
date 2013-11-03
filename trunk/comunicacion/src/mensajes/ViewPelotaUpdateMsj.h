@@ -11,7 +11,7 @@
 #include "ViewObjetoUpdateMsj.h"
 class ViewPelotaUpdateMsj : public ViewObjetoUpdateMsj{
 public:
-	ViewPelotaUpdateMsj(float x, float y, float angulo);
+	ViewPelotaUpdateMsj(float x, float y, float angulo, int id);
 	virtual ~ViewPelotaUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);

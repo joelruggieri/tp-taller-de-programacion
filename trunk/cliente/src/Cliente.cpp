@@ -8,9 +8,11 @@
 
 #include <iostream>
 #include "clientethread/MainClienteThread.h"
+#include "src/LoggingService.h"
 using namespace std;
 
 int main() {
+	LOG::LoggingService loggingService;
 	MainClienteThread main;
 	main.run();
 }

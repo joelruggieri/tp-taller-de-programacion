@@ -12,7 +12,7 @@
 #include "ViewObjetoUpdateMsj.h"
 class ViewGloboUpdateMsj: public ViewObjetoUpdateMsj {
 public:
-	ViewGloboUpdateMsj(float x, float y, float angulo);
+	ViewGloboUpdateMsj(float x, float y, float angulo, int id);
 	virtual ~ViewGloboUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
