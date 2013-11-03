@@ -109,7 +109,7 @@ string MainClienteThread::tryConnect(int& socketfd) {
 	Serializador ser;
 	std::list<NetworkMensaje*> leer;
 	try {
-		leer = ser.leer(socketfd);
+		ser.leer(socketfd, leer);
 	} catch (SerializacionException & e) {
 		throw ConexionException("No se pudo conectar con el servidor");
 	}

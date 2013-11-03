@@ -31,12 +31,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <list>
 using namespace std;
 class Serializador {
 public:
 	Serializador();
 	virtual ~Serializador();
-	list<NetworkMensaje*> leer(int sock);
+	void leer(int sock, list<NetworkMensaje*> & lista);
 	void escribir(list<NetworkMensaje*>& lista, int socket);
 	void escribir(NetworkMensaje * msj, int socket);
 private:

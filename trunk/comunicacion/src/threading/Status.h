@@ -17,6 +17,7 @@ private:
 	time_t puntoControl;
 	int timeout;
 	IOThread * listener;
+	bool vivo;
 public:
 	Status(int timeout);
 	bool isAlive();
@@ -24,6 +25,9 @@ public:
 	void setThread(IOThread*);
 	IOThread* getThread();
 	virtual ~Status();
+	void kill();
+	void clean();
+	bool allowClient();
 };
 
 #endif /* THREDSTATUS_H_ */
