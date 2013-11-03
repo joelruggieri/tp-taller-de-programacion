@@ -16,3 +16,6 @@ KeyMsj::~KeyMsj() {
 	// TODO Auto-generated destructor stub
 }
 
+void KeyMsj::procesar(UserEventVisitor* v) {
+		v->visit(this);
+}
