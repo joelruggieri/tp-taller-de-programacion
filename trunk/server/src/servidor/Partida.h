@@ -21,12 +21,13 @@ class Partida {
 
 //La partida comienza a recibir a los clientes y empieza a pasarle el control a cada  thread que atiende. controla el numero maximo de clientes.
 private:
-	ColaEventos * cola;
+	ColaEventos * colaIn,  *colaOut;
 	Disponibilidad * dispo;
 	Nivel * nivel;
 	EventDispatcherThread * dispatcher;
 	EventReceptorThread * receiver;
 	ThreadCleaner * cleaner;
+	GeneralEventController * generalController;
 	int socket;
 	Logger log;
 	void procesarRequest(int socketDesc, Serializador & serializador);

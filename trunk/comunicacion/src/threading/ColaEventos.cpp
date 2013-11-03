@@ -45,7 +45,7 @@ void ColaEventos::clear() {
 
 bool ColaEventos::hasNext() {
 	lock();
-	bool result = !msjs.empty();
+	bool result = msjs.size() > 0;
 	unlock();
 	return result;
 }

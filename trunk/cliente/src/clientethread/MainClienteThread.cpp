@@ -43,8 +43,9 @@ void MainClienteThread::run() {
 			thread->run();
 			while (true) {
 				sleep(1);
-//				MensajePlano * msj = new MensajePlano("prueba");
-//				colaSalida->push(msj);
+				MensajePlano * msj = new MensajePlano("prueba");
+				colaSalida->push(msj);
+				log.debug("Se evia mensaje de prueba");
 			}
 
 		}
