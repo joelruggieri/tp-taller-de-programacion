@@ -22,11 +22,14 @@ void * funcThread(void *arg) {
 //	GeneralEventController * controller = params->getController();
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
-		//TODO PONER SLEEP
-		NetworkMensaje* pop = colaEntrada->front();
-		if (pop != NULL) {
-			//ENTREGA3 enviar controller
-			delete pop;
+		usleep(10000);
+		while(colaEntrada->hasNext()){
+			NetworkMensaje* pop = colaEntrada->front();
+			if (pop != NULL) {
+				//ENTREGA3 enviar controller
+				delete pop;
+			}
+
 		}
 //		controller->
 	}

@@ -14,6 +14,7 @@ protected:
 public:
 	ViewMsj(int id);
 	virtual ~ViewMsj();
+	void acept(MensajeVisitor *);
 };
 
 #endif /* VIEWMSJ_H_ */
