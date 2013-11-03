@@ -21,7 +21,7 @@
 #include "mensajes/ViewCintaUpdateMsj.h"
 #include "mensajes/ViewEngranajeUpdateMsj.h"
 #include "mensajes/ViewBalancinUpdateMsj.h"
-#include "mensajes/ViewSogaUpdateMje.h"
+#include "mensajes/ViewSogaUpdateMsj.h"
 #include <string>
 #include "yaml-cpp/yaml.h"
 #include <sys/socket.h>

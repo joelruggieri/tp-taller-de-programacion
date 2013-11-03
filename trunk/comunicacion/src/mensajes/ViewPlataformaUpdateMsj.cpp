@@ -27,6 +27,8 @@ void ViewPlataformaUpdateMsj::serialize(YAML::Node* nodo) {
 }
 
 NetworkMensaje* ViewPlataformaUpdateMsj::deserialize(YAML::const_iterator & it) {
+	int id = it->as<int>();
+	it++;
 	float xl = it->as<float>();
 	it++;
 	float yl = it->as<float>();
@@ -35,7 +37,7 @@ NetworkMensaje* ViewPlataformaUpdateMsj::deserialize(YAML::const_iterator & it) 
 	it++;
 	float anchol = it->as<float>();
 	it++;
-	NetworkMensaje * salida = new ViewPlataformaUpdateMsj(xl,yl,angulol, anchol);
+	NetworkMensaje * salida = new ViewPlataformaUpdateMsj(xl,yl,angulol, anchol, id);
 	return salida;
 }
 
