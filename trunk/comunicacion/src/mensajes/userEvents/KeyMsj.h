@@ -16,6 +16,7 @@ private:
 	bool pressed;
 public:
 	KeyMsj(char character, bool pressed, bool shift, bool ctrl);
+	void procesar(UserEventVisitor *);
 	virtual ~KeyMsj();
 };
 

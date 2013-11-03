@@ -16,6 +16,7 @@ private:
 	bool down, left;
 public:
 	ClickMsj(float x, float y, bool down, bool left, bool shift, bool ctrl);
+	void procesar(UserEventVisitor *);
 	virtual ~ClickMsj();
 };
 

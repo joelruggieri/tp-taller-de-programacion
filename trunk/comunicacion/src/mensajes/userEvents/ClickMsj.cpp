@@ -18,3 +18,6 @@ ClickMsj::~ClickMsj() {
 	// TODO Auto-generated destructor stub
 }
 
+void ClickMsj::procesar(UserEventVisitor* v) {
+		v->visit(this);
+}

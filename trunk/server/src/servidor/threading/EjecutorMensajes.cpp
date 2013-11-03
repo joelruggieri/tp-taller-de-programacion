@@ -30,7 +30,8 @@ void EjecutorMensajes::visit(ClickMsj*) {
 void EjecutorMensajes::visit(KeyMsj*) {
 }
 
-void EjecutorMensajes::visit(UserEventMsj*) {
+void EjecutorMensajes::visit(UserEventMsj* m) {
+	m->procesar(this);
 }
 
 void EjecutorMensajes::visit(ViewMsj*) {
