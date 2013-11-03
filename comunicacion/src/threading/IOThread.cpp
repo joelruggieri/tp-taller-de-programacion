@@ -22,14 +22,15 @@ void * func_entrada(void * arg) {
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(250);
-		list<NetworkMensaje*> leer = serializador->leer(socket);
-		MensajePlano* msj = (MensajePlano *)leer.front();
-		cout << msj->getMensaje() << endl;
-		colaEntrada->push(leer);
-		//refrezco el status para que no muera el thread
-		status->lock();
-		status->refresh();
-		status->unlock();
+		list<NetworkMensaje*> lectura;
+		try {
+			serializador->leer(socket, lectura);
+			colaEntrada->push(lectura);
+			//refrezco el status para que no muera el thread
+			status->refresh();
+		} catch (SerializacionException & e) {
+			status->kill();
+		}
 	}
 
 	pthread_exit(NULL);
@@ -42,19 +43,28 @@ void * func_salida(void * arg) {
 	int socketDesc = params->getSocketDesc();
 	Serializador*  serializador = new Serializador();
 	zona->setDatosLiberables((void *) serializador);
+	Status * status = params->getStatus();
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
-	while (true) {
-		usleep(1000);
+	status->lock();
+	bool continuar = status->isAlive();
+	status->unlock();
+	while (continuar) {
+		usleep(100000);
 		NetworkMensaje* pop = colaSalida->front();
 		try {
+			pop = new MensajePlano ("pruieba");
 			if (pop != NULL) {
 				serializador->escribir(pop,socketDesc);
 				delete pop;
 			}
+
 		} catch (SerializacionException & e) {
 			cout << e.what() << endl;
+			status->kill();
 		}
-
+		status->lock();
+		continuar = status->isAlive();
+		status->unlock();
 	}
 	close(socketDesc);
 	pthread_exit(NULL);
@@ -109,6 +119,7 @@ Status* IOThreadParams::getStatus() {
 
 void IOThread::cancel() {
 	if (thEntrada) {
+		//cancelo solo el de entrada, ya que es el que puede estar muerto esperando, el de salida puede dar error y matar el mismo al cliente
 		thEntrada->cancel();
 		thSalida->cancel();
 		deleteAll();

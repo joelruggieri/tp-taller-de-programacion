@@ -71,10 +71,6 @@ void MainServerThread::run() {
 			break;
 		}
 		log.info("Nuevo cliente conectado");
-		//responder partida creada
-//		MensajePlano msj("PARTIDA_CREADA");
-//		serializador.escribir(&msj, fd2);
-		//cerrar conexion del cliente
 		log.info("Nueva partida creada");
 		Partida partida(this->n, fd1);
 		partida.run(fd2);

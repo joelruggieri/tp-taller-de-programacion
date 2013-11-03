@@ -30,8 +30,7 @@ Serializador::~Serializador() {
 	}
 }
 
-list<NetworkMensaje*> Serializador::leer(int sock) {
-	list<NetworkMensaje*> retorno;
+void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 
 //	string buffer;
 	char buffer[1024] = "";
@@ -78,7 +77,7 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 			std::map<string, NetworkMensaje*>::iterator msjCreator = this->mensajes.find(clave);
 			if (msjCreator != mensajes.end()) {
 				try {
-					retorno.push_back(msjCreator->second->deserialize(it));
+					lista.push_back(msjCreator->second->deserialize(it));
 				} catch (YAML::Exception &exc) {
 					//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
 					it++;
@@ -89,7 +88,6 @@ list<NetworkMensaje*> Serializador::leer(int sock) {
 			}
 		}
 	}
-	return retorno;
 }
 
 void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {

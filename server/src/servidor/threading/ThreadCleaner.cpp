@@ -8,6 +8,10 @@
 #include "ThreadCleaner.h"
 #include "Disponibilidad.h"
 #include <unistd.h>
+#include <iostream>
+#include <src/Logger.h>
+using namespace std;
+
 ThreadCleaner::ThreadCleaner(Disponibilidad * dispo) {
 	this->disponibilidad = dispo;
 	th = 0;
@@ -30,9 +34,12 @@ void * cleanDeaths(void * arg) {
 	int segs = params->getSegundos();
 	while(true){
 		sleep(segs);
+//		Logger log;
+//		log.info("Ejecuta cleaner");
 		dispo->lock();
 		dispo->cleanDeaths();
 		dispo->unlock();
+		cout << "Ejecuto cleaner" << endl;
 	}
 	pthread_exit(NULL);
 }
