@@ -18,6 +18,10 @@ public:
 	ClickMsj(float x, float y, bool down, bool left, bool shift, bool ctrl);
 	void procesar(UserEventVisitor *);
 	virtual ~ClickMsj();
+	bool isDown() const;
+	bool isLeft() const;
+	float getX() const;
+	float getY() const;
 };
 
 #endif /* CLICKDOWNMSJ_H_ */

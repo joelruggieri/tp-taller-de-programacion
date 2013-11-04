@@ -17,6 +17,8 @@ public:
 	MouseMotionMsj(float x, float y, bool shift, bool ctrl);
 	void procesar(UserEventVisitor *);
 	virtual ~MouseMotionMsj();
+	float getX();
+	float getY();
 };
 
 #endif /* MOUSEMOTION_H_ */

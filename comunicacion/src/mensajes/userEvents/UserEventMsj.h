@@ -16,6 +16,8 @@ public:
 	UserEventMsj(bool shift, bool ctrl);
 	virtual void procesar(UserEventVisitor *) = 0;
 	virtual ~UserEventMsj();
+	bool isCtrl() const;
+	bool isShift() const;
 };
 
 #endif /* USEREVENTMSJ_H_ */

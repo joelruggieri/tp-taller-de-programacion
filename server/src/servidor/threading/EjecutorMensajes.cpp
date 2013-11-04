@@ -35,7 +35,7 @@ void EjecutorMensajes::visit(KeyMsj*) {
 
 void EjecutorMensajes::visit(UserEventMsj* m) {
 	log.debug("Se recibe en receptor un userevent");
-	m->procesar(this);
+	controller->procesarEventos(m);
 }
 
 void EjecutorMensajes::consumir(NetworkMensaje* m) {

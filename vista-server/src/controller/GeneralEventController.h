@@ -13,9 +13,9 @@
 #include <SDL2/SDL.h>
 #include "keyboardEventController/KeyBoardEventController.h"
 #include "mouseEventController/MouseEventController.h"
-#include "FlujoDeJuegoController.h"
 #include "DrawController.h"
-class MouseControllerPrioridades;
+#include "src/mensajes/userEvents/UserEventVisitor.h"
+#include "src/mensajes/userEvents/UserEventMsj.h"
 struct SDL_KeyboardEvent;
 
 using namespace std;
@@ -24,31 +24,17 @@ using namespace std;
 
 //ENTREGA3 REFACTOR HAY QUE HACER QUE TENGA LOS 4 JUEGOS EVENT CONTROLLERS Y YA OLVIDARSE DE LA GENERALIDAD YA QUE SACAMOS TODA BARRA DE CAMBIAR FONDO Y DEMAS
 //SE PUEDE PROGRAMAR OTRO GENERALEVENTCONTROLLER Y NO TOCAR ESTE.
-class GeneralEventController {
+class GeneralEventController: public UserEventVisitor {
 private:
-	list<MouseControllerPrioridades *> mouseControllers;
-	list<KeyBoardEventController *> keyControllers;
-	FlujoDeJuegoController * flujoController;
 	DrawController * drawController;
-	float tamAnteriorX, tamAnteriorY;
-	void clickUp(float x, float y);
-	void clickDown(float x, float y);
-	void mouseMotion(float x, float y);
-	void mouseWheelMoved(float amountScrolledY);
-	void rightClickUp(float x, float y);
-	void rightClickDown(float x, float y);
-	void keyDown(char key);
-	bool verificarCaracteresEspeciales(SDL_KeyboardEvent key);
-	void keyUp ();
-	void resize (float nuevoX, float nuevoY);
 public:
 	GeneralEventController();
 	virtual ~GeneralEventController();
-	void addMouseController(MouseEventController *, int prioridadClick, int prioridadMotion);
-	void addKeyboardController(KeyBoardEventController* );
-	bool procesarEventos(SDL_Window *);
-	void setFlujoController(FlujoDeJuegoController*);
-	void setDrawController(DrawController *);
+	void procesarEventos(UserEventMsj *);
+	void visit(MouseMotionMsj *);
+	void visit(ClickMsj *);
+	void visit(KeyMsj *);
+	void visit(JugadorListo *);
 };
 
 #endif /* GENERALEVENTCONTROLLER_H_ */

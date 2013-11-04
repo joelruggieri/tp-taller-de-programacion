@@ -16,3 +16,10 @@ UserEventMsj::~UserEventMsj() {
 	// TODO Auto-generated destructor stub
 }
 
+bool UserEventMsj::isCtrl() const {
+	return ctrl;
+}
+
+bool UserEventMsj::isShift() const {
+	return shift;
+}

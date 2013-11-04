@@ -12,7 +12,7 @@
 #include "src/controller/GeneralEventController.h"
 #include "src/mensajes/NetworkMensaje.h"
 #include "src/Logger.h"
-class EjecutorMensajes: public UserEventVisitor, public MensajeVisitor {
+class EjecutorMensajes: public MensajeVisitor {
 private:
 	Logger log;
 	GeneralEventController *  controller;

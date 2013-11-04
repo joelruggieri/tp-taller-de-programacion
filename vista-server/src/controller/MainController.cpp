@@ -51,36 +51,36 @@ void MainController::dibujar() {
 	SDL_RenderPresent(render);
 }
 int MainController::run() {
-	SDL_Window *ventana = NULL;
-//	int draggin = false;
-	bool terminar = false;
-	SDL_Init(SDL_INIT_VIDEO);
-	ventana = SDL_CreateWindow("Generador Niveles", 300, 100, 600, 600,
-			SDL_WINDOW_RESIZABLE);
-	render = SDL_CreateRenderer(ventana, -1,
-			SDL_RENDERER_ACCELERATED);
-
-
-	GeneralEventController eventController;
-	ModeloController modeloController;
-	InicializadorJuego inicializador(&eventController, &modeloController);
-
-	juegoController = inicializador.crearZonaJuego();
-	eventController.setFlujoController(juegoController);
-	eventController.setDrawController(this);
-	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
-	SDL_SetWindowMaximumSize(ventana, 825, 825);
-//	SDL_SetWindowMaximumSize(ventana, 650, 650);
-	SDL_SetWindowPosition(ventana, 300,100);
-
-	while (!terminar) {
-		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
-		juegoController->paso();
-		terminar = eventController.procesarEventos(ventana);
-	}
-	SDL_RemoveTimer(timerID);
-	SDL_DestroyRenderer(render);
-	SDL_DestroyWindow(ventana);
+//	SDL_Window *ventana = NULL;
+////	int draggin = false;
+//	bool terminar = false;
+//	SDL_Init(SDL_INIT_VIDEO);
+//	ventana = SDL_CreateWindow("Generador Niveles", 300, 100, 600, 600,
+//			SDL_WINDOW_RESIZABLE);
+//	render = SDL_CreateRenderer(ventana, -1,
+//			SDL_RENDERER_ACCELERATED);
+//
+//
+//	GeneralEventController eventController;
+//	ModeloController modeloController;
+//	InicializadorJuego inicializador(&eventController, &modeloController);
+//
+//	juegoController = inicializador.crearZonaJuego();
+//	eventController.setFlujoController(juegoController);
+//	eventController.setDrawController(this);
+//	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
+//	SDL_SetWindowMaximumSize(ventana, 825, 825);
+////	SDL_SetWindowMaximumSize(ventana, 650, 650);
+//	SDL_SetWindowPosition(ventana, 300,100);
+//
+//	while (!terminar) {
+//		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
+//		juegoController->paso();
+//		terminar = eventController.procesarEventos(ventana);
+//	}
+//	SDL_RemoveTimer(timerID);
+//	SDL_DestroyRenderer(render);
+//	SDL_DestroyWindow(ventana);
 
 	return 0;
 }
