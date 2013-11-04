@@ -8,7 +8,7 @@
 #ifndef JUGADORLISTO_H_
 #define JUGADORLISTO_H_
 
-#include "../UserEventMsj.h"
+#include "UserEventMsj.h"
 
 class JugadorListo: public UserEventMsj {
 private:

@@ -9,12 +9,10 @@
 #define ZONAPLAY_H_
 
 #include "ZonaDragAndDrop.h"
-#include "../../vista/BotonSwitch.h"
 class ZonaPlay: public Zona {
 private:
 	bool agregarTemplate(FiguraView * dragueable);
 	FiguraView * getFiguraTemplate(float x, float y);
-	BotonSwitch * boton;
 public:
 	ZonaPlay(float x, float y);
 	virtual ~ZonaPlay();

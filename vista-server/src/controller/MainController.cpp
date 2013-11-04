@@ -20,7 +20,6 @@
 #include "inicializador/InicializadorJuego.h"
 #include "JuegoEventsController.h"
 #include "src/Logger.h"
-#include "UserEventCreator.h"
 #include "../ConstantesVista.h"
 #include "src/mensajes/viewMensaje/ViewMsj.h"
 #include <list>
@@ -38,8 +37,8 @@ MainController::~MainController() {
 
 Uint32 my_callbackfunc(Uint32 interval, void *param)
 {
-	SDL_Event event = crearEvento(USREVENT_DRAW, NULL, NULL);
-	SDL_PushEvent(&event);
+//	SDL_Event event = crearEvento(USREVENT_DRAW, NULL, NULL);
+//	SDL_PushEvent(&event);
 	return(interval);
 }
 
