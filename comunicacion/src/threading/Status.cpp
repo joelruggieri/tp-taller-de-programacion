@@ -50,9 +50,10 @@ void Status::kill() {
 void Status::clean() {
 	lock();
 	if(this->getThread() && !isAlive()){
-		log.debug("Thread liberado por dejar de estar vivo");
+		log.debug("Status : Liberando thread");
 		getThread()->cancel();
 		delete getThread();
+		log.debug("Status: Thread Liberado");
 		setThread(NULL);
 	}
 	unlock();

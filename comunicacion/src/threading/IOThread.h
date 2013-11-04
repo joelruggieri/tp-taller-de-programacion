@@ -11,12 +11,13 @@
 #include "ThreadPTM.h"
 #include "../SerializacionException.h"
 #include "Status.h"
-//class Status;
+#include "src/Logger.h"
 class IOThreadParams{
 private:
 	ColaEventos * cola;
 	int  socketDesc;
 	Status * status;
+
 public:
 	IOThreadParams(ColaEventos * cola,Status * status, int socketDesc);
 	virtual ~IOThreadParams();
@@ -33,6 +34,7 @@ public:
 	void run();
 	void cancel();
 private:
+	Logger log;
 	Status * status;
 	void deleteAll();
 	ThreadPTM* thEntrada;

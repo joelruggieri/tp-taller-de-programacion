@@ -47,5 +47,5 @@ void EjecutorMensajes::visit(ViewMsj*) {
 }
 
 void EjecutorMensajes::visit(MensajePlano*m ) {
-	log.debug("Se recibe mensaje plano" + m->getMensaje());
+//	log.debug("Se recibe mensaje plano" + m->getMensaje());
 }

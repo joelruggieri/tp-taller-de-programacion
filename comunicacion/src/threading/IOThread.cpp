@@ -21,7 +21,7 @@ void * func_entrada(void * arg) {
 	zona->setDatosLiberables((void*) serializador);
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
-		usleep(250);
+		usleep(10000);
 		list<NetworkMensaje*> lectura;
 		try {
 			serializador->leer(socket, lectura);
@@ -50,7 +50,7 @@ void * func_salida(void * arg) {
 	status->unlock();
 	NetworkMensaje* pop;
 	while (continuar) {
-		usleep(1000);
+		usleep(10000);
 		pop = colaSalida->front();
 		try {
 			if (pop != NULL) {
@@ -66,7 +66,6 @@ void * func_salida(void * arg) {
 		continuar = status->isAlive();
 		status->unlock();
 	}
-	close(socketDesc);
 	pthread_exit(NULL);
 }
 
@@ -120,8 +119,13 @@ Status* IOThreadParams::getStatus() {
 void IOThread::cancel() {
 	if (thEntrada) {
 		//cancelo solo el de entrada, ya que es el que puede estar muerto esperando, el de salida puede dar error y matar el mismo al cliente
+		log.debug("Cancelando Thread");
 		thEntrada->cancel();
+		log.debug("Cancelada Entrada");
 		thSalida->cancel();
+		log.debug("Cancelada Salida");
+		log.debug("Thread Cancelado");
+		close(param1->getSocketDesc());
 		deleteAll();
 	}
 
