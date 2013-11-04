@@ -9,7 +9,6 @@
 #define NIVELDAO_H_
 
 #include "src/Nivel.h"
-#include "AdministradorDeArchivos.h"
 #include "src/Logger.h"
 
 //ENTREGA3 HAY QUE PERSISTIR/LEVANTAR LAS COSAS NUEVAS DEL NIVEL
@@ -22,7 +21,6 @@ public:
 	void guardarNivel(Nivel *nivel);
 	Nivel* cargarPrimerNivel();
 private:
-	AdministradorDeArchivos administrador;
 	std::list<Figura*> leerFiguras(YAML::Node objetos);
 	void obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos);

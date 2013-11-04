@@ -21,6 +21,10 @@
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
+#include "NoSePuedeGuardarNivelException.h"
+#include <fstream>
+#include <iostream>
+#include <cstdio>
 using namespace std;
 
 //#include "src/controller/RotadorSistemaCoordenadas.h"
@@ -42,26 +46,25 @@ Nivel* NivelDAO::leerNivel(const std::string &nombre) {
 
 Nivel* NivelDAO::leerNivel(const char *nombre) {
 
-	Archivo *a = administrador.obtenerArchivoNivel(nombre);
+	std::string nombreArchivo(nombre);
 	YAML::Node nodoRaiz;
 	YAML::Node nodo;
-	if (!a) {
-
-		logg.error("No se pudo cargar el nivel. El archivo no existe.");
+	try{
+		nodoRaiz = YAML::LoadFile(nombreArchivo);
+	}catch(YAML::BadFile& exception){
 		throw NivelInexistenteException();
 	}
 	try{
-	nodoRaiz = a->obtenerNodoRaiz();
-	nodo = a->obtenerNodo(OBJETOS);
+	nodo = nodoRaiz[OBJETOS];
 	if(nodo.Mark().line == -1 ){
 		std::string mensaje = "No se encontrò la etiqueta Objetos, en consecuencia no se cargan figuras";
 		logg.warning(mensaje);
 	}
-	}catch(YAML::BadFile& exc){
+	}/*catch(YAML::BadFile& exc){
 		std::string mensaje = "No se pudo crear/abrir el archivo: ";
 		mensaje.append(a->getNombre());
 		logg.fatal(mensaje);
-	}
+	}*/
 	catch(YAML::ParserException& exc){
 		std::string mensaje = "Error de parseo de datos del archivo yaml en la linea ";
 		std::string s;
@@ -98,11 +101,17 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 }
 
 void NivelDAO::guardarNivel(Nivel *nivel) {
-	Archivo *a = administrador.obtenerArchivoNivel(nivel->getNombre());
-	if (!a) {
-		// Se esta guardando un nivel nuevo, sin archivo previo
-		// O el archivo no se registro antes.
-		a = AdministradorDeArchivos::crearArchivoNivel(nivel->getNombre().c_str());
+	std::string nombreArchivo = nivel->getNombre();
+	nombreArchivo += ".yaml";
+	Archivo* archivoDelNivel;
+	try{
+		archivoDelNivel = new Archivo(nombreArchivo.c_str(),LECTOESCRITURA);
+	}catch (std::exception& exc){ //no existe el archivo del ese nivel
+		try{
+			archivoDelNivel = new Archivo(nombreArchivo.c_str(),ESCRITURA);
+		}catch(std::exception& exc){ //no pudo crear el archivo para el nivel
+				throw NoSePuedeGuardarNivelException();
+		}
 	}
 	YAML::Node nodoRaiz;
 	nodoRaiz["Nivel"] = *nivel;
@@ -116,8 +125,8 @@ void NivelDAO::guardarNivel(Nivel *nivel) {
 		vacio = false;
 	}
 	if(!vacio) nodoRaiz[OBJETOS] = nodoFiguras;
-	a->sobreescribir(nodoRaiz);
-	a->cerrar();
+	archivoDelNivel->sobreescribir(nodoRaiz);
+	delete archivoDelNivel;
 }
 
 void NivelDAO::imprimirLinea(std::string & msj, YAML::Mark marca) {

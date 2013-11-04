@@ -47,7 +47,8 @@ std::string Archivo::leer(){
 }
 
 Archivo::~Archivo() {
-//	if (archivo.is_open() ) archivo.close();
+	if (archivo.is_open())
+		archivo.close();
 }
 
 std::string Archivo::getNombre(){
@@ -65,7 +66,7 @@ void Archivo::sobreescribir(YAML::Node &nodo) {
 //	out << nodo;
 //	archivo << out.c_str();
 	if (tipo == LECTOESCRITURA || tipo == ESCRITURA) {
-		archivo.close();
+		this->cerrar();
 		archivo.open(this->nombre.c_str(), std::ios::out | std::ios::trunc);
 		archivo << nodo;
 	}
@@ -74,7 +75,8 @@ void Archivo::sobreescribir(YAML::Node &nodo) {
 
 
 void Archivo::cerrar() {
-	archivo.close();
+	if (archivo.is_open())
+		archivo.close();
 }
 
 bool Archivo::alFinal() {
