@@ -7,13 +7,8 @@
 
 #include "UnionEstaticaView.h"
 #include "UnionView.h"
-#include "../../controller/editor/EditorUnion.h"
-UnionEstaticaView::UnionEstaticaView(int x, int y, int w, int h, SDL_Texture * textura, EditorUnion * editor):ObjetoView(x,y,w,h, textura, editor) {
+UnionEstaticaView::UnionEstaticaView(int x, int y, int w, int h, SDL_Texture * textura):ObjetoView(x,y,w,h, textura) {
 	// TODO Auto-generated constructor stub
-
-}
-
-void UnionEstaticaView::toDinamica(int r, int g, int b) {
 
 }
 

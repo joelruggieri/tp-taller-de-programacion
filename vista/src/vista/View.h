@@ -10,7 +10,7 @@
 #include "Dibujable.h"
 #include "Resizeable.h"
 #include "../controller/Resizer.h"
-
+#include "src/mensajes/viewMensaje/ViewMsj.h"
 class View : public Dibujable, public Resizeable{
 private:
 	int w,h;
@@ -45,6 +45,9 @@ public:
 	virtual void setYc(int yc) {
 		this->yc = yc;
 	}
+	virtual void update(ViewMsj *) = 0;
+
+
 };
 
 #endif /* VIEW_H_ */

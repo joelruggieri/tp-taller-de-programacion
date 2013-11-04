@@ -8,17 +8,15 @@
 #ifndef VIEWSOGAFACTORY_H_
 #define VIEWSOGAFACTORY_H_
 #include "ViewFiguraFactory.h"
-#include "../editor/EditorUnion.h"
 
 namespace std {
 
 class ViewSogaFactory: public ViewFiguraFactory {
 
 public:
-	ViewSogaFactory(EditorUnion* editor);
+	ViewSogaFactory();
 	virtual ~ViewSogaFactory();
 	FiguraView * crear(int, int, int, int);
-	View * crearVistaPropia(int,int,int,int);
 };
 
 } /* namespace std */

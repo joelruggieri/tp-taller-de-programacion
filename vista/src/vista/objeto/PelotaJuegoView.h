@@ -13,10 +13,9 @@ struct SDL_Texture;
 
 class PelotaJuegoView : public ObjetoView {
 public:
-	PelotaJuegoView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
+	PelotaJuegoView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~PelotaJuegoView();
-	void dropTemplate();
-	EditorNivel * getEditor();
+	void update(ViewMsj *);
 };
 
 #endif /* PELOTAJUEGOVIEW_H_ */

@@ -12,7 +12,7 @@
 
 class ObjetoView: public FiguraView {
 public:
-	ObjetoView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller);
+	ObjetoView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~ObjetoView();
 };
 

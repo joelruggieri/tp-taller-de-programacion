@@ -7,7 +7,7 @@
 
 #include "ObjetoView.h"
 
-ObjetoView::ObjetoView(int x, int y, int w, int h, SDL_Texture * textura,DropController * controller): FiguraView(x, y, w, h,textura, controller) {
+ObjetoView::ObjetoView(int x, int y, int w, int h, SDL_Texture * textura): FiguraView(x, y, w, h,textura) {
 	// TODO Auto-generated constructor stub
 
 }

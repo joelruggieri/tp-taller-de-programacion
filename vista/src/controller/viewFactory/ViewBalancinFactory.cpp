@@ -7,26 +7,24 @@
 
 #include "ViewBalancinFactory.h"
 #include "../../vista/CargadorDeTextures.h"
-#include "src/Constantes.h"
+
 #include "../../ConstantesVista.h"
-ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory(PATH_VISTA_BALANCIN_F,editor) {
+#include "../../vista/objeto/BalancinView.h"
+ViewBalancinFactory::ViewBalancinFactory(): ViewFiguraFactory(PATH_VISTA_BALANCIN_F) {
 
 }
 
-FiguraView* ViewBalancinFactory::crear(int x, int y, int w, int h) {
-	Resizer* r = Resizer::Instance();
-	int ancho, alto;
-	CargadorDeTextures* i = CargadorDeTextures::Instance();
-	r->adaptarDimensionLogica(ANCHO_BALANCIN,ALTO_VISTA_BALANCIN_LOG,ancho,alto);
-	return new BalancinView(x, y, ancho, alto, i->cargarTexture(PATH_VISTA_BALANCIN),(SimpleEditorAnguloFijo *) this->controller);
+FiguraView* ViewBalancinFactory::crear(int x, int Y) {
+//	Resizer* r = Resizer::Instance();
+//	int ancho, alto;
+//	CargadorDeTextures* i = CargadorDeTextures::Instance();
+//	r->adaptarDimensionLogica(ANCHO_BALANCIN,ALTO_VISTA_BALANCIN_LOG,ancho,alto);
+//	return new BalancinView(x, y, ancho, alto, i->cargarTexture(PATH_VISTA_BALANCIN));
+	return NULL;
 }
 
 ViewBalancinFactory::~ViewBalancinFactory() {
 	// TODO Auto-generated constructor stub
-
 }
 
-View * ViewBalancinFactory::crearVistaPropia(int x,int y,int ancho,int alto){
-	return new FactoryView(x,y,ancho,alto,this->textura );
-}
 

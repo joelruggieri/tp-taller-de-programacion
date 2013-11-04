@@ -19,6 +19,7 @@ public:
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void resizear();
+	void update(ViewMsj *);
 };
 
 #endif /* FACTORYVIEW_H_ */

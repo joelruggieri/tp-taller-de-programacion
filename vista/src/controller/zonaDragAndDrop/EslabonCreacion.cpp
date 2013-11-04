@@ -40,9 +40,7 @@ FiguraView * EslabonCreacion::atender(float posX, float posY, float corrimientoS
 		Resizer * res = Resizer::Instance();
 		FiguraView * view = this->factory->crear(
 				res->resizearDistanciaLogicaX(posX),
-				res->resizearPosicionLogicaY(posY - corrimientoScroll),
-				res->resizearDistanciaLogicaX(this->cuerpo->getAncho()),
-				res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
+				res->resizearPosicionLogicaY(posY - corrimientoScroll));
 		return view;
 //		} else {
 //			return NULL;
@@ -52,13 +50,4 @@ FiguraView * EslabonCreacion::atender(float posX, float posY, float corrimientoS
 		return this->siguiente->atender(posX, posY, corrimientoScroll);
 	}
 	return NULL;
-}
-
-View * EslabonCreacion::getFactoryView() {
-	Resizer * res = Resizer::Instance();
-	return this->factory->crearVistaPropia(
-			res->resizearDistanciaLogicaX(cuerpo->getX()),
-			res->resizearPosicionLogicaY(cuerpo->getY()),
-			res->resizearDistanciaLogicaX(this->cuerpo->getAncho()),
-			res->resizearDistanciaLogicaY(this->cuerpo->getAlto()));
 }

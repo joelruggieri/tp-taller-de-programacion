@@ -20,7 +20,6 @@
 #define MIN_VENTANA_X 480
 #define MAX_VENTANA 1500
 #include "../controller/UserEventCreator.h"
-#include "CanvasController.h"
 #include "keyboardEventController/KeyBoardEventController.h"
 #include "mouseEventController/MouseControllerPrioridades.h"
 #include "mouseEventController/MouseEventController.h"
@@ -33,9 +32,6 @@ struct SDL_Window;
 #define ASCII_SHIFT 15
 #define ASCII_MAYUS 16
 GeneralEventController::GeneralEventController() {
-	this->canvasController = 0;
-	this->guardarController = NULL;
-	this->flujoController = NULL;
 	this->drawController = NULL;
 	tamAnteriorX = 600;
 	tamAnteriorY = 600;
@@ -143,11 +139,6 @@ void GeneralEventController::keyDown(char key) {
 	}
 }
 
-void GeneralEventController::setCanvasController(
-		CanvasController* canvasController) {
-	this->canvasController = canvasController;
-}
-
 bool GeneralEventController::verificarCaracteresEspeciales(
 		SDL_KeyboardEvent key) {
 	if (key.keysym.scancode == SDL_SCANCODE_LSHIFT
@@ -178,10 +169,6 @@ void GeneralEventController::resize(int nuevoX, int nuevoY) {
 	Resizer::Instance()->resizearResizeables();
 }
 
-void GeneralEventController::setGuardarController(
-		PersistenciaEventController* controller) {
-	this->guardarController = controller;
-}
 
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
@@ -233,32 +220,6 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 			break;
 		case SDL_USEREVENT:
 			switch (evento.user.code) {
-			case USREVENT_CHANGEBACKGROUND:
-				if (this->canvasController != NULL
-						&& (flujoController == NULL
-								|| !flujoController->corriendo())) {
-					this->canvasController->atenderEvento(evento);
-				}
-				break;
-			case USREVENT_SAVEGAME:
-				if (this->guardarController != NULL
-						&& (flujoController == NULL
-								|| !flujoController->corriendo())) {
-					this->guardarController->persistir();
-				}
-				break;
-			case USREVENT_STOP:
-				if (this->flujoController != NULL) {
-					log.info("Finaliza Juego");
-					flujoController->stop();
-				}
-				break;
-			case USREVENT_START:
-				if (this->flujoController != NULL) {
-					log.info("Inicia Juego");
-					flujoController->start();
-				}
-				break;
 			case USREVENT_DRAW:
 				if (this->drawController != NULL) {
 					drawController->dibujar();
@@ -301,10 +262,6 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 		}
 	}
 	return false;
-}
-
-void GeneralEventController::setFlujoController(FlujoDeJuegoController* c) {
-	this->flujoController = c;
 }
 
 void GeneralEventController::setDrawController(DrawController* c) {

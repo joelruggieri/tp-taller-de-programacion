@@ -10,14 +10,10 @@
 
 #include "ObjetoView.h"
 #include "UnionView.h"
-class EditorUnion;
 class UnionEstaticaView: public ObjetoView {
-protected:
-	void toDinamica(int r,int g, int b);
 public:
-	UnionEstaticaView(int x, int y, int w, int h, SDL_Texture * textura, EditorUnion * editor);
+	UnionEstaticaView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~UnionEstaticaView();
-	virtual UnionView * toDinamica() = 0;
 };
 
 #endif /* UNIONESTATICAVIEW_H_ */

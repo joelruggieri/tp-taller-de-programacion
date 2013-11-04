@@ -7,14 +7,11 @@
 
 #include "VistaEngranaje.h"
 #include "SDL2/SDL.h"
-#include "../../controller/editor/SimpleEditorAnguloFijo.h"
-#include "../../controller/editor/SimpleEditorCambiarRadio.h"
-#include "src/objeto/Engranaje.h"
 #include "../../ConstantesVista.h"
 #include <iostream>
 using namespace std;
 
-VistaEngranaje::VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorCambiarRadio * editor): ObjetoView(x, y, w, h,textura, editor) {
+VistaEngranaje::VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -22,26 +19,15 @@ VistaEngranaje::VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura
 VistaEngranaje::~VistaEngranaje() {
 	// TODO Auto-generated destructor stub
 }
-
-void VistaEngranaje::dropTemplate() {
-	((SimpleEditorAnguloFijo * )this->controller)->dropNuevaFigura(this);
-}
-
-EditorNivel* VistaEngranaje::getEditor() {
-	SimpleEditorAnguloFijo * editor = (SimpleEditorAnguloFijo *)controller;
-	editor->setFigura(this);
-	return editor;
-}
-
-void VistaEngranaje::update() {
-		super::update();
-		Engranaje* e = (Engranaje*) this->getModelo();
-		float y = 0 ;
-		tl.setVector(e->getRadio()*2,0);
-		float nuevoRadio;
-		tl.getResultadoInverso(nuevoRadio,y);
-		this->setW(nuevoRadio);
-		this->setH(nuevoRadio);
+void VistaEngranaje::update(ViewMsj *) {
+//		super::update();
+//		Engranaje* e = (Engranaje*) this->getModelo();
+//		float y = 0 ;
+//		tl.setVector(e->getRadio()*2,0);
+//		float nuevoRadio;
+//		tl.getResultadoInverso(nuevoRadio,y);
+//		this->setW(nuevoRadio);
+//		this->setH(nuevoRadio);
 
 //		float a,b;
 //		tl.getResultadoInverso(a,b);

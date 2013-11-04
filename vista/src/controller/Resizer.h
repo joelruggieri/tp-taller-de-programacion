@@ -9,7 +9,7 @@
 #define RESIZER_H_
 #include <list>
 #include "../vista/Resizeable.h"
-#include <src/Transformacion.h>
+#include "../modelo/Transformacion.h"
 using namespace std;
 
 class Resizer {

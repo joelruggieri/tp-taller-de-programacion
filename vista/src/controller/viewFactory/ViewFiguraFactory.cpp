@@ -7,11 +7,9 @@
 
 #include "ViewFiguraFactory.h"
 #include "../../vista/CargadorDeTextures.h"
-ViewFiguraFactory::ViewFiguraFactory(string path,DropController * controller) {
+ViewFiguraFactory::ViewFiguraFactory(string path) {
 	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
 	this->textura = texturas->cargarTexture(path);
-	this->controller = controller;
-
 }
 
 

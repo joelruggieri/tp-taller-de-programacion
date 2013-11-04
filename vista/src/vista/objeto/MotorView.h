@@ -10,18 +10,14 @@
 
 #include "ObjetoView.h"
 
-class SimpleEditorAnguloFijo;
-class SimpleEditorOrientacionCambiable;
 struct SDL_Texture;
 
 class MotorView: public ObjetoView {
 public:
 //	MotorView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
-	MotorView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorOrientacionCambiable * editor);
-
+	MotorView(int x, int y, int w, int h, SDL_Texture * textura);
+	void update(ViewMsj *);
 	virtual ~MotorView();
-	void dropTemplate();
-	EditorNivel * getEditor();
 	int getLayer();
 };
 

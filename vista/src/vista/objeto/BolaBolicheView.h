@@ -13,10 +13,9 @@ struct SDL_Texture;
 
 class BolaBolicheView : public ObjetoView {
 public:
-	BolaBolicheView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
+	BolaBolicheView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~BolaBolicheView();
-	void dropTemplate();
-	EditorNivel * getEditor();
+	void update(ViewMsj *);
 };
 
 #endif /* BOLABOLICHEVIEW_H_ */

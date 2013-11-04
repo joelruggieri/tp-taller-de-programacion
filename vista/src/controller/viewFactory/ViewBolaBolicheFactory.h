@@ -8,13 +8,11 @@
 #ifndef VIEWBOLABOLICHEFACTORY_H_
 #define VIEWBOLABOLICHEFACTORY_H_
 #include "ViewFiguraFactory.h"
-class SimpleEditorAnguloFijo;
 class ViewBolaBolicheFactory : public ViewFiguraFactory {
 public:
-	ViewBolaBolicheFactory(SimpleEditorAnguloFijo * editor);
+	ViewBolaBolicheFactory();
 	virtual ~ViewBolaBolicheFactory();
-	FiguraView * crear(int,int,int,int);
-	View * crearVistaPropia(int,int,int,int);
+	FiguraView * crear(int,int);
 };
 
 #endif /* VIEWBOLABOLICHEFACTORY_H_ */
