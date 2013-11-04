@@ -12,7 +12,7 @@
 #include "../figura/FiguraView.h"
 #include "ObjetoView.h"
 #include <src/objeto/CintaTransportadora.h>
-#include "../../ConstantesVista.h"
+#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 
 
 CintaTransportadoraView::CintaTransportadoraView(float x, float y, float ancho, SimpleEditorEstirar* editor) :
@@ -35,20 +35,12 @@ EditorNivel* CintaTransportadoraView::getEditor() {
 }
 
 void CintaTransportadoraView::dibujarse(list<ViewMsj*> & lista){
-	cout << "PLATAFORMA: ";
-	if(getModelo() != NULL){
-		CintaTransportadora * p = (CintaTransportadora *) this->getModelo();
-		cout << p->getX() << " ";
-		cout << p->getY() << " ";
-		cout << p->getAncho() << endl;
-	} else {
-		cout << getXCentro() << " ";
-		cout << getYCentro() << " ";
-		cout << ancho << endl;
-	}
+	CintaTransportadora* figura = (CintaTransportadora*) this->getModelo();
+	ViewObjetoConAnchoUpdateMsj* viewMensaje;
+	if(figura != NULL)
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId());
+	else //ENTREGA3 CUANDO NO EXISTE EL MODELO, NO SE DE DONDE AGARRAR EL ANGULO, SI QUIREN LO METO EN LA VISTA.
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId());
+	lista.push_back(viewMensaje);
 }
 
-
-int CintaTransportadoraView::getLayer() {
-	return LAYER_CINTA;
-}

@@ -14,6 +14,7 @@ class ObjetoView: public FiguraView {
 public:
 	ObjetoView(float x, float y, DropController * controller);
 	virtual ~ObjetoView();
+	virtual void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* OBJETOVIEW_H_ */

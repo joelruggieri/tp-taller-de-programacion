@@ -21,7 +21,6 @@ public:
 	void dropTemplate();
 	EditorNivel * getEditor();
 //	void  update();
-	int getLayer();
 	void dibujarse(list<ViewMsj*> & lista);
 };
 

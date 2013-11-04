@@ -8,6 +8,7 @@
 #include "CorreaView.h"
 #include "../../controller/editor/EditorUnion.h"
 #include "src/objeto/Correa.h"
+#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 #include <cmath>
 #define PI 3.14159265
 
@@ -31,18 +32,15 @@ void CorreaView::dropTemplate(){
 
 
 void CorreaView::dibujarse(list<ViewMsj*> & lista){
-	cout << "CorreaView: ";
-	if(getModelo() == NULL){
-		cout << getXCentro() << " ";
-		cout << getYCentro() << " " << endl;
-	} else {
-		Correa* c = (Correa*)this->getModelo();
-		cout << c->getXInicial() << " ";
-		cout << c->getYInicial() << " ";
-		cout << c->getXFinal() << " ";
-		cout << c->getYFinal() << endl;
+	Correa* figura = (Correa*) this->getModelo();
+	ViewObjetoUnionUpdateMsj* viewMensaje;
+	if(figura != NULL)
+		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYFinal(),figura->getXFinal(),figura->getYFinal(),this->getId());
+	else
+		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId());
+	lista.push_back(viewMensaje);
+}
 
-	}
 
 //	SDL_SetRenderDrawColor(renderer,10,10,10,0);
 //	SDL_RenderDrawLine(renderer,this->xDesde + v1iX,this->yDesde + v1iY,this->xHasta + v1fX,this->yHasta + v1fY);
@@ -56,8 +54,6 @@ void CorreaView::dibujarse(list<ViewMsj*> & lista){
 //	}
 //
 //	this->dibujarseEstatica(renderer);
-
-}
 
 //void CorreaView::update(){
 //	super::update();

@@ -10,7 +10,7 @@
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "../../controller/editor/SimpleEditorCambiarRadio.h"
 #include "src/objeto/Engranaje.h"
-#include "../../ConstantesVista.h"
+#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 #include <iostream>
 using namespace std;
 
@@ -50,15 +50,13 @@ EditorNivel* VistaEngranaje::getEditor() {
 //				this->setH(b);
 //}
 
-int VistaEngranaje::getLayer() {
-	return LAYER_ENGRANAJES;
-}
 
 void VistaEngranaje::dibujarse(list<ViewMsj*> & lista){
-	cout << "EngranajeView";
-	if(getModelo() == NULL){
-		cout << this->diametro << endl;
-	} else {
-		cout<<((Engranaje *) getModelo())->getRadio()*2<< endl;
-	}
+	Engranaje* figura = (Engranaje*) this->getModelo();
+	ViewObjetoConAnchoUpdateMsj* viewMensaje;
+	if(figura != NULL)
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId());
+	else //ENTREGA3 CUANDO NO EXISTE EL MODELO, NO SE DE DONDE AGARRAR EL ANGULO, SI QUIREN LO METO EN LA VISTA.
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->diametro,this->getId());
+	lista.push_back(viewMensaje);
 }

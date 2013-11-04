@@ -8,6 +8,7 @@
 #include "SogaView.h"
 #include "../../controller/editor/EditorUnion.h"
 #include <src/objeto/Soga.h>
+#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 SogaView::SogaView(float x, float y, EditorUnion * editor) :
 		UnionView(x, y, editor) {
 }
@@ -26,6 +27,12 @@ SogaView::~SogaView() {
 	// TODO Auto-generated destructor stub
 }
 
-void SogaView::dibujarse(list<ViewMsj *> &) {
-
+void SogaView::dibujarse(list<ViewMsj *> & lista) {
+	Soga* figura = (Soga*) this->getModelo();
+	ViewObjetoUnionUpdateMsj* viewMensaje;
+	if(figura != NULL)
+		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYFinal(),figura->getXFinal(),figura->getYFinal(),this->getId());
+	else
+		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId());
+	lista.push_back(viewMensaje);
 }
