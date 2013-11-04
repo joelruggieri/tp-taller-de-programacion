@@ -9,7 +9,6 @@
 #define EVENTOSMODELOCONTROLLER_H_
 #include "figura/Figura.h"
 #include "figura/Mapa.h"
-#include "Transformacion.h"
 #include "objeto/Union.h"
 #include <list>
 #include "Box2D/Box2D.h"
@@ -18,7 +17,6 @@ using namespace std;
 class ModeloController {
 private:
 	Mapa * mapa;
-	Transformacion *tl;
 	list<Figura*> figuras;
 public:
 	ModeloController();
