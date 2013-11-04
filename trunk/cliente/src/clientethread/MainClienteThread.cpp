@@ -42,10 +42,10 @@ void MainClienteThread::run() {
 			thread = new IOThread(colaEntrada, colaSalida, status, sockfd);
 			thread->run();
 			while (true) {
-				sleep(1);
+				usleep(100000);
 				MensajePlano * msj = new MensajePlano("prueba");
 				colaSalida->push(msj);
-				log.debug("Se evia mensaje de prueba");
+//				log.debug("Se evia mensaje de prueba");
 			}
 
 		}
