@@ -6,8 +6,8 @@
  */
 
 #include "JugadorListo.h"
-
-JugadorListo::JugadorListo(bool listo) {
+//NO ME MATEN, ME DIO PAJA POSTA HACER OTRA HERENCIA DISTINTA.
+JugadorListo::JugadorListo(bool listo):UserEventMsj(false, false) {
 	this->listo = listo;
 }
 
