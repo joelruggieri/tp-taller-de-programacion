@@ -22,7 +22,6 @@ public:
 private:
 	float ancho;
 	typedef ObjetoView super;
-	int getLayer();
 };
 
 #endif /* VISTACINTATRANSPORTADORA_H_ */

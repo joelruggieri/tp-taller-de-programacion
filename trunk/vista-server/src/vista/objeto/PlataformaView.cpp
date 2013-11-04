@@ -8,6 +8,7 @@
 #include "PlataformaView.h"
 #include "../../controller/editor/SimpleEditorEstirar.h"
 #include "src/objeto/Plataforma.h"
+#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 PlataformaView::PlataformaView(float x, float y, float ancho, SimpleEditorEstirar* editor) :
 		ObjetoView(x, y, editor) {
 	this->ancho = ancho;
@@ -37,16 +38,13 @@ EditorNivel* PlataformaView::getEditor() {
 //	this->setW(nuevoAncho);
 //}
 
+
 void PlataformaView::dibujarse(list<ViewMsj*> & lista){
-	cout << "PLATAFORMA: ";
-	if (getModelo() == NULL) {
-		cout << getXCentro() << " ";
-		cout << getYCentro() << " ";
-		cout << this->ancho << endl;
-	} else {
-		cout << getModelo()->getX() << " ";
-		cout << getModelo()->getY() << " ";
-		Plataforma * p = (Plataforma *) this->getModelo();
-		cout << p->getAncho() << endl;
-	}
+	Plataforma* figura = (Plataforma*) this->getModelo();
+	ViewObjetoConAnchoUpdateMsj* viewMensaje;
+	if(figura != NULL)
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId());
+	else //ENTREGA3 CUANDO NO EXISTE EL MODELO, NO SE DE DONDE AGARRAR EL ANGULO, SI QUIREN LO METO EN LA VISTA.
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId());
+	lista.push_back(viewMensaje);
 }
