@@ -9,7 +9,7 @@
 #define USEREVENTMSJ_H_
 #include "../NetworkMensaje.h"
 #include "UserEventVisitor.h"
-class UserEventMsj {
+class UserEventMsj: public NetworkMensaje {
 private:
 	bool shift,ctrl;
 public:
