@@ -12,12 +12,14 @@
 
 class KeyMsj: public UserEventMsj {
 private:
-	char chara;
+	char tecla;
 	bool pressed;
 public:
 	KeyMsj(char character, bool pressed, bool shift, bool ctrl);
 	void procesar(UserEventVisitor *);
 	virtual ~KeyMsj();
+	bool isPresionada() const;
+	char getTecla() const;
 };
 
 #endif /* KEYMSJ_H_ */

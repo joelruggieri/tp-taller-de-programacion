@@ -19,3 +19,11 @@ MouseMotionMsj::~MouseMotionMsj() {
 void MouseMotionMsj::procesar(UserEventVisitor* v) {
 		v->visit(this);
 }
+
+float MouseMotionMsj::getX() {
+	return x;
+}
+
+float MouseMotionMsj::getY() {
+	return y;
+}

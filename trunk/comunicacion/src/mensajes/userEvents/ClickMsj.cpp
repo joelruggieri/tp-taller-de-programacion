@@ -21,3 +21,19 @@ ClickMsj::~ClickMsj() {
 void ClickMsj::procesar(UserEventVisitor* v) {
 		v->visit(this);
 }
+
+bool ClickMsj::isDown() const {
+	return down;
+}
+
+bool ClickMsj::isLeft() const {
+	return left;
+}
+
+float ClickMsj::getX() const {
+	return x;
+}
+
+float ClickMsj::getY() const {
+	return y;
+}

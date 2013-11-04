@@ -8,7 +8,7 @@
 #include "KeyMsj.h"
 
 KeyMsj::KeyMsj(char character, bool pressed, bool shift, bool ctrl):UserEventMsj(shift,ctrl) {
-	this->chara = character;
+	this->tecla = character;
 	this->pressed = pressed;
 }
 
@@ -18,4 +18,12 @@ KeyMsj::~KeyMsj() {
 
 void KeyMsj::procesar(UserEventVisitor* v) {
 		v->visit(this);
+}
+
+bool KeyMsj::isPresionada() const {
+	return pressed;
+}
+
+char KeyMsj::getTecla() const {
+	return tecla;
 }

@@ -7,250 +7,47 @@
 
 #include "GeneralEventController.h"
 
-#include <SDL2/SDL_events.h>
-#include <SDL2/SDL_keyboard.h>
-#include <SDL2/SDL_mouse.h>
-#include <SDL2/SDL_scancode.h>
-#include <SDL2/SDL_video.h>
-
 #include <iostream>
 #include <list>
 #include <string>
-#define  MIN_VENTANA_Y 480
-#define MIN_VENTANA_X 480
-#define MAX_VENTANA 1500
-#include "../controller/UserEventCreator.h"
-#include "keyboardEventController/KeyBoardEventController.h"
-#include "mouseEventController/MouseControllerPrioridades.h"
-#include "mouseEventController/MouseEventController.h"
-#include "mouseEventController/MouseEventPriorComparator.h"
+#include "src/mensajes/userEvents/ClickMsj.h"
+#include "src/mensajes/userEvents/MouseMotionMsj.h"
+#include "src/mensajes/userEvents/KeyMsj.h"
+#include "src/mensajes/userEvents/JugadorListo.h"
+#include "userEvents/MouseEvent.h"
+#include "userEvents/KeyEvent.h"
 #include "src/Logger.h"
 
-struct SDL_Window;
 
-#define ASCII_SHIFT 15
-#define ASCII_MAYUS 16
 GeneralEventController::GeneralEventController() {
-	this->flujoController = NULL;
 	this->drawController = NULL;
-	tamAnteriorX = 600;
-	tamAnteriorY = 600;
 //	SDL_SetWindowMaximumSize(this->v
 }
 GeneralEventController::~GeneralEventController() {
-	list<MouseControllerPrioridades*>::iterator it;
-	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end(); ++it) {
-		delete *it;
-	}
 }
 
-void GeneralEventController::addMouseController(MouseEventController* controller, int prioridadClick,
-		int prioridadMotion) {
-	this->mouseControllers.push_back(new MouseControllerPrioridades(controller, prioridadClick, prioridadMotion));
+
+
+
+void  GeneralEventController::procesarEventos(UserEventMsj* m) {
+	m->procesar(this);
 }
 
-void GeneralEventController::clickUp(float x, float y) {
-	this->mouseControllers.sort(comparar_prioridadClick);
-	list<MouseControllerPrioridades*>::iterator it;
-	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
-	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->getEventController()->clickUp(x, y);
-	}
+void GeneralEventController::visit(MouseMotionMsj* m) {
+//	MouseEvent mouse (m->getX(),m->getY(),false,false,false,false);
+	//ENTREGA3 PASAR AL JUGADOR QUE CORRESPONDA SEGUN EL DESTINATARIO QUE TRAIGA EL MSJ. HACER jugador.mouseMotion(mouse)
 }
 
-void GeneralEventController::clickDown(float x, float y) {
-	this->mouseControllers.sort(comparar_prioridadClick);
-	list<MouseControllerPrioridades*>::iterator it;
-	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
-	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->getEventController()->clickDown(x, y);
-	}
-
+void GeneralEventController::visit(ClickMsj* m) {
+//	MouseEvent mouse(m->getX(), m->getY(),m->isLeft(),m->isDown(),m->isCtrl(),m->isShift());
+	//ENTREGA3 PASAR AL JUGADOR QUE CORRESPONDA SEGUN EL DESTINATARIO QUE TRAIGA EL MSJ. HACER jugador.click(mouse)
 }
 
-void GeneralEventController::mouseMotion(float x, float y) {
-	this->mouseControllers.sort(comparar_prioridadMotion);
-	list<MouseControllerPrioridades*>::iterator it;
-	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
-	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->getEventController()->mouseMotion(x, y);
-	}
-
+void GeneralEventController::visit(KeyMsj* m) {
+//	KeyEvent key (m->getTecla(),m->isPresionada());
+	//ENTREGA3 PASAR AL JUGADOR QUE CORRESPONDA SEGUN EL DESTINATARIO QUE TRAIGA EL MSJ. HACER jugador.key(mouse)
 }
 
-void GeneralEventController::rightClickUp(float x, float y) {
-	this->mouseControllers.sort(comparar_prioridadClick);
-	list<MouseControllerPrioridades*>::iterator it;
-	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
-	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->getEventController()->rightClickUp(x, y);
-	}
-}
-
-void GeneralEventController::rightClickDown(float x, float y) {
-	this->mouseControllers.sort(comparar_prioridadClick);
-	list<MouseControllerPrioridades*>::iterator it;
-	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
-	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->getEventController()->rightClickDown(x, y);
-	}
-}
-
-void GeneralEventController::mouseWheelMoved(float amountScrolledY) {
-	this->mouseControllers.sort(comparar_prioridadClick);
-	list<MouseControllerPrioridades*>::iterator it;
-	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
-	//Agarro la posicion del mouse.
-	float posX = 0;
-	float posY = 0;
-	//ENTREGA3 sacar del evento
-//	SDL_GetMouseState(&posX, &posY);
-
-	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->getEventController()->mouseWheelMoved(posX, posY, amountScrolledY);
-	}
-}
-
-void GeneralEventController::addKeyboardController(KeyBoardEventController* keyEventController) {
-	this->keyControllers.push_back(keyEventController);
-}
-
-void GeneralEventController::keyDown(char key) {
-	list<KeyBoardEventController*>::iterator it;
-	bool continuarEvento = true;
-	for (it = this->keyControllers.begin(); it != this->keyControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->keyPressed(key);
-	}
-}
-
-bool GeneralEventController::verificarCaracteresEspeciales(SDL_KeyboardEvent key) {
-	if (key.keysym.scancode == SDL_SCANCODE_LSHIFT || key.keysym.scancode == SDL_SCANCODE_RSHIFT) {
-		this->keyDown((char) ASCII_SHIFT);
-		return true;
-	}
-	if (key.keysym.scancode == SDL_SCANCODE_CAPSLOCK) {
-		this->keyDown((char) ASCII_MAYUS);
-		return true;
-	}
-//	if (key.keysym.sym >=)
-	return false;
-}
-
-void GeneralEventController::keyUp() {
-	list<KeyBoardEventController*>::iterator it;
-	bool continuarEvento = true;
-	for (it = this->keyControllers.begin(); it != this->keyControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->keyReleased();
-	}
-
-}
-
-bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
-	float nuevaPosX, nuevaPosY;
-//	float tamNuevoX, tamNuevoY;
-//	SDL_DisplayMode current;
-	SDL_Event evento;
-	Logger log;
-	while (SDL_PollEvent(&evento)) {
-		switch (evento.type) {
-		case SDL_QUIT:
-			return true;
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			switch (evento.button.button) {
-			case SDL_BUTTON_RIGHT:
-				this->rightClickDown(evento.button.x, evento.button.y);
-				break;
-			case SDL_BUTTON_LEFT:
-				this->clickDown(evento.button.x, evento.button.y);
-				break;
-			}
-			break;
-		case SDL_MOUSEWHEEL:
-			this->mouseWheelMoved(evento.wheel.y);
-			break;
-		case SDL_MOUSEBUTTONUP:
-			switch (evento.button.button) {
-			case SDL_BUTTON_RIGHT:
-				this->rightClickUp(evento.button.x, evento.button.y);
-				break;
-			case SDL_BUTTON_LEFT:
-				this->clickUp(evento.button.x, evento.button.y);
-				break;
-			}
-			break;
-		case SDL_MOUSEMOTION:
-//			SDL_GetMouseState(&nuevaPosX, &nuevaPosY);
-			//ENTREGA3 SACAR DEL EVENTO DE RED
-			nuevaPosX = 0;
-			nuevaPosY = 0;
-			this->mouseMotion(nuevaPosX, nuevaPosY);
-			break;
-		case SDL_KEYDOWN:
-			if (!this->verificarCaracteresEspeciales(evento.key))
-				this->keyDown((char) (evento.key.keysym.sym));
-			break;
-		case SDL_KEYUP:
-			if (evento.key.keysym.scancode == SDL_SCANCODE_LSHIFT || evento.key.keysym.scancode == SDL_SCANCODE_RSHIFT)
-				this->keyUp();
-			break;
-		case SDL_USEREVENT:
-			switch (evento.user.code) {
-			case USREVENT_STOP:
-				if (this->flujoController != NULL) {
-					log.info("Finaliza Juego");
-					flujoController->stop();
-				}
-				break;
-			case USREVENT_START:
-				if (this->flujoController != NULL) {
-					log.info("Inicia Juego");
-					flujoController->start();
-				}
-				break;
-			case USREVENT_DRAW:
-				if (this->drawController != NULL) {
-					drawController->dibujar();
-				}
-				break;
-			}
-			break;
-		case SDL_WINDOWEVENT: {
-			switch (evento.window.event) {
-//TODO IMPLEMENTAR RESIZE
-//			case SDL_WINDOWEVENT_MAXIMIZED:
-//				cout << "maximizada" << endl;
-//				break;
-//			case SDL_WINDOWEVENT_MINIMIZED:
-////				SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
-////				this->resize(tamNuevoX, tamNuevoY);
-//				cout << "minimizo"<< endl;
-//				break;
-//			case SDL_WINDOWEVENT_MAXIMIZED:
-////				SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
-////				this->resize(tamNuevoX, tamNuevoY);
-//				cout << "maximizo"<< endl;
-//				break;
-			}
-
-			break;
-		}
-
-		}
-	}
-	return false;
-}
-
-void GeneralEventController::setFlujoController(FlujoDeJuegoController* c) {
-	this->flujoController = c;
-}
-
-void GeneralEventController::setDrawController(DrawController* c) {
-	this->drawController = c;
+void GeneralEventController::visit(JugadorListo * m) {
+//	ENTREGA3 AVISAR A ALGUIEN QUE EL JUGADOR ESTA LISTO O NO, DEPENDE EL BOOL DEL MENSAJE.
 }
