@@ -15,10 +15,9 @@ struct SDL_Texture;
 
 class BalancinView: public ObjetoView {
 public:
-	BalancinView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
+	BalancinView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~BalancinView();
-	void dropTemplate();
-	EditorNivel * getEditor();
+	void update(ViewMsj *);
 };
 
 #endif /* BALANCINVIEW_H_ */

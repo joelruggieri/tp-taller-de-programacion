@@ -8,7 +8,6 @@
 #ifndef ZONACREACION_H_
 #define ZONACREACION_H_
 
-#include "ZonaDragAndDrop.h"
 #include "EslabonCreacion.h"
 #include "../viewFactory/ViewFiguraFactory.h"
 #include <list>
@@ -16,9 +15,10 @@
 #include "../../modelo/Scroll.h"
 #include "../../vista/ScrollView.h"
 #include "../../vista/ViewConBorde.h"
+#include "../../modelo/Cuadrado.h"
 using namespace std;
 
-class ZonaCreacion: public Zona {
+class ZonaCreacion {
 private:
 	EslabonCreacion * inicioCadena;
 	EslabonCreacion * ultimo;
@@ -26,7 +26,7 @@ private:
 	static const int ALTO_PANEL = 90;
 	static const int DISTANCIA_ENTRE_ELEMENTOS = 15;
 	static const int SLEEP_BOTONES_SCROLL = 10;
-
+	Cuadrado *cuerpo;
 	bool agregarTemplate(FiguraView * dragueable);
 	FiguraView * getFiguraTemplate(float x, float y);
 	void inicializar(list<ViewFiguraFactory*> *, float x, float margenSuperior);

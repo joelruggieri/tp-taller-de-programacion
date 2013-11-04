@@ -9,13 +9,11 @@
 #define VIEWGLOBOFACTORY_H_
 
 #include "ViewFiguraFactory.h"
-class SimpleEditorAnguloFijo;
 class ViewGloboFactory: public ViewFiguraFactory{
 public:
-	ViewGloboFactory(SimpleEditorAnguloFijo * editor);
+	ViewGloboFactory();
 	virtual ~ViewGloboFactory();
-	FiguraView * crear(int,int,int,int);
-	View * crearVistaPropia(int,int,int,int);
+	FiguraView * crear(int,int);
 };
 
 #endif /* VIEWGLOBOFACTORY_H_ */

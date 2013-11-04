@@ -9,20 +9,12 @@
 #include "../../vista/objeto/CorreaEstaticaView.h"
 #include "../../ConstantesVista.h"
 
-ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor): ViewFiguraFactory(PATH_VISTA_CORREA,editor) {
+ViewCorreaFactory::ViewCorreaFactory(): ViewFiguraFactory(PATH_VISTA_CORREA) {
 
 
-}
-
-FiguraView* ViewCorreaFactory::crear(int x,int y,int w, int h){
-	return new CorreaEstaticaView(x, y,w,h,this->textura, (EditorUnion*) this->controller);
 }
 
 ViewCorreaFactory::~ViewCorreaFactory() {
 	// TODO Auto-generated destructor stub
-}
-
-View* ViewCorreaFactory::crearVistaPropia(int x, int y, int w,int h) {
-	return new FactoryView(x,y,w,h, this->textura);
 }
 

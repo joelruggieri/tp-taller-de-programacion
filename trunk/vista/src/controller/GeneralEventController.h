@@ -13,10 +13,8 @@
 
 #include "keyboardEventController/KeyBoardEventController.h"
 #include "mouseEventController/MouseEventController.h"
-#include "CanvasController.h"
-#include "PersistenciaEventController.h"
-#include "FlujoDeJuegoController.h"
 #include "DrawController.h"
+#include "SDL2/SDL.h"
 class MouseControllerPrioridades;
 struct SDL_KeyboardEvent;
 
@@ -30,9 +28,6 @@ class GeneralEventController {
 private:
 	list<MouseControllerPrioridades *> mouseControllers;
 	list<KeyBoardEventController *> keyControllers;
-	CanvasController* canvasController; //De este siempre tiene que haber uno solo.
-	PersistenciaEventController * guardarController;
-	FlujoDeJuegoController * flujoController;
 	DrawController * drawController;
 	int tamAnteriorX, tamAnteriorY;
 	void clickUp(int x, int y);
@@ -50,10 +45,7 @@ public:
 	virtual ~GeneralEventController();
 	void addMouseController(MouseEventController *, int prioridadClick, int prioridadMotion);
 	void addKeyboardController(KeyBoardEventController* );
-	void setCanvasController(CanvasController* canvasController);
-	void setGuardarController(PersistenciaEventController * controller);
 	bool procesarEventos(SDL_Window *);
-	void setFlujoController(FlujoDeJuegoController*);
 	void setDrawController(DrawController *);
 };
 

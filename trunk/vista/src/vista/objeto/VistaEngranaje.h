@@ -8,18 +8,14 @@
 #ifndef VISTAENGRANAJE_H_
 #define VISTAENGRANAJE_H_
 	#include "ObjetoView.h"
-class SimpleEditorAnguloFijo;
 class SDL_Texture;
-class SimpleEditorCambiarRadio;
 
 class VistaEngranaje: public ObjetoView {
 	typedef FiguraView super;
 public:
-	VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorCambiarRadio * editor);
+	VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~VistaEngranaje();
-	void dropTemplate();
-	EditorNivel * getEditor();
-	void  update();
+	void  update(ViewMsj* );
 	int getLayer();
 };
 

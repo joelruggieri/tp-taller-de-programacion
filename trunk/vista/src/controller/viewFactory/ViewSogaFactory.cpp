@@ -10,7 +10,7 @@
 #include "../../ConstantesVista.h"
 namespace std {
 
-ViewSogaFactory::ViewSogaFactory(EditorUnion* editor):ViewFiguraFactory(PATH_VISTA_CUERDA, editor) {
+ViewSogaFactory::ViewSogaFactory():ViewFiguraFactory(PATH_VISTA_CUERDA) {
 
 }
 
@@ -19,11 +19,6 @@ ViewSogaFactory::~ViewSogaFactory() {
 }
 
 } /* namespace std */
-
-View* ViewSogaFactory::crearVistaPropia(int x, int y, int w,int h) {
-	return new FactoryView(x,y,w,h, this->textura);
-}
-
 FiguraView* ViewSogaFactory::crear(int x, int y, int w, int h) {
-	return new SogaEstaticaView(x, y, w, h, this->textura, (EditorUnion*) this->controller);
+	return new SogaEstaticaView(x, y, w, h, this->textura);
 }

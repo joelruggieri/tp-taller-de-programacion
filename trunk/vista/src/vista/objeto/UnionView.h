@@ -10,9 +10,7 @@
 
 #include "ObjetoView.h"
 #include "SDL2/SDL.h"
-#include <src/observer/ObserverModelo.h>
-class EditorUnion;
-class UnionView: public ObjetoView, public ObserverModelo {
+class UnionView: public ObjetoView {
 private:
 	typedef ObjetoView super;
 //	void dibujarse(SDL_Renderer* renderer, SDL_Rect& src, SDL_Rect& dest);
@@ -21,12 +19,9 @@ protected:
 	void dibujarse(SDL_Renderer * ren,Uint8 r,Uint8 g,Uint8 b);
 	void dibujarseEstatica(SDL_Renderer* ren);
 public:
-	UnionView(int x, int y, SDL_Texture * textura, EditorUnion * controller);
+	UnionView(int x, int y, SDL_Texture * textura);
 	virtual ~UnionView();
-	EditorNivel * getEditor();
-	void update();
-	void setModelo(Figura * f);
-	void notifyEvent(ObservableModelo*, Evento_type);
+	void update(ViewMsj *);
 	void resizear();
 	int getLayer();
 };

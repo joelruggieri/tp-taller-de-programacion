@@ -12,17 +12,13 @@
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL.h>
-#include <src/ModeloController.h>
 #include <new>
 
 #include "../vista/CargadorDeTextures.h"
 #include "../vista/DraggingView.h"
 #include "GeneralEventController.h"
-#include "inicializador/InicializadorJuego.h"
 #include "JuegoEventsController.h"
 #include "Resizer.h"
-#include "ToolBarEventController.h"
-#include "zonaToolBar/ZonaToolBar.h"
 #include "src/Logger.h"
 #include "UserEventCreator.h"
 #include "../ConstantesVista.h"
@@ -57,7 +53,6 @@ void MainController::dibujar() {
 	SDL_SetRenderDrawColor(render, 1, 1, 1, 1);
 	SDL_RenderClear(render);
 	juegoController->dibujarse(render);
-	toolBar->dibujarse(render);
 	SDL_RenderPresent(render);
 }
 int MainController::run() {
@@ -71,21 +66,11 @@ int MainController::run() {
 			SDL_RENDERER_ACCELERATED);
 
 	Resizer::Instance(600, 600, 120, 120);
-	CargadorDeTextures * texturas = CargadorDeTextures::Instance(render);
+//	CargadorDeTextures * texturas = CargadorDeTextures::Instance(render);
 
 	GeneralEventController eventController;
-	ModeloController modeloController;
-	InicializadorJuego inicializador(&eventController, &modeloController);
 
-	juegoController = inicializador.crearZonaJuego();
-	toolBar = new ZonaToolBar(300, 550, 600, 100,
-			texturas->cargarTexture("resource/fondoHerramientas.jpg"));
-	ToolBarEventController* tbEventController = new ToolBarEventController(
-			toolBar);
-
-	eventController.addMouseController(tbEventController, 2, 1);
-	eventController.addKeyboardController(tbEventController);
-	eventController.setFlujoController(juegoController);
+//	juegoController = inicializador.crearZonaJuego();
 	eventController.setDrawController(this);
 	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
 	SDL_SetWindowMaximumSize(ventana, 825, 825);
@@ -94,7 +79,6 @@ int MainController::run() {
 
 	while (!terminar) {
 		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
-		juegoController->paso();
 		terminar = eventController.procesarEventos(ventana);
 	}
 	SDL_RemoveTimer(timerID);

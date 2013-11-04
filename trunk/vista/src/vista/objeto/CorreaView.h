@@ -10,7 +10,6 @@
 
 #include "UnionView.h"
 
-class EditorUnion;
 
 class CorreaView: public UnionView {
 private:
@@ -18,12 +17,11 @@ private:
 	typedef UnionView super;
 	SDL_Color color;
 public:
-	CorreaView(int x, int y, SDL_Texture * textura,EditorUnion * editor);
+	CorreaView(int x, int y, SDL_Texture * textura);
 	virtual ~CorreaView();
-	EditorNivel* getEditor();
-	void dropTemplate();
 	void dibujarse(SDL_Renderer*);
 	void update();
+	void update(ViewMsj *);
 };
 
 #endif /* CORREAVIEW_H_ */

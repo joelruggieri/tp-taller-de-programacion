@@ -12,12 +12,9 @@
 
 class CorreaEstaticaView: public UnionEstaticaView {
 public:
-	CorreaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura,EditorUnion * editor);
+	CorreaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~CorreaEstaticaView();
-	void dropTemplate();
-	EditorNivel * getEditor();
-	UnionView * toDinamica();
-
+	void update(ViewMsj *);
 };
 
 #endif /* CORREAESTATICAVIEW_H_ */

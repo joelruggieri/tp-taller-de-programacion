@@ -50,30 +50,10 @@ Cuadrado::~Cuadrado() {
 bool Cuadrado::contacto(float posX, float posY) {
 	double xc = posX;
 	double yc= posY;
-//	if(this->getRotacion() != 0 && rotador != 0){
-////		//traslado al centro, roto el punto y pruebo el contacto.
-////		xc = posX - this->x;
-////		yc = posY - this->y;
-////		//roto
-////		double rotacionRad = this->getRotacion() *-3.14 /180.0;
-////		xc = (posX - this->x) * cos(rotacionRad)- (posY - this->y) * sin(rotacionRad);
-////		yc = (posX - this->x) * sin(rotacionRad)+ (posY - this->y) * cos(rotacionRad);
-////		xc =xc + this->x;
-////		yc=yc + this->y;
-//		this->rotador->rotar(this,xc, yc);
-//	}
-
 	return this->isAdentro1D(xc, this->x, this->ancho)
 			&& this->isAdentro1D(yc, this->y, this->alto);
 }
 
-bool Cuadrado::contieneCentro(Posicionable* posicion) {
-	return this->contacto(posicion->getX(), posicion->getY());
-}
-bool Cuadrado::isAdentro1D(float pos, float posCentro, float ancho) {
-	return (pos <= (posCentro + ancho / 2)) && (pos >= posCentro - ancho / 2);
-
-}
 
 float Cuadrado::getX() const {
 	return x;

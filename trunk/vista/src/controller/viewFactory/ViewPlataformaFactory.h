@@ -9,11 +9,10 @@
 #define VIEWPLATAFORMAFACTORY_H_
 #include "ViewFiguraFactory.h"
 
-class SimpleEditorEstirar;
 class ViewPlataformaFactory: public ViewFiguraFactory{
 
 public:
-	ViewPlataformaFactory(SimpleEditorEstirar * editor);
+	ViewPlataformaFactory();
 	virtual ~ViewPlataformaFactory();
 	FiguraView * crear(int, int, int, int);
 	View * crearVistaPropia(int,int,int,int);

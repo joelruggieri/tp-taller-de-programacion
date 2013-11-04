@@ -9,20 +9,22 @@
 #define VIEWFIGURAFACTORY_H_
 #include "../../vista/figura/FiguraView.h"
 #include "../../vista/FactoryView.h"
-#include "../DropController.h"
 #include <string>
 #include "SDL2/SDL.h"
 using namespace std;
 
+
+//ENTREGA3 CAMBIA LA IDEA DE ESTA FACTORIES, ESTAS FACTORIES AHORA SON PARA LO QUE VIENE DESDE EL SERVER PARA CREAR, NO PARA CREAR ACA EN CLIENTE.
+//ASI QUE LE BORRO EL CREARVISTAPROPIA
+
+
 class ViewFiguraFactory {
 protected:
 	SDL_Texture * textura;
-	DropController * controller;
 public:
-	ViewFiguraFactory(string path, DropController * controller);
+	ViewFiguraFactory(string path);
 	virtual ~ViewFiguraFactory();
-	virtual FiguraView * crear(int,int,int,int)=0;
-	virtual View * crearVistaPropia(int,int,int,int) = 0;
+	virtual FiguraView * crear(int,int)=0;
 	float getAlto() const;
 	void setAlto(float alto);
 	float getAncho() const;

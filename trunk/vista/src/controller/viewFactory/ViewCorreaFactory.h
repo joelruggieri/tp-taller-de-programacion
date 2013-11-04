@@ -8,15 +8,13 @@
 #ifndef VIEWCORREAFACTORY_H_
 #define VIEWCORREAFACTORY_H_
 #include "ViewFiguraFactory.h"
-#include "../editor/EditorUnion.h"
 
 class ViewCorreaFactory: public ViewFiguraFactory{
 
 public:
-	ViewCorreaFactory(EditorUnion* editor);
+	ViewCorreaFactory();
 	virtual ~ViewCorreaFactory();
-	FiguraView * crear(int, int, int, int);
-	View * crearVistaPropia(int,int,int,int);
+	FiguraView * crear(int, int);
 };
 
 #endif /* VIEWCORREAFACTORY_H_ */

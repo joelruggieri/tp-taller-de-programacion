@@ -10,15 +10,12 @@
 
 #include "UnionEstaticaView.h"
 #include "UnionView.h"
-class EditorUnion;
 struct SDL_Texture;
 class SogaEstaticaView: public UnionEstaticaView {
 public:
-	SogaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura, EditorUnion * editor);
+	SogaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~SogaEstaticaView();
-	EditorNivel* getEditor();
-	void dropTemplate();
-	UnionView * toDinamica();
+	void update(ViewMsj *);
 private:
 	SDL_Texture * texturaTramo;
 };

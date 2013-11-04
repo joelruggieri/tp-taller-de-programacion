@@ -6,28 +6,16 @@
  */
 
 #include "SogaEstaticaView.h"
-#include "../../controller/editor/EditorUnion.h"
-#include <src/objeto/Soga.h>
 #include "../CargadorDeTextures.h"
 #include "SogaView.h"
-SogaEstaticaView::SogaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura, EditorUnion * editor): UnionEstaticaView (x, y, w, h,textura, editor) {
+SogaEstaticaView::SogaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura): UnionEstaticaView (x, y, w, h,textura) {
 	texturaTramo = CargadorDeTextures::Instance()->cargarTexture("resource/eslabon_cinta.png");
 }
 
-void SogaEstaticaView::dropTemplate() {
-	((EditorUnion * )this->controller)->dropNuevaFigura(this);
-}
-
-EditorNivel* SogaEstaticaView::getEditor() {
-	EditorUnion* editor = (EditorUnion*)controller;
-	editor->setFigura(this);
-	return editor;
-}
 
 SogaEstaticaView::~SogaEstaticaView() {
 	// TODO Auto-generated destructor stub
 }
 
-UnionView* SogaEstaticaView::toDinamica() {
-	return new SogaView(this->getX(),this->getY(),this->getTexture(), (EditorUnion*) this->controller);
+void SogaEstaticaView::update(ViewMsj*) {
 }

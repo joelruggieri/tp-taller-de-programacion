@@ -10,15 +10,13 @@
 
 #include "UnionView.h"
 
-class EditorUnion;
 struct SDL_Texture;
 
 class SogaView: public UnionView {
 public:
-	SogaView(int x, int y, SDL_Texture * textura, EditorUnion * editor);
+	SogaView(int x, int y, SDL_Texture * textura);
 	virtual ~SogaView();
-	EditorNivel* getEditor();
-	void dropTemplate();
+	void dibujarse(SDL_Renderer * renderer);
 	void dibujarse(SDL_Renderer * renderer, SDL_Rect & dest);
 private:
 	typedef UnionView super;

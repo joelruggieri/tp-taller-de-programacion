@@ -9,15 +9,12 @@
 #define VISTACINTATRANSPORTADORA_H_
 
 #include "ObjetoView.h"
-class SimpleEditorEstirar;
 
 class CintaTransportadoraView: public ObjetoView {
 public:
-	CintaTransportadoraView(int x, int y, int w, int h,int altoModelo,int altoPlataforma, SDL_Texture * textura,SimpleEditorEstirar* controller);
+	CintaTransportadoraView(int x, int y, int w, int h,int altoModelo,int altoPlataforma, SDL_Texture * textura);
 	virtual ~CintaTransportadoraView();
-	void dropTemplate();
-	EditorNivel * getEditor();
-	void update();
+	void update(ViewMsj *);
 	void dibujarse(SDL_Renderer*);
 private:
 	int xEngrIzq, xEngrDer, alto, yEngranajes,altoPlataforma;
@@ -25,7 +22,6 @@ private:
 	typedef ObjetoView super;
 	void recalcular();
 	void resizear();
-	void dibujarParte(SDL_Renderer * renderer, SDL_Rect & dest, float angulo, SDL_Texture* text);
 	int getLayer();
 };
 

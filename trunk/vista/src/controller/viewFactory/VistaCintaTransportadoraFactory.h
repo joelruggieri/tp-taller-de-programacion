@@ -9,16 +9,14 @@
 #define VistaCINTATRANSPORTADORAFACTORY_H_
 
 #include "ViewFiguraFactory.h"
-#include "../DropController.h"
 
 class SimpleEditorEstirar;
 
 class VistaCintaTransportadoraFactory: public ViewFiguraFactory {
 public:
-	VistaCintaTransportadoraFactory( SimpleEditorEstirar* editor);
+	VistaCintaTransportadoraFactory();
 	virtual ~VistaCintaTransportadoraFactory();
-	FiguraView * crear(int,int,int,int);
-	View * crearVistaPropia(int,int,int,int);
+	FiguraView * crear(int,int);
 };
 
 #endif /* VistaCINTATRANSPORTADORAFACTORY_H_ */

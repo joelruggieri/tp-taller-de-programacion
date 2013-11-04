@@ -8,34 +8,26 @@
 #ifndef ZONATABLERO_H_
 #define ZONATABLERO_H_
 
-#include "ZonaDragAndDrop.h"
 #include <list>
 #include "../../vista/figura/FiguraView.h"
 #include "../../vista/Canvas.h"
 #include "../../vista/ViewConBorde.h"
 #include <map>
 #include "../../modelo/Observer.h"
-#include <src/observer/ObserverModelo.h>
+#include "../../modelo/Cuadrado.h"
 using namespace std;
 
-
-class ZonaTablero: public Zona, public ObserverModelo{
+//ENTREGA3 DEBERIA RECIBIR EL VIEW CONTROLLER EN EL CONSTRUCTOR
+class ZonaTablero {
 private:
-	bool agregarTemplate(FiguraView * dragueable);
-	FiguraView * getFiguraTemplate(float x, float y);
-	Canvas * canvas;
-	ViewConBorde * viewCanvas;
+	Cuadrado * cuerpo;
 public:
-	ZonaTablero(float, float, SDL_Texture *);
+	ZonaTablero(SDL_Texture * fondo);
 	virtual ~ZonaTablero();
-	void dibujarse(SDL_Renderer *);
-	void dibujarse(SDL_Renderer *, SDL_Rect &);
-	bool removerFigura(FiguraView*);
-	bool click(float x, float y);
-	Canvas* getCanvas();
-	bool mouseScroll(float x, float y, int amountScrolled);
-//	void notify(Observable* o, event_type t);
-	void notifyEvent(ObservableModelo* o, Evento_type t);
+	void click(float, float);
+	void rightClick(float, float);
+	void keyPressed(char key);
+	void keyReleased(char key);
 };
 
 #endif /* ZONATABLERO_H_ */
