@@ -30,6 +30,7 @@ LoggingService::LoggingService() {
 }
 
 LoggingService::~LoggingService() {
+	worker->cancel();
 	delete worker;
 }
 
