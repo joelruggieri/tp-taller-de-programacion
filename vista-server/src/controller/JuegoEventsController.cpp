@@ -9,7 +9,6 @@
 
 #include <src/figura/Figura.h>
 #include <src/ModeloController.h>
-#include <src/Transformacion.h>
 #include <src/Vista.h>
 
 #include "../vista/figura/FiguraView.h"
