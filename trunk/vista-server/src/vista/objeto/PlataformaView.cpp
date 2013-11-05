@@ -8,7 +8,7 @@
 #include "PlataformaView.h"
 #include "../../controller/editor/SimpleEditorEstirar.h"
 #include "src/objeto/Plataforma.h"
-#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 PlataformaView::PlataformaView(float x, float y, float ancho, SimpleEditorEstirar* editor) :
 		ObjetoView(x, y, editor) {
 	this->ancho = ancho;

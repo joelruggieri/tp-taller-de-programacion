@@ -12,7 +12,7 @@
 #include "../figura/FiguraView.h"
 #include "ObjetoView.h"
 #include <src/objeto/CintaTransportadora.h>
-#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 
 
 CintaTransportadoraView::CintaTransportadoraView(float x, float y, float ancho, SimpleEditorEstirar* editor) :

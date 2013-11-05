@@ -23,3 +23,8 @@ KeyEvent::~KeyEvent() {
 bool KeyEvent::isPresionada() const {
 	return presionada;
 }
+
+void KeyEvent::keyPressed(JuegoEventsController* j) {
+//	if (this->presionada()) j->
+	//No hay presion de tecla por ahora para tomar
+}

@@ -52,6 +52,8 @@ bool JuegoEventsController::clickDown(float x, float y) {
 
 			if (view != NULL) {
 				editor = view->getEditor();
+				editor->setCtrl(this->control);
+				editor->setShift(this->shift);
 				if (editor == NULL) {
 					Logger log;
 					log.fatal("La Vista no tiene un editor");
@@ -65,6 +67,8 @@ bool JuegoEventsController::clickDown(float x, float y) {
 			}
 		}
 	} else {
+		editor->setCtrl(this->control);
+		editor->setShift(this->shift);
 		editor->clickDown(x,y);
 		if (editor->isEnd()) {
 			editor = NULL;
@@ -76,6 +80,8 @@ bool JuegoEventsController::clickDown(float x, float y) {
 
 bool JuegoEventsController::clickUp(float x, float y) {
 	if (editor != NULL && !iniciado) {
+		editor->setCtrl(this->control);
+		editor->setShift(this->shift);
 		editor->clickUp(x, y);
 		editor = editor->isEnd() ? NULL : editor;
 	}
@@ -90,6 +96,8 @@ void JuegoEventsController::setZonas(ZonaTablero *tablero,
 
 bool JuegoEventsController::mouseMotion(float corrimientoX, float corrimientoY) {
 	if (editor != NULL && !iniciado) {
+		editor->setCtrl(this->control);
+		editor->setShift(this->shift);
 		editor->mouseMotion(corrimientoX, corrimientoY);
 		editor = editor->isEnd() ? NULL : editor;
 	}
@@ -108,11 +116,15 @@ bool JuegoEventsController::rightClickDown(float x, float y) {
 			// VOY A BUSCAR SOLO A LA ZONA DE TABLERO
 			if (fig != NULL) {
 				editor = ((FiguraView *) fig->getVista())->getEditor();
+				editor->setCtrl(this->control);
+				editor->setShift(this->shift);
 				editor->rightClickDown(x, y);
 				editor = editor->isEnd() ? NULL : editor;
 			}
 		}
 	} else {
+		editor->setCtrl(this->control);
+		editor->setShift(this->shift);
 		editor->rightClickDown(x,y);
 		if (editor->isEnd()) {
 			editor = NULL;
@@ -124,6 +136,8 @@ bool JuegoEventsController::rightClickDown(float x, float y) {
 
 bool JuegoEventsController::rightClickUp(float x, float y) {
 	if (editor != NULL && !iniciado) {
+		editor->setCtrl(this->control);
+		editor->setShift(this->shift);
 		editor->rightClickUp(x, y);
 		editor = editor->isEnd() ? NULL : editor;
 	}
@@ -134,6 +148,8 @@ void JuegoEventsController::dibujarse(list<ViewMsj*> & lista){
 	creacion->dibujarse(lista);
 	zplay->dibujarse(lista);
 	if (editor != NULL) {
+		editor->setCtrl(this->control);
+		editor->setShift(this->shift);
 		editor->dibujarEdicion(lista);
 	}
 }
@@ -159,3 +175,26 @@ bool JuegoEventsController::corriendo() {
 	return iniciado;
 }
 
+bool JuegoEventsController::isCtrl() const {
+return this->control;
+}
+
+bool JuegoEventsController::isShift() const {
+	return this->shift;
+}
+
+void JuegoEventsController::setControl(bool a) {
+this->control = a ;
+}
+
+void JuegoEventsController::setShift(bool a) {
+	this->shift = a ;
+}
+
+int JuegoEventsController::getNumeroJugador() const {
+	return numeroJugador;
+}
+
+void JuegoEventsController::setNumeroJugador(int numeroJugador) {
+	this->numeroJugador = numeroJugador;
+}

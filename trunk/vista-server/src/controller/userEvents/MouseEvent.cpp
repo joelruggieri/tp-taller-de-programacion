@@ -44,3 +44,30 @@ MouseEvent::~MouseEvent() {
 	// TODO Auto-generated destructor stub
 }
 
+void MouseEvent::mouseMotion(JuegoEventsController* jugador) {
+	jugador->setControl(this->ctrl);
+		jugador->setShift(this->shift);
+		jugador->mouseMotion(this->x, this->y);
+}
+
+void MouseEvent::mouseClick(JuegoEventsController* jugador) {
+	jugador->setControl(this->ctrl);
+		jugador->setShift(this->shift);
+		/// chequeo de bools ///
+		if ((this->apretado) && (this->izquierdo))
+		{
+			jugador->clickDown(this->x, this->y);
+		}
+		else if ((this->apretado) && !(this->izquierdo))
+		{
+			jugador->rightClickDown(this->x, this->y);
+		}
+		else if ((!this->apretado) && (this->izquierdo))
+		{
+			jugador->clickUp(this->x, this->y);
+		}
+		else if ((!this->apretado) && !(this->izquierdo))
+		{
+			jugador->rightClickUp(this->x, this->y);
+		}
+}

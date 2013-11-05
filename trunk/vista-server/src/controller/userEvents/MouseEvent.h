@@ -7,7 +7,7 @@
 
 #ifndef MOUSEEVENT_H_
 #define MOUSEEVENT_H_
-
+#include "../JuegoEventsController.h"
 class MouseEvent {
 private:
 	bool izquierdo,apretado, ctrl, shift;
@@ -21,6 +21,8 @@ public:
 	float getY() const;
 	bool isCtrl() const;
 	bool isShift() const;
+	void mouseMotion(JuegoEventsController* jugador);
+	void mouseClick(JuegoEventsController* jugador);
 };
 
 #endif /* MOUSEEVENT_H_ */

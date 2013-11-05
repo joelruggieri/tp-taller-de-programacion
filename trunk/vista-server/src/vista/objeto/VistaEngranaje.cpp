@@ -10,7 +10,7 @@
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "../../controller/editor/SimpleEditorCambiarRadio.h"
 #include "src/objeto/Engranaje.h"
-#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 #include <iostream>
 using namespace std;
 

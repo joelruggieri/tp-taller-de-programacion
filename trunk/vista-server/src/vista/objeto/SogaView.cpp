@@ -8,7 +8,7 @@
 #include "SogaView.h"
 #include "../../controller/editor/EditorUnion.h"
 #include <src/objeto/Soga.h>
-#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 SogaView::SogaView(float x, float y, EditorUnion * editor) :
 		UnionView(x, y, editor) {
 }
