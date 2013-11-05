@@ -9,9 +9,14 @@
 #include <iostream>
 using namespace std;
 
-Nivel::Nivel(std::string nombre) {
+Nivel::Nivel(std::string nombre, int cantJugadores) {
 	this->nombre = nombre;
-	this->jugadores = 4;
+	this->numeroMaximoDeJugadores = cantJugadores;
+}
+
+Nivel::Nivel(std::string nombre){
+	this->nombre = nombre;
+	this->numeroMaximoDeJugadores = 0;
 }
 
 Nivel::~Nivel() {
@@ -51,12 +56,25 @@ std::string Nivel::getFondo() const {
 }
 
 Nivel::Nivel() {
+	numeroMaximoDeJugadores = 0;
 }
 
-int Nivel::getJugadores() const {
+std::list<Jugador*>& Nivel::getJugadores(){
 	return jugadores;
 }
 
-void Nivel::setJugadores(int jugadores) {
-	this->jugadores = jugadores;
+void Nivel::agregarJugador(Jugador* unJugador){
+	this->jugadores.push_back(unJugador);
+}
+
+void Nivel::setNumeroMaximoJugadores(int jugadores) {
+	this->numeroMaximoDeJugadores = jugadores;
+}
+
+int Nivel::getNumeroMaximoJugadores() const{
+	return numeroMaximoDeJugadores;
+}
+
+int Nivel::getNumeroJugadores() const{
+	return jugadores.size();
 }

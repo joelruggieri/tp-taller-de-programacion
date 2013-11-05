@@ -18,6 +18,7 @@
 #include "src/objeto/Correa.h"
 #include "src/objeto/Soga.h"
 #include "src/objeto/Engranaje.h"
+#include "src/Logger.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
 #include "NivelInexistenteException.h"
@@ -30,6 +31,7 @@ using namespace std;
 //#include "src/controller/RotadorSistemaCoordenadas.h"
 
 #define OBJETOS "Objetos"
+#define JUGADORES "Jugadores"
 
 NivelDAO::NivelDAO() {
 	// TODO Auto-generated constructor stub
@@ -44,28 +46,15 @@ Nivel* NivelDAO::leerNivel(const std::string &nombre) {
 	return leerNivel(nombre.c_str());
 }
 
-Nivel* NivelDAO::leerNivel(const char *nombre) {
-
-	std::string nombreArchivo(nombre);
-	YAML::Node nodoRaiz;
-	YAML::Node nodo;
+YAML::Node NivelDAO::getNodoObjetos(YAML::Node nodoRaiz){
+	YAML::Node nodoObjetos;
 	try{
-		nodoRaiz = YAML::LoadFile(nombreArchivo);
-	}catch(YAML::BadFile& exception){
-		throw NivelInexistenteException();
-	}
-	try{
-	nodo = nodoRaiz[OBJETOS];
-	if(nodo.Mark().line == -1 ){
-		std::string mensaje = "No se encontrò la etiqueta Objetos, en consecuencia no se cargan figuras";
-		logg.warning(mensaje);
-	}
-	}/*catch(YAML::BadFile& exc){
-		std::string mensaje = "No se pudo crear/abrir el archivo: ";
-		mensaje.append(a->getNombre());
-		logg.fatal(mensaje);
-	}*/
-	catch(YAML::ParserException& exc){
+		nodoObjetos = nodoRaiz[OBJETOS];
+		if(nodoObjetos.Mark().line == -1 ){
+			std::string mensaje = "No se encontrò la etiqueta Objetos, en consecuencia no se cargan figuras";
+			logg.warning(mensaje);
+		}
+	}catch(YAML::ParserException& exc){
 		std::string mensaje = "Error de parseo de datos del archivo yaml en la linea ";
 		std::string s;
 		std::stringstream out;
@@ -82,20 +71,81 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 		s = out.str();
 		msj.append(s);
 		logg.error(msj);
-
 	}
+	return nodoObjetos;
+}
 
-	Nivel *n = new Nivel(nombre);
+
+YAML::Node NivelDAO::getNodoJugadores(YAML::Node nodoRaiz){
+	YAML::Node nodoJugadores;
+	try{
+		nodoJugadores = nodoRaiz[JUGADORES];
+		if(nodoJugadores.Mark().line == -1 ){
+			std::string mensaje = "No se encontrò la etiqueta Jugadores, en consecuencia no se carga la configuracion de jugadores";
+			logg.warning(mensaje);
+		}
+	}catch(YAML::ParserException& exc){
+		std::string mensaje = "Error de parseo de datos del archivo yaml en la linea ";
+		std::string s;
+		std::stringstream out;
+		out << exc.mark.line;
+		s = out.str();
+		mensaje.append(s);
+		mensaje.append(". Se procederà a sobreecribir el archivo");
+		logg.error(mensaje);
+	}catch (YAML::BadConversion& exc) {
+		std::string msj = "No se pudo cargar el nivel: " + string(exc.what());
+		std::string s;
+		std::stringstream out;
+		//out << nodoRaiz.Mark().line/*nodoRaiz.Mark().line +1*/;
+		s = out.str();
+		msj.append(s);
+		logg.error(msj);
+	}
+	return nodoJugadores;
+}
+
+Nivel* NivelDAO::leerNivel(const char *nombre) {
+
+	std::string nombreArchivo(nombre);
+	YAML::Node nodoRaiz;
+	try{
+		nodoRaiz = YAML::LoadFile(nombreArchivo);
+	}catch(YAML::BadFile& exception){
+		throw NivelInexistenteException();
+	}
+	YAML::Node nodoObjetos = getNodoObjetos(nodoRaiz);
+	YAML::Node nodoJugadores = getNodoJugadores(nodoRaiz);
+
+	Nivel *n = new Nivel();
+	try {
+			n->setNombre(nodoRaiz["Nivel"]["Nombre"].as<std::string>());
+		} catch (YAML::BadConversion& exc) {
+			std::string msj = "No se pudo cargar el nombre del nivel: " + string(exc.what());
+			logg.error(msj);
+	}
 	try {
 		n->setFondo(nodoRaiz["Nivel"]["Fondo"].as<std::string>());
 	} catch (YAML::BadConversion& exc) {
 		std::string msj = "No se pudo cargar el fondo del nivel: " + string(exc.what());
 		logg.error(msj);
 	}
-	std::list<Figura*> figuras = leerFiguras(nodo);
-	std::list<Figura*>::iterator it;
-	for (it = figuras.begin(); it != figuras.end(); ++it){
-		n->agregar(*it);
+	try {
+			n->setNumeroMaximoJugadores(nodoRaiz["Nivel"]["NumeroMaximoDeJugadores"].as<int>());
+		} catch (YAML::BadConversion& exc) {
+			std::string msj = "No se pudo cargar el numero de jugadores del nivel: " + string(exc.what());
+			logg.error(msj);
+	}
+
+	std::list<Jugador*> jugadores = leerJugadores(nodoJugadores);
+	std::list<Figura*> figuras = leerFiguras(nodoObjetos);
+	std::list<Figura*>::iterator itFiguras;
+	std::list<Jugador*>::iterator itJugadores;
+	for (itFiguras = figuras.begin(); itFiguras != figuras.end(); ++itFiguras){
+		n->agregar(*itFiguras);
+	}
+	for (itJugadores = jugadores.begin(); itJugadores != jugadores.end(); ++itJugadores){
+			n->agregarJugador(*itJugadores);
 	}
 	return n;
 }
@@ -166,6 +216,74 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 		msj.append(s);
 		logg.error(msj);
 
+	}
+	return lista;
+}
+
+Area* NivelDAO::leerArea (YAML::Node nodoJugador){
+	Area area = nodoJugador["Area"].as<Area>();
+	Area* elArea = new Area(area);
+	return elArea;
+}
+
+std::list<FactoryParam*>& NivelDAO::leerParametrosDeFactories(YAML::Node nodoJugador){
+	std::list<FactoryParam*> lista;
+	YAML::Node nodoFactories = nodoJugador["ParametrosFactories"];
+	for (std::size_t i = 0; i < nodoFactories.size(); i++) {
+			try {
+				FactoryParam obj = nodoFactories[i].as<FactoryParam>();
+				lista.push_back( new FactoryParam(obj));
+			}catch(YAML::BadFile& exc){
+				std::string mensaje = "No se pudo crear/abrir el archivo: ";
+				mensaje.append(exc.what());
+				logg.fatal(mensaje);
+			}catch (YAML::BadSubscript& exc) {
+				std::string msj = "No hay reconocimiento de parametrios para las objetos del jugador";
+				std::string s;
+				std::stringstream out;
+				out << nodoFactories.Mark().line;
+				s = out.str();
+				msj.append(s);
+				logg.error(msj);
+
+			}catch (YAML::Exception &exc) {
+				std::string mensaje = "Error al leer parametros de objetos del jugador: ";
+				mensaje.append(exc.what());
+				imprimirLinea(mensaje, nodoFactories[i].Mark() );
+			}
+		}
+		return lista;
+}
+
+std::list<Jugador*> NivelDAO::leerJugadores(YAML::Node jugadores){
+	std::list<Jugador*> lista;
+	std::list<FactoryParam*> objetosDeJugador;
+	for (std::size_t i = 0; i < jugadores.size(); i++) {
+		try {
+			Jugador obj = jugadores[i].as<Jugador>();
+			Area* area = this->leerArea(jugadores[i]);
+			objetosDeJugador = leerParametrosDeFactories(jugadores[i]);
+			obj.setArea(area);
+			obj.setParametrosFactories(objetosDeJugador);
+			lista.push_back( new Jugador(obj));
+		}catch(YAML::BadFile& exc){
+			std::string mensaje = "No se pudo crear/abrir el archivo: ";
+			mensaje.append(exc.what());
+			logg.fatal(mensaje);
+		}catch (YAML::BadSubscript& exc) {
+			std::string msj = "No hay reconocimiento de jugadores validos en la linea ";
+			std::string s;
+			std::stringstream out;
+			out << jugadores.Mark().line;
+			s = out.str();
+			msj.append(s);
+			logg.error(msj);
+
+		}catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer jugadores: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  jugadores[i].Mark() );
+		}
 	}
 	return lista;
 }

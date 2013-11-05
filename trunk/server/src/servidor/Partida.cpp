@@ -18,7 +18,7 @@ using namespace std;
 
 Partida::Partida(Nivel* n, int socket) {
 	nivel = n;
-	dispo = new Disponibilidad(n->getJugadores());
+	dispo = new Disponibilidad(n->getNumeroJugadores());
 	colaIn = new ColaEventos();
 	colaOut = new ColaEventos();
 	this->socket = socket;
