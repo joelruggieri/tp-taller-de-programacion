@@ -27,28 +27,28 @@ PersistenciaManager::~PersistenciaManager() {
 
 list<Figura*> & PersistenciaManager::getFiguras() {
 	Logger log;
-	if (nivel == NULL) {
-		if (AdministradorDeArchivos::cantidadNiveles() == 0) {
-			// No hay niveles, se creara uno nuevo.
-			log.warning("No existe el nivel, se procede a crear uno vacio");
-			std::stringstream aux;
-			aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
-			nivel = new Nivel(aux.str());
-			nivel->setFondo(FONDO_DEFECTO);
-		} else {
-			try {
-				nivel = dao->cargarPrimerNivel();
-			} catch (NivelInexistenteException &exc) {
-				log.error("El nivel ingresado por parametro no existe. Se creara un nuevo nivel.");
-				std::stringstream aux;
-				aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
-				nivel = new Nivel(aux.str());
-				nivel->setFondo(FONDO_DEFECTO);
-			}
-
-		}
-		nivelActual = nivel->getNombre();
-	}
+//	if (nivel == NULL) {
+//		if (AdministradorDeArchivos::cantidadNiveles() == 0) {
+//			// No hay niveles, se creara uno nuevo.
+//			log.warning("No existe el nivel, se procede a crear uno vacio");
+//			std::stringstream aux;
+//			aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
+//			nivel = new Nivel(aux.str());
+//			nivel->setFondo(FONDO_DEFECTO);
+//		} else {
+//			try {
+//				nivel = dao->cargarPrimerNivel();
+//			} catch (NivelInexistenteException &exc) {
+//				log.error("El nivel ingresado por parametro no existe. Se creara un nuevo nivel.");
+//				std::stringstream aux;
+//				aux << "NuevoNivel" << AdministradorDeArchivos::cantidadNiveles();
+//				nivel = new Nivel(aux.str());
+//				nivel->setFondo(FONDO_DEFECTO);
+//			}
+//
+//		}
+//		nivelActual = nivel->getNombre();
+//	}
 	return this->nivel->getFiguras();
 }
 
@@ -93,17 +93,17 @@ string PersistenciaManager::getImagenFondo() {
 }
 
 Nivel* PersistenciaManager::getNivel() {
-	Logger log;
-	if(nivel != NULL){
-		return nivel;
-	}
-	if (AdministradorDeArchivos::cantidadNiveles() == 0) {
-		log.error("No hay ningun nivel cargado.");
-		throw "No hay ningun nivel cargado";
-	}
-	nivel = dao->cargarPrimerNivel();
-	return nivel;
-
+//	Logger log;
+//	if(nivel != NULL){
+//		return nivel;
+//	}
+//	if (AdministradorDeArchivos::cantidadNiveles() == 0) {
+//		log.error("No hay ningun nivel cargado.");
+//		throw "No hay ningun nivel cargado";
+//	}
+//	nivel = dao->cargarPrimerNivel();
+//	return nivel;
+ return NULL;
 }
 
 void PersistenciaManager::liberarNivel() {
