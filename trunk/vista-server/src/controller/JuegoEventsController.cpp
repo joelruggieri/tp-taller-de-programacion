@@ -82,13 +82,6 @@ bool JuegoEventsController::clickUp(float x, float y) {
 	return true;
 }
 
-bool JuegoEventsController::mouseWheelMoved(float x, float y, int amountScrolled) {
-	if (creacion != NULL) {
-		return creacion->mouseScroll(x, y, amountScrolled);
-	}
-	return true;
-}
-
 void JuegoEventsController::setZonas(ZonaTablero *tablero,
 		ZonaCreacion * creacion) {
 	this->tablero = tablero;
