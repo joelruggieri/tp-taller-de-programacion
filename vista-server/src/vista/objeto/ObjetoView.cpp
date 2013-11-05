@@ -6,8 +6,8 @@
  */
 
 #include "ObjetoView.h"
-#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
-
+//#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 ObjetoView::ObjetoView(float x, float y, DropController * controller): FiguraView(x, y, controller) {
 	// TODO Auto-generated constructor stub
 

@@ -29,7 +29,10 @@ private:
 	ZonaPlay * zplay;
 	ModeloController * modeloController;
 	bool iniciado;
+	bool shift;
+	bool control;
 	EditorNivel * editor;
+	int numeroJugador;
 public:
 	JuegoEventsController(ModeloController*,ZonaPlay * zplay);
 	virtual ~JuegoEventsController();
@@ -44,5 +47,11 @@ public:
 	void stop();
 	void paso();
 	bool corriendo();
+	bool isCtrl() const;
+	bool isShift() const;
+	void setControl(bool);
+	void setShift(bool);
+	int getNumeroJugador() const;
+	void setNumeroJugador(int numeroJugador);
 };
 #endif /* JuegoEventsController_H_ */

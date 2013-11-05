@@ -8,7 +8,7 @@
 #include "CorreaView.h"
 #include "../../controller/editor/EditorUnion.h"
 #include "src/objeto/Correa.h"
-#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 #include <cmath>
 #define PI 3.14159265
 

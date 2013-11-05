@@ -7,7 +7,7 @@
 
 #ifndef KEYEVENT_H_
 #define KEYEVENT_H_
-
+#include "../JuegoEventsController.h"
 class KeyEvent {
 private:
 	char tecla;
@@ -17,6 +17,7 @@ public:
 	virtual ~KeyEvent();
 	char getTecla() const;
 	bool isPresionada() const;
+	void keyPressed(JuegoEventsController*);
 };
 
 #endif /* KEYEVENT_H_ */
