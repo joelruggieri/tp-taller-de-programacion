@@ -14,7 +14,8 @@
 #include "../RutasArchivos.h"
 #include "../../vista/ViewConFondo.h"
 ZonaCreacion::ZonaCreacion(list<string*> & factoriestags, float x,
-		float margenSuperior){
+		float margenSuperior, ColaEventos * cola){
+	salida  = cola;
 //	Resizer * instance = Resizer::Instance();
 //	int xC = instance->resizearDistanciaLogicaX(x);
 //	int yC = instance->resizearPosicionLogicaY(margenSuperior + ALTO_PANEL/2);

@@ -27,7 +27,7 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 	this->siguiente = sig;
 }
 //
-string * EslabonCreacion::atender(float posX, float posY, float corrimientoScroll) {
+string EslabonCreacion::atender(float posX, float posY, float corrimientoScroll) {
 
 	if (this->cuerpo->contacto(posX, posY)) {
 		Logger log;
