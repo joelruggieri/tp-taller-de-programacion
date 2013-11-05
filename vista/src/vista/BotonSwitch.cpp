@@ -7,10 +7,8 @@
 
 #include "BotonSwitch.h"
 #include "../controller/UserEventCreator.h"
-BotonSwitch::BotonSwitch(float x,float y,float w,float h,int eventoUno, int eventoDos, SDL_Texture * text1, SDL_Texture * text2):View(x,y,w,h) {
+BotonSwitch::BotonSwitch(float x,float y,float w,float h, SDL_Texture * text1, SDL_Texture * text2):View(x,y,w,h) {
 	this->presionado = 0;
-	this->evento1 = eventoUno;
-	this->evento2 = eventoDos;
 	this->t1 = text1;
 	this->t2 = text2;
 }
@@ -35,8 +33,5 @@ void BotonSwitch::dibujarse(SDL_Renderer* r, SDL_Rect& d) {
 }
 
 void BotonSwitch::click() {
-	int evento = presionado ? evento2: evento1;
-	SDL_Event event = crearEvento(evento, NULL, NULL);
 	presionado = !presionado;
-	SDL_PushEvent(&event);
 }

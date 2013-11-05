@@ -11,9 +11,8 @@
 #include "../../vista/ViewConBorde.h"
 #include "../../vista/ViewConFondo.h"
 #include "SDL2/SDL.h"
-ZonaPlay::ZonaPlay(ColaEventos * cola) {
+ZonaPlay::ZonaPlay(float x, float y,ColaEventos * cola) {
 	//ENTREGA3 PONERLO DONDE CORRESPONDA.
-	float x, y;
 	cuerpo = new Cuadrado(x, y, 20, 10);
 	salida = cola;
 //	boton = new BotonSwitch(lx,ly,w,h,USREVENT_START, USREVENT_STOP,text1,text2);

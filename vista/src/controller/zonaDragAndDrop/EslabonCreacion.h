@@ -23,7 +23,7 @@ public:
 	EslabonCreacion(string tag, Cuadrado *cuerpo);
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
-	string * atender(float posX, float posY, float corrimientoScroll);
+	string atender(float posX, float posY, float corrimientoScroll);
 };
 
 #endif /* ESLABONCREACION_H_ */

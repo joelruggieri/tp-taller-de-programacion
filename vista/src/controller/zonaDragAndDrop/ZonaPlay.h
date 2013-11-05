@@ -17,7 +17,7 @@ private:
 	Cuadrado * cuerpo;
 	ColaEventos * salida;
 public:
-	ZonaPlay(ColaEventos * cola);
+	ZonaPlay(float x, float y,ColaEventos * cola);
 	virtual ~ZonaPlay();
 	bool click(float x, float y);
 };
