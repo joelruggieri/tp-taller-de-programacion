@@ -10,6 +10,7 @@
 
 #include "src/Nivel.h"
 #include "src/Logger.h"
+#include "src/FactoryParam.h"
 
 //ENTREGA3 HAY QUE PERSISTIR/LEVANTAR LAS COSAS NUEVAS DEL NIVEL
 class NivelDAO {
@@ -22,6 +23,11 @@ public:
 	Nivel* cargarPrimerNivel();
 private:
 	std::list<Figura*> leerFiguras(YAML::Node objetos);
+	std::list<Jugador*> leerJugadores(YAML::Node jugadores);
+	Area* leerArea (YAML::Node nodoJugador);
+	std::list<FactoryParam*>& leerParametrosDeFactories(YAML::Node nodoJugador);
+	YAML::Node getNodoObjetos(YAML::Node nodoRaiz);
+	YAML::Node getNodoJugadores(YAML::Node nodoRaiz);
 	void obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerCintas(std::list<Figura*> &lista, YAML::Node objetos);

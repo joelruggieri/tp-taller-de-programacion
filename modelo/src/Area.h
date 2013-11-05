@@ -14,6 +14,7 @@ protected:
 	float ancho,alto,x,y;
 public:
 	Area();
+	Area(const Area&);
 	Area(float, float, float, float);
 	virtual ~Area();
 	bool contacto(float,float);

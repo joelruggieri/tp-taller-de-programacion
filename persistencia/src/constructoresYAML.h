@@ -10,6 +10,9 @@
 
 #include "src/Nivel.h"
 #include "src/figura/Registro.h"
+#include "src/Jugador.h"
+#include "src/FactoryParam.h"
+#include "src/Area.h"
 namespace YAML {
 
 template<>
@@ -18,16 +21,72 @@ struct convert<Nivel> {
 		Node node;
 		node["Nombre"] = objeto.getNombre();
 		node["Fondo"] = objeto.getFondo();
+		node["NumeroMaximoDeJugadores"] = objeto.getNumeroMaximoJugadores();
 		return node;
 	}
 
 	static bool decode(const Node& node, Nivel& objeto) {
-		if (node.size() != 2) return false;
+		if (node.size() != 3) return false;
 		objeto.setNombre(node["Nombre"].as<std::string>());
 		objeto.setFondo(node["Fondo"].as<std::string>());
+		objeto.setNumeroMaximoJugadores(node["NumeroMaximoDeJugadores"].as<int>());
 		return true;
 	}
 };
+
+template<>
+struct convert<Jugador> {
+	static Node encode(const Jugador& objeto) {
+		Node node;
+		node["numero"] = objeto.getNumero();
+		return node;
+	}
+
+	static bool decode(const Node& node, Jugador& objeto) {
+		if (node.size() != 1) return false;
+		objeto.setNumero(node["numero"].as<int>());
+		return true;
+	}
+};
+
+template<>
+struct convert<FactoryParam> {
+	static Node encode(const FactoryParam& objeto) {
+		Node node;
+		node["nombre"] = objeto.getNombre();
+		node["cantidad"] = objeto.getCantidad();
+		return node;
+	}
+
+	static bool decode(const Node& node, FactoryParam& objeto) {
+		if (node.size() != 2) return false;
+		objeto.setNombre(node["nombre"].as<std::string>());
+		objeto.setCantidad(node["cantidad"].as<int>());
+		return true;
+	}
+};
+
+template<>
+struct convert<Area> {
+	static Node encode(const Area& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["ancho"] = objeto.getAncho();
+		node["alto"] = objeto.getAlto();
+		return node;
+	}
+
+	static bool decode(const Node& node, Area& objeto) {
+		if (node.size() != 4) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setAncho(node["ancho"].as<float>());
+		objeto.setAlto(node["alto"].as<float>());
+		return true;
+	}
+};
+
 
 template<>
 struct convert<BolaBoliche> {

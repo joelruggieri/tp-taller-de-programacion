@@ -90,3 +90,10 @@ float Area::getY() const {
 void Area::setY(float y) {
 	this->y = y;
 }
+
+Area::Area(const Area& area){
+	this->x = area.getX();
+	this->y = area.getY();
+	this->ancho = area.getAncho();
+	this->alto = area.getAlto();
+}

@@ -28,6 +28,7 @@ class Nivel {
 public:
 	Nivel();
 	Nivel(std::string nombre);
+	Nivel(std::string nombre,int cantJugadores);
 	virtual ~Nivel();
 	void agregar(Figura* figura);
 	int cantidadFiguras() const;
@@ -36,14 +37,19 @@ public:
 	void setNombre(const std::string& nombre);
 	void setFondo(std::string fondo);
 	std::string getFondo() const;
-	int getJugadores() const;
-	void setJugadores(int jugadores);
+	std::list<Jugador*>& getJugadores();
+	void agregarJugador(Jugador*);
+	void setNumeroMaximoJugadores(int jugadores);
+	int getNumeroMaximoJugadores() const;
+	int getNumeroJugadores() const;
+
 
 private:
 	std::list<Figura*> objetos;
 	std::string nombre;
 	std::string fondo;
-	int jugadores;
+	int numeroMaximoDeJugadores;
+	std::list<Jugador*> jugadores;
 
 };
 

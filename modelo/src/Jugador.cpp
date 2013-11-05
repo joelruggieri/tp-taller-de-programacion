@@ -16,11 +16,34 @@ Area* Jugador::getArea() {
 	return area;
 }
 
-int Jugador::getNumero() {
+int Jugador::getNumero() const{
 	return numero;
 }
 
+void Jugador::setNumero(int numero){
+	this->numero = numero;
+}
+
+void Jugador::setArea(Area* unArea){
+	this->area = unArea;
+}
 Jugador::~Jugador() {
 	delete area;
 }
 
+Jugador::Jugador(const Jugador& jugador){
+	this->area = jugador.area;
+	this->numero = jugador.getNumero();
+}
+
+void Jugador::agregarParametroFactory(FactoryParam* parametro){
+	this->parametrosFactories.push_back(parametro);
+}
+
+std::list<FactoryParam*>& Jugador::getParametrosFactories(){
+	return this->parametrosFactories;
+}
+
+void Jugador::setParametrosFactories(std::list<FactoryParam*>& lista){
+	this->parametrosFactories = lista;
+}
