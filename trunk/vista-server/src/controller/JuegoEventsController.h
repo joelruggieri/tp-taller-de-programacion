@@ -38,7 +38,6 @@ public:
 	bool mouseMotion(float, float);
 	bool rightClickDown(float,float);
 	bool rightClickUp(float,float);
-	bool mouseWheelMoved(float, float, int);
 	void setZonas(ZonaTablero *tablero, ZonaCreacion * creacion);
 	void dibujarse(list<ViewMsj*> & lista);
 	void start();

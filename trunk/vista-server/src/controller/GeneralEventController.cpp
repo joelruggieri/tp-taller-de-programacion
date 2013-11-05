@@ -48,6 +48,9 @@ void GeneralEventController::visit(KeyMsj* m) {
 	//ENTREGA3 PASAR AL JUGADOR QUE CORRESPONDA SEGUN EL DESTINATARIO QUE TRAIGA EL MSJ. HACER jugador.key(mouse)
 }
 
+void GeneralEventController::addJugador(JuegoEventsController*) {
+}
+
 void GeneralEventController::visit(JugadorListo * m) {
 //	ENTREGA3 AVISAR A ALGUIEN QUE EL JUGADOR ESTA LISTO O NO, DEPENDE EL BOOL DEL MENSAJE.
 }

@@ -15,8 +15,8 @@
 #include "DrawController.h"
 #include "src/mensajes/userEvents/UserEventVisitor.h"
 #include "src/mensajes/userEvents/UserEventMsj.h"
-struct SDL_KeyboardEvent;
-
+#include "JuegoEventsController.h"
+#include <map>
 using namespace std;
 
 
@@ -26,10 +26,12 @@ using namespace std;
 class GeneralEventController: public UserEventVisitor {
 private:
 	DrawController * drawController;
+	map <int, JuegoEventsController * > controllers;
 public:
 	GeneralEventController();
 	virtual ~GeneralEventController();
 	void procesarEventos(UserEventMsj *);
+	void addJugador(JuegoEventsController *);
 	void visit(MouseMotionMsj *);
 	void visit(ClickMsj *);
 	void visit(KeyMsj *);
