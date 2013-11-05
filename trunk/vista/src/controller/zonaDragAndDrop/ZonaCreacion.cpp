@@ -13,8 +13,8 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../RutasArchivos.h"
 #include "../../vista/ViewConFondo.h"
-ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories, float x,
-		float margenSuperior, SDL_Texture* textura){
+ZonaCreacion::ZonaCreacion(list<string*> & factoriestags, float x,
+		float margenSuperior){
 //	Resizer * instance = Resizer::Instance();
 //	int xC = instance->resizearDistanciaLogicaX(x);
 //	int yC = instance->resizearPosicionLogicaY(margenSuperior + ALTO_PANEL/2);
@@ -97,25 +97,13 @@ ScrollView* ZonaCreacion::crearScrollView(Cuadrado* c1, Cuadrado* c2,
 //
 //	return new ScrollView(flecha1, flecha2, scroll, SLEEP_BOTONES_SCROLL);
 	return NULL;
-}
 
-bool ZonaCreacion::agregarTemplate(FiguraView* dragueable) {
-	return false;
 
 }
 
-FiguraView * ZonaCreacion::getFiguraTemplate(float x, float y) {
-	float corrimiento = 0;
-	if (this->scroll != NULL) {
-		corrimiento = this->scroll->getScroll();
-
-	}
-	return this->inicioCadena->atender(x, y + corrimiento, corrimiento);
-}
 
 ZonaCreacion::~ZonaCreacion() {
 	delete this->inicioCadena;
-	delete this->viewCanvas;
 	if (this->scroll != NULL) {
 		delete this->scroll;
 	}
@@ -131,17 +119,15 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 	}
 }
 
-void ZonaCreacion::dibujarse(SDL_Renderer* renderer) {
-//	this->canvas->dibujar(renderer);
-	this->viewCanvas->dibujarse(renderer);
-}
-
-
-void ZonaCreacion::dibujarse(SDL_Renderer* renderer, SDL_Rect&) {
-	this->dibujarse(renderer);
-}
-
 bool ZonaCreacion::click(float x, float y) {
+
+	//ENTREGA3 CHEQUEAR SI EL SCROLL RETORNA FALSE, IR A UNA FACTORY Y PEDIR EL TAG QUE TIENE PARA PODER ENVIAR EL MSJ AL SERVER.
+//	float corrimiento = 0;
+//	if (this->scroll != NULL) {
+//		corrimiento = this->scroll->getScroll();
+//
+//	}
+//	return this->inicioCadena->atender(x, y + corrimiento, corrimiento);
 	if (this->scroll != NULL) {
 		return this->scroll->click(x, y);
 	}

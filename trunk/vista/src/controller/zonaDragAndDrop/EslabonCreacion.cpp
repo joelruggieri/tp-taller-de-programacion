@@ -11,18 +11,15 @@
 #include "src/Logger.h"
 using namespace std;
 
-EslabonCreacion::EslabonCreacion(ViewFiguraFactory * factory, Cuadrado * cuerpo,
-		int maxItems) {
-	this->factory = factory;
+EslabonCreacion::EslabonCreacion(string tag, Cuadrado * cuerpo) {
 	this->siguiente = NULL;
 	this->cuerpo = cuerpo;
-	this->itemsDisponibles = maxItems;
+	this->tag = tag;
 }
 //
 EslabonCreacion::~EslabonCreacion() {
 	if (this->siguiente != NULL)
 		delete this->siguiente;
-	delete factory;
 	delete this->cuerpo;
 }
 //
@@ -30,21 +27,12 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 	this->siguiente = sig;
 }
 //
-FiguraView * EslabonCreacion::atender(float posX, float posY, float corrimientoScroll) {
+string * EslabonCreacion::atender(float posX, float posY, float corrimientoScroll) {
 
 	if (this->cuerpo->contacto(posX, posY)) {
-//		if(this->itemsDisponibles >0){
 		Logger log;
 		log.debug("Se llama a factory de vista");
-		this->itemsDisponibles--;
-		Resizer * res = Resizer::Instance();
-		FiguraView * view = this->factory->crear(
-				res->resizearDistanciaLogicaX(posX),
-				res->resizearPosicionLogicaY(posY - corrimientoScroll));
-		return view;
-//		} else {
-//			return NULL;
-//		}
+		return tag;
 	}
 	if (this->siguiente != NULL) {
 		return this->siguiente->atender(posX, posY, corrimientoScroll);

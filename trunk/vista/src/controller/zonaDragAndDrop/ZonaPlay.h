@@ -9,18 +9,16 @@
 #define ZONAPLAY_H_
 #include "../../modelo/Cuadrado.h"
 #include "../../vista/BotonSwitch.h"
+#include <src/threading/ColaEventos.h>
 class ZonaPlay {
 private:
+	//ENTREGA3 EL BOTON SWITCH ESTA COMPARTIDO ENTRE THREADS, GUARDA
 	BotonSwitch * boton;
-	View * vista;
 	Cuadrado * cuerpo;
+	ColaEventos * salida;
 public:
-	ZonaPlay(float x, float y);
-
+	ZonaPlay(ColaEventos * cola);
 	virtual ~ZonaPlay();
-	bool mouseScroll(float x, float y, int amountScrolled);
-	void dibujarse(SDL_Renderer *);
-	void dibujarse(SDL_Renderer *, SDL_Rect &);
 	bool click(float x, float y);
 };
 

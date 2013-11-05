@@ -11,21 +11,19 @@
 #include "../../vista/figura/FiguraView.h"
 #include "../viewFactory/ViewFiguraFactory.h"
 #include "../../modelo/Cuadrado.h"
+#include <string>
 using namespace std;
 
 class EslabonCreacion {
 private:
 	EslabonCreacion * siguiente;
-	ViewFiguraFactory * factory;
-	Dibujable * vista;
+	string tag;
 	Cuadrado * cuerpo;
-	int itemsDisponibles;
 public:
-	EslabonCreacion(ViewFiguraFactory * factory, Cuadrado *cuerpo, int maxCreacion);
+	EslabonCreacion(string tag, Cuadrado *cuerpo);
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
-	FiguraView * atender(float posX, float posY, float corrimientoScroll);
-	//	void invalidar(Dropeable*);
+	string * atender(float posX, float posY, float corrimientoScroll);
 };
 
 #endif /* ESLABONCREACION_H_ */

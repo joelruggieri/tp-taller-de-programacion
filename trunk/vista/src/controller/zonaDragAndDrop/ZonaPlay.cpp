@@ -11,43 +11,22 @@
 #include "../../vista/ViewConBorde.h"
 #include "../../vista/ViewConFondo.h"
 #include "SDL2/SDL.h"
-ZonaPlay::ZonaPlay(float x, float y) {
-	cuerpo=new Cuadrado(x,y,20,10);
-//	Resizer* r = Resizer::Instance();
-//	int w,h;
-//	r->adaptarDimensionLogica(20,10,w,h);
-//	int lx,ly;
-//	r->adaptarPosicionLogica(x,y,lx,ly);
-//	CargadorDeTextures* loader = CargadorDeTextures::Instance();
-//	SDL_Texture* text1 = loader->cargarTexture("resource/play.png");
-//	SDL_Texture* text2 = loader->cargarTexture("resource/stop.png");
+ZonaPlay::ZonaPlay(ColaEventos * cola) {
+	//ENTREGA3 PONERLO DONDE CORRESPONDA.
+	float x, y;
+	cuerpo = new Cuadrado(x, y, 20, 10);
+	salida = cola;
 //	boton = new BotonSwitch(lx,ly,w,h,USREVENT_START, USREVENT_STOP,text1,text2);
-//	ViewConBorde * vista = new ViewConBorde(boton);
-//	vista->setAjustarTamanio(true);
-//	this->vista = new ViewConFondo(vista);
 }
 
-
 ZonaPlay::~ZonaPlay() {
-	delete vista;
 }
 
 bool ZonaPlay::click(float x, float y) {
-	if(cuerpo->contacto(x,y)){
+	if (cuerpo->contacto(x, y)) {
 		this->boton->click();
+		//ENTREGA3 MANDAR MENSAJE DE USER LISTO O NO LISTO.
 		return true;
 	}
-	return false;
-}
-
-void ZonaPlay::dibujarse(SDL_Renderer*r) {
-	this->vista->dibujarse(r);
-}
-
-void ZonaPlay::dibujarse(SDL_Renderer*r, SDL_Rect&) {
-	this->vista->dibujarse(r);
-}
-
-bool ZonaPlay::mouseScroll(float x, float y, int amountScrolled) {
 	return false;
 }
