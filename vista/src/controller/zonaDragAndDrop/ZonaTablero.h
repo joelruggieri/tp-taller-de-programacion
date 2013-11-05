@@ -15,16 +15,17 @@
 #include <map>
 #include "../../modelo/Observer.h"
 #include "../../modelo/Cuadrado.h"
+#include "src/threading/ColaEventos.h"
 using namespace std;
 
-//ENTREGA3 DEBERIA RECIBIR EL VIEW CONTROLLER EN EL CONSTRUCTOR
 class ZonaTablero {
 private:
 	Cuadrado * cuerpo;
+	ColaEventos * salida;
 public:
-	ZonaTablero(SDL_Texture * fondo);
+	ZonaTablero(ColaEventos * cola);
 	virtual ~ZonaTablero();
-	void click(float, float);
+	bool click(float, float);
 	void rightClick(float, float);
 	void keyPressed(char key);
 	void keyReleased(char key);
