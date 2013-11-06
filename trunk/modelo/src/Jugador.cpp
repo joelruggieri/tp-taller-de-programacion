@@ -6,6 +6,8 @@
  */
 
 #include "Jugador.h"
+#include <iostream>
+using namespace std;
 
 Jugador::Jugador() {
 	area= new Area(50,50,100,100);
@@ -32,8 +34,9 @@ Jugador::~Jugador() {
 }
 
 Jugador::Jugador(const Jugador& jugador){
-	this->area = jugador.area;
+	this->area = new Area(jugador.getArea()->getX(),jugador.getArea()->getY(),jugador.getArea()->getAncho(),jugador.getArea()->getAlto());
 	this->numero = jugador.getNumero();
+	this->parametrosFactories = jugador.getParametrosFactories();
 }
 
 void Jugador::agregarParametroFactory(FactoryParam* parametro){

@@ -180,7 +180,7 @@ void NivelDAO::guardarNivel(Nivel *nivel) {
 	std::list<Jugador*>::iterator iterador;
 	YAML::Node nodoJugadores;
 	bool vacio1 = true;
-	for (iterador == listaJugadores.begin(); iterador != listaJugadores.end(); ++iterador) {
+	for (iterador = listaJugadores.begin(); iterador != listaJugadores.end(); ++iterador) {
 		oDao.guardarJugador(*iterador, &nodoJugadores);
 		vacio1 = false;
 	}
@@ -288,7 +288,7 @@ std::list<Jugador*> NivelDAO::leerJugadores(YAML::Node jugadores){
 		}catch (YAML::Exception &exc) {
 			std::string mensaje = "Error al leer jugadores: ";
 			mensaje.append(exc.what());
-			imprimirLinea(mensaje,  jugadores[i].Mark() );
+			imprimirLinea(mensaje, jugadores[i].Mark() );
 		}
 	}
 	return lista;

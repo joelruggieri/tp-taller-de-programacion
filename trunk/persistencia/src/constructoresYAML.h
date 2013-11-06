@@ -80,10 +80,10 @@ struct convert<Jugador> {
 		Node node;
 		node["numero"] = objeto.getNumero();
 		node["Area"] = *(objeto.getArea());
-		const std::list<FactoryParam*> lista = objeto.getParametrosFactories();
+		std::list<FactoryParam*> lista = objeto.getParametrosFactories();
 		std::list<FactoryParam*>::iterator iterador;
-		for(iterador == lista.begin(); iterador != lista.end(); ++iterador){
-			node["ParametrosFactories"].push_back(*(*iterador));
+		for(iterador = lista.begin(); iterador != lista.end(); ++iterador){
+			node["ParametrosFactories"].push_back(**iterador);
 		}
 		return node;
 	}
