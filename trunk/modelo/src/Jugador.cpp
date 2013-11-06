@@ -12,7 +12,7 @@ Jugador::Jugador() {
 	numero = 0;
 }
 
-Area* Jugador::getArea() {
+Area* Jugador::getArea() const{
 	return area;
 }
 
@@ -40,10 +40,10 @@ void Jugador::agregarParametroFactory(FactoryParam* parametro){
 	this->parametrosFactories.push_back(parametro);
 }
 
-std::list<FactoryParam*>& Jugador::getParametrosFactories(){
+std::list<FactoryParam*> Jugador::getParametrosFactories() const{
 	return this->parametrosFactories;
 }
 
-void Jugador::setParametrosFactories(std::list<FactoryParam*>& lista){
+void Jugador::setParametrosFactories(std::list<FactoryParam*> lista){
 	this->parametrosFactories = lista;
 }

@@ -21,6 +21,7 @@ class PelotaJuego;
 class GloboHelio;
 class Correa;
 class Soga;
+#include "src/Jugador.h"
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
 
@@ -28,6 +29,7 @@ class ObjetoDAO: public VisitorFigura {
 public:
 	ObjetoDAO();
 	virtual ~ObjetoDAO();
+	void guardarJugador(Jugador* objeto, YAML::Node *nodoRaiz);
 	void guardarFigura(Figura *objeto, YAML::Node *nodoRaiz);
 	void visit (Motor * motor);
 	void visit (Plataforma * plataforma);

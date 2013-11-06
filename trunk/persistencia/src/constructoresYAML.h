@@ -34,20 +34,6 @@ struct convert<Nivel> {
 	}
 };
 
-template<>
-struct convert<Jugador> {
-	static Node encode(const Jugador& objeto) {
-		Node node;
-		node["numero"] = objeto.getNumero();
-		return node;
-	}
-
-	static bool decode(const Node& node, Jugador& objeto) {
-		if (node.size() != 1) return false;
-		objeto.setNumero(node["numero"].as<int>());
-		return true;
-	}
-};
 
 template<>
 struct convert<FactoryParam> {
@@ -87,6 +73,36 @@ struct convert<Area> {
 	}
 };
 
+
+template<>
+struct convert<Jugador> {
+	static Node encode(const Jugador& objeto) {
+		Node node;
+		node["numero"] = objeto.getNumero();
+		node["Area"] = *(objeto.getArea());
+		const std::list<FactoryParam*> lista = objeto.getParametrosFactories();
+		std::list<FactoryParam*>::iterator iterador;
+		for(iterador == lista.begin(); iterador != lista.end(); ++iterador){
+			node["ParametrosFactories"].push_back(*(*iterador));
+		}
+		return node;
+	}
+
+	static bool decode(const Node& node, Jugador& objeto) {
+		if (node.size() != 3) return false;
+		objeto.setNumero(node["numero"].as<int>());
+		Area area = node["Area"].as<Area>();
+		objeto.setArea(new Area(area));
+		std::list<FactoryParam*> lista;
+		YAML::Node nodoFactories = node["ParametrosFactories"];
+		for (std::size_t i = 0; i < nodoFactories.size(); i++) {
+			FactoryParam obj = nodoFactories[i].as<FactoryParam>();
+			lista.push_back( new FactoryParam(obj));
+		}
+		objeto.setParametrosFactories(lista);
+		return true;
+	}
+};
 
 template<>
 struct convert<BolaBoliche> {

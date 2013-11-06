@@ -35,6 +35,10 @@ void ObjetoDAO::guardarFigura(Figura* objeto, YAML::Node *nodoRaiz) {
 	objeto->acept(this);
 }
 
+void ObjetoDAO::guardarJugador(Jugador* objeto, YAML::Node *nodoRaiz) {
+	(*nodoRaiz)["Jugadores"].push_back(*objeto);
+}
+
 
 
 

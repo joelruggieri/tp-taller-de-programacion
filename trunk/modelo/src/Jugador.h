@@ -19,13 +19,13 @@ public:
 	Jugador();
 	Jugador(const Jugador& jugador);
 	virtual ~Jugador();
-	Area* getArea();
+	Area* getArea() const;
 	void setArea(Area* unArea);
 	int getNumero() const;
 	void setNumero(int numero);
-	void setParametrosFactories(std::list<FactoryParam*>&);
+	void setParametrosFactories(std::list<FactoryParam*>);
 	void agregarParametroFactory(FactoryParam*);
-	std::list<FactoryParam*>& getParametrosFactories();
+	std::list<FactoryParam*> getParametrosFactories() const;
 };
 
 #endif /* JUGADOR_H_ */
