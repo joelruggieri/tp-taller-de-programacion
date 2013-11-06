@@ -7,7 +7,7 @@
 
 #include "MouseControllerPrioridades.h"
 
-
+namespace CLIENTE {
 MouseControllerPrioridades::~MouseControllerPrioridades() {
 	delete this->eventController;
 }
@@ -29,4 +29,5 @@ MouseEventController* MouseControllerPrioridades::getEventController() {
 
 int MouseControllerPrioridades::getPrioridadMotion() const {
 	return prioridadMotion;
+}
 }

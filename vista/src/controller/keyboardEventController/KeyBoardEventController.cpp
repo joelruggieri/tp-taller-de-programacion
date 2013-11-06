@@ -6,7 +6,7 @@
  */
 
 #include "KeyBoardEventController.h"
-
+namespace CLIENTE {
 KeyBoardEventController::KeyBoardEventController() {
 	// TODO Auto-generated constructor stub
 
@@ -16,3 +16,4 @@ KeyBoardEventController::~KeyBoardEventController() {
 	// TODO Auto-generated destructor stub
 }
 
+}

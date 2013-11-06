@@ -11,7 +11,7 @@
 #include "../../ConstantesVista.h"
 //ViewMotorFactory::ViewMotorFactory(SimpleEditorAnguloFijo * editor):ViewFiguraFactory("resource/pelota.png", editor) {
 //}
-
+namespace CLIENTE {
 ViewMotorFactory::ViewMotorFactory():ViewFiguraFactory("resource/mot.png") {
 }
 
@@ -26,4 +26,4 @@ FiguraView* ViewMotorFactory::crear(int x, int y, int w, int h) {
 	r->adaptarDimensionLogica(5.0 * 2 ,5.0 * 2,ancho,alto);
 	return new MotorView(x, y, ancho, alto, this->textura);
 }
-
+}

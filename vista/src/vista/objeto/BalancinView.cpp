@@ -6,7 +6,7 @@
  */
 
 #include "BalancinView.h"
-
+namespace CLIENTE {
 BalancinView::BalancinView(int x, int y, int w, int h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
 
 }
@@ -16,4 +16,6 @@ BalancinView::~BalancinView() {
 }
 
 void BalancinView::update(ViewMsj*) {
+}
+
 }

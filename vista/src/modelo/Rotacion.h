@@ -7,7 +7,7 @@
 
 #ifndef ROTACION_H_
 #define ROTACION_H_
-
+namespace CLIENTE {
 class Rotacion {
 private:
 	double xc, yc;
@@ -27,5 +27,5 @@ public:
 	double getDireccion() const;
 	void setAngulo(double);
 };
-
+}
 #endif /* ROTACION_H_ */

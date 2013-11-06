@@ -11,6 +11,8 @@
 #include "Resizeable.h"
 #include "../controller/Resizer.h"
 #include "src/mensajes/viewMensaje/ViewMsj.h"
+
+namespace CLIENTE {
 class View : public Dibujable, public Resizeable{
 private:
 	int w,h;
@@ -50,4 +52,5 @@ public:
 
 };
 
+}
 #endif /* VIEW_H_ */

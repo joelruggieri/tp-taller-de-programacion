@@ -10,6 +10,8 @@
 
 #include "SDL2/SDL.h"
 #include "View.h"
+
+namespace CLIENTE {
 class FactoryView: public View {
 private:
 	SDL_Texture * textura;
@@ -21,5 +23,5 @@ public:
 	void resizear();
 	void update(ViewMsj *);
 };
-
+}
 #endif /* FACTORYVIEW_H_ */

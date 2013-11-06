@@ -14,7 +14,7 @@
 #include <utility>
 #include <string>
 using namespace std;
-
+namespace CLIENTE {
 
 class CargadorDeTextures {
 public:
@@ -35,4 +35,6 @@ protected:
 	CargadorDeTextures &operator= (const CargadorDeTextures & ) ;
 
 };
+
+}
 #endif /* CARGADORDETEXTURES_H_ */

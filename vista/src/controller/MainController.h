@@ -12,17 +12,22 @@
 #include "SDL2/SDL_image.h"
 #include "JuegoEventsController.h"
 #include "DrawController.h"
+#include "GeneralEventController.h"
+#include "src/threading/ColaEventos.h"
 using namespace std;
-
+namespace CLIENTE {
 class MainController: public DrawController {
 private:
 	SDL_Renderer * render;
 	JuegoEventsController * juegoController;
+	GeneralEventController * crearGeneralEventController();
+	ColaEventos * salida;
 public:
-	MainController();
+
+	MainController(ColaEventos * salida);
 	virtual ~MainController();
 	int run();
 	void dibujar();
 };
-
+}
 #endif /* MAINCONTROLLER_H_ */

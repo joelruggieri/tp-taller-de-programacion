@@ -9,7 +9,7 @@
 #define VIEWSOGAFACTORY_H_
 #include "ViewFiguraFactory.h"
 
-namespace std {
+namespace CLIENTE {
 
 class ViewSogaFactory: public ViewFiguraFactory {
 

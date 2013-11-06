@@ -11,7 +11,7 @@
 #include "src/Logger.h"
 #include <string>
 using namespace std;
-
+namespace CLIENTE {
 Rotacion::Rotacion(int x, int y, int x0, int y0, float anguloI) {
 	this->xc = x;
 	this->yc = y;
@@ -93,4 +93,5 @@ Rotacion::~Rotacion() {
 void Rotacion::setAngulo(double angulo) {
 	this->direccion =  this->angulo - angulo;
 	this->angulo = angulo;
+}
 }

@@ -10,7 +10,7 @@
 #include <list>
 #include "Observer.h"
 using namespace std;
-
+namespace CLIENTE {
 class Observable {
 	list<Observer*> observers;
 public:
@@ -19,5 +19,5 @@ public:
 	void notifY(event_type);
 	void addObserver(Observer*);
 };
-
+}
 #endif /* OBSERVABLE_H_ */

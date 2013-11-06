@@ -8,7 +8,7 @@
 #ifndef MOUSECONTROLLERPRIORIDADES_H_
 #define MOUSECONTROLLERPRIORIDADES_H_
 #include "MouseEventController.h"
-
+namespace CLIENTE {
 class MouseControllerPrioridades {
 private:
 	int prioridadClickUpDown,prioridadMotion;
@@ -21,4 +21,5 @@ public:
 	MouseEventController* getEventController();
 };
 
+}
 #endif /* MOUSECONTROLLERPRIORIDADES_H_ */

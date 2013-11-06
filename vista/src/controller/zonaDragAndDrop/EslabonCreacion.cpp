@@ -10,7 +10,7 @@
 #include "../Resizer.h"
 #include "src/Logger.h"
 using namespace std;
-
+namespace CLIENTE {
 EslabonCreacion::EslabonCreacion(string tag, Cuadrado * cuerpo) {
 	this->siguiente = NULL;
 	this->cuerpo = cuerpo;
@@ -38,4 +38,5 @@ string EslabonCreacion::atender(float posX, float posY, float corrimientoScroll)
 		return this->siguiente->atender(posX, posY, corrimientoScroll);
 	}
 	return NULL;
+}
 }

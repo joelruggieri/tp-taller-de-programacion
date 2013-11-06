@@ -9,6 +9,8 @@
 #define FLECHASCROLLVIEW_H_
 #include "SDL2/SDL.h"
 #include "View.h"
+
+namespace CLIENTE {
 class FlechaScrollView: public View {
 private:
 	bool abajo;
@@ -27,5 +29,5 @@ public:
 	bool isPresionado() const;
 	void resizear();
 };
-
+}
 #endif /* FLECHASCROLLVIEW_H_ */

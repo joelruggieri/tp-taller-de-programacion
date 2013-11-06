@@ -6,7 +6,7 @@
  */
 
 #include "MouseEventController.h"
-
+namespace CLIENTE {
 MouseEventController::MouseEventController() {
 	// TODO Auto-generated constructor stub
 
@@ -16,3 +16,4 @@ MouseEventController::~MouseEventController() {
 	// TODO Auto-generated destructor stub
 }
 
+}

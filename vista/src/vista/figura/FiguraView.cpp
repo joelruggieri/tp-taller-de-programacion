@@ -4,7 +4,7 @@
 #include "src/Logger.h"
 #include <cmath>
 using namespace std;
-
+namespace CLIENTE {
 /********************************************************
  * FIGURAVIEW
 
@@ -44,4 +44,5 @@ SDL_Texture* FiguraView::getTexture() {
 void FiguraView::resizear() {
 	super::resizear();
 	this->tl = Resizer::Instance()->getTransformacionToModelo();
+}
 }

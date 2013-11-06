@@ -10,6 +10,7 @@
 
 #include "../../ConstantesVista.h"
 #include "../../vista/objeto/BalancinView.h"
+namespace CLIENTE {
 ViewBalancinFactory::ViewBalancinFactory(): ViewFiguraFactory(PATH_VISTA_BALANCIN_F) {
 
 }
@@ -27,4 +28,5 @@ ViewBalancinFactory::~ViewBalancinFactory() {
 	// TODO Auto-generated constructor stub
 }
 
+}
 

@@ -8,7 +8,7 @@
 #ifndef PLATAFORMAVIEW_H_
 #define PLATAFORMAVIEW_H_
 #include "ObjetoView.h"
-
+namespace CLIENTE {
 class PlataformaView: public ObjetoView {
 private:
 	typedef FiguraView super;
@@ -17,5 +17,5 @@ public:
 	virtual ~PlataformaView();
 	void update(ViewMsj *);
 };
-
+}
 #endif /* PLATAFORMAVIEW_H_ */

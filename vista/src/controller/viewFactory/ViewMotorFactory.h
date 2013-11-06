@@ -8,6 +8,8 @@
 #ifndef VIEWMOTORFACTORY_H_
 #define VIEWMOTORFACTORY_H_
 #include "ViewFiguraFactory.h"
+
+namespace CLIENTE {
 class ViewMotorFactory: public ViewFiguraFactory {
 public:
 //	ViewMotorFactory(SimpleEditorAnguloFijo * editor);
@@ -16,4 +18,5 @@ public:
 	FiguraView * crear(int, int, int, int);
 };
 
+}
 #endif /* VIEWMOTORFACTORY_H_ */

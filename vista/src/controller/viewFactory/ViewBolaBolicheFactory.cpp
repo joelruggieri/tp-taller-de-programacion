@@ -9,7 +9,10 @@
 #include  "../../vista/objeto/BolaBolicheView.h"
 #include "../Resizer.h"
 #include "../../ConstantesVista.h"
-ViewBolaBolicheFactory::ViewBolaBolicheFactory(): ViewFiguraFactory(PATH_VISTA_BOLA) {
+
+namespace CLIENTE {
+ViewBolaBolicheFactory::ViewBolaBolicheFactory() :
+		ViewFiguraFactory(PATH_VISTA_BOLA) {
 
 }
 
@@ -25,3 +28,4 @@ FiguraView* ViewBolaBolicheFactory::crear(int x, int y) {
 	return NULL;
 }
 
+}

@@ -10,7 +10,7 @@
 #include <iostream>
 using namespace std;
 #include <cmath>
-
+namespace CLIENTE {
 Resizer* Resizer::pinstance = 0;// Inicializar el puntero
 Resizer* Resizer::Instance (int x, int y, float xLogico, float yLogico )
 {
@@ -189,4 +189,5 @@ float Resizer::getRelacionY() {
 Transformacion& Resizer::getTransformacionToModelo() {
 	transf.setVector(0,0);
 	return this->transf;
+}
 }

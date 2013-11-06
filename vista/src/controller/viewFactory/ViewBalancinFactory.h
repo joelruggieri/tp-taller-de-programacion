@@ -8,7 +8,7 @@
 #ifndef VIEWBALANCINFACTORY_H_
 #define VIEWBALANCINFACTORY_H_
 #include "ViewFiguraFactory.h"
-
+namespace CLIENTE {
 class ViewBalancinFactory: public ViewFiguraFactory {
 
 public:
@@ -18,3 +18,4 @@ public:
 };
 
 #endif /* VIEWBALANCINFACTORY_H_ */
+}

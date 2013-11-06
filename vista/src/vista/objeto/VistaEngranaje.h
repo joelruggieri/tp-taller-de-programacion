@@ -8,8 +8,8 @@
 #ifndef VISTAENGRANAJE_H_
 #define VISTAENGRANAJE_H_
 	#include "ObjetoView.h"
-class SDL_Texture;
 
+namespace CLIENTE {
 class VistaEngranaje: public ObjetoView {
 	typedef FiguraView super;
 public:
@@ -18,5 +18,5 @@ public:
 	void  update(ViewMsj* );
 	int getLayer();
 };
-
+}
 #endif /* VISTAENGRANAJE_H_ */

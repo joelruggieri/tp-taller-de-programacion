@@ -11,7 +11,7 @@
 #include "../vista/Resizeable.h"
 #include "../modelo/Transformacion.h"
 using namespace std;
-
+namespace CLIENTE {
 class Resizer {
 private:
 	Transformacion transf;
@@ -61,8 +61,8 @@ private:
 
 	static Resizer* pinstance;
 
-
-
 };
+
+}
 
 #endif /* RESIZER_H_ */

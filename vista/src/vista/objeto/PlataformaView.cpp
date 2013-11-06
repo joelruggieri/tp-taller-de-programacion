@@ -6,6 +6,8 @@
  */
 
 #include "PlataformaView.h"
+
+namespace CLIENTE {
 PlataformaView::PlataformaView(int x, int y, int w, int h, SDL_Texture * textura) : ObjetoView(x,y,w,h,textura) {
 
 }
@@ -22,4 +24,5 @@ void PlataformaView::update(ViewMsj* m){
 //	float nuevoAncho;
 //	tl.getResultadoInverso(nuevoAncho,y);
 //	this->setW(nuevoAncho);
+}
 }

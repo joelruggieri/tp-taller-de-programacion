@@ -10,6 +10,7 @@
 
 #include "ViewFiguraFactory.h"
 
+namespace CLIENTE {
 class SimpleEditorEstirar;
 
 class VistaCintaTransportadoraFactory: public ViewFiguraFactory {
@@ -20,3 +21,4 @@ public:
 };
 
 #endif /* VistaCINTATRANSPORTADORAFACTORY_H_ */
+}

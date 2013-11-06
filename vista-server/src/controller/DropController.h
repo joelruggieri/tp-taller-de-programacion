@@ -12,7 +12,6 @@
 #include "src/figuraFactory/FiguraFactory.h"
 #include "../vista/figura/FiguraView.h"
 #include "zonaDragAndDrop/ZonaDragAndDrop.h"
-#include "mouseEventController/MouseEventController.h"
 #include "../vista/figura/FiguraView.h"
 #include "../vista/objeto/PlataformaView.h"
 #include "../vista/objeto/BalancinView.h"

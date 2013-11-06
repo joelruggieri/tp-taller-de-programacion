@@ -9,6 +9,8 @@
 #define VIEWCONICONO_H_
 #include "View.h"
 #include "SDL2/SDL.h"
+
+namespace CLIENTE {
 class ViewConIcono: public Dibujable {
 private:
 	SDL_Texture * textura;
@@ -25,6 +27,6 @@ public:
 	void dibujarse(SDL_Renderer *);
 	void dibujarse(SDL_Renderer *, SDL_Rect& destino);
 };
-
+}
 #endif /* VIEWCONICONO_H_ */
 

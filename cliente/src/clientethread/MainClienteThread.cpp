@@ -22,8 +22,9 @@
 #include "ConexionException.h"
 #include "src/threading/IOThread.h"
 #include "errno.h"
+#include "src/controller/MainController.h"
 using namespace std;
-
+using namespace CLIENTE;
 MainClienteThread::MainClienteThread() {
 	colaEntrada = new ColaEventos();
 	colaSalida = new ColaEventos();
@@ -42,14 +43,8 @@ void MainClienteThread::run() {
 			Status* status = new Status(TIMEOUT);
 			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
 			thread->run();
-			while (true) {
-				usleep(1000000);
-				ClickMsj *msj = new ClickMsj(10,10,true,true,false,false);
-//				MensajePlano * msj = new MensajePlano("prueba");
-				colaSalida->push(msj);
-//				log.debug("Se evia mensaje de prueba");
-			}
-
+			MainController controller(colaSalida);
+			controller.run();
 		}
 		if (SERVIDOR_ERROR == result) {
 			log.error("No se puede conectar con el servidor, no se ha obtenido respuesta");
@@ -76,13 +71,13 @@ RESULTADO_CONEXION MainClienteThread::conectar(int &sockfd) {
 			tag = MSJ_JUGADOR_RECHAZADO;
 			if (respuesta == tag) {
 				close(sockfd);
-				sockfd =0;
+				sockfd = 0;
 				log.info("Maxima cantidad de jugadores superada");
 				resultretry = SERVIDOR_OCUPADO;
 			}
 		} catch (ConexionException & e) {
 			log.error("No se pudo conectar con el servidor");
-			sockfd =0;
+			sockfd = 0;
 			resultretry = SERVIDOR_ERROR;
 		}
 		sleep(1);

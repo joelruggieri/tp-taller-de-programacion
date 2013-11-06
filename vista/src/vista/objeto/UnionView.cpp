@@ -9,7 +9,7 @@
 #include "SDL2/SDL.h"
 #include "../../ConstantesVista.h"
 #include "../CargadorDeTextures.h"
-
+namespace CLIENTE {
 UnionView::UnionView(int x,int y, SDL_Texture * textura):ObjetoView(x,y,20,20,CargadorDeTextures::Instance()->cargarTexture(PATH_EDICION_UNION)) {
 	xDesde = 0;
 	yDesde = 0;
@@ -80,4 +80,5 @@ void UnionView::resizear() {
 
 int UnionView::getLayer() {
 	return LAYER_UNIONES;
+}
 }

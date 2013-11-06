@@ -6,7 +6,7 @@
  */
 
 #include "View.h"
-
+namespace CLIENTE {
 View::View(int x, int y, int w, int h) {
 	this->w = w;
 	this->h = h;
@@ -54,4 +54,5 @@ void View::resizear() {
 	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
 
+}
 }

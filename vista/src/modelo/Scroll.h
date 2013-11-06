@@ -12,7 +12,7 @@
 #include "Observable.h"
 #include <list>
 using namespace std;
-
+namespace CLIENTE {
 class Scroll : public Observable{
 
 private:
@@ -34,5 +34,5 @@ public:
 	int getltimoClick() const;
 	bool mouseScroll(float x, float y, int amountScrolled, int xC, int yC, int w, int h);
 };
-
+}
 #endif /* SCROLL_H_ */

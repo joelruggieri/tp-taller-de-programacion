@@ -11,6 +11,7 @@
 #include "../../vista/ViewConBorde.h"
 #include "../../vista/ViewConFondo.h"
 #include "SDL2/SDL.h"
+namespace CLIENTE {
 ZonaPlay::ZonaPlay(float x, float y,ColaEventos * cola) {
 	//ENTREGA3 PONERLO DONDE CORRESPONDA.
 	cuerpo = new Cuadrado(x, y, 20, 10);
@@ -28,4 +29,5 @@ bool ZonaPlay::click(float x, float y) {
 		return true;
 	}
 	return false;
+}
 }

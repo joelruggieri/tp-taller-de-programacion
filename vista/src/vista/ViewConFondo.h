@@ -8,7 +8,7 @@
 #ifndef VIEWCONFONDO_H_
 #define VIEWCONFONDO_H_
 #include "View.h"
-
+namespace CLIENTE {
 class ViewConFondo: public View {
 private:
 	View *decorable;
@@ -31,5 +31,5 @@ public:
 	void setXc(int xc);
 	void setYc(int yc);
 };
-
+}
 #endif /* VIEWCONFONDO_H_ */

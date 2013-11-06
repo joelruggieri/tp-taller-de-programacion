@@ -9,6 +9,7 @@
 #include <iostream>
 #include "../controller/Resizer.h"
 using namespace std;
+namespace CLIENTE {
 Scroll::Scroll(Cuadrado * flechaSup, Cuadrado* flechaInf,int velocidad, int max) {
 	this->ultimoClick = 0;
 	this->sup = flechaSup;
@@ -92,4 +93,5 @@ void Scroll::actualizarVistas(int corrimiento) {
 
 int Scroll::getltimoClick() const {
 	return this->ultimoClick;
+}
 }

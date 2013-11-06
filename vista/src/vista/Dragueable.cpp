@@ -8,7 +8,8 @@
 #include "Dragueable.h"
 
 
-
+namespace CLIENTE {
 Dragueable::~Dragueable() {
 	// TODO Auto-generated destructor stub
+}
 }

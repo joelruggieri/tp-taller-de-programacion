@@ -10,6 +10,7 @@
 
 #include "ViewFiguraFactory.h"
 
+namespace CLIENTE {
 class SimpleEditorAnguloFijo;
 
 class VistaEngranajeFactory: public ViewFiguraFactory {
@@ -18,5 +19,5 @@ public:
 	virtual ~VistaEngranajeFactory();
 	FiguraView * crear(int, int);
 };
-
+}
 #endif /* VISTAENGRANAJEFACTORY_H_ */

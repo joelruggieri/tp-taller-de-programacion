@@ -10,7 +10,7 @@
 #include "SDL2/SDL_image.h"
 #include "SDL2/SDL.h"
 #include <iostream>
-
+namespace CLIENTE {
 
 class Dibujable{
 
@@ -23,4 +23,5 @@ public:
 
 };
 
+}
 #endif /* DIBUJABLE_H_ */

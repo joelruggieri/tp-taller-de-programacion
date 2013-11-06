@@ -11,7 +11,6 @@
 
 #include <list>
 #include <SDL2/SDL.h>
-#include "mouseEventController/MouseEventController.h"
 #include "DrawController.h"
 #include "src/mensajes/userEvents/UserEventVisitor.h"
 #include "src/mensajes/userEvents/UserEventMsj.h"

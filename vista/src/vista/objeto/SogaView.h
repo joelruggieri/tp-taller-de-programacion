@@ -9,8 +9,7 @@
 #define SOGAVIEW_H_
 
 #include "UnionView.h"
-
-struct SDL_Texture;
+namespace CLIENTE {
 
 class SogaView: public UnionView {
 public:
@@ -21,5 +20,5 @@ public:
 private:
 	typedef UnionView super;
 };
-
+}
 #endif /* SOGAVIEW_H_ */

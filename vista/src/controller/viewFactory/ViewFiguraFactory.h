@@ -13,7 +13,7 @@
 #include "SDL2/SDL.h"
 using namespace std;
 
-
+namespace CLIENTE {
 //ENTREGA3 CAMBIA LA IDEA DE ESTA FACTORIES, ESTAS FACTORIES AHORA SON PARA LO QUE VIENE DESDE EL SERVER PARA CREAR, NO PARA CREAR ACA EN CLIENTE.
 //ASI QUE LE BORRO EL CREARVISTAPROPIA
 
@@ -30,5 +30,5 @@ public:
 	float getAncho() const;
 	void setAncho(float ancho);
 };
-
+}
 #endif /* VIEWFIGURAFACTORY_H_ */

@@ -8,7 +8,7 @@
 #ifndef RESIZEABLE_H_
 #define RESIZEABLE_H_
 
-
+namespace CLIENTE {
 class Resizeable {
 public:
 	Resizeable();
@@ -16,4 +16,5 @@ public:
 	virtual ~Resizeable();
 };
 
+}
 #endif /* RESIZEABLE_H_ */

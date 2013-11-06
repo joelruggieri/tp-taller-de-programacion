@@ -8,6 +8,9 @@
 #ifndef VIEWPELOTAJUEGOFACTORY_H_
 #define VIEWPELOTAJUEGOFACTORY_H_
 #include "ViewFiguraFactory.h"
+
+
+namespace CLIENTE {
 class ViewPelotaJuegoFactory : public ViewFiguraFactory{
 public:
 	ViewPelotaJuegoFactory();
@@ -16,3 +19,4 @@ public:
 };
 
 #endif /* VIEWPELOTAJUEGOFACTORY_H_ */
+}

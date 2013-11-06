@@ -10,6 +10,9 @@
 #include "../../modelo/Cuadrado.h"
 #include "../../vista/BotonSwitch.h"
 #include <src/threading/ColaEventos.h>
+
+namespace CLIENTE {
+
 class ZonaPlay {
 private:
 	//ENTREGA3 EL BOTON SWITCH ESTA COMPARTIDO ENTRE THREADS, GUARDA
@@ -22,4 +25,5 @@ public:
 	bool click(float x, float y);
 };
 
+}
 #endif /* ZONAPLAY_H_ */

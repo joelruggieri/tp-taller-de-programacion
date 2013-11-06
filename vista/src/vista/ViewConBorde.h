@@ -9,7 +9,7 @@
 #define VIEWCONBORDE_H_
 #include "View.h"
 #include "SDL2/SDL.h"
-
+namespace CLIENTE {
 class ViewConBorde: public View {
 private:
 	View * decorable;
@@ -48,4 +48,5 @@ public:
 };
 const struct ViewConBorde::RGB COLOR_BORDE_EXTERNO = {94,139,0};
 const struct ViewConBorde::RGB COLOR_BORDE_INTERNO = {22, 41, 28};
+}
 #endif /* VIEWCONBORDE_H_ */

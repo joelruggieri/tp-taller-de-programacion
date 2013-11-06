@@ -6,6 +6,8 @@
  */
 
 #include "ScrollView.h"
+
+namespace CLIENTE {
 ScrollView::ScrollView(FlechaScrollView* flechaArriba,
 		FlechaScrollView* flechaAajo, Scroll* scroll, int sleep):View(0,0,0,0) {
 	this->abajo = flechaAajo;
@@ -56,4 +58,6 @@ void ScrollView::resizear() {
 
 void ScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
 	this->dibujarse(renderer);
+}
+
 }

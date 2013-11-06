@@ -6,7 +6,7 @@
  */
 
 #include "ViewConBorde.h"
-
+namespace CLIENTE {
 ViewConBorde::ViewConBorde(View * view) :
 		View(view->getXCentro(), view->getYCentro(), view->getW(), view->getH()) {
 	this->decorable = view;
@@ -172,4 +172,5 @@ void ViewConBorde::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
 
 void ViewConBorde::setAjustarTamanio(bool bool1) {
 	this->ajustarTamanio = bool1;
+}
 }

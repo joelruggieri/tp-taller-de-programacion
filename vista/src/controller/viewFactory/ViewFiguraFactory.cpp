@@ -7,6 +7,9 @@
 
 #include "ViewFiguraFactory.h"
 #include "../../vista/CargadorDeTextures.h"
+
+namespace CLIENTE {
+
 ViewFiguraFactory::ViewFiguraFactory(string path) {
 	CargadorDeTextures* texturas = CargadorDeTextures::Instance();
 	this->textura = texturas->cargarTexture(path);
@@ -17,3 +20,4 @@ ViewFiguraFactory::~ViewFiguraFactory() {
 	// TODO Auto-generated destructor stub
 }
 
+}

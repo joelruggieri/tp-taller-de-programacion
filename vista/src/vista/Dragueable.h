@@ -11,11 +11,12 @@
 #include "Resizeable.h"
 #include "View.h"
 
+namespace CLIENTE {
 class Dragueable{
 public:
 	virtual ~Dragueable();
 	virtual bool isDragging() = 0;
 	virtual View * getDragueado() = 0;
 };
-
+}
 #endif /* DRAGUEABLE_H_ */

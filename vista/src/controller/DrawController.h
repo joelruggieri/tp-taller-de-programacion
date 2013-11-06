@@ -8,6 +8,7 @@
 #ifndef DRAWCONTROLLER_H_
 #define DRAWCONTROLLER_H_
 
+namespace CLIENTE {
 class DrawController {
 public:
 	virtual ~DrawController(){
@@ -17,4 +18,5 @@ public:
 
 };
 
+}
 #endif /* DRAWCONTROLLER_H_ */

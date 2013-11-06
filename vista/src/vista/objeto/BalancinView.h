@@ -9,15 +9,13 @@
 #define BALANCINVIEW_H_
 
 
-class SimpleEditorAnguloFijo;
-struct SDL_Texture;
 #include "ObjetoView.h"
-
+namespace CLIENTE {
 class BalancinView: public ObjetoView {
 public:
 	BalancinView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~BalancinView();
 	void update(ViewMsj *);
 };
-
+}
 #endif /* BALANCINVIEW_H_ */

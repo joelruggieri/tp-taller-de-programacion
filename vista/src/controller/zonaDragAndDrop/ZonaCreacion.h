@@ -20,7 +20,7 @@
 #include <src/threading/ColaEventos.h>
 using namespace std;
 
-
+namespace CLIENTE {
 class ZonaCreacion {
 private:
 	EslabonCreacion * inicioCadena;
@@ -37,11 +37,11 @@ private:
 	float margenSuperior;
 	void agregarEslabon(EslabonCreacion* eslabon);
 public:
-	ZonaCreacion(list<string*> & factoriestags, float x, float margenSuperior, ColaEventos * cola);
+	ZonaCreacion(list<string> & factoriestags, float x, float margenSuperior, ColaEventos * cola);
 	virtual ~ZonaCreacion();
 	bool click(float x, float y);
 	bool mouseScroll(float x, float y, int amountScrolled);
 	bool enContacto(float posX, float posY);
 };
-
+}
 #endif /* ZONACREACION_H_ */
