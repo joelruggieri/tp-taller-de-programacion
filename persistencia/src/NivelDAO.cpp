@@ -175,6 +175,16 @@ void NivelDAO::guardarNivel(Nivel *nivel) {
 		vacio = false;
 	}
 	if(!vacio) nodoRaiz[OBJETOS] = nodoFiguras;
+	//////////////////
+	std::list<Jugador*> &listaJugadores = nivel->getJugadores();
+	std::list<Jugador*>::iterator iterador;
+	YAML::Node nodoJugadores;
+	bool vacio1 = true;
+	for (iterador == listaJugadores.begin(); iterador != listaJugadores.end(); ++iterador) {
+		oDao.guardarJugador(*iterador, &nodoJugadores);
+		vacio1 = false;
+	}
+	if(!vacio1) nodoRaiz[JUGADORES] = nodoJugadores;
 	archivoDelNivel->sobreescribir(nodoRaiz);
 	delete archivoDelNivel;
 }
@@ -220,7 +230,7 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 	return lista;
 }
 
-Area* NivelDAO::leerArea (YAML::Node nodoJugador){
+/*Area* NivelDAO::leerArea (YAML::Node nodoJugador){
 	Area area = nodoJugador["Area"].as<Area>();
 	Area* elArea = new Area(area);
 	return elArea;
@@ -253,7 +263,7 @@ std::list<FactoryParam*> NivelDAO::leerParametrosDeFactories(YAML::Node nodoJuga
 			}
 		}
 		return lista;
-}
+}*/
 
 std::list<Jugador*> NivelDAO::leerJugadores(YAML::Node jugadores){
 	std::list<Jugador*> lista;
@@ -261,11 +271,7 @@ std::list<Jugador*> NivelDAO::leerJugadores(YAML::Node jugadores){
 	for (std::size_t i = 0; i < jugadores.size(); i++) {
 		try {
 			Jugador obj = jugadores[i].as<Jugador>();
-			Area* area = this->leerArea(jugadores[i]);
-			objetosDeJugador = leerParametrosDeFactories(jugadores[i]);
-			obj.setArea(area);
-			obj.setParametrosFactories(objetosDeJugador);
-			lista.push_back( new Jugador(obj));
+			lista.push_back(new Jugador(obj));
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
