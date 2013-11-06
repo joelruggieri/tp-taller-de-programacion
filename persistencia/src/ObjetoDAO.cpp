@@ -36,7 +36,7 @@ void ObjetoDAO::guardarFigura(Figura* objeto, YAML::Node *nodoRaiz) {
 }
 
 void ObjetoDAO::guardarJugador(Jugador* objeto, YAML::Node *nodoRaiz) {
-	(*nodoRaiz)["Jugadores"].push_back(*objeto);
+	(*nodoRaiz).push_back(*objeto);
 }
 
 
