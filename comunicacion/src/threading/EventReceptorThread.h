@@ -7,13 +7,12 @@
 
 #ifndef EVENTRECEPTORTHREAD_H_
 #define EVENTRECEPTORTHREAD_H_
-#include "src/controller/GeneralEventController.h"
-#include "src/mensajes/DistribuidorMensajes.h"
-#include "src/mensajes/userEvents/UserEventVisitor.h"
-#include "src/mensajes/viewMensaje/ViewMsjVisitor.h"
-#include "src/mensajes/MensajePlanoVisitor.h"
-#include "src/threading/ColaEventos.h"
-#include "src/threading/ThreadPTM.h"
+#include "../mensajes/DistribuidorMensajes.h"
+#include "../mensajes/userEvents/UserEventVisitor.h"
+#include "../mensajes/viewMensaje/ViewMsjVisitor.h"
+#include "../mensajes/MensajePlanoVisitor.h"
+#include "ColaEventos.h"
+#include "ThreadPTM.h"
 class EventReceptorThreadParams {
 private:
 	ColaEventos * colaIn;

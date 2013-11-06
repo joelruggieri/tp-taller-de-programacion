@@ -17,7 +17,8 @@ void * func_entrada(void * arg) {
 	ColaEventos* colaEntrada = params->getCola();
 	Status * status = params->getStatus();
 	int socket = params->getSocketDesc();
-	Serializador * serializador = new Serializador();
+	int destinatario = params->getJugador();
+	Serializador * serializador = new Serializador(destinatario);
 	zona->setDatosLiberables((void*) serializador);
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
@@ -41,7 +42,8 @@ void * func_salida(void * arg) {
 	IOThreadParams * params = (IOThreadParams *) (zona->getParams());
 	ColaEventos* colaSalida = params->getCola();
 	int socketDesc = params->getSocketDesc();
-	Serializador*  serializador = new Serializador();
+	int nroJugador= params->getJugador();
+	Serializador*  serializador = new Serializador(nroJugador);
 	zona->setDatosLiberables((void *) serializador);
 	Status * status = params->getStatus();
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
@@ -76,9 +78,10 @@ void * clean(void * arg) {
 	return 0;
 }
 
-IOThread::IOThread(ColaEventos* a, ColaEventos* b, Status * status, int socket) {
+IOThread::IOThread(ColaEventos* a, ColaEventos* b, Status * status, int socket, int jugador) {
 	this->colaEntrada = a;
 	this->colaSalida = b;
+	this->jugador = jugador;
 	this->status  = status;
 	thEntrada = NULL;
 	thSalida = NULL;
@@ -89,18 +92,19 @@ IOThread::IOThread(ColaEventos* a, ColaEventos* b, Status * status, int socket) 
 
 void IOThread::run() {
 	if (thSalida == NULL) {
-		this->param1 = new IOThreadParams(this->colaEntrada, status, this->socket);
+		this->param1 = new IOThreadParams(this->colaEntrada, status, this->socket, jugador);
 		thEntrada = new ThreadPTM(func_entrada, clean, (void *) param1);
 
-		this->param2 = new IOThreadParams(this->colaSalida, status, this->socket);
+		this->param2 = new IOThreadParams(this->colaSalida, status, this->socket, jugador);
 		thSalida = new ThreadPTM(func_salida, clean, (void *) param2);
 	}
 }
 
-IOThreadParams::IOThreadParams(ColaEventos* cola, Status* status, int socketDesc) {
+IOThreadParams::IOThreadParams(ColaEventos* cola, Status* status, int socketDesc,  int jugador) {
 	this->cola = cola;
 	this->status = status;
 	this->socketDesc = socketDesc;
+	this->jugador = jugador;
 }
 
 ColaEventos* IOThreadParams::getCola() {
@@ -151,4 +155,8 @@ IOThread::~IOThread() {
 }
 
 IOThreadParams::~IOThreadParams() {
+}
+
+int IOThreadParams::getJugador() {
+	return jugador;
 }

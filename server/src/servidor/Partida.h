@@ -12,9 +12,10 @@
 #include "threading/Disponibilidad.h"
 #include <list>
 #include "threading/EventDispatcherThread.h"
-#include "threading/EventReceptorThread.h"
+#include "src/threading/EventReceptorThread.h"
 #include "threading/ThreadCleaner.h"
 #include "src/Serializador.h"
+#include "src/controller/GeneralEventController.h"
 using namespace std;
 
 class Partida {

@@ -22,6 +22,8 @@ public:
 	bool isLeft() const;
 	float getX() const;
 	float getY() const;
+	void serialize(YAML::Node * nodo);
+	NetworkMensaje * deserialize(YAML::const_iterator & it);
 };
 
 #endif /* CLICKDOWNMSJ_H_ */

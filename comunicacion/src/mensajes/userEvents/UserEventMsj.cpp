@@ -6,7 +6,7 @@
  */
 
 #include "UserEventMsj.h"
-
+#include "../MensajeVisitor.h"
 UserEventMsj::UserEventMsj(bool shift, bool ctrl) {
 	this->ctrl = ctrl;
 	this->shift = shift;
@@ -23,3 +23,8 @@ bool UserEventMsj::isCtrl() const {
 bool UserEventMsj::isShift() const {
 	return shift;
 }
+void UserEventMsj::acept(MensajeVisitor* v) {
+	v->visit(this);
+}
+
+

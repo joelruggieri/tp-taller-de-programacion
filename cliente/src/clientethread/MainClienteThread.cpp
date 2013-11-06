@@ -13,13 +13,14 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <list>
-#include "src/mensajes/MensajePlano.h"
+#include "src/mensajes/userEvents/ClickMsj.h"
 #include <src/Serializador.h>
 #include <list>
 #include "src/ConstantesComunicacion.h"
 #include "src/Logger.h"
 #include "src/SerializacionException.h"
 #include "ConexionException.h"
+#include "src/threading/IOThread.h"
 #include "errno.h"
 using namespace std;
 
@@ -39,11 +40,12 @@ void MainClienteThread::run() {
 		if (SERVIDOR_CONECTADO == result) {
 			log.info("Conectado con servidor");
 			Status* status = new Status(TIMEOUT);
-			thread = new IOThread(colaEntrada, colaSalida, status, sockfd);
+			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
 			thread->run();
 			while (true) {
-				usleep(100000);
-				MensajePlano * msj = new MensajePlano("prueba");
+				usleep(1000000);
+				ClickMsj *msj = new ClickMsj(10,10,true,true,false,false);
+//				MensajePlano * msj = new MensajePlano("prueba");
 				colaSalida->push(msj);
 //				log.debug("Se evia mensaje de prueba");
 			}
@@ -95,7 +97,7 @@ string MainClienteThread::tryConnect(int& socketfd) {
 	socketfd = socket(AF_INET, SOCK_STREAM, 0); // ¡Comprueba errores!
 	dest_addr.sin_family = AF_INET;
 	// Ordenación de máquina
-	dest_addr.sin_port = htons(6007);
+	dest_addr.sin_port = htons(6000);
 	// short, Ordenación de la red
 	dest_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 	memset(&(dest_addr.sin_zero), '\0', 8); // Poner a cero el resto de la estructura
@@ -107,7 +109,7 @@ string MainClienteThread::tryConnect(int& socketfd) {
 	}
 
 	Logger log;
-	Serializador ser;
+	Serializador ser(0);
 	std::list<NetworkMensaje*> leer;
 	try {
 		ser.leer(socketfd, leer);

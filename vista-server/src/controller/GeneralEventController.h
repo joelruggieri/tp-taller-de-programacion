@@ -16,6 +16,7 @@
 #include "src/mensajes/userEvents/UserEventVisitor.h"
 #include "src/mensajes/userEvents/UserEventMsj.h"
 #include "JuegoEventsController.h"
+#include "src/Logger.h"
 #include <map>
 using namespace std;
 
@@ -27,6 +28,7 @@ class GeneralEventController: public UserEventVisitor {
 private:
 	DrawController * drawController;
 	map <int, JuegoEventsController * > controllers;
+	Logger log;
 public:
 	GeneralEventController();
 	virtual ~GeneralEventController();

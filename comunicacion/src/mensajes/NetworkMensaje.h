@@ -14,16 +14,10 @@ using namespace std;
 
 class NetworkMensaje {
 private:
-	//TODO EZE ESTE ES EL TIPO CORRECTO PARA EL DESCRIPTOR DEL DESTINATARIO?
 	int destinatario;
-
 public:
 
-	//TODO ESTO PODRÍA SER UN ARRAY DE BITS O ALGO ASI??? TIENE QUE SER SI O SI STRING? QUE PROBLEMAS TENEMOS?
-
 	NetworkMensaje();
-	virtual string serialize();
-
 	virtual ~NetworkMensaje() ;
 	int getDestinatario();
 	void setDestinatario(int destinatario);

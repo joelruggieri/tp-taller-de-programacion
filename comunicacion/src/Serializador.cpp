@@ -7,12 +7,19 @@
 
 #include "Serializador.h"
 #include "SerializacionException.h"
+#include "mensajes/userEvents/ClickMsj.h"
 #define MAX_BUFFER 1024
-Serializador::Serializador() {
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0,0)));
+Serializador::Serializador(int destinatario) {
+	this->mensajes.insert(
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0, 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MSJ_PLANO), new MensajePlano("")));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_CON_ANCHO), new ViewObjetoConAnchoUpdateMsj(0, 0, 0,0,0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_UNION), new ViewObjetoUnionUpdateMsj(0, 0, 0, 0,0)));
+	this->mensajes.insert(
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_CON_ANCHO),
+					new ViewObjetoConAnchoUpdateMsj(0, 0, 0, 0, 0)));
+	this->mensajes.insert(
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_UNION), new ViewObjetoUnionUpdateMsj(0, 0, 0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CLICK), new ClickMsj(0, 0, 0, 0, 0, 0)));
+	this->destinatario = destinatario;
 }
 
 Serializador::~Serializador() {
@@ -47,7 +54,7 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 	string aux = buffer;
 //	cout <<  longitud << endl;
 	YAML::Node lineup = YAML::Load(aux.substr(0, longitudTotal));
-
+	NetworkMensaje * msj;
 	YAML::const_iterator it = lineup.begin();
 	//TODO PROBAR ESTO DE ENVIAR MIERDA A VER QUE HACE
 	while (it != lineup.end()) {
@@ -69,7 +76,9 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 			std::map<string, NetworkMensaje*>::iterator msjCreator = this->mensajes.find(clave);
 			if (msjCreator != mensajes.end()) {
 				try {
-					lista.push_back(msjCreator->second->deserialize(it));
+					msj = msjCreator->second->deserialize(it);
+					msj->setDestinatario(this->destinatario);
+					lista.push_back(msj);
 				} catch (YAML::Exception &exc) {
 					//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
 					it++;
