@@ -15,7 +15,7 @@ private:
 	bool listo;
 public:
 	JugadorListo(bool listo);
-	void procesar(UserEventVisitor *);
+	void acept(UserEventVisitor *);
 	virtual ~JugadorListo();
 	bool isListo() const;
 };

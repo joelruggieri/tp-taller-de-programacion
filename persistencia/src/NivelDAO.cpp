@@ -226,7 +226,7 @@ Area* NivelDAO::leerArea (YAML::Node nodoJugador){
 	return elArea;
 }
 
-std::list<FactoryParam*>& NivelDAO::leerParametrosDeFactories(YAML::Node nodoJugador){
+std::list<FactoryParam*> NivelDAO::leerParametrosDeFactories(YAML::Node nodoJugador){
 	std::list<FactoryParam*> lista;
 	YAML::Node nodoFactories = nodoJugador["ParametrosFactories"];
 	for (std::size_t i = 0; i < nodoFactories.size(); i++) {

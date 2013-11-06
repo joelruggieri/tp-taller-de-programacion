@@ -16,7 +16,7 @@ MouseMotionMsj::~MouseMotionMsj() {
 	// TODO Auto-generated destructor stub
 }
 
-void MouseMotionMsj::procesar(UserEventVisitor* v) {
+void MouseMotionMsj::acept(UserEventVisitor* v) {
 		v->visit(this);
 }
 

@@ -7,14 +7,11 @@
 
 #include "EventReceptorThread.h"
 
-EventReceptorThread::EventReceptorThread(GeneralEventController * c,
-		ColaEventos * in, ColaEventos * out) {
+EventReceptorThread::EventReceptorThread(ColaEventos * in, UserEventVisitor* u, ViewMsjVisitor * v, MensajePlanoVisitor * m) {
 	th = NULL;
 	this->colaIn = in;
-	this->colaOut = out;
-	this->controller = c;
 	this->params = NULL;
-	this->ejecutor = new EjecutorMensajes(c);
+	this->distribuidor = new DistribuidorMensajes(u, v, m);
 }
 
 void * recibir(void *arg) {
@@ -22,14 +19,14 @@ void * recibir(void *arg) {
 	EventReceptorThreadParams * params =
 			(EventReceptorThreadParams *) (zona->getParams());
 	ColaEventos * colaEntrada = params->getColaIn();
-	EjecutorMensajes * ejecutor = params->getEjecutor();
+	DistribuidorMensajes * ejecutor = params->getDistribuidor();
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(10000);
 		while (colaEntrada->hasNext()) {
 			NetworkMensaje* pop = colaEntrada->front();
 			if (pop != NULL) {
-				ejecutor->consumir(pop);
+				ejecutor->procesar(pop);
 			}
 		}
 	}
@@ -39,7 +36,7 @@ void * recibir(void *arg) {
 
 void EventReceptorThread::run() {
 	if (th == NULL) {
-		params = new EventReceptorThreadParams(this->ejecutor, this->colaIn);
+		params = new EventReceptorThreadParams(this->distribuidor, this->colaIn);
 		th = new ThreadPTM(recibir, 0, (void *) params);
 	}
 }
@@ -47,9 +44,9 @@ void EventReceptorThread::run() {
 void EventReceptorThread::clearAll() {
 	delete th;
 	delete params;
-	delete ejecutor;
 	th = NULL;
 	params = NULL;
+	delete distribuidor;
 }
 
 void EventReceptorThread::cancel() {
@@ -70,16 +67,15 @@ ColaEventos* EventReceptorThreadParams::getColaIn() {
 	return colaIn;
 }
 
-EjecutorMensajes * EventReceptorThreadParams::getEjecutor() {
-	return ejecutor;
-}
-
-EventReceptorThreadParams::EventReceptorThreadParams(EjecutorMensajes* c,
+EventReceptorThreadParams::EventReceptorThreadParams(DistribuidorMensajes* c,
 		ColaEventos* cola) {
-	this->ejecutor = c;
+	this->distribuidor = c;
 	this->colaIn = cola;
 }
 
 EventReceptorThreadParams::~EventReceptorThreadParams() {
 }
 
+DistribuidorMensajes* EventReceptorThreadParams::getDistribuidor() {
+	return distribuidor;
+}

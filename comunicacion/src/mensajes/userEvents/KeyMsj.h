@@ -16,7 +16,7 @@ private:
 	bool pressed;
 public:
 	KeyMsj(char character, bool pressed, bool shift, bool ctrl);
-	void procesar(UserEventVisitor *);
+	void acept(UserEventVisitor *);
 	virtual ~KeyMsj();
 	bool isPresionada() const;
 	char getTecla() const;
