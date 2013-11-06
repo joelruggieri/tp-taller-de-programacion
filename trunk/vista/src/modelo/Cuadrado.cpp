@@ -6,10 +6,10 @@
  */
 
 #include "Cuadrado.h"
-#include <cmath>
-using namespace std;
 
+#include <cmath>
 namespace CLIENTE {
+
 Cuadrado::Cuadrado(float x, float y, float ancho, float alto) {
 	this->ancho = ancho;
 	this->alto = alto;
@@ -50,11 +50,10 @@ Cuadrado::~Cuadrado() {
 
 
 bool Cuadrado::contacto(float posX, float posY) {
-//	double xc = posX;
-//	double yc= posY;
-//	return this->isAdentro1D(xc, this->x, this->ancho)
-//			&& this->isAdentro1D(yc, this->y, this->alto);
-	return false;
+	double xc = posX;
+	double yc= posY;
+	return isAdentro1D(xc, this->x, this->ancho)
+			&& isAdentro1D(yc, this->y, this->alto);
 }
 
 
@@ -73,4 +72,10 @@ float Cuadrado::getY() const {
 void Cuadrado::setY(float y) {
 	this->y = y;
 }
+
+
+bool Cuadrado::isAdentro1D(float pos, float posCentro, float ancho) {
+	return (pos <= (posCentro + ancho / 2)) && (pos >= posCentro - ancho / 2);
+
 }
+}  // namespace CLIENTE

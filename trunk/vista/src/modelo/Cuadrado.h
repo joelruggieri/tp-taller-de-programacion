@@ -16,7 +16,7 @@ public:
 	Cuadrado(float, float, float, float);
 	virtual ~Cuadrado();
 	bool contacto(float, float);
-	bool isAdentro1D(float pos, float posCentro, float ancho);
+	bool isAdentro1D(float, float, float);
 	void setAncho(float ancho);
 	void setAlto(float alto);
 	float getAncho() const;
