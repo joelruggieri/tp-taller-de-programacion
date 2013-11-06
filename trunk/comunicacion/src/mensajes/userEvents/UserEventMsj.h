@@ -15,6 +15,7 @@ private:
 public:
 	UserEventMsj(bool shift, bool ctrl);
 	virtual void acept(UserEventVisitor *) = 0;
+	void acept(MensajeVisitor *);
 	virtual ~UserEventMsj();
 	bool isCtrl() const;
 	bool isShift() const;

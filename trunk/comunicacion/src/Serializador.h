@@ -29,13 +29,14 @@
 using namespace std;
 class Serializador {
 public:
-	Serializador();
+	Serializador(int destinatario);
 	virtual ~Serializador();
 	void leer(int sock, list<NetworkMensaje*> & lista);
 	void escribir(list<NetworkMensaje*>& lista, int socket);
 	void escribir(NetworkMensaje * msj, int socket);
 private:
 	map<string, NetworkMensaje*> mensajes;
+	int destinatario;
 };
 
 #endif /* SERIALIZADOR_H_ */

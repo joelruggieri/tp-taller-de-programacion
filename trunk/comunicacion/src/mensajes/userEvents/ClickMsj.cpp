@@ -6,7 +6,7 @@
  */
 
 #include "ClickMsj.h"
-
+#include "../../ConstantesComunicacion.h"
 ClickMsj::ClickMsj(float x, float y, bool down, bool left, bool shift, bool ctrl):UserEventMsj(shift, ctrl) {
 	this->x = x;
 	this->y = y;
@@ -36,4 +36,32 @@ float ClickMsj::getX() const {
 
 float ClickMsj::getY() const {
 	return y;
+}
+
+void ClickMsj::serialize(YAML::Node* nodo) {
+		nodo->push_back(TAG_CLICK);
+		nodo->push_back(this->isShift());
+		nodo->push_back(this->isCtrl());
+		nodo->push_back(this->isLeft());
+		nodo->push_back(this->isDown());
+		nodo->push_back(this->x);
+		nodo->push_back(this->y);
+}
+
+NetworkMensaje* ClickMsj::deserialize(YAML::const_iterator& it) {
+	bool shift = it->as<bool>();
+	it++;
+	bool ctrl = it->as<bool>();
+	it++;
+	bool left = it->as<bool>();
+	it++;
+	bool down = it->as<bool>();
+	it++;
+	float x = it->as<float>();
+	it++;
+	float y = it->as<float>();
+	it++;
+
+	NetworkMensaje * salida = new ClickMsj(x,y,down,left,shift,ctrl);
+	return salida;
 }

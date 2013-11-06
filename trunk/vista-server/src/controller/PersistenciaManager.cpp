@@ -103,7 +103,7 @@ Nivel* PersistenciaManager::getNivel() {
 //	}
 //	nivel = dao->cargarPrimerNivel();
 //	return nivel;
- return NULL;
+ return new Nivel();
 }
 
 void PersistenciaManager::liberarNivel() {

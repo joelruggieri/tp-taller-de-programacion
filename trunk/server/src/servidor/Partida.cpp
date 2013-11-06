@@ -18,7 +18,8 @@ using namespace std;
 
 Partida::Partida(Nivel* n, int socket) {
 	nivel = n;
-	dispo = new Disponibilidad(n->getNumeroJugadores());
+	//ENTREGA3 dispo = new Disponibilidad(n->getNumeroJugadores());
+	dispo = new Disponibilidad(3);
 	colaIn = new ColaEventos();
 	colaOut = new ColaEventos();
 	this->socket = socket;
@@ -44,7 +45,7 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
         MensajePlano msj(MSJ_JUGADOR_ACEPTADO);
         serializador.escribir(&msj,socketDesc);
 		status->lock();
-		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(),status,socketDesc);
+		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(),status,socketDesc,status->getNroJugador());
 		status->setThread(jugadorNuevo);
 		status->unlock();
 		jugadorNuevo->run();
@@ -53,7 +54,7 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 }
 
 void Partida::run(int fdJugador1) {
-	Serializador serializador;
+	Serializador serializador(0);
 	cleaner->run(5);
 	procesarRequest(fdJugador1,serializador);
 	while (true) {

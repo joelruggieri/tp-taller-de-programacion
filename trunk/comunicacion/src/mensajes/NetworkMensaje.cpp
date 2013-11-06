@@ -16,6 +16,3 @@ void NetworkMensaje::setDestinatario(int destinatario) {
 NetworkMensaje::~NetworkMensaje() {
 }
 
-string NetworkMensaje::serialize() {
-	return NULL;
-}
