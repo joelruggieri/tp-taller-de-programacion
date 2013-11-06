@@ -13,6 +13,9 @@
 #include "../modelo/Observer.h"
 #include "../modelo/Observable.h"
 #include "../modelo/Scroll.h"
+
+
+namespace CLIENTE {
 class ScrollView: public View, public Observer {
 private:
 	int contArriba;
@@ -28,5 +31,5 @@ public:
 	void notify(Observable*, event_type);
 	void resizear();
 };
-
+}
 #endif /* SCROLLVIEW_H_ */

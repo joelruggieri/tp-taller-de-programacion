@@ -11,7 +11,7 @@
 #include "ObjetoView.h"
 #include "../CargadorDeTextures.h"
 #include "../../ConstantesVista.h"
-
+namespace CLIENTE {
 #define RADTODEG 57.295779513082320876f
 
 CintaTransportadoraView::CintaTransportadoraView(int x, int y, int w, int h,int altoModelo, int altoPlataforma, SDL_Texture* textura) :
@@ -134,4 +134,5 @@ void CintaTransportadoraView::update(ViewMsj*) {
 
 int CintaTransportadoraView::getLayer() {
 	return LAYER_CINTA;
+}
 }

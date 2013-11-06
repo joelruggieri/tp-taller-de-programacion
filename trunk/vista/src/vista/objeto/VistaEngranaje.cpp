@@ -10,7 +10,7 @@
 #include "../../ConstantesVista.h"
 #include <iostream>
 using namespace std;
-
+namespace CLIENTE {
 VistaEngranaje::VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
 	// TODO Auto-generated constructor stub
 
@@ -38,4 +38,5 @@ void VistaEngranaje::update(ViewMsj *) {
 
 int VistaEngranaje::getLayer() {
 	return LAYER_ENGRANAJES;
+}
 }

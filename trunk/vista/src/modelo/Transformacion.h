@@ -7,7 +7,7 @@
 
 #ifndef TRANSFORMACION_H_
 #define TRANSFORMACION_H_
-
+namespace CLIENTE {
 class Transformacion {
 private:
 	float angulo, transx, transy, escalax, escalay, x,y, ejex,ejey;
@@ -25,5 +25,5 @@ public:
 	void getResultado(float &x, float &y);
 	void getResultadoInverso(float &x, float &y);
 };
-
+}
 #endif /* TRANSFORMACION_H_ */

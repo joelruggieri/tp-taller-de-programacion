@@ -9,7 +9,7 @@
 #define VISTACINTATRANSPORTADORA_H_
 
 #include "ObjetoView.h"
-
+namespace CLIENTE {
 class CintaTransportadoraView: public ObjetoView {
 public:
 	CintaTransportadoraView(int x, int y, int w, int h,int altoModelo,int altoPlataforma, SDL_Texture * textura);
@@ -24,5 +24,5 @@ private:
 	void resizear();
 	int getLayer();
 };
-
+}
 #endif /* VISTACINTATRANSPORTADORA_H_ */

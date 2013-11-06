@@ -8,7 +8,7 @@
 #include "ViewCorreaFactory.h"
 #include "../../vista/objeto/CorreaEstaticaView.h"
 #include "../../ConstantesVista.h"
-
+namespace CLIENTE {
 ViewCorreaFactory::ViewCorreaFactory(): ViewFiguraFactory(PATH_VISTA_CORREA) {
 
 
@@ -17,4 +17,4 @@ ViewCorreaFactory::ViewCorreaFactory(): ViewFiguraFactory(PATH_VISTA_CORREA) {
 ViewCorreaFactory::~ViewCorreaFactory() {
 	// TODO Auto-generated destructor stub
 }
-
+}

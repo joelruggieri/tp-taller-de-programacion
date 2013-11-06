@@ -8,6 +8,9 @@
 #include "VistaEngranajeFactory.h"
 #include "../../vista/objeto/VistaEngranaje.h"
 #include "../../ConstantesVista.h"
+
+
+namespace CLIENTE {
 VistaEngranajeFactory::VistaEngranajeFactory(): ViewFiguraFactory(PATH_VISTA_ENGRANAJE) {
 	// TODO Auto-generated constructor stub
 
@@ -25,3 +28,4 @@ FiguraView* VistaEngranajeFactory::crear(int x, int y) {
 	return NULL;
 }
 
+}

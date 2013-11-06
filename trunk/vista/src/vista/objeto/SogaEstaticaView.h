@@ -10,7 +10,9 @@
 
 #include "UnionEstaticaView.h"
 #include "UnionView.h"
-struct SDL_Texture;
+
+namespace CLIENTE {
+
 class SogaEstaticaView: public UnionEstaticaView {
 public:
 	SogaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura);
@@ -20,4 +22,5 @@ private:
 	SDL_Texture * texturaTramo;
 };
 
+}
 #endif /* SOGAESTATICAVIEW_H_ */

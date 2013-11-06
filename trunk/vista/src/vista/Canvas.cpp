@@ -9,6 +9,7 @@
 #include "SDL2/SDL.h"
 #include "LayerDibujablesComparator.h"
 
+namespace CLIENTE {
 //SDL_Texture* cargarTexture (char* file, SDL_Renderer* ren){
 ////	SDL_Texture* texture = IMG_LoadTexture(ren, file );
 //
@@ -101,4 +102,5 @@ this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
 this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 this->setYc((Resizer::Instance()->resizearPosicionY(this->getYCentro())));
 //	TODO resizear
+}
 }

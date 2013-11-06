@@ -8,7 +8,9 @@
 #include "CorreaEstaticaView.h"
 
 #include "CorreaView.h"
-CorreaEstaticaView::CorreaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura): UnionEstaticaView(x, y, w, h,textura) {
+namespace CLIENTE {
+CorreaEstaticaView::CorreaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura) :
+		UnionEstaticaView(x, y, w, h, textura) {
 
 }
 
@@ -17,4 +19,5 @@ CorreaEstaticaView::~CorreaEstaticaView() {
 }
 
 void CorreaEstaticaView::update(ViewMsj*) {
+}
 }

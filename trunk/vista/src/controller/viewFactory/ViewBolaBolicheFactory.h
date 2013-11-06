@@ -8,6 +8,9 @@
 #ifndef VIEWBOLABOLICHEFACTORY_H_
 #define VIEWBOLABOLICHEFACTORY_H_
 #include "ViewFiguraFactory.h"
+
+namespace CLIENTE {
+
 class ViewBolaBolicheFactory : public ViewFiguraFactory {
 public:
 	ViewBolaBolicheFactory();
@@ -16,3 +19,5 @@ public:
 };
 
 #endif /* VIEWBOLABOLICHEFACTORY_H_ */
+
+}

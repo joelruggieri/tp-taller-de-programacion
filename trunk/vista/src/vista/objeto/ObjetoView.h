@@ -9,11 +9,12 @@
 #define OBJETOVIEW_H_
 
 #include "../figura/FiguraView.h"
-
+namespace CLIENTE {
 class ObjetoView: public FiguraView {
 public:
 	ObjetoView(int x, int y, int w, int h, SDL_Texture * textura);
 	virtual ~ObjetoView();
 };
 
+}
 #endif /* OBJETOVIEW_H_ */

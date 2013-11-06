@@ -8,6 +8,10 @@
 #include "ViewPelotaJuegoFactory.h"
 #include  "../../vista/objeto/PelotaJuegoView.h"
 #include "../../ConstantesVista.h"
+
+
+namespace CLIENTE {
+
 ViewPelotaJuegoFactory::ViewPelotaJuegoFactory() : ViewFiguraFactory(PATH_VISTA_PELOTA) {
 	// TODO Auto-generated constructor stub
 
@@ -25,3 +29,4 @@ FiguraView* ViewPelotaJuegoFactory::crear(int x, int y) {
 	return NULL;
 }
 
+}

@@ -15,7 +15,7 @@
 #include "SDL2/SDL.h"
 #include <map>
 using namespace std;
-
+namespace CLIENTE {
 class ViewController: public ObjetoCompartido {
 //ENTREGA3 ESTA CLASE ES LA QUE TIENE TODAS LAS VISTAS PARA DIBUJARLAS.
 //ADEMAS PERMITE ACTUALIZAR UNA VISTA
@@ -32,4 +32,5 @@ public:
 	virtual ~ViewController();
 };
 
+}
 #endif /* VIEWCONTROLLER_H_ */

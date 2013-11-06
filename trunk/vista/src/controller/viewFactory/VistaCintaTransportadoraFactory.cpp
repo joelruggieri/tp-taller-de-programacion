@@ -9,6 +9,9 @@
 #include "../../ConstantesVista.h"
 #include "../../vista/objeto/CintaTransportadoraView.h"
 #include "../../vista/CargadorDeTextures.h"
+
+
+namespace CLIENTE {
 VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory() : ViewFiguraFactory(PATH_VISTA_CINTA) {
 }
 
@@ -27,3 +30,4 @@ FiguraView* VistaCintaTransportadoraFactory::crear(int x, int y) {
 	return NULL;
 }
 
+}

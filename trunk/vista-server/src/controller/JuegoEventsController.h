@@ -15,14 +15,13 @@
 #include "../vista/Dibujable.h"
 #include "../vista/Dragueable.h"
 #include "FlujoDeJuegoController.h"
-#include "mouseEventController/MouseEventController.h"
 #include "zonaDragAndDrop/ZonaCreacion.h"
 #include "zonaDragAndDrop/ZonaPlay.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
 
 //ENTREGA3 APARENTEMENTE YA RECIBE COMO PARAMETRO UNA ZONAPLAY ASI QUE HABRÍA QUE VER QUE FUNCIONEN N EN SIMULTANEO (MISMO THREAD)
 //ENTREGA3 HAY QUE ADEMAS DARLE UNA ZONA DONDE SI SE SALE QUE NO TENGA EFECTO EL EVENTO DE SCROLL O PICKUP/DROP. PARA ESO SE PUEDE USAR EL OBJETO CUADRADO DE LA VISTA
-class JuegoEventsController: public MouseEventController, public Dibujable, public FlujoDeJuegoController {
+class JuegoEventsController:public Dibujable, public FlujoDeJuegoController {
 private:
 	ZonaTablero * tablero;
 	ZonaCreacion * creacion;

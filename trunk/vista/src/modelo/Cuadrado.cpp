@@ -7,7 +7,9 @@
 
 #include "Cuadrado.h"
 #include <cmath>
+using namespace std;
 
+namespace CLIENTE {
 Cuadrado::Cuadrado(float x, float y, float ancho, float alto) {
 	this->ancho = ancho;
 	this->alto = alto;
@@ -48,10 +50,11 @@ Cuadrado::~Cuadrado() {
 
 
 bool Cuadrado::contacto(float posX, float posY) {
-	double xc = posX;
-	double yc= posY;
-	return this->isAdentro1D(xc, this->x, this->ancho)
-			&& this->isAdentro1D(yc, this->y, this->alto);
+//	double xc = posX;
+//	double yc= posY;
+//	return this->isAdentro1D(xc, this->x, this->ancho)
+//			&& this->isAdentro1D(yc, this->y, this->alto);
+	return false;
 }
 
 
@@ -69,4 +72,5 @@ float Cuadrado::getY() const {
 
 void Cuadrado::setY(float y) {
 	this->y = y;
+}
 }

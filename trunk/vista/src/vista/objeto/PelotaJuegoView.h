@@ -8,8 +8,8 @@
 #ifndef PELOTAJUEGOVIEW_H_
 #define PELOTAJUEGOVIEW_H_
 #include "ObjetoView.h"
-class SimpleEditorAnguloFijo;
-struct SDL_Texture;
+
+namespace CLIENTE {
 
 class PelotaJuegoView : public ObjetoView {
 public:
@@ -17,5 +17,5 @@ public:
 	virtual ~PelotaJuegoView();
 	void update(ViewMsj *);
 };
-
+}
 #endif /* PELOTAJUEGOVIEW_H_ */

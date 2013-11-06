@@ -8,6 +8,9 @@
 #ifndef BOTONSWITCH_H_
 #define BOTONSWITCH_H_
 #include "View.h"
+
+namespace CLIENTE {
+
 class BotonSwitch: public View {
 private:
 	bool presionado;
@@ -19,5 +22,5 @@ public:
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void click();
 };
-
+}
 #endif /* BOTONSWITCH_H_ */

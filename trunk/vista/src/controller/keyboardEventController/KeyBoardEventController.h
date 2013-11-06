@@ -7,7 +7,7 @@
 
 #ifndef KEYBOARDEVENTCONTROLLER_H_
 #define KEYBOARDEVENTCONTROLLER_H_
-
+namespace CLIENTE {
 class KeyBoardEventController {
 public:
 	KeyBoardEventController();
@@ -15,5 +15,5 @@ public:
 	virtual bool keyPressed(char key) = 0;
 	virtual bool keyReleased() = 0;
 };
-
+}
 #endif /* KEYBOARDEVENTCONTROLLER_H_ */

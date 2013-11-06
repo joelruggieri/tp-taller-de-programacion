@@ -10,6 +10,8 @@
 
 #include "ObjetoView.h"
 #include "SDL2/SDL.h"
+
+namespace CLIENTE {
 class UnionView: public ObjetoView {
 private:
 	typedef ObjetoView super;
@@ -25,5 +27,5 @@ public:
 	void resizear();
 	int getLayer();
 };
-
+}
 #endif /* UNIONVIEW_H_ */

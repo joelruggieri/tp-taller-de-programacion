@@ -13,7 +13,9 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../RutasArchivos.h"
 #include "../../vista/ViewConFondo.h"
-ZonaCreacion::ZonaCreacion(list<string*> & factoriestags, float x,
+
+namespace CLIENTE {
+ZonaCreacion::ZonaCreacion(list<string> & factoriestags, float x,
 		float margenSuperior, ColaEventos * cola){
 	salida  = cola;
 //	Resizer * instance = Resizer::Instance();
@@ -144,4 +146,5 @@ bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled) {
 		}
 	}
 	return false;
+}
 }

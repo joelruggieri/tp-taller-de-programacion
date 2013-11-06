@@ -8,7 +8,7 @@
 #include "CorreaView.h"
 #include <cmath>
 #define PI 3.14159265
-
+namespace CLIENTE {
 CorreaView::CorreaView(int x, int y, SDL_Texture * textura): UnionView(x, y,textura) {
 
 }
@@ -70,4 +70,5 @@ void CorreaView::update(ViewMsj *){
 //	v2fX = -v1fX;
 //	v2fY = -v1fY;
 
+}
 }

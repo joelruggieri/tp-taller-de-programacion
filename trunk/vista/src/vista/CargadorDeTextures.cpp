@@ -11,6 +11,7 @@
 #include "../ConstantesVista.h"
 using namespace std;
 
+namespace CLIENTE {
 CargadorDeTextures* CargadorDeTextures::pinstance = 0; // Inicializar el puntero
 CargadorDeTextures* CargadorDeTextures::Instance(SDL_Renderer* render) {
 	if (pinstance == 0)  // ¿Es la primera llamada?
@@ -82,3 +83,4 @@ int CargadorDeTextures::getCantTextures() {
 	return this->Textures.size();
 }
 
+}

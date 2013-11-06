@@ -7,6 +7,9 @@
 
 #include "ViewController.h"
 
+
+namespace CLIENTE {
+
 ViewController::ViewController(ColaEventos* colaSalida) {
 	this->salida = salida;
 
@@ -38,3 +41,4 @@ ViewController::~ViewController() {
 	// TODO Auto-generated destructor stub
 }
 
+}

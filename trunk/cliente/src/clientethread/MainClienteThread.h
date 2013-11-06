@@ -13,7 +13,6 @@
 #include <string>
 #include "src/Logger.h"
 using namespace std;
-
 enum RESULTADO_CONEXION {SERVIDOR_ERROR, SERVIDOR_OCUPADO, SERVIDOR_CONECTADO};
 
 class MainClienteThread {

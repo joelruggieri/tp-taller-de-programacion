@@ -6,7 +6,7 @@
  */
 
 #include "ViewConIcono.h"
-
+namespace CLIENTE {
 ViewConIcono::ViewConIcono(View * view, SDL_Texture * t, int esquina) {
 	vista = view;
 	textura = t;
@@ -82,4 +82,5 @@ SDL_Rect ViewConIcono::rectEsquina3() {
 
 void ViewConIcono::dibujarse(SDL_Renderer*r, SDL_Rect& destino) {
 	this->dibujarse(r);
+}
 }

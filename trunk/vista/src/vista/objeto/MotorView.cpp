@@ -7,6 +7,8 @@
 
 #include "MotorView.h"
 #include "../../ConstantesVista.h"
+
+namespace CLIENTE {
 //MotorView::MotorView(int x, int y, int w, int h, SDL_Texture * textura,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, w, h,textura, editor) {
 //
 //}
@@ -25,4 +27,5 @@ int MotorView::getLayer() {
 }
 
 void MotorView::update(ViewMsj*) {
+}
 }

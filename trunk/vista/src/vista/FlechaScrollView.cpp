@@ -6,7 +6,7 @@
  */
 
 #include "FlechaScrollView.h"
-
+namespace CLIENTE {
 FlechaScrollView::FlechaScrollView(int x, int y, int w, int h, SDL_Texture * flecha) :
 		View(x, y, w, h) {
 	inicializar(flecha, false);
@@ -88,4 +88,5 @@ void FlechaScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
 		SDL_RenderCopy(renderer, this->textura, NULL, &dest);
 	}
 
+}
 }

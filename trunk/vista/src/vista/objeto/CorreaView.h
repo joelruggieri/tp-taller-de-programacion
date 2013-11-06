@@ -9,7 +9,7 @@
 #define CORREAVIEW_H_
 
 #include "UnionView.h"
-
+namespace CLIENTE {
 
 class CorreaView: public UnionView {
 private:
@@ -23,5 +23,5 @@ public:
 	void update();
 	void update(ViewMsj *);
 };
-
+}
 #endif /* CORREAVIEW_H_ */

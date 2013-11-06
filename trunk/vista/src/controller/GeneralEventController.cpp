@@ -28,7 +28,7 @@
 #include "src/Logger.h"
 
 struct SDL_Window;
-
+namespace CLIENTE {
 #define ASCII_SHIFT 15
 #define ASCII_MAYUS 16
 GeneralEventController::GeneralEventController() {
@@ -266,4 +266,6 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 
 void GeneralEventController::setDrawController(DrawController* c) {
 	this->drawController = c;
+}
+
 }

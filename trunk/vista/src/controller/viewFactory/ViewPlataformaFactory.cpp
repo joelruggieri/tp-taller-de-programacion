@@ -9,7 +9,10 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../../ConstantesVista.h"
 
-ViewPlataformaFactory::ViewPlataformaFactory(): ViewFiguraFactory(PATH_VISTA_PLATAFORMA_F) {
+
+namespace CLIENTE {
+ViewPlataformaFactory::ViewPlataformaFactory() :
+		ViewFiguraFactory(PATH_VISTA_PLATAFORMA_F) {
 }
 
 FiguraView* ViewPlataformaFactory::crear(int x, int y, int w, int h) {
@@ -26,6 +29,7 @@ ViewPlataformaFactory::~ViewPlataformaFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-View* ViewPlataformaFactory::crearVistaPropia(int x, int y, int w,int h) {
-	return new FactoryView(x,y,w,h, this->textura);
+View* ViewPlataformaFactory::crearVistaPropia(int x, int y, int w, int h) {
+	return new FactoryView(x, y, w, h, this->textura);
+}
 }

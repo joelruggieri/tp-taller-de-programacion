@@ -13,7 +13,7 @@
 #include "../../modelo/Cuadrado.h"
 #include <string>
 using namespace std;
-
+namespace CLIENTE {
 class EslabonCreacion {
 private:
 	EslabonCreacion * siguiente;
@@ -26,4 +26,5 @@ public:
 	string atender(float posX, float posY, float corrimientoScroll);
 };
 
+}
 #endif /* ESLABONCREACION_H_ */

@@ -8,7 +8,7 @@
 #ifndef VIEWPLATAFORMAFACTORY_H_
 #define VIEWPLATAFORMAFACTORY_H_
 #include "ViewFiguraFactory.h"
-
+namespace CLIENTE {
 class ViewPlataformaFactory: public ViewFiguraFactory{
 
 public:
@@ -19,3 +19,4 @@ public:
 };
 
 #endif /* VIEWPLATAFORMAFACTORY_H_ */
+}

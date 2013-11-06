@@ -7,6 +7,8 @@
 
 #include "Observable.h"
 #include "Observer.h"
+
+namespace CLIENTE {
 Observable::Observable() {
 	// TODO Auto-generated constructor stub
 
@@ -25,4 +27,5 @@ void Observable::notifY(event_type t) {
 
 void Observable::addObserver(Observer* obs) {
 	this->observers.push_back(obs);
+}
 }

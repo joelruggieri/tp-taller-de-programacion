@@ -8,6 +8,8 @@
 #include "Dibujable.h"
 #include "../ConstantesVista.h"
 
+namespace CLIENTE {
+
 Dibujable::Dibujable() {
 
 }
@@ -18,4 +20,6 @@ Dibujable::~Dibujable() {
 
 int Dibujable::getLayer() {
 	return LAYER_DEFAULT;
+}
+
 }

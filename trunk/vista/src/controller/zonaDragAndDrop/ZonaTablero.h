@@ -17,7 +17,7 @@
 #include "../../modelo/Cuadrado.h"
 #include "src/threading/ColaEventos.h"
 using namespace std;
-
+namespace CLIENTE {
 class ZonaTablero {
 private:
 	Cuadrado * cuerpo;
@@ -31,5 +31,6 @@ public:
 	void keyReleased(char key);
 };
 
+}
 #endif /* ZONATABLERO_H_ */
 

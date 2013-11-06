@@ -13,6 +13,7 @@
 #include "../../modelo/Observable.h"
 using namespace std;
 
+namespace CLIENTE {
 class FiguraView: public View, public Observable{
 private:
 	SDL_Texture * textura;
@@ -27,5 +28,5 @@ public:
 	SDL_Texture* getTexture();
 	void resizear();
 };
-
+}
 #endif /* FIGURAVIEW_H_ */

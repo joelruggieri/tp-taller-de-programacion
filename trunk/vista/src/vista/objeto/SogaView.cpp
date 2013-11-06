@@ -6,6 +6,7 @@
  */
 
 #include "SogaView.h"
+namespace CLIENTE {
 
 SogaView::SogaView(int x, int y, SDL_Texture * textura): UnionView(x, y, textura) {
 }
@@ -21,4 +22,5 @@ void SogaView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
 
 void SogaView::dibujarse(SDL_Renderer* renderer) {
 	void dibujarse(SDL_Renderer * renderer);
+}
 }

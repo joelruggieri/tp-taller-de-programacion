@@ -13,9 +13,10 @@
 #include "zonaDragAndDrop/ZonaCreacion.h"
 #include "zonaDragAndDrop/ZonaPlay.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
+#include "GeneralEventController.h"
 #include "src/Logger.h"
 using namespace std;
-
+namespace CLIENTE {
 
 JuegoEventsController::JuegoEventsController(ZonaPlay * zplay) {
 	this->tablero = NULL;
@@ -27,55 +28,13 @@ JuegoEventsController::~JuegoEventsController() {
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
-	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
-//	if (editor == NULL) {
-//		Resizer* r = Resizer::Instance();
-//		float lX = r->resizearDistanciaPixelX(x);
-//		float lY = r->resizearPosicionPixelY(y);
-//		if (tablero != NULL && creacion != NULL && !zplay->click(lX, lY) &&!iniciado
-//				&& !creacion->click(lX, lY) ) {
-//			Transformacion & trans = Resizer::Instance()->getTransformacionToModelo();
-//			trans.setVector(x, y);
-//			float lX2, lY2;
-//			trans.getResultado(lX2, lY2);
-//			FiguraView * view = NULL;
-//			Figura * fig = this->modeloController->pickUp(lX2, lY2,CATEGORIA_UNION | CATEGORIA_FIGURAS);
-//			// VOY A BUSCAR TANTO A ZONA DE CREACION COMO A ZONA DE TABLERO EN BUSCA DE UNA VISTA, YA QUE CLICK IZQUIERDO PUEDE CREAR VISTA.
-//			if (fig != NULL) {
-//				view = (FiguraView *) fig->getVista();
-//			} else {
-//				view = this->creacion->getVista(lX, lY);
-//			}
-//
-//			if (view != NULL) {
-//				editor = view->getEditor();
-//				if (editor == NULL) {
-//					Logger log;
-//					log.fatal("La Vista no tiene un editor");
-//					throw "La Vista no tiene un editor";
-//				}
-//				editor->clickDown(x, y);
-//				if (editor->isEnd()) {
-//					editor = NULL;
-//				}
-//				return false;
-//			}
-//		}
-//	} else {
-//		editor->clickDown(x,y);
-//		if (editor->isEnd()) {
-//			editor = NULL;
-//		}
-//		return false;
-//	}
+	creacion->click(10,10);
+	tablero->click(10,10);
+	zplay->click(10,10);
 	return true;
 }
 
 bool JuegoEventsController::clickUp(int x, int y) {
-//	if (editor != NULL && !iniciado) {
-//		editor->clickUp(x, y);
-//		editor = editor->isEnd() ? NULL : editor;
-//	}
 	return true;
 }
 
@@ -156,5 +115,6 @@ void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
 //		editor->dibujarEdicion(renderer);
 //	}
 
+}
 }
 

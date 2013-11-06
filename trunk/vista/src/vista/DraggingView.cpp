@@ -10,6 +10,7 @@
 #include <iostream>
 using namespace std;
 
+namespace CLIENTE {
 DraggingView::DraggingView(Dragueable * dragueable) {
 	this->dragueable= dragueable;
 }
@@ -26,4 +27,5 @@ void DraggingView::dibujarse(SDL_Renderer* renderer) {
 
 void DraggingView::dibujarse(SDL_Renderer* rnd, SDL_Rect&) {
 	this->dibujarse(rnd);
+}
 }

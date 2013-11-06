@@ -9,8 +9,8 @@
 #define MOTORVIEW_H_
 
 #include "ObjetoView.h"
-
-struct SDL_Texture;
+#include "SDL2/SDL.h"
+namespace CLIENTE {
 
 class MotorView: public ObjetoView {
 public:
@@ -20,5 +20,6 @@ public:
 	virtual ~MotorView();
 	int getLayer();
 };
+}
 
 #endif /* MOTORVIEW_H_ */

@@ -15,7 +15,7 @@
 using namespace std;
 
 
-
+namespace CLIENTE {
 
 
 class Canvas: public View {
@@ -41,6 +41,7 @@ public:
 //	static const RGB COLOR_BORDE_EXTERNO;
 };
 
+}
 #endif /* CANVAS_H_ */
 
 

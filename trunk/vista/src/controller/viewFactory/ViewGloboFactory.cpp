@@ -8,6 +8,10 @@
 #include "ViewGloboFactory.h"
 #include "../../vista/objeto/GloboHelioView.h"
 #include "../../ConstantesVista.h"
+
+namespace CLIENTE {
+
+
 ViewGloboFactory::ViewGloboFactory(): ViewFiguraFactory(PATH_VISTA_GLOBO)  {
 
 
@@ -25,3 +29,4 @@ FiguraView* ViewGloboFactory::crear(int x, int y) {
 	return NULL;
 }
 
+}

@@ -8,7 +8,7 @@
 #include "Transformacion.h"
 #include <cmath>
 using namespace std;
-
+namespace CLIENTE {
 Transformacion::Transformacion() {
 	angulo = 0;
 	transx = 0;
@@ -137,4 +137,5 @@ Transformacion::Transformacion(const Transformacion& t2) {
 	ejey = t2.ejey;
 	this->invertirx = t2.invertirx;
 	this->invertiry = t2.invertiry;
+}
 }

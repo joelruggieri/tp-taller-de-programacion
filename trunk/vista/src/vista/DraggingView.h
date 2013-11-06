@@ -10,6 +10,9 @@
 #include "SDL2/SDL.h"
 #include "Dibujable.h"
 #include "Dragueable.h"
+
+namespace CLIENTE {
+
 class DraggingView: public Dibujable {
 private:
 	Dragueable * dragueable;
@@ -19,5 +22,5 @@ public:
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect &);
 };
-
+}
 #endif /* DRAGGINGVIEW_H_ */

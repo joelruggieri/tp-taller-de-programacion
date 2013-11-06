@@ -15,12 +15,12 @@
 #include "mouseEventController/MouseEventController.h"
 #include "DrawController.h"
 #include "SDL2/SDL.h"
-class MouseControllerPrioridades;
 struct SDL_KeyboardEvent;
 
 using namespace std;
 
-
+namespace CLIENTE {
+class MouseControllerPrioridades;
 
 //ENTREGA3 REFACTOR HAY QUE HACER QUE TENGA LOS 4 JUEGOS EVENT CONTROLLERS Y YA OLVIDARSE DE LA GENERALIDAD YA QUE SACAMOS TODA BARRA DE CAMBIAR FONDO Y DEMAS
 //SE PUEDE PROGRAMAR OTRO GENERALEVENTCONTROLLER Y NO TOCAR ESTE.
@@ -48,6 +48,8 @@ public:
 	bool procesarEventos(SDL_Window *);
 	void setDrawController(DrawController *);
 };
+
+}
 
 #endif /* GENERALEVENTCONTROLLER_H_ */
 

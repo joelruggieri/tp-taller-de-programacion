@@ -9,8 +9,7 @@
 #define BOLABOLICHEVIEW_H_
 #include "ObjetoView.h"
 class SimpleEditorAnguloFijo;
-struct SDL_Texture;
-
+namespace CLIENTE {
 class BolaBolicheView : public ObjetoView {
 public:
 	BolaBolicheView(int x, int y, int w, int h, SDL_Texture * textura);
@@ -18,4 +17,5 @@ public:
 	void update(ViewMsj *);
 };
 
+}
 #endif /* BOLABOLICHEVIEW_H_ */

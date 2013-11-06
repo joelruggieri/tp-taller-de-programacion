@@ -7,6 +7,8 @@
 
 #include "FactoryView.h"
 #include "SDL2/SDL.h"
+
+namespace CLIENTE {
 FactoryView::FactoryView(int x, int y, int w, int h, SDL_Texture * textura) :
 		View(x, y, w, h) {
 	this->textura = textura;
@@ -37,4 +39,5 @@ void FactoryView::resizear() {
 	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
 
+}
 }

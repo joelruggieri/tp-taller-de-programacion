@@ -7,7 +7,7 @@
 
 #include "Resizeable.h"
 
-
+namespace CLIENTE {
 Resizeable::Resizeable() {
 	// TODO Auto-generated constructor stub
 
@@ -20,3 +20,4 @@ Resizeable::~Resizeable() {
 } /* namespace std */
 
 
+}

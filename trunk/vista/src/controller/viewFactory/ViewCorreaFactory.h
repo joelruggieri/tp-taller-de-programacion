@@ -8,7 +8,7 @@
 #ifndef VIEWCORREAFACTORY_H_
 #define VIEWCORREAFACTORY_H_
 #include "ViewFiguraFactory.h"
-
+namespace CLIENTE {
 class ViewCorreaFactory: public ViewFiguraFactory{
 
 public:
@@ -18,3 +18,4 @@ public:
 };
 
 #endif /* VIEWCORREAFACTORY_H_ */
+}

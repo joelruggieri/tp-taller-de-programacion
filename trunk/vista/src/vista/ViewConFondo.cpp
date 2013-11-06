@@ -6,7 +6,7 @@
  */
 
 #include "ViewConFondo.h"
-
+namespace CLIENTE {
 ViewConFondo::ViewConFondo(View * view) :
 View(view->getXCentro(), view->getYCentro(), view->getW(), view->getH()) {
 	this->decorable = view;
@@ -78,4 +78,5 @@ void ViewConFondo::dibujarse(SDL_Renderer*r){
 			255, 214, 1);
 	SDL_RenderFillRect(r, &dst);
 	this->decorable->dibujarse(r);
+}
 }
