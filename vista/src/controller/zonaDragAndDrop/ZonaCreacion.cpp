@@ -18,6 +18,7 @@ namespace CLIENTE {
 ZonaCreacion::ZonaCreacion(list<string> & factoriestags, float x,
 		float margenSuperior, ColaEventos * cola){
 	salida  = cola;
+	scroll = NULL;
 //	Resizer * instance = Resizer::Instance();
 //	int xC = instance->resizearDistanciaLogicaX(x);
 //	int yC = instance->resizearPosicionLogicaY(margenSuperior + ALTO_PANEL/2);
