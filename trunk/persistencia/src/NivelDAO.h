@@ -25,7 +25,7 @@ private:
 	std::list<Figura*> leerFiguras(YAML::Node objetos);
 	std::list<Jugador*> leerJugadores(YAML::Node jugadores);
 	Area* leerArea (YAML::Node nodoJugador);
-	std::list<FactoryParam*>& leerParametrosDeFactories(YAML::Node nodoJugador);
+	std::list<FactoryParam*> leerParametrosDeFactories(YAML::Node nodoJugador);
 	YAML::Node getNodoObjetos(YAML::Node nodoRaiz);
 	YAML::Node getNodoJugadores(YAML::Node nodoRaiz);
 	void obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos);

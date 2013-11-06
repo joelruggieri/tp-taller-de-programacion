@@ -10,6 +10,7 @@
 
 #include "NetworkMensaje.h"
 #include <string>
+#include "MensajePlanoVisitor.h"
 using namespace std;
 
 //ESTE MENSAJE ES EL QUE SE ENVIAN EL SERVER Y EL CLIENTE, ES PLANO PORQUE ES UN SOLO DATO.
@@ -24,6 +25,7 @@ public:
 	string getMensaje();
 	string getTag();
 	void acept(MensajeVisitor *);
+	void acept(MensajePlanoVisitor *);
 };
 
 #endif /* MENSAJEPLANO_H_ */

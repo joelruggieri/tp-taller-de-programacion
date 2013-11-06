@@ -8,34 +8,35 @@
 #ifndef EVENTRECEPTORTHREAD_H_
 #define EVENTRECEPTORTHREAD_H_
 #include "src/controller/GeneralEventController.h"
-//#include <thread>
+#include "src/mensajes/DistribuidorMensajes.h"
+#include "src/mensajes/userEvents/UserEventVisitor.h"
+#include "src/mensajes/viewMensaje/ViewMsjVisitor.h"
+#include "src/mensajes/MensajePlanoVisitor.h"
 #include "src/threading/ColaEventos.h"
 #include "src/threading/ThreadPTM.h"
-#include "EjecutorMensajes.h"
 class EventReceptorThreadParams {
 private:
 	ColaEventos * colaIn;
-	EjecutorMensajes * ejecutor;
+	DistribuidorMensajes * distribuidor;
 public:
-	EventReceptorThreadParams(EjecutorMensajes * c, ColaEventos * cola);
+	EventReceptorThreadParams(DistribuidorMensajes * c, ColaEventos * cola);
 	virtual ~EventReceptorThreadParams();
 	ColaEventos* getColaIn();
-	EjecutorMensajes * getEjecutor();
+	DistribuidorMensajes * getDistribuidor();
 };
 
 class EventReceptorThread {
 
 private:
 	ThreadPTM * th;
-	ColaEventos * colaIn, *colaOut;
-	GeneralEventController * controller;
+	ColaEventos * colaIn;
 	EventReceptorThreadParams * params;
-	EjecutorMensajes * ejecutor;
+	DistribuidorMensajes * distribuidor;
 	void clearAll();
 public:
 
 	//Este es un thread aparte que tiene que ir levantando de la colaEntrada de eventos y pasandoselos al general event controller
-	EventReceptorThread(GeneralEventController *, ColaEventos * in, ColaEventos * out);
+	EventReceptorThread(ColaEventos *, UserEventVisitor*, ViewMsjVisitor *, MensajePlanoVisitor * );
 	void run();
 	void cancel();
 	virtual ~EventReceptorThread();

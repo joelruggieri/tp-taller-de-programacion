@@ -11,7 +11,7 @@ JugadorListo::JugadorListo(bool listo):UserEventMsj(false, false) {
 	this->listo = listo;
 }
 
-void JugadorListo::procesar(UserEventVisitor* v) {
+void JugadorListo::acept(UserEventVisitor* v) {
 	v->visit( this);
 }
 

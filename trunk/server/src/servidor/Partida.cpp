@@ -24,7 +24,8 @@ Partida::Partida(Nivel* n, int socket) {
 	this->socket = socket;
 	cleaner = new ThreadCleaner (dispo);
 	generalController = new GeneralEventController();
-	receiver = new EventReceptorThread(generalController,colaIn, colaOut);
+	//ENTREGA3 VER QUIEN RECIBE LOS MSJS DEL CLIENTE.
+	receiver = new EventReceptorThread(colaIn,generalController,NULL, NULL);
 }
 
 Partida::~Partida() {

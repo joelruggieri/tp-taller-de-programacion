@@ -30,7 +30,7 @@ GeneralEventController::~GeneralEventController() {
 
 
 void  GeneralEventController::procesarEventos(UserEventMsj* m) {
-	m->procesar(this);
+	m->acept(this);
 }
 
 void GeneralEventController::visit(MouseMotionMsj* m) {

@@ -1,0 +1,53 @@
+/*
+ * DistribuidorMensajes.cpp
+ *
+ *  Created on: 5/11/2013
+ *      Author: jonathan
+ */
+
+#include "DistribuidorMensajes.h"
+#include <iostream>
+#include "MensajePlano.h"
+#include "userEvents/UserEventMsj.h"
+#include "viewMensaje/ViewMsj.h"
+using namespace std;
+
+DistribuidorMensajes::DistribuidorMensajes(UserEventVisitor* u,
+		ViewMsjVisitor * v, MensajePlanoVisitor * p) {
+	user = u;
+	views = v;
+	planos = p;
+
+}
+
+void DistribuidorMensajes::procesar(NetworkMensaje* msj) {
+	msj->acept(this);
+	delete msj;
+}
+
+DistribuidorMensajes::~DistribuidorMensajes() {
+
+}
+
+void DistribuidorMensajes::visit(UserEventMsj* m) {
+	if (user != NULL) {
+		log.debug("Se pocesa mensaje de usuario");
+		m->acept(user);
+	}
+
+}
+
+void DistribuidorMensajes::visit(ViewMsj* m) {
+	if (views != NULL) {
+		log.debug("Se pocesa mensaje de Vista");
+		m->acept(views);
+	}
+
+}
+
+void DistribuidorMensajes::visit(MensajePlano* m) {
+	if (planos != NULL) {
+		log.debug("Se pocesa mensaje plano");
+		m->acept(planos);
+	}
+}

@@ -37,3 +37,7 @@ string MensajePlano::getTag() {
 void MensajePlano::acept(MensajeVisitor* v) {
 	v->visit(this);
 }
+
+void MensajePlano::acept(MensajePlanoVisitor* v) {
+	v->visit(this);
+}

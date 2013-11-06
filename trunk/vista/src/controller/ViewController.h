@@ -10,12 +10,13 @@
 #include <src/threading/ColaEventos.h>
 #include <src/mensajes/userEvents/UserEventMsj.h>
 #include <src/mensajes/viewMensaje/ViewMsj.h>
+#include <src/threading/ObjetoCompartido.h>
 #include "../vista/View.h"
 #include "SDL2/SDL.h"
 #include <map>
 using namespace std;
 
-class ViewController {
+class ViewController: public ObjetoCompartido {
 //ENTREGA3 ESTA CLASE ES LA QUE TIENE TODAS LAS VISTAS PARA DIBUJARLAS.
 //ADEMAS PERMITE ACTUALIZAR UNA VISTA
 //PERMITE AGREGAR UNA VISTA MANUALMENTE TAMBIEN.
