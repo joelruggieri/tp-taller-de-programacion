@@ -11,7 +11,6 @@ using namespace std;
 
 
 
-#include "src/controller/MainController.h"
 #include "src/AdministradorDeArchivos.h"
 #include "src/servidor/MainServerThread.h"
 #include "src/LoggingService.h"
