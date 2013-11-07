@@ -19,7 +19,7 @@
 #include "src/ConstantesComunicacion.h"
 #include "src/Logger.h"
 #include "src/SerializacionException.h"
-#include "ConexionException.h"
+#include "src/ConexionException.h"
 #include "src/threading/IOThread.h"
 #include "errno.h"
 #include "src/controller/MainController.h"
@@ -38,7 +38,6 @@ void MainClienteThread::run() {
 	if (thread == 0) {
 		int sockfd;
 		RESULTADO_CONEXION result = conectar(sockfd);
-//		RESULTADO_CONEXION result = SERVIDOR_CONECTADO;
 		if (SERVIDOR_CONECTADO == result) {
 			log.info("Conectado con servidor");
 			Status* status = new Status(TIMEOUT);
@@ -101,6 +100,7 @@ string MainClienteThread::tryConnect(int& socketfd) {
 	if (st == -1) {
 		//ENTREGA3 CHEQUEAR TIPOS DE ERROR
 //		cout << strerror(errno) << endl;
+		if (ManejadorErrores::manejarConectError(errno) < 0 )
 		throw ConexionException("No se pudo conectar con el servidor");
 	}
 

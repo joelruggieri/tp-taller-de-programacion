@@ -25,8 +25,8 @@ void SimpleEditorEstirar::rightClickDown(float x, float y) {
 	this->modeloController->removerFigura(editado->getModelo());
 	ultimoX = x;
 	ultimoY = y;
-	const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
-	if (keyboardState[SDL_SCANCODE_LCTRL]) {
+//	const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+	if (this->isCtrl()) {
 		estirando = true;
 	} else
 		super::rightClickDown(x, y);

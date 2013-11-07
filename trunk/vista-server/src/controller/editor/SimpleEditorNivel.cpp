@@ -141,8 +141,8 @@ void SimpleEditorNivel::rightClickDown(float x, float y) {
 			tablero->removerFigura(editado);
 			this->modeloController->removerFigura(editado->getModelo());
 			//Verifico si se apreto el shift tambien.
-			const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
-			if (keyboardState[SDL_SCANCODE_LSHIFT]) {
+//			const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+			if (this->isShift()) {
 				cleanAndDelete();
 				modeloController->cleanDeletes();
 				return;

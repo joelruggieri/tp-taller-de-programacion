@@ -11,9 +11,12 @@ using namespace std;
 
 
 
+//#include "src/controller/MainController.h"
 #include "src/AdministradorDeArchivos.h"
 #include "src/servidor/MainServerThread.h"
 #include "src/LoggingService.h"
+#include "src/ConexionException.h"
+#include "src/Logger.h"
 int main(int argc, char *argv[]) {
 
 	LOG::LoggingService servicioLog;
@@ -23,6 +26,12 @@ int main(int argc, char *argv[]) {
 		AdministradorDeArchivos::registrar(nivel);
 	}
 	MainServerThread contr;
+	try{
 	contr.run();
+	}catch (ConexionException & e) {
+//		log.error("No se ha podido realizar la partida por un problema de conexion");
+	}
+
+
 
 }

@@ -12,6 +12,7 @@
 #include <sys/socket.h>
 #include <string>
 #include "src/Logger.h"
+#include "src/ManejadorErrores.h"
 using namespace std;
 enum RESULTADO_CONEXION {SERVIDOR_ERROR, SERVIDOR_OCUPADO, SERVIDOR_CONECTADO};
 

@@ -69,8 +69,8 @@ void EditorUnion::rightClickDown(float x, float y) {
 		if (editado->getModelo() != NULL) {
 			//la remuevo de todos lados.
 
-			const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
-			if (keyboardState[SDL_SCANCODE_LSHIFT]) {
+//			const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+			if (this->isShift()) {
 				editado->getModelo()->makeBackUp();
 				tablero->removerFigura(editado);
 				this->modeloController->removerFigura(editado->getModelo());

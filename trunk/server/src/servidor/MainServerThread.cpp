@@ -16,6 +16,7 @@
 #include "src/mensajes/MensajePlano.h"
 #include <string>
 #include <unistd.h>
+#include "src/ConexionException.h"
 using namespace std;
 
 //#define PUERTO 6005
@@ -40,7 +41,7 @@ void MainServerThread::run() {
 	fd1 = socket(AF_INET, SOCK_STREAM, 0);
 	if (fd1 < 0) {
 		perror("ERROR abriendo socket.\n");
-
+		throw ConexionException("No se pudo generar socket");
 	}
 
 	/* Initialize socket structure */
@@ -56,9 +57,19 @@ void MainServerThread::run() {
 		perror("ERROR on binding");
 		printf("ERROR");
 //         return(1);
+		if(ManejadorErrores::manejarBindError(errno) < 0)
+		{
+			throw ConexionException("No se realiza conexion, problema de bindeo");
+		}
 	}
 
-	listen(fd1, 10);
+	if (listen(fd1, 10) < 0)
+		{
+		perror("ERROR on listening");
+		printf("ERROR");
+		if (ManejadorErrores::manejarListenError(errno) < 0)
+			throw ConexionException("No se realiza conexion, problema al escuchar clientes");
+		}
 	clilen = sizeof(cli_addr);
 //    char auxBuffer[1024];
 	string msj = "Servidor escuchando pedidos en el puerto ";
@@ -66,10 +77,15 @@ void MainServerThread::run() {
 	log.info(msj);
 	while (true) {
 		//ENTREGA3 ESTO SE PUEDE COLGAR, LOS ACEPTS PODRÍAN IR EN OTRO THREAD.
+
 		fd2 = accept(fd1, (struct sockaddr *) &cli_addr, &clilen);
 		if (fd2 < 0) {
 			perror("ERROR on accept");
-			break;
+			 if (ManejadorErrores::manejarAceptError(errno) < 0)
+			 throw ConexionException("No se realiza conexion, aceptar cliente");
+
+
+
 		}
 		log.info("Nuevo cliente conectado");
 		log.info("Nueva partida creada");

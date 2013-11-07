@@ -8,6 +8,8 @@
 #include "Serializador.h"
 #include "SerializacionException.h"
 #include "mensajes/userEvents/ClickMsj.h"
+#include "src/ManejadorErrores.h"
+#include <errno.h>
 #define MAX_BUFFER 1024
 Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(
@@ -44,9 +46,12 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 		recibidos += recv(sock, &bufferAux, longRecibida, 0);
 //		errno;
 
-		if (recibidos == -1)
+		if (recibidos == -1){
 			//TODO CHEQUEAR ERRNO PARA VER QUE ACCION TOMAR:   http://www.cisco.com/en/US/docs/ios/sw_upgrades/interlink/r2_0/unpremsg/mucsock.html
+			if ( ManejadorErrores::manejarReadError(errno) < 0)
 			throw SerializacionException("No se pudo recibir el mensaje al host");
+
+		}
 		strcat(buffer, bufferAux);
 	}
 	string clave;
@@ -112,6 +117,10 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 		send(socket, &(longEnviada), sizeof(int), 0);
 		//ENTREGA3 CHEQUEAR ESTO PORQUE NO ESTA PROBADO.
 		enviados += send(socket, envio.str().substr(enviados, len).c_str(), longEnviada, 0);
+		if (enviados < 0)
+		{
+			ManejadorErrores::manejarWriteError(errno);
+		}
 		//TODO CHEQUEAR ERRNO PARA VER QUE ACCION TOMAR:   http://www.cisco.com/en/US/docs/ios/sw_upgrades/interlink/r2_0/unpremsg/mucsock.html
 		if (enviados == -1) {
 			throw SerializacionException("No se pudo enviar el mensaje al host");
