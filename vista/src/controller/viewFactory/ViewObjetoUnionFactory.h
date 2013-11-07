@@ -21,8 +21,12 @@ namespace CLIENTE {
 class ViewObjetoUnionFactory {
 public:
 	ViewObjetoUnionFactory();
-	View* crear (ViewObjetoUnionFactory*);
+	View* crear (ViewObjetoUnionUpdateMsj*);
 private:
+	View* crearSoga(ViewObjetoUnionUpdateMsj*);
+	View* crearSogaEstatica(ViewObjetoUnionUpdateMsj*);
+	View* crearCorrea(ViewObjetoUnionUpdateMsj*);
+	View* crearCorreaEstatica(ViewObjetoUnionUpdateMsj*);
 };
 
 } /* namespace CLIENTE */
