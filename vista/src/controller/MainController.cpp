@@ -88,20 +88,18 @@ int MainController::run() {
 
 GeneralEventController* MainController::crearGeneralEventController() {
 	ZonaTablero * tablero = new ZonaTablero(viewController,this->salida);
-	ZonaPlay * zp = new ZonaPlay(viewController,110, 10, this->salida);
+	ZonaPlay * zp = new ZonaPlay(viewController,110, 90, this->salida);
 	list<string> factories;
 	factories.push_back(TAG_FACTORY_BALANCIN);
-	factories.push_back("2");
-	factories.push_back("3");
-	factories.push_back("4");
-	factories.push_back("5");
-	factories.push_back("6");
-	factories.push_back("7");
-	factories.push_back("8");
-	factories.push_back("9");
-	factories.push_back("10");
-	factories.push_back("11");
-	factories.push_back("12");
+	factories.push_back(TAG_FACTORY_BOLA);
+	factories.push_back(TAG_FACTORY_CINTA);
+	factories.push_back(TAG_FACTORY_CORREA);
+	factories.push_back(TAG_FACTORY_ENGRANAJE);
+	factories.push_back(TAG_FACTORY_GLOBO);
+	factories.push_back(TAG_FACTORY_MOTOR);
+	factories.push_back(TAG_FACTORY_PELOTA);
+	factories.push_back(TAG_FACTORY_SOGA);
+	factories.push_back(TAG_FACTORY_PLATAFORMA);
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(viewController, factories, 110, 80, salida);
 	JuegoEventsController * juegoController = new JuegoEventsController(zp,tablero, zonaCreacion,Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
 	GeneralEventController * generalEventController = new GeneralEventController();

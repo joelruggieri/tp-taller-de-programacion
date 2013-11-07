@@ -21,10 +21,16 @@ namespace CLIENTE {
 
 void ZonaCreacion::crearVista(ViewController* vc) {
 	map<string, ConfigFactory> factories;
-	factories.insert(
-			pair<string, ConfigFactory>(string(TAG_FACTORY_BALANCIN),
-					ConfigFactory(ID_FACTORY_BALANCIN, TAG_FACTORY_BALANCIN,
-					PATH_VISTA_BALANCIN_F)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_BALANCIN), ConfigFactory(ID_FACTORY_BALANCIN, TAG_FACTORY_BALANCIN, PATH_VISTA_BALANCIN_F)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_BOLA), ConfigFactory(ID_FACTORY_BOLA, TAG_FACTORY_BOLA,	PATH_VISTA_BOLA)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CINTA), ConfigFactory(ID_FACTORY_CINTA, TAG_FACTORY_CINTA,PATH_VISTA_CINTA)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CORREA), ConfigFactory(ID_FACTORY_CORREA, TAG_FACTORY_CORREA,PATH_VISTA_CORREA)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_ENGRANAJE),ConfigFactory(ID_FACTORY_ENGRANAJE, TAG_FACTORY_ENGRANAJE,PATH_VISTA_ENGRANAJE)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_GLOBO), ConfigFactory(ID_FACTORY_GLOBO, TAG_FACTORY_GLOBO,PATH_VISTA_GLOBO)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_MOTOR), ConfigFactory(ID_FACTORY_MOTOR, TAG_FACTORY_MOTOR,PATH_VISTA_MOTOR)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_PELOTA), ConfigFactory(ID_FACTORY_PELOTA, TAG_FACTORY_PELOTA,PATH_VISTA_PELOTA)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_SOGA), ConfigFactory(ID_FACTORY_PLATAFORMA, TAG_FACTORY_SOGA,PATH_VISTA_CUERDA)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_PLATAFORMA),ConfigFactory(ID_FACTORY_SOGA, TAG_FACTORY_PLATAFORMA, PATH_VISTA_PLATAFORMA_F)));
 
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
@@ -35,31 +41,27 @@ void ZonaCreacion::crearVista(ViewController* vc) {
 	vc->addView(ID_BORDE_CANVAS_CREAC, view);
 	EslabonCreacion * siguiente = inicioCadena;
 	while (siguiente != NULL) {
-		std::map<string, ConfigFactory>::iterator it = factories.find(
-				siguiente->getTag());
+		std::map<string, ConfigFactory>::iterator it = factories.find(siguiente->getTag());
 		if (it != factories.end()) {
 			ConfigFactory config = it->second;
-			vc->addViewScrolleable(config.id,
-					siguiente->crearView(config.path));
+			vc->addViewScrolleable(config.id, siguiente->crearView(config.path));
 		}
 		siguiente = siguiente->getsiguiente();
 
 	}
 
-	//ENTREGA3 CREAR LAS VIEWS DE TODAS LAS FACTORIES Y AGREGARLAS COMO SCROLLEABLES.
 
 }
 
-ZonaCreacion::ZonaCreacion(ViewController * vcontroller,
-		list<string> & factoriestags, float x, float margenSuperior,
+ZonaCreacion::ZonaCreacion(ViewController * vcontroller, list<string> & factoriestags, float x, float margenSuperior,
 		ColaEventos * cola) {
 	salida = cola;
 	scroll = NULL;
 	this->inicializar(vcontroller, factoriestags, x, margenSuperior);
 	crearVista(vcontroller);
 }
-void ZonaCreacion::inicializar(ViewController * vcontroller,
-		list<string> & factoriestags, float x, float margenSuperior) {
+void ZonaCreacion::inicializar(ViewController * vcontroller, list<string> & factoriestags, float x,
+		float margenSuperior) {
 	this->margenSuperior = margenSuperior;
 	float ancho = ANCHO_VIEW_DEF * 2;
 //	//50% de margen alrededor del panel
@@ -72,8 +74,7 @@ void ZonaCreacion::inicializar(ViewController * vcontroller,
 	this->inicioCadena = NULL;
 	this->ultimo = NULL;
 //	//por cada tag crea un eslabon.
-	for (iterator = factoriestags.begin(); iterator != factoriestags.end();
-			++iterator) {
+	for (iterator = factoriestags.begin(); iterator != factoriestags.end(); ++iterator) {
 		string msj = "Crea Eslabon en y = ";
 		log.concatenar(msj, y);
 		log.debug(msj);
@@ -88,10 +89,8 @@ void ZonaCreacion::inicializar(ViewController * vcontroller,
 	this->cuerpo = new Cuadrado(x, margenSuperior - (alto / 2), ancho, alto);
 	//las primeras 100 unidades no tienen scroll, sino lo creo.
 	if (alto > ALTO_PANEL_LOG) {
-		Cuadrado* cScroll = new Cuadrado(this->cuerpo->getX(), 40,
-				this->cuerpo->getAncho(), ALTO_PANEL_LOG);
-		this->scroll = new Scroll(vcontroller, cScroll, 4,
-				alto - ALTO_PANEL_LOG);
+		Cuadrado* cScroll = new Cuadrado(this->cuerpo->getX(), 40, this->cuerpo->getAncho(), ALTO_PANEL_LOG);
+		this->scroll = new Scroll(vcontroller, cScroll, 4, alto - ALTO_PANEL_LOG);
 	}
 }
 
@@ -119,8 +118,7 @@ bool ZonaCreacion::click(float x, float y) {
 		bool result = scroll == NULL ? false : scroll->click(x, y);
 		float corrimientoScroll = scroll == NULL ? 0 : scroll->getScroll();
 		if (!result) {
-			std::string atender = inicioCadena->atender(x, y,
-					corrimientoScroll);
+			std::string atender = inicioCadena->atender(x, y, corrimientoScroll);
 			if (atender == "") {
 				result = false;
 			} else {
@@ -135,7 +133,7 @@ bool ZonaCreacion::click(float x, float y) {
 //			}
 bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled) {
 	if (this->scroll != NULL) {
-		return this->scroll->mouseScroll(x, y, amountScrolled);
+		return this->scroll->mouseScroll(x, y, -1*amountScrolled);
 	}
 	return false;
 }

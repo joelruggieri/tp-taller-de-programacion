@@ -9,7 +9,7 @@
 #include "../controller/UserEventCreator.h"
 namespace CLIENTE {
 BotonSwitch::BotonSwitch(float x,float y,float w,float h, SDL_Texture * text1, SDL_Texture * text2):View(x,y,w,h) {
-	this->presionado = 0;
+	this->presionado = false;
 	this->t1 = text1;
 	this->t2 = text2;
 }

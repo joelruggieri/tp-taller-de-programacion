@@ -76,7 +76,13 @@ bool Scroll::mouseScroll(float x, float y, int amountScrolled) {
 	bool enContactoZona = cuerpo->contacto(x, y);
 	if (enContactoZona) {
 		this->desplazarBarra(amountScrolled);
-		cout << "Scroll" << endl;
+		int idUpdate = amountScrolled < 0 ? ID_SCROLL_ARRIBA : ID_SCROLL_ABAJO;
+		FlechaScrollView* flecha = (FlechaScrollView*) controller->getForUpdate(
+				idUpdate);
+		if (flecha != NULL) {
+			flecha->accionar();
+		}
+		controller->endUpdate();
 		return false;
 	}
 	return true;

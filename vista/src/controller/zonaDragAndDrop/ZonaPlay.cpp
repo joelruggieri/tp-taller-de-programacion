@@ -17,6 +17,7 @@ ZonaPlay::ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola) {
 	//ENTREGA3 PONERLO DONDE CORRESPONDA.
 	cuerpo = new Cuadrado(x, y, 20, 10);
 	salida = cola;
+	controller = vc;
 	crearVista(vc);
 
 //	boton = new BotonSwitch(lx,ly,w,h,USREVENT_START, USREVENT_STOP,text1,text2);
@@ -27,7 +28,10 @@ ZonaPlay::~ZonaPlay() {
 
 bool ZonaPlay::click(float x, float y) {
 	if (cuerpo->contacto(x, y)) {
-		this->boton->click();
+		BotonSwitch * boton = (BotonSwitch *) controller->getForUpdate(ID_BOTON_PLAY);
+		boton->click();
+		controller->endUpdate();
+
 		//ENTREGA3 MANDAR MENSAJE DE USER LISTO O NO LISTO.
 		return true;
 	}

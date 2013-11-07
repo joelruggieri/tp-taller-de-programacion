@@ -70,6 +70,16 @@ namespace CLIENTE {
 #define ID_SCROLL_ABAJO 10
 
 #define ID_FACTORY_BALANCIN 50
+#define ID_FACTORY_BOLA 51
+#define ID_FACTORY_CINTA 52
+#define ID_FACTORY_CORREA 53
+#define ID_FACTORY_ENGRANAJE 54
+#define ID_FACTORY_GLOBO 55
+#define ID_FACTORY_MOTOR 56
+#define ID_FACTORY_PELOTA 57
+#define ID_FACTORY_PLATAFORMA 58
+#define ID_FACTORY_SOGA 59
+
 //////////// Constantes de dibujo /////////
 
 #define RADIO_PELOTA 3.0
