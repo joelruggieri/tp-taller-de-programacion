@@ -13,7 +13,7 @@ class ViewObjetoUnionUpdateMsj: public ViewObjetoUpdateMsj {
 private:
 	float xHasta,yHasta;
 public:
-	ViewObjetoUnionUpdateMsj(float, float, float ,float,int);
+	ViewObjetoUnionUpdateMsj(float, float, float ,float,int, char);
 	virtual ~ViewObjetoUnionUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);

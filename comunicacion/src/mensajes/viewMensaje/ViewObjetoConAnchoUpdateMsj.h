@@ -17,7 +17,7 @@ private:
 	float ancho;
 	typedef ViewObjetoUpdateMsj super;
 public:
-	ViewObjetoConAnchoUpdateMsj(float, float, float, float, int);
+	ViewObjetoConAnchoUpdateMsj(float, float, float, float, int, char);
 	virtual ~ViewObjetoConAnchoUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);

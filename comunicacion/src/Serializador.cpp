@@ -13,13 +13,13 @@
 #define MAX_BUFFER 1024
 Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0, 0)));
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0, 0,'a')));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MSJ_PLANO), new MensajePlano("")));
 	this->mensajes.insert(
 			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_CON_ANCHO),
-					new ViewObjetoConAnchoUpdateMsj(0, 0, 0, 0, 0)));
+					new ViewObjetoConAnchoUpdateMsj(0, 0, 0, 0, 0, 'a')));
 	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_UNION), new ViewObjetoUnionUpdateMsj(0, 0, 0, 0, 0)));
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_UNION), new ViewObjetoUnionUpdateMsj(0, 0, 0, 0, 0, 'a')));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CLICK), new ClickMsj(0, 0, 0, 0, 0, 0)));
 	this->destinatario = destinatario;
 }

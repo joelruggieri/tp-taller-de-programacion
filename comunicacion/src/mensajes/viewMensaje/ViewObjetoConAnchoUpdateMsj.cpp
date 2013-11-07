@@ -9,7 +9,7 @@
 #include "../../ConstantesComunicacion.h"
 
 
-ViewObjetoConAnchoUpdateMsj::ViewObjetoConAnchoUpdateMsj(float x, float y, float angulo, float ancho, int id): ViewObjetoUpdateMsj(x,y,angulo,id){
+ViewObjetoConAnchoUpdateMsj::ViewObjetoConAnchoUpdateMsj(float x, float y, float angulo, float ancho, int id, char sel): ViewObjetoUpdateMsj(x,y,angulo,id, sel){
 	this->ancho = angulo;
 }
 
@@ -26,6 +26,8 @@ void ViewObjetoConAnchoUpdateMsj::serialize(YAML::Node* nodo) {
 NetworkMensaje* ViewObjetoConAnchoUpdateMsj::deserialize(YAML::const_iterator & it) {
 	int id = it->as<int>();
 	it++;
+	char sel = it->as<char>();
+	it++;
 	float xl = it->as<float>();
 	it++;
 	float yl = it->as<float>();
@@ -34,7 +36,7 @@ NetworkMensaje* ViewObjetoConAnchoUpdateMsj::deserialize(YAML::const_iterator & 
 	it++;
 	float anchol = it->as<float>();
 	it++;
-	NetworkMensaje * salida = new ViewObjetoConAnchoUpdateMsj(xl,yl,angulol, anchol, id);
+	NetworkMensaje * salida = new ViewObjetoConAnchoUpdateMsj(xl,yl,angulol, anchol, id, sel);
 	return salida;
 }
 

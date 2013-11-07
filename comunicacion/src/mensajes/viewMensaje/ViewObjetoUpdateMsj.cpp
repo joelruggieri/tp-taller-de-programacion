@@ -10,7 +10,7 @@
 
 
 //ENTREGA3 AGREGAR LA HERENCIA A VIEWMSJ CON ID
-ViewObjetoUpdateMsj::ViewObjetoUpdateMsj(float x , float y, float angulo, int id): ViewMsj(id){
+ViewObjetoUpdateMsj::ViewObjetoUpdateMsj(float x , float y, float angulo, int id, char sel): ViewMsj(id, sel){
 this->x = x;
 this->y = y;
 this->angulo = angulo;
@@ -23,6 +23,7 @@ ViewObjetoUpdateMsj::~ViewObjetoUpdateMsj() {
 void ViewObjetoUpdateMsj::serialize(YAML::Node* nodo) {
 	nodo->push_back(this->getTag());
 	nodo->push_back(this->id);
+	nodo->push_back(this->selector);
 	nodo->push_back(this->x);
 	nodo->push_back(this->y);
 	nodo->push_back(this->angulo);
@@ -31,6 +32,8 @@ void ViewObjetoUpdateMsj::serialize(YAML::Node* nodo) {
 NetworkMensaje* ViewObjetoUpdateMsj::deserialize(YAML::const_iterator& it) {
 	int id = it->as<int>();
 	it++;
+	char sel = it->as<char>();
+	it++;
 	float xl = it->as<float>();
 	it++;
 	float yl = it->as<float>();
@@ -38,7 +41,7 @@ NetworkMensaje* ViewObjetoUpdateMsj::deserialize(YAML::const_iterator& it) {
 	float angulo = it->as<float>();
 	it++;
 
-	NetworkMensaje * salida = new ViewObjetoUpdateMsj(xl,yl, angulo, id);
+	NetworkMensaje * salida = new ViewObjetoUpdateMsj(xl,yl, angulo, id, sel);
 	return salida;
 }
 
