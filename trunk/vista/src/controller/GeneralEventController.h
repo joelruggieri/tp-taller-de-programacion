@@ -13,6 +13,7 @@
 
 #include "keyboardEventController/KeyBoardEventController.h"
 #include "mouseEventController/MouseEventController.h"
+#include "ResizerController.h"
 #include "DrawController.h"
 #include "SDL2/SDL.h"
 struct SDL_KeyboardEvent;
@@ -28,6 +29,7 @@ class GeneralEventController {
 private:
 	list<MouseControllerPrioridades *> mouseControllers;
 	list<KeyBoardEventController *> keyControllers;
+	list<ResizerController *> resizers;
 	DrawController * drawController;
 	int tamAnteriorX, tamAnteriorY;
 	void clickUp(int x, int y);
@@ -47,6 +49,7 @@ public:
 	void addKeyboardController(KeyBoardEventController* );
 	bool procesarEventos(SDL_Window *);
 	void setDrawController(DrawController *);
+	void addResizerController (ResizerController * );
 };
 
 }

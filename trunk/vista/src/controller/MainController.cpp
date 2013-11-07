@@ -57,15 +57,12 @@ int MainController::run() {
 	SDL_Init(SDL_INIT_VIDEO);
 	ventana = SDL_CreateWindow("Generador Niveles", 300, 100, 600, 600, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
-	viewController = new ViewController(render, 600, 600);
-//	Resizer::Instance(600, 600, 120, 120);
-//	CargadorDeTextures * texturas = CargadorDeTextures::Instance(render);
-
+	viewController = new ViewController(render, Resizer::crearTransformacionALogica(600,600));
 	GeneralEventController * eventController = crearGeneralEventController();
 	eventController->setDrawController(viewController);
-//	juegoController = inicializador.crearZonaJuego();
+	eventController->addResizerController(viewController);
 	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
-	SDL_SetWindowMaximumSize(ventana, 825, 825);
+	SDL_SetWindowMaximumSize(ventana, 825,825);
 	SDL_SetWindowPosition(ventana, 300, 100);
 
 	while (!terminar) {
@@ -83,7 +80,19 @@ GeneralEventController* MainController::crearGeneralEventController() {
 	ZonaTablero * tablero = new ZonaTablero(this->salida);
 	ZonaPlay * zp = new ZonaPlay(110, 10, this->salida);
 	list<string> factories;
-	ZonaCreacion* zonaCreacion = new ZonaCreacion(factories, 110, 10, salida);
+	factories.push_back("1");
+	factories.push_back("2");
+	factories.push_back("3");
+	factories.push_back("4");
+	factories.push_back("5");
+	factories.push_back("6");
+	factories.push_back("7");
+	factories.push_back("8");
+	factories.push_back("9");
+	factories.push_back("10");
+	factories.push_back("11");
+	factories.push_back("12");
+	ZonaCreacion* zonaCreacion = new ZonaCreacion(viewController, factories, 110, 80, salida);
 	JuegoEventsController * juegoController = new JuegoEventsController(zp);
 	juegoController->setZonas(tablero, zonaCreacion);
 	GeneralEventController * generalEventController = new GeneralEventController();

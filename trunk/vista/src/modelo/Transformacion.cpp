@@ -140,10 +140,18 @@ Transformacion::Transformacion(const Transformacion& t2) {
 }
 }
 
-int CLIENTE::Transformacion::escalarEnX(float x) {
-	return round(x * this->escalax);
+float CLIENTE::Transformacion::escalarEnX(int x) {
+	return round((float)x * this->escalax);
 }
 
-int CLIENTE::Transformacion::escalarEnY(float y) {
-	return round(y * this->escalay);
+float CLIENTE::Transformacion::escalarEnY(int y) {
+	return round((float)y * this->escalay);
+}
+
+int CLIENTE::Transformacion::escalarInversaEnX(float x) {
+	return round(x / this->escalax);
+}
+
+int CLIENTE::Transformacion::escalarInversaEnY(float y) {
+	return round(y / this->escalay);
 }

@@ -11,15 +11,18 @@
 #include "../ConstantesVista.h"
 #include "../vista/CargadorDeTextures.h"
 #include "../vista/Canvas.h"
+#include "../vista/ViewConBorde.h"
+#include "../vista/BotonSwitch.h"
 #include "SDL2/SDL.h"
 namespace CLIENTE {
-bool comparar_layersViews(View * first,	View * second) {
+bool comparar_layersViews(View * first, View * second) {
 	return first->getLayer() < second->getLayer();
 }
 
-ViewController::ViewController(SDL_Renderer * r,int ancho, int alto) {
+ViewController::ViewController(SDL_Renderer * r, Transformacion * tl) {
 	this->renderer = r;
-	resize(ancho, alto);
+	this->tl = NULL;
+	resize(tl);
 	crearPantalla();
 }
 
@@ -32,18 +35,18 @@ void ViewController::receiveEvent(ViewMsj*) {
 
 void ViewController::addView(int id, View* v) {
 	lock();
-	vistas.insert(pair<int,View *> (id,v));
+	vistas.insert(pair<int, View *>(id, v));
 	vistasList.push_back(v);
+	v->setTl(tl);
+	v->resizear();
 	vistasList.sort(comparar_layersViews);
 	unlock();
 }
 
 void ViewController::dibujar() {
-	Logger log;
-	log.debug("Dibujado");
 	lock();
 	list<View*>::iterator it;
-	for(it=vistasList.begin(); it != vistasList.end(); ++it){
+	for (it = vistasList.begin(); it != vistasList.end(); ++it) {
 		(*it)->dibujarse(renderer);
 	}
 	unlock();
@@ -54,25 +57,59 @@ ViewController::~ViewController() {
 	delete tl;
 }
 
-
 void ViewController::crearPantalla() {
 
 	CargadorDeTextures::Instance(renderer);
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
-//	View * viewprueba = new PlataformaView(100,100,100,100,canvasTexture);
-	Canvas * canvas = new Canvas(50,50,50,50,canvasTexture);
-	addView(ID_CANVAS, canvas);
+	View * view = new Canvas(50, 50, 100, 100, canvasTexture);
+	addView(ID_CANVAS, view);
+	view = new ViewConBorde(50, 50, 100, 100);
+	addView(ID_BORDE_CANVAS, view);
+	canvasTexture = texturas->cargarTexture(PATH_ZONA_CREACION);
+	view = new Canvas(110, 40, 20, 80, canvasTexture);
+	addView(ID_CANVAS, view);
+	view = new ViewConBorde(110, 40, 20, 80);
+	addView(ID_BORDE_CANVAS_CREAC, view);
+	SDL_Texture* text1 = texturas->cargarTexture(PATH_BOTON_PLAY);
+	SDL_Texture* text2 = texturas->cargarTexture(PATH_BOTON_STOP);
+	view = new BotonSwitch(110, 90, 20, 20, text1, text2);
+	addView(ID_BOTON_PLAY, view);
+	view = new ViewConBorde(110, 90, 20, 20);
+	addView(ID_BOTON_PLAY_BORDE, view);
+	view = new Canvas(110, 90, 20, 20, canvasTexture);
+	addView(ID_BOTON_PLAY_FONDO, view);
+	view = new Canvas(60, -10, 120, 20, canvasTexture);
+	addView(ID_CANVAS_RELLENO, view);
+	view = new ViewConBorde(60, -10, 120, 20);
+	addView(ID_BORDE_RELLENO, view);
+
 }
 
-void ViewController::resize(int ancho, int alto) {
-	if(tl != NULL){
-		delete tl;
-	}
-	tl= Resizer::crearTransformacionALogica(ancho, alto);
-	list<View*>::iterator it;
+void ViewController::addViewScrolleable(int id, View* v) {
+	this->addView(id, v);
+	this->vistasScrolleables.push_back(v);
+}
+
+void ViewController::scrollUnidadesLogicas(float unidadesLogicas) {
 	lock();
-	for(it=vistasList.begin(); it!= vistasList.end(); ++it){
+	list<View*>::iterator it;
+	View* vista;
+	for (it = vistasScrolleables.begin(); it != vistasScrolleables.end(); ++it) {
+		vista = *it;
+		vista->setYL(vista->getYL() + unidadesLogicas);
+	}
+	unlock();
+}
+
+void ViewController::resize(Transformacion * tl) {
+	lock();
+	if (this->tl != NULL) {
+		delete this->tl;
+	}
+	this->tl = tl;
+	list<View*>::iterator it;
+	for (it = vistasList.begin(); it != vistasList.end(); ++it) {
 		(*it)->setTl(tl);
 		(*it)->resizear();
 	}

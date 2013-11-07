@@ -25,8 +25,8 @@ public:
 	virtual void dibujarse(SDL_Renderer*, SDL_Rect&)=0;
 	virtual void resizear();
 	virtual void update(ViewMsj *) = 0;
-
-
+	virtual void setYL(float yl);
+	virtual float getYL();
 };
 
 }

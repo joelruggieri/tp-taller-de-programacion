@@ -25,16 +25,19 @@ class ViewController: public ObjetoCompartido, public DrawController, public Res
 private:
 	map<int, View*> vistas;
 	list<View*> vistasList;
+	list<View*> vistasScrolleables;
 	SDL_Renderer * renderer;
 	void crearPantalla();
 	Transformacion * tl;
 public:
-	ViewController(SDL_Renderer *,int ancho, int alto);
+	ViewController(SDL_Renderer *,Transformacion * tl);
 	void receiveEvent(ViewMsj *);
 	void addView(int id, View *);
+	void addViewScrolleable(int id, View *);
+	void scrollUnidadesLogicas(float unidadesLogicas);
 	void dibujar();
 	virtual ~ViewController();
-	void resize(int,int);
+	void resize(Transformacion * tl);
 };
 
 }
