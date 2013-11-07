@@ -17,7 +17,7 @@ private:
 	typedef UnionView super;
 	SDL_Color color;
 public:
-	CorreaView(int x, int y, SDL_Texture * textura);
+	CorreaView(float x, float y, SDL_Texture * textura);
 	virtual ~CorreaView();
 	void dibujarse(SDL_Renderer*);
 	void update();

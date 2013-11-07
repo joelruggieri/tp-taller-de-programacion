@@ -7,7 +7,7 @@
 
 #include "PelotaJuegoView.h"
 namespace CLIENTE {
-PelotaJuegoView::PelotaJuegoView(int x, int y, int w, int h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
+PelotaJuegoView::PelotaJuegoView(float x, float y, float w, float h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
 
 }
 

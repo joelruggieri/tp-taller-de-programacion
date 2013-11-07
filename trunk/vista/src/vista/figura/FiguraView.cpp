@@ -10,7 +10,7 @@ namespace CLIENTE {
 
  ********************************************************/
 FiguraView::FiguraView(int x, int y, int w, int h,SDL_Texture* textura): View(x,y,w,h) {
-	this->tl = Resizer::Instance()->getTransformacionToModelo();
+//	this->tl = Resizer::Instance()->getTransformacionToModelo();
 
 	this->textura = textura;
 }
@@ -21,12 +21,12 @@ FiguraView::~FiguraView(){
 
 
 void FiguraView::dibujarse(SDL_Renderer * renderer){
-	SDL_Rect dest;
-	dest.h = this->getH();
-	dest.w = this->getW();
-	dest.x = this->getX();
-	dest.y = this->getY();
-	this->dibujarse(renderer, dest);
+//	SDL_Rect dest;
+//	dest.h = this->getH();
+//	dest.w = this->getW();
+//	dest.x = this->getX();
+//	dest.y = this->getY();
+//	this->dibujarse(renderer, dest);
 }
 
 void FiguraView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
@@ -43,6 +43,6 @@ SDL_Texture* FiguraView::getTexture() {
 
 void FiguraView::resizear() {
 	super::resizear();
-	this->tl = Resizer::Instance()->getTransformacionToModelo();
+//	this->tl = Resizer::Instance()->getTransformacionToModelo();
 }
 }

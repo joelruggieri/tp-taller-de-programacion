@@ -139,3 +139,11 @@ Transformacion::Transformacion(const Transformacion& t2) {
 	this->invertiry = t2.invertiry;
 }
 }
+
+int CLIENTE::Transformacion::escalarEnX(float x) {
+	return round(x * this->escalax);
+}
+
+int CLIENTE::Transformacion::escalarEnY(float y) {
+	return round(y * this->escalay);
+}

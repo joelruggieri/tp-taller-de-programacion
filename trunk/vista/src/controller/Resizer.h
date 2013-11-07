@@ -16,8 +16,7 @@ class Resizer {
 private:
 	Transformacion transf;
 public:
-	static Resizer* Instance(int x, int y, float xLogico, float yLogico);
-	static Resizer* Instance();
+	static Transformacion * crearTransformacionALogica(int, int);
 	int resizearDistanciaX(int valor);
 	int resizearDistanciaY(int valor);
 	void setearResizer(int xNuevo, int yNuevo);

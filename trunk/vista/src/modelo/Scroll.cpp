@@ -82,11 +82,12 @@ void Scroll::addScrolleable(View* vista) {
 
 void Scroll::actualizarVistas(int corrimiento) {
 	list<View*>::iterator it;
-	View *vista;
+//	View *vista;
 
 	for(it= scrolleables.begin(); it!= scrolleables.end(); ++it){
-		vista = *it;
-		vista->desplazarCentroA(vista->getXCentro(), vista->getYCentro() + Resizer::Instance()->resizearDistanciaLogicaY(corrimiento));
+//		vista = *it;
+		//ENTREGA3 USAR TL
+//		vista->desplazarCentroA(vista->getXCentro(), vista->getYCentro() + Resizer::Instance()->resizearDistanciaLogicaY(corrimiento));
 	}
 }
 

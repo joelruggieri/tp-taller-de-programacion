@@ -38,6 +38,7 @@ void MainClienteThread::run() {
 	if (thread == 0) {
 		int sockfd;
 		RESULTADO_CONEXION result = conectar(sockfd);
+//		RESULTADO_CONEXION result = SERVIDOR_CONECTADO;
 		if (SERVIDOR_CONECTADO == result) {
 			log.info("Conectado con servidor");
 			Status* status = new Status(TIMEOUT);

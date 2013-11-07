@@ -13,7 +13,7 @@ class PlataformaView: public ObjetoView {
 private:
 	typedef FiguraView super;
 public:
-	PlataformaView(int x, int y, int w, int h, SDL_Texture * textura);
+	PlataformaView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~PlataformaView();
 	void update(ViewMsj *);
 };

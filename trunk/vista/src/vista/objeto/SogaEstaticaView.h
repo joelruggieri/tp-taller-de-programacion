@@ -15,7 +15,7 @@ namespace CLIENTE {
 
 class SogaEstaticaView: public UnionEstaticaView {
 public:
-	SogaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura);
+	SogaEstaticaView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~SogaEstaticaView();
 	void update(ViewMsj *);
 private:

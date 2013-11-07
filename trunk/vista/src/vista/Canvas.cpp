@@ -19,35 +19,7 @@ namespace CLIENTE {
 //}
 
 Canvas::~Canvas() {
-	std::list<Dibujable*>::const_iterator it;
-	for (it = vistas.begin(); it != vistas.end(); ++it) {
-		delete (*it);
-	}
 }
-
-bool Canvas::remover(Dibujable* vista) {
-	int cant = this->vistas.size();
-	this->vistas.remove(vista);
-	int cantNueva= this->vistas.size();
-	this->vistas.sort(comparar_layers);
-	return cant > cantNueva;
-}
-
-void Canvas::agregar(Dibujable* vista) {
-	this->vistas.push_back(vista);
-	this->vistas.sort(comparar_layers);
-}
-
-const list<Dibujable*>& Canvas::getDibujables() const {
-	return vistas;
-}
-
-/*void Canvas::Resizear(int x, int y)
- {
- this->w = this->w + x;
- this->h = this->h + y;
-
- }*/
 
 void Canvas::ModificarFondo(SDL_Texture* nuevaImagen) {
 	this->imagenCanvas = nuevaImagen;
@@ -55,10 +27,10 @@ void Canvas::ModificarFondo(SDL_Texture* nuevaImagen) {
 
 
 void Canvas::generarSinBorde(SDL_Rect & dest) {
-	dest.h = this->getH();
-	dest.w = this->getW();
-	dest.x = this->getX();
-	dest.y = this->getY();
+//	dest.h = this->getH();
+//	dest.w = this->getW();
+//	dest.x = this->getX();
+//	dest.y = this->getY();
 }
 
 
@@ -67,20 +39,11 @@ void Canvas::dibujarse(SDL_Renderer * renderer) {
 
 	generarSinBorde(dest);
 	this->dibujarse(renderer, dest);
-//	SDL_RenderCopy(renderer, this->imagenCanvas, NULL, &dest);
-//	std::list<Dibujable*>::const_iterator it;
-//	for (it = vistas.begin(); it != vistas.end(); ++it) {
-//		(*it)->dibujar(renderer);
-//	}
 
 }
 void Canvas::dibujarse(SDL_Renderer * renderer, SDL_Rect& dest) {
 
 	SDL_RenderCopy(renderer, this->imagenCanvas, NULL, &dest);
-	std::list<Dibujable*>::const_iterator it;
-	for (it = vistas.begin(); it != vistas.end(); ++it) {
-		(*it)->dibujarse(renderer);
-	}
 
 }
 
@@ -90,17 +53,18 @@ Canvas::Canvas(int x, int y, int w, int h, SDL_Texture* textura) :
 	this->border = false;
 }
 
-const list<Dibujable*>& Canvas::getVistas() {
-	return (this->vistas);
-}
-
 void Canvas::resizear() {
-//	int wFinal, hFinal, xFinal, yFinal;
+////	int wFinal, hFinal, xFinal, yFinal;
+// ENTREGA3 USAR GETTL
+//this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+//this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+//this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
+//this->setYc((Resizer::Instance()->resizearPosicionY(this->getYCentro())));
 
-this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
-this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
-this->setYc((Resizer::Instance()->resizearPosicionY(this->getYCentro())));
 //	TODO resizear
 }
+
+void Canvas::update(ViewMsj*) {
+}
+
 }

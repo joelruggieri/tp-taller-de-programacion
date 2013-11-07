@@ -19,12 +19,12 @@ BotonSwitch::~BotonSwitch() {
 }
 
 void BotonSwitch::dibujarse(SDL_Renderer* r) {
-	SDL_Rect dest;
-	dest.h = this->getH();
-	dest.w = this->getW();
-	dest.x = this->getX();
-	dest.y = this->getY();
-	this->dibujarse(r , dest);
+//	SDL_Rect dest;
+//	dest.h = this->getH();
+//	dest.w = this->getW();
+//	dest.x = this->getX();
+//	dest.y = this->getY();
+//	this->dibujarse(r , dest);
 
 }
 

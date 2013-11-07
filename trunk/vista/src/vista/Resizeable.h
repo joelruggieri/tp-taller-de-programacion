@@ -7,13 +7,18 @@
 
 #ifndef RESIZEABLE_H_
 #define RESIZEABLE_H_
-
+#include "../modelo/Transformacion.h"
 namespace CLIENTE {
 class Resizeable {
+protected:
+	Transformacion * tl;
 public:
 	Resizeable();
 	virtual void resizear() = 0;
+
 	virtual ~Resizeable();
+	Transformacion* getTl() ;
+	void setTl(Transformacion* tl);
 };
 
 }

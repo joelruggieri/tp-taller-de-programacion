@@ -31,6 +31,9 @@ namespace CLIENTE {
 MainController::MainController(ColaEventos * salida) {
 	Logger::setNivel(DEBUG_N);
 	this->salida = salida;
+	viewController = NULL;
+	juegoController = NULL;
+	render = NULL;
 }
 
 MainController::~MainController() {
@@ -40,16 +43,6 @@ Uint32 my_callbackfunc(Uint32 interval, void *param) {
 	SDL_Event event = crearEvento(USREVENT_DRAW, NULL, NULL);
 	SDL_PushEvent(&event);
 	return (interval);
-}
-void taparHueco(SDL_Renderer * renderer) {
-	SDL_Rect dest;
-	Resizer * r = Resizer::Instance();
-	dest.x = 0;
-	dest.y = r->resizearPosicionLogicaY(100);
-	dest.w = r->resizearDistanciaLogicaX(120);
-	dest.h = r->resizearDistanciaLogicaY(20);
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-	SDL_RenderFillRect(renderer, &dest);
 }
 
 void MainController::dibujar() {
@@ -64,24 +57,22 @@ int MainController::run() {
 	SDL_Init(SDL_INIT_VIDEO);
 	ventana = SDL_CreateWindow("Generador Niveles", 300, 100, 600, 600, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
-
-	Resizer::Instance(600, 600, 120, 120);
+	viewController = new ViewController(render, 600, 600);
+//	Resizer::Instance(600, 600, 120, 120);
 //	CargadorDeTextures * texturas = CargadorDeTextures::Instance(render);
 
 	GeneralEventController * eventController = crearGeneralEventController();
-
+	eventController->setDrawController(viewController);
 //	juegoController = inicializador.crearZonaJuego();
-//	eventController.setDrawController(this);
-//	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
+	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
 	SDL_SetWindowMaximumSize(ventana, 825, 825);
-//	SDL_SetWindowMaximumSize(ventana, 650, 650);
 	SDL_SetWindowPosition(ventana, 300, 100);
 
 	while (!terminar) {
-//		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
+		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
 		terminar = eventController->procesarEventos(ventana);
 	}
-//	SDL_RemoveTimer(timerID);
+	SDL_RemoveTimer(timerID);
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(ventana);
 
@@ -100,4 +91,9 @@ GeneralEventController* MainController::crearGeneralEventController() {
 
 	return generalEventController;
 }
+
+ViewController* MainController::getviewController() {
+	return viewController;
+}
+
 }

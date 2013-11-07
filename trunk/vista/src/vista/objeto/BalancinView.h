@@ -13,7 +13,7 @@
 namespace CLIENTE {
 class BalancinView: public ObjetoView {
 public:
-	BalancinView(int x, int y, int w, int h, SDL_Texture * textura);
+	BalancinView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~BalancinView();
 	void update(ViewMsj *);
 };

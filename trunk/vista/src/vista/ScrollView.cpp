@@ -50,10 +50,11 @@ void ScrollView::notify(Observable* obs, event_type T) {
 
 void ScrollView::resizear() {
 //	cout << "se ha resizeado el scrool view" << endl ;
-	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-	this->setH(Resizer::Instance()->resizearDistanciaX(this->getH()));
-	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
-	this->setYc(Resizer::Instance()->resizearPosicionY(this->getYCentro()));
+	//ENTREGA3 USAR GETTL
+//	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+//	this->setH(Resizer::Instance()->resizearDistanciaX(this->getH()));
+//	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+//	this->setYc(Resizer::Instance()->resizearPosicionY(this->getYCentro()));
 }
 
 void ScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {

@@ -12,7 +12,7 @@
 namespace CLIENTE {
 class GloboHelioView : public ObjetoView {
 public:
-	GloboHelioView(int x, int y, int w, int h, SDL_Texture * textura);
+	GloboHelioView(float x,float y, float w, float h, SDL_Texture * textura);
 	virtual ~GloboHelioView();
 	void dropTemplate();
 };

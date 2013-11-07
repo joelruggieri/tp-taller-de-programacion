@@ -13,7 +13,7 @@ namespace CLIENTE {
 
 class SogaView: public UnionView {
 public:
-	SogaView(int x, int y, SDL_Texture * textura);
+	SogaView(float x, float y, SDL_Texture * textura);
 	virtual ~SogaView();
 	void dibujarse(SDL_Renderer * renderer);
 	void dibujarse(SDL_Renderer * renderer, SDL_Rect & dest);

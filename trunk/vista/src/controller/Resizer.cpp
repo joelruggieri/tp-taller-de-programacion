@@ -11,83 +11,54 @@
 using namespace std;
 #include <cmath>
 namespace CLIENTE {
-Resizer* Resizer::pinstance = 0;// Inicializar el puntero
-Resizer* Resizer::Instance (int x, int y, float xLogico, float yLogico )
-{
-  if (pinstance == 0)  // ¿Es la primera llamada?
-  {
-    pinstance = new Resizer(x,y, xLogico, yLogico); // Creamos la instancia
-  }
-  return pinstance; // Retornamos la dirección de la instancia
-}
-
-Resizer* Resizer::Instance ()
-{
-	Logger log;
-	std::string mensaje_error = "Resizer no se encuentra correctamente inicializado";
-	if(pinstance == 0){
-
-		//TODO LANZAR EXCEPTION
-		log.error(mensaje_error);
-		//cout<< "ERROR"<<endl;
-	}
-  return pinstance; // Retornamos la dirección de la instancia
-}
-
-
+Resizer* Resizer::pinstance = 0; // Inicializar el puntero
 
 int Resizer::resizearDistanciaX(int valor) {
-	float valorFloat = (float) valor ;
-	if(valor == 0) {
+	float valorFloat = (float) valor;
+	if (valor == 0) {
 		return 0;
 	}
-	return round(this->relacionX * valorFloat)  ;
+	return round(this->relacionX * valorFloat);
 }
 
-int Resizer::resizearDistanciaLogicaX(float valor)
-{
-		float valorFloat = (float)valor;
+int Resizer::resizearDistanciaLogicaX(float valor) {
+	float valorFloat = (float) valor;
 	return round(this->relacionXLogica * valorFloat);
 }
 
-int Resizer::resizearDistanciaLogicaY(float valor)
-{
-	float valorFloat = (float)valor;
+int Resizer::resizearDistanciaLogicaY(float valor) {
+	float valorFloat = (float) valor;
 	return round(this->relacionYLogica * valorFloat);
 }
 
-float Resizer::resizearDistanciaPixelX(int valor)
-{
-		float valorFloat = (float)valor;
+float Resizer::resizearDistanciaPixelX(int valor) {
+	float valorFloat = (float) valor;
 	return (valorFloat / this->relacionXLogica);
 }
 
-float Resizer::resizearDistanciaPixelY(int valor)
-{
-	float valorFloat = (float)valor;
+float Resizer::resizearDistanciaPixelY(int valor) {
+	float valorFloat = (float) valor;
 	return (valorFloat / this->relacionYLogica);
 }
-
 
 void Resizer::setearResizer(int xNuevo, int yNuevo) {
 	this->xViejo = this->xNuevo;
 	this->yViejo = this->yNuevo;
-	this->xNuevo = xNuevo;	this->relacionX = this->xNuevo / this->xViejo;
+	this->xNuevo = xNuevo;
+	this->relacionX = this->xNuevo / this->xViejo;
 	this->relacionX = this->xNuevo / this->xViejo;
 	this->yNuevo = yNuevo;
-	this->relacionX = (float)this->xNuevo / (float) this->xViejo ;
-	this->relacionY = (float)this->yNuevo / (float) this->yViejo ;
-	this->relacionXLogica = (float)this->xNuevo / (float) this->xLogico;
-	this->relacionYLogica = (float)this->yNuevo / (float) this->yLogico;
+	this->relacionX = (float) this->xNuevo / (float) this->xViejo;
+	this->relacionY = (float) this->yNuevo / (float) this->yViejo;
+	this->relacionXLogica = (float) this->xNuevo / (float) this->xLogico;
+	this->relacionYLogica = (float) this->yNuevo / (float) this->yLogico;
 	transf.traslacion(0, 100);
 	transf.escalar(getRelacionX(), getRelacionY());
 	transf.invertir(false, true);
 }
 
-
-
 int Resizer::resizearDistanciaY(int valor) {
-	if(valor == 0) {
+	if (valor == 0) {
 		return 0;
 	}
 
@@ -106,28 +77,26 @@ void Resizer::resizearResizeables() {
 	transf.traslacion(0, 100);
 	transf.escalar(getRelacionX(), getRelacionY());
 	transf.invertir(false, true);
-	list<Resizeable* >::iterator iter;
-		 for(iter = this->resizeables.begin();iter != this->resizeables.end();iter++)
-		{
-			 	(*iter)->resizear();
+	list<Resizeable*>::iterator iter;
+	for (iter = this->resizeables.begin(); iter != this->resizeables.end();
+			iter++) {
+		(*iter)->resizear();
 
-
-		}
+	}
 }
 
 float Resizer::resizearPosicionPixelY(int valor) {
 	int yPixel = valor;
-	float valorFloat = (float)yPixel;
+	float valorFloat = (float) yPixel;
 	return (valorFloat / this->relacionYLogica);
 }
 
 int Resizer::resizearPosicionLogicaY(float valor) {
-	int yPixel =round(this->relacionYLogica * valor);
+	int yPixel = round(this->relacionYLogica * valor);
 	return yPixel;
 }
 
-Resizer::Resizer(int x, int y,float xLogico, float yLogico)
-{
+Resizer::Resizer(int x, int y, float xLogico, float yLogico) {
 	this->xViejo = x;
 	this->yViejo = y;
 	this->xNuevo = x;
@@ -136,12 +105,12 @@ Resizer::Resizer(int x, int y,float xLogico, float yLogico)
 	this->relacionY = 1;
 	this->xLogico = xLogico;
 	this->yLogico = yLogico;
-	this->relacionXLogica = (float)this->xNuevo / (float) this->xLogico;
-	this->relacionYLogica = (float)this->yNuevo / (float) this->yLogico;
+	this->relacionXLogica = (float) this->xNuevo / (float) this->xLogico;
+	this->relacionYLogica = (float) this->yNuevo / (float) this->yLogico;
 	transf.traslacion(0, 100);
 	transf.escalar(getRelacionX(), getRelacionY());
 	transf.invertir(false, true);
-	transf.setVector(0,0);
+	transf.setVector(0, 0);
 
 }
 
@@ -179,15 +148,28 @@ void Resizer::adaptarDimensionPixel(int w, int h, float& wNuevo,
 }
 
 float Resizer::getRelacionX() {
-	return 1/this->relacionXLogica;
+	return 1 / this->relacionXLogica;
 }
 
 float Resizer::getRelacionY() {
-	return 1/this->relacionYLogica;
+	return 1 / this->relacionYLogica;
 }
 
 Transformacion& Resizer::getTransformacionToModelo() {
-	transf.setVector(0,0);
+	transf.setVector(0, 0);
 	return this->transf;
 }
+
+Transformacion* Resizer::crearTransformacionALogica(int xNuevo,
+		int yNuevo) {
+	float relacionLogicaPixelY = (float) yNuevo / 100;
+	float relacionLogicaPixelX = (float) xNuevo / 120;
+
+	Transformacion * t = new Transformacion();
+	t->traslacion(0, 100);
+	t->escalar(relacionLogicaPixelX, relacionLogicaPixelY);
+	t->invertir(false, true);
+	return t;
+}
+
 }

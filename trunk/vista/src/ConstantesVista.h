@@ -5,6 +5,7 @@
  *      Author: jonathan
  */
 
+namespace CLIENTE {
 #ifndef CONSTANTESVISTA_H_
 #define CONSTANTESVISTA_H_
 /*
@@ -39,9 +40,15 @@
 #define PATH_ROTACION_IMG "resource/rotacion.png"
 #define PATH_ERROR_IMG "resource/error.jpg"
 #define IMG_ERROR "error.jpg"
-
+#define PATH_FONDO "resource/fondo.jpg"
 #define LAYER_DEFAULT 0
 #define LAYER_UNIONES 1
 #define LAYER_ENGRANAJES 2
 #define LAYER_CINTA 3
+
+#define ID_MARCO_ESCENARIO 0
+#define ID_CANVAS 1
+
+
 #endif /* CONSTANTESVISTA_H_ */
+}

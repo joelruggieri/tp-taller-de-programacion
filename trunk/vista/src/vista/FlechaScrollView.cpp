@@ -40,10 +40,10 @@ bool FlechaScrollView::isPresionado() const {
 
 void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
 	SDL_Rect dest;
-	dest.x = this->getX();
-	dest.y = this->getY();
-	dest.w = this->getW();
-	dest.h = this->getH();
+	dest.x = xp;
+	dest.y = yp;
+	dest.w = wp;
+	dest.h = hp;
 	this->dibujarse(renderer, dest);
 }
 
@@ -52,11 +52,12 @@ void FlechaScrollView::setPresionado(bool presionado) {
 }
 
 void FlechaScrollView::resizear() {
+	//ENTREGA3 USAR GETTL
 //	cout << "se ha resieado las flechas scrooll view" << endl ;
-	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
-	this->setYc((Resizer::Instance()->resizearPosicionY(this->getYCentro())));
-	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
+//	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
+//	this->setYc((Resizer::Instance()->resizearPosicionY(this->getYCentro())));
+//	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+//	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 
 }
 

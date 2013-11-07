@@ -9,7 +9,7 @@
 #include <cmath>
 #define PI 3.14159265
 namespace CLIENTE {
-CorreaView::CorreaView(int x, int y, SDL_Texture * textura): UnionView(x, y,textura) {
+CorreaView::CorreaView(float x, float y, SDL_Texture * textura): UnionView(x, y,textura) {
 
 }
 

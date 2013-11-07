@@ -20,10 +20,12 @@ ViewMotorFactory::~ViewMotorFactory() {
 }
 
 FiguraView* ViewMotorFactory::crear(int x, int y, int w, int h) {
+	//ENTREGA3 USAR TL
 //	return new MotorView(x, y, w, h, this->textura,(SimpleEditorAnguloFijo *) this->controller);
-	Resizer* r = Resizer::Instance();
-	int ancho,alto;
-	r->adaptarDimensionLogica(5.0 * 2 ,5.0 * 2,ancho,alto);
-	return new MotorView(x, y, ancho, alto, this->textura);
+//	Resizer* r = Resizer::Instance();
+//	int ancho,alto;
+//	r->adaptarDimensionLogica(5.0 * 2 ,5.0 * 2,ancho,alto);
+//	return new MotorView(x, y, ancho, alto, this->textura);
+	return NULL;
 }
 }
