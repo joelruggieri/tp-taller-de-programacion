@@ -10,7 +10,8 @@
 #include "../../modelo/Cuadrado.h"
 #include "../../vista/BotonSwitch.h"
 #include <src/threading/ColaEventos.h>
-
+#include "../ViewController.h"
+#include "../../vista/Canvas.h"
 namespace CLIENTE {
 
 class ZonaPlay {
@@ -19,8 +20,9 @@ private:
 	BotonSwitch * boton;
 	Cuadrado * cuerpo;
 	ColaEventos * salida;
+	void crearVista(ViewController * vc);
 public:
-	ZonaPlay(float x, float y,ColaEventos * cola);
+	ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola);
 	virtual ~ZonaPlay();
 	bool click(float x, float y);
 };

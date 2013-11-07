@@ -10,13 +10,11 @@
 #include "View.h"
 #include "SDL2/SDL.h"
 #include "FlechaScrollView.h"
-#include "../modelo/Observer.h"
-#include "../modelo/Observable.h"
 #include "../modelo/Scroll.h"
 
 
 namespace CLIENTE {
-class ScrollView: public View, public Observer {
+class ScrollView: public View{
 private:
 	int contArriba;
 	int contAbajo;

@@ -11,9 +11,11 @@
 #include "Resizeable.h"
 #include "../controller/Resizer.h"
 #include "src/mensajes/viewMensaje/ViewMsj.h"
+#include "../modelo/Observer.h"
+#include "../modelo/Observable.h"
 
 namespace CLIENTE {
-class View : public Dibujable, public Resizeable{
+class View : public Dibujable, public Resizeable, public Observer {
 protected:
 	int wp,hp;
 	int xp, yp;
@@ -27,6 +29,7 @@ public:
 	virtual void update(ViewMsj *) = 0;
 	virtual void setYL(float yl);
 	virtual float getYL();
+	virtual void notify(Observable*,event_type);
 };
 
 }

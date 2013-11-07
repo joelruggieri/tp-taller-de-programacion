@@ -55,7 +55,7 @@ int MainController::run() {
 	SDL_Window *ventana = NULL;
 	bool terminar = false;
 	SDL_Init(SDL_INIT_VIDEO);
-	ventana = SDL_CreateWindow("Generador Niveles", 300, 100, 600, 600, SDL_WINDOW_RESIZABLE);
+	ventana = SDL_CreateWindow("The Incredible Machine LAN", 300, 100, 600, 600, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
 	viewController = new ViewController(render, Resizer::crearTransformacionALogica(600,600));
 	GeneralEventController * eventController = crearGeneralEventController();
@@ -77,8 +77,8 @@ int MainController::run() {
 }
 
 GeneralEventController* MainController::crearGeneralEventController() {
-	ZonaTablero * tablero = new ZonaTablero(this->salida);
-	ZonaPlay * zp = new ZonaPlay(110, 10, this->salida);
+	ZonaTablero * tablero = new ZonaTablero(viewController,this->salida);
+	ZonaPlay * zp = new ZonaPlay(viewController,110, 10, this->salida);
 	list<string> factories;
 	factories.push_back("1");
 	factories.push_back("2");
