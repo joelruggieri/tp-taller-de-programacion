@@ -17,6 +17,7 @@
 #include <string>
 #include <unistd.h>
 #include "src/ConexionException.h"
+#include "errno.h"
 using namespace std;
 
 //#define PUERTO 6005

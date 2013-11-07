@@ -23,13 +23,15 @@
 #include "UserEventCreator.h"
 #include "../ConstantesVista.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
+#include "src/threading/EventReceptorThread.h"
 #include <string>
 #include <list>
 using namespace std;
 namespace CLIENTE {
 
-MainController::MainController(ColaEventos * salida) {
+MainController::MainController(ColaEventos* entrada,ColaEventos * salida) {
 	Logger::setNivel(DEBUG_N);
+	this->entrada = entrada;
 	this->salida = salida;
 	viewController = NULL;
 	juegoController = NULL;
@@ -53,7 +55,7 @@ void MainController::dibujar() {
 }
 int MainController::run() {
 	SDL_Window *ventana = NULL;
-	bool terminar = false;
+	bool terminar = false;;
 	SDL_Init(SDL_INIT_VIDEO);
 	ventana = SDL_CreateWindow("The Incredible Machine LAN", 300, 100, 600, 600, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
@@ -61,6 +63,11 @@ int MainController::run() {
 	GeneralEventController * eventController = crearGeneralEventController();
 	eventController->setDrawController(viewController);
 	eventController->addResizerController(viewController);
+
+
+	//Creo el thread que se encarga de distribuir los msjs del server
+	EventReceptorThread receptor(this->entrada, NULL, this->viewController, NULL);
+	receptor.run();
 	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
 	SDL_SetWindowMaximumSize(ventana, 825,825);
 	SDL_SetWindowPosition(ventana, 300, 100);
@@ -69,10 +76,10 @@ int MainController::run() {
 		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
 		terminar = eventController->procesarEventos(ventana);
 	}
+	receptor.cancel();
 	SDL_RemoveTimer(timerID);
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(ventana);
-
 	return 0;
 }
 

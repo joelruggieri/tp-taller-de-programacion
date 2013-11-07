@@ -26,7 +26,7 @@ ViewController::ViewController(SDL_Renderer * r, Transformacion * tl) {
 	crearPantalla();
 }
 
-void ViewController::receiveEvent(ViewMsj*) {
+void ViewController::visit(ViewMsj*) {
 	lock();
 	//ENTREGA3 TIENE QUE RECIBIR EL MENSAJE, TOMAR EL ID OBTENER LA VIEW Y DARLE UPDATE
 	//SI NO EXISTE LA VISTA TIENE QUE CREARLA EN LA POSICION QUE DIGA EL MENSAJE.

@@ -17,6 +17,7 @@ ZonaPlay::ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola) {
 	//ENTREGA3 PONERLO DONDE CORRESPONDA.
 	cuerpo = new Cuadrado(x, y, 20, 10);
 	salida = cola;
+	crearVista(vc);
 
 //	boton = new BotonSwitch(lx,ly,w,h,USREVENT_START, USREVENT_STOP,text1,text2);
 }
