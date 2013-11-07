@@ -7,8 +7,9 @@
 
 #include "ViewMsj.h"
 
-ViewMsj::ViewMsj(int id) {
+ViewMsj::ViewMsj(int id, char sel) {
 	this->id = id;
+	this->selector = sel;
 }
 
 ViewMsj::~ViewMsj() {
@@ -21,4 +22,8 @@ void ViewMsj::acept(MensajeVisitor* v) {
 
 int ViewMsj::getId() {
 	return id;
+}
+
+char ViewMsj::getSelector() {
+return this->selector;
 }

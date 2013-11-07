@@ -8,7 +8,7 @@
 #include "ViewObjetoUnionUpdateMsj.h"
 #include "../../ConstantesComunicacion.h"
 
-ViewObjetoUnionUpdateMsj::ViewObjetoUnionUpdateMsj(float x1,float x2, float x3, float x4, int id) : ViewObjetoUpdateMsj(x1,x2,0,id) {
+ViewObjetoUnionUpdateMsj::ViewObjetoUnionUpdateMsj(float x1,float x2, float x3, float x4, int id, char sel) : ViewObjetoUpdateMsj(x1,x2,0,id, sel) {
 	this->xHasta = x3;
 	this->yHasta = x4;
 
@@ -21,6 +21,7 @@ ViewObjetoUnionUpdateMsj::~ViewObjetoUnionUpdateMsj() {
 void ViewObjetoUnionUpdateMsj::serialize(YAML::Node* nodo) {
 	nodo->push_back(this->getTag());
 	nodo->push_back(this->id);
+	nodo->push_back(this->selector);
 	nodo->push_back(x);
 	nodo->push_back(y);
 	nodo->push_back(xHasta);
@@ -30,6 +31,8 @@ void ViewObjetoUnionUpdateMsj::serialize(YAML::Node* nodo) {
 NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) {
 	int id = it->as<int>();
 	it++;
+	char sel = it->as<char>();
+	it++;
 	float xD = it->as<float>();
 	it++;
 	float yD = it->as<float>();
@@ -38,7 +41,7 @@ NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) 
 	it++;
 	float yH = it->as<float>();
 	it++;
-	NetworkMensaje * salida = new ViewObjetoUnionUpdateMsj(xD,yD, xH, yH,id);
+	NetworkMensaje * salida = new ViewObjetoUnionUpdateMsj(xD,yD, xH, yH,id, sel);
 	return salida;
 }
 

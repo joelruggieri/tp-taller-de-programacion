@@ -12,12 +12,14 @@
 class ViewMsj: public NetworkMensaje {
 protected:
 	int id;
+	char selector;
 public:
-	ViewMsj(int id);
+	ViewMsj(int id, char sel);
 	virtual ~ViewMsj();
 	void acept(MensajeVisitor *);
 	virtual void acept(ViewMsjVisitor *)=0;
-	int getId();
+	char getSelector();
+		int getId();
 };
 
 #endif /* VIEWMSJ_H_ */
