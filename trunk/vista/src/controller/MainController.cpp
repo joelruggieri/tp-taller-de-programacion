@@ -13,7 +13,7 @@
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL.h>
 #include <new>
-
+#include "src/ConstantesComunicacion.h"
 #include "../vista/CargadorDeTextures.h"
 #include "../vista/DraggingView.h"
 #include "GeneralEventController.h"
@@ -90,7 +90,7 @@ GeneralEventController* MainController::crearGeneralEventController() {
 	ZonaTablero * tablero = new ZonaTablero(viewController,this->salida);
 	ZonaPlay * zp = new ZonaPlay(viewController,110, 10, this->salida);
 	list<string> factories;
-	factories.push_back("1");
+	factories.push_back(TAG_FACTORY_BALANCIN);
 	factories.push_back("2");
 	factories.push_back("3");
 	factories.push_back("4");

@@ -44,6 +44,6 @@ void CLIENTE::ZonaPlay::crearVista(ViewController* vc) {
 	vc->addView(ID_BOTON_PLAY, view);
 	view = new ViewConBorde(110, 90, 20, 20);
 	vc->addView(ID_BOTON_PLAY_BORDE, view);
-	view = new Canvas(110, 90, 20, 20, canvasTexture);
+	view = new Canvas(110, 90, 20, 20,-1, canvasTexture);
 	vc->addView(ID_BOTON_PLAY_FONDO, view);
 }

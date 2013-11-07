@@ -20,10 +20,24 @@
 #include <src/threading/ColaEventos.h>
 #include "../../controller/ViewController.h"
 #include <map>
+#include <string>
 #include "src/Logger.h"
 using namespace std;
 
 namespace CLIENTE {
+class ConfigFactory {
+public:
+	string tag;
+	string path;
+	int id;
+public:
+	ConfigFactory(int id, string tagCreacion,string textura){
+		this->id = id;
+		tag= tagCreacion;
+		path = textura;
+	}
+};
+
 class ZonaCreacion {
 private:
 	Logger log;

@@ -32,9 +32,12 @@ bool JuegoEventsController::clickDown(int x, int y) {
 	tl->setVector(x,y);
 	float xf,yf;
 	tl->getResultado(xf,yf);
-	creacion->click(xf,yf);
-	tablero->click(xf,yf);
-	zplay->click(xf,yf);
+	if(!tablero->click(xf,yf)){
+		if(!zplay->click(xf,yf)){
+			return creacion->click(xf,yf);
+		}
+	}
+
 	return true;
 }
 

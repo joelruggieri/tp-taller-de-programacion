@@ -58,7 +58,7 @@ ViewController::~ViewController() {
 void ViewController::crearPantalla() {
 	CargadorDeTextures::Instance(renderer);
 	SDL_Texture * text= CargadorDeTextures::Instance()->cargarTexture(PATH_ZONA_CREACION);
-	View * view = new Canvas(60, -10, 120, 20, text);
+	View * view = new Canvas(60, -10, 120, 20,1, text);
 	addView(ID_CANVAS_RELLENO, view);
 	view = new ViewConBorde(60, -10, 120, 20);
 	addView(ID_BORDE_RELLENO, view);

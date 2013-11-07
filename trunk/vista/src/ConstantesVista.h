@@ -69,6 +69,7 @@ namespace CLIENTE {
 #define ID_SCROLL_ARRIBA 9
 #define ID_SCROLL_ABAJO 10
 
+#define ID_FACTORY_BALANCIN 50
 //////////// Constantes de dibujo /////////
 
 #define RADIO_PELOTA 3.0

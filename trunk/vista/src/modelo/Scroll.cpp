@@ -21,9 +21,9 @@ Scroll::Scroll(ViewController * controller, Cuadrado* cuerpo, int velocidad,
 			(cuerpo->getY() + cuerpo->getAlto() / 2.0) - 2, cuerpo->getAncho(),
 			4);
 	inf = new Cuadrado(cuerpo->getX(),
-			(cuerpo->getY() - (cuerpo->getAlto() / 2.0)) + 2, cuerpo->getAncho(),
-			4);
-	this->posicion = max;
+			(cuerpo->getY() - (cuerpo->getAlto() / 2.0)) + 2,
+			cuerpo->getAncho(), 4);
+	this->posicion = 0;
 	this->max = max;
 	this->velocidad = velocidad;
 	this->controller = controller;
@@ -60,8 +60,9 @@ bool Scroll::click(float x, float y) {
 		int idUpdate = fig == sup ? ID_SCROLL_ARRIBA : ID_SCROLL_ABAJO;
 		int signado = (sup == fig ? 1 : -1);
 		this->desplazarBarra(signado);
-		FlechaScrollView* flecha = (FlechaScrollView*)controller->getForUpdate(idUpdate);
-		if(flecha != NULL){
+		FlechaScrollView* flecha = (FlechaScrollView*) controller->getForUpdate(
+				idUpdate);
+		if (flecha != NULL) {
 			flecha->accionar();
 		}
 		controller->endUpdate();
@@ -82,7 +83,7 @@ bool Scroll::mouseScroll(float x, float y, int amountScrolled) {
 }
 
 float Scroll::getScroll() {
-	return this->max - this->posicion;
+	return this->posicion;
 }
 
 void Scroll::addScrolleable(View* vista) {
@@ -95,12 +96,17 @@ int Scroll::getltimoClick() const {
 
 void Scroll::crearVista(ViewController* vc) {
 	SDL_Texture * texturaFlecha = CargadorDeTextures::Instance()->cargarTexture(
-			PATH_VISTA_FLECHA_SCROLL);
-	FlechaScrollView * view = new FlechaScrollView(sup->getX(),sup->getY(), sup->getAncho(), sup->getAlto(),texturaFlecha,5);
+	PATH_VISTA_FLECHA_SCROLL);
+	FlechaScrollView * view = new FlechaScrollView(sup->getX(), sup->getY(),
+			sup->getAncho(), sup->getAlto(), texturaFlecha, 5);
 	controller->addView(ID_SCROLL_ARRIBA, view);
-	view = new FlechaScrollView(inf->getX(),inf->getY(), inf->getAncho(), inf->getAlto(),texturaFlecha,5,true);
+	view = new FlechaScrollView(inf->getX(), inf->getY(), inf->getAncho(),
+			inf->getAlto(), texturaFlecha, 5, true);
 	controller->addView(ID_SCROLL_ABAJO, view);
 }
 
+Cuadrado* Scroll::getCuerpo() {
+	return cuerpo;
+}
 
 }

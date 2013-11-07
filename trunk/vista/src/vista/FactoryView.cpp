@@ -33,12 +33,11 @@ void FactoryView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
 		SDL_RenderCopy(renderer,this->textura,NULL,&dest);
 }
 
-void FactoryView::resizear() {
-
-	//ENTREGA3 GETTL
-//	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-//	this->setXc((Resizer::Instance()->resizearDistanciaX(this->getXCentro())));
-//	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
-//	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
+void FactoryView::update(ViewMsj*) {
 }
+
+int FactoryView::getLayer() {
+	return -5;
+}
+
 }

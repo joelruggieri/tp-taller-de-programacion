@@ -22,9 +22,10 @@ class Canvas: public View {
 private:
 	SDL_Texture* imagenCanvas;
 	bool border;
+	int layer;
 	void generarSinBorde(SDL_Rect & dest);
 public:
-	Canvas(float x, float y, float h, float w, SDL_Texture* textura);
+	Canvas(float x, float y, float h, float w,int layer,  SDL_Texture* textura);
 	void dibujarse(SDL_Renderer *);
 	void dibujarse(SDL_Renderer *, SDL_Rect&);
 	virtual ~Canvas();

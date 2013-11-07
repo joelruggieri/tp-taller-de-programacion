@@ -13,19 +13,39 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../RutasArchivos.h"
 #include "../../ConstantesVista.h"
+#include "src/ConstantesComunicacion.h"
 #include <iostream>
 using namespace std;
 
 namespace CLIENTE {
 
 void ZonaCreacion::crearVista(ViewController* vc) {
+	map<string, ConfigFactory> factories;
+	factories.insert(
+			pair<string, ConfigFactory>(string(TAG_FACTORY_BALANCIN),
+					ConfigFactory(ID_FACTORY_BALANCIN, TAG_FACTORY_BALANCIN,
+					PATH_VISTA_BALANCIN_F)));
+
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
 	canvasTexture = texturas->cargarTexture(PATH_ZONA_CREACION);
-	View * view = new Canvas(110, 40, 20, 80, canvasTexture);
+	View * view = new Canvas(110, 40, 20, 80, -10, canvasTexture);
 	vc->addView(ID_CANVAS_CREAC, view);
 	view = new ViewConBorde(110, 40, 20, 80);
 	vc->addView(ID_BORDE_CANVAS_CREAC, view);
+	EslabonCreacion * siguiente = inicioCadena;
+	while (siguiente != NULL) {
+		std::map<string, ConfigFactory>::iterator it = factories.find(
+				siguiente->getTag());
+		if (it != factories.end()) {
+			ConfigFactory config = it->second;
+			vc->addViewScrolleable(config.id,
+					siguiente->crearView(config.path));
+		}
+		siguiente = siguiente->getsiguiente();
+
+	}
+
 	//ENTREGA3 CREAR LAS VIEWS DE TODAS LAS FACTORIES Y AGREGARLAS COMO SCROLLEABLES.
 
 }
@@ -93,22 +113,26 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 }
 
 bool ZonaCreacion::click(float x, float y) {
-
+	Cuadrado * cuerpo = scroll != NULL ? scroll->getCuerpo() : this->cuerpo;
 //ENTREGA3 CHEQUEAR SI EL SCROLL RETORNA FALSE, IR A UNA FACTORY Y PEDIR EL TAG QUE TIENE PARA PODER ENVIAR EL MSJ AL SERVER.
-	bool result = scroll == NULL ? false : scroll->click(x, y);
-	float corrimientoScroll = NULL ? 0 : scroll->getScroll();
-	if (!result) {
-		std::string atender = inicioCadena->atender(x, y, corrimientoScroll);
-		if (atender == "") {
-			result = false;
-		} else {
-			//ENTREGA3 ENVIAR MENSAJE CREACION
-			cout << "Se clickea en una factory " + atender << endl;
+	if (cuerpo->contacto(x, y)) {
+		bool result = scroll == NULL ? false : scroll->click(x, y);
+		float corrimientoScroll = scroll == NULL ? 0 : scroll->getScroll();
+		if (!result) {
+			std::string atender = inicioCadena->atender(x, y,
+					corrimientoScroll);
+			if (atender == "") {
+				result = false;
+			} else {
+				//ENTREGA3 ENVIAR MENSAJE CREACION
+				cout << "Se clickea en una factory " + atender << endl;
+			}
 		}
+		return result;
 	}
-	return result;
+	return false;
 }
-
+//			}
 bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled) {
 	if (this->scroll != NULL) {
 		return this->scroll->mouseScroll(x, y, amountScrolled);
