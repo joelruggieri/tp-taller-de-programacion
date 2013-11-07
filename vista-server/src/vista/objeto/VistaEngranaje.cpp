@@ -14,7 +14,7 @@
 #include <iostream>
 using namespace std;
 
-VistaEngranaje::VistaEngranaje(float x, float y, float diametro,SimpleEditorCambiarRadio * editor): ObjetoView(x, y, editor) {
+VistaEngranaje::VistaEngranaje(float x, float y, float diametro,SimpleEditorCambiarRadio * editor): ObjetoView(x, y, editor, OBJ_CON_ANCHO_S_ENGRANAJE) {
 
 	this->diametro = diametro;
 }
@@ -55,8 +55,8 @@ void VistaEngranaje::dibujarse(list<ViewMsj*> & lista){
 	Engranaje* figura = (Engranaje*) this->getModelo();
 	ViewObjetoConAnchoUpdateMsj* viewMensaje;
 	if(figura != NULL)
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId());
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId(), this->selector);
 	else //ENTREGA3 CUANDO NO EXISTE EL MODELO, NO SE DE DONDE AGARRAR EL ANGULO, SI QUIREN LO METO EN LA VISTA.
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->diametro,this->getId());
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->diametro,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 }

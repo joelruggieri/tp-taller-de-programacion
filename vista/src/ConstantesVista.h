@@ -39,7 +39,7 @@ namespace CLIENTE {
 #define PATH_VISTA_CINTA_PLATAF "resource/baseCinta.png"
 #define PATH_VISTA_CUERDA "resource/cuerda.png"
 #define PATH_VISTA_ENGRANAJE "resource/engranaje1.png"
-#define PATH_VISTA_FLECHA_SCROLL "resource/flecha.png"
+#define PATH_VISTA_MOTOR "resource/motor2.png"
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
 #define PATH_ROTACION_IMG "resource/rotacion.png"
@@ -49,7 +49,7 @@ namespace CLIENTE {
 #define PATH_BOTON_STOP "resource/stop.png"
 #define IMG_ERROR "error.jpg"
 #define PATH_FONDO "resource/fondo.jpg"
-
+#define PATH_VISTA_FLECHA_SCROLL "resource/flecha.png"
 
 #define LAYER_DEFAULT 0
 #define LAYER_UNIONES 1

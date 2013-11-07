@@ -9,7 +9,7 @@
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "src/objeto/Balancin.h"
 
-BalancinView::BalancinView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor) {
+BalancinView::BalancinView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor, OBJ_SIMPLE_S_BALANCIN) {
 
 }
 

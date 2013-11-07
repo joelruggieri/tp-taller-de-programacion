@@ -7,7 +7,7 @@
 
 #include "GloboHelioView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
-GloboHelioView::GloboHelioView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor) {
+GloboHelioView::GloboHelioView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor, OBJ_SIMPLE_S_GLOBO) {
 
 }
 

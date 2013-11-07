@@ -24,6 +24,7 @@ public:
 	void getMensaje();
 	string getTag();
 	void acept(ViewMsjVisitor *);
+	float getAncho() const;
 };
 
 #endif /* VIEWOBJETOCONANCHOUPDATEMSJ_H_ */

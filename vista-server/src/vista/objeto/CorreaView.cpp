@@ -9,10 +9,11 @@
 #include "../../controller/editor/EditorUnion.h"
 #include "src/objeto/Correa.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
+#include "src/ConstantesComunicacion.h"
 #include <cmath>
 #define PI 3.14159265
 
-CorreaView::CorreaView(float x, float y,EditorUnion* editor): UnionView(x, y,editor) {
+CorreaView::CorreaView(float x, float y,EditorUnion* editor): UnionView(x, y,editor, OBJ_UNION_S_CORREA) {
 
 }
 
@@ -35,9 +36,9 @@ void CorreaView::dibujarse(list<ViewMsj*> & lista){
 	Correa* figura = (Correa*) this->getModelo();
 	ViewObjetoUnionUpdateMsj* viewMensaje;
 	if(figura != NULL)
-		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYFinal(),figura->getXFinal(),figura->getYFinal(),this->getId());
+		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYFinal(),figura->getXFinal(),figura->getYFinal(),this->getId(), OBJ_UNION_S_CORREA);
 	else
-		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId());
+		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), OBJ_UNION_S_CORREA);
 	lista.push_back(viewMensaje);
 }
 

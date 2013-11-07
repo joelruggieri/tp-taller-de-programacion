@@ -10,7 +10,7 @@
 #include "src/objeto/Plataforma.h"
 #include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 PlataformaView::PlataformaView(float x, float y, float ancho, SimpleEditorEstirar* editor) :
-		ObjetoView(x, y, editor) {
+		ObjetoView(x, y, editor , OBJ_CON_ANCHO_S_PLATAFORMA) {
 	this->ancho = ancho;
 }
 
@@ -43,9 +43,9 @@ void PlataformaView::dibujarse(list<ViewMsj*> & lista){
 	Plataforma* figura = (Plataforma*) this->getModelo();
 	ViewObjetoConAnchoUpdateMsj* viewMensaje;
 	if(figura != NULL)
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId());
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId(), this->selector);
 	else
 		//EL ANGULO SE PASA EN CERO PORQUE LA PLATAFORMA SE CREA CON UN ANGULO EN CERO
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId());
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 }

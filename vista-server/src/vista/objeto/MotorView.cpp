@@ -10,7 +10,7 @@
 #include "../../controller/editor/SimpleEditorOrientacionCambiable.h"
 #include "../../ConstantesVista.h"
 
-MotorView::MotorView(float x, float y,SimpleEditorOrientacionCambiable * editor): ObjetoView(x, y, editor) {
+MotorView::MotorView(float x, float y,SimpleEditorOrientacionCambiable * editor): ObjetoView(x, y, editor,  OBJ_SIMPLE_S_MOTOR) {
 
 }
 

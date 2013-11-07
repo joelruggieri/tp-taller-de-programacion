@@ -12,6 +12,7 @@
 #include "../DropController.h"
 #include <string>
 #include "SDL2/SDL.h"
+#include "src/ConstantesComunicacion.h"
 using namespace std;
 
 class ViewFiguraFactory {

@@ -11,7 +11,7 @@
 #include "src/objeto/Union.h"
 #include "../../ConstantesVista.h"
 
-UnionView::UnionView(float x, float y, EditorUnion * controller):ObjetoView(x,y, controller) {
+UnionView::UnionView(float x, float y, EditorUnion * controller, char selector):ObjetoView(x,y, controller, selector) {
 	xDesde = 0;
 	yDesde = 0;
 	xHasta = 0;

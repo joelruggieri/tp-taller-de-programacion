@@ -15,7 +15,7 @@ class UnionEstaticaView: public ObjetoView {
 protected:
 	void toDinamica(int r,int g, int b);
 public:
-	UnionEstaticaView(float x, float y,EditorUnion * editor);
+	UnionEstaticaView(float x, float y,EditorUnion * editor, char selector);
 	virtual ~UnionEstaticaView();
 	virtual UnionView * toDinamica() = 0;
 };
