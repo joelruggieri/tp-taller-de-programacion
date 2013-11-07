@@ -30,9 +30,8 @@ View* ViewObjetoSimpleFactory::crearPelota(ViewObjetoUpdateMsj* o) {
 }
 
 View* ViewObjetoSimpleFactory::crearMotor(ViewObjetoUpdateMsj* o) {
-//	MotorView* viewReturn = new MotorView(o->getX(), o->getY(),2*RADIO_PELOTA, 2*RADIO_PELOTA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_));
-//	return viewReturn;
-	return NULL;
+	MotorView* viewReturn = new MotorView(o->getX(), o->getY(),2*RADIO_MOTOR, 2*RADIO_MOTOR,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_MOTOR));
+	return viewReturn;
 }
 
 View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj* o) {

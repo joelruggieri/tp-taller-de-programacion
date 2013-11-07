@@ -7,7 +7,7 @@
 
 #include "BolaBolicheView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
-BolaBolicheView::BolaBolicheView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor) {
+BolaBolicheView::BolaBolicheView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor, OBJ_SIMPLE_S_BOLABOLICHE) {
 	// TODO Auto-generated constructor stub
 
 }

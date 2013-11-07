@@ -9,7 +9,7 @@
 #include "../../controller/editor/EditorUnion.h"
 #include <src/objeto/Soga.h>
 #include "SogaView.h"
-SogaEstaticaView::SogaEstaticaView(float x, float y,EditorUnion * editor): UnionEstaticaView (x, y,editor) {
+SogaEstaticaView::SogaEstaticaView(float x, float y,EditorUnion * editor): UnionEstaticaView (x, y,editor, OBJ_UNION_S_SOGA) {
 }
 
 void SogaEstaticaView::dropTemplate() {

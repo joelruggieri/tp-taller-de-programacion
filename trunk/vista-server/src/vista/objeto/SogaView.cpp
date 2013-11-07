@@ -10,7 +10,7 @@
 #include <src/objeto/Soga.h>
 #include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 SogaView::SogaView(float x, float y, EditorUnion * editor) :
-		UnionView(x, y, editor) {
+		UnionView(x, y, editor, OBJ_UNION_S_SOGA) {
 }
 
 void SogaView::dropTemplate() {
@@ -31,8 +31,8 @@ void SogaView::dibujarse(list<ViewMsj *> & lista) {
 	Soga* figura = (Soga*) this->getModelo();
 	ViewObjetoUnionUpdateMsj* viewMensaje;
 	if(figura != NULL)
-		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYFinal(),figura->getXFinal(),figura->getYFinal(),this->getId());
+		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYFinal(),figura->getXFinal(),figura->getYFinal(),this->getId(), this->selector);
 	else
-		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId());
+		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 }

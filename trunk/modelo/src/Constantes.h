@@ -39,6 +39,7 @@
 #define RADIO_ENGRANAJE_CHICO 2.5
 #define RADIO_ENGRANAJE 3.5
 #define RADIO_ENGRANAJE_GRANDE 5.5
+#define RADIO_MOTOR 3.5
 //#define
 //#define
 //#define

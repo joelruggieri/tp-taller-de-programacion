@@ -8,9 +8,8 @@
 #include "ObjetoView.h"
 //#include "../comunicacion/src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
-ObjetoView::ObjetoView(float x, float y, DropController * controller): FiguraView(x, y, controller) {
-	// TODO Auto-generated constructor stub
-
+ObjetoView::ObjetoView(float x, float y, DropController * controller, char selector): FiguraView(x, y, controller) {
+this->selector	= selector;
 }
 
 ObjetoView::~ObjetoView() {
@@ -19,8 +18,11 @@ ObjetoView::~ObjetoView() {
 
 void ObjetoView::dibujarse(list<ViewMsj*> & lista){
 	Figura* figura = this->getModelo();
-	ViewObjetoUpdateMsj* viewMensaje = new ViewObjetoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),this->getId());
+	ViewObjetoUpdateMsj* viewMensaje = new ViewObjetoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 
 }
 
+char ObjetoView::getSelector() const {
+	return selector;
+}

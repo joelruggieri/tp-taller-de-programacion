@@ -7,7 +7,7 @@
 
 #include "PelotaJuegoView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
-PelotaJuegoView::PelotaJuegoView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor) {
+PelotaJuegoView::PelotaJuegoView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor, OBJ_SIMPLE_S_PELOTAJUEGO) {
 
 }
 

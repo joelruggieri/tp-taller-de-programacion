@@ -13,10 +13,10 @@
 #include "ObjetoView.h"
 #include <src/objeto/CintaTransportadora.h>
 #include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
-
+#include "src/ConstantesComunicacion.h"
 
 CintaTransportadoraView::CintaTransportadoraView(float x, float y, float ancho, SimpleEditorEstirar* editor) :
-		ObjetoView(x, y, editor) {
+		ObjetoView(x, y, editor, OBJ_CON_ANCHO_S_CINTA) {
 	this->ancho = ancho;
 }
 
@@ -38,9 +38,9 @@ void CintaTransportadoraView::dibujarse(list<ViewMsj*> & lista){
 	CintaTransportadora* figura = (CintaTransportadora*) this->getModelo();
 	ViewObjetoConAnchoUpdateMsj* viewMensaje;
 	if(figura != NULL)
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId());
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId(), OBJ_CON_ANCHO_S_CINTA );
 	else //ENTREGA3 CUANDO NO EXISTE EL MODELO, NO SE DE DONDE AGARRAR EL ANGULO, SI QUIREN LO METO EN LA VISTA.
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId());
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId(), OBJ_CON_ANCHO_S_CINTA);
 	lista.push_back(viewMensaje);
 }
 

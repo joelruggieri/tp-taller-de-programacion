@@ -51,3 +51,7 @@ void ViewObjetoConAnchoUpdateMsj::getMensaje() {
 void ViewObjetoConAnchoUpdateMsj::acept(ViewMsjVisitor* v) {
 	v->visit(this);
 }
+
+float ViewObjetoConAnchoUpdateMsj::getAncho() const {
+	return ancho;
+}

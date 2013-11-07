@@ -18,7 +18,7 @@ private:
 protected:
 	float xDesde,yDesde,xHasta,yHasta;
 public:
-	UnionView(float x, float y, EditorUnion * controller);
+	UnionView(float x, float y, EditorUnion * controller, char selector);
 	virtual ~UnionView();
 	EditorNivel * getEditor();
 //	void update();

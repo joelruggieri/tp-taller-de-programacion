@@ -9,7 +9,7 @@
 
 #include "../../controller/editor/EditorUnion.h"
 #include "CorreaView.h"
-CorreaEstaticaView::CorreaEstaticaView(float x, float y,EditorUnion * editor): UnionEstaticaView(x, y, editor) {
+CorreaEstaticaView::CorreaEstaticaView(float x, float y,EditorUnion * editor): UnionEstaticaView(x, y, editor, OBJ_UNION_S_CORREA) {
 
 }
 
