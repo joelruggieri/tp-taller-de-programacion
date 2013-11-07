@@ -16,6 +16,7 @@
 #include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
+#include "viewFactory/ViewObjetoSimpleFactory.h"
 #include "SDL2/SDL.h"
 namespace CLIENTE {
 bool comparar_layersViews(View * first, View * second) {
@@ -111,11 +112,20 @@ void ViewController::visit(ViewObjetoConAnchoUpdateMsj*) {
 	unlock();
 }
 
-void ViewController::visit(ViewObjetoUpdateMsj*) {
+void ViewController::visit(ViewObjetoUpdateMsj* mje) {
 	lock();
-	//ENTREGA3 TIENE QUE RECIBIR EL MENSAJE, TOMAR EL ID OBTENER LA VIEW Y DARLE UPDATE
-	//SI NO EXISTE LA VISTA TIENE QUE CREARLA EN LA POSICION QUE DIGA EL MENSAJE.
+	if(!update(mje)){
+		ViewObjetoSimpleFactory fac;
+		View* view = fac.crear(mje);
+		addView(mje->getId(), view);
+	}
 	unlock();
+}
+
+bool ViewController::update(ViewMsj*) {
+	//ENTREGA3 TIENE QUE RECIBIR EL MENSAJE, TOMAR EL ID OBTENER LA VIEW Y DARLE UPDATE
+	//retornar false si no encontró la vista y por eso no pudo actualizarlo, de lo contrario retornar true.
+	return false;
 }
 
 void ViewController::visit(ViewObjetoUnionUpdateMsj*) {

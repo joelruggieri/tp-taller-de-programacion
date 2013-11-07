@@ -30,6 +30,7 @@ private:
 	list<View*> vistasScrolleables;
 	SDL_Renderer * renderer;
 	void crearPantalla();
+	bool update(ViewMsj *);
 	Transformacion * tl;
 public:
 	ViewController(SDL_Renderer *,Transformacion * tl);
