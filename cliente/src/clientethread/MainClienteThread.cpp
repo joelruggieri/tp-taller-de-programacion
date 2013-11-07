@@ -43,7 +43,7 @@ void MainClienteThread::run() {
 			Status* status = new Status(TIMEOUT);
 			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
 			thread->run();
-			MainController controller(colaSalida);
+			MainController controller(colaEntrada,colaSalida);
 			controller.run();
 		}
 		if (SERVIDOR_ERROR == result) {
@@ -52,7 +52,7 @@ void MainClienteThread::run() {
 		if (SERVIDOR_OCUPADO == result) {
 			log.info("No se puede conectar con el servidor, no hay ningun lugar disponible");
 		}
-//		MainController controller(colaSalida);
+//		MainController controller(colaEntrada,colaSalida);
 //		controller.run();
 	}
 }

@@ -16,10 +16,11 @@
 #include "../vista/View.h"
 #include "SDL2/SDL.h"
 #include "../modelo/Observable.h"
+#include "src/mensajes/viewMensaje/ViewMsjVisitor.h"
 #include <map>
 using namespace std;
 namespace CLIENTE {
-class ViewController: public ObjetoCompartido, public DrawController, public ResizerController {
+class ViewController: public ObjetoCompartido, public DrawController, public ResizerController, public ViewMsjVisitor {
 //ENTREGA3 ESTA CLASE ES LA QUE TIENE TODAS LAS VISTAS PARA DIBUJARLAS.
 //ADEMAS PERMITE ACTUALIZAR UNA VISTA
 //PERMITE AGREGAR UNA VISTA MANUALMENTE TAMBIEN.
@@ -32,7 +33,7 @@ private:
 	Transformacion * tl;
 public:
 	ViewController(SDL_Renderer *,Transformacion * tl);
-	void receiveEvent(ViewMsj *);
+	void visit(ViewMsj*);
 	void addView(int id, View *);
 	void addViewScrolleable(int id, View *);
 	void scrollUnidadesLogicas(float unidadesLogicas);

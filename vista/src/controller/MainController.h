@@ -22,11 +22,12 @@ private:
 	SDL_Renderer * render;
 	JuegoEventsController * juegoController;
 	GeneralEventController * crearGeneralEventController();
+	ColaEventos * entrada;
 	ColaEventos * salida;
 	ViewController * viewController;
 public:
 
-	MainController(ColaEventos * salida);
+	MainController(ColaEventos* entrada,ColaEventos * salida);
 	virtual ~MainController();
 	int run();
 	void dibujar();

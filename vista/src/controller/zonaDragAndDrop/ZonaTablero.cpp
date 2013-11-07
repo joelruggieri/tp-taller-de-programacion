@@ -28,6 +28,7 @@ void ZonaTablero::crearVista(ViewController* vc) {
 ZonaTablero::ZonaTablero(ViewController * vc, ColaEventos * cola) {
 	salida = cola;
 	cuerpo =new Cuadrado(50,50,100,100);
+	crearVista(vc);
 }
 
 //Canvas* ZonaTablero::getCanvas(){
