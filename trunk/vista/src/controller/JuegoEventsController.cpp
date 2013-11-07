@@ -47,12 +47,10 @@ bool JuegoEventsController::clickUp(int x, int y) {
 
 bool JuegoEventsController::mouseWheelMoved(int x, int y, int amountScrolled) {
 	//ENTREGA3 USAR TL
-	//	Resizer* r = Resizer::Instance();
-//	float lX = r->resizearDistanciaPixelX(x);
-//	float lY = r->resizearPosicionPixelY(y);
-//	if (creacion != NULL) {
-//		return creacion->mouseScroll(lX, lY, amountScrolled);
-//	}
+	tl->setVector(x,y);
+	float xf,yf;
+	tl->getResultado(xf,yf);
+	creacion->mouseScroll(xf,yf,amountScrolled);
 	return true;
 }
 

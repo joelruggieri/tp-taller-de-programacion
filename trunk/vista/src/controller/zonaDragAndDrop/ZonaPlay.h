@@ -16,11 +16,10 @@ namespace CLIENTE {
 
 class ZonaPlay {
 private:
-	//ENTREGA3 EL BOTON SWITCH ESTA COMPARTIDO ENTRE THREADS, GUARDA
-	BotonSwitch * boton;
 	Cuadrado * cuerpo;
 	ColaEventos * salida;
 	void crearVista(ViewController * vc);
+	ViewController * controller;
 public:
 	ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola);
 	virtual ~ZonaPlay();
