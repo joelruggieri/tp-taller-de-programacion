@@ -15,19 +15,18 @@ class FlechaScrollView: public View {
 private:
 	bool abajo;
 	SDL_Texture * textura;
-	void inicializar(SDL_Texture * flecha, bool);
+	void inicializar(SDL_Texture * flecha, bool,int sleep);
 	bool presionado;
+	int sleep, contAbajo;
+
 public:
-	FlechaScrollView(int x, int y, int w, int h,SDL_Texture * flecha);
-	FlechaScrollView(int x, int y, int w, int h,SDL_Texture * flecha, bool);
+	FlechaScrollView(float x, float y, float w, float h,SDL_Texture * flecha,int sleep);
+	FlechaScrollView(float x, float y, float w, float h,SDL_Texture * flecha,int sleep, bool);
 	virtual ~FlechaScrollView();
-	bool isAbajo() const;
-	void setAbajo(bool abajo);
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect & dest);
-	void setPresionado(bool presionado);
-	bool isPresionado() const;
-	void resizear();
+	void accionar();
+	void update(ViewMsj*);
 };
 }
 #endif /* FLECHASCROLLVIEW_H_ */

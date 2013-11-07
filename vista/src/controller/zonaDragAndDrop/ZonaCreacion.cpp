@@ -13,6 +13,8 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../RutasArchivos.h"
 #include "../../ConstantesVista.h"
+#include <iostream>
+using namespace std;
 
 namespace CLIENTE {
 
@@ -21,25 +23,24 @@ void ZonaCreacion::crearVista(ViewController* vc) {
 	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
 	canvasTexture = texturas->cargarTexture(PATH_ZONA_CREACION);
 	View * view = new Canvas(110, 40, 20, 80, canvasTexture);
-	vc->addView(ID_CANVAS_CREAC , view);
+	vc->addView(ID_CANVAS_CREAC, view);
 	view = new ViewConBorde(110, 40, 20, 80);
 	vc->addView(ID_BORDE_CANVAS_CREAC, view);
-	//ENTREGA3 CREAR LAS VIEWS DE TODAS LAS COSAS Y AGREGARLAS COMO SCROLLEABLES.
-
+	//ENTREGA3 CREAR LAS VIEWS DE TODAS LAS FACTORIES Y AGREGARLAS COMO SCROLLEABLES.
 
 }
 
-ZonaCreacion::ZonaCreacion(ViewController * vcontroller, list<string> & factoriestags, float x,
-		float margenSuperior, ColaEventos * cola){
-	salida  = cola;
+ZonaCreacion::ZonaCreacion(ViewController * vcontroller,
+		list<string> & factoriestags, float x, float margenSuperior,
+		ColaEventos * cola) {
+	salida = cola;
 	scroll = NULL;
 	this->inicializar(vcontroller, factoriestags, x, margenSuperior);
 	crearVista(vcontroller);
 }
-void ZonaCreacion::inicializar(ViewController * vcontroller, list<string> & factoriestags, float x,
-		float margenSuperior) {
+void ZonaCreacion::inicializar(ViewController * vcontroller,
+		list<string> & factoriestags, float x, float margenSuperior) {
 	this->margenSuperior = margenSuperior;
-//	//TODO ADAPTAR TAMANIO DE LA ZONA SEGUN LA CANTIDAD DE FACTORIES QUE VENGAN.
 	float ancho = ANCHO_VIEW_DEF * 2;
 //	//50% de margen alrededor del panel
 	float xInicial = x;
@@ -50,76 +51,29 @@ void ZonaCreacion::inicializar(ViewController * vcontroller, list<string> & fact
 	std::list<string>::const_iterator iterator;
 	this->inicioCadena = NULL;
 	this->ultimo = NULL;
-//	//por cada mapa crea un eslabon.
+//	//por cada tag crea un eslabon.
 	for (iterator = factoriestags.begin(); iterator != factoriestags.end();
 			++iterator) {
-		string msj= "Crea Eslabon en y = ";
+		string msj = "Crea Eslabon en y = ";
 		log.concatenar(msj, y);
 		log.debug(msj);
 		EslabonCreacion* eslabon = new EslabonCreacion(*iterator,
 				new Cuadrado(xInicial, y, ANCHO_VIEW_DEF, ANCHO_VIEW_DEF));
 		this->agregarEslabon(eslabon);
-//		this->canvas->agregar(
-//				new ViewConFondo(new ViewConBorde(eslabon->getFactoryView())));
 		y -= DISTANCIA_ENTRE_ELEMENTOS;
 	}
-//
 	y = factoriestags.size() > 0 ? y + DISTANCIA_ENTRE_ELEMENTOS : y;
 	float alto = (margenSuperior - y) + ANCHO_VIEW_DEF;
 	//y = margenSuperior -( alto / 2);
-	this->cuerpo= new Cuadrado(x, margenSuperior - (alto / 2), ancho, alto);
+	this->cuerpo = new Cuadrado(x, margenSuperior - (alto / 2), ancho, alto);
 	//las primeras 100 unidades no tienen scroll, sino lo creo.
 	if (alto > ALTO_PANEL_LOG) {
-		log.debug("Se crea scroll");
-		string msj = "Fecha Superior en ";
-		log.concatenar(msj, margenSuperior - 2);
-		log.debug(msj);
-		Cuadrado* flechaSuperior = new Cuadrado(x, margenSuperior - 2,
-				ANCHO_VIEW_DEF * 2, 4);
-		msj = "Fecha Inferior en ";
-		log.concatenar(msj, margenSuperior - ALTO_PANEL_LOG + 2);
-		log.debug(msj);
-		Cuadrado* flechaInferior = new Cuadrado(x, margenSuperior - ALTO_PANEL_LOG + 2,
-				ANCHO_VIEW_DEF * 2, 4);
-		this->scroll = new Scroll(vcontroller,flechaSuperior, flechaInferior, 4,
+		Cuadrado* cScroll = new Cuadrado(this->cuerpo->getX(), 40,
+				this->cuerpo->getAncho(), ALTO_PANEL_LOG);
+		this->scroll = new Scroll(vcontroller, cScroll, 4,
 				alto - ALTO_PANEL_LOG);
-
-	//	list<Dibujable *>::iterator it;
-//		list<Dibujable*> dibujables = this->canvas->getDibujables();
-//		for (it = dibujables.begin(); it != dibujables.end(); ++it) {
-//			this->scroll->addScrolleable((View*) (*it));
-//		}
-		//creo la vista del scroll.
-
-//		SDL_Texture * texturaFlecha =
-//				CargadorDeTextures::Instance()->cargarTexture(RUTA_FLECHA);
-//		canvas->agregar(
-//				this->crearScrollView(flechaSuperior, flechaInferior,
-//						this->scroll, texturaFlecha));
 	}
 }
-
-ScrollView* ZonaCreacion::crearScrollView(Cuadrado* c1, Cuadrado* c2,
-		Scroll* scroll, SDL_Texture * texturaFlecha) {
-//	Resizer * r = Resizer::Instance();
-//	int x, y, w, h;
-//
-//	r->adaptarPosicionLogica(c1->getX(), c1->getY(), x, y);
-//	r->adaptarDimensionLogica(c1->getAncho(), c1->getAlto(), w, h);
-//	FlechaScrollView * flecha1 = new FlechaScrollView(x, y, w, h, texturaFlecha,
-//			false);
-//
-//	r->adaptarPosicionLogica(c2->getX(), c2->getY(), x, y);
-//	r->adaptarDimensionLogica(c2->getAncho(), c2->getAlto(), w, h);
-//	FlechaScrollView * flecha2 = new FlechaScrollView(x, y, w, h, texturaFlecha,
-//			true);
-//
-//	return new ScrollView(flecha1, flecha2, scroll, SLEEP_BOTONES_SCROLL);
-	return NULL;
-
-
-}
-
 
 ZonaCreacion::~ZonaCreacion() {
 	delete this->inicioCadena;
@@ -140,29 +94,24 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 
 bool ZonaCreacion::click(float x, float y) {
 
-//	inicioCadena->atender(x,y);
-
-
-	//ENTREGA3 CHEQUEAR SI EL SCROLL RETORNA FALSE, IR A UNA FACTORY Y PEDIR EL TAG QUE TIENE PARA PODER ENVIAR EL MSJ AL SERVER.
-//	float corrimiento = 0;
-//	if (this->scroll != NULL) {
-//		corrimiento = this->scroll->getScroll();
-//
-//	}
-//	return this->inicioCadena->atender(x, y + corrimiento, corrimiento);
-	if (this->scroll != NULL) {
-		return this->scroll->click(x, y);
+//ENTREGA3 CHEQUEAR SI EL SCROLL RETORNA FALSE, IR A UNA FACTORY Y PEDIR EL TAG QUE TIENE PARA PODER ENVIAR EL MSJ AL SERVER.
+	bool result = scroll == NULL ? false : scroll->click(x, y);
+	float corrimientoScroll = NULL ? 0 : scroll->getScroll();
+	if (!result) {
+		std::string atender = inicioCadena->atender(x, y, corrimientoScroll);
+		if (atender == "") {
+			result = false;
+		} else {
+			//ENTREGA3 ENVIAR MENSAJE CREACION
+			cout << "Se clickea en una factory " + atender << endl;
+		}
 	}
-	return false;
+	return result;
 }
 
 bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled) {
 	if (this->scroll != NULL) {
-		Cuadrado c(cuerpo->getX(), (this->margenSuperior + ALTO_PANEL_LOG/2),
-				ANCHO_VIEW_DEF * 2, ALTO_PANEL_LOG);
-		if (c.contacto(x,y)) {
-			return this->scroll->mouseScroll(x, y, amountScrolled, x, x, x, x);
-		}
+		return this->scroll->mouseScroll(x, y, amountScrolled);
 	}
 	return false;
 }

@@ -7,58 +7,36 @@
 
 #include "FlechaScrollView.h"
 namespace CLIENTE {
-FlechaScrollView::FlechaScrollView(int x, int y, int w, int h, SDL_Texture * flecha) :
+FlechaScrollView::FlechaScrollView(float x, float y, float w, float h, SDL_Texture * flecha,int sleep) :
 		View(x, y, w, h) {
-	inicializar(flecha, false);
+	inicializar(flecha, false, sleep);
 }
-void FlechaScrollView::inicializar(SDL_Texture* flecha, bool abajo) {
+void FlechaScrollView::inicializar(SDL_Texture* flecha, bool abajo, int sleep) {
 	this->abajo = abajo;
 	this->textura = flecha;
 	this->presionado = false;
+	this->sleep = sleep;
 }
 
-FlechaScrollView::FlechaScrollView(int x, int y, int w, int h, SDL_Texture* flecha,
+FlechaScrollView::FlechaScrollView(float x, float y, float w, float h, SDL_Texture* flecha,int sleep,
 		bool abajo):View(x,y,w,h) {
-	inicializar(flecha,abajo);
-}
-
-bool FlechaScrollView::isAbajo() const {
-	return abajo;
-}
-
-void FlechaScrollView::setAbajo(bool abajo) {
-	this->abajo = abajo;
+	inicializar(flecha,abajo,sleep);
 }
 
 FlechaScrollView::~FlechaScrollView() {
 	// TODO Auto-generated destructor stub
 }
 
-bool FlechaScrollView::isPresionado() const {
-	return presionado;
-}
-
 void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
+	if(presionado && contAbajo++ == sleep){
+		presionado =false;
+	}
 	SDL_Rect dest;
 	dest.x = xp;
 	dest.y = yp;
 	dest.w = wp;
 	dest.h = hp;
 	this->dibujarse(renderer, dest);
-}
-
-void FlechaScrollView::setPresionado(bool presionado) {
-	this->presionado = presionado;
-}
-
-void FlechaScrollView::resizear() {
-	//ENTREGA3 USAR GETTL
-//	cout << "se ha resieado las flechas scrooll view" << endl ;
-//	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
-//	this->setYc((Resizer::Instance()->resizearPosicionY(this->getYCentro())));
-//	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-//	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
-
 }
 
 void FlechaScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
@@ -90,4 +68,13 @@ void FlechaScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
 	}
 
 }
+
+void FlechaScrollView::accionar() {
+	presionado = true;
+	contAbajo = 1;
 }
+
+void FlechaScrollView::update(ViewMsj*) {
+}
+}
+

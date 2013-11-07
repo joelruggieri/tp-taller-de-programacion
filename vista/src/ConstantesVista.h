@@ -14,6 +14,8 @@ namespace CLIENTE {
 #define VELOCIDAD_REFRESCO 30
 #define VELOCIDAD_REFRESCO_VISTA 50.0 //HZ
 
+
+#define TAMANIO_PANTALLA 600
 /**
  * FACTORIES VISTAS
  */
@@ -37,6 +39,7 @@ namespace CLIENTE {
 #define PATH_VISTA_CINTA_PLATAF "resource/baseCinta.png"
 #define PATH_VISTA_CUERDA "resource/cuerda.png"
 #define PATH_VISTA_ENGRANAJE "resource/engranaje1.png"
+#define PATH_VISTA_FLECHA_SCROLL "resource/flecha.png"
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
 #define PATH_ROTACION_IMG "resource/rotacion.png"
@@ -63,6 +66,8 @@ namespace CLIENTE {
 #define ID_BOTON_PLAY_FONDO 7
 #define ID_CANVAS_RELLENO 8
 #define ID_BORDE_RELLENO 8
+#define ID_SCROLL_ARRIBA 9
+#define ID_SCROLL_ABAJO 10
 
 
 #endif /* CONSTANTESVISTA_H_ */
