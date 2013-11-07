@@ -9,7 +9,6 @@
 #define VIEWOBJETOANCHOUPDATEFACTORY_H_
 #include "../../vista/View.h"
 #include "src/ConstantesComunicacion.h"
-#include "src/Constantes.h"
 #include "../../ConstantesVista.h"
 #include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 #include "../../vista/objeto/PlataformaView.h"

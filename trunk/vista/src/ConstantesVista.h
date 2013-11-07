@@ -69,6 +69,26 @@ namespace CLIENTE {
 #define ID_SCROLL_ARRIBA 9
 #define ID_SCROLL_ABAJO 10
 
+//////////// Constantes de dibujo /////////
+
+#define RADIO_PELOTA 3.0
+#define RADIO_BOLA 3.0
+#define RADIO_GLOBO 3.5
+#define ANCHO_PLATAFORMA 10.0
+#define ALTO_PLATAFORMA 2.5
+
+
+#define ANCHO_BALANCIN 15.0
+#define ALTO_BALANCIN 1.6
+
+#define ALTO_CINTA 5
+#define ANCHO_CINTA 20
+#define RADIO_EJE_CINTA 3.0
+
+#define RADIO_ENGRANAJE_CHICO 2.5
+#define RADIO_ENGRANAJE 3.5
+#define RADIO_ENGRANAJE_GRANDE 5.5
+#define RADIO_MOTOR 3.5
 
 #endif /* CONSTANTESVISTA_H_ */
 }

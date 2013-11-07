@@ -16,7 +16,6 @@
 #include "../../vista/objeto/BalancinView.h"
 #include "../../vista/objeto/MotorView.h"
 #include "../../vista/objeto/BolaBolicheView.h"
-#include "src/Constantes.h"
 #include "../../ConstantesVista.h"
 namespace CLIENTE {
 
