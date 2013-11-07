@@ -16,3 +16,6 @@ PelotaJuegoView::~PelotaJuegoView() {
 }
 
 }
+
+void CLIENTE::PelotaJuegoView::update(ViewMsj*) {
+}

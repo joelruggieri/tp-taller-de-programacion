@@ -14,33 +14,62 @@ ViewObjetoSimpleFactory::ViewObjetoSimpleFactory() {
 
 }
 
-View* ViewObjetoSimpleFactory::crearGlobo(ViewObjetoUpdateMsj*) {
+View* ViewObjetoSimpleFactory::crearGlobo(ViewObjetoUpdateMsj* o) {
+	GloboHelioView* viewReturn = new GloboHelioView(o->getX(), o->getY(),2*RADIO_GLOBO, 2*RADIO_GLOBO,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_GLOBO));
+	return viewReturn;
+}
+
+View* ViewObjetoSimpleFactory::crearBola(ViewObjetoUpdateMsj* o) {
+	BolaBolicheView* viewReturn = new BolaBolicheView(o->getX(), o->getY(),2*RADIO_BOLA, 2*RADIO_BOLA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_BOLA));
+		return viewReturn;
+}
+
+View* ViewObjetoSimpleFactory::crearPelota(ViewObjetoUpdateMsj* o) {
+	PelotaJuegoView* viewReturn = new PelotaJuegoView(o->getX(), o->getY(),2*RADIO_PELOTA, 2*RADIO_PELOTA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_PELOTA));
+			return viewReturn;
+}
+
+View* ViewObjetoSimpleFactory::crearMotor(ViewObjetoUpdateMsj* o) {
+//	MotorView* viewReturn = new MotorView(o->getX(), o->getY(),2*RADIO_PELOTA, 2*RADIO_PELOTA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_));
+//	return viewReturn;
 	return NULL;
 }
 
-View* ViewObjetoSimpleFactory::crearBola(ViewObjetoUpdateMsj*) {
-	return NULL;
-}
-
-View* ViewObjetoSimpleFactory::crearPelota(ViewObjetoUpdateMsj*) {
-	return NULL;
-}
-
-View* ViewObjetoSimpleFactory::crearMotor(ViewObjetoUpdateMsj*) {
-	return NULL;
-}
-
-View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj*) {
-	return NULL;
+View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj* o) {
+	BalancinView* viewReturn = new BalancinView(o->getX(), o->getY(),ANCHO_BALANCIN, ALTO_BALANCIN,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_BALANCIN));
+	return viewReturn;
 }
 
 ViewObjetoSimpleFactory::~ViewObjetoSimpleFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj*) {
-	//ENTREGA3 switch por el selector y llamar al metodo que corresponda
-	return NULL;
+View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
+	View* viewRetorn;
+	switch(a->getSelector())
+	{
+	case OBJ_SIMPLE_S_PELOTAJUEGO:
+		viewRetorn = this->crearPelota(a);
+		break;
+	case OBJ_SIMPLE_S_BALANCIN:
+		viewRetorn = this->crearBalancin(a);
+		break;
+	case OBJ_SIMPLE_S_GLOBO:
+		viewRetorn = this->crearGlobo(a);
+		break;
+	case OBJ_SIMPLE_S_BOLABOLICHE:
+		viewRetorn = this->crearBola(a);
+		break;
+	case OBJ_SIMPLE_S_MOTOR:
+		viewRetorn = this->crearMotor(a);
+		break;
+	}
+
+	return viewRetorn;
+
 }
+
+
+
 
 } /* namespace CLIENTE */

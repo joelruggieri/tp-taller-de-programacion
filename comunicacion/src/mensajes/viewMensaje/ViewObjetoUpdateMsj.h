@@ -19,6 +19,10 @@ public:
 	virtual void getMensaje();
 	virtual string getTag();
 	void acept(ViewMsjVisitor *);
+	float getAngulo() const;
+	float getX() const;
+	float getY() const;
+
 protected:
 	float x,y, angulo;
 };
