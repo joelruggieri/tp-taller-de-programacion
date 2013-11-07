@@ -9,7 +9,7 @@
 #define ESLABONCREACION_H_
 
 #include "../../vista/figura/FiguraView.h"
-#include "../viewFactory/ViewFiguraFactory.h"
+#include "../../vista/FactoryView.h"
 #include "../../modelo/Cuadrado.h"
 #include <string>
 using namespace std;
@@ -24,6 +24,9 @@ public:
 	virtual ~EslabonCreacion();
 	void setSiguiente(EslabonCreacion * sig);
 	string atender(float posX, float posY, float corrimientoScroll);
+	string getTag();
+	View * crearView(string textura);
+	EslabonCreacion * getsiguiente();
 };
 
 }

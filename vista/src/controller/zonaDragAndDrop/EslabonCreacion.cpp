@@ -9,6 +9,7 @@
 #include <iostream>
 #include "../Resizer.h"
 #include "src/Logger.h"
+#include "../../vista/CargadorDeTextures.h"
 using namespace std;
 namespace CLIENTE {
 EslabonCreacion::EslabonCreacion(string tag, Cuadrado * cuerpo) {
@@ -27,11 +28,10 @@ void EslabonCreacion::setSiguiente(EslabonCreacion* sig) {
 	this->siguiente = sig;
 }
 //
-string EslabonCreacion::atender(float posX, float posY, float corrimientoScroll) {
+string EslabonCreacion::atender(float posX, float posY,
+		float corrimientoScroll) {
 
-	if (this->cuerpo->contacto(posX, posY)) {
-		Logger log;
-		log.debug("Se llama a factory de vista");
+	if (this->cuerpo->contacto(posX, posY-corrimientoScroll)) {
 		return tag;
 	}
 	if (this->siguiente != NULL) {
@@ -39,4 +39,17 @@ string EslabonCreacion::atender(float posX, float posY, float corrimientoScroll)
 	}
 	return "";
 }
+
+string EslabonCreacion::getTag() {
+	return tag;
+}
+
+View* EslabonCreacion::crearView(string textura) {
+	return new FactoryView(this->cuerpo->getX(),this->cuerpo->getY(), this->cuerpo->getAncho(),this->cuerpo->getAlto(), CargadorDeTextures::Instance()->cargarTexture(textura));
+}
+
+EslabonCreacion* EslabonCreacion::getsiguiente() {
+	return siguiente;
+}
+
 }

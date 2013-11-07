@@ -36,7 +36,7 @@ void View::resizear() {
 }
 }
 
-void CLIENTE::View::setYL(float Yl) {
+void CLIENTE::View::setYL(float yl) {
 	this->yl = yl;
 	resizear();
 }

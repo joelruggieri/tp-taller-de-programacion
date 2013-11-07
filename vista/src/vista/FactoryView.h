@@ -20,8 +20,8 @@ public:
 	virtual ~FactoryView();
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
-	void resizear();
 	void update(ViewMsj *);
+	int getLayer();
 };
 }
 #endif /* FACTORYVIEW_H_ */

@@ -36,6 +36,7 @@ public:
 	void addScrolleable(View *);
 	int getltimoClick() const;
 	bool mouseScroll(float x, float y, int amountScrolled);
+	Cuadrado * getCuerpo();
 };
 }
 #endif /* SCROLL_H_ */
