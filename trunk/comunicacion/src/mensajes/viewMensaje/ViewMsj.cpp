@@ -19,3 +19,6 @@ void ViewMsj::acept(MensajeVisitor* v) {
 	v->visit(this);
 }
 
+int ViewMsj::getId() {
+	return id;
+}
