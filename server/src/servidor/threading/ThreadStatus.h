@@ -13,18 +13,21 @@
 #include "src/threading/ColaEventos.h"
 #include "src/threading/IOThread.h"
 #include "src/threading/Status.h"
+#include "src/Jugador.h"
 using namespace std;
 class JugadorThread;
 
 class ThreadStatus: public Status {
 private:
-	int jugador;
+	Jugador* jugador;
+	//int jugador;
 	ColaEventos * colaSalida;
 	typedef Status super;
 public:
-	ThreadStatus(int timeout, int nro);
+	ThreadStatus(int timeout,Jugador* jugador);
 	void setThread(IOThread*);
 	int getNroJugador();
+	Jugador* getJugador();
 	ColaEventos * getColaSalida();
 	virtual ~ThreadStatus();
 };
