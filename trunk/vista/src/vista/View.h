@@ -15,7 +15,7 @@
 #include "../modelo/Observable.h"
 
 namespace CLIENTE {
-class View : public Dibujable, public Resizeable, public Observer {
+class View : public Dibujable, public Resizeable{
 protected:
 	int wp,hp;
 	int xp, yp;
@@ -29,7 +29,6 @@ public:
 	virtual void update(ViewMsj *) = 0;
 	virtual void setYL(float yl);
 	virtual float getYL();
-	virtual void notify(Observable*,event_type);
 };
 
 }

@@ -9,31 +9,33 @@
 #define SCROLL_H_
 #include "Cuadrado.h"
 #include "../vista/View.h"
-#include "Observable.h"
 #include "../controller/ViewController.h"
+#include "../vista/FlechaScrollView.h"
 #include <list>
 using namespace std;
 namespace CLIENTE {
-class Scroll : public Observable{
+class Scroll {
 
 private:
 	int velocidad;
 	int posicion;
 	Cuadrado * sup, *inf;
+	Cuadrado* cuerpo;
 	int max;
 	list<View*> scrolleables;
 	ViewController * controller;
 	int ultimoClick;
 	void desplazarBarra(int sentido);
+	void crearVista(ViewController * vc);
 public:
-	Scroll(ViewController * controller, Cuadrado * flechaSup, Cuadrado* flechaInf,int velocidad, int max);
+	Scroll(ViewController * controller,Cuadrado* cuerpo,int velocidad, int max);
 	virtual ~Scroll();
 	bool click(float x, float y);
 //	int getScrollPixels();
 	float getScroll();
 	void addScrolleable(View *);
 	int getltimoClick() const;
-	bool mouseScroll(float x, float y, int amountScrolled, int xC, int yC, int w, int h);
+	bool mouseScroll(float x, float y, int amountScrolled);
 };
 }
 #endif /* SCROLL_H_ */

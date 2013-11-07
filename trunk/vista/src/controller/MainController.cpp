@@ -27,6 +27,9 @@
 #include <string>
 #include <list>
 using namespace std;
+
+
+
 namespace CLIENTE {
 
 MainController::MainController(ColaEventos* entrada,ColaEventos * salida) {
@@ -57,9 +60,9 @@ int MainController::run() {
 	SDL_Window *ventana = NULL;
 	bool terminar = false;;
 	SDL_Init(SDL_INIT_VIDEO);
-	ventana = SDL_CreateWindow("The Incredible Machine LAN", 300, 100, 600, 600, SDL_WINDOW_RESIZABLE);
+	ventana = SDL_CreateWindow("The Incredible Machine LAN", 300, 100, TAMANIO_PANTALLA, TAMANIO_PANTALLA, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
-	viewController = new ViewController(render, Resizer::crearTransformacionALogica(600,600));
+	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
 	GeneralEventController * eventController = crearGeneralEventController();
 	eventController->setDrawController(viewController);
 	eventController->addResizerController(viewController);
@@ -100,8 +103,7 @@ GeneralEventController* MainController::crearGeneralEventController() {
 	factories.push_back("11");
 	factories.push_back("12");
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(viewController, factories, 110, 80, salida);
-	JuegoEventsController * juegoController = new JuegoEventsController(zp);
-	juegoController->setZonas(tablero, zonaCreacion);
+	JuegoEventsController * juegoController = new JuegoEventsController(zp,tablero, zonaCreacion,Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
 	GeneralEventController * generalEventController = new GeneralEventController();
 	generalEventController->addMouseController(juegoController, 1, 1);
 

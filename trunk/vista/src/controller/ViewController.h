@@ -43,7 +43,10 @@ public:
 	void dibujar();
 	virtual ~ViewController();
 	void resize(Transformacion * tl);
-	void notify(int id, Observable* obs, event_type T);
+
+	//LLAMAR EL ENDUPDATE DSPS DE TOCAR LO DE LA CLASE. ESTO PUEDE CLAVAR EL JUEGO YA QUE SINCRONIZA CON EL THREAD DE DIBUJADO
+	View * getForUpdate(int id);
+	void endUpdate();
 };
 
 }

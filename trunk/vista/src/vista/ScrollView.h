@@ -22,7 +22,7 @@ private:
 
 	FlechaScrollView * arriba, *abajo;
 public:
-	ScrollView(FlechaScrollView * flechaArriba, FlechaScrollView* flechaAajo, Scroll* scroll, int sleep);
+	ScrollView(FlechaScrollView * flechaArriba, FlechaScrollView* flechaAajo, int sleep);
 	virtual ~ScrollView();
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect &);

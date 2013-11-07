@@ -37,6 +37,6 @@ string EslabonCreacion::atender(float posX, float posY, float corrimientoScroll)
 	if (this->siguiente != NULL) {
 		return this->siguiente->atender(posX, posY, corrimientoScroll);
 	}
-	return NULL;
+	return "";
 }
 }

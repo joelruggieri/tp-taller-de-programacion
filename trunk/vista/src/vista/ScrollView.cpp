@@ -9,13 +9,12 @@
 
 namespace CLIENTE {
 ScrollView::ScrollView(FlechaScrollView* flechaArriba,
-		FlechaScrollView* flechaAajo, Scroll* scroll, int sleep):View(0,0,0,0) {
+		FlechaScrollView* flechaAajo, int sleep):View(0,0,0,0) {
 	this->abajo = flechaAajo;
 	this->arriba = flechaArriba;
 	this->sleep = sleep;
 	this->contAbajo = sleep;
 	this->contArriba = sleep;
-	scroll->addObserver(this);
 }
 
 ScrollView::~ScrollView() {
@@ -24,37 +23,32 @@ ScrollView::~ScrollView() {
 }
 
 void ScrollView::dibujarse(SDL_Renderer* renderer) {
-	if(this->abajo->isPresionado() && contAbajo++ == sleep){
-		this->abajo->setPresionado(false);
-	}
-	if(this->arriba->isPresionado() && contArriba++ == sleep){
-		this->arriba->setPresionado(false);
-	}
-	this->abajo->dibujarse(renderer);
-	this->arriba->dibujarse(renderer);
+//	if(this->abajo->isPresionado() && contAbajo++ == sleep){
+//		this->abajo->setPresionado(false);
+//	}
+//	if(this->arriba->isPresionado() && contArriba++ == sleep){
+//		this->arriba->setPresionado(false);
+//	}
+//	this->abajo->dibujarse(renderer);
+//	this->arriba->dibujarse(renderer);
 }
 
 void ScrollView::notify(Observable* obs, event_type T) {
-	if(T == CAMBIO_VISTA){
-		Scroll * scroll = (Scroll *) obs;
-		if(scroll->getltimoClick() > 0){
-			this->contArriba = 1;
-			this->arriba->setPresionado(true);
-		}
-		if(scroll->getltimoClick() < 0){
-			this->contAbajo = 0;
-			this->abajo->setPresionado(true);
-		}
-	}
+//	if(T == CAMBIO_VISTA){
+//		Scroll * scroll = (Scroll *) obs;
+//		if(scroll->getltimoClick() > 0){
+//			this->contArriba = 1;
+//			this->arriba->setPresionado(true);
+//		}
+//		if(scroll->getltimoClick() < 0){
+//			this->contAbajo = 0;
+//			this->abajo->setPresionado(true);
+//		}
+//	}
 }
 
 void ScrollView::resizear() {
-//	cout << "se ha resizeado el scrool view" << endl ;
-	//ENTREGA3 USAR GETTL
-//	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-//	this->setH(Resizer::Instance()->resizearDistanciaX(this->getH()));
-//	this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
-//	this->setYc(Resizer::Instance()->resizearPosicionY(this->getYCentro()));
+	arriba->resizear();
 }
 
 void ScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {

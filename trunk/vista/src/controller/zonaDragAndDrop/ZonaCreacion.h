@@ -36,7 +36,6 @@ private:
 	ColaEventos * salida;
 	void inicializar(ViewController * vcontroller, list<string> &, float x, float margenSuperior);
 	Scroll * scroll;
-	ScrollView * crearScrollView(Cuadrado* c1, Cuadrado* c2,Scroll* scroll, SDL_Texture * texturaFlecha);
 	float margenSuperior;
 	void agregarEslabon(EslabonCreacion* eslabon);
 	void crearVista(ViewController * vc);

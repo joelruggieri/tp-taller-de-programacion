@@ -95,14 +95,6 @@ void ViewController::resize(Transformacion * tl) {
 	unlock();
 }
 
-void ViewController::notify(int id, Observable* obs, event_type T) {
-	lock();
-	std::map<int,View*>::iterator it = vistas.find(id);
-	if(it!=vistas.end()){
-		(*it).second->notify(obs,T);
-	}
-	unlock();
-}
 
 
 void ViewController::visit(ViewObjetoConAnchoUpdateMsj*) {
@@ -132,6 +124,19 @@ void ViewController::visit(ViewObjetoUnionUpdateMsj*) {
 	lock();
 	//ENTREGA3 TIENE QUE RECIBIR EL MENSAJE, TOMAR EL ID OBTENER LA VIEW Y DARLE UPDATE
 	//SI NO EXISTE LA VISTA TIENE QUE CREARLA EN LA POSICION QUE DIGA EL MENSAJE.
+	unlock();
+}
+
+View* ViewController::getForUpdate(int id) {
+	lock();
+	map<int, View*>::iterator it = vistas.find(id);
+	if(it == vistas.end()){
+		return NULL;
+	}
+	return it->second;
+}
+
+void ViewController::endUpdate() {
 	unlock();
 }
 
