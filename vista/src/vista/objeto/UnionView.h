@@ -21,7 +21,7 @@ protected:
 	void dibujarse(SDL_Renderer * ren,Uint8 r,Uint8 g,Uint8 b);
 	void dibujarseEstatica(SDL_Renderer* ren);
 public:
-	UnionView(int x, int y, SDL_Texture * textura);
+	UnionView(float x, float y, SDL_Texture * textura);
 	virtual ~UnionView();
 	void update(ViewMsj *);
 	void resizear();

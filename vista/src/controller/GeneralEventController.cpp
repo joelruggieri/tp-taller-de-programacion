@@ -165,8 +165,9 @@ void GeneralEventController::keyUp() {
 }
 
 void GeneralEventController::resize(int nuevoX, int nuevoY) {
-	Resizer::Instance()->setearResizer(nuevoX, nuevoY);
-	Resizer::Instance()->resizearResizeables();
+	//ENTREGA3 USAR TL
+	//	Resizer::Instance()->setearResizer(nuevoX, nuevoY);
+//	Resizer::Instance()->resizearResizeables();
 }
 
 

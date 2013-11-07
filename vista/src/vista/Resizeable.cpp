@@ -19,5 +19,12 @@ Resizeable::~Resizeable() {
 
 } /* namespace std */
 
+Transformacion* Resizeable::getTl(){
+	return tl;
+}
+
+void Resizeable::setTl(Transformacion* tl) {
+	this->tl = tl;
+}
 
 }

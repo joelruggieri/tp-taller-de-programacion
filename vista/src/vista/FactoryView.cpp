@@ -22,10 +22,10 @@ FactoryView::~FactoryView() {
 
 void FactoryView::dibujarse(SDL_Renderer * renderer){
 	SDL_Rect dest;
-	dest.h = this->getH();
-	dest.w = this->getW();
-	dest.x = this->getX();
-	dest.y = this->getY();
+	dest.h = this->hp;
+	dest.w = this->wp;
+	dest.x = this->xp;
+	dest.y = this->yp;
 	this->dibujarse(renderer, dest);
 }
 
@@ -34,10 +34,13 @@ void FactoryView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
 }
 
 void FactoryView::resizear() {
-	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-	this->setXc((Resizer::Instance()->resizearDistanciaX(this->getXCentro())));
-	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
-	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
+
+
+	//ENTREGA3 GETTL
+//	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
+//	this->setXc((Resizer::Instance()->resizearDistanciaX(this->getXCentro())));
+//	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
+//	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
 
 }
 }

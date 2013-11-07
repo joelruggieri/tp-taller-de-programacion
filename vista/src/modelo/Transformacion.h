@@ -24,6 +24,8 @@ public:
 	void setEjeRotacion(float x, float y);
 	void getResultado(float &x, float &y);
 	void getResultadoInverso(float &x, float &y);
+	int escalarEnX(float x);
+	int escalarEnY(float y);
 };
 }
 #endif /* TRANSFORMACION_H_ */

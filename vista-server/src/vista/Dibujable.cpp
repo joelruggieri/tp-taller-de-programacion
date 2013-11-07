@@ -8,7 +8,9 @@
 #include "Dibujable.h"
 #include "../ConstantesVista.h"
 
-int Dibujable::idSequence = 0;
+//LOS PRIMEROS 50 RESERVADOS PÁRA LAS VISTAS PROPIAS DEL CLIENTE.
+//LOS SIGUIENTES 50 RESERVADOS PARA IDENTIFICAR LAS FACTORIES.
+int Dibujable::idSequence = 100;
 
 void Dibujable::incrementarIdSequence(){
 	Dibujable::idSequence ++;

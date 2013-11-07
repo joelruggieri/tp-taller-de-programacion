@@ -8,7 +8,7 @@
 #include "PlataformaView.h"
 
 namespace CLIENTE {
-PlataformaView::PlataformaView(int x, int y, int w, int h, SDL_Texture * textura) : ObjetoView(x,y,w,h,textura) {
+PlataformaView::PlataformaView(float x, float y, float w, float h, SDL_Texture * textura) : ObjetoView(x,y,w,h,textura) {
 
 }
 
@@ -17,7 +17,7 @@ PlataformaView::~PlataformaView() {
 }
 
 void PlataformaView::update(ViewMsj* m){
-	super::update(m);
+//	super::update(m);
 //	float y = 0;
 //	Plataforma * p = (Plataforma *)this->getModelo();
 //	tl.setVector(p->getAncho(),y);

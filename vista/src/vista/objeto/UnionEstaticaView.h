@@ -15,7 +15,7 @@ namespace CLIENTE {
 
 class UnionEstaticaView: public ObjetoView {
 public:
-	UnionEstaticaView(int x, int y, int w, int h, SDL_Texture * textura);
+	UnionEstaticaView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~UnionEstaticaView();
 };
 

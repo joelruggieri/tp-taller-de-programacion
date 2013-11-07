@@ -14,6 +14,7 @@
 #include "DrawController.h"
 #include "GeneralEventController.h"
 #include "src/threading/ColaEventos.h"
+#include "ViewController.h"
 using namespace std;
 namespace CLIENTE {
 class MainController: public DrawController {
@@ -22,12 +23,14 @@ private:
 	JuegoEventsController * juegoController;
 	GeneralEventController * crearGeneralEventController();
 	ColaEventos * salida;
+	ViewController * viewController;
 public:
 
 	MainController(ColaEventos * salida);
 	virtual ~MainController();
 	int run();
 	void dibujar();
+	ViewController * getviewController();
 };
 }
 #endif /* MAINCONTROLLER_H_ */

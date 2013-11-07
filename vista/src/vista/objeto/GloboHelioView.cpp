@@ -9,7 +9,7 @@
 
 
 namespace CLIENTE {
-GloboHelioView::GloboHelioView(int x, int y, int w, int h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
+GloboHelioView::GloboHelioView(float x, float y, float w, float h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
 
 }
 

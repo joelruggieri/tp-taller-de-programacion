@@ -12,7 +12,7 @@
 namespace CLIENTE {
 class CorreaEstaticaView: public UnionEstaticaView {
 public:
-	CorreaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura);
+	CorreaEstaticaView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~CorreaEstaticaView();
 	void update(ViewMsj *);
 };

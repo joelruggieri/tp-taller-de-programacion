@@ -12,7 +12,7 @@
 namespace CLIENTE {
 class ObjetoView: public FiguraView {
 public:
-	ObjetoView(int x, int y, int w, int h, SDL_Texture * textura);
+	ObjetoView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~ObjetoView();
 };
 

@@ -7,52 +7,31 @@
 
 #include "View.h"
 namespace CLIENTE {
-View::View(int x, int y, int w, int h) {
-	this->w = w;
-	this->h = h;
-	this->xc = x;
-	this->yc = y;
-	Resizer::Instance()->addResizeable(this);
+View::View(float x, float y, float w, float h) {
+	this->wl = w;
+	this->hl = h;
+	this->xl= x;
+	this->yl = y;
+	xp = 0;
+	yp = 0;
+	wp=0;
+	hp = 0;
 }
 
 View::~View() {
-	Resizer::Instance()->quitarResizeable(this);
+//	Resizer::Instance()->quitarResizeable(this);
 }
 
-int View::getH() const {
-	return h;
-}
-
-int View::getW() const {
-	return w;
-}
-
-int View::getX() const {
-	return xc - w / 2;
-}
-
-int View::getY() const {
-	return yc - h / 2;
-}
-
-void View::desplazarCentroA(int x, int y) {
-	this->xc = x;
-	this->yc = y;
-}
-
-int View::getXCentro() const {
-	return xc;
-}
-
-int View::getYCentro() const {
-	return yc;
-}
 
 void View::resizear() {
-	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-	this->setXc((Resizer::Instance()->resizearDistanciaX(this->getXCentro())));
-	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
-	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
-
+	wp = tl->escalarEnX(wl);
+	hp = tl->escalarEnY(hl);
+	float xesquina = xl - wl/2;
+	float yesquina = yl + hl/2;
+	tl->setVector(xesquina, yesquina);
+	float xpf, ypf;
+	tl->getResultado(xpf,ypf);
+	xp = round(xpf);
+	yp = round (ypf);
 }
 }

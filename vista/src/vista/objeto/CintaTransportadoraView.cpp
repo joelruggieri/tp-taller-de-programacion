@@ -14,7 +14,7 @@
 namespace CLIENTE {
 #define RADTODEG 57.295779513082320876f
 
-CintaTransportadoraView::CintaTransportadoraView(int x, int y, int w, int h,int altoModelo, int altoPlataforma, SDL_Texture* textura) :
+CintaTransportadoraView::CintaTransportadoraView(float x, float y, float w, float h,float altoModelo, int altoPlataforma, SDL_Texture* textura) :
 		ObjetoView(x, y, w, h, textura) {
 	this->alto = altoModelo;
 	this->altoPlataforma = altoPlataforma;
@@ -29,20 +29,20 @@ CintaTransportadoraView::~CintaTransportadoraView() {
 
 void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
 
-	SDL_Rect dest;
+//	SDL_Rect dest;
 	//calculo el alto donde va a estar la plataforma
-	dest.x = this->getX() + alto / 2;
-	dest.y = this->getY();
-	dest.w = this->getW() - alto;
-	dest.h = this->altoPlataforma;
-	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
-	dest.y = this->getY() + this->getH() - altoPlataforma;
-	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
-	dest.x = this->xEngrIzq;
-	dest.y = yEngranajes;
-	dest.w = this->alto;
-	dest.h = this->alto;
-	recalcular();
+//	dest.x = this->getX() + alto / 2;
+//	dest.y = this->getY();
+//	dest.w = this->getW() - alto;
+//	dest.h = this->altoPlataforma;
+//	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
+//	dest.y = this->getY() + this->getH() - altoPlataforma;
+//	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
+//	dest.x = this->xEngrIzq;
+//	dest.y = yEngranajes;
+//	dest.w = this->alto;
+//	dest.h = this->alto;
+//	recalcular();
 
 //ENTREGA3 CUANDO ESTE LO DEL mensaje  LO SETEO EN EL UPDATE LO QUE NECESITE DE LA CINTA.
 
@@ -71,9 +71,11 @@ void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
 }
 
 void CintaTransportadoraView::resizear() {
-	super::resizear();
-	alto = Resizer::Instance()->resizearDistanciaY(alto);
-	altoPlataforma = Resizer::Instance()->resizearDistanciaY(altoPlataforma);
+
+	//ENTREGA3 USAR LA GETTL CON LA TRANSFORMACION.
+//	super::resizear();
+//	alto = Resizer::Instance()->resizearDistanciaY(alto);
+//	altoPlataforma = Resizer::Instance()->resizearDistanciaY(altoPlataforma);
 }
 
 //	FiguraView::dibujarse(renderer, dest);
@@ -124,9 +126,9 @@ void CintaTransportadoraView::resizear() {
 
 
 void CintaTransportadoraView::recalcular() {
-	this->yEngranajes = this->getYCentro() - alto / 2;
-	this->xEngrIzq = this->getXCentro() - (this->getW() / 2);
-	this->xEngrDer = this->getXCentro() + (this->getW() / 2) - alto;
+//	this->yEngranajes = this->getYCentro() - alto / 2;
+//	this->xEngrIzq = this->getXCentro() - (this->getW() / 2);
+//	this->xEngrDer = this->getXCentro() + (this->getW() / 2) - alto;
 }
 
 void CintaTransportadoraView::update(ViewMsj*) {

@@ -13,7 +13,7 @@ namespace CLIENTE {
 
 class PelotaJuegoView : public ObjetoView {
 public:
-	PelotaJuegoView(int x, int y, int w, int h, SDL_Texture * textura);
+	PelotaJuegoView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~PelotaJuegoView();
 	void update(ViewMsj *);
 };

@@ -13,7 +13,7 @@ namespace CLIENTE {
 class VistaEngranaje: public ObjetoView {
 	typedef FiguraView super;
 public:
-	VistaEngranaje(int x, int y, int w, int h, SDL_Texture * textura);
+	VistaEngranaje(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~VistaEngranaje();
 	void  update(ViewMsj* );
 	int getLayer();

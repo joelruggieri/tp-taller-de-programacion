@@ -10,7 +10,7 @@
 #include "../../ConstantesVista.h"
 #include "../CargadorDeTextures.h"
 namespace CLIENTE {
-UnionView::UnionView(int x,int y, SDL_Texture * textura):ObjetoView(x,y,20,20,CargadorDeTextures::Instance()->cargarTexture(PATH_EDICION_UNION)) {
+UnionView::UnionView(float x,float y, SDL_Texture * textura):ObjetoView(x,y,20,20,CargadorDeTextures::Instance()->cargarTexture(PATH_EDICION_UNION)) {
 	xDesde = 0;
 	yDesde = 0;
 	xHasta = 0;
@@ -29,7 +29,7 @@ void UnionView::dibujarseEstatica(SDL_Renderer* ren){
 //
 //	if(u->estaEstatica()){
 //		SDL_Rect dest;
-//		int wi,hi;
+//		float wi,hi;
 //		float xi,yi;
 //		Resizer::Instance()->adaptarDimensionLogica(u->getRadio()*2,u->getRadio()*2,wi,hi);
 //		tl.setVector(u->getX(),u->getY());
@@ -44,10 +44,10 @@ void UnionView::dibujarseEstatica(SDL_Renderer* ren){
 }
 
 void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
-	SDL_SetRenderDrawColor(ren,r,g,b,0);
-	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
-
-	this->dibujarseEstatica(ren);
+//	SDL_SetRenderDrawColor(ren,r,g,b,0);
+//	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
+//
+//	this->dibujarseEstatica(ren);
 
 }
 

@@ -9,7 +9,7 @@
 
 #include "CorreaView.h"
 namespace CLIENTE {
-CorreaEstaticaView::CorreaEstaticaView(int x, int y, int w, int h, SDL_Texture * textura) :
+CorreaEstaticaView::CorreaEstaticaView(float x, float y, float w, float h, SDL_Texture * textura) :
 		UnionEstaticaView(x, y, w, h, textura) {
 
 }
