@@ -21,6 +21,7 @@ public:
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void click();
+	void update(ViewMsj *);
 };
 }
 #endif /* BOTONSWITCH_H_ */

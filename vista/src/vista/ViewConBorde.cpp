@@ -8,22 +8,18 @@
 #include "ViewConBorde.h"
 namespace CLIENTE {
 //ENTREGA3 COMPLETAR
-ViewConBorde::ViewConBorde(View * view): View(0,0,0,0){// :
+ViewConBorde::ViewConBorde(float x, float y, float w, float h): View(x,y,w,h){// :
 //		View(view->getXCentro(), view->getYCentro(), view->getW(), view->getH()) {
-
-	this->decorable = view;
-	this->ajustarTamanio = true;
 }
 
 ViewConBorde::~ViewConBorde() {
-	delete decorable;
 }
 //robo 3 pixels.
 void ViewConBorde::generarConBorde(SDL_Rect & dest) {
-//	dest.h = this->decorable->getH() - 12;
-//	dest.w = this->decorable->getW() - 12;
-//	dest.x = this->decorable->getX() + 6;
-//	dest.y = this->decorable->getY() + 6;
+	dest.h = hp - 12;
+	dest.w = wp - 12;
+	dest.x = xp + 6;
+	dest.y = yp + 6;
 }
 
 void ViewConBorde::dibujarBordeIzquierdo(SDL_Renderer* renderer) {
@@ -103,76 +99,29 @@ void ViewConBorde::dibujarBorde(SDL_Renderer * renderer) {
 }
 
 void ViewConBorde::generarSinBorde(SDL_Rect & dest) {
-//	dest.h = this->decorable->getH();
-//	dest.w = this->decorable->getW();
-//	dest.x = this->decorable->getX();
-//	dest.y = this->decorable->getY();
+	dest.h = hp;
+	dest.w = wp;
+	dest.x = xp;
+	dest.y = yp;
 }
 void ViewConBorde::dibujarse(SDL_Renderer* renderer) {
-	if (this->ajustarTamanio) {
-		SDL_Rect dest;
-		generarConBorde(dest);
-		this->decorable->dibujarse(renderer, dest);
-	} else {
-		this->decorable->dibujarse(renderer);
-
-	}
+//	if (this->ajustarTamanio) {
+//		SDL_Rect dest;
+//		generarConBorde(dest);
+//		this->decorable->dibujarse(renderer, dest);
+//	} else {
+//		this->decorable->dibujarse(renderer);
+//
+//	}
 
 	this->dibujarBorde(renderer);
 }
-
-//int ViewConBorde::getH() const {
-//	return this->decorable->getH();
-//}
-//
-//int ViewConBorde::getW() const {
-//	return this->decorable->getW();
-//}
-//
-//int ViewConBorde::getX() const {
-//	return this->decorable->getX();
-//}
-//
-//int ViewConBorde::getY() const {
-//	return this->decorable->getY();
-//}
-//
-//int ViewConBorde::getXCentro() const {
-//	return this->decorable->getXCentro();
-//}
-//
-//int ViewConBorde::getYCentro() const {
-//	return this->decorable->getYCentro();
-//}
-
-void ViewConBorde::resizear() {
-}
-
-void ViewConBorde::desplazarCentroA(int x, int y) {
-//	this->decorable->desplazarCentroA(x, y);
-}
-
-//void ViewConBorde::setH(int h) {
-//	this->decorable->setH(h);
-//}
-
-//void ViewConBorde::setW(int w) {
-//	this->decorable->setW(w);
-//}
-//
-//void ViewConBorde::setXc(int xc) {
-//	this->decorable->setXc(xc);
-//}
-//
-//void ViewConBorde::setYc(int yc) {
-//	this->decorable->setYc(yc);
-//}
 
 void ViewConBorde::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
 	this->dibujarse(renderer);
 }
 
-void ViewConBorde::setAjustarTamanio(bool bool1) {
-	this->ajustarTamanio = bool1;
+void ViewConBorde::update(ViewMsj*) {
 }
+
 }

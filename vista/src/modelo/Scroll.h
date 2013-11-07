@@ -10,6 +10,7 @@
 #include "Cuadrado.h"
 #include "../vista/View.h"
 #include "Observable.h"
+#include "../controller/ViewController.h"
 #include <list>
 using namespace std;
 namespace CLIENTE {
@@ -21,11 +22,11 @@ private:
 	Cuadrado * sup, *inf;
 	int max;
 	list<View*> scrolleables;
-	void actualizarVistas(int corrimiento);
+	ViewController * controller;
 	int ultimoClick;
 	void desplazarBarra(int sentido);
 public:
-	Scroll(Cuadrado * flechaSup, Cuadrado* flechaInf,int velocidad, int max);
+	Scroll(ViewController * controller, Cuadrado * flechaSup, Cuadrado* flechaInf,int velocidad, int max);
 	virtual ~Scroll();
 	bool click(float x, float y);
 //	int getScrollPixels();

@@ -162,11 +162,12 @@ Transformacion& Resizer::getTransformacionToModelo() {
 
 Transformacion* Resizer::crearTransformacionALogica(int xNuevo,
 		int yNuevo) {
-	float relacionLogicaPixelY = (float) yNuevo / 100;
-	float relacionLogicaPixelX = (float) xNuevo / 120;
 
+
+	float relacionLogicaPixelX = 120.0 /(float) xNuevo ;
+	float relacionLogicaPixelY = 120.0 / (float) yNuevo;
 	Transformacion * t = new Transformacion();
-	t->traslacion(0, 100);
+	t->traslacion(0, 100.0);
 	t->escalar(relacionLogicaPixelX, relacionLogicaPixelY);
 	t->invertir(false, true);
 	return t;

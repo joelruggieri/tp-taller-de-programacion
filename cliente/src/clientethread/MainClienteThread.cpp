@@ -36,22 +36,24 @@ MainClienteThread::~MainClienteThread() {
 
 void MainClienteThread::run() {
 	if (thread == 0) {
-		int sockfd;
-		RESULTADO_CONEXION result = conectar(sockfd);
-		if (SERVIDOR_CONECTADO == result) {
-			log.info("Conectado con servidor");
-			Status* status = new Status(TIMEOUT);
-			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
-			thread->run();
-			MainController controller(colaSalida);
-			controller.run();
-		}
-		if (SERVIDOR_ERROR == result) {
-			log.error("No se puede conectar con el servidor, no se ha obtenido respuesta");
-		}
-		if (SERVIDOR_OCUPADO == result) {
-			log.info("No se puede conectar con el servidor, no hay ningun lugar disponible");
-		}
+//		int sockfd;
+//		RESULTADO_CONEXION result = conectar(sockfd);
+//		if (SERVIDOR_CONECTADO == result) {
+//			log.info("Conectado con servidor");
+//			Status* status = new Status(TIMEOUT);
+//			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
+//			thread->run();
+//			MainController controller(colaSalida);
+//			controller.run();
+//		}
+//		if (SERVIDOR_ERROR == result) {
+//			log.error("No se puede conectar con el servidor, no se ha obtenido respuesta");
+//		}
+//		if (SERVIDOR_OCUPADO == result) {
+//			log.info("No se puede conectar con el servidor, no hay ningun lugar disponible");
+//		}
+		MainController controller(colaSalida);
+		controller.run();
 	}
 }
 

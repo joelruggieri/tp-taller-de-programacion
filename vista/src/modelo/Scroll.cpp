@@ -10,13 +10,14 @@
 #include "../controller/Resizer.h"
 using namespace std;
 namespace CLIENTE {
-Scroll::Scroll(Cuadrado * flechaSup, Cuadrado* flechaInf,int velocidad, int max) {
+Scroll::Scroll(ViewController * controller, Cuadrado * flechaSup, Cuadrado* flechaInf,int velocidad, int max) {
 	this->ultimoClick = 0;
 	this->sup = flechaSup;
 	this->inf = flechaInf;
 	this->posicion = max;
 	this->max = max;
 	this->velocidad = velocidad;
+	this->controller = controller;
 }
 
 Scroll::~Scroll() {
@@ -35,7 +36,7 @@ void Scroll::desplazarBarra(int sentido){
 	if(this->posicion < 0) this->posicion = 0;
 
 	corrimiento = this->posicion - posAnterior;
-	this->actualizarVistas(corrimiento);
+	this->controller->scrollUnidadesLogicas(corrimiento);
 
 	this->notifY(CAMBIO_VISTA);
 }
@@ -80,16 +81,6 @@ void Scroll::addScrolleable(View* vista) {
 	this->scrolleables.push_back(vista);
 }
 
-void Scroll::actualizarVistas(int corrimiento) {
-	list<View*>::iterator it;
-//	View *vista;
-
-	for(it= scrolleables.begin(); it!= scrolleables.end(); ++it){
-//		vista = *it;
-		//ENTREGA3 USAR TL
-//		vista->desplazarCentroA(vista->getXCentro(), vista->getYCentro() + Resizer::Instance()->resizearDistanciaLogicaY(corrimiento));
-	}
-}
 
 
 int Scroll::getltimoClick() const {

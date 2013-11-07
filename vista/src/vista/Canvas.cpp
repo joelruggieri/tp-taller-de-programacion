@@ -27,10 +27,10 @@ void Canvas::ModificarFondo(SDL_Texture* nuevaImagen) {
 
 
 void Canvas::generarSinBorde(SDL_Rect & dest) {
-//	dest.h = this->getH();
-//	dest.w = this->getW();
-//	dest.x = this->getX();
-//	dest.y = this->getY();
+	dest.h = hp;
+	dest.w = wp;
+	dest.x = xp;
+	dest.y = yp;
 }
 
 
@@ -47,24 +47,17 @@ void Canvas::dibujarse(SDL_Renderer * renderer, SDL_Rect& dest) {
 
 }
 
-Canvas::Canvas(int x, int y, int w, int h, SDL_Texture* textura) :
+Canvas::Canvas(float x, float y, float w, float h, SDL_Texture* textura) :
 		View(x, y, w, h) {
 	this->imagenCanvas = textura;
 	this->border = false;
 }
 
-void Canvas::resizear() {
-////	int wFinal, hFinal, xFinal, yFinal;
-// ENTREGA3 USAR GETTL
-//this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
-//this->setXc(Resizer::Instance()->resizearDistanciaX(this->getXCentro()));
-//this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
-//this->setYc((Resizer::Instance()->resizearPosicionY(this->getYCentro())));
-
-//	TODO resizear
+void Canvas::update(ViewMsj*) {
 }
 
-void Canvas::update(ViewMsj*) {
+int Canvas::getLayer() {
+	return -1;
 }
 
 }

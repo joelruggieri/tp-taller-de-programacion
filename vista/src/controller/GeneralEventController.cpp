@@ -39,18 +39,14 @@ GeneralEventController::GeneralEventController() {
 }
 GeneralEventController::~GeneralEventController() {
 	list<MouseControllerPrioridades*>::iterator it;
-	for (it = this->mouseControllers.begin();
-			it != this->mouseControllers.end(); ++it) {
+	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end(); ++it) {
 		delete *it;
 	}
 }
 
-void GeneralEventController::addMouseController(
-		MouseEventController* controller, int prioridadClick,
+void GeneralEventController::addMouseController(MouseEventController* controller, int prioridadClick,
 		int prioridadMotion) {
-	this->mouseControllers.push_back(
-			new MouseControllerPrioridades(controller, prioridadClick,
-					prioridadMotion));
+	this->mouseControllers.push_back(new MouseControllerPrioridades(controller, prioridadClick, prioridadMotion));
 }
 
 void GeneralEventController::clickUp(int x, int y) {
@@ -58,8 +54,7 @@ void GeneralEventController::clickUp(int x, int y) {
 	list<MouseControllerPrioridades*>::iterator it;
 	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
 	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin();
-			it != this->mouseControllers.end() && continuarEvento; ++it) {
+	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
 		continuarEvento = (*it)->getEventController()->clickUp(x, y);
 	}
 }
@@ -69,8 +64,7 @@ void GeneralEventController::clickDown(int x, int y) {
 	list<MouseControllerPrioridades*>::iterator it;
 	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
 	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin();
-			it != this->mouseControllers.end() && continuarEvento; ++it) {
+	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
 		continuarEvento = (*it)->getEventController()->clickDown(x, y);
 	}
 
@@ -81,8 +75,7 @@ void GeneralEventController::mouseMotion(int x, int y) {
 	list<MouseControllerPrioridades*>::iterator it;
 	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
 	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin();
-			it != this->mouseControllers.end() && continuarEvento; ++it) {
+	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
 		continuarEvento = (*it)->getEventController()->mouseMotion(x, y);
 	}
 
@@ -93,8 +86,7 @@ void GeneralEventController::rightClickUp(int x, int y) {
 	list<MouseControllerPrioridades*>::iterator it;
 	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
 	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin();
-			it != this->mouseControllers.end() && continuarEvento; ++it) {
+	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
 		continuarEvento = (*it)->getEventController()->rightClickUp(x, y);
 	}
 }
@@ -104,8 +96,7 @@ void GeneralEventController::rightClickDown(int x, int y) {
 	list<MouseControllerPrioridades*>::iterator it;
 	//los de mayor prioridad para el evento podrán cortar el evento a los de menor prioridad
 	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin();
-			it != this->mouseControllers.end() && continuarEvento; ++it) {
+	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
 		continuarEvento = (*it)->getEventController()->rightClickDown(x, y);
 	}
 }
@@ -118,31 +109,25 @@ void GeneralEventController::mouseWheelMoved(int amountScrolledY) {
 	int posX, posY;
 	SDL_GetMouseState(&posX, &posY);
 	bool continuarEvento = true;
-	for (it = this->mouseControllers.begin();
-			it != this->mouseControllers.end() && continuarEvento; ++it) {
-		continuarEvento = (*it)->getEventController()->mouseWheelMoved(posX,
-				posY, amountScrolledY);
+	for (it = this->mouseControllers.begin(); it != this->mouseControllers.end() && continuarEvento; ++it) {
+		continuarEvento = (*it)->getEventController()->mouseWheelMoved(posX, posY, amountScrolledY);
 	}
 }
 
-void GeneralEventController::addKeyboardController(
-		KeyBoardEventController* keyEventController) {
+void GeneralEventController::addKeyboardController(KeyBoardEventController* keyEventController) {
 	this->keyControllers.push_back(keyEventController);
 }
 
 void GeneralEventController::keyDown(char key) {
 	list<KeyBoardEventController*>::iterator it;
 	bool continuarEvento = true;
-	for (it = this->keyControllers.begin();
-			it != this->keyControllers.end() && continuarEvento; ++it) {
+	for (it = this->keyControllers.begin(); it != this->keyControllers.end() && continuarEvento; ++it) {
 		continuarEvento = (*it)->keyPressed(key);
 	}
 }
 
-bool GeneralEventController::verificarCaracteresEspeciales(
-		SDL_KeyboardEvent key) {
-	if (key.keysym.scancode == SDL_SCANCODE_LSHIFT
-			|| key.keysym.scancode == SDL_SCANCODE_RSHIFT) {
+bool GeneralEventController::verificarCaracteresEspeciales(SDL_KeyboardEvent key) {
+	if (key.keysym.scancode == SDL_SCANCODE_LSHIFT || key.keysym.scancode == SDL_SCANCODE_RSHIFT) {
 		this->keyDown((char) ASCII_SHIFT);
 		return true;
 	}
@@ -157,19 +142,22 @@ bool GeneralEventController::verificarCaracteresEspeciales(
 void GeneralEventController::keyUp() {
 	list<KeyBoardEventController*>::iterator it;
 	bool continuarEvento = true;
-	for (it = this->keyControllers.begin();
-			it != this->keyControllers.end() && continuarEvento; ++it) {
+	for (it = this->keyControllers.begin(); it != this->keyControllers.end() && continuarEvento; ++it) {
 		continuarEvento = (*it)->keyReleased();
 	}
 
 }
 
 void GeneralEventController::resize(int nuevoX, int nuevoY) {
+	list<ResizerController *>::iterator it;
+	for (it = resizers.begin(); it != resizers.end(); ++it) {
+		(*it)->resize(Resizer::crearTransformacionALogica(nuevoX, nuevoY));
+	}
+
 	//ENTREGA3 USAR TL
 	//	Resizer::Instance()->setearResizer(nuevoX, nuevoY);
 //	Resizer::Instance()->resizearResizeables();
 }
-
 
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 	int nuevaPosX, nuevaPosY;
@@ -215,8 +203,7 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 				this->keyDown((char) (evento.key.keysym.sym));
 			break;
 		case SDL_KEYUP:
-			if (evento.key.keysym.scancode == SDL_SCANCODE_LSHIFT
-					|| evento.key.keysym.scancode == SDL_SCANCODE_RSHIFT)
+			if (evento.key.keysym.scancode == SDL_SCANCODE_LSHIFT || evento.key.keysym.scancode == SDL_SCANCODE_RSHIFT)
 				this->keyUp();
 			break;
 		case SDL_USEREVENT:
@@ -237,12 +224,14 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 			case SDL_WINDOWEVENT_RESIZED:
 				//SDL_GetVideoInfo();
 				SDL_GetWindowSize(ventana, &tamNuevoX, &tamNuevoY);
-				if (tamNuevoY <= MIN_VENTANA_Y) tamNuevoY = MIN_VENTANA_Y;
-				if (tamNuevoY >= MAX_VENTANA) tamNuevoY = MAX_VENTANA;
+				if (tamNuevoY <= MIN_VENTANA_Y)
+					tamNuevoY = MIN_VENTANA_Y;
+				if (tamNuevoY >= MAX_VENTANA)
+					tamNuevoY = MAX_VENTANA;
 				tamNuevoX = tamNuevoY;
 //				if (tamNuevoY <= MAX_VENTANA && tamNuevoY >= MIN_VENTANA_Y) {
-					SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
-					this->resize(tamNuevoX, tamNuevoY);
+				SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
+				this->resize(tamNuevoX, tamNuevoY);
 //				}
 				break;
 //			case SDL_WINDOWEVENT_MINIMIZED:
@@ -269,4 +258,7 @@ void GeneralEventController::setDrawController(DrawController* c) {
 	this->drawController = c;
 }
 
+void GeneralEventController::addResizerController(ResizerController* r) {
+	this->resizers.push_back(r);
+}
 }

@@ -24,13 +24,13 @@ private:
 	bool border;
 	void generarSinBorde(SDL_Rect & dest);
 public:
-	 void resizear();
-	Canvas(int x, int y, int h, int w, SDL_Texture* textura);
+	Canvas(float x, float y, float h, float w, SDL_Texture* textura);
 	void dibujarse(SDL_Renderer *);
 	void dibujarse(SDL_Renderer *, SDL_Rect&);
 	virtual ~Canvas();
 	void ModificarFondo(SDL_Texture* nuevaImagen);
 	void update(ViewMsj *);
+	int getLayer();
 };
 
 }
