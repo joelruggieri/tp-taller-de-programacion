@@ -58,7 +58,7 @@ bool Scroll::click(float x, float y) {
 			sup->contacto(x, y) ? sup : (inf->contacto(x, y) ? inf : NULL);
 	if (fig != NULL) {
 		int idUpdate = fig == sup ? ID_SCROLL_ARRIBA : ID_SCROLL_ABAJO;
-		int signado = (sup == fig ? 1 : -1);
+		int signado = (sup == fig ? -1 : 1);
 		this->desplazarBarra(signado);
 		FlechaScrollView* flecha = (FlechaScrollView*) controller->getForUpdate(
 				idUpdate);
