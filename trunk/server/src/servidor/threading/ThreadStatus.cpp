@@ -9,8 +9,9 @@
 //#include <ratio>
 using namespace std;
 //using namespace chrono;
-ThreadStatus::ThreadStatus(int timeout, int nro):Status(timeout){// :puntoControl(chrono::duration<int>(1)){
-	this->jugador = nro;
+ThreadStatus::ThreadStatus(int timeout,Jugador* jugador):Status(timeout){// :puntoControl(chrono::duration<int>(1)){
+	this->jugador = jugador;
+	//this->jugadorAsociado = jugador;
 	this->colaSalida=new ColaEventos();
 };
 
@@ -25,7 +26,11 @@ ThreadStatus::~ThreadStatus() {
 }
 
 int ThreadStatus::getNroJugador() {
-	return jugador;
+	return jugador->getNumero();
+}
+
+Jugador* ThreadStatus::getJugador(){
+	return this->jugador;
 }
 
 ColaEventos* ThreadStatus::getColaSalida() {

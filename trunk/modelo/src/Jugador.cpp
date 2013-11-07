@@ -50,3 +50,10 @@ std::list<FactoryParam*> Jugador::getParametrosFactories() const{
 void Jugador::setParametrosFactories(std::list<FactoryParam*> lista){
 	this->parametrosFactories = lista;
 }
+
+void Jugador::recibirTags(std::list<std::string>& lista){
+	std::list<FactoryParam*>::iterator it;
+	for(it = this->getParametrosFactories().begin(); it != this->getParametrosFactories().end(); it++){
+		lista.push_back((*it)->getNombre());
+	}
+}

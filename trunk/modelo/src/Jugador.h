@@ -26,6 +26,7 @@ public:
 	void setParametrosFactories(std::list<FactoryParam*>);
 	void agregarParametroFactory(FactoryParam*);
 	std::list<FactoryParam*> getParametrosFactories() const;
+	void recibirTags(std::list<std::string>&);
 };
 
 #endif /* JUGADOR_H_ */

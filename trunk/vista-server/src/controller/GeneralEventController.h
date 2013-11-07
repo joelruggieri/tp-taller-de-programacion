@@ -16,6 +16,7 @@
 #include "src/mensajes/userEvents/UserEventMsj.h"
 #include "JuegoEventsController.h"
 #include "src/Logger.h"
+#include "src/Jugador.h"
 #include <map>
 using namespace std;
 
@@ -29,7 +30,7 @@ private:
 	map <int, JuegoEventsController * > controllers;
 	Logger log;
 public:
-	GeneralEventController();
+	GeneralEventController(std::list<Jugador*>& jugadoresNivel);
 	virtual ~GeneralEventController();
 	void procesarEventos(UserEventMsj *);
 	void addJugador(JuegoEventsController *);

@@ -8,9 +8,12 @@
 #include "Disponibilidad.h"
 #include "ThreadStatus.h"
 #include "src/ConstantesComunicacion.h"
-Disponibilidad::Disponibilidad(int maxJugadores) {
-	for (int i = 0; i < maxJugadores; ++i) {
-		relaciones.insert(pair<int, ThreadStatus*>(i, new ThreadStatus(TIMEOUT, i)));
+Disponibilidad::Disponibilidad(std::list<Jugador*>& jugadoresNivel) {
+	std::list<Jugador*>::iterator iter;
+	int i = 0;
+	for (iter = jugadoresNivel.begin(); iter != jugadoresNivel.end(); ++iter) {
+		relaciones.insert(pair<int, ThreadStatus*>(i, new ThreadStatus(TIMEOUT,(*iter))));
+		i++;
 	}
 }
 

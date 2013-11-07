@@ -13,6 +13,7 @@
 #include "src/threading/IOThread.h"
 #include "threading/ThreadStatus.h"
 #include "src/mensajes/MensajePlano.h"
+#include "src/mensajes/ConfiguracionNivelMsj.h"
 #include "src/Serializador.h"
 #include "src/ManejadorErrores.h"
 using namespace std;
@@ -20,12 +21,12 @@ using namespace std;
 Partida::Partida(Nivel* n, int socket) {
 	nivel = n;
 	//ENTREGA3 dispo = new Disponibilidad(n->getNumeroJugadores());
-	dispo = new Disponibilidad(3);
+	dispo = new Disponibilidad(n->getJugadores());
 	colaIn = new ColaEventos();
 	colaOut = new ColaEventos();
 	this->socket = socket;
 	cleaner = new ThreadCleaner (dispo);
-	generalController = new GeneralEventController();
+	generalController = new GeneralEventController(n->getJugadores());
 	//ENTREGA3 VER QUIEN RECIBE LOS MSJS DEL CLIENTE.
 	receiver = new EventReceptorThread(colaIn,generalController,NULL, NULL);
 }
@@ -43,9 +44,21 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
          close(socketDesc);
 	} else {
 		log.info("Se acepta nuevo cliente");
-        MensajePlano msj(MSJ_JUGADOR_ACEPTADO);
-        serializador.escribir(&msj,socketDesc);
-		status->lock();
+		//creo el mensaje de configuracion del nivel para ese jugador
+        ConfiguracionNivelMsj* mensaje = new ConfiguracionNivelMsj();
+        status->lock(); //TODO ENTREGA3 VER SI EL LOCK VA ACA O MAS ABAJO
+        mensaje->setXArea(status->getJugador()->getArea()->getX());
+        mensaje->setYArea(status->getJugador()->getArea()->getY());
+        mensaje->setAnchoArea(status->getJugador()->getArea()->getAncho());
+        mensaje->setAltoArea(status->getJugador()->getArea()->getAlto());
+        std::list<std::string> tags;
+        status->getJugador()->recibirTags(tags);
+        std::list<std::string>::iterator it;
+        for ( it = tags.begin(); it != tags.end(); it++){
+        	mensaje->agregarTagFactory(*it);
+        }
+        serializador.escribir(mensaje,socketDesc);
+		//status->lock();
 		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(),status,socketDesc,status->getNroJugador());
 		status->setThread(jugadorNuevo);
 		status->unlock();
