@@ -10,7 +10,7 @@
 
 #include "src/Nivel.h"
 #include "src/Logger.h"
-
+#include "src/ManejadorErrores.h"
 //Este thread se encarga de esperar la primer conexion para generar una partida.
 //Una vez que genera una partida pasa al control de la partida.
 class MainServerThread {

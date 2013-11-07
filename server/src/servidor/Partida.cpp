@@ -14,6 +14,7 @@
 #include "threading/ThreadStatus.h"
 #include "src/mensajes/MensajePlano.h"
 #include "src/Serializador.h"
+#include "src/ManejadorErrores.h"
 using namespace std;
 
 Partida::Partida(Nivel* n, int socket) {
@@ -64,8 +65,14 @@ void Partida::run(int fdJugador1) {
 		unsigned int clilen;
 		clilen = sizeof(cli_addr);
 		int fd2 = accept(socket, (struct sockaddr *) &cli_addr, &clilen);
+		if (fd2 < 0)
+		{//ENTREGA3 si no conecta no procesa pedido , esta bien ?
+			ManejadorErrores::manejarAceptError(errno);
+		}
+		else{
 		log.info("Cliente intentado conectar");
 		procesarRequest(fd2,serializador);
+		}
 	}
 
 }
