@@ -44,3 +44,6 @@ void CLIENTE::View::setYL(float Yl) {
 float CLIENTE::View::getYL() {
 	return yl;
 }
+
+void CLIENTE::View::notify(Observable*, event_type event_type) {
+}

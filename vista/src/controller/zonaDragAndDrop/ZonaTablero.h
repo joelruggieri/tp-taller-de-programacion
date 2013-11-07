@@ -11,7 +11,7 @@
 #include <list>
 #include "../../vista/figura/FiguraView.h"
 #include "../../vista/Canvas.h"
-#include "../../vista/ViewConBorde.h"
+#include "../ViewController.h"
 #include <map>
 #include "../../modelo/Observer.h"
 #include "../../modelo/Cuadrado.h"
@@ -22,8 +22,9 @@ class ZonaTablero {
 private:
 	Cuadrado * cuerpo;
 	ColaEventos * salida;
+	void crearVista(ViewController * vc);
 public:
-	ZonaTablero(ColaEventos * cola);
+	ZonaTablero(ViewController * vc, ColaEventos * cola);
 	virtual ~ZonaTablero();
 	bool click(float, float);
 	void rightClick(float, float);

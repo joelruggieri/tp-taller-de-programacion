@@ -39,6 +39,7 @@ private:
 	ScrollView * crearScrollView(Cuadrado* c1, Cuadrado* c2,Scroll* scroll, SDL_Texture * texturaFlecha);
 	float margenSuperior;
 	void agregarEslabon(EslabonCreacion* eslabon);
+	void crearVista(ViewController * vc);
 public:
 	ZonaCreacion(ViewController * vcontroller, list<string> & factoriestags, float x, float margenSuperior, ColaEventos * cola);
 	virtual ~ZonaCreacion();

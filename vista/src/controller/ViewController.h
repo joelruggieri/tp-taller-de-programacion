@@ -15,6 +15,7 @@
 #include "DrawController.h"
 #include "../vista/View.h"
 #include "SDL2/SDL.h"
+#include "../modelo/Observable.h"
 #include <map>
 using namespace std;
 namespace CLIENTE {
@@ -38,6 +39,7 @@ public:
 	void dibujar();
 	virtual ~ViewController();
 	void resize(Transformacion * tl);
+	void notify(int id, Observable* obs, event_type T);
 };
 
 }

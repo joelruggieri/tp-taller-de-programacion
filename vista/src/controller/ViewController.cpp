@@ -58,28 +58,9 @@ ViewController::~ViewController() {
 }
 
 void ViewController::crearPantalla() {
-
 	CargadorDeTextures::Instance(renderer);
-	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
-	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
-	View * view = new Canvas(50, 50, 100, 100, canvasTexture);
-	addView(ID_CANVAS, view);
-	view = new ViewConBorde(50, 50, 100, 100);
-	addView(ID_BORDE_CANVAS, view);
-	canvasTexture = texturas->cargarTexture(PATH_ZONA_CREACION);
-	view = new Canvas(110, 40, 20, 80, canvasTexture);
-	addView(ID_CANVAS, view);
-	view = new ViewConBorde(110, 40, 20, 80);
-	addView(ID_BORDE_CANVAS_CREAC, view);
-	SDL_Texture* text1 = texturas->cargarTexture(PATH_BOTON_PLAY);
-	SDL_Texture* text2 = texturas->cargarTexture(PATH_BOTON_STOP);
-	view = new BotonSwitch(110, 90, 20, 20, text1, text2);
-	addView(ID_BOTON_PLAY, view);
-	view = new ViewConBorde(110, 90, 20, 20);
-	addView(ID_BOTON_PLAY_BORDE, view);
-	view = new Canvas(110, 90, 20, 20, canvasTexture);
-	addView(ID_BOTON_PLAY_FONDO, view);
-	view = new Canvas(60, -10, 120, 20, canvasTexture);
+	SDL_Texture * text= CargadorDeTextures::Instance()->cargarTexture(PATH_ZONA_CREACION);
+	View * view = new Canvas(60, -10, 120, 20, text);
 	addView(ID_CANVAS_RELLENO, view);
 	view = new ViewConBorde(60, -10, 120, 20);
 	addView(ID_BORDE_RELLENO, view);
@@ -112,6 +93,15 @@ void ViewController::resize(Transformacion * tl) {
 	for (it = vistasList.begin(); it != vistasList.end(); ++it) {
 		(*it)->setTl(tl);
 		(*it)->resizear();
+	}
+	unlock();
+}
+
+void ViewController::notify(int id, Observable* obs, event_type T) {
+	lock();
+	std::map<int,View*>::iterator it = vistas.find(id);
+	if(it!=vistas.end()){
+		(*it).second->notify(obs,T);
 	}
 	unlock();
 }

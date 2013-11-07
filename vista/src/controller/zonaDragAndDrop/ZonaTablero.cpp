@@ -9,10 +9,23 @@
 #include "../Resizer.h"
 #include "src/Logger.h"
 #include "src/mensajes/userEvents/ClickMsj.h"
+#include "../../ConstantesVista.h"
+#include "../../vista/CargadorDeTextures.h"
+#include "../../vista/ViewConBorde.h"
 //ENTREGA3 EN REALIDAD PARA NO ENVIAR BOLUDECES AL SERVER ACA HAY QUE SETEAR EL AREA DEL JUGADOR Y ESA POSICION ENTONCES SOLAMENTE SE ENVIAN LAS COSAS QUE CAEN AHI.
 
 namespace CLIENTE {
-ZonaTablero::ZonaTablero(ColaEventos * cola) {
+
+void ZonaTablero::crearVista(ViewController* vc) {
+	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
+	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
+	View * view = new Canvas(50, 50, 100, 100, canvasTexture);
+	vc->addView(ID_CANVAS, view);
+	view = new ViewConBorde(50, 50, 100, 100);
+	vc->addView(ID_BORDE_CANVAS, view);
+}
+
+ZonaTablero::ZonaTablero(ViewController * vc, ColaEventos * cola) {
 	salida = cola;
 	cuerpo =new Cuadrado(50,50,100,100);
 }

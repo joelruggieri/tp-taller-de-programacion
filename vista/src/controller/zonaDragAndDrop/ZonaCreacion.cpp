@@ -12,15 +12,29 @@
 #include "../../vista/FlechaScrollView.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../RutasArchivos.h"
-#include "../../vista/ViewConFondo.h"
 #include "../../ConstantesVista.h"
 
 namespace CLIENTE {
+
+void ZonaCreacion::crearVista(ViewController* vc) {
+	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
+	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
+	canvasTexture = texturas->cargarTexture(PATH_ZONA_CREACION);
+	View * view = new Canvas(110, 40, 20, 80, canvasTexture);
+	vc->addView(ID_CANVAS_CREAC , view);
+	view = new ViewConBorde(110, 40, 20, 80);
+	vc->addView(ID_BORDE_CANVAS_CREAC, view);
+	//ENTREGA3 CREAR LAS VIEWS DE TODAS LAS COSAS Y AGREGARLAS COMO SCROLLEABLES.
+
+
+}
+
 ZonaCreacion::ZonaCreacion(ViewController * vcontroller, list<string> & factoriestags, float x,
 		float margenSuperior, ColaEventos * cola){
 	salida  = cola;
 	scroll = NULL;
 	this->inicializar(vcontroller, factoriestags, x, margenSuperior);
+	crearVista(vcontroller);
 }
 void ZonaCreacion::inicializar(ViewController * vcontroller, list<string> & factoriestags, float x,
 		float margenSuperior) {
@@ -69,6 +83,7 @@ void ZonaCreacion::inicializar(ViewController * vcontroller, list<string> & fact
 				ANCHO_VIEW_DEF * 2, 4);
 		this->scroll = new Scroll(vcontroller,flechaSuperior, flechaInferior, 4,
 				alto - ALTO_PANEL_LOG);
+
 	//	list<Dibujable *>::iterator it;
 //		list<Dibujable*> dibujables = this->canvas->getDibujables();
 //		for (it = dibujables.begin(); it != dibujables.end(); ++it) {
