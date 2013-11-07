@@ -57,3 +57,15 @@ string ViewObjetoUpdateMsj::getTag(){
 void ViewObjetoUpdateMsj::acept(ViewMsjVisitor* v) {
 	v->visit(this);
 }
+
+float ViewObjetoUpdateMsj::getAngulo() const {
+	return angulo;
+}
+
+float ViewObjetoUpdateMsj::getX() const {
+	return x;
+}
+
+float ViewObjetoUpdateMsj::getY() const {
+	return y;
+}

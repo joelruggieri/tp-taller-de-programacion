@@ -18,3 +18,6 @@ GloboHelioView::~GloboHelioView() {
 }
 
 }
+
+void CLIENTE::GloboHelioView::update(ViewMsj*) {
+}

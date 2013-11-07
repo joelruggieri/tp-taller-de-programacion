@@ -15,6 +15,7 @@ public:
 	GloboHelioView(float x,float y, float w, float h, SDL_Texture * textura);
 	virtual ~GloboHelioView();
 	void dropTemplate();
+	void update(ViewMsj *);
 };
 }
 #endif /* GLOBOHELIOVIEW_H_ */
