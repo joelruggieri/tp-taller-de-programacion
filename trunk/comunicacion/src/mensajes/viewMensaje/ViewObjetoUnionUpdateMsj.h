@@ -19,6 +19,7 @@ public:
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 	string getTag();
 	void getMensaje();
+	void acept(ViewMsjVisitor *);
 };
 
 #endif /* VIEWOBJETOUNIONUPDATEMSJ_H_ */

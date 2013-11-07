@@ -45,3 +45,7 @@ string ViewObjetoConAnchoUpdateMsj::getTag() {
 void ViewObjetoConAnchoUpdateMsj::getMensaje() {
 	cout << this->x << " " << this->y << " " << this->angulo << " " <<  this->ancho <<  endl;
 }
+
+void ViewObjetoConAnchoUpdateMsj::acept(ViewMsjVisitor* v) {
+	v->visit(this);
+}

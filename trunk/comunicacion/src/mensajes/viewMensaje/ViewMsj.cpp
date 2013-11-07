@@ -19,6 +19,3 @@ void ViewMsj::acept(MensajeVisitor* v) {
 	v->visit(this);
 }
 
-void ViewMsj::acept(ViewMsjVisitor* v) {
-	v->visit(this);
-}

@@ -50,3 +50,7 @@ void ViewObjetoUpdateMsj::getMensaje() {
 string ViewObjetoUpdateMsj::getTag(){
 	return TAG_VIEW_OBJETO_SIMPLE;
 }
+
+void ViewObjetoUpdateMsj::acept(ViewMsjVisitor* v) {
+	v->visit(this);
+}

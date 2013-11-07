@@ -33,7 +33,9 @@ private:
 	Transformacion * tl;
 public:
 	ViewController(SDL_Renderer *,Transformacion * tl);
-	void visit(ViewMsj*);
+	void visit(ViewObjetoConAnchoUpdateMsj*);
+	void visit(ViewObjetoUpdateMsj*);
+	void visit(ViewObjetoUnionUpdateMsj*);
 	void addView(int id, View *);
 	void addViewScrolleable(int id, View *);
 	void scrollUnidadesLogicas(float unidadesLogicas);

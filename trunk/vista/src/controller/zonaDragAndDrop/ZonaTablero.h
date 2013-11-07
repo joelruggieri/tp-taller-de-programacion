@@ -16,6 +16,7 @@
 #include "../../modelo/Observer.h"
 #include "../../modelo/Cuadrado.h"
 #include "src/threading/ColaEventos.h"
+#include <string>
 using namespace std;
 namespace CLIENTE {
 class ZonaTablero {

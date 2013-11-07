@@ -18,6 +18,7 @@ public:
 	virtual NetworkMensaje * deserialize(YAML::const_iterator & it);
 	virtual void getMensaje();
 	virtual string getTag();
+	void acept(ViewMsjVisitor *);
 protected:
 	float x,y, angulo;
 };

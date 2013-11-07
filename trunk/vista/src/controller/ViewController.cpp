@@ -13,6 +13,9 @@
 #include "../vista/Canvas.h"
 #include "../vista/ViewConBorde.h"
 #include "../vista/BotonSwitch.h"
+#include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 #include "SDL2/SDL.h"
 namespace CLIENTE {
 bool comparar_layersViews(View * first, View * second) {
@@ -26,12 +29,6 @@ ViewController::ViewController(SDL_Renderer * r, Transformacion * tl) {
 	crearPantalla();
 }
 
-void ViewController::visit(ViewMsj*) {
-	lock();
-	//ENTREGA3 TIENE QUE RECIBIR EL MENSAJE, TOMAR EL ID OBTENER LA VIEW Y DARLE UPDATE
-	//SI NO EXISTE LA VISTA TIENE QUE CREARLA EN LA POSICION QUE DIGA EL MENSAJE.
-	unlock();
-}
 
 void ViewController::addView(int id, View* v) {
 	lock();
@@ -103,6 +100,28 @@ void ViewController::notify(int id, Observable* obs, event_type T) {
 	if(it!=vistas.end()){
 		(*it).second->notify(obs,T);
 	}
+	unlock();
+}
+
+
+void ViewController::visit(ViewObjetoConAnchoUpdateMsj*) {
+	lock();
+	//ENTREGA3 TIENE QUE RECIBIR EL MENSAJE, TOMAR EL ID OBTENER LA VIEW Y DARLE UPDATE
+	//SI NO EXISTE LA VISTA TIENE QUE CREARLA EN LA POSICION QUE DIGA EL MENSAJE.
+	unlock();
+}
+
+void ViewController::visit(ViewObjetoUpdateMsj*) {
+	lock();
+	//ENTREGA3 TIENE QUE RECIBIR EL MENSAJE, TOMAR EL ID OBTENER LA VIEW Y DARLE UPDATE
+	//SI NO EXISTE LA VISTA TIENE QUE CREARLA EN LA POSICION QUE DIGA EL MENSAJE.
+	unlock();
+}
+
+void ViewController::visit(ViewObjetoUnionUpdateMsj*) {
+	lock();
+	//ENTREGA3 TIENE QUE RECIBIR EL MENSAJE, TOMAR EL ID OBTENER LA VIEW Y DARLE UPDATE
+	//SI NO EXISTE LA VISTA TIENE QUE CREARLA EN LA POSICION QUE DIGA EL MENSAJE.
 	unlock();
 }
 
