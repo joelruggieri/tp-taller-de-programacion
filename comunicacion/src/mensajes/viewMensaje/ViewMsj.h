@@ -16,7 +16,7 @@ public:
 	ViewMsj(int id);
 	virtual ~ViewMsj();
 	void acept(MensajeVisitor *);
-	void acept(ViewMsjVisitor *);
+	virtual void acept(ViewMsjVisitor *)=0;
 };
 
 #endif /* VIEWMSJ_H_ */

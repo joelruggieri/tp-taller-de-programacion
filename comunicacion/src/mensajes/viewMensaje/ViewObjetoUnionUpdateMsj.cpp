@@ -50,3 +50,6 @@ void ViewObjetoUnionUpdateMsj::getMensaje() {
 	cout << this->x << " " << this->y<< " " << this->xHasta << " " <<  this->yHasta <<  endl;
 }
 
+void ViewObjetoUnionUpdateMsj::acept(ViewMsjVisitor*v) {
+	v->visit(this);
+}

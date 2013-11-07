@@ -9,7 +9,7 @@
 #include "SDL2/SDL.h"
 
 namespace CLIENTE {
-FactoryView::FactoryView(int x, int y, int w, int h, SDL_Texture * textura) :
+FactoryView::FactoryView(float x, float y, float w, float h, SDL_Texture * textura) :
 		View(x, y, w, h) {
 	this->textura = textura;
 
@@ -35,12 +35,10 @@ void FactoryView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
 
 void FactoryView::resizear() {
 
-
 	//ENTREGA3 GETTL
 //	this->setW(Resizer::Instance()->resizearDistanciaX(this->getW()));
 //	this->setXc((Resizer::Instance()->resizearDistanciaX(this->getXCentro())));
 //	this->setH(Resizer::Instance()->resizearDistanciaY(this->getH()));
 //	this->setYc((Resizer::Instance()->resizearDistanciaY(this->getYCentro())));
-
 }
 }

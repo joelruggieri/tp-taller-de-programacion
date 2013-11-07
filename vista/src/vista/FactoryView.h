@@ -16,7 +16,7 @@ class FactoryView: public View {
 private:
 	SDL_Texture * textura;
 public:
-	FactoryView(int x, int y, int w, int h, SDL_Texture * textura);
+	FactoryView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~FactoryView();
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
