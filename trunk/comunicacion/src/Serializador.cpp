@@ -24,7 +24,7 @@ Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CLICK), new ClickMsj(0, 0, 0, 0, 0, 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(MSJ_CONFIG_JUGADOR), new ConfiguracionNivelMsj()));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MOUSE_MOTION), new MouseMotionMsj(0, 0, 0, 0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CREACION_OBJETO), new CreacionMsj("")));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CREACION_OBJETO), new CreacionMsj("", 0,0)));
 	this->destinatario = destinatario;
 }
 
