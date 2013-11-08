@@ -15,8 +15,9 @@ public:
 //	ViewMotorFactory(SimpleEditorAnguloFijo * editor);
 	ViewMotorFactory(SimpleEditorOrientacionCambiable * editor);
 	virtual ~ViewMotorFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 #endif /* VIEWMOTORFACTORY_H_ */

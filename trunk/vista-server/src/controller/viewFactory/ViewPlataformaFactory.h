@@ -15,8 +15,9 @@ class ViewPlataformaFactory: public ViewFiguraFactory{
 public:
 	ViewPlataformaFactory(SimpleEditorEstirar * editor);
 	virtual ~ViewPlataformaFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 #endif /* VIEWPLATAFORMAFACTORY_H_ */

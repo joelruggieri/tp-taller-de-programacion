@@ -8,7 +8,6 @@
 #ifndef VIEW_H_
 #define VIEW_H_
 #include "Dibujable.h"
-#include "Resizeable.h"
 
 class View : public Dibujable{
 private:

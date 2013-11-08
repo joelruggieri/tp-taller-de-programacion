@@ -19,10 +19,14 @@ ViewPelotaJuegoFactory::~ViewPelotaJuegoFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* ViewPelotaJuegoFactory::crear(float x, float y, float w, float h) {
+FiguraView* ViewPelotaJuegoFactory::crear(float x, float y) {
 	return new PelotaJuegoView(x, y, (SimpleEditorAnguloFijo*)this->controller);
 }
 
-View* ViewPelotaJuegoFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewPelotaJuegoFactory::crearVistaPropia(){
+	return new FactoryView();
+}
+
+string ViewPelotaJuegoFactory::getTagRemoto() {
+	return TAG_FACTORY_PELOTA;
 }

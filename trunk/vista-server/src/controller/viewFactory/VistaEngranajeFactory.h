@@ -16,8 +16,9 @@ class VistaEngranajeFactory: public ViewFiguraFactory {
 public:
 	VistaEngranajeFactory(SimpleEditorCambiarRadio * editor);
 	virtual ~VistaEngranajeFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 #endif /* VISTAENGRANAJEFACTORY_H_ */

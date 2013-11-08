@@ -15,8 +15,9 @@ class ViewCorreaFactory: public ViewFiguraFactory{
 public:
 	ViewCorreaFactory(EditorUnion* editor);
 	virtual ~ViewCorreaFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 #endif /* VIEWCORREAFACTORY_H_ */

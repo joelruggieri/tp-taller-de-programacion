@@ -14,8 +14,9 @@ class ViewGloboFactory: public ViewFiguraFactory{
 public:
 	ViewGloboFactory(SimpleEditorAnguloFijo * editor);
 	virtual ~ViewGloboFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 #endif /* VIEWGLOBOFACTORY_H_ */

@@ -7,7 +7,7 @@ ViewSogaDinamicaFactory::ViewSogaDinamicaFactory(EditorUnion* editor): ViewFigur
 
 }
 
-FiguraView* ViewSogaDinamicaFactory::crear(float x, float y, float w, float h){
+FiguraView* ViewSogaDinamicaFactory::crear(float x, float y){
 	return new SogaView(x, y,(EditorUnion*) this->controller);
 }
 
@@ -15,6 +15,11 @@ ViewSogaDinamicaFactory::~ViewSogaDinamicaFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-View* ViewSogaDinamicaFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewSogaDinamicaFactory::crearVistaPropia(){
+	return new FactoryView();
+}
+
+string ViewSogaDinamicaFactory::getTagRemoto() {
+	//esta factory no puede ser remota
+	return "";
 }

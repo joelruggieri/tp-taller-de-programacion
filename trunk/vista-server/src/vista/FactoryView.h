@@ -13,7 +13,7 @@
 class FactoryView: public View {
 private:
 public:
-	FactoryView(float x, float y);
+	FactoryView();
 	virtual ~FactoryView();
 	void dibujarse(list<ViewMsj*> & lista);
 //	void resizear();

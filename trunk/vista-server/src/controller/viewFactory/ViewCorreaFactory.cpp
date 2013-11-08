@@ -14,7 +14,7 @@ ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor): ViewFiguraFactory(edi
 
 }
 
-FiguraView* ViewCorreaFactory::crear(float x, float y, float w, float h){
+FiguraView* ViewCorreaFactory::crear(float x, float y){
 	return new CorreaEstaticaView(x, y,(EditorUnion*) this->controller);
 }
 
@@ -22,7 +22,10 @@ ViewCorreaFactory::~ViewCorreaFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-View* ViewCorreaFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewCorreaFactory::crearVistaPropia(){
+	return new FactoryView();
 }
 
+string ViewCorreaFactory::getTagRemoto() {
+	return TAG_FACTORY_CORREA;
+}

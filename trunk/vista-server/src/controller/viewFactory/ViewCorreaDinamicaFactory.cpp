@@ -7,7 +7,7 @@ ViewCorreaDinamicaFactory::ViewCorreaDinamicaFactory(EditorUnion* editor): ViewF
 
 }
 
-FiguraView* ViewCorreaDinamicaFactory::crear(float x, float y, float w, float h){
+FiguraView* ViewCorreaDinamicaFactory::crear(float x, float y){
 	return new CorreaView(x, y,(EditorUnion*) this->controller);
 }
 
@@ -15,7 +15,11 @@ ViewCorreaDinamicaFactory::~ViewCorreaDinamicaFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-View* ViewCorreaDinamicaFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewCorreaDinamicaFactory::crearVistaPropia(){
+	return new FactoryView();
 }
 
+string ViewCorreaDinamicaFactory::getTagRemoto() {
+	//esta factory no sirve para las zonas de creacion asi que el tag remoto no aplica para esta
+	return "";
+}

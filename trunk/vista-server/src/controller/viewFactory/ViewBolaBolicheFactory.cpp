@@ -18,10 +18,14 @@ ViewBolaBolicheFactory::~ViewBolaBolicheFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* ViewBolaBolicheFactory::crear(float x, float y, float w, float h) {
+FiguraView* ViewBolaBolicheFactory::crear(float x, float y) {
 	return new BolaBolicheView(x, y,(SimpleEditorAnguloFijo*)this->controller);
 }
 
-View* ViewBolaBolicheFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewBolaBolicheFactory::crearVistaPropia(){
+	return new FactoryView();
+}
+
+string ViewBolaBolicheFactory::getTagRemoto() {
+	return TAG_FACTORY_BOLA;
 }
