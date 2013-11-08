@@ -13,6 +13,8 @@
 #include <string>
 #include "src/Logger.h"
 #include "src/ManejadorErrores.h"
+#include "src/mensajes/ConfiguracionNivelMsj.h"
+#include <list>
 using namespace std;
 enum RESULTADO_CONEXION {SERVIDOR_ERROR, SERVIDOR_OCUPADO, SERVIDOR_CONECTADO};
 
@@ -22,11 +24,12 @@ public:
 	virtual ~MainClienteThread();
 	void run();
 private:
+	ConfiguracionNivelMsj * config;
 	IOThread * thread;
 	Logger log;
 	ColaEventos* colaEntrada;
 	RESULTADO_CONEXION conectar(int &socket);
-	string tryConnect(int &socketfd);
+	list<NetworkMensaje*> tryConnect(int &socketfd);
 	ColaEventos* colaSalida;
 };
 

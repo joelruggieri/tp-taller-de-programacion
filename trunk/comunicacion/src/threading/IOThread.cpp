@@ -50,14 +50,17 @@ void * func_salida(void * arg) {
 	status->lock();
 	bool continuar = status->isAlive();
 	status->unlock();
-	NetworkMensaje* pop;
+	list<NetworkMensaje*>::iterator it;
 	while (continuar) {
 		usleep(10000);
-		pop = colaSalida->front();
+		list<NetworkMensaje*> lectura;
+		colaSalida->getAll(lectura);
 		try {
-			if (pop != NULL) {
-				serializador->escribir(pop,socketDesc);
-				delete pop;
+			if (lectura.size()>0) {
+				serializador->escribir(lectura,socketDesc);
+				for(it= lectura.begin(); it!= lectura.end(); ++it){
+					delete (*it);
+				}
 			}
 
 		} catch (SerializacionException & e) {

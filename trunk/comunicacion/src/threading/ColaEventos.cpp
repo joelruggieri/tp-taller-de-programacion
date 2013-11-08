@@ -27,7 +27,7 @@ NetworkMensaje* ColaEventos::front() {
 	NetworkMensaje * msj = NULL;
 	if(msjs.size() != 0) {
 		msj=this->msjs.front();
-		this->msjs.remove(msj);
+		this->msjs.pop_front();
 	}
 	this->unlock();
 	return msj;
@@ -55,4 +55,10 @@ void ColaEventos::push(list<NetworkMensaje*> msjsin) {
 	for(it=msjsin.begin(); it!= msjsin.end(); ++it){
 		push(*it);
 	}
+}
+
+void ColaEventos::getAll(list<NetworkMensaje*>& salida) {
+	lock();
+	salida.splice(salida.begin(), this->msjs);
+	unlock();
 }

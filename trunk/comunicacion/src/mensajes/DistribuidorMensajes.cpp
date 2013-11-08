@@ -11,10 +11,11 @@
 #include "userEvents/UserEventMsj.h"
 #include "viewMensaje/ViewMsj.h"
 #include "internos/MensajeInterno.h"
+#include "../ConstantesComunicacion.h"
 using namespace std;
 
-DistribuidorMensajes::DistribuidorMensajes(UserEventVisitor* u,
-		ViewMsjVisitor * v, MensajePlanoVisitor * p, MensajeInternoVisitor * i ) {
+DistribuidorMensajes::DistribuidorMensajes(UserEventVisitor* u, ViewMsjVisitor * v, MensajePlanoVisitor * p,
+		MensajeInternoVisitor * i) {
 	user = u;
 	views = v;
 	planos = p;
@@ -48,9 +49,13 @@ void DistribuidorMensajes::visit(ViewMsj* m) {
 }
 
 void DistribuidorMensajes::visit(MensajePlano* m) {
-	if (planos != NULL) {
-		log.debug("Se pocesa mensaje plano");
-		m->acept(planos);
+	//Puede venir un mensaje por timeout generado por comunicacion, en ese caso lo deleteo.
+	if (m->getTag() != TAG_MSJ_NOTIMEOUT) {
+		if (planos != NULL) {
+			log.debug("Se pocesa mensaje plano");
+			m->acept(planos);
+		}
+
 	}
 }
 

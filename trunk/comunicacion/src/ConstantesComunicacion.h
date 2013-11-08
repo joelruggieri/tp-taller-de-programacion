@@ -16,6 +16,8 @@
 #define OBJ_CON_ANCHO_S_ENGRANAJE 'j'
 #define OBJ_SIMPLE_S_MOTOR 'm'
 
+#define TAG_MSJ_NOTIMEOUT "NTO"
+
 #define TAG_CLICK "EC"
 #define TAG_DIBUJADO "ED"
 
@@ -37,5 +39,6 @@
 
 #define MSJ_JUGADOR_ACEPTADO "MJA"
 #define MSJ_JUGADOR_RECHAZADO "MJR"
+#define MSJ_CONFIG_JUGADOR "MJC"
 #define TIMEOUT 90
 

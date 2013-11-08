@@ -58,7 +58,7 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		log.info("Se acepta nuevo cliente");
 		//creo el mensaje de configuracion del nivel para ese jugador
 		ConfiguracionNivelMsj* mensaje = new ConfiguracionNivelMsj();
-		status->lock(); //TODO ENTREGA3 VER SI EL LOCK VA ACA O MAS ABAJO
+		status->lock();
 		mensaje->setXArea(status->getJugador()->getArea()->getX());
 		mensaje->setYArea(status->getJugador()->getArea()->getY());
 		mensaje->setAnchoArea(status->getJugador()->getArea()->getAncho());
@@ -69,7 +69,12 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		for (it = tags.begin(); it != tags.end(); it++) {
 			mensaje->agregarTagFactory(*it);
 		}
-		serializador.escribir(mensaje, socketDesc);
+		MensajePlano msj(MSJ_JUGADOR_ACEPTADO);
+		list<NetworkMensaje *> msjs;
+		msjs.push_back(&msj);
+		msjs.push_back(mensaje);
+		serializador.escribir(msjs, socketDesc);
+		delete mensaje;
 		//status->lock();
 		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(), status, socketDesc,
 				status->getNroJugador());
@@ -85,7 +90,7 @@ void Partida::run(int fdJugador1) {
 	cleaner->run(5);
 	dispatcher->run();
 	receiver->run();
-	drawingService->run();
+//	drawingService->run();
 
 	procesarRequest(fdJugador1, serializador);
 	while (true) {
