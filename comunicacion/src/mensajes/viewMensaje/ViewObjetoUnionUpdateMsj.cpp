@@ -56,3 +56,5 @@ void ViewObjetoUnionUpdateMsj::getMensaje() {
 void ViewObjetoUnionUpdateMsj::acept(ViewMsjVisitor*v) {
 	v->visit(this);
 }
+
+

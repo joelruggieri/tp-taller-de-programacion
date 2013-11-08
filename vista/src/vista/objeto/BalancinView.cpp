@@ -12,7 +12,11 @@ BalancinView::~BalancinView() {
 	// TODO Auto-generated destructor stub
 }
 
-void BalancinView::update(ViewMsj*) {
+void BalancinView::update(ViewMsj* mje) {
+	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*)mje;
+	this->setXp(mjeCurrent->getX());
+	this->setYp(mjeCurrent->getY());
+	this->setAngulo(mjeCurrent->getAngulo());
 }
 
 }

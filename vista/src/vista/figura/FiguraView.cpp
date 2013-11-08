@@ -11,7 +11,7 @@ namespace CLIENTE {
  ********************************************************/
 FiguraView::FiguraView(int x, int y, int w, int h,SDL_Texture* textura): View(x,y,w,h) {
 //	this->tl = Resizer::Instance()->getTransformacionToModelo();
-
+	this->angulo = 0;
 	this->textura = textura;
 }
 
@@ -44,5 +44,14 @@ SDL_Texture* FiguraView::getTexture() {
 void FiguraView::resizear() {
 	super::resizear();
 //	this->tl = Resizer::Instance()->getTransformacionToModelo();
+}
+
+
+float FiguraView::getAngulo() const {
+	return angulo;
+}
+
+void FiguraView::setAngulo(float angulo) {
+	this->angulo = angulo;
 }
 }

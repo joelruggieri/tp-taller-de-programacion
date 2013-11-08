@@ -17,6 +17,9 @@ PelotaJuegoView::~PelotaJuegoView() {
 
 }
 
-void CLIENTE::PelotaJuegoView::update(ViewMsj* m) {
-
+void CLIENTE::PelotaJuegoView::update(ViewMsj* mje) {
+ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*)mje;
+this->setXp(mjeCurrent->getX());
+this->setYp(mjeCurrent->getY());
+this->setAngulo(mjeCurrent->getAngulo());
 }

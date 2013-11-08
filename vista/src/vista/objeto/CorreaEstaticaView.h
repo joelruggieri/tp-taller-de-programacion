@@ -7,7 +7,7 @@
 
 #ifndef CORREAESTATICAVIEW_H_
 #define CORREAESTATICAVIEW_H_
-
+#include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 #include "UnionEstaticaView.h"
 namespace CLIENTE {
 class CorreaEstaticaView: public UnionEstaticaView {

@@ -36,7 +36,8 @@ void CorreaView::dibujarse(SDL_Renderer* renderer){
 
 }
 
-void CorreaView::update(ViewMsj *){
+void CorreaView::update(ViewMsj *m){
+	super::update(m);
 //	super::update();
 //	double xHastaRespectoXDesde = (float)this->xHasta - (float)this->xDesde;
 //	double yHastaRespectoYDesde = (float)this->yHasta - (float)this->yDesde;

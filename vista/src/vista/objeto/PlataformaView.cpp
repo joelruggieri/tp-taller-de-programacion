@@ -16,13 +16,12 @@ PlataformaView::~PlataformaView() {
 	// TODO Auto-generated destructor stub
 }
 
-void PlataformaView::update(ViewMsj* m){
-//	super::update(m);
-//	float y = 0;
-//	Plataforma * p = (Plataforma *)this->getModelo();
-//	tl.setVector(p->getAncho(),y);
-//	float nuevoAncho;
-//	tl.getResultadoInverso(nuevoAncho,y);
-//	this->setW(nuevoAncho);
+void PlataformaView::update(ViewMsj* mje){
+	ViewObjetoConAnchoUpdateMsj* mjeCurrent = (ViewObjetoConAnchoUpdateMsj*)mje;
+	this->setXp(mjeCurrent->getX());
+	this->setYp(mjeCurrent->getY());
+	this->setAngulo(mjeCurrent->getAngulo());
+	this->setWp(mjeCurrent->getAncho());
+
 }
 }

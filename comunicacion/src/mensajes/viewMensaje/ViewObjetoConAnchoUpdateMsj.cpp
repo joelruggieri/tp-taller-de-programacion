@@ -10,7 +10,7 @@
 
 
 ViewObjetoConAnchoUpdateMsj::ViewObjetoConAnchoUpdateMsj(float x, float y, float angulo, float ancho, int id, char sel): ViewObjetoUpdateMsj(x,y,angulo,id, sel){
-	this->ancho = angulo;
+	this->ancho = ancho;
 }
 
 ViewObjetoConAnchoUpdateMsj::~ViewObjetoConAnchoUpdateMsj() {

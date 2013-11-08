@@ -26,6 +26,10 @@ int MotorView::getLayer() {
 	return LAYER_ENGRANAJES;
 }
 
-void MotorView::update(ViewMsj*) {
+void MotorView::update(ViewMsj* mje) {
+	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*)mje;
+	this->setXp(mjeCurrent->getX());
+	this->setYp(mjeCurrent->getY());
+	this->setAngulo(mjeCurrent->getAngulo());
 }
 }

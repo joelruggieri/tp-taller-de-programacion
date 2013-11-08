@@ -18,6 +18,8 @@ class FiguraView: public View, public Observable{
 private:
 	SDL_Texture * textura;
 	typedef View super;
+	float angulo;
+
 protected:
 	Transformacion tl;
 public:
@@ -27,6 +29,8 @@ public:
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	SDL_Texture* getTexture();
 	void resizear();
+	float getAngulo() const;
+	void setAngulo(float angulo);
 };
 }
 #endif /* FIGURAVIEW_H_ */

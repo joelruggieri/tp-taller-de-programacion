@@ -10,6 +10,7 @@
 
 #include "ObjetoView.h"
 #include "SDL2/SDL.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 namespace CLIENTE {
 
 class MotorView: public ObjetoView {
