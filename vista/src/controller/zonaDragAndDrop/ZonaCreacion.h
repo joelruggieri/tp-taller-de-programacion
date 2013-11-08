@@ -20,6 +20,7 @@
 #include <src/threading/ColaEventos.h>
 #include "../../controller/ViewController.h"
 #include "src/mensajes/userEvents/CreacionMsj.h"
+#include "src/mensajes/userEvents/ClickMsj.h"
 #include <map>
 #include <string>
 #include "src/Logger.h"
@@ -60,6 +61,7 @@ public:
 	bool click(float x, float y);
 	bool mouseScroll(float x, float y, int amountScrolled);
 	bool enContacto(float posX, float posY);
+	bool clickUp(float x, float y);
 };
 }
 #endif /* ZONACREACION_H_ */

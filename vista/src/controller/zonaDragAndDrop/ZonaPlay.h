@@ -12,6 +12,7 @@
 #include <src/threading/ColaEventos.h>
 #include "../ViewController.h"
 #include "../../vista/Canvas.h"
+#include "src/mensajes/userEvents/JugadorListo.h"
 namespace CLIENTE {
 
 class ZonaPlay {
@@ -24,6 +25,7 @@ public:
 	ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola);
 	virtual ~ZonaPlay();
 	bool click(float x, float y);
+	bool clickUp(float x, float y);
 };
 
 }

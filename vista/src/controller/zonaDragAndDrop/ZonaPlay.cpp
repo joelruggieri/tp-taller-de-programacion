@@ -32,7 +32,8 @@ bool ZonaPlay::click(float x, float y) {
 		boton->click();
 		controller->endUpdate();
 
-		//ENTREGA3 MANDAR MENSAJE DE USER LISTO O NO LISTO.
+		JugadorListo* mje = new JugadorListo(true);
+		salida->push(mje);
 		return true;
 	}
 	return false;
@@ -51,3 +52,14 @@ void CLIENTE::ZonaPlay::crearVista(ViewController* vc) {
 	view = new Canvas(110, 90, 20, 20,-1, canvasTexture);
 	vc->addView(ID_BOTON_PLAY_FONDO, view);
 }
+
+bool CLIENTE::ZonaPlay::clickUp(float x, float y){
+if (!this->cuerpo->contacto(x, y)) return false;
+return true;
+//	bool ctrl;
+//	bool shift;
+//	ClickMsj* b = new ClickMsj(x, y, false, true, false, false);
+//	salida->push(b);
+//	return true;
+//	return
+	}
