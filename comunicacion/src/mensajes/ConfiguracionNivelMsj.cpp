@@ -58,7 +58,7 @@ void ConfiguracionNivelMsj::serialize(YAML::Node * nodo){
 	nodo->push_back(this->getAltoArea());
 	nodo->push_back(this->getFactoriresTags().size());
 	std::list<std::string>::iterator iterador;
-	for (iterador = this->getFactoriresTags().begin(); iterador != this->getFactoriresTags().end(); iterador++){
+	for (iterador = this->getFactoriresTags().begin(); iterador != this->getFactoriresTags().end(); ++iterador){
 		nodo->push_back(*iterador);
 	}
 }
