@@ -10,6 +10,7 @@
 #include <string>
 #include "yaml-cpp/yaml.h"
 #include "MensajeVisitor.h"
+#include "../ConstantesComunicacion.h"
 using namespace std;
 
 class NetworkMensaje {

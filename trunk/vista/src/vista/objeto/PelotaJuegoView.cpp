@@ -17,5 +17,6 @@ PelotaJuegoView::~PelotaJuegoView() {
 
 }
 
-void CLIENTE::PelotaJuegoView::update(ViewMsj*) {
+void CLIENTE::PelotaJuegoView::update(ViewMsj* m) {
+
 }

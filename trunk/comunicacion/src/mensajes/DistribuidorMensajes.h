@@ -11,6 +11,7 @@
 #include "viewMensaje/ViewMsjVisitor.h"
 #include "MensajePlanoVisitor.h"
 #include "MensajeVisitor.h"
+#include "internos/MensajeInternoVisitor.h"
 #include "NetworkMensaje.h"
 #include "src/Logger.h"
 
@@ -22,13 +23,16 @@ private:
 	UserEventVisitor * user;
 	ViewMsjVisitor * views;
 	MensajePlanoVisitor * planos;
+	MensajeInternoVisitor * internos;
 public:
-	DistribuidorMensajes(UserEventVisitor*, ViewMsjVisitor *, MensajePlanoVisitor * );
+	DistribuidorMensajes(UserEventVisitor*, ViewMsjVisitor *, MensajePlanoVisitor *,MensajeInternoVisitor *  );
 	void procesar(NetworkMensaje * msj);
 	virtual ~DistribuidorMensajes();
 	void visit(UserEventMsj *);
 	void visit(ViewMsj *);
 	void visit(MensajePlano *);
+	void visit(MensajeInterno *);
 };
 
 #endif /* DISTRIBUIDORMENSAJES_H_ */
+

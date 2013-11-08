@@ -7,11 +7,11 @@
 
 #include "EventReceptorThread.h"
 
-EventReceptorThread::EventReceptorThread(ColaEventos * in, UserEventVisitor* u, ViewMsjVisitor * v, MensajePlanoVisitor * m) {
+EventReceptorThread::EventReceptorThread(ColaEventos * in, UserEventVisitor* u, ViewMsjVisitor * v, MensajePlanoVisitor * m, MensajeInternoVisitor* i) {
 	th = NULL;
 	this->colaIn = in;
 	this->params = NULL;
-	this->distribuidor = new DistribuidorMensajes(u, v, m);
+	this->distribuidor = new DistribuidorMensajes(u, v, m, i);
 }
 
 void * recibir(void *arg) {

@@ -7,13 +7,21 @@
 
 #ifndef DRAWCONTROLLER_H_
 #define DRAWCONTROLLER_H_
+#include <src/threading/ColaEventos.h>
+#include "JuegoEventsController.h"
+#include "zonaDragAndDrop/ZonaTablero.h"
 
 class DrawController {
+private:
+	list<JuegoEventsController *> controllers;
+	ZonaTablero * tablero;
+	ColaEventos * salida;
 public:
-	virtual ~DrawController(){
-
-	};
-	virtual void dibujar() = 0;
+	DrawController(ColaEventos * salida);
+	virtual ~DrawController();
+	void addJugador(JuegoEventsController *);
+	void setTablero(ZonaTablero *);
+	void dibujar();
 
 };
 

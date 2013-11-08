@@ -69,7 +69,7 @@ int MainController::run() {
 
 
 	//Creo el thread que se encarga de distribuir los msjs del server
-	EventReceptorThread receptor(this->entrada, NULL, this->viewController, NULL);
+	EventReceptorThread receptor(this->entrada, NULL, this->viewController, NULL, NULL);
 	receptor.run();
 	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
 	SDL_SetWindowMaximumSize(ventana, 825,825);

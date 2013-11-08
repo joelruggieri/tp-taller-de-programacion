@@ -45,16 +45,6 @@ public:
 	virtual ~DropController(){
 
 	}
-//	virtual void dropNuevaFigura(MotorView*) = 0;
-//	virtual void dropNuevaFigura(PlataformaView*) = 0;
-//	virtual void dropNuevaFigura(GloboHelioView*) = 0;
-//	virtual void dropNuevaFigura(BalancinView*) = 0;
-//	virtual void dropNuevaFigura(CintaTransportadoraView*) = 0;
-//	virtual void dropNuevaFigura(BolaBolicheView*)= 0;
-//	virtual void dropNuevaFigura(PelotaJuegoView*) = 0 ;
-//	virtual void dropNuevaFigura(VistaEngranaje*) = 0 ;
-//	virtual void dropNuevaFigura(CorreaEstaticaView*) = 0 ;
-//	virtual void dropNuevaFigura(SogaEstaticaView*) = 0 ;
 	virtual void dropFigura(FiguraView*) = 0;
 	virtual void drag(FiguraView *, float,float) = 0;
 };

@@ -19,10 +19,11 @@
 #include "src/Logger.h"
 
 
-GeneralEventController::GeneralEventController(std::list<Jugador*>& jugadoresNivel) {
-	this->drawController = NULL;
+GeneralEventController::GeneralEventController(std::list<Jugador*>& jugadoresNivel, DrawController * dController) {
+	this->drawController = dController;
 }
 GeneralEventController::~GeneralEventController() {
+	delete drawController;
 }
 
 
@@ -88,4 +89,8 @@ void GeneralEventController::visit(JugadorListo * m) {
 //	bool listo = m->isListo();
 
 //	ENTREGA3 AVISAR A ALGUIEN QUE EL JUGADOR ESTA LISTO O NO, DEPENDE EL BOOL DEL MENSAJE.
+}
+
+void GeneralEventController::visit(DrawEvent*) {
+ drawController->dibujar();
 }
