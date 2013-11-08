@@ -56,14 +56,14 @@ void MainController::dibujar() {
 	juegoController->dibujarse(render);
 	SDL_RenderPresent(render);
 }
-int MainController::run() {
+int MainController::run(list<string> & factories) {
 	SDL_Window *ventana = NULL;
 	bool terminar = false;;
 	SDL_Init(SDL_INIT_VIDEO);
 	ventana = SDL_CreateWindow("The Incredible Machine LAN", 300, 100, TAMANIO_PANTALLA, TAMANIO_PANTALLA, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
 	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
-	GeneralEventController * eventController = crearGeneralEventController();
+	GeneralEventController * eventController = crearGeneralEventController(factories);
 	eventController->setDrawController(viewController);
 	eventController->addResizerController(viewController);
 
@@ -86,20 +86,20 @@ int MainController::run() {
 	return 0;
 }
 
-GeneralEventController* MainController::crearGeneralEventController() {
+GeneralEventController* MainController::crearGeneralEventController(list<string> & factories) {
 	ZonaTablero * tablero = new ZonaTablero(viewController,this->salida);
 	ZonaPlay * zp = new ZonaPlay(viewController,110, 90, this->salida);
-	list<string> factories;
-	factories.push_back(TAG_FACTORY_BALANCIN);
-	factories.push_back(TAG_FACTORY_BOLA);
-	factories.push_back(TAG_FACTORY_CINTA);
-	factories.push_back(TAG_FACTORY_CORREA);
-	factories.push_back(TAG_FACTORY_ENGRANAJE);
-	factories.push_back(TAG_FACTORY_GLOBO);
-	factories.push_back(TAG_FACTORY_MOTOR);
-	factories.push_back(TAG_FACTORY_PELOTA);
-	factories.push_back(TAG_FACTORY_SOGA);
-	factories.push_back(TAG_FACTORY_PLATAFORMA);
+//	list<string> factories;
+//	factories.push_back(TAG_FACTORY_BALANCIN);
+//	factories.push_back(TAG_FACTORY_BOLA);
+//	factories.push_back(TAG_FACTORY_CINTA);
+//	factories.push_back(TAG_FACTORY_CORREA);
+//	factories.push_back(TAG_FACTORY_ENGRANAJE);
+//	factories.push_back(TAG_FACTORY_GLOBO);
+//	factories.push_back(TAG_FACTORY_MOTOR);
+//	factories.push_back(TAG_FACTORY_PELOTA);
+//	factories.push_back(TAG_FACTORY_SOGA);
+//	factories.push_back(TAG_FACTORY_PLATAFORMA);
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(viewController, factories, 110, 80, salida);
 	JuegoEventsController * juegoController = new JuegoEventsController(zp,tablero, zonaCreacion,Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
 	GeneralEventController * generalEventController = new GeneralEventController();

@@ -45,14 +45,10 @@ void MainClienteThread::run() {
 		if (SERVIDOR_CONECTADO == result) {
 			log.info("Conectado con servidor");
 			Status* status = new Status(TIMEOUT);
-			list<string>::iterator it;
-			for(it = config->getFactoriresTags().begin() ; it != config->getFactoriresTags().end(); ++it){
-				cout << *it << endl;
-			}
 			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
 			thread->run();
 			MainController controller(colaEntrada,colaSalida);
-			controller.run();
+			controller.run(config->getFactoriresTags());
 		}
 		if (SERVIDOR_ERROR == result) {
 			log.error("No se puede conectar con el servidor, no se ha obtenido respuesta");
