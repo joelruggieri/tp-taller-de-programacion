@@ -68,6 +68,17 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 }
 
 bool JuegoEventsController::rightClickDown(int x, int y) {
+	tl->setVector(x,y);
+		float xf,yf;
+		tl->getResultado(xf,yf);
+		if(!tablero->rightClick(xf,yf)){
+//			if(!zplay->rightClick(xf,yf)){
+//				return creacion->rightClick(xf,yf);
+//			}
+		}
+
+		return true;
+
 	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
 //	if(iniciado) {
 //		return true;
@@ -93,9 +104,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 //		}
 //		return false;
 //	}
-	return true;
 }
-
 bool JuegoEventsController::rightClickUp(int x, int y) {
 //	if (editor != NULL && !iniciado) {
 //		editor->rightClickUp(x, y);
