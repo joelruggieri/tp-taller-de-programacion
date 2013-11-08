@@ -22,6 +22,7 @@ void DrawController::setTablero(ZonaTablero* t) {
 
 void DrawController::dibujar() {
 	ViewObjetoUpdateMsj * msje = new ViewObjetoUpdateMsj(50,50,0,101,OBJ_SIMPLE_S_BALANCIN);
+	msje->setDestinatario(0);
 	salida->push(msje);
 
 }
