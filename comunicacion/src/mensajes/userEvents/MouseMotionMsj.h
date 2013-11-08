@@ -19,6 +19,8 @@ public:
 	virtual ~MouseMotionMsj();
 	float getX();
 	float getY();
+	void serialize(YAML::Node * nodo);
+	NetworkMensaje * deserialize(YAML::const_iterator & it);
 };
 
 #endif /* MOUSEMOTION_H_ */

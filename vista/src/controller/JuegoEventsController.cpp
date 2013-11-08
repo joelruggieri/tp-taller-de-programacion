@@ -60,6 +60,10 @@ bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 //		editor->mouseMotion(corrimientoX, corrimientoY);
 //		editor = editor->isEnd() ? NULL : editor;
 //	}
+	tl->setVector(corrimientoX, corrimientoY );
+		float xf,yf;
+		tl->getResultado(xf,yf);
+		tablero->mouseMotion(xf, yf);
 	return true;
 }
 

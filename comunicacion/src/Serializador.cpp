@@ -23,6 +23,8 @@ Serializador::Serializador(int destinatario) {
 			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_UNION), new ViewObjetoUnionUpdateMsj(0, 0, 0, 0, 0, 'a')));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CLICK), new ClickMsj(0, 0, 0, 0, 0, 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(MSJ_CONFIG_JUGADOR), new ConfiguracionNivelMsj()));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MOUSE_MOTION), new MouseMotionMsj(0, 0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CREACION_OBJETO), new CreacionMsj("")));
 	this->destinatario = destinatario;
 }
 
