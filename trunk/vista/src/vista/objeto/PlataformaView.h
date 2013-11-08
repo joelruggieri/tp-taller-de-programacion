@@ -8,6 +8,7 @@
 #ifndef PLATAFORMAVIEW_H_
 #define PLATAFORMAVIEW_H_
 #include "ObjetoView.h"
+#include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 namespace CLIENTE {
 class PlataformaView: public ObjetoView {
 private:

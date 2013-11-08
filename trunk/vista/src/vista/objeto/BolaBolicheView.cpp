@@ -16,6 +16,10 @@ BolaBolicheView::~BolaBolicheView() {
 	// TODO Auto-generated destructor stub
 }
 
-void BolaBolicheView::update(ViewMsj*) {
+void BolaBolicheView::update(ViewMsj* mje) {
+	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*) mje ;
+	this->setXp(mjeCurrent->getX());
+	this->setYp(mjeCurrent->getY());
+	this->setAngulo(mjeCurrent->getAngulo());
 }
 }

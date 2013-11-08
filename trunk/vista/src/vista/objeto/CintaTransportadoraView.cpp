@@ -131,7 +131,13 @@ void CintaTransportadoraView::recalcular() {
 //	this->xEngrDer = this->getXCentro() + (this->getW() / 2) - alto;
 }
 
-void CintaTransportadoraView::update(ViewMsj*) {
+void CintaTransportadoraView::update(ViewMsj* mje) {
+	ViewObjetoConAnchoUpdateMsj* mjeCurrent = (ViewObjetoConAnchoUpdateMsj*)mje;
+	this->setXp(mjeCurrent->getX());
+	this->setYp(mjeCurrent->getY());
+	this->setAngulo(mjeCurrent->getAngulo());
+	this->setWp(mjeCurrent->getAncho());
+
 }
 
 int CintaTransportadoraView::getLayer() {

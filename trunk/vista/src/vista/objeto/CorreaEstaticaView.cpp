@@ -18,6 +18,10 @@ CorreaEstaticaView::~CorreaEstaticaView() {
 	// TODO Auto-generated destructor stub
 }
 
-void CorreaEstaticaView::update(ViewMsj*) {
+void CorreaEstaticaView::update(ViewMsj* mje) {
+ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) mje;
+this->setXp(mjeCurrent->getX());
+this->setYp(mjeCurrent->getY());
+
 }
 }

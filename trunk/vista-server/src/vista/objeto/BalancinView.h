@@ -11,7 +11,6 @@
 
 class SimpleEditorAnguloFijo;
 #include "ObjetoView.h"
-
 class BalancinView: public ObjetoView {
 public:
 	BalancinView(float x, float y, SimpleEditorAnguloFijo * editor);

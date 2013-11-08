@@ -10,7 +10,7 @@
 
 #include "ObjetoView.h"
 #include "SDL2/SDL.h"
-
+#include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 namespace CLIENTE {
 class UnionView: public ObjetoView {
 private:
@@ -21,11 +21,12 @@ protected:
 	void dibujarse(SDL_Renderer * ren,Uint8 r,Uint8 g,Uint8 b);
 	void dibujarseEstatica(SDL_Renderer* ren);
 public:
-	UnionView(float x, float y, SDL_Texture * textura);
+	UnionView(float x, float y,  SDL_Texture * textura);
 	virtual ~UnionView();
 	void update(ViewMsj *);
 	void resizear();
 	int getLayer();
+
 };
 }
 #endif /* UNIONVIEW_H_ */

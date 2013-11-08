@@ -10,6 +10,7 @@
 
 
 #include "ObjetoView.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 namespace CLIENTE {
 class BalancinView: public ObjetoView {
 public:

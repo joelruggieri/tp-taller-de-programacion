@@ -19,5 +19,9 @@ GloboHelioView::~GloboHelioView() {
 
 }
 
-void CLIENTE::GloboHelioView::update(ViewMsj*) {
+void CLIENTE::GloboHelioView::update(ViewMsj* mje) {
+	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*)mje;
+	this->setXp(mjeCurrent->getX());
+	this->setYp(mjeCurrent->getY());
+	this->setAngulo(mjeCurrent->getAngulo());
 }

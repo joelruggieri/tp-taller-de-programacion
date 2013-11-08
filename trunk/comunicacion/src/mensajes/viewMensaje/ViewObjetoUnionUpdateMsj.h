@@ -20,6 +20,22 @@ public:
 	string getTag();
 	void getMensaje();
 	void acept(ViewMsjVisitor *);
+
+	float getXHasta() const {
+		return xHasta;
+	}
+
+	void setXHasta(float hasta) {
+		xHasta = hasta;
+	}
+
+	float getYHasta() const {
+		return yHasta;
+	}
+
+	void setYHasta(float hasta) {
+		yHasta = hasta;
+	}
 };
 
 #endif /* VIEWOBJETOUNIONUPDATEMSJ_H_ */

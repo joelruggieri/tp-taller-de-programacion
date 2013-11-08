@@ -8,7 +8,7 @@
 #ifndef PELOTAJUEGOVIEW_H_
 #define PELOTAJUEGOVIEW_H_
 #include "ObjetoView.h"
-
+#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 namespace CLIENTE {
 
 class PelotaJuegoView : public ObjetoView {

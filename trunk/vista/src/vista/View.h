@@ -29,6 +29,15 @@ public:
 	virtual void update(ViewMsj *) = 0;
 	virtual void setYL(float yl);
 	virtual float getYL();
+	int getHp() const;
+	void setHp(int hp);
+	int getWp() const;
+	void setWp(int wp);
+	int getXp() const;
+	void setXp(int xp);
+	int getYp() const;
+	void setYp(int yp);
+
 };
 
 }

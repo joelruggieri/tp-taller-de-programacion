@@ -8,7 +8,7 @@
 #ifndef GLOBOHELIOVIEW_H_
 #define GLOBOHELIOVIEW_H_
 #include "ObjetoView.h"
-
+#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 namespace CLIENTE {
 class GloboHelioView : public ObjetoView {
 public:

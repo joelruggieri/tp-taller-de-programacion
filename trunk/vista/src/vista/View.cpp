@@ -34,7 +34,7 @@ void View::resizear() {
 	xp = round(xpf);
 	yp = round (ypf);
 }
-}
+
 
 void CLIENTE::View::setYL(float yl) {
 	this->yl = yl;
@@ -44,4 +44,41 @@ void CLIENTE::View::setYL(float yl) {
 float CLIENTE::View::getYL() {
 	return yl;
 }
+
+int View::getHp() const {
+	return hp;
+}
+
+void View::setHp(int hp) {
+	this->hp = hp;
+}
+
+int View::getWp() const {
+	return wp;
+}
+
+void View::setWp(int wp) {
+	this->wp = wp;
+}
+
+int View::getXp() const {
+	return xp;
+}
+
+void View::setXp(int xp) {
+	this->xp = xp;
+}
+
+int View::getYp() const {
+	return yp;
+}
+
+void View::setYp(int yp) {
+	this->yp = yp;
+}
+
+
+
+}
+
 

@@ -9,6 +9,7 @@
 #define VISTACINTATRANSPORTADORA_H_
 
 #include "ObjetoView.h"
+#include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 namespace CLIENTE {
 class CintaTransportadoraView: public ObjetoView {
 public:
