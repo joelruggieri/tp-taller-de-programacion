@@ -28,14 +28,16 @@ Partida::Partida(Nivel* n, int socket) {
 	this->socket = socket;
 	cleaner = new ThreadCleaner(dispo);
 	drawingService = new DrawThread(colaIn);
-	generalController = new GeneralEventController(n->getJugadores(), new DrawController(colaIn));
+	generalController = new GeneralEventController(n->getJugadores(), new DrawController(colaOut));
 	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
+	dispatcher = new EventDispatcherThread(colaOut,dispo);
 }
 
 Partida::~Partida() {
+	receiver->cancel();
 	cleaner->cancel();
 	drawingService->cancel();
-	receiver->cancel();
+	dispatcher->cancel();
 	delete dispo;
 	delete colaIn;
 	delete colaOut;
@@ -81,10 +83,12 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 void Partida::run(int fdJugador1) {
 	Serializador serializador(0);
 	cleaner->run(5);
+	dispatcher->run();
+	receiver->run();
 	drawingService->run();
+
 	procesarRequest(fdJugador1, serializador);
 	while (true) {
-		receiver->run();
 		sleep(2);
 		struct sockaddr_in cli_addr;
 		unsigned int clilen;
