@@ -15,7 +15,7 @@
 namespace CLIENTE {
 ZonaPlay::ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola) {
 	//ENTREGA3 PONERLO DONDE CORRESPONDA.
-	cuerpo = new Cuadrado(x, y, 20, 10);
+	cuerpo = new Cuadrado(x, y, 20, 20);
 	salida = cola;
 	controller = vc;
 	crearVista(vc);
