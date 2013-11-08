@@ -16,6 +16,7 @@
 #include "src/mensajes/ConfiguracionNivelMsj.h"
 #include "src/Serializador.h"
 #include "src/ManejadorErrores.h"
+#include "src/controller/DrawController.h"
 using namespace std;
 
 Partida::Partida(Nivel* n, int socket) {
@@ -25,41 +26,51 @@ Partida::Partida(Nivel* n, int socket) {
 	colaIn = new ColaEventos();
 	colaOut = new ColaEventos();
 	this->socket = socket;
-	cleaner = new ThreadCleaner (dispo);
-	generalController = new GeneralEventController(n->getJugadores());
-	//ENTREGA3 VER QUIEN RECIBE LOS MSJS DEL CLIENTE.
-	receiver = new EventReceptorThread(colaIn,generalController,NULL, NULL);
+	cleaner = new ThreadCleaner(dispo);
+	drawingService = new DrawThread(colaIn);
+	generalController = new GeneralEventController(n->getJugadores(), new DrawController(colaIn));
+	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
 }
 
 Partida::~Partida() {
-	// TODO Auto-generated destructor stub
+	cleaner->cancel();
+	drawingService->cancel();
+	receiver->cancel();
+	delete dispo;
+	delete colaIn;
+	delete colaOut;
+	delete generalController;
+	delete cleaner;
+	delete drawingService;
+	delete receiver;
 }
 
 void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 	ThreadStatus* status = this->dispo->getNextFree();
 	if (status == NULL) {
-         log.info("Se rechaza cliente por maximo de conexiones");
-         MensajePlano msj(MSJ_JUGADOR_RECHAZADO);
-         serializador.escribir(&msj,socketDesc);
-         close(socketDesc);
+		log.info("Se rechaza cliente por maximo de conexiones");
+		MensajePlano msj(MSJ_JUGADOR_RECHAZADO);
+		serializador.escribir(&msj, socketDesc);
+		close(socketDesc);
 	} else {
 		log.info("Se acepta nuevo cliente");
 		//creo el mensaje de configuracion del nivel para ese jugador
-        ConfiguracionNivelMsj* mensaje = new ConfiguracionNivelMsj();
-        status->lock(); //TODO ENTREGA3 VER SI EL LOCK VA ACA O MAS ABAJO
-        mensaje->setXArea(status->getJugador()->getArea()->getX());
-        mensaje->setYArea(status->getJugador()->getArea()->getY());
-        mensaje->setAnchoArea(status->getJugador()->getArea()->getAncho());
-        mensaje->setAltoArea(status->getJugador()->getArea()->getAlto());
-        std::list<std::string> tags;
-        status->getJugador()->recibirTags(tags);
-        std::list<std::string>::iterator it;
-        for ( it = tags.begin(); it != tags.end(); it++){
-        	mensaje->agregarTagFactory(*it);
-        }
-        serializador.escribir(mensaje,socketDesc);
+		ConfiguracionNivelMsj* mensaje = new ConfiguracionNivelMsj();
+		status->lock(); //TODO ENTREGA3 VER SI EL LOCK VA ACA O MAS ABAJO
+		mensaje->setXArea(status->getJugador()->getArea()->getX());
+		mensaje->setYArea(status->getJugador()->getArea()->getY());
+		mensaje->setAnchoArea(status->getJugador()->getArea()->getAncho());
+		mensaje->setAltoArea(status->getJugador()->getArea()->getAlto());
+		std::list<std::string> tags;
+		status->getJugador()->recibirTags(tags);
+		std::list<std::string>::iterator it;
+		for (it = tags.begin(); it != tags.end(); it++) {
+			mensaje->agregarTagFactory(*it);
+		}
+		serializador.escribir(mensaje, socketDesc);
 		//status->lock();
-		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(),status,socketDesc,status->getNroJugador());
+		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(), status, socketDesc,
+				status->getNroJugador());
 		status->setThread(jugadorNuevo);
 		status->unlock();
 		jugadorNuevo->run();
@@ -70,7 +81,8 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 void Partida::run(int fdJugador1) {
 	Serializador serializador(0);
 	cleaner->run(5);
-	procesarRequest(fdJugador1,serializador);
+	drawingService->run();
+	procesarRequest(fdJugador1, serializador);
 	while (true) {
 		receiver->run();
 		sleep(2);
@@ -78,13 +90,11 @@ void Partida::run(int fdJugador1) {
 		unsigned int clilen;
 		clilen = sizeof(cli_addr);
 		int fd2 = accept(socket, (struct sockaddr *) &cli_addr, &clilen);
-		if (fd2 < 0)
-		{//ENTREGA3 si no conecta no procesa pedido , esta bien ?
+		if (fd2 < 0) { //ENTREGA3 si no conecta no procesa pedido , esta bien ?
 			ManejadorErrores::manejarAceptError(errno);
-		}
-		else{
-		log.info("Cliente intentado conectar");
-		procesarRequest(fd2,serializador);
+		} else {
+			log.info("Cliente intentado conectar");
+			procesarRequest(fd2, serializador);
 		}
 	}
 

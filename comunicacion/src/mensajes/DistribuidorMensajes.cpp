@@ -10,13 +10,15 @@
 #include "MensajePlano.h"
 #include "userEvents/UserEventMsj.h"
 #include "viewMensaje/ViewMsj.h"
+#include "internos/MensajeInterno.h"
 using namespace std;
 
 DistribuidorMensajes::DistribuidorMensajes(UserEventVisitor* u,
-		ViewMsjVisitor * v, MensajePlanoVisitor * p) {
+		ViewMsjVisitor * v, MensajePlanoVisitor * p, MensajeInternoVisitor * i ) {
 	user = u;
 	views = v;
 	planos = p;
+	internos = i;
 
 }
 
@@ -49,5 +51,12 @@ void DistribuidorMensajes::visit(MensajePlano* m) {
 	if (planos != NULL) {
 		log.debug("Se pocesa mensaje plano");
 		m->acept(planos);
+	}
+}
+
+void DistribuidorMensajes::visit(MensajeInterno * m) {
+	if (internos != NULL) {
+		log.debug("Se pocesa mensaje interno");
+		m->acept(internos);
 	}
 }

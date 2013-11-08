@@ -35,26 +35,24 @@ void * funcThread(void * arg) {
 	Disponibilidad * disponibilidad = params->getDispo();
 //	TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
-		//a repartir mijo.
-//		cola->lock();
-		NetworkMensaje* front = cola->front();
-//		cola->unlock();
-		disponibilidad->lock();
-		ThreadStatus* destinatario = disponibilidad->getStatus(front->getDestinatario());
-		disponibilidad->unlock();
-		destinatario->lock();
-		ColaEventos* colaEvento = destinatario->getColaSalida();
-		destinatario->unlock();
-
-//		colaEvento->lock();
-		colaEvento->push(front);
-//		colaEvento->unlock();
+		usleep(10000);
+		while(cola->hasNext()){
+			//a repartir mijo.
+			NetworkMensaje* front = cola->front();
+			disponibilidad->lock();
+			ThreadStatus* destinatario = disponibilidad->getStatus(front->getDestinatario());
+			disponibilidad->unlock();
+			destinatario->lock();
+			ColaEventos* colaEvento = destinatario->getColaSalida();
+			destinatario->unlock();
+			colaEvento->push(front);
+		}
 	}
 	pthread_exit(NULL);
 }
 
 void EventDispatcherThread::run() {
-	if (th != NULL) {
+	if (th == NULL) {
 		th = new ThreadPTM(funcThread,0,(void *)this->params);
 	}
 }

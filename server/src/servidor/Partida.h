@@ -16,6 +16,7 @@
 #include "threading/ThreadCleaner.h"
 #include "src/Serializador.h"
 #include "src/controller/GeneralEventController.h"
+#include "threading/DrawThread.h"
 using namespace std;
 
 class Partida {
@@ -29,6 +30,7 @@ private:
 	EventReceptorThread * receiver;
 	ThreadCleaner * cleaner;
 	GeneralEventController * generalController;
+	DrawThread * drawingService;
 	int socket;
 	Logger log;
 	void procesarRequest(int socketDesc, Serializador & serializador);

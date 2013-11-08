@@ -11,12 +11,14 @@
 class UserEventMsj;
 class ViewMsj;
 class MensajePlano;
+class MensajeInterno;
 class MensajeVisitor {
 public:
 	virtual ~MensajeVisitor(){}
 	virtual void visit(UserEventMsj *) = 0;
 	virtual void visit(ViewMsj *) = 0;
 	virtual void visit(MensajePlano *) = 0;
+	virtual void visit(MensajeInterno *) = 0;
 };
 
 #endif /* MENSAJEVISITOR_H_ */
