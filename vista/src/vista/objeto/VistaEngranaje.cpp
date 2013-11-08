@@ -19,7 +19,12 @@ VistaEngranaje::VistaEngranaje(float x, float y, float w, float h, SDL_Texture *
 VistaEngranaje::~VistaEngranaje() {
 	// TODO Auto-generated destructor stub
 }
-void VistaEngranaje::update(ViewMsj *) {
+void VistaEngranaje::update(ViewMsj *mje) {
+	ViewObjetoConAnchoUpdateMsj* mjeCurrent = (ViewObjetoConAnchoUpdateMsj*)mje;
+	this->setXl(mjeCurrent->getX());
+	this->setYl(mjeCurrent->getY());
+	this->setAngulo(mjeCurrent->getAngulo());
+	this->setWl(mjeCurrent->getAncho());
 //		super::update();
 //		Engranaje* e = (Engranaje*) this->getModelo();
 //		float y = 0 ;

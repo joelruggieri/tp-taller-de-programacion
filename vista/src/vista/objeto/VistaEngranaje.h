@@ -8,7 +8,7 @@
 #ifndef VISTAENGRANAJE_H_
 #define VISTAENGRANAJE_H_
 	#include "ObjetoView.h"
-
+#include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 namespace CLIENTE {
 class VistaEngranaje: public ObjetoView {
 	typedef FiguraView super;

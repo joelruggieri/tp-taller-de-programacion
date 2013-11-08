@@ -20,8 +20,8 @@ CorreaEstaticaView::~CorreaEstaticaView() {
 
 void CorreaEstaticaView::update(ViewMsj* mje) {
 ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) mje;
-this->setXp(mjeCurrent->getX());
-this->setYp(mjeCurrent->getY());
+this->setXl(mjeCurrent->getX());
+this->setYl(mjeCurrent->getY());
 
 }
 }

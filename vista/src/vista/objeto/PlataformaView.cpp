@@ -18,10 +18,10 @@ PlataformaView::~PlataformaView() {
 
 void PlataformaView::update(ViewMsj* mje){
 	ViewObjetoConAnchoUpdateMsj* mjeCurrent = (ViewObjetoConAnchoUpdateMsj*)mje;
-	this->setXp(mjeCurrent->getX());
-	this->setYp(mjeCurrent->getY());
+	this->setXl(mjeCurrent->getX());
+	this->setYl(mjeCurrent->getY());
 	this->setAngulo(mjeCurrent->getAngulo());
-	this->setWp(mjeCurrent->getAncho());
+	this->setWl(mjeCurrent->getAncho());
 
 }
 }

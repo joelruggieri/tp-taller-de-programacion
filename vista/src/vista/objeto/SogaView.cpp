@@ -24,3 +24,7 @@ void SogaView::dibujarse(SDL_Renderer* renderer) {
 	void dibujarse(SDL_Renderer * renderer);
 }
 }
+
+void CLIENTE::SogaView::update(ViewMsj*m) {
+	super::update(m);
+}
