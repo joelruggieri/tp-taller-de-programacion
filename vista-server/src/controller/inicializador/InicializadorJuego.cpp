@@ -38,7 +38,6 @@ using namespace std;
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "../RutasArchivos.h"
 #include "src/figuraFactory/FiguraFactory.h"
-#include "../zonaDragAndDrop/ZonaPlay.h"
 #include "../editor/SimpleEditorNivel.h"
 #include "../editor/SimpleEditorAnguloFijo.h"
 #include "../editor/SimpleEditorEstirar.h"
