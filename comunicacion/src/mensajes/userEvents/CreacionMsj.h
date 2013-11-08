@@ -11,7 +11,7 @@
 #include "UserEventVisitor.h"
 class CreacionMsj : public UserEventMsj {
 public:
-	CreacionMsj(string tag);
+	CreacionMsj(string tag, float x, float y);
 	virtual ~CreacionMsj();
 	void acept(UserEventVisitor *);
 	void serialize(YAML::Node * nodo);
@@ -25,8 +25,14 @@ public:
 		this->tagObjeto = tagObjeto;
 	}
 
+	float getX() const;
+	void setX(float x);
+	float getY() const;
+	void setY(float y);
+
 private:
 	string tagObjeto;
+	float x,y;
 
 };
 

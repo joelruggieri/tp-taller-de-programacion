@@ -123,7 +123,7 @@ bool ZonaCreacion::click(float x, float y) {
 				result = false;
 			} else {
 //				ENTREGA3 ENVIAR MENSAJE CREACION
-				CreacionMsj* mje = new CreacionMsj(atender);
+				CreacionMsj* mje = new CreacionMsj(atender, x, y);
 				salida->push(mje);
 				cout << "Se clickea en una factory " + atender << endl;
 			}
