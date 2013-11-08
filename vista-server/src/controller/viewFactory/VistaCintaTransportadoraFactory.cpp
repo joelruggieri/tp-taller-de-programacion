@@ -17,10 +17,14 @@ VistaCintaTransportadoraFactory::~VistaCintaTransportadoraFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* VistaCintaTransportadoraFactory::crear(float x, float y, float w, float h) {
+FiguraView* VistaCintaTransportadoraFactory::crear(float x, float y) {
 	return new CintaTransportadoraView(x, y, ANCHO_CINTA,(SimpleEditorEstirar *) this->controller);
 }
 
-View* VistaCintaTransportadoraFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* VistaCintaTransportadoraFactory::crearVistaPropia(){
+	return new FactoryView();
+}
+
+string VistaCintaTransportadoraFactory::getTagRemoto() {
+	return TAG_FACTORY_CINTA;
 }

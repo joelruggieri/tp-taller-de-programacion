@@ -14,8 +14,9 @@ class ViewCorreaDinamicaFactory: public ViewFiguraFactory {
 public:
 	ViewCorreaDinamicaFactory(EditorUnion *);
 	virtual ~ViewCorreaDinamicaFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 #endif /* VIEWCORREADINAMICAFACTORY_H_ */

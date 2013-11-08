@@ -19,10 +19,14 @@ ViewGloboFactory::~ViewGloboFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* ViewGloboFactory::crear(float x, float y, float w, float h) {
+FiguraView* ViewGloboFactory::crear(float x, float y) {
 	return new GloboHelioView(x, y, (SimpleEditorAnguloFijo*)this->controller);
 }
 
-View* ViewGloboFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewGloboFactory::crearVistaPropia(){
+	return new FactoryView();
+}
+
+string ViewGloboFactory::getTagRemoto() {
+	return TAG_FACTORY_GLOBO;
 }

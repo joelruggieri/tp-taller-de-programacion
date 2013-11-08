@@ -8,7 +8,6 @@
 #ifndef DRAGUEABLE_H_
 #define DRAGUEABLE_H_
 #include "Dibujable.h"
-#include "Resizeable.h"
 #include "View.h"
 
 class Dragueable{

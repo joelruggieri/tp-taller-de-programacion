@@ -17,8 +17,9 @@ class ViewSogaFactory: public ViewFiguraFactory {
 public:
 	ViewSogaFactory(EditorUnion* editor);
 	virtual ~ViewSogaFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 } /* namespace std */

@@ -19,10 +19,14 @@ ViewMotorFactory::~ViewMotorFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* ViewMotorFactory::crear(float x, float y, float w, float h) {
+FiguraView* ViewMotorFactory::crear(float x, float y) {
 	return new MotorView(x, y,(SimpleEditorOrientacionCambiable *) this->controller);
 }
 
-View* ViewMotorFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewMotorFactory::crearVistaPropia(){
+	return new FactoryView();
+}
+
+string ViewMotorFactory::getTagRemoto() {
+	return TAG_FACTORY_MOTOR;
 }

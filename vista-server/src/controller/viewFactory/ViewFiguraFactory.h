@@ -21,12 +21,13 @@ protected:
 public:
 	ViewFiguraFactory(DropController * controller);
 	virtual ~ViewFiguraFactory();
-	virtual FiguraView * crear(float,float,float,float)=0;
+	virtual FiguraView * crear(float,float)=0;
 	virtual View * crearVistaPropia(float,float,float,float) = 0;
 	float getAlto() const;
 	void setAlto(float alto);
 	float getAncho() const;
 	void setAncho(float ancho);
+	virtual string getTagRemoto() = 0;
 };
 
 #endif /* VIEWFIGURAFACTORY_H_ */

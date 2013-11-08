@@ -14,7 +14,7 @@
 ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor): ViewFiguraFactory(editor) {
 }
 
-FiguraView* ViewPlataformaFactory::crear(float x, float y, float w, float h) {
+FiguraView* ViewPlataformaFactory::crear(float x, float y) {
 	//TODO REVEER MEDIDAS DE LA VISTA DE LA FACTORY
 	return new PlataformaView(x, y,ANCHO_PLATAFORMA,(SimpleEditorEstirar *) this->controller);
 }
@@ -23,6 +23,11 @@ ViewPlataformaFactory::~ViewPlataformaFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-View* ViewPlataformaFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewPlataformaFactory::crearVistaPropia(){
+	return new FactoryView();
 }
+
+string ViewPlataformaFactory::getTagRemoto() {
+	return TAG_FACTORY_PLATAFORMA;
+}
+

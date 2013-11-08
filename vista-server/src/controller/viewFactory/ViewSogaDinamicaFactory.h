@@ -14,8 +14,9 @@ class ViewSogaDinamicaFactory: public ViewFiguraFactory {
 public:
 	ViewSogaDinamicaFactory(EditorUnion *);
 	virtual ~ViewSogaDinamicaFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 #endif /* VIEWSOGADINAMICAFACTORY_H_ */

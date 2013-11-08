@@ -15,8 +15,9 @@ class ViewBalancinFactory: public ViewFiguraFactory {
 public:
 	ViewBalancinFactory(SimpleEditorAnguloFijo* editor);
 	virtual ~ViewBalancinFactory();
-	FiguraView * crear(float,float,float,float);
-	View * crearVistaPropia(float,float,float,float);
+	FiguraView * crear(float,float);
+	View * crearVistaPropia();
+	string getTagRemoto();
 };
 
 #endif /* VIEWBALANCINFACTORY_H_ */

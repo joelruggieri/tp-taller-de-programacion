@@ -12,7 +12,7 @@ ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewF
 
 }
 
-FiguraView* ViewBalancinFactory::crear(float x, float y, float w, float h) {
+FiguraView* ViewBalancinFactory::crear(float x, float y) {
 	return new BalancinView(x, y, (SimpleEditorAnguloFijo *) this->controller);
 }
 
@@ -21,7 +21,10 @@ ViewBalancinFactory::~ViewBalancinFactory() {
 
 }
 
-View * ViewBalancinFactory::crearVistaPropia(float x, float y, float w, float h){
-	return new FactoryView(x,y);
+View * ViewBalancinFactory::crearVistaPropia(){
+	return new FactoryView();
 }
 
+string ViewBalancinFactory::getTagRemoto() {
+	return TAG_FACTORY_BALANCIN;
+}

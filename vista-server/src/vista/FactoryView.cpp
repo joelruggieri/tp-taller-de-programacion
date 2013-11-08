@@ -10,8 +10,8 @@
 #include <iostream>
 using namespace std;
 
-FactoryView::FactoryView(float x, float y) :
-		View(x, y) {
+FactoryView::FactoryView() :
+		View(0, 0) {
 //	this->textura = textura;
 
 }

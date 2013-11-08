@@ -8,7 +8,7 @@
 #include "ZonaCreacion.h"
 #include "../../modelo/Cuadrado.h"
 #include "../RutasArchivos.h"
-ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> * factories) :
+ZonaCreacion::ZonaCreacion(list<ViewFiguraFactory*> & factories) :
 		Zona(NULL) {
 }
 

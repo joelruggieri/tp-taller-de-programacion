@@ -11,15 +11,15 @@
 #include "ZonaDragAndDrop.h"
 #include "../viewFactory/ViewFiguraFactory.h"
 #include <list>
-#include "../../modelo/Scroll.h"
-#include "../../vista/ScrollView.h"
+#include <map>
+#include <string>
 using namespace std;
 
 class ZonaCreacion: public Zona {
 private:
-	void inicializar(list<ViewFiguraFactory*> *);
+	map<string, ViewFiguraFactory* > factories;
 public:
-	ZonaCreacion(list<ViewFiguraFactory*> *);
+	ZonaCreacion(list<ViewFiguraFactory*> &);
 	virtual ~ZonaCreacion();
 	void dibujarse(list<ViewMsj*> & lista);
 

@@ -20,10 +20,14 @@ ViewSogaFactory::~ViewSogaFactory() {
 
 } /* namespace std */
 
-View* ViewSogaFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* ViewSogaFactory::crearVistaPropia(){
+	return new FactoryView();
 }
 
-FiguraView* ViewSogaFactory::crear(float x, float y, float w, float h) {
+FiguraView* ViewSogaFactory::crear(float x, float y) {
 	return new SogaEstaticaView(x, y, (EditorUnion*) this->controller);
+}
+
+string std::ViewSogaFactory::getTagRemoto() {
+return TAG_FACTORY_SOGA;
 }

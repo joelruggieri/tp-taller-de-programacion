@@ -19,10 +19,14 @@ VistaEngranajeFactory::~VistaEngranajeFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-FiguraView* VistaEngranajeFactory::crear(float x, float y, float w, float h) {
+FiguraView* VistaEngranajeFactory::crear(float x, float y) {
 	return new VistaEngranaje(x, y, RADIO_ENGRANAJE, dynamic_cast<SimpleEditorCambiarRadio*>(this->controller));
 }
 
-View* VistaEngranajeFactory::crearVistaPropia(float x, float y, float w, float h) {
-	return new FactoryView(x,y);
+View* VistaEngranajeFactory::crearVistaPropia(){
+	return new FactoryView();
+}
+
+string VistaEngranajeFactory::getTagRemoto() {
+	return TAG_FACTORY_ENGRANAJE;
 }
