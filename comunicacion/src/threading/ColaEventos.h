@@ -26,6 +26,7 @@ public:
 	void push(NetworkMensaje * msj);
 	void push(list<NetworkMensaje *> msjs);
 	NetworkMensaje * front();
+	void getAll(list<NetworkMensaje *> &);
 	bool hasNext();
 	virtual ~ColaEventos();
 	void clear();

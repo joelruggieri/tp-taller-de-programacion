@@ -29,31 +29,39 @@ MainClienteThread::MainClienteThread() {
 	colaEntrada = new ColaEventos();
 	colaSalida = new ColaEventos();
 	thread = 0;
+	config = NULL;
 }
 
 MainClienteThread::~MainClienteThread() {
+	if(config != NULL){
+		delete config;
+	}
 }
 
 void MainClienteThread::run() {
 	if (thread == 0) {
-//		int sockfd;
-//		RESULTADO_CONEXION result = conectar(sockfd);
-//		if (SERVIDOR_CONECTADO == result) {
-//			log.info("Conectado con servidor");
-//			Status* status = new Status(TIMEOUT);
-//			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
-//			thread->run();
-//			MainController controller(colaEntrada,colaSalida);
-//			controller.run();
-//		}
-//		if (SERVIDOR_ERROR == result) {
-//			log.error("No se puede conectar con el servidor, no se ha obtenido respuesta");
-//		}
-//		if (SERVIDOR_OCUPADO == result) {
-//			log.info("No se puede conectar con el servidor, no hay ningun lugar disponible");
-//		}
-		MainController controller(colaEntrada,colaSalida);
-		controller.run();
+		int sockfd;
+		RESULTADO_CONEXION result = conectar(sockfd);
+		if (SERVIDOR_CONECTADO == result) {
+			log.info("Conectado con servidor");
+			Status* status = new Status(TIMEOUT);
+			list<string>::iterator it;
+			for(it = config->getFactoriresTags().begin() ; it != config->getFactoriresTags().end(); ++it){
+				cout << *it << endl;
+			}
+			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
+			thread->run();
+			MainController controller(colaEntrada,colaSalida);
+			controller.run();
+		}
+		if (SERVIDOR_ERROR == result) {
+			log.error("No se puede conectar con el servidor, no se ha obtenido respuesta");
+		}
+		if (SERVIDOR_OCUPADO == result) {
+			log.info("No se puede conectar con el servidor, no hay ningun lugar disponible");
+		}
+//		MainController controller(colaEntrada,colaSalida);
+//		controller.run();
 	}
 }
 
@@ -65,9 +73,14 @@ RESULTADO_CONEXION MainClienteThread::conectar(int &sockfd) {
 	RESULTADO_CONEXION resultretry;
 	for (cont = 0; cont < 5; ++cont) {
 		try {
-			string respuesta = tryConnect(sockfd);
+			list<NetworkMensaje*> respuestaList = tryConnect(sockfd);
+			MensajePlano * mje = (MensajePlano*)respuestaList.front();
+			respuestaList.pop_front();
+			string respuesta = mje->getMensaje();
+			delete mje;
 			tag = MSJ_JUGADOR_ACEPTADO;
 			if (respuesta == tag) {
+				config = (ConfiguracionNivelMsj*)respuestaList.front();
 				return SERVIDOR_CONECTADO;
 			}
 			tag = MSJ_JUGADOR_RECHAZADO;
@@ -79,6 +92,7 @@ RESULTADO_CONEXION MainClienteThread::conectar(int &sockfd) {
 			}
 		} catch (ConexionException & e) {
 			log.error("No se pudo conectar con el servidor");
+			close(sockfd);
 			sockfd = 0;
 			resultretry = SERVIDOR_ERROR;
 		}
@@ -87,7 +101,7 @@ RESULTADO_CONEXION MainClienteThread::conectar(int &sockfd) {
 	return resultretry;
 }
 
-string MainClienteThread::tryConnect(int& socketfd) {
+list<NetworkMensaje*> MainClienteThread::tryConnect(int& socketfd) {
 	struct sockaddr_in dest_addr;
 	log.info("Intentando conectar con servidor");
 	// Guardará la dirección de destino
@@ -115,13 +129,10 @@ string MainClienteThread::tryConnect(int& socketfd) {
 		throw ConexionException("No se pudo conectar con el servidor");
 	}
 
-	if (leer.size() != 1) {
+	if (leer.size() != 1 && leer.size() != 2) {
 		log.error("El server no contesto de la forma esperada");
 		throw ConexionException("El server no contesto de la forma esperada");
 	}
 
-	MensajePlano * msj = (MensajePlano*) leer.front();
-	string tag = msj->getMensaje();
-	delete msj;
-	return tag;
+	return leer;
 }

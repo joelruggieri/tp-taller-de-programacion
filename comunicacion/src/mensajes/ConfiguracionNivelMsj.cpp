@@ -51,6 +51,7 @@ void ConfiguracionNivelMsj::agregarTagFactory (std::string tag){
 }
 
 void ConfiguracionNivelMsj::serialize(YAML::Node * nodo){
+	nodo->push_back(MSJ_CONFIG_JUGADOR);
 	nodo->push_back(this->getXArea());
 	nodo->push_back(this->getYArea());
 	nodo->push_back(this->getAnchoArea());

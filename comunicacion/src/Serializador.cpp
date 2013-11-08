@@ -8,6 +8,7 @@
 #include "Serializador.h"
 #include "SerializacionException.h"
 #include "mensajes/userEvents/ClickMsj.h"
+#include "mensajes/ConfiguracionNivelMsj.h"
 #include "src/ManejadorErrores.h"
 #include <errno.h>
 #define MAX_BUFFER 1024
@@ -21,6 +22,7 @@ Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(
 			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_UNION), new ViewObjetoUnionUpdateMsj(0, 0, 0, 0, 0, 'a')));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CLICK), new ClickMsj(0, 0, 0, 0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(MSJ_CONFIG_JUGADOR), new ConfiguracionNivelMsj()));
 	this->destinatario = destinatario;
 }
 
