@@ -16,6 +16,7 @@
 #include "src/mensajes/userEvents/UserEventMsj.h"
 #include "src/mensajes/internos/MensajeInternoVisitor.h"
 #include "src/mensajes/internos/MensajeInterno.h"
+#include "src/mensajes/userEvents/CreacionMsj.h"
 #include "JuegoEventsController.h"
 #include "src/Logger.h"
 #include "src/Jugador.h"
@@ -41,6 +42,7 @@ public:
 	void visit(KeyMsj *);
 	void visit(JugadorListo *);
 	void visit(DrawEvent *);
+	void visit(CreacionMsj*);
 	//ENTREGA3 AGREGAR AL VISITOR EL USEREVENT DE CREACION.
 	//EN ESE METODO HAY QUE LLAMAR  AL CREARVISTA DEL JUEGOEVENTCONTROLLER.
 };

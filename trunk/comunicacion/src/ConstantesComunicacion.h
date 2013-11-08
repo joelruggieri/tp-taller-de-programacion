@@ -17,10 +17,10 @@
 #define OBJ_SIMPLE_S_MOTOR 'm'
 
 #define TAG_MSJ_NOTIMEOUT "NTO"
-
+#define TAG_MOUSE_MOTION "EMM"
 #define TAG_CLICK "EC"
 #define TAG_DIBUJADO "ED"
-
+#define TAG_CREACION_OBJETO "CO"
 
 #define TAG_FACTORY_BALANCIN "FB"
 #define TAG_FACTORY_BOLA "FL"

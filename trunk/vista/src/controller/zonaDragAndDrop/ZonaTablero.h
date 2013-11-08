@@ -24,13 +24,15 @@ private:
 	Cuadrado * cuerpo;
 	ColaEventos * salida;
 	void crearVista(ViewController * vc);
+	void setearTeclas(bool*, bool*);
 public:
 	ZonaTablero(ViewController * vc, ColaEventos * cola);
 	virtual ~ZonaTablero();
 	bool click(float, float);
-	void rightClick(float, float);
-	void keyPressed(char key);
-	void keyReleased(char key);
+	bool rightClick(float, float);
+	bool keyPressed(char key);
+	bool keyReleased(char key);
+	bool mouseMotion(float, float);
 };
 
 }

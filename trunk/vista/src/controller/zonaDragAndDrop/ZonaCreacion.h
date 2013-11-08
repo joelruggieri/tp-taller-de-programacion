@@ -19,6 +19,7 @@
 #include <list>
 #include <src/threading/ColaEventos.h>
 #include "../../controller/ViewController.h"
+#include "src/mensajes/userEvents/CreacionMsj.h"
 #include <map>
 #include <string>
 #include "src/Logger.h"

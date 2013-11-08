@@ -94,3 +94,20 @@ void GeneralEventController::visit(JugadorListo * m) {
 void GeneralEventController::visit(DrawEvent*) {
  drawController->dibujar();
 }
+
+void GeneralEventController::visit(CreacionMsj* m) {
+	int nroJugador = m->getDestinatario();
+		string lg = "Se recibe mensaje del destinatario ";
+		log.concatenar(lg, nroJugador);
+		log.debug(lg);
+		std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(nroJugador);
+		if(jugador == controllers.end()){
+			lg = "Jugador no encontrado ";
+			log.concatenar(lg, nroJugador);
+	//		log.concatenar(lg, m->getX());
+	//		log.concatenar(lg,m->getY());
+			log.debug(lg);
+		} else {
+			//ENTREGA3 creacion de objetos segun el tag recibido
+		}
+}

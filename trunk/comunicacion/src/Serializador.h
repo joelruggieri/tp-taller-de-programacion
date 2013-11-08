@@ -16,6 +16,8 @@
 #include "mensajes/MensajePlano.h"
 #include "mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 #include "mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
+#include "mensajes/userEvents/MouseMotionMsj.h"
+#include "mensajes/userEvents/CreacionMsj.h"
 #include <string>
 #include "yaml-cpp/yaml.h"
 #include <sys/socket.h>

@@ -27,3 +27,25 @@ float MouseMotionMsj::getX() {
 float MouseMotionMsj::getY() {
 	return y;
 }
+
+void MouseMotionMsj::serialize(YAML::Node* nodo) {
+	nodo->push_back(TAG_MOUSE_MOTION);
+	nodo->push_back(this->isShift());
+	nodo->push_back(this->isCtrl());
+	nodo->push_back(this->x);
+	nodo->push_back(this->y);
+}
+
+NetworkMensaje* MouseMotionMsj::deserialize(YAML::const_iterator& it) {
+	bool shift = it->as<bool>();
+	it++;
+	bool ctrl = it->as<bool>();
+	it++;
+	float x = it->as<float>();
+	it++;
+	float y = it->as<float>();
+	it++;
+
+	NetworkMensaje * salida = new MouseMotionMsj(x,y,shift,ctrl);
+	return salida;
+}

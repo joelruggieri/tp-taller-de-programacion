@@ -9,6 +9,7 @@
 #include "../Resizer.h"
 #include "src/Logger.h"
 #include "src/mensajes/userEvents/ClickMsj.h"
+#include "src/mensajes/userEvents/MouseMotionMsj.h"
 #include "../../ConstantesVista.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConBorde.h"
@@ -46,17 +47,47 @@ ZonaTablero::~ZonaTablero() {
 }
 
 bool CLIENTE::ZonaTablero::click(float float1, float float2) {
-	ClickMsj* b = new ClickMsj(float1, float2, true, true, true, true);
+	if (!this->cuerpo->contacto(float1, float2)) return false;
+	bool ctrl;
+	bool shift;
+	this->setearTeclas(&shift,&ctrl);
+	ClickMsj* b = new ClickMsj(float1, float2, true, true, shift, ctrl);
 	salida->push(b);
+	return true;
+}
+
+bool CLIENTE::ZonaTablero::rightClick(float float1, float float2) {
+	if (!this->cuerpo->contacto(float1, float2)) return false;
+	bool ctrl;
+	bool shift;
+	this->setearTeclas(&shift,&ctrl);
+	ClickMsj* b = new ClickMsj(float1, float2, true, false, shift, ctrl);
+	salida->push(b);
+	return true;
+}
+
+bool CLIENTE::ZonaTablero::keyPressed(char key) {
 	return false;
 }
 
-void CLIENTE::ZonaTablero::rightClick(float float1, float float2) {
+bool CLIENTE::ZonaTablero::keyReleased(char key) {
+	return false;
+		}
+
+void CLIENTE::ZonaTablero::setearTeclas(bool* bool1, bool* bool2) {
+	*bool1 = false;
+	*bool2 = false;
+	const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
+	if (*keyboardState == SDL_SCANCODE_LSHIFT) *bool1 = true;
+	if (*keyboardState == SDL_SCANCODE_LCTRL) *bool2 =true;
 }
 
-void CLIENTE::ZonaTablero::keyPressed(char key) {
+bool CLIENTE::ZonaTablero::mouseMotion(float float1, float float2) {
+	//POR AHORA SOLO LA ZONATABLERO REALIZA EL MOUSEMOTION
+	bool ctrl = false;
+	bool shift = false;
+	this->setearTeclas(&shift, &ctrl);
+	MouseMotionMsj* mje = new MouseMotionMsj(float1,float2,shift, ctrl);
+	salida->push(mje);
+	return true;
 }
-
-void CLIENTE::ZonaTablero::keyReleased(char key) {
-}
-
