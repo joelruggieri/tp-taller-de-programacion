@@ -90,7 +90,7 @@ void Partida::run(int fdJugador1) {
 	cleaner->run(5);
 	dispatcher->run();
 	receiver->run();
-//	drawingService->run();
+	drawingService->run();
 
 	procesarRequest(fdJugador1, serializador);
 	while (true) {

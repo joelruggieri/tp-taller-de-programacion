@@ -12,7 +12,7 @@
 #include "SDL2/SDL.h"
 #include "../../modelo/Observable.h"
 using namespace std;
-
+#include "../../ConstantesVista.h"
 namespace CLIENTE {
 class FiguraView: public View, public Observable{
 private:

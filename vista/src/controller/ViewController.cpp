@@ -32,14 +32,9 @@ ViewController::ViewController(SDL_Renderer * r, Transformacion * tl) {
 	crearPantalla();
 }
 
-
 void ViewController::addView(int id, View* v) {
 	lock();
-	vistas.insert(pair<int, View *>(id, v));
-	vistasList.push_back(v);
-	v->setTl(tl);
-	v->resizear();
-	vistasList.sort(comparar_layersViews);
+	addViewPrivado(id, v);
 	unlock();
 }
 
@@ -49,8 +44,8 @@ void ViewController::dibujar() {
 	for (it = vistasList.begin(); it != vistasList.end(); ++it) {
 		(*it)->dibujarse(renderer);
 	}
-	unlock();
 	SDL_RenderPresent(renderer);
+	unlock();
 }
 
 ViewController::~ViewController() {
@@ -59,24 +54,28 @@ ViewController::~ViewController() {
 
 void ViewController::crearPantalla() {
 	CargadorDeTextures::Instance(renderer);
-	SDL_Texture * text= CargadorDeTextures::Instance()->cargarTexture(PATH_ZONA_CREACION);
-	View * view = new Canvas(60, -10, 120, 20,0, text);
-	addView(ID_CANVAS_RELLENO, view);
+	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
+	PATH_ZONA_CREACION);
+	View * view = new Canvas(60, -10, 120, 20, 0, text);
+	addViewPrivado(ID_CANVAS_RELLENO, view);
 	view = new ViewConBorde(60, -10, 120, 20);
-	addView(ID_BORDE_RELLENO, view);
+	addViewPrivado(ID_BORDE_RELLENO, view);
 
 }
 
 void ViewController::addViewScrolleable(int id, View* v) {
-	this->addView(id, v);
+	lock();
+	this->addViewPrivado(id,v);
 	this->vistasScrolleables.push_back(v);
+	unlock();
 }
 
 void ViewController::scrollUnidadesLogicas(float unidadesLogicas) {
 	lock();
 	list<View*>::iterator it;
 	View* vista;
-	for (it = vistasScrolleables.begin(); it != vistasScrolleables.end(); ++it) {
+	for (it = vistasScrolleables.begin(); it != vistasScrolleables.end();
+			++it) {
 		vista = *it;
 		vista->setYL(vista->getYL() + unidadesLogicas);
 	}
@@ -97,51 +96,44 @@ void ViewController::resize(Transformacion * tl) {
 	unlock();
 }
 
-
-
 void ViewController::visit(ViewObjetoConAnchoUpdateMsj* mje) {
 	lock();
-	if (!update(mje))
-	{
+	if (!update(mje)) {
 		ViewObjetoAnchoUpdateFactory fac;
 		View* view = fac.crear(mje);
-		addView(mje->getId(), view);
+		addViewPrivado(mje->getId(), view);
 	}
 	unlock();
 }
 
 void ViewController::visit(ViewObjetoUpdateMsj* mje) {
 	lock();
-	if(!update(mje)){
+	if (!update(mje)) {
 		ViewObjetoSimpleFactory fac;
 		View* view = fac.crear(mje);
-		addView(mje->getId(), view);
+		addViewPrivado(mje->getId(), view);
 	}
 	unlock();
 }
 
 bool ViewController::update(ViewMsj* mje) {
-	View* vistaCurrent = getForUpdate(mje->getId());
-	if (vistaCurrent == NULL)
-	{
-		endUpdate();
-		return false;
 
+	bool result = false;
+	map<int, View*>::iterator it = vistas.find(mje->getId());
+	if (it != vistas.end()) {
+		(*it).second->update(mje);
+		result = true;
 	}
-	else{
-		vistaCurrent->update(mje);
-		endUpdate();
-		return true;
-	}
+	return result;
 
 }
 
 void ViewController::visit(ViewObjetoUnionUpdateMsj* mje) {
 	lock();
-	if(!update(mje)){
+	if (!update(mje)) {
 		ViewObjetoUnionFactory fac;
 		View* view = fac.crear(mje);
-		addView(mje->getId(), view);
+		addViewPrivado(mje->getId(), view);
 	}
 	unlock();
 }
@@ -149,7 +141,7 @@ void ViewController::visit(ViewObjetoUnionUpdateMsj* mje) {
 View* ViewController::getForUpdate(int id) {
 	lock();
 	map<int, View*>::iterator it = vistas.find(id);
-	if(it == vistas.end()){
+	if (it == vistas.end()) {
 		return NULL;
 	}
 	return it->second;
@@ -157,6 +149,23 @@ View* ViewController::getForUpdate(int id) {
 
 void ViewController::endUpdate() {
 	unlock();
+}
+
+
+void ViewController::addViewPrivado(int id, View*v) {
+	vistas.insert(pair<int, View *>(id, v));
+	vistasList.push_back(v);
+	v->setTl(tl);
+	v->resizear();
+	vistasList.sort(comparar_layersViews);
+}
+
+void ViewController::lock() {
+	super::lock();
+}
+
+void ViewController::unlock() {
+	super::unlock();
 }
 
 }

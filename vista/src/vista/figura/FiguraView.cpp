@@ -21,20 +21,20 @@ FiguraView::~FiguraView(){
 
 
 void FiguraView::dibujarse(SDL_Renderer * renderer){
-//	SDL_Rect dest;
-//	dest.h = this->getH();
-//	dest.w = this->getW();
-//	dest.x = this->getX();
-//	dest.y = this->getY();
-//	this->dibujarse(renderer, dest);
+	SDL_Rect dest;
+	dest.h = this->hp;
+	dest.w = this->wp;
+	dest.x = this->xp;
+	dest.y = this->yp;
+	this->dibujarse(renderer, dest);
 }
 
 void FiguraView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest){
-//	if(this->getModelo() != NULL && this->getModelo()->getRotacion() != 0){
-//		SDL_RenderCopyEx(renderer,this->textura, NULL, &dest,this->getModelo()->getRotacion(),NULL,SDL_FLIP_NONE);
-//	} else {
-//		SDL_RenderCopy(renderer,this->textura,NULL,&dest);
-//	}
+	if(this->angulo != 0){
+		SDL_RenderCopyEx(renderer,this->textura, NULL, &dest,this->angulo,NULL,SDL_FLIP_NONE);
+	} else {
+		SDL_RenderCopy(renderer,this->textura,NULL,&dest);
+	}
 }
 
 SDL_Texture* FiguraView::getTexture() {

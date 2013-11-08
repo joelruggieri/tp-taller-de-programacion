@@ -32,6 +32,8 @@ private:
 	void crearPantalla();
 	bool update(ViewMsj *);
 	Transformacion * tl;
+	void addViewPrivado(int id, View *);
+	typedef ObjetoCompartido super;
 public:
 	ViewController(SDL_Renderer *,Transformacion * tl);
 	void visit(ViewObjetoConAnchoUpdateMsj*);
@@ -43,7 +45,8 @@ public:
 	void dibujar();
 	virtual ~ViewController();
 	void resize(Transformacion * tl);
-
+	void lock();
+	void unlock();
 	//LLAMAR EL ENDUPDATE DSPS DE TOCAR LO DE LA CLASE. ESTO PUEDE CLAVAR EL JUEGO YA QUE SINCRONIZA CON EL THREAD DE DIBUJADO
 	View * getForUpdate(int id);
 	void endUpdate();

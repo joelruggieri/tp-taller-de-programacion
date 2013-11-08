@@ -7,7 +7,7 @@
 
 #ifndef OBJETOVIEW_H_
 #define OBJETOVIEW_H_
-
+#include "../../ConstantesVista.h"
 #include "../figura/FiguraView.h"
 #include "src/ConstantesComunicacion.h"
 class ObjetoView: public FiguraView {
