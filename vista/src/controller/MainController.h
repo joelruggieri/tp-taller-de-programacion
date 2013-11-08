@@ -21,7 +21,7 @@ class MainController: public DrawController {
 private:
 	SDL_Renderer * render;
 	JuegoEventsController * juegoController;
-	GeneralEventController * crearGeneralEventController();
+	GeneralEventController * crearGeneralEventController(list<string> & factories);
 	ColaEventos * entrada;
 	ColaEventos * salida;
 	ViewController * viewController;
@@ -29,7 +29,7 @@ public:
 
 	MainController(ColaEventos* entrada,ColaEventos * salida);
 	virtual ~MainController();
-	int run();
+	int run(list<string> & factories);
 	void dibujar();
 	ViewController * getviewController();
 };

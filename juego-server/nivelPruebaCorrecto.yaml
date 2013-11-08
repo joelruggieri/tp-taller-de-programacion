@@ -39,13 +39,13 @@ Jugadores:
       alto: 976
     numero: 0
     ParametrosFactories:
-      - nombre: hola
+      - nombre: FB
         cantidad: 2
-      - nombre: hola13e
+      - nombre: FL
         cantidad: 34
-      - nombre: plataforma
+      - nombre: FA
         cantidad: 5
-      - nombre: bolaBoliche
+      - nombre: FC
         cantidad: 4
   - numero: 1
     Area:
@@ -54,11 +54,11 @@ Jugadores:
       ancho: 4
       alto: 45
     ParametrosFactories:
-      - nombre: plataforma2
+      - nombre: FG
         cantidad: 7
-      - nombre: balancin2
+      - nombre: FM
         cantidad: 3
-      - nombre: vela
+      - nombre: FO
         cantidad: 1
   - numero: 2
     Area:
@@ -67,5 +67,5 @@ Jugadores:
       ancho: 1
       alto: 7
     ParametrosFactories:
-      - nombre: raton
+      - nombre: FP
         cantidad: 1
