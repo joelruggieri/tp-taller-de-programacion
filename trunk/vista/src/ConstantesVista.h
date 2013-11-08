@@ -19,12 +19,15 @@ namespace CLIENTE {
 /**
  * FACTORIES VISTAS
  */
+#define ANCHO_VISTA_DEFAULT 10
+
 
 #define ALTO_PANEL_LOG 80
 #define ALTO_VISTA_BALANCIN_LOG 4.0 //U logicas
 #define ALTO_VISTA_PLATAFORMA_LOG 4.0 //U logicas
 #define ALTO_VISTA_CINTA_LOG 8.0 //U logicas
 #define ANCHO_ENGRANAJE 13
+
 #define ALTO_VISTA_CINTA_RAMPA_LOG 1.0
 #define RADIO_EJE_CINTA_LOG 3
 #define PATH_VISTA_BALANCIN "resource/balancin.png"
