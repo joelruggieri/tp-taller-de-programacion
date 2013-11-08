@@ -1,0 +1,71 @@
+Nivel:
+  Nombre: nivelPruebaCorrecto
+  Fondo: ""
+  NumeroMaximoDeJugadores: 0
+Objetos:
+  BolasBoliche:
+    - x: 1
+      y: 1
+    - x: 1
+      y: 1
+    - x: 1
+      y: 1
+  Balancines:
+    - x: 3
+      y: 3
+      rotacion: 0
+  Correas:
+    - xDesde: 0
+      yDesde: 0
+      xHasta: 0
+      yHasta: 0
+  Sogas:
+    - xDesde: 0
+      yDesde: 0
+      xHasta: 0
+      yHasta: 0
+  PelotasJuego:
+    - x: 5
+      y: 5
+  Cintas:
+    - x: 6
+      y: 7
+      ancho: 8
+Jugadores:
+  - Area:
+      x: 2
+      y: 78.6
+      ancho: 5
+      alto: 976
+    numero: 3
+    ParametrosFactories:
+      - nombre: hola
+        cantidad: 2
+      - nombre: hola13e
+        cantidad: 34
+      - nombre: plataforma
+        cantidad: 5
+      - nombre: bolaBoliche
+        cantidad: 4
+  - numero: 74
+    Area:
+      x: 50
+      y: 69
+      ancho: 4
+      alto: 45
+    ParametrosFactories:
+      - nombre: plataforma2
+        cantidad: 7
+      - nombre: balancin2
+        cantidad: 3
+      - nombre: vela
+        cantidad: 1
+  - numero: 0
+    Area:
+      x: 0
+      y: 6
+      ancho: 1
+      alto: 7
+    ParametrosFactories:
+      - nombre: raton
+        cantidad: 1
