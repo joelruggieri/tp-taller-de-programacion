@@ -108,6 +108,6 @@ void GeneralEventController::visit(CreacionMsj* m) {
 	//		log.concatenar(lg,m->getY());
 			log.debug(lg);
 		} else {
-			//ENTREGA3 creacion de objetos segun el tag recibido
+			jugador->second->crearVista(m->getTagObjeto(), m->getX(), m->getY());
 		}
 }

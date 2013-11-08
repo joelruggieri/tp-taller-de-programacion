@@ -13,7 +13,7 @@ class SimpleEditorEstirar;
 class ViewPlataformaFactory: public ViewFiguraFactory{
 
 public:
-	ViewPlataformaFactory(SimpleEditorEstirar * editor);
+	ViewPlataformaFactory(SimpleEditorEstirar * editor, int cantidad);
 	virtual ~ViewPlataformaFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();

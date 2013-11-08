@@ -15,7 +15,7 @@ namespace std {
 class ViewSogaFactory: public ViewFiguraFactory {
 
 public:
-	ViewSogaFactory(EditorUnion* editor);
+	ViewSogaFactory(EditorUnion* editor, int );
 	virtual ~ViewSogaFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();

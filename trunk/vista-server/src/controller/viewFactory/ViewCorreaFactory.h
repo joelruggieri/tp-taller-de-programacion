@@ -13,7 +13,7 @@
 class ViewCorreaFactory: public ViewFiguraFactory{
 
 public:
-	ViewCorreaFactory(EditorUnion* editor);
+	ViewCorreaFactory(EditorUnion* editor, int cantidad);
 	virtual ~ViewCorreaFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();

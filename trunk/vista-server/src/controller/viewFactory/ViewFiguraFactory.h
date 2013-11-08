@@ -18,8 +18,9 @@ using namespace std;
 class ViewFiguraFactory {
 protected:
 	DropController * controller;
+	int cantidadDisponible;
 public:
-	ViewFiguraFactory(DropController * controller);
+	ViewFiguraFactory(DropController * controller, int);
 	virtual ~ViewFiguraFactory();
 	virtual FiguraView * crear(float,float)=0;
 	virtual View * crearVistaPropia(float,float,float,float) = 0;
@@ -28,6 +29,7 @@ public:
 	float getAncho() const;
 	void setAncho(float ancho);
 	virtual string getTagRemoto() = 0;
+	FiguraView * crearTemplate(float,float);
 };
 
 #endif /* VIEWFIGURAFACTORY_H_ */

@@ -8,7 +8,7 @@
 #include "ViewBalancinFactory.h"
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
-ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor): ViewFiguraFactory(editor) {
+ViewBalancinFactory::ViewBalancinFactory(SimpleEditorAnguloFijo * editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
 
 }
 

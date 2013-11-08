@@ -2,7 +2,7 @@
 #include "../../vista/objeto/SogaView.h"
 #include "../../ConstantesVista.h"
 
-ViewSogaDinamicaFactory::ViewSogaDinamicaFactory(EditorUnion* editor): ViewFiguraFactory(editor) {
+ViewSogaDinamicaFactory::ViewSogaDinamicaFactory(EditorUnion* editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
 
 
 }

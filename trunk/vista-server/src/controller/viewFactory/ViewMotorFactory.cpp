@@ -12,7 +12,7 @@
 //ViewMotorFactory::ViewMotorFactory(SimpleEditorAnguloFijo * editor):ViewFiguraFactory("resource/pelota.png", editor) {
 //}
 
-ViewMotorFactory::ViewMotorFactory(SimpleEditorOrientacionCambiable * editor):ViewFiguraFactory(editor) {
+ViewMotorFactory::ViewMotorFactory(SimpleEditorOrientacionCambiable * editor, int cantidad):ViewFiguraFactory(editor, cantidad) {
 }
 
 ViewMotorFactory::~ViewMotorFactory() {

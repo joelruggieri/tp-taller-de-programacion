@@ -11,7 +11,7 @@
 class SimpleEditorAnguloFijo;
 class ViewPelotaJuegoFactory : public ViewFiguraFactory{
 public:
-	ViewPelotaJuegoFactory(SimpleEditorAnguloFijo * editor);
+	ViewPelotaJuegoFactory(SimpleEditorAnguloFijo * editor, int cantidad);
 	virtual ~ViewPelotaJuegoFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();
