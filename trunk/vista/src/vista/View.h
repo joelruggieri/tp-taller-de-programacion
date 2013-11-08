@@ -38,6 +38,37 @@ public:
 	int getYp() const;
 	void setYp(int yp);
 
+	float getHl() const {
+		return hl;
+	}
+
+	void setHl(float hl) {
+		this->hl = hl;
+	}
+
+	float getWl() const {
+		return wl;
+	}
+
+	void setWl(float wl) {
+		this->wl = wl;
+	}
+
+	float getXl() const {
+		return xl;
+	}
+
+	void setXl(float xl) {
+		this->xl = xl;
+	}
+
+	float getYl() const {
+		return yl;
+	}
+
+	void setYl(float yl) {
+		this->yl = yl;
+	}
 };
 
 }

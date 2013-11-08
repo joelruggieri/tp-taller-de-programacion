@@ -19,6 +19,9 @@ SogaEstaticaView::~SogaEstaticaView() {
 	// TODO Auto-generated destructor stub
 }
 
-void SogaEstaticaView::update(ViewMsj*) {
+void SogaEstaticaView::update(ViewMsj* mje) {
+	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) mje;
+	this->setXp(mjeCurrent->getX());
+	this->setYp(mjeCurrent->getY());
 }
 }
