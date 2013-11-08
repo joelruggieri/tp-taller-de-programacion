@@ -15,7 +15,7 @@ class SimpleEditorEstirar;
 
 class VistaCintaTransportadoraFactory: public ViewFiguraFactory {
 public:
-	VistaCintaTransportadoraFactory( SimpleEditorEstirar* editor);
+	VistaCintaTransportadoraFactory( SimpleEditorEstirar* editor, int cantidad);
 	virtual ~VistaCintaTransportadoraFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();

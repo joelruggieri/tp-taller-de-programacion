@@ -9,7 +9,7 @@
 #include "../../vista/objeto/CorreaEstaticaView.h"
 #include "../../ConstantesVista.h"
 
-ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor): ViewFiguraFactory(editor) {
+ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
 
 
 }

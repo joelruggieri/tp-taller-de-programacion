@@ -12,7 +12,7 @@
 class SimpleEditorAnguloFijo;
 class ViewGloboFactory: public ViewFiguraFactory{
 public:
-	ViewGloboFactory(SimpleEditorAnguloFijo * editor);
+	ViewGloboFactory(SimpleEditorAnguloFijo * editor, int cantidad);
 	virtual ~ViewGloboFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();

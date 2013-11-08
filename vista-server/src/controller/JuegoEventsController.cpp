@@ -199,22 +199,22 @@ void JuegoEventsController::crearVista(string tag, float x, float y) {
 	if (editor == NULL && !iniciado) {
 		//si no estoy con un editor activo y no estoy iniciado puedo crear una vista y empezar la edicion (setear el editor de la vista)
 		//ENTREGA3 PEDIRLE A LA ZONA DE CREACION CREARVISTA, si retorna distinta de NULL hay que hacer algo parecido a lo que hace el click down,
-
-//		if (view != NULL) {
-//			editor = view->getEditor();
-//			editor->setCtrl(this->control);
-//			editor->setShift(this->shift);
-//			if (editor == NULL) {
-//				Logger log;
-//				log.fatal("La Vista no tiene un editor");
-//				throw "La Vista no tiene un editor";
-//			}
-//			editor->clickDown(x, y);
-//			if (editor->isEnd()) {
-//				editor = NULL;
-//			}
+		FiguraView* view = creacion->crearFigura(tag, x , y);
+		if (view != NULL) {
+			editor = view->getEditor();
+			editor->setCtrl(this->control);
+			editor->setShift(this->shift);
+			if (editor == NULL) {
+				Logger log;
+				log.fatal("La Vista no tiene un editor");
+				throw "La Vista no tiene un editor";
+			}
+			editor->clickDown(x, y);
+			if (editor->isEnd()) {
+				editor = NULL;
+			}
 //			return false;
-//		}
+		}
 
 	}
 	///ELSE NO HAGO NADA

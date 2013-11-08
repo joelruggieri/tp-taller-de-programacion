@@ -10,7 +10,7 @@
 #include "../../vista/objeto/CintaTransportadoraView.h"
 #include "../editor/SimpleEditorEstirar.h"
 #include "src/Constantes.h"
-VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory(SimpleEditorEstirar* editor) : ViewFiguraFactory(editor) {
+VistaCintaTransportadoraFactory::VistaCintaTransportadoraFactory(SimpleEditorEstirar* editor, int cantidad) : ViewFiguraFactory(editor, cantidad) {
 }
 
 VistaCintaTransportadoraFactory::~VistaCintaTransportadoraFactory() {

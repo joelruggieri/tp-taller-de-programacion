@@ -12,7 +12,7 @@
 #include "../editor/EditorUnion.h"
 class ViewSogaDinamicaFactory: public ViewFiguraFactory {
 public:
-	ViewSogaDinamicaFactory(EditorUnion *);
+	ViewSogaDinamicaFactory(EditorUnion *, int cantidad);
 	virtual ~ViewSogaDinamicaFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();

@@ -13,7 +13,7 @@
 class ViewBalancinFactory: public ViewFiguraFactory {
 
 public:
-	ViewBalancinFactory(SimpleEditorAnguloFijo* editor);
+	ViewBalancinFactory(SimpleEditorAnguloFijo* editor, int cantidad);
 	virtual ~ViewBalancinFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();

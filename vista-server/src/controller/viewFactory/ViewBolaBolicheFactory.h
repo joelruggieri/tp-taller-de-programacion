@@ -11,7 +11,7 @@
 class SimpleEditorAnguloFijo;
 class ViewBolaBolicheFactory : public ViewFiguraFactory {
 public:
-	ViewBolaBolicheFactory(SimpleEditorAnguloFijo * editor);
+	ViewBolaBolicheFactory(SimpleEditorAnguloFijo * editor, int cantidad);
 	virtual ~ViewBolaBolicheFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();

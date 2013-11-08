@@ -13,7 +13,7 @@
 class ViewMotorFactory: public ViewFiguraFactory {
 public:
 //	ViewMotorFactory(SimpleEditorAnguloFijo * editor);
-	ViewMotorFactory(SimpleEditorOrientacionCambiable * editor);
+	ViewMotorFactory(SimpleEditorOrientacionCambiable * editor, int cantidad);
 	virtual ~ViewMotorFactory();
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();
