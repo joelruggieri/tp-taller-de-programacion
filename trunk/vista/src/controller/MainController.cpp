@@ -104,7 +104,7 @@ GeneralEventController* MainController::crearGeneralEventController() {
 	JuegoEventsController * juegoController = new JuegoEventsController(zp,tablero, zonaCreacion,Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
 	GeneralEventController * generalEventController = new GeneralEventController();
 	generalEventController->addMouseController(juegoController, 1, 1);
-
+	generalEventController->addResizerController(juegoController);
 	return generalEventController;
 }
 
