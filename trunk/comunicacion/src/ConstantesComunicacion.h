@@ -16,6 +16,7 @@
 #define OBJ_CON_ANCHO_S_ENGRANAJE 'j'
 #define OBJ_SIMPLE_S_MOTOR 'm'
 
+#define TAG_JUGADOR_LISTO "JL"
 #define TAG_MSJ_NOTIMEOUT "NTO"
 #define TAG_MOUSE_MOTION "EMM"
 #define TAG_CLICK "EC"

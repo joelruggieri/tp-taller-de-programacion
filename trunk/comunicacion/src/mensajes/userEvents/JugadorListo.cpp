@@ -24,3 +24,13 @@ JugadorListo::~JugadorListo() {
 	// TODO Auto-generated destructor stub
 }
 
+void JugadorListo::serialize(YAML::Node* nodo) {
+	nodo->push_back(TAG_JUGADOR_LISTO);
+	nodo->push_back(this->isListo());
+}
+
+NetworkMensaje* JugadorListo::deserialize(YAML::const_iterator& it) {
+	bool listo = it->as<bool>();
+		it++;
+	return new JugadorListo(listo);
+}

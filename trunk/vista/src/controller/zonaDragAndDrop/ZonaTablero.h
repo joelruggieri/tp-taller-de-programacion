@@ -30,6 +30,8 @@ public:
 	virtual ~ZonaTablero();
 	bool click(float, float);
 	bool rightClick(float, float);
+	bool clickUp(float, float);
+	bool rightClickUp(float, float);
 	bool keyPressed(char key);
 	bool keyReleased(char key);
 	bool mouseMotion(float, float);

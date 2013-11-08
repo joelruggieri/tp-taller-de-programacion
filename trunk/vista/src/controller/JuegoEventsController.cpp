@@ -42,6 +42,15 @@ bool JuegoEventsController::clickDown(int x, int y) {
 }
 
 bool JuegoEventsController::clickUp(int x, int y) {
+	tl->setVector(x,y);
+	float xf,yf;
+	tl->getResultado(xf,yf);
+	if(!tablero->clickUp(xf,yf)){
+//		if(!zplay->clickUp(xf,yf)){
+			return creacion->clickUp(xf,yf);
+//		}
+	}
+
 	return true;
 }
 
@@ -72,6 +81,7 @@ bool JuegoEventsController::rightClickDown(int x, int y) {
 		float xf,yf;
 		tl->getResultado(xf,yf);
 		if(!tablero->rightClick(xf,yf)){
+			//ENTREGA3 con zonas donde el click derecho no influye qe hacemos ?
 //			if(!zplay->rightClick(xf,yf)){
 //				return creacion->rightClick(xf,yf);
 //			}
@@ -110,6 +120,10 @@ bool JuegoEventsController::rightClickUp(int x, int y) {
 //		editor->rightClickUp(x, y);
 //		editor = editor->isEnd() ? NULL : editor;
 //	}
+	tl->setVector(x,y);
+			float xf,yf;
+			tl->getResultado(xf,yf);
+	tablero->rightClickUp(xf,yf);
 	return true;
 }
 void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {

@@ -18,6 +18,8 @@ public:
 	void acept(UserEventVisitor *);
 	virtual ~JugadorListo();
 	bool isListo() const;
+	void serialize(YAML::Node * nodo);
+	NetworkMensaje * deserialize(YAML::const_iterator & it);
 };
 
 #endif /* JUGADORLISTO_H_ */
