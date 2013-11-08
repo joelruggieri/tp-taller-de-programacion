@@ -13,17 +13,14 @@ ZonaTablero::ZonaTablero(float x, float y):Zona(new Cuadrado(x,y,100,100)) {
 	//TODO HARCODEADA LA ALTURA DE LA BARRA DE HERRAMIENTAS
 }
 
-
-bool ZonaTablero::agregarTemplate(FiguraView* view) {
-	Logger log;
-	log.info("Recibe figura el tablero");
-	if(view->getModelo() == NULL){
-		return false;
+FiguraView * ZonaTablero::getVista(float x, float y) {
+	FiguraView * drop  = NULL;
+	if (this->cuerpo->contacto(x, y)) {
+		drop = this->getFiguraTemplate(x,y);
 	}
-	view->getModelo()->addObserver(this);
-	this->canvas.push_back(view);
-	return true;
+	return drop;
 }
+
 
 FiguraView * ZonaTablero::getFiguraTemplate(float x, float y) {
 	std::list<View*>::reverse_iterator it;
@@ -87,3 +84,16 @@ bool ZonaTablero::remover(View* vista) {
 	return cant > cantNueva;
 }
 
+bool ZonaTablero::agregarFigura(FiguraView* view) {
+	if (this->cuerpo->contieneCentro(view->getModelo())) {
+			Logger log;
+			log.info("Recibe figura el tablero");
+			if(view->getModelo() == NULL){
+				return false;
+			}
+			view->getModelo()->addObserver(this);
+			this->canvas.push_back(view);
+			return true;
+	}
+	return false;
+}

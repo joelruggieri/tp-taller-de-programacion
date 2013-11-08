@@ -38,6 +38,8 @@ public:
 	void visit(ClickMsj *);
 	void visit(KeyMsj *);
 	void visit(JugadorListo *);
+	//ENTREGA3 AGREGAR AL VISITOR EL USEREVENT DE CREACION.
+	//EN ESE METODO HAY QUE LLAMAR  AL CREARVISTA DEL JUEGOEVENTCONTROLLER.
 };
 
 #endif /* GENERALEVENTCONTROLLER_H_ */

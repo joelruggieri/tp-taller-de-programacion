@@ -13,7 +13,6 @@ using namespace std;
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "src/figuraFactory/FiguraFactory.h"
-#include "../zonaDragAndDrop/ZonaPlay.h"
 
 InicializadorJugador::InicializadorJugador(ZonaTablero * tablero, ModeloController * modeloController) {
 	this->modeloController = modeloController;

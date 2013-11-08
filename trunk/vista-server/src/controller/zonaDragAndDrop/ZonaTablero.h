@@ -24,6 +24,8 @@ private:
 	list<View*> canvas;
 	bool remover(View*);
 public:
+	FiguraView * getVista(float, float);
+	bool agregarFigura(FiguraView*);
 	ZonaTablero(float, float);
 	virtual ~ZonaTablero();
 	void dibujarse(list<ViewMsj*> & lista);
