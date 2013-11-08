@@ -16,6 +16,7 @@ private:
 	list<JuegoEventsController *> controllers;
 	ZonaTablero * tablero;
 	ColaEventos * salida;
+	int angulo;
 public:
 	DrawController(ColaEventos * salida);
 	virtual ~DrawController();
