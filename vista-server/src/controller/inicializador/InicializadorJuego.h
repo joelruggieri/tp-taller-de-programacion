@@ -10,12 +10,9 @@
 #include "src/figura/VisitorFigura.h"
 #include "../zonaDragAndDrop/ZonaDragAndDrop.h"
 #include "../viewFactory/ViewFiguraFactory.h"
-//#include "../PersistenciaManager.h"
-//#include "../JuegoEventsController.h"
-//#include "../GeneralEventController.h"
 #include <map>
 #include "../../modelo/Cuadrado.h"
-//#include "ValidadorEstatico.h"
+
 
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
