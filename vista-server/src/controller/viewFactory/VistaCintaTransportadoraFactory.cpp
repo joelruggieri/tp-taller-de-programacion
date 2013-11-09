@@ -34,5 +34,7 @@ View * VistaCintaTransportadoraFactory::crearVistaPropia(float,float,float,float
 }
 
 ViewFiguraFactory* VistaCintaTransportadoraFactory::clone(int cantidad){
-	return new VistaCintaTransportadoraFactory((SimpleEditorEstirar *)this->controller,cantidad);
+	SimpleEditorEstirar * editor = ((SimpleEditorEstirar*) this->controller);
+	editor = (SimpleEditorEstirar *)editor->clone();
+	return new VistaCintaTransportadoraFactory(editor,cantidad);
 }

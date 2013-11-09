@@ -51,12 +51,12 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	editores.push_back(editorSimpleAnguloFijo2);
 	//SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
+//	SimpleEditorEstirar * editorSimpleEstirar2 = (SimpleEditorEstirar *)editorSimpleEstirar->clone();
 	editores.push_back(editorSimpleEstirar);
 	EditorUnion* editorunion = new EditorUnion(modeloController, tablero, this->factory, 100);
 	editores.push_back(editorunion);
 	SimpleEditorOrientacionCambiable* editorOrientacionCambiable = new SimpleEditorOrientacionCambiable(modeloController, tablero, this->factory, 100);
 	editores.push_back(editorOrientacionCambiable);
-	//EditorDeEstiramientoDeCinta* editorCinta = new EditorDeEstiramientoDeCinta(modeloController, tablero, this->factory, 100);
 	viewFactory = new ViewBalancinFactory(editorSimpleAnguloFijo2,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_BALANCIN,viewFactory));
 	viewFactory = new ViewPelotaJuegoFactory(editorSimpleAnguloFijo1,0);
@@ -73,11 +73,6 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_SOGA,viewFactory));
 	viewFactory = new ViewCorreaFactory(editorunion,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_CORREA,viewFactory));
-	// ENTREGA3 NO SE SI VAN ESTAS DOS.
-	/*viewFactory = new ViewSogaFactory(editorunion,0);
-	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(OBJ_UNION_S_SOGA,viewFactory));
-	viewFactory = new ViewCorreaFactory(editorunion,0);
-	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(OBJ_UNION_S_CORREA,viewFactory));*/
 	viewFactory = new VistaEngranajeFactory(editorCambiarRadio,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_ENGRANAJE,viewFactory));
 	viewFactory = new ViewMotorFactory(editorOrientacionCambiable,0);
@@ -93,8 +88,13 @@ JuegoEventsController* JuegoControllerFactory::crearConfiguracionJugador(Jugador
 	std::map<std::string,int>::iterator it;
 	for(it = configuracionFactories.begin(); it != configuracionFactories.end(); ++it){
 		std::map<std::string,ViewFiguraFactory*>::iterator iter = this->factoriesDelJuego.find((*it).first);
-		viewFiguraClone = iter->second->clone((*it).second);
-		factories.push_back(viewFiguraClone);
+		if(iter != this->factoriesDelJuego.end()){
+			cout<< "clona" << endl;
+			viewFiguraClone = iter->second->clone((*it).second);
+			factories.push_back(viewFiguraClone);
+		} else {
+			cout<< "no clona" << endl;
+		}
 	}
 	ZonaCreacion* zona = new ZonaCreacion(factories);
 	JuegoEventsController* juegoEventsController = new JuegoEventsController(this->tablero,this->modeloController,zona, jugador->getNumero());
@@ -111,4 +111,5 @@ JuegoControllerFactory::~JuegoControllerFactory() {
 		delete (*itEditores);
 	}
 }
+
 

@@ -293,3 +293,7 @@ void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {
 	}
 	mouseMotion(posStartDragX, posStartDragY);
 }
+
+EditorNivel* SimpleEditorNivel::clone() {
+	return new SimpleEditorNivel(modeloController, tablero, figurasFactory, yMaxDrag);
+}

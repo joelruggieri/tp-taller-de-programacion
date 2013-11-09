@@ -50,7 +50,7 @@ bool CLIENTE::ZonaTablero::click(float float1, float float2) {
 	if (!this->cuerpo->contacto(float1, float2)) return false;
 	bool ctrl;
 	bool shift;
-	this->setearTeclas(&shift,&ctrl);
+	this->setearTeclas(shift,ctrl);
 	ClickMsj* b = new ClickMsj(float1, float2, true, true, shift, ctrl);
 	salida->push(b);
 	return true;
@@ -60,7 +60,7 @@ bool CLIENTE::ZonaTablero::rightClick(float float1, float float2) {
 	if (!this->cuerpo->contacto(float1, float2)) return false;
 	bool ctrl;
 	bool shift;
-	this->setearTeclas(&shift,&ctrl);
+	this->setearTeclas(shift,ctrl);
 	ClickMsj* b = new ClickMsj(float1, float2, true, false, shift, ctrl);
 	salida->push(b);
 	return true;
@@ -74,19 +74,17 @@ bool CLIENTE::ZonaTablero::keyReleased(char key) {
 	return false;
 		}
 
-void CLIENTE::ZonaTablero::setearTeclas(bool* bool1, bool* bool2) {
-	*bool1 = false;
-	*bool2 = false;
+void CLIENTE::ZonaTablero::setearTeclas(bool& shift, bool& ctrl) {
 	const Uint8 *keyboardState = SDL_GetKeyboardState(NULL);
-	if (*keyboardState == SDL_SCANCODE_LSHIFT) *bool1 = true;
-	if (*keyboardState == SDL_SCANCODE_LCTRL) *bool2 =true;
+	shift = keyboardState[SDL_SCANCODE_LSHIFT];
+	ctrl = keyboardState[SDL_SCANCODE_LCTRL];
 }
 
 bool CLIENTE::ZonaTablero::mouseMotion(float float1, float float2) {
 	//POR AHORA SOLO LA ZONATABLERO REALIZA EL MOUSEMOTION
 	bool ctrl = false;
 	bool shift = false;
-	this->setearTeclas(&shift, &ctrl);
+	this->setearTeclas(shift, ctrl);
 	MouseMotionMsj* mje = new MouseMotionMsj(float1,float2,shift, ctrl);
 	salida->push(mje);
 	return true;
@@ -96,7 +94,7 @@ bool CLIENTE::ZonaTablero::clickUp(float float1, float float2) {
 //	if (!this->cuerpo->contacto(float1, float2)) return false;
 		bool ctrl;
 		bool shift;
-		this->setearTeclas(&shift,&ctrl);
+		this->setearTeclas(shift,ctrl);
 		ClickMsj* b = new ClickMsj(float1, float2, false, true, shift, ctrl);
 		salida->push(b);
 		return true;

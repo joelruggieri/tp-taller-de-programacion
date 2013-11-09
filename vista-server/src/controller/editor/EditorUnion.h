@@ -17,6 +17,7 @@ private:
 	float clickDownX, clickDownY;
 public:
 	EditorUnion(ModeloController * , ZonaTablero *,FiguraFactory* factory, int yMaxDrag);
+	EditorUnion(EditorUnion&);
 	void setFigura(FiguraView *);
 	virtual ~EditorUnion();
 	void clickDown(float x, float y);
@@ -27,6 +28,7 @@ public:
 	void mouseMotion(float x, float y);
 	void dropNuevaFigura(SogaEstaticaView * s);
 	void dropNuevaFigura(CorreaEstaticaView * s);
+	EditorNivel * clone();
 };
 
 #endif /* EDITORUNION_H_ */

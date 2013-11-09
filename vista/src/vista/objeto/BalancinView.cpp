@@ -28,6 +28,5 @@ CLIENTE::BalancinView::BalancinView(float x, float y, float w, float h,
 }
 
 void CLIENTE::BalancinView::dibujarse(SDL_Renderer* r) {
-	cout<< "dibujado en " << xl << " " << yl << endl;
 	super::dibujarse(r);
 }

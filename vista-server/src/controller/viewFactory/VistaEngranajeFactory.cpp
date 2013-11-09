@@ -36,5 +36,7 @@ View * VistaEngranajeFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* VistaEngranajeFactory::clone(int cantidad){
-	return new VistaEngranajeFactory((SimpleEditorCambiarRadio*)this->controller,cantidad);
+	SimpleEditorCambiarRadio * editor = ((SimpleEditorCambiarRadio*) this->controller);
+	editor = (SimpleEditorCambiarRadio *)editor->clone();
+	return new VistaEngranajeFactory(editor,cantidad);
 }

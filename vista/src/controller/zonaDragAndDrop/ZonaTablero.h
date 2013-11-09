@@ -24,7 +24,7 @@ private:
 	Cuadrado * cuerpo;
 	ColaEventos * salida;
 	void crearVista(ViewController * vc);
-	void setearTeclas(bool*, bool*);
+	void setearTeclas(bool&, bool&);
 public:
 	ZonaTablero(ViewController * vc, ColaEventos * cola);
 	virtual ~ZonaTablero();

@@ -12,6 +12,8 @@
 SimpleEditorEstirar::SimpleEditorEstirar(ModeloController * controller, ZonaTablero * zona, FiguraFactory* factory,
 		float yMaxDrag) :
 		SimpleEditorNivel(controller, zona, factory, yMaxDrag) {
+	ultimoY = 0;
+	ultimoX= 0;
 	estirando = false;
 }
 
@@ -84,4 +86,8 @@ void SimpleEditorEstirar::dropNuevaFigura(PlataformaView* view) {
 void SimpleEditorEstirar::setFigura(FiguraView* f) {
 	super::setFigura(f);
 	estirando = false;
+}
+
+EditorNivel* SimpleEditorEstirar::clone() {
+	return new SimpleEditorEstirar(modeloController, tablero, figurasFactory, yMaxDrag);
 }

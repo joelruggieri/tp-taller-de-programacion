@@ -18,6 +18,7 @@ public:
 	void mouseMotion(float x, float y);
 	void rightClickDown(float x, float y);
 	void dropNuevaFigura(MotorView * m);
+	EditorNivel * clone();
 };
 
 #endif /* SIMPLEEDITORORIENTACIONCAMBIABLE_H_ */

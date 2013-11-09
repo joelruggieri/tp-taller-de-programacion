@@ -36,6 +36,8 @@ View * ViewPlataformaFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* ViewPlataformaFactory::clone(int cantidad){
-	return new ViewPlataformaFactory((SimpleEditorEstirar *)this->controller,cantidad);
+	SimpleEditorEstirar * editor = ((SimpleEditorEstirar*) this->controller);
+	editor = (SimpleEditorEstirar *)editor->clone();
+	return new ViewPlataformaFactory(editor,cantidad);
 }
 

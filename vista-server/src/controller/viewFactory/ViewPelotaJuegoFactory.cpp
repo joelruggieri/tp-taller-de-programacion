@@ -36,7 +36,9 @@ View * ViewPelotaJuegoFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* ViewPelotaJuegoFactory::clone(int cantidad){
-	return new ViewPelotaJuegoFactory((SimpleEditorAnguloFijo*)this->controller,cantidad);
+	SimpleEditorAnguloFijo * editor = ((SimpleEditorAnguloFijo*) this->controller);
+	editor = (SimpleEditorAnguloFijo *)editor->clone();
+	return new ViewPelotaJuegoFactory(editor,cantidad);
 }
 
 

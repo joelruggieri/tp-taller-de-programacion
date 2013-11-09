@@ -18,7 +18,7 @@ private:
    double start;
    unsigned int indice;
 public:
-	SimpleEditorAnguloFijo(ModeloController * , ZonaTablero *,FiguraFactory* factory, float yMaxDrag, list<float>&);
+	SimpleEditorAnguloFijo(ModeloController * , ZonaTablero *,FiguraFactory* factory, float yMaxDrag, list<float>);
 	virtual ~SimpleEditorAnguloFijo();
 	void mouseMotion(float x, float y);
 	void setFigura(FiguraView *);
@@ -27,6 +27,7 @@ public:
 	void dropNuevaFigura(GloboHelioView*);
 	void dropNuevaFigura(PelotaJuegoView*);
 	void dropNuevaFigura(VistaEngranaje*);
+	EditorNivel * clone();
 };
 
 #endif /* SIMPLEEDITORANGULOFIJO_H_ */

@@ -25,7 +25,9 @@ string ViewCorreaDinamicaFactory::getTagRemoto() {
 }
 
 ViewFiguraFactory* ViewCorreaDinamicaFactory::clone(int cantidad){
-	return new ViewCorreaDinamicaFactory((EditorUnion*)this->controller,cantidad);
+	EditorUnion * editor = ((EditorUnion*) this->controller);
+	editor = (EditorUnion *)editor->clone();
+	return new ViewCorreaDinamicaFactory(editor,cantidad);
 }
 
 View * ViewCorreaDinamicaFactory::crearVistaPropia(float,float,float,float){

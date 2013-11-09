@@ -9,15 +9,16 @@
 #include "src/Logger.h"
 #include "../../vista/objeto/BalancinView.h"
 SimpleEditorAnguloFijo::SimpleEditorAnguloFijo(ModeloController * c, ZonaTablero *t, FiguraFactory* f, float yMaxDrag,
-		list<float>& angulos) :
+		list<float> angulos) :
 		SimpleEditorNivel(c, t, f, yMaxDrag) {
 	angulosPermitidos = angulos;
+	indice = 0;
+	start = 0;
 }
 
 SimpleEditorAnguloFijo::~SimpleEditorAnguloFijo() {
 	// TODO Auto-generated destructor stub
 }
-
 
 float SimpleEditorAnguloFijo::anguloPermitidoMasCercano(float angulo) {
 	list<float>::iterator it;
@@ -120,7 +121,12 @@ void SimpleEditorAnguloFijo::dropNuevaFigura(PelotaJuegoView* view) {
 
 	dropear(view, this->figurasFactory->crearPelotaJuego(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
+
 void SimpleEditorAnguloFijo::dropNuevaFigura(VistaEngranaje* view) {
 
 	dropear(view, this->figurasFactory->crearEngranaje(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
+}
+
+EditorNivel* SimpleEditorAnguloFijo::clone() {
+	return new SimpleEditorAnguloFijo(modeloController, tablero, figurasFactory,yMaxDrag,angulosPermitidos);
 }

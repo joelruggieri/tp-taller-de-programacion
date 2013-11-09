@@ -44,10 +44,11 @@ list<Figura*>& Mapa::getFiguras() {
 
 class QueryCallback: public b2QueryCallback {
 public:
-	QueryCallback(const b2Vec2& point,uint16 mascara) {
+	QueryCallback(const b2Vec2& point,uint16 mascara, int numero) {
 		m_point = point;
 		m_fixture = NULL;
 		m_mascara = mascara;
+		m_numero = numero;
 	}
 
 	bool ReportFixture(b2Fixture* fixture) {
@@ -58,10 +59,13 @@ public:
 			bool inside = fixture->TestPoint(m_point);
 			if (inside
 					&& ((fixture->GetFilterData().categoryBits & m_mascara) != 0)) {
-				m_fixture = fixture;
-//				log.debug("La figura confirma la colision");
-				// We are done, terminate the query.
-				return false;
+				Figura* fig = (Figura*)fixture->GetUserData();
+				if(fig != NULL && fig->getNumeroJugador() == m_numero){
+					m_fixture = fixture;
+	//				log.debug("La figura confirma la colision");
+					// We are done, terminate the query.
+					return false;
+				}
 			}
 		}
 //		log.debug("La figura cancela la colision");
@@ -72,6 +76,7 @@ public:
 	b2Vec2 m_point;
 	b2Fixture* m_fixture;
 	uint16 m_mascara;
+	int m_numero;
 };
 
 Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
@@ -84,14 +89,13 @@ Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
 	d.Set(0.001f, 0.001f);
 	aabb.lowerBound = p - d;
 	aabb.upperBound = p + d;
-	QueryCallback callback(p, mascara);
+	QueryCallback callback(p, mascara, numeroJugador);
 	myWorld->QueryAABB(&callback, aabb);
 	if (callback.m_fixture) {
 		b2Body* body = callback.m_fixture->GetBody();
 		// TODO SI HUBIERA JOINTS HABRÍA QUE VER COMO MANEJARLAS, quizas no dejar draguear si hay un joint de soga o algo asi.
 		Figura* figura = (Figura*) (body->GetUserData());
-		if(numeroJugador == figura->getNumeroJugador())
-				return figura;
+		return figura;
 	}
 	return NULL;
 
