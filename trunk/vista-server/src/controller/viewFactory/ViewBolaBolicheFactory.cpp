@@ -29,3 +29,11 @@ View* ViewBolaBolicheFactory::crearVistaPropia(){
 string ViewBolaBolicheFactory::getTagRemoto() {
 	return TAG_FACTORY_BOLA;
 }
+
+View * ViewBolaBolicheFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* ViewBolaBolicheFactory::clone(int cantidad){
+	return new ViewBolaBolicheFactory((SimpleEditorAnguloFijo*)this->controller,cantidad);
+}

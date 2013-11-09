@@ -23,3 +23,11 @@ string ViewSogaDinamicaFactory::getTagRemoto() {
 	//esta factory no puede ser remota
 	return "";
 }
+
+ViewFiguraFactory* ViewSogaDinamicaFactory::clone(int cantidad){
+	return new ViewSogaDinamicaFactory((EditorUnion*)this->controller,cantidad);
+}
+
+View* ViewSogaDinamicaFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}

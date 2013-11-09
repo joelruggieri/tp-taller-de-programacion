@@ -29,3 +29,12 @@ View* ViewCorreaFactory::crearVistaPropia(){
 string ViewCorreaFactory::getTagRemoto() {
 	return TAG_FACTORY_CORREA;
 }
+
+View * ViewCorreaFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+
+}
+
+ViewFiguraFactory* ViewCorreaFactory::clone(int cantidad){
+	return new ViewCorreaFactory((EditorUnion*)this->controller,cantidad);
+}

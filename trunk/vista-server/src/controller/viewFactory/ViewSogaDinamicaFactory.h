@@ -17,6 +17,8 @@ public:
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();
 	string getTagRemoto();
+	ViewFiguraFactory* clone(int);
+	View * crearVistaPropia(float,float,float,float);
 };
 
 #endif /* VIEWSOGADINAMICAFACTORY_H_ */

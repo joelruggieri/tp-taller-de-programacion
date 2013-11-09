@@ -30,7 +30,7 @@ private:
 	EditorNivel * editor;
 	int numeroJugador;
 public:
-	JuegoEventsController(ModeloController*);
+	JuegoEventsController(ZonaTablero*,ModeloController*,ZonaCreacion*);
 	virtual ~JuegoEventsController();
 	bool clickDown(float,float);
 	bool clickUp(float, float);

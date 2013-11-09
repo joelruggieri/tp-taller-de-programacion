@@ -28,3 +28,11 @@ View* VistaCintaTransportadoraFactory::crearVistaPropia(){
 string VistaCintaTransportadoraFactory::getTagRemoto() {
 	return TAG_FACTORY_CINTA;
 }
+
+View * VistaCintaTransportadoraFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* VistaCintaTransportadoraFactory::clone(int cantidad){
+	return new VistaCintaTransportadoraFactory((SimpleEditorEstirar *)this->controller,cantidad);
+}

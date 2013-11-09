@@ -30,3 +30,11 @@ View* ViewGloboFactory::crearVistaPropia(){
 string ViewGloboFactory::getTagRemoto() {
 	return TAG_FACTORY_GLOBO;
 }
+
+View * ViewGloboFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* ViewGloboFactory::clone(int cantidad){
+	return new ViewGloboFactory((SimpleEditorAnguloFijo*)this->controller,cantidad);
+}

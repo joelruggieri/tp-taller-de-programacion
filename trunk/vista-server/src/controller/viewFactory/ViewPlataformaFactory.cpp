@@ -31,3 +31,11 @@ string ViewPlataformaFactory::getTagRemoto() {
 	return TAG_FACTORY_PLATAFORMA;
 }
 
+View * ViewPlataformaFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* ViewPlataformaFactory::clone(int cantidad){
+	return new ViewPlataformaFactory((SimpleEditorEstirar *)this->controller,cantidad);
+}
+

@@ -10,6 +10,7 @@
 #include "Area.h"
 #include "FactoryParam.h"
 #include <list>
+#include <map>
 class Jugador {
 private:
 	Area * area;
@@ -27,6 +28,7 @@ public:
 	void agregarParametroFactory(FactoryParam*);
 	std::list<FactoryParam*> getParametrosFactories() const;
 	void recibirTags(std::list<std::string>&);
+	void recibirMapaConfiguracion(std::map<std::string,int>&);
 };
 
 #endif /* JUGADOR_H_ */

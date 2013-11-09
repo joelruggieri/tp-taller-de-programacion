@@ -30,3 +30,13 @@ View* ViewPelotaJuegoFactory::crearVistaPropia(){
 string ViewPelotaJuegoFactory::getTagRemoto() {
 	return TAG_FACTORY_PELOTA;
 }
+
+View * ViewPelotaJuegoFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* ViewPelotaJuegoFactory::clone(int cantidad){
+	return new ViewPelotaJuegoFactory((SimpleEditorAnguloFijo*)this->controller,cantidad);
+}
+
+

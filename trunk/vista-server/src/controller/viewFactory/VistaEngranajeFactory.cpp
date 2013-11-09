@@ -30,3 +30,11 @@ View* VistaEngranajeFactory::crearVistaPropia(){
 string VistaEngranajeFactory::getTagRemoto() {
 	return TAG_FACTORY_ENGRANAJE;
 }
+
+View * VistaEngranajeFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* VistaEngranajeFactory::clone(int cantidad){
+	return new VistaEngranajeFactory((SimpleEditorCambiarRadio*)this->controller,cantidad);
+}
