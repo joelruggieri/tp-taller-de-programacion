@@ -134,9 +134,9 @@ void EditorUnion::mouseMotion(float x, float y) {
 }
 
 void EditorUnion::dropNuevaFigura(SogaEstaticaView* view) {
-	dropear(view, this->figurasFactory->crearSoga(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearSoga(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
 void EditorUnion::dropNuevaFigura(CorreaEstaticaView* view) {
-	dropear(view, this->figurasFactory->crearCorrea(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearCorrea(view->getXCentro(), view->getYCentro(), this->numeroJugadorDuenio));
 }

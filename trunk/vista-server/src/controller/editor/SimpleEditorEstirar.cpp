@@ -73,12 +73,12 @@ void SimpleEditorEstirar::rightClickUp(float int1, float int2) {
 }
 
 void SimpleEditorEstirar::dropNuevaFigura(CintaTransportadoraView* view) {
-	dropear(view, this->figurasFactory->crearCintaTransportadora(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearCintaTransportadora(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 
 }
 
 void SimpleEditorEstirar::dropNuevaFigura(PlataformaView* view) {
-	dropear(view, this->figurasFactory->crearPlataforma(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearPlataforma(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
 void SimpleEditorEstirar::setFigura(FiguraView* f) {

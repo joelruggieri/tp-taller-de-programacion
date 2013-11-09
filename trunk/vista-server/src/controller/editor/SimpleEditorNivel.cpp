@@ -86,7 +86,7 @@ void SimpleEditorNivel::dropFigura(FiguraView* view) {
 
 void SimpleEditorNivel::dropNuevaFigura(PlataformaView* view) {
 
-	dropear(view, this->figurasFactory->crearPlataforma(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearPlataforma(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
 void SimpleEditorNivel::clickDown(float x, float y) {

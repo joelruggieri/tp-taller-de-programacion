@@ -104,23 +104,23 @@ void SimpleEditorAnguloFijo::setFigura(FiguraView*f) {
 }
 
 void SimpleEditorAnguloFijo::dropNuevaFigura(BalancinView* view) {
-	dropear(view, this->figurasFactory->crearBalancin(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearBalancin(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
 void SimpleEditorAnguloFijo::dropNuevaFigura(BolaBolicheView* view) {
 
-	dropear(view, this->figurasFactory->crearBolaBoliche(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearBolaBoliche(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
 void SimpleEditorAnguloFijo::dropNuevaFigura(GloboHelioView* view) {
 
-	dropear(view, this->figurasFactory->crearGloboHelio(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearGloboHelio(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 void SimpleEditorAnguloFijo::dropNuevaFigura(PelotaJuegoView* view) {
 
-	dropear(view, this->figurasFactory->crearPelotaJuego(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearPelotaJuego(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 void SimpleEditorAnguloFijo::dropNuevaFigura(VistaEngranaje* view) {
 
-	dropear(view, this->figurasFactory->crearEngranaje(view->getXCentro(), view->getYCentro()));
+	dropear(view, this->figurasFactory->crearEngranaje(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
