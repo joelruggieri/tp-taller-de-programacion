@@ -35,6 +35,7 @@ float Drag::desplazarCentroA(float &x, float &y) {
 	if(x < 0){
 		x = 0;
 	}
+	cout<< "movido a "<< x << " "<< y << endl;
 	view->desplazarCentroA(x,y);
 	if(view->getModelo()){
 		view->getModelo()->setPosicion(x,y);

@@ -13,10 +13,13 @@
 #include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 namespace CLIENTE {
 class BalancinView: public ObjetoView {
+private:
+	typedef ObjetoView super;
 public:
 	BalancinView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~BalancinView();
 	void update(ViewMsj *);
+	void dibujarse(SDL_Renderer *);
 };
 }
 #endif /* BALANCINVIEW_H_ */

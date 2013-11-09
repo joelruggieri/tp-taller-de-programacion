@@ -18,7 +18,6 @@
 #include "userEvents/KeyEvent.h"
 #include "src/Logger.h"
 
-
 GeneralEventController::GeneralEventController(DrawController * dController) {
 	this->drawController = dController;
 }
@@ -26,22 +25,19 @@ GeneralEventController::~GeneralEventController() {
 	delete drawController;
 }
 
-
-
-
-void  GeneralEventController::procesarEventos(UserEventMsj* m) {
+void GeneralEventController::procesarEventos(UserEventMsj* m) {
 	m->acept(this);
 }
 
 void GeneralEventController::visit(MouseMotionMsj* m) {
 	int nroJugador = m->getDestinatario();
 	std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(nroJugador);
-	if(jugador == controllers.end()){
+	if (jugador == controllers.end()) {
 		string lg = "Jugador no encontrado ";
 		log.concatenar(lg, nroJugador);
 		log.debug(lg);
 	} else {
-		MouseEvent mouse (m->getX(),m->getY(),false,false,m->isCtrl(),m->isShift());
+		MouseEvent mouse(m->getX(), m->getY(), false, false, m->isCtrl(), m->isShift());
 		mouse.mouseMotion(jugador->second);
 	}
 }
@@ -52,14 +48,14 @@ void GeneralEventController::visit(ClickMsj* m) {
 	log.concatenar(lg, nroJugador);
 	log.debug(lg);
 	std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(nroJugador);
-	if(jugador == controllers.end()){
+	if (jugador == controllers.end()) {
 		lg = "Jugador no encontrado ";
 		log.concatenar(lg, nroJugador);
 //		log.concatenar(lg, m->getX());
 //		log.concatenar(lg,m->getY());
 		log.debug(lg);
 	} else {
-		MouseEvent mouse (m->getX(),m->getY(),m->isLeft(),m->isDown(),m->isCtrl(),m->isShift());
+		MouseEvent mouse(m->getX(), m->getY(), m->isLeft(), m->isDown(), m->isCtrl(), m->isShift());
 		mouse.mouseClick(jugador->second);
 	}
 //	MouseEvent mouse(m->getX(), m->getY(),m->isLeft(),m->isDown(),m->isCtrl(),m->isShift());
@@ -70,19 +66,19 @@ void GeneralEventController::visit(KeyMsj* m) {
 	int nroJugador = m->getDestinatario();
 
 	std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(nroJugador);
-	if(jugador == controllers.end()){
+	if (jugador == controllers.end()) {
 		string lg = "Jugador no encontrado ";
 		log.concatenar(lg, nroJugador);
 		log.debug(lg);
 	} else {
-		KeyEvent key (m->getTecla(), m->isPresionada());
+		KeyEvent key(m->getTecla(), m->isPresionada());
 		key.keyPressed(jugador->second);
 	}
 	//ENTREGA3 PASAR AL JUGADOR QUE CORRESPONDA SEGUN EL DESTINATARIO QUE TRAIGA EL MSJ. HACER jugador.key(mouse)
 }
 
 void GeneralEventController::addJugador(JuegoEventsController* j) {
-	this->controllers.insert(pair <int, JuegoEventsController*>(j->getNumeroJugador(), j));
+	this->controllers.insert(pair<int, JuegoEventsController*>(j->getNumeroJugador(), j));
 }
 
 void GeneralEventController::visit(JugadorListo * m) {
@@ -92,22 +88,31 @@ void GeneralEventController::visit(JugadorListo * m) {
 }
 
 void GeneralEventController::visit(DrawEvent*) {
- drawController->dibujar();
+	list<JuegoEventsController*> lista;
+	std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(0);
+	if(jugador != controllers.end()){
+//		cout << "encontro" << endl;
+		lista.push_back(jugador->second);
+
+	} else {
+//		cout<< "no encontro"<<endl;
+	}
+	drawController->dibujar(lista);
 }
 
 void GeneralEventController::visit(CreacionMsj* m) {
 	int nroJugador = m->getDestinatario();
-		string lg = "Se recibe mensaje del destinatario ";
+	string lg = "Se recibe mensaje del destinatario ";
+	log.concatenar(lg, nroJugador);
+	log.debug(lg);
+	std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(nroJugador);
+	if (jugador == controllers.end()) {
+		lg = "Jugador no encontrado ";
 		log.concatenar(lg, nroJugador);
+		//		log.concatenar(lg, m->getX());
+		//		log.concatenar(lg,m->getY());
 		log.debug(lg);
-		std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(nroJugador);
-		if(jugador == controllers.end()){
-			lg = "Jugador no encontrado ";
-			log.concatenar(lg, nroJugador);
-	//		log.concatenar(lg, m->getX());
-	//		log.concatenar(lg,m->getY());
-			log.debug(lg);
-		} else {
-			jugador->second->crearVista(m->getTagObjeto(), m->getX(), m->getY());
-		}
+	} else {
+		jugador->second->crearVista(m->getTagObjeto(), m->getX(), m->getY());
+	}
 }

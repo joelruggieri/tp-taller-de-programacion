@@ -93,7 +93,7 @@ bool CLIENTE::ZonaTablero::mouseMotion(float float1, float float2) {
 }
 
 bool CLIENTE::ZonaTablero::clickUp(float float1, float float2) {
-	if (!this->cuerpo->contacto(float1, float2)) return false;
+//	if (!this->cuerpo->contacto(float1, float2)) return false;
 		bool ctrl;
 		bool shift;
 		this->setearTeclas(&shift,&ctrl);
@@ -103,7 +103,7 @@ bool CLIENTE::ZonaTablero::clickUp(float float1, float float2) {
 }
 
 bool CLIENTE::ZonaTablero::rightClickUp(float float1, float float2) {
-	if (!this->cuerpo->contacto(float1, float2)) return false;
+//	if (!this->cuerpo->contacto(float1, float2)) return false;
 		ClickMsj* b = new ClickMsj(float1, float2, false, false, false, false);
 		salida->push(b);
 		return true;

@@ -10,6 +10,8 @@
 #include <src/threading/ColaEventos.h>
 #include "JuegoEventsController.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
+#include <list>
+using namespace std;
 
 class DrawController {
 private:
@@ -22,7 +24,7 @@ public:
 	virtual ~DrawController();
 	void addJugador(JuegoEventsController *);
 	void setTablero(ZonaTablero *);
-	void dibujar();
+	void dibujar(list<JuegoEventsController*>& jugadores);
 
 };
 
