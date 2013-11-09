@@ -35,7 +35,7 @@ View* ViewObjetoSimpleFactory::crearMotor(ViewObjetoUpdateMsj* o) {
 }
 
 View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj* o) {
-	BalancinView* viewReturn = new BalancinView(o->getX(), o->getY(),ANCHO_BALANCIN, ALTO_BALANCIN,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_BALANCIN));
+	BalancinView* viewReturn = new BalancinView(o->getX(), o->getY(),ANCHO_BALANCIN, ALTO_BALANCIN,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_MOTOR));
 	return viewReturn;
 }
 

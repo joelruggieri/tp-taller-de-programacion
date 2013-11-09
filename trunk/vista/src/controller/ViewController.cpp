@@ -53,7 +53,22 @@ ViewController::~ViewController() {
 }
 
 void ViewController::crearPantalla() {
-	CargadorDeTextures::Instance(renderer);
+	CargadorDeTextures * cargador = CargadorDeTextures::Instance(renderer);
+	cargador->cargarTexture(PATH_VISTA_BALANCIN);
+	cargador->cargarTexture(PATH_VISTA_CORREA);
+	cargador->cargarTexture(PATH_VISTA_PLATAFORMA);
+	cargador->cargarTexture(PATH_VISTA_GLOBO);
+	cargador->cargarTexture(PATH_VISTA_PELOTA);
+	cargador->cargarTexture(PATH_VISTA_BOLA);
+	cargador->cargarTexture(PATH_VISTA_CINTA);
+	cargador->cargarTexture(PATH_VISTA_CINTA_PLATAF);
+	cargador->cargarTexture(PATH_VISTA_CUERDA);
+	cargador->cargarTexture(PATH_VISTA_ENGRANAJE);
+	cargador->cargarTexture(PATH_VISTA_MOTOR);
+	cargador->cargarTexture(PATH_EDICION_UNION);
+	cargador->cargarTexture(PATH_ERROR_IMG);
+
+
 	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
 	PATH_ZONA_CREACION);
 	View * view = new Canvas(60, -10, 120, 20, 0, text);
