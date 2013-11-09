@@ -20,12 +20,13 @@
 #include "src/Constantes.h"
 using namespace std;
 
-JuegoEventsController::JuegoEventsController(ZonaTablero* tablero, ModeloController *modeloController, ZonaCreacion* zona) {
+JuegoEventsController::JuegoEventsController(ZonaTablero* tablero, ModeloController *modeloController, ZonaCreacion* zona, int numero) {
 	this->tablero = tablero;
 	this->creacion = zona;
 	this->modeloController = modeloController;
 	editor = NULL;
 	iniciado = false;
+	this->numeroJugador = numero;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -141,8 +142,8 @@ bool JuegoEventsController::rightClickUp(float x, float y) {
 	return true;
 }
 void JuegoEventsController::dibujarse(list<ViewMsj*> & lista) {
-	tablero->dibujarse(lista);
-	creacion->dibujarse(lista);
+//	tablero->dibujarse(lista);
+//	creacion->dibujarse(lista);
 	if (editor != NULL) {
 		editor->setCtrl(this->control);
 		editor->setShift(this->shift);
@@ -202,18 +203,7 @@ void JuegoEventsController::crearVista(string tag, float x, float y) {
 		FiguraView* view = creacion->crearFigura(tag, x , y);
 		if (view != NULL) {
 			editor = view->getEditor();
-			editor->setCtrl(this->control);
-			editor->setShift(this->shift);
-			if (editor == NULL) {
-				Logger log;
-				log.fatal("La Vista no tiene un editor");
-				throw "La Vista no tiene un editor";
-			}
-			editor->clickDown(x, y);
-			if (editor->isEnd()) {
-				editor = NULL;
-			}
-//			return false;
+			this->clickDown(x,y);
 		}
 
 	}

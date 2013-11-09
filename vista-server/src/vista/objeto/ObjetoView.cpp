@@ -18,7 +18,13 @@ ObjetoView::~ObjetoView() {
 
 void ObjetoView::dibujarse(list<ViewMsj*> & lista){
 	Figura* figura = this->getModelo();
-	ViewObjetoUpdateMsj* viewMensaje = new ViewObjetoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),this->getId(), this->selector);
+	ViewObjetoUpdateMsj* viewMensaje;
+	if(figura == NULL){
+		viewMensaje = new ViewObjetoUpdateMsj(getXCentro(),getYCentro(),0,this->getId(), this->selector);
+	} else {
+		viewMensaje = new ViewObjetoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),this->getId(), this->selector);
+	}
+
 	lista.push_back(viewMensaje);
 
 }

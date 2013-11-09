@@ -97,7 +97,7 @@ JuegoEventsController* JuegoControllerFactory::crearConfiguracionJugador(Jugador
 		factories.push_back(viewFiguraClone);
 	}
 	ZonaCreacion* zona = new ZonaCreacion(factories);
-	JuegoEventsController* juegoEventsController = new JuegoEventsController(this->tablero,this->modeloController,zona);
+	JuegoEventsController* juegoEventsController = new JuegoEventsController(this->tablero,this->modeloController,zona, jugador->getNumero());
 	return juegoEventsController;
 }
 

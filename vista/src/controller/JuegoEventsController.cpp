@@ -7,7 +7,6 @@
 
 #include "JuegoEventsController.h"
 
-
 #include "../vista/figura/FiguraView.h"
 #include "Resizer.h"
 #include "zonaDragAndDrop/ZonaCreacion.h"
@@ -18,7 +17,8 @@
 using namespace std;
 namespace CLIENTE {
 
-JuegoEventsController::JuegoEventsController(ZonaPlay * zplay,ZonaTablero *tablero, ZonaCreacion * creacion, Transformacion * tl) {
+JuegoEventsController::JuegoEventsController(ZonaPlay * zplay, ZonaTablero *tablero, ZonaCreacion * creacion,
+		Transformacion * tl) {
 	this->zplay = zplay;
 	this->tablero = tablero;
 	this->creacion = creacion;
@@ -29,12 +29,12 @@ JuegoEventsController::~JuegoEventsController() {
 }
 
 bool JuegoEventsController::clickDown(int x, int y) {
-	tl->setVector(x,y);
-	float xf,yf;
-	tl->getResultado(xf,yf);
-	if(!tablero->click(xf,yf)){
-		if(!zplay->click(xf,yf)){
-			return creacion->click(xf,yf);
+	tl->setVector(x, y);
+	float xf, yf;
+	tl->getResultado(xf, yf);
+	if (!tablero->click(xf, yf)) {
+		if (!zplay->click(xf, yf)) {
+			return creacion->click(xf, yf);
 		}
 	}
 
@@ -42,52 +42,45 @@ bool JuegoEventsController::clickDown(int x, int y) {
 }
 
 bool JuegoEventsController::clickUp(int x, int y) {
-	tl->setVector(x,y);
-	float xf,yf;
-	tl->getResultado(xf,yf);
-	if(!tablero->clickUp(xf,yf)){
-//		if(!zplay->clickUp(xf,yf)){
-			return creacion->clickUp(xf,yf);
-//		}
-	}
-
+	tl->setVector(x, y);
+	float xf, yf;
+	tl->getResultado(xf, yf);
+	tablero->clickUp(xf, yf);
 	return true;
 }
 
 bool JuegoEventsController::mouseWheelMoved(int x, int y, int amountScrolled) {
-	//ENTREGA3 USAR TL
-	tl->setVector(x,y);
-	float xf,yf;
-	tl->getResultado(xf,yf);
-	creacion->mouseScroll(xf,yf,amountScrolled);
+	tl->setVector(x, y);
+	float xf, yf;
+	tl->getResultado(xf, yf);
+	creacion->mouseScroll(xf, yf, amountScrolled);
 	return true;
 }
-
 
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
 //	if (editor != NULL && !iniciado) {
 //		editor->mouseMotion(corrimientoX, corrimientoY);
 //		editor = editor->isEnd() ? NULL : editor;
 //	}
-	tl->setVector(corrimientoX, corrimientoY );
-		float xf,yf;
-		tl->getResultado(xf,yf);
-		tablero->mouseMotion(xf, yf);
+	tl->setVector(corrimientoX, corrimientoY);
+	float xf, yf;
+	tl->getResultado(xf, yf);
+	tablero->mouseMotion(xf, yf);
 	return true;
 }
 
 bool JuegoEventsController::rightClickDown(int x, int y) {
-	tl->setVector(x,y);
-		float xf,yf;
-		tl->getResultado(xf,yf);
-		if(!tablero->rightClick(xf,yf)){
-			//ENTREGA3 con zonas donde el click derecho no influye qe hacemos ?
+	tl->setVector(x, y);
+	float xf, yf;
+	tl->getResultado(xf, yf);
+	if (!tablero->rightClick(xf, yf)) {
+		//ENTREGA3 con zonas donde el click derecho no influye qe hacemos ?
 //			if(!zplay->rightClick(xf,yf)){
 //				return creacion->rightClick(xf,yf);
 //			}
-		}
+	}
 
-		return true;
+	return true;
 
 	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
 //	if(iniciado) {
@@ -120,10 +113,10 @@ bool JuegoEventsController::rightClickUp(int x, int y) {
 //		editor->rightClickUp(x, y);
 //		editor = editor->isEnd() ? NULL : editor;
 //	}
-	tl->setVector(x,y);
-			float xf,yf;
-			tl->getResultado(xf,yf);
-	tablero->rightClickUp(xf,yf);
+	tl->setVector(x, y);
+	float xf, yf;
+	tl->getResultado(xf, yf);
+	tablero->rightClickUp(xf, yf);
 	return true;
 }
 void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
@@ -146,7 +139,7 @@ void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
 }
 
 void JuegoEventsController::resize(Transformacion* tl) {
-	if(this->tl != NULL){
+	if (this->tl != NULL) {
 		delete this->tl;
 	}
 	this->tl = tl;

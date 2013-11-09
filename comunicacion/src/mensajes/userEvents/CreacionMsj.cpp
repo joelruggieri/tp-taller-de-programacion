@@ -7,8 +7,11 @@
 
 #include "CreacionMsj.h"
 
-CreacionMsj::CreacionMsj(string tag, float x , float y): UserEventMsj(false, false) {
-this->tagObjeto = tag;
+CreacionMsj::CreacionMsj(string tag, float x, float y) :
+		UserEventMsj(false, false) {
+	this->tagObjeto = tag;
+	this->x = x;
+	this->y = y;
 }
 
 CreacionMsj::~CreacionMsj() {

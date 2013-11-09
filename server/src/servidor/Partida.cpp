@@ -27,8 +27,8 @@ Partida::Partida(Nivel* n, int socket) {
 	colaOut = new ColaEventos();
 	this->socket = socket;
 	cleaner = new ThreadCleaner(dispo);
-	drawingService = new DrawThread(colaIn);
 	iniciarGeneralEventController();
+	drawingService = new DrawThread(colaIn);
 	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
 	dispatcher = new EventDispatcherThread(colaOut, dispo);
 }
@@ -93,7 +93,10 @@ void Partida::iniciarGeneralEventController() {
 	this->tablero = new ZonaTablero(50, 50);
 	this->modeloController = new ModeloController();
 	this->controllersFactory = new JuegoControllerFactory(tablero, modeloController);
-	generalController = new GeneralEventController(new DrawController(colaOut));
+	DrawController * dc = new DrawController(colaOut);
+	dc->setTablero(tablero);
+	generalController = new GeneralEventController(dc);
+
 	list<Jugador*>::iterator it;
 	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
 		generalController->addJugador(controllersFactory->crearConfiguracionJugador((*it)));
