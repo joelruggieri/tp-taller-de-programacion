@@ -4,12 +4,12 @@ Nivel:
   NumeroMaximoDeJugadores: 0
 Objetos:
   BolasBoliche:
-    - x: 1
-      y: 1
-    - x: 1
-      y: 1
-    - x: 1
-      y: 1
+    - x: 5
+      y: 87
+    - x: 20
+      y: 20
+    - x: 20
+      y: 40
   Balancines:
     - x: 3
       y: 3
@@ -25,8 +25,8 @@ Objetos:
       xHasta: 0
       yHasta: 0
   PelotasJuego:
-    - x: 5
-      y: 5
+    - x: 75
+      y: 3
   Cintas:
     - x: 6
       y: 7
