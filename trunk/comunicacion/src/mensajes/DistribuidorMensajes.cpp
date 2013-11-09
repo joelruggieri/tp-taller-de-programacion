@@ -42,7 +42,7 @@ void DistribuidorMensajes::visit(UserEventMsj* m) {
 
 void DistribuidorMensajes::visit(ViewMsj* m) {
 	if (views != NULL) {
-		log.debug("Se pocesa mensaje de Vista");
+//		log.debug("Se pocesa mensaje de Vista");
 		m->acept(views);
 	}
 
@@ -52,7 +52,7 @@ void DistribuidorMensajes::visit(MensajePlano* m) {
 	//Puede venir un mensaje por timeout generado por comunicacion, en ese caso lo deleteo.
 	if (m->getTag() != TAG_MSJ_NOTIMEOUT) {
 		if (planos != NULL) {
-			log.debug("Se pocesa mensaje plano");
+//			log.debug("Se pocesa mensaje plano");
 			m->acept(planos);
 		}
 
@@ -61,7 +61,7 @@ void DistribuidorMensajes::visit(MensajePlano* m) {
 
 void DistribuidorMensajes::visit(MensajeInterno * m) {
 	if (internos != NULL) {
-		log.debug("Se pocesa mensaje interno");
+//		log.("Se pocesa mensaje interno");
 		m->acept(internos);
 	}
 }
