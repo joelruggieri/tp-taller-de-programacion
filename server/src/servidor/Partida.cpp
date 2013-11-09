@@ -92,7 +92,7 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 void Partida::iniciarGeneralEventController() {
 	this->tablero = new ZonaTablero(50, 50);
 	this->modeloController = new ModeloController();
-//	this->controllersFactory = new JuegoControllerFactory(tablero, modeloController);
+	this->controllersFactory = new JuegoControllerFactory(tablero, modeloController);
 	generalController = new GeneralEventController(new DrawController(colaOut));
 	list<Jugador*>::iterator it;
 	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
