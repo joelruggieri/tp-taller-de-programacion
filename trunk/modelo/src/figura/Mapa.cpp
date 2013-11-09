@@ -59,7 +59,7 @@ public:
 			bool inside = fixture->TestPoint(m_point);
 			if (inside
 					&& ((fixture->GetFilterData().categoryBits & m_mascara) != 0)) {
-				Figura* fig = (Figura*)fixture->GetUserData();
+				Figura* fig = (Figura*)body->GetUserData();
 				if(fig != NULL && fig->getNumeroJugador() == m_numero){
 					m_fixture = fixture;
 	//				log.debug("La figura confirma la colision");
