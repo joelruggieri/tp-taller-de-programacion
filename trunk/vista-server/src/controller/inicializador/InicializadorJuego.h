@@ -10,12 +10,12 @@
 #include "src/figura/VisitorFigura.h"
 #include "../zonaDragAndDrop/ZonaDragAndDrop.h"
 #include "../viewFactory/ViewFiguraFactory.h"
-#include "../PersistenciaManager.h"
-#include "../JuegoEventsController.h"
-#include "../GeneralEventController.h"
+//#include "../PersistenciaManager.h"
+//#include "../JuegoEventsController.h"
+//#include "../GeneralEventController.h"
 #include <map>
 #include "../../modelo/Cuadrado.h"
-#include "ValidadorEstatico.h"
+//#include "ValidadorEstatico.h"
 
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
@@ -28,6 +28,8 @@
 #include "src/objeto/Correa.h"
 #include "src/objeto/Union.h"
 #include "src/objeto/Soga.h"
+#include "src/Nivel.h"
+#include "src/ModeloController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 using namespace std;
 
@@ -35,16 +37,17 @@ class InicializadorJuego: public VisitorFigura {
 private:
 	ZonaTablero* tablero;
 	map<string, ViewFiguraFactory *> figuraFactory;
-	JuegoEventsController * juegoController;
-	GeneralEventController * eventsController;
-	PersistenciaManager * bbdd;
+	Nivel* nivel;
+	//JuegoEventsController * juegoController;
+	//GeneralEventController * eventsController;
+	//PersistenciaManager * bbdd;
 	ModeloController * modeloController;
 	FiguraFactory * factory;
-	ValidadorEstatico * validador;
+	//ValidadorEstatico * validador;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
 	void agregarUnion(ViewFiguraFactory * factory, Union * modelo);
 public:
-	InicializadorJuego(GeneralEventController * eventsController, ModeloController * modeloController);
+	InicializadorJuego(Nivel* nivel, ModeloController * modeloController);
 	virtual ~InicializadorJuego();
 	void visit(Motor*);
 	void visit(Plataforma*);
@@ -56,7 +59,7 @@ public:
 	void visit(Engranaje*);
 	void visit(Correa*);
 	void visit(Soga*);
-	JuegoEventsController * crearZonaJuego();
+	ZonaTablero* crearTablero();
 };
 
 #endif /* INICIALIZADORJUEGO_H_ */

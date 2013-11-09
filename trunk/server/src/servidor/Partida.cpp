@@ -90,8 +90,9 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 }
 
 void Partida::iniciarGeneralEventController() {
-	this->tablero = new ZonaTablero(50, 50);
 	this->modeloController = new ModeloController();
+	this->inicializadorJuego = new InicializadorJuego(this->nivel,this->modeloController);
+	this->tablero = this->inicializadorJuego->crearTablero();
 	this->controllersFactory = new JuegoControllerFactory(tablero, modeloController);
 	DrawController * dc = new DrawController(colaOut);
 	dc->setTablero(tablero);

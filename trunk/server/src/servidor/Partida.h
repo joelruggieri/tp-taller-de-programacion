@@ -16,6 +16,7 @@
 #include "threading/ThreadCleaner.h"
 #include "src/Serializador.h"
 #include "src/controller/GeneralEventController.h"
+#include "src/controller/inicializador/InicializadorJuego.h"
 #include "threading/DrawThread.h"
 #include "src/controller/inicializador/JuegoControllerFactory.h"
 #include "src/controller/zonaDragAndDrop/ZonaTablero.h"
@@ -36,6 +37,7 @@ private:
 	JuegoControllerFactory * controllersFactory;
 	ZonaTablero * tablero;
 	ModeloController * modeloController;
+	InicializadorJuego* inicializadorJuego;
 	int socket;
 	Logger log;
 	void procesarRequest(int socketDesc, Serializador & serializador);
