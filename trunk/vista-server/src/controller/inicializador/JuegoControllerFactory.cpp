@@ -82,7 +82,6 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 JuegoEventsController* JuegoControllerFactory::crearConfiguracionJugador(Jugador* jugador){
 	std::map<std::string,int> configuracionFactories;
 	std::list<ViewFiguraFactory*> factories;
-	ViewFiguraFactory* viewFigura;
 	ViewFiguraFactory* viewFiguraClone;
 	jugador->recibirMapaConfiguracion(configuracionFactories);
 	std::map<std::string,int>::iterator it;
