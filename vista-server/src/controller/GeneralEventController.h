@@ -26,14 +26,13 @@ using namespace std;
 
 
 //ENTREGA3 REFACTOR HAY QUE HACER QUE TENGA LOS 4 JUEGOS EVENT CONTROLLERS Y YA OLVIDARSE DE LA GENERALIDAD YA QUE SACAMOS TODA BARRA DE CAMBIAR FONDO Y DEMAS
-//SE PUEDE PROGRAMAR OTRO GENERALEVENTCONTROLLER Y NO TOCAR ESTE.
 class GeneralEventController: public UserEventVisitor, public MensajeInternoVisitor {
 private:
 	DrawController * drawController;
 	map <int, JuegoEventsController * > controllers;
 	Logger log;
 public:
-	GeneralEventController(std::list<Jugador*>& jugadoresNivel, DrawController * dController);
+	GeneralEventController(DrawController * dController);
 	virtual ~GeneralEventController();
 	void procesarEventos(UserEventMsj *);
 	void addJugador(JuegoEventsController *);

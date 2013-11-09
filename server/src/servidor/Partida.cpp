@@ -28,9 +28,9 @@ Partida::Partida(Nivel* n, int socket) {
 	this->socket = socket;
 	cleaner = new ThreadCleaner(dispo);
 	drawingService = new DrawThread(colaIn);
-	generalController = new GeneralEventController(n->getJugadores(), new DrawController(colaOut));
+
 	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
-	dispatcher = new EventDispatcherThread(colaOut,dispo);
+	dispatcher = new EventDispatcherThread(colaOut, dispo);
 }
 
 Partida::~Partida() {
@@ -45,6 +45,10 @@ Partida::~Partida() {
 	delete cleaner;
 	delete drawingService;
 	delete receiver;
+	delete generalController;
+	delete modeloController;
+	delete tablero;
+	delete controllersFactory;
 }
 
 void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
@@ -83,6 +87,17 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		jugadorNuevo->run();
 	}
 
+}
+
+void Partida::iniciarGeneralEventController() {
+	this->tablero = new ZonaTablero(50, 50);
+	this->modeloController = new ModeloController();
+//	this->controllersFactory = new JuegoControllerFactory(tablero, modeloController);
+	generalController = new GeneralEventController(new DrawController(colaOut));
+//	list<Jugador*>::iterator it;
+//	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
+//		generalController->addJugador(controllersFactory->crearConfiguracionJugador((*it)));
+//	}
 }
 
 void Partida::run(int fdJugador1) {

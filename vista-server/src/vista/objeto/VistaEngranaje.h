@@ -12,7 +12,7 @@ class SimpleEditorAnguloFijo;
 class SimpleEditorCambiarRadio;
 
 class VistaEngranaje: public ObjetoView {
-	typedef FiguraView super;
+	typedef ObjetoView super;
 private:
 	float diametro;
 public:

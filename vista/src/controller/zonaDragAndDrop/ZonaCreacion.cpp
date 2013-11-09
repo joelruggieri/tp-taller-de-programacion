@@ -142,8 +142,6 @@ bool ZonaCreacion::mouseScroll(float x, float y, int amountScrolled) {
 
 bool ZonaCreacion::clickUp(float float1, float float2) {
 	if (!this->cuerpo->contacto(float1, float2)) return false;
-		bool ctrl;
-		bool shift;
 		ClickMsj* b = new ClickMsj(float1, float2, false, true, false, false);
 		salida->push(b);
 		return true;

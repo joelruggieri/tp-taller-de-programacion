@@ -19,7 +19,7 @@
 #include "src/Logger.h"
 
 
-GeneralEventController::GeneralEventController(std::list<Jugador*>& jugadoresNivel, DrawController * dController) {
+GeneralEventController::GeneralEventController(DrawController * dController) {
 	this->drawController = dController;
 }
 GeneralEventController::~GeneralEventController() {

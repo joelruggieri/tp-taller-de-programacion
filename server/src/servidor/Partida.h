@@ -17,6 +17,8 @@
 #include "src/Serializador.h"
 #include "src/controller/GeneralEventController.h"
 #include "threading/DrawThread.h"
+#include "src/controller/inicializador/JuegoControllerFactory.h"
+#include "src/controller/zonaDragAndDrop/ZonaTablero.h"
 using namespace std;
 
 class Partida {
@@ -31,9 +33,13 @@ private:
 	ThreadCleaner * cleaner;
 	GeneralEventController * generalController;
 	DrawThread * drawingService;
+	JuegoControllerFactory * controllersFactory;
+	ZonaTablero * tablero;
+	ModeloController * modeloController;
 	int socket;
 	Logger log;
 	void procesarRequest(int socketDesc, Serializador & serializador);
+	void iniciarGeneralEventController();
 public:
 	Partida(Nivel * n, int socket);
 	virtual ~Partida();

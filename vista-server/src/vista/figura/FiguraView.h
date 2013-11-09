@@ -32,7 +32,7 @@ public:
 	Figura * getModelo();
 	virtual void setModelo(Figura* modelo);
 	void drop();
-	void dibujarse(list<ViewMsj*> & lista);
+	void dibujarse(list<ViewMsj*> & lista) = 0;
 	void click(float x, float y);
 //	virtual void update();
 	virtual EditorNivel* getEditor() = 0;
