@@ -16,6 +16,7 @@ private:
 	ModeloController* modeloController;
 	map<string, ViewFiguraFactory* > factoriesDelJuego;
 	FiguraFactory* factory;
+	std::list<DropController*> editores;
 public:
 	JuegoControllerFactory(ZonaTablero* tablero, ModeloController* modeloController);
 	JuegoEventsController* crearConfiguracionJugador(Jugador* jugador);

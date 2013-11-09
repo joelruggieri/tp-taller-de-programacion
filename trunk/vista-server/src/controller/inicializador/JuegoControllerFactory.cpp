@@ -44,12 +44,18 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	angulosPermitidos2.push_back(0.0);
 	angulosPermitidos2.push_back(45.0);
 	SimpleEditorCambiarRadio* editorCambiarRadio = new SimpleEditorCambiarRadio(modeloController,tablero,this->factory, 100);
+	editores.push_back(editorCambiarRadio);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo1 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos1);
+	editores.push_back(editorSimpleAnguloFijo1);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo2 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos2);
+	editores.push_back(editorSimpleAnguloFijo2);
 	//SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
+	editores.push_back(editorSimpleEstirar);
 	EditorUnion* editorunion = new EditorUnion(modeloController, tablero, this->factory, 100);
+	editores.push_back(editorunion);
 	SimpleEditorOrientacionCambiable* editorOrientacionCambiable = new SimpleEditorOrientacionCambiable(modeloController, tablero, this->factory, 100);
+	editores.push_back(editorOrientacionCambiable);
 	//EditorDeEstiramientoDeCinta* editorCinta = new EditorDeEstiramientoDeCinta(modeloController, tablero, this->factory, 100);
 	viewFactory = new ViewBalancinFactory(editorSimpleAnguloFijo2,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_BALANCIN,viewFactory));
@@ -96,6 +102,13 @@ JuegoEventsController* JuegoControllerFactory::crearConfiguracionJugador(Jugador
 }
 
 JuegoControllerFactory::~JuegoControllerFactory() {
-	// TODO Auto-generated destructor stub
+	std::map<std::string,ViewFiguraFactory*>::iterator itViewFactory;
+	for(itViewFactory = this->factoriesDelJuego.begin(); itViewFactory != this->factoriesDelJuego.end(); ++itViewFactory){
+		delete(itViewFactory->second);
+	}
+	std::list<DropController*>::iterator itEditores;
+	for(itEditores = this->editores.begin(); itEditores != this->editores.end(); ++itEditores){
+		delete (*itEditores);
+	}
 }
 
