@@ -12,7 +12,7 @@
 class SimpleEditorEstirar;
 class PlataformaView: public ObjetoView {
 private:
-	typedef FiguraView super;
+	typedef ObjetoView super;
 	float ancho;
 public:
 	PlataformaView(float x, float y, float ancho,SimpleEditorEstirar* controller);
