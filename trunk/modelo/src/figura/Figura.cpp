@@ -71,6 +71,7 @@ Figura::Figura() {
 	yb = y;
 	rotacionb =0;
 	traccionable = false;
+	numeroJugadorDuenio = -1;
 }
 
 Figura::Figura(float x, float y) {
@@ -83,6 +84,7 @@ Figura::Figura(float x, float y) {
 	xb = x;
 	yb = y;
 	rotacionb =0;
+	numeroJugadorDuenio = -1;
 }
 
 
@@ -215,6 +217,7 @@ Figura::Figura(const Figura& fig) {
 	this->yb = fig.y;
 	this->rotacion = fig.rotacion;
 	this->rotacionb = fig.rotacion;
+	this->numeroJugadorDuenio = fig.numeroJugadorDuenio;
 }
 
 bool Figura::esTraccionable() {
@@ -241,4 +244,10 @@ void Figura::setPosicion(float x, float y) {
 	notify(CAMBIO_ESPACIAL_FORZADO);
 }
 
+void Figura::setNumeroJugador(int jugadorDuenio){
+	this->numeroJugadorDuenio = jugadorDuenio;
+}
 
+int Figura::getNumeroJugador(){
+	return numeroJugadorDuenio;
+}

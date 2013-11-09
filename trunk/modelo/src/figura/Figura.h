@@ -26,6 +26,7 @@ class Figura: public Posicionable, public ObservableModelo {
 protected:
 	float x;
 	float y;
+	int numeroJugadorDuenio;
 	double rotacion;
 	bool traccionable;
 	float xb,yb;
@@ -57,6 +58,8 @@ public:
 	void setPosicion(float, float);
 	void setX(float x);
 	void setY(float y);
+	void setNumeroJugador(int numero);
+	int getNumeroJugador();
 	virtual void setRotacion(double rotation);
 	virtual void crearFisica() = 0;
 	virtual bool crearFisicaEstatica();
