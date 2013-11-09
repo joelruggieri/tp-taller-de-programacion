@@ -26,7 +26,7 @@ public:
 	bool crearUnion(Union* figura);
 	bool removerFigura(Figura* figura);
 	list<Figura*>& getFiguras();
-	Figura * pickUp(float, float, uint16 mascara);
+	Figura * pickUp(float, float, uint16 mascara,int numeroJugador);
 	void start();
 	void step();
 	void stop();

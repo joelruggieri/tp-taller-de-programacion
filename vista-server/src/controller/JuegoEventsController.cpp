@@ -39,7 +39,7 @@ bool JuegoEventsController::clickDown(float x, float y) {
 		if (!iniciado) {
 			//ENTREGA3 DAR VUELTA EL SISTEMA DE COORDENADAS DE LA TOOLBAR DERECHA
 			FiguraView * view = NULL;
-			Figura * fig = this->modeloController->pickUp(x, y, CATEGORIA_UNION | CATEGORIA_FIGURAS);
+			Figura * fig = this->modeloController->pickUp(x, y, CATEGORIA_UNION | CATEGORIA_FIGURAS,this->numeroJugador);
 			//ENTREGA3, no se va a buscar mas a la zona de creacion, ya que ahora viene por otro lado el evento de creacion
 			if (fig != NULL) {
 				view = (FiguraView *) fig->getVista();
@@ -113,7 +113,7 @@ bool JuegoEventsController::rightClickDown(float x, float y) {
 	}
 	if (editor == NULL) {
 		// VOY A BUSCAR SOLO AL MODELO POR ALGO QUE EXISTA AHI.
-		Figura * fig = this->modeloController->pickUp(x, y, CATEGORIA_UNION | CATEGORIA_FIGURAS);
+		Figura * fig = this->modeloController->pickUp(x, y, CATEGORIA_UNION | CATEGORIA_FIGURAS,this->numeroJugador);
 		if (fig != NULL) {
 			editor = ((FiguraView *) fig->getVista())->getEditor();
 			editor->setNumeroJugador(this->numeroJugador);

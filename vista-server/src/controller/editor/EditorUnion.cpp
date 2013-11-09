@@ -28,7 +28,7 @@ void EditorUnion::clickDown(float x, float y) {
 		super::clickDown(x, y);
 	} else {
 		Union * un = (Union *) editado->getModelo();
-		Figura* figFinal = modeloController->pickUp(un->getXFinal(), un->getYFinal(), un->getMascaraExtremos());
+		Figura* figFinal = modeloController->pickUp(un->getXFinal(), un->getYFinal(), un->getMascaraExtremos(),un->getNumeroJugador());
 		if (figFinal != NULL && un->isFinValido(figFinal, x, y)) {
 			un->extraerPosFinal(figFinal, x, y);
 			bool exitoVista = tablero->agregarFigura(this->editado);
@@ -95,7 +95,7 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 	figura->setVista(vista);
 	vista->setModelo(figura);
 	Union * un = (Union *) figura;
-	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY(), un->getMascaraExtremos());
+	Figura* figInicial = modeloController->pickUp(un->getX(), un->getY(), un->getMascaraExtremos(),un->getNumeroJugador());
 	if (figInicial != NULL && un->isInicioValido(figInicial, this->clickDownX, this->clickDownY)) {
 		editado = vista;
 		primerClick = false;
