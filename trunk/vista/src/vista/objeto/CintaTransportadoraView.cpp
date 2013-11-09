@@ -14,13 +14,11 @@
 namespace CLIENTE {
 #define RADTODEG 57.295779513082320876f
 
-CintaTransportadoraView::CintaTransportadoraView(float x, float y, float w, float h,float altoModelo, int altoPlataforma, SDL_Texture* textura) :
-		ObjetoView(x, y, w, h, textura) {
-	this->alto = altoModelo;
-	this->altoPlataforma = altoPlataforma;
-//	pieza = CargadorDeTextures::Instance()->cargarTexture("resource/eslabon_cinta.png");
+CintaTransportadoraView::CintaTransportadoraView(float x, float y, float w,
+		float h, SDL_Texture* textura) :
+		ObjetoView(x, y,w, h, textura) {
 	rueda = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_ENGRANAJE);
-	recalcular();
+	altocintal = 1;
 }
 
 CintaTransportadoraView::~CintaTransportadoraView() {
@@ -28,54 +26,42 @@ CintaTransportadoraView::~CintaTransportadoraView() {
 }
 
 void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
+	SDL_Rect dest;
+//	calculo el alto donde va a estar la plataforma
+	dest.x = xp + radiop ;
+	dest.y = yp;
+	dest.w = wp - 2 * radiop  ;
+	dest.h = altocintap;
+	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
+	dest.y = yp + hp - altocintap;
+	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
+	dest.x = xmedp;
+	dest.w = radiop*2;
+	dest.h = radiop*2;
+	dest.y = yp;
 
-//	SDL_Rect dest;
-	//calculo el alto donde va a estar la plataforma
-//	dest.x = this->getX() + alto / 2;
-//	dest.y = this->getY();
-//	dest.w = this->getW() - alto;
-//	dest.h = this->altoPlataforma;
-//	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
-//	dest.y = this->getY() + this->getH() - altoPlataforma;
-//	SDL_RenderCopy(r, this->getTexture(), NULL, &dest);
-//	dest.x = this->xEngrIzq;
-//	dest.y = yEngranajes;
-//	dest.w = this->alto;
-//	dest.h = this->alto;
-//	recalcular();
-
-//ENTREGA3 CUANDO ESTE LO DEL mensaje  LO SETEO EN EL UPDATE LO QUE NECESITE DE LA CINTA.
-
-//	if (getModelo() != NULL) {
-//		CintaTransportadora * ci = dynamic_cast<CintaTransportadora*>(this->getModelo());
-//		if (ci->getRotacionEje()) {
-//			SDL_RenderCopyEx(r, rueda, NULL, &dest, ci->getRotacionEje(), NULL, SDL_FLIP_NONE);
-//			dest.x = this->getXCentro() - alto / 2;
-//			SDL_RenderCopyEx(r, rueda, NULL, &dest, ci->getRotacionEje(), NULL, SDL_FLIP_NONE);
-//			dest.x = this->xEngrDer;
-//			SDL_RenderCopyEx(r, rueda, NULL, &dest, ci->getRotacionEje(), NULL, SDL_FLIP_NONE);
-//		} else {
-//			SDL_RenderCopy(r, rueda, NULL, &dest);
-//			dest.x = this->getXCentro() - alto / 2;
-//			SDL_RenderCopy(r, rueda, NULL, &dest);
-//			dest.x = this->xEngrDer;
-//			SDL_RenderCopy(r, rueda, NULL, &dest);
-//		}
-//	} else {
-//		SDL_RenderCopy(r, rueda, NULL, &dest);
-//		dest.x = this->getXCentro() - alto / 2;
-//		SDL_RenderCopy(r, rueda, NULL, &dest);
-//		dest.x = this->xEngrDer;
-//		SDL_RenderCopy(r, rueda, NULL, &dest);
-//	}
+	if (angulo) {
+//		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
+//		dest.x = xizqp;
+//		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
+//		dest.x = xderp;
+//		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
+	} else {
+		SDL_RenderCopy(r, rueda, NULL, &dest);
+		dest.x = xizqp;
+		SDL_RenderCopy(r, rueda, NULL, &dest);
+		dest.x = xderp;
+		SDL_RenderCopy(r, rueda, NULL, &dest);
+	}
 }
 
 void CintaTransportadoraView::resizear() {
-
-	//ENTREGA3 USAR LA GETTL CON LA TRANSFORMACION.
-//	super::resizear();
-//	alto = Resizer::Instance()->resizearDistanciaY(alto);
-//	altoPlataforma = Resizer::Instance()->resizearDistanciaY(altoPlataforma);
+	super::resizear();
+	radiop = tl->escalarInversaEnX(RADIO_EJE_CINTA_LOG);
+	xizqp = tl->escalarInversaEnX(xizql);
+	xderp = tl->escalarInversaEnX(xderl);
+	xmedp = tl->escalarInversaEnX(xmedl);
+	altocintap = tl->escalarInversaEnX(altocintal);
 }
 
 //	FiguraView::dibujarse(renderer, dest);
@@ -124,20 +110,19 @@ void CintaTransportadoraView::resizear() {
 ////		dibujarParte(renderer, marcosRuedas[1], angulosRuedas[1], rueda);
 //	}
 
-
 void CintaTransportadoraView::recalcular() {
-//	this->yEngranajes = this->getYCentro() - alto / 2;
-//	this->xEngrIzq = this->getXCentro() - (this->getW() / 2);
-//	this->xEngrDer = this->getXCentro() + (this->getW() / 2) - alto;
+	xizql = xl - wl/2.0  ;
+	xderl = xl + wl/2.0 - 2 *RADIO_EJE_CINTA_LOG;
+	xmedl = xl -  RADIO_EJE_CINTA_LOG;
 }
 
 void CintaTransportadoraView::update(ViewMsj* mje) {
-	ViewObjetoConAnchoUpdateMsj* mjeCurrent = (ViewObjetoConAnchoUpdateMsj*)mje;
+	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*) mje ;
 	this->setXl(mjeCurrent->getX());
 	this->setYl(mjeCurrent->getY());
 	this->setAngulo(mjeCurrent->getAngulo());
-	this->setWl(mjeCurrent->getAncho());
-
+	recalcular();
+	resizear();
 }
 
 int CintaTransportadoraView::getLayer() {

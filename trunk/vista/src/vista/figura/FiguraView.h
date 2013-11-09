@@ -18,10 +18,9 @@ class FiguraView: public View, public Observable{
 private:
 	SDL_Texture * textura;
 	typedef View super;
-	float angulo;
 
 protected:
-	Transformacion tl;
+	float angulo;
 public:
 	FiguraView(float x, float y, float w, float h, SDL_Texture* textura);
 	virtual ~FiguraView();

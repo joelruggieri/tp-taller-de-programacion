@@ -16,6 +16,8 @@
 #include "../../vista/objeto/BalancinView.h"
 #include "../../vista/objeto/MotorView.h"
 #include "../../vista/objeto/BolaBolicheView.h"
+#include "../../vista/objeto/SogaEstaticaView.h"
+#include "../../vista/objeto/CorreaEstaticaView.h"
 #include "../../ConstantesVista.h"
 namespace CLIENTE {
 
@@ -27,6 +29,8 @@ private:
 	View * crearPelota(ViewObjetoUpdateMsj * );
 	View * crearMotor(ViewObjetoUpdateMsj * );
 	View * crearBalancin(ViewObjetoUpdateMsj * );
+	View* crearSogaEstatica(ViewObjetoUpdateMsj*);
+	View* crearCorreaEstatica(ViewObjetoUpdateMsj*);
 public:
 	ViewObjetoSimpleFactory();
 	virtual ~ViewObjetoSimpleFactory();

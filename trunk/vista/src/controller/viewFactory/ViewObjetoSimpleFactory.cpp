@@ -39,6 +39,16 @@ View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj* o) {
 	return viewReturn;
 }
 
+View* ViewObjetoSimpleFactory::crearSogaEstatica(ViewObjetoUpdateMsj* o) {
+	return new SogaEstaticaView(o->getX(), o->getY(),ANCHO_UNION_ESTATICA, ALTO_UNION_ESTATICA, CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CUERDA));
+}
+
+View* ViewObjetoSimpleFactory::crearCorreaEstatica(ViewObjetoUpdateMsj* o) {
+	return new CorreaEstaticaView(o->getX(), o->getY(),ANCHO_UNION_ESTATICA, ALTO_UNION_ESTATICA, CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CORREA));
+
+}
+
+
 ViewObjetoSimpleFactory::~ViewObjetoSimpleFactory() {
 	// TODO Auto-generated destructor stub
 }
@@ -62,6 +72,12 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	case OBJ_SIMPLE_S_MOTOR:
 		viewRetorn = this->crearMotor(a);
 		break;
+	case OBJ_UNION_S_SOGA_ESTATICA:
+		viewRetorn = this->crearSogaEstatica(a);
+		break;
+	case OBJ_UNION_S_CORREA_ESTATICA:
+		viewRetorn = this->crearCorreaEstatica(a);
+		break;
 	}
 
 	return viewRetorn;
@@ -72,3 +88,5 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 
 
 } /* namespace CLIENTE */
+
+

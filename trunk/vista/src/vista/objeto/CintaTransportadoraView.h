@@ -13,14 +13,16 @@
 namespace CLIENTE {
 class CintaTransportadoraView: public ObjetoView {
 public:
-	CintaTransportadoraView(float x, float y, float w, float h,float altoModelo,int altoPlataforma, SDL_Texture * textura);
+	CintaTransportadoraView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~CintaTransportadoraView();
 	void update(ViewMsj *);
 	void dibujarse(SDL_Renderer*);
 private:
-	int xEngrIzq, xEngrDer, alto, yEngranajes,altoPlataforma;
-	SDL_Texture * rueda;
+	float xizql, xderl, xmedl;
+	int xizqp, xderp, radiop, altocintal, xmedp;
+	float altocintap;
 	typedef ObjetoView super;
+	SDL_Texture * rueda;
 	void recalcular();
 	void resizear();
 	int getLayer();
