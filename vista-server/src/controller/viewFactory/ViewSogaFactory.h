@@ -20,6 +20,8 @@ public:
 	FiguraView * crear(float,float);
 	View * crearVistaPropia();
 	string getTagRemoto();
+	View * crearVistaPropia(float,float,float,float);
+	ViewFiguraFactory* clone(int);
 };
 
 } /* namespace std */

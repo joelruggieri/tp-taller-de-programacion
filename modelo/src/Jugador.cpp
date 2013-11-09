@@ -58,3 +58,11 @@ void Jugador::recibirTags(std::list<std::string>& lista){
 		lista.push_back((*it)->getNombre());
 	}
 }
+
+void Jugador::recibirMapaConfiguracion(std::map<std::string,int>& mapa){
+	std::list<FactoryParam*>::iterator it;
+
+	for(it = parametrosFactories.begin(); it != parametrosFactories.end(); ++it){
+		mapa.insert(pair<std::string, int>((*it)->getNombre(),(*it)->getCantidad()));
+	}
+}

@@ -23,3 +23,11 @@ string ViewCorreaDinamicaFactory::getTagRemoto() {
 	//esta factory no sirve para las zonas de creacion asi que el tag remoto no aplica para esta
 	return "";
 }
+
+ViewFiguraFactory* ViewCorreaDinamicaFactory::clone(int cantidad){
+	return new ViewCorreaDinamicaFactory((EditorUnion*)this->controller,cantidad);
+}
+
+View * ViewCorreaDinamicaFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}

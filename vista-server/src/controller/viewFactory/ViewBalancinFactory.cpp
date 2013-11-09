@@ -28,3 +28,11 @@ View * ViewBalancinFactory::crearVistaPropia(){
 string ViewBalancinFactory::getTagRemoto() {
 	return TAG_FACTORY_BALANCIN;
 }
+
+View * ViewBalancinFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* ViewBalancinFactory::clone(int cantidad){
+	return new ViewBalancinFactory((SimpleEditorAnguloFijo *)this->controller,cantidad);
+}

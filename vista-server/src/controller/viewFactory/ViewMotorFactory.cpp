@@ -30,3 +30,11 @@ View* ViewMotorFactory::crearVistaPropia(){
 string ViewMotorFactory::getTagRemoto() {
 	return TAG_FACTORY_MOTOR;
 }
+
+View * ViewMotorFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* ViewMotorFactory::clone(int cantidad){
+	return new ViewMotorFactory((SimpleEditorOrientacionCambiable *)this->controller,cantidad);
+}

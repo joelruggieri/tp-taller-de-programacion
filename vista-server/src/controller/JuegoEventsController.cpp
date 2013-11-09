@@ -20,9 +20,9 @@
 #include "src/Constantes.h"
 using namespace std;
 
-JuegoEventsController::JuegoEventsController(ModeloController *modeloController) {
-	this->tablero = NULL;
-	this->creacion = NULL;
+JuegoEventsController::JuegoEventsController(ZonaTablero* tablero, ModeloController *modeloController, ZonaCreacion* zona) {
+	this->tablero = tablero;
+	this->creacion = zona;
 	this->modeloController = modeloController;
 	editor = NULL;
 	iniciado = false;

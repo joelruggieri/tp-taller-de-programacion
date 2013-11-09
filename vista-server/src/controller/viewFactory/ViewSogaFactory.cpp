@@ -31,3 +31,11 @@ FiguraView* ViewSogaFactory::crear(float x, float y) {
 string std::ViewSogaFactory::getTagRemoto() {
 return TAG_FACTORY_SOGA;
 }
+
+View * ViewSogaFactory::crearVistaPropia(float,float,float,float){
+	return NULL;
+}
+
+ViewFiguraFactory* ViewSogaFactory::clone(int cantidad){
+	return new ViewSogaFactory((EditorUnion*)this->controller,cantidad);
+}
