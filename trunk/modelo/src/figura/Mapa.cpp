@@ -74,7 +74,7 @@ public:
 	uint16 m_mascara;
 };
 
-Figura* Mapa::pickUp(float x, float y, uint16 mascara) {
+Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
 	if (!isAdentro(x, y)) {
 		return NULL;
 	}
@@ -90,7 +90,8 @@ Figura* Mapa::pickUp(float x, float y, uint16 mascara) {
 		b2Body* body = callback.m_fixture->GetBody();
 		// TODO SI HUBIERA JOINTS HABRÍA QUE VER COMO MANEJARLAS, quizas no dejar draguear si hay un joint de soga o algo asi.
 		Figura* figura = (Figura*) (body->GetUserData());
-		return figura;
+		if(numeroJugador == figura->getNumeroJugador())
+				return figura;
 	}
 	return NULL;
 

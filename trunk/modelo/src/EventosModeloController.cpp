@@ -41,8 +41,8 @@ list<Figura*>& ModeloController::getFiguras() {
 	return this->figuras;
 }
 
-Figura* ModeloController::pickUp(float x, float y, uint16 mascara) {
-	return mapa->pickUp(x,y, mascara);
+Figura* ModeloController::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
+	return mapa->pickUp(x,y, mascara, numeroJugador);
 }
 
 void ModeloController::step() {
@@ -61,12 +61,12 @@ void ModeloController::stop() {
 bool ModeloController::crearUnion(Union* figura) {
 
 		Figura* fInicial = this->pickUp(figura->getXInicial(),
-				figura->getYInicial(), figura->getMascaraExtremos());
+				figura->getYInicial(), figura->getMascaraExtremos(),figura->getNumeroJugador());
 		if(fInicial == NULL) {
 			return false;
 		}
 		Figura* fFinal = this->pickUp(figura->getXFinal(),
-				figura->getYFinal(), figura->getMascaraExtremos());
+				figura->getYFinal(), figura->getMascaraExtremos(),figura->getNumeroJugador());
 		if(fFinal == NULL) {
 			return false;
 		}
