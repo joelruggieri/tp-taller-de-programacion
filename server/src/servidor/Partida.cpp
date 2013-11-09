@@ -94,10 +94,10 @@ void Partida::iniciarGeneralEventController() {
 	this->modeloController = new ModeloController();
 //	this->controllersFactory = new JuegoControllerFactory(tablero, modeloController);
 	generalController = new GeneralEventController(new DrawController(colaOut));
-//	list<Jugador*>::iterator it;
-//	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
-//		generalController->addJugador(controllersFactory->crearConfiguracionJugador((*it)));
-//	}
+	list<Jugador*>::iterator it;
+	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
+		generalController->addJugador(controllersFactory->crearConfiguracionJugador((*it)));
+	}
 }
 
 void Partida::run(int fdJugador1) {
