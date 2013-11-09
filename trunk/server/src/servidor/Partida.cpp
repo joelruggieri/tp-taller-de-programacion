@@ -28,7 +28,7 @@ Partida::Partida(Nivel* n, int socket) {
 	this->socket = socket;
 	cleaner = new ThreadCleaner(dispo);
 	drawingService = new DrawThread(colaIn);
-
+	iniciarGeneralEventController();
 	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
 	dispatcher = new EventDispatcherThread(colaOut, dispo);
 }
@@ -106,7 +106,6 @@ void Partida::run(int fdJugador1) {
 	dispatcher->run();
 	receiver->run();
 	drawingService->run();
-
 	procesarRequest(fdJugador1, serializador);
 	while (true) {
 		sleep(2);
