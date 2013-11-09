@@ -20,7 +20,7 @@ View* ViewObjetoAnchoUpdateFactory::crearPlataforma(
 }
 
 View* ViewObjetoAnchoUpdateFactory::crearCinta(ViewObjetoConAnchoUpdateMsj* o ) {
-	return new CintaTransportadoraView(o->getX(), o->getY(), o->getAncho(), ANCHO_CINTA, ANCHO_CINTA,ANCHO_CINTA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CINTA));
+	return new CintaTransportadoraView(o->getX(), o->getY(), o->getAncho(), ALTO_CINTA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CINTA_PLATAF));
 }
 
 ViewObjetoAnchoUpdateFactory::ViewObjetoAnchoUpdateFactory() {

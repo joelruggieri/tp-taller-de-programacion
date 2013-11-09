@@ -11,6 +11,7 @@
 #include "UnionEstaticaView.h"
 #include "UnionView.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 namespace CLIENTE {
 
 class SogaEstaticaView: public UnionEstaticaView {

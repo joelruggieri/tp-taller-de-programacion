@@ -20,8 +20,8 @@ SogaEstaticaView::~SogaEstaticaView() {
 }
 
 void SogaEstaticaView::update(ViewMsj* mje) {
-	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) mje;
-	this->setXp(mjeCurrent->getX());
-	this->setYp(mjeCurrent->getY());
+	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*) mje;
+	this->setXl(mjeCurrent->getX());
+	this->setYl(mjeCurrent->getY());
 }
 }

@@ -57,6 +57,6 @@ void VistaEngranaje::dibujarse(list<ViewMsj*> & lista){
 	if(figura != NULL)
 		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId(), this->selector);
 	else //ENTREGA3 CUANDO NO EXISTE EL MODELO, NO SE DE DONDE AGARRAR EL ANGULO, SI QUIREN LO METO EN LA VISTA.
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->diametro,this->getId(), this->selector);
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->diametro * 2,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 }

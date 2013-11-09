@@ -29,7 +29,7 @@ namespace CLIENTE {
 #define ANCHO_ENGRANAJE 13
 
 #define ALTO_VISTA_CINTA_RAMPA_LOG 1.0
-#define RADIO_EJE_CINTA_LOG 3
+#define RADIO_EJE_CINTA_LOG 2.6
 #define PATH_VISTA_BALANCIN "resource/balancin.png"
 #define PATH_VISTA_CORREA "resource/correa.png"
 #define PATH_VISTA_BALANCIN_F "resource/balancin_f.png"

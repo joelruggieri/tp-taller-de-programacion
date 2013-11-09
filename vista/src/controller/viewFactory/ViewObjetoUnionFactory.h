@@ -24,9 +24,9 @@ public:
 	View* crear (ViewObjetoUnionUpdateMsj*);
 private:
 	View* crearSoga(ViewObjetoUnionUpdateMsj*);
-	View* crearSogaEstatica(ViewObjetoUnionUpdateMsj*);
+//	View* crearSogaEstatica(ViewObjetoUnionUpdateMsj*);
 	View* crearCorrea(ViewObjetoUnionUpdateMsj*);
-	View* crearCorreaEstatica(ViewObjetoUnionUpdateMsj*);
+//	View* crearCorreaEstatica(ViewObjetoUnionUpdateMsj*);
 };
 
 } /* namespace CLIENTE */
