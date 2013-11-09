@@ -12,16 +12,16 @@ class FiguraFactory {
 public:
 	FiguraFactory();
 	virtual ~FiguraFactory();
-	Figura * crearMotor(float x,float y);
-	Figura * crearPlataforma(float x, float y);
-	Figura*  crearGloboHelio(float x, float y);
-	Figura * crearBalancin(float x, float y);
-	Figura * crearCintaTransportadora(float x, float y);
-	Figura* crearBolaBoliche(float x, float y);
-	Figura* crearPelotaJuego(float x, float y);
-	Figura* crearEngranaje(float x, float y);
-	Figura* crearSoga(float x, float y);
-	Figura* crearCorrea(float x, float y);
+	Figura * crearMotor(float x,float y,int numeroJugador);
+	Figura * crearPlataforma(float x, float y,int numeroJugador);
+	Figura*  crearGloboHelio(float x, float y, int numeroJugador);
+	Figura * crearBalancin(float x, float y, int numeroJugador);
+	Figura * crearCintaTransportadora(float x, float y, int numeroJugador);
+	Figura* crearBolaBoliche(float x, float y, int numeroJugador);
+	Figura* crearPelotaJuego(float x, float y, int numeroJugador);
+	Figura* crearEngranaje(float x, float y, int numeroJugador);
+	Figura* crearSoga(float x, float y, int numeroJugador);
+	Figura* crearCorrea(float x, float y, int numeroJugador);
 	Figura * crear(Plataforma*);
 	Figura * crear(Engranaje*);
 	Figura * crear(Balancin*);

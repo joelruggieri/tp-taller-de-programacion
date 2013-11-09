@@ -46,6 +46,7 @@ bool JuegoEventsController::clickDown(float x, float y) {
 			}
 			if (view != NULL) {
 				editor = view->getEditor();
+				editor->setNumeroJugador(this->numeroJugador);
 				editor->setCtrl(this->control);
 				editor->setShift(this->shift);
 				if (editor == NULL) {
@@ -115,6 +116,7 @@ bool JuegoEventsController::rightClickDown(float x, float y) {
 		Figura * fig = this->modeloController->pickUp(x, y, CATEGORIA_UNION | CATEGORIA_FIGURAS);
 		if (fig != NULL) {
 			editor = ((FiguraView *) fig->getVista())->getEditor();
+			editor->setNumeroJugador(this->numeroJugador);
 			editor->setCtrl(this->control);
 			editor->setShift(this->shift);
 			editor->rightClickDown(x, y);
@@ -203,6 +205,7 @@ void JuegoEventsController::crearVista(string tag, float x, float y) {
 		FiguraView* view = creacion->crearFigura(tag, x , y);
 		if (view != NULL) {
 			editor = view->getEditor();
+			editor->setNumeroJugador(this->numeroJugador);
 			this->clickDown(x,y);
 		}
 

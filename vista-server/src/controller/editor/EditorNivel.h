@@ -14,10 +14,13 @@ using namespace std;
 class EditorNivel {
 private:
 	bool shift, ctrl;
+protected:
+	int numeroJugadorDuenio;
 public:
 	EditorNivel() {
 		shift = false;
 		ctrl = false;
+		numeroJugadorDuenio = -1;
 	}
 	virtual ~EditorNivel() {};
 	virtual void clickDown(float x, float y) = 0;
@@ -31,6 +34,9 @@ public:
 	void setCtrl(bool ctrl);
 	bool isShift() const;
 	void setShift(bool shift);
+	void setNumeroJugador(int numero){
+		this->numeroJugadorDuenio = numero;
+	}
 };
 
 inline bool EditorNivel::isCtrl() const {
