@@ -25,6 +25,7 @@ public:
 	void setFigura(FiguraView *);
 	void dropNuevaFigura(CintaTransportadoraView * v);
 	void dropNuevaFigura(PlataformaView * v);
+	EditorNivel * clone();
 };
 
 #endif /* SIMPLEEDITORESTIRAR_H_ */

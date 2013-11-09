@@ -8,14 +8,12 @@
 #include "SimpleEditorCambiarRadio.h"
 #include "src/objeto/Estirable.h"
 SimpleEditorCambiarRadio::SimpleEditorCambiarRadio(ModeloController * controller, ZonaTablero * zona,
-		FiguraFactory* factory, float) :
+		FiguraFactory* factory, float yMaxDrag) :
 		SimpleEditorEstirar(controller, zona, factory, yMaxDrag) {
-	// TODO Auto-generated constructor stub
 
 }
 
 SimpleEditorCambiarRadio::~SimpleEditorCambiarRadio() {
-	// TODO Auto-generated destructor stub
 }
 
 void SimpleEditorCambiarRadio::mouseMotion(float x, float y) {
@@ -27,3 +25,7 @@ void SimpleEditorCambiarRadio::mouseMotion(float x, float y) {
 //	return true;
 }
 
+
+EditorNivel* SimpleEditorCambiarRadio::clone() {
+	return new SimpleEditorCambiarRadio(modeloController,tablero,figurasFactory,yMaxDrag);
+}

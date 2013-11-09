@@ -37,5 +37,7 @@ View * ViewSogaFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* ViewSogaFactory::clone(int cantidad){
-	return new ViewSogaFactory((EditorUnion*)this->controller,cantidad);
+	EditorUnion * editor = ((EditorUnion*) this->controller);
+	editor = (EditorUnion *)editor->clone();
+	return new ViewSogaFactory(editor,cantidad);
 }

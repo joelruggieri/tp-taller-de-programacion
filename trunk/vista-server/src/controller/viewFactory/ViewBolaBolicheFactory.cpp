@@ -35,5 +35,7 @@ View * ViewBolaBolicheFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* ViewBolaBolicheFactory::clone(int cantidad){
-	return new ViewBolaBolicheFactory((SimpleEditorAnguloFijo*)this->controller,cantidad);
+	SimpleEditorAnguloFijo * editor = ((SimpleEditorAnguloFijo*) this->controller);
+	editor = (SimpleEditorAnguloFijo *)editor->clone();
+	return new ViewBolaBolicheFactory(editor,cantidad);
 }

@@ -36,5 +36,7 @@ View * ViewCorreaFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* ViewCorreaFactory::clone(int cantidad){
-	return new ViewCorreaFactory((EditorUnion*)this->controller,cantidad);
+	EditorUnion * editor = ((EditorUnion*) this->controller);
+	editor = (EditorUnion *)editor->clone();
+	return new ViewCorreaFactory(editor,cantidad);
 }

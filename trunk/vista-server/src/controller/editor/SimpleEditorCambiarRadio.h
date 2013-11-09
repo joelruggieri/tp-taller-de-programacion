@@ -13,6 +13,7 @@ public:
 	SimpleEditorCambiarRadio(ModeloController * controller , ZonaTablero * zona,FiguraFactory* factory, float yMaxDrag);
 	virtual ~SimpleEditorCambiarRadio();
 	void mouseMotion(float x, float y);
+	EditorNivel * clone();
 
 //	void rightClickDown(int x, int y);
 };

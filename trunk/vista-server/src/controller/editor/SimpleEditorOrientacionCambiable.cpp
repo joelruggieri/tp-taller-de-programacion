@@ -31,3 +31,7 @@ void SimpleEditorOrientacionCambiable::rightClickDown(float x, float y) {
 void SimpleEditorOrientacionCambiable::dropNuevaFigura(MotorView* view) {
 	dropear(view, this->figurasFactory->crearMotor(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
+
+EditorNivel* SimpleEditorOrientacionCambiable::clone() {
+	return new SimpleEditorOrientacionCambiable(this->modeloController,tablero, figurasFactory,yMaxDrag);
+}

@@ -137,6 +137,7 @@ bool ViewController::update(ViewMsj* mje) {
 	map<int, View*>::iterator it = vistas.find(mje->getId());
 	if (it != vistas.end()) {
 		(*it).second->update(mje);
+		(*it).second->resizear();
 		result = true;
 	}
 	return result;

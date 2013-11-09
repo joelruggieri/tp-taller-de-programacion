@@ -36,5 +36,7 @@ View * ViewGloboFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* ViewGloboFactory::clone(int cantidad){
-	return new ViewGloboFactory((SimpleEditorAnguloFijo*)this->controller,cantidad);
+	SimpleEditorAnguloFijo * editor = ((SimpleEditorAnguloFijo*) this->controller);
+	editor = (SimpleEditorAnguloFijo *)editor->clone();
+	return new ViewGloboFactory(editor,cantidad);
 }

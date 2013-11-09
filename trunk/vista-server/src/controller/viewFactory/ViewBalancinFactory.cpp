@@ -34,5 +34,7 @@ View * ViewBalancinFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* ViewBalancinFactory::clone(int cantidad){
-	return new ViewBalancinFactory((SimpleEditorAnguloFijo *)this->controller,cantidad);
+	SimpleEditorAnguloFijo * editor = ((SimpleEditorAnguloFijo*) this->controller);
+	editor = (SimpleEditorAnguloFijo *)editor->clone();
+	return new ViewBalancinFactory(editor,cantidad);
 }

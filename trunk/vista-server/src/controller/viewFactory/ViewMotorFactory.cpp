@@ -36,5 +36,7 @@ View * ViewMotorFactory::crearVistaPropia(float,float,float,float){
 }
 
 ViewFiguraFactory* ViewMotorFactory::clone(int cantidad){
-	return new ViewMotorFactory((SimpleEditorOrientacionCambiable *)this->controller,cantidad);
+	SimpleEditorOrientacionCambiable * editor = ((SimpleEditorOrientacionCambiable*) this->controller);
+	editor = (SimpleEditorOrientacionCambiable *)editor->clone();
+	return new ViewMotorFactory(editor,cantidad);
 }

@@ -34,7 +34,8 @@ public:
 	void setCtrl(bool ctrl);
 	bool isShift() const;
 	void setShift(bool shift);
-	void setNumeroJugador(int numero){
+	virtual EditorNivel * clone()=0;
+		void setNumeroJugador(int numero){
 		this->numeroJugadorDuenio = numero;
 	}
 };

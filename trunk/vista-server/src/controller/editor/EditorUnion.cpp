@@ -12,6 +12,8 @@
 #include "src/objeto/Union.h"
 EditorUnion::EditorUnion(ModeloController * m, ZonaTablero * t, FiguraFactory* factory, int yMaxDrag) :
 		SimpleEditorNivel(m, t, factory, yMaxDrag) {
+	clickDownX = 0;
+	clickDownY = 0;
 	primerClick = true;
 }
 
@@ -137,6 +139,17 @@ void EditorUnion::dropNuevaFigura(SogaEstaticaView* view) {
 	dropear(view, this->figurasFactory->crearSoga(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
+EditorUnion::EditorUnion(EditorUnion& o):SimpleEditorNivel(o) {
+	clickDownX = 0;
+	clickDownY = 0;
+	primerClick = true;
+
+}
+
 void EditorUnion::dropNuevaFigura(CorreaEstaticaView* view) {
 	dropear(view, this->figurasFactory->crearCorrea(view->getXCentro(), view->getYCentro(), this->numeroJugadorDuenio));
+}
+
+EditorNivel* EditorUnion::clone() {
+	return new EditorUnion (*this);
 }
