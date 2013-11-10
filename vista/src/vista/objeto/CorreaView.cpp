@@ -32,21 +32,27 @@ void CorreaView::dibujarse(SDL_Renderer* renderer){
 
 	}
 
-	this->dibujarseEstatica(renderer);
+	this->dibujarseEstatica(renderer, estatica);
 
 }
 
 void CorreaView::update(ViewMsj *m){
 	super::update(m);
 //	super::update();
-//	double xHastaRespectoXDesde = (float)this->xHasta - (float)this->xDesde;
-//	double yHastaRespectoYDesde = (float)this->yHasta - (float)this->yDesde;
-//	double norma = sqrt((xHastaRespectoXDesde*xHastaRespectoXDesde) + (yHastaRespectoYDesde*yHastaRespectoYDesde));
-//	xHastaRespectoXDesde = xHastaRespectoXDesde / norma;
-//	yHastaRespectoYDesde = yHastaRespectoYDesde / norma;
-//	//V1o
-//	float v1oX = (-yHastaRespectoYDesde);
-//	float v1oY = xHastaRespectoXDesde;
+	ViewObjetoUnionUpdateMsj* mje = (ViewObjetoUnionUpdateMsj*) m ;
+	this->estatica = mje->isEstatico();
+	this->x = mje->getX();
+	this->y = mje->getY();
+	this->radio = mje->getRadio();
+	this->angulo = mje->getAngulo();
+	double xHastaRespectoXDesde = (float)this->xHasta - (float)this->xDesde;
+	double yHastaRespectoYDesde = (float)this->yHasta - (float)this->yDesde;
+	double norma = sqrt((xHastaRespectoXDesde*xHastaRespectoXDesde) + (yHastaRespectoYDesde*yHastaRespectoYDesde));
+	xHastaRespectoXDesde = xHastaRespectoXDesde / norma;
+	yHastaRespectoYDesde = yHastaRespectoYDesde / norma;
+	//V1o
+	float v1oX = (-yHastaRespectoYDesde);
+	float v1oY = xHastaRespectoXDesde;
 //
 //	if(this->getModelo() == NULL){
 //		 v1iX = v1oX *((float)this->getW()/2);
@@ -55,21 +61,41 @@ void CorreaView::update(ViewMsj *m){
 //		 v1fY = v1oY * ((float)this->getW()/2);
 //	} else {
 //		Correa* c = (Correa*)this->getModelo();
-//		float radio,foo;
-//		tl.setVector(c->getRadioInicial() * 0.8,0.0f);
-//		tl.getResultadoInverso(radio,foo);
-//		v1iX = v1oX * radio;
-//		v1iY = v1oY * radio;
-//		tl.setVector(c->getRadioFinal() * 0.8,0.0f);
-//		tl.getResultadoInverso(radio,foo);
-//		v1fX = v1oX * radio;
-//		v1fY = v1oY * radio;
+		float radio,foo;
+		tl->setVector(mje->getRadioInicial() * 0.8,0.0f);
+		tl->getResultadoInverso(radio,foo);
+		v1iX = v1oX * radio;
+		v1iY = v1oY * radio;
+		tl->setVector(mje->getRadioFinal() * 0.8,0.0f);
+		tl->getResultadoInverso(radio,foo);
+		v1fX = v1oX * radio;
+		v1fY = v1oY * radio;
 //	}
 //	//V2o
-//	v2iX = -v1iX;
-//	v2iY = -v1iY;
-//	v2fX = -v1fX;
-//	v2fY = -v1fY;
+	v2iX = -v1iX;
+	v2iY = -v1iY;
+	v2fX = -v1fX;
+	v2fY = -v1fY;
 
 }
+}
+
+void CLIENTE::CorreaView::dibujarseEstatica(SDL_Renderer* ren, bool estatica) {
+	SDL_Rect dest;
+	if (estatica){
+			float wi,hi;
+			float xi,yi;
+			tl->setVector(this->radio*2,this->radio*2);
+			tl->getResultadoInverso(wi,hi);
+			tl->setVector(this->x,this->y);
+			tl->getResultadoInverso(xi,yi);
+//			dest.h = hi;
+//			dest.w = wi;
+			dest.h = hi;
+			dest.w = wi;
+			dest.x = xi - wi/2;
+			dest.y = yi - hi/2;
+			SDL_RenderCopyEx(ren,this->getTexture(), NULL, &dest,this->angulo,NULL,SDL_FLIP_NONE);
+//			SDL_RenderCopy(ren,this->getTexture(),NULL,&dest);
+	}
 }

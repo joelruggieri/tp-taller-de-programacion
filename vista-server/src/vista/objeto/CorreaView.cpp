@@ -36,9 +36,9 @@ void CorreaView::dibujarse(list<ViewMsj*> & lista){
 	Correa* figura = (Correa*) this->getModelo();
 	ViewObjetoUnionUpdateMsj* viewMensaje;
 	if(figura != NULL)
-		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYFinal(),figura->getXFinal(),figura->getYFinal(),this->getId(), this->selector);
-	else
-		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), this->selector);
+		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),figura->getRadioInicial(), figura->getRadioFinal(), figura->estaEstatica(),figura->getRadio(),this->getId(), this->selector);
+//	else hay modelo porque en editor union apenas se crea, se le setea el modelo
+//		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 }
 

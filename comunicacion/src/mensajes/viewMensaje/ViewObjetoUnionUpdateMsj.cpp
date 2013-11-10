@@ -8,10 +8,13 @@
 #include "ViewObjetoUnionUpdateMsj.h"
 #include "../../ConstantesComunicacion.h"
 
-ViewObjetoUnionUpdateMsj::ViewObjetoUnionUpdateMsj(float x1,float x2, float x3, float x4, int id, char sel) : ViewObjetoUpdateMsj(x1,x2,0,id, sel) {
+ViewObjetoUnionUpdateMsj::ViewObjetoUnionUpdateMsj(float x1,float x2, float x3, float x4, float radioInicial, float radioFinal, bool isEstatico, float radio, int id, char sel) : ViewObjetoUpdateMsj(x1,x2,0,id, sel) {
 	this->xHasta = x3;
 	this->yHasta = x4;
-
+	this->radioInicial = radioInicial;
+	this->radioFinal = radioFinal;
+	this->estatico = isEstatico;
+	this->radio = radio ;
 }
 
 ViewObjetoUnionUpdateMsj::~ViewObjetoUnionUpdateMsj() {
@@ -26,7 +29,11 @@ void ViewObjetoUnionUpdateMsj::serialize(YAML::Node* nodo) {
 	nodo->push_back(y);
 	nodo->push_back(xHasta);
 	nodo->push_back(yHasta);
-}
+	nodo->push_back(radioInicial);
+	nodo->push_back(radioFinal);
+	nodo->push_back(estatico);
+	nodo->push_back(radio);
+	}
 
 NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) {
 	int id = it->as<int>();
@@ -41,7 +48,15 @@ NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) 
 	it++;
 	float yH = it->as<float>();
 	it++;
-	NetworkMensaje * salida = new ViewObjetoUnionUpdateMsj(xD,yD, xH, yH,id, sel);
+	float radioInicial = it->as<float>();
+	it++;
+	float radioFinal = it->as<float>();
+	it++;
+	bool estatico = it->as<bool>();
+	it++;
+	float radio = it->as<float>();
+	it++;
+	NetworkMensaje * salida = new ViewObjetoUnionUpdateMsj(xD,yD, xH, yH,radioInicial, radioFinal,estatico,radio,id, sel);
 	return salida;
 }
 
@@ -58,8 +73,16 @@ void ViewObjetoUnionUpdateMsj::acept(ViewMsjVisitor*v) {
 }
 
 ViewMsj* ViewObjetoUnionUpdateMsj::clone(int dest) {
-	ViewMsj * msj = new ViewObjetoUnionUpdateMsj(x,y,xHasta,yHasta,id,selector);
+	ViewMsj * msj = new ViewObjetoUnionUpdateMsj(x,y,xHasta,yHasta,radioInicial, radioFinal, estatico,radio,id,selector);
 	msj->setDestinatario(dest);
 	return msj;
 
+}
+
+float ViewObjetoUnionUpdateMsj::getRadioFinal() const {
+	return radioFinal;
+}
+
+float ViewObjetoUnionUpdateMsj::getRadioInicial() const {
+	return radioInicial;
 }

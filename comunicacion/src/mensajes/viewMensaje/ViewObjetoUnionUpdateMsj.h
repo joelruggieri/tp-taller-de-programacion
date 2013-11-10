@@ -11,9 +11,10 @@
 
 class ViewObjetoUnionUpdateMsj: public ViewObjetoUpdateMsj {
 private:
-	float xHasta,yHasta;
+	float xHasta,yHasta,radioInicial, radioFinal, radio;
+	bool estatico;
 public:
-	ViewObjetoUnionUpdateMsj(float, float, float ,float,int, char);
+	ViewObjetoUnionUpdateMsj(float xD, float yD, float xH,float yH, float radioInicial,float radioFinal,bool esEstatico,float radio,int id, char sel);
 	virtual ~ViewObjetoUnionUpdateMsj();
 	void serialize(YAML::Node * nodo);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
@@ -35,6 +36,17 @@ public:
 
 	void setYHasta(float hasta) {
 		yHasta = hasta;
+	}
+
+	float getRadioFinal() const;
+	float getRadioInicial() const;
+
+	bool isEstatico() const {
+		return estatico;
+	}
+
+	float getRadio() const {
+		return radio;
 	}
 };
 
