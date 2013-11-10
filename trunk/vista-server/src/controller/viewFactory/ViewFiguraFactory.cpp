@@ -24,9 +24,18 @@ FiguraView* ViewFiguraFactory::crearTemplate(float x, float y) {
 	FiguraView* figuraRetorno = this->crear(x,y);
 	if ( figuraRetorno != NULL){
 		cantidadDisponible--;
+		figuraRetorno->addObserver(this);
 		return figuraRetorno;
 	}
 	return figuraRetorno;
+
+}
+
+void ViewFiguraFactory::notify(Observable* viewFigura, event_type evento){
+
+	if(evento == DESTRUIR_VISTA){
+		this->cantidadDisponible++;
+	}
 
 }
 
