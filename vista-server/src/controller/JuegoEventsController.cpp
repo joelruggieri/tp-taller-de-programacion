@@ -206,8 +206,6 @@ void JuegoEventsController::crearVista(string tag, float x, float y) {
 
 ViewMsj* JuegoEventsController::dibujarEdicion() {
 	if (editor != NULL) {
-		editor->setCtrl(this->control);
-		editor->setShift(this->shift);
 		list<ViewMsj*> msjs;
 		editor->dibujarEdicion(msjs);
 		return msjs.front();

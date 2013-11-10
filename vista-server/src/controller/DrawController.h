@@ -23,8 +23,9 @@ public:
 	DrawController(ColaEventos * salida);
 	virtual ~DrawController();
 	void addJugador(JuegoEventsController *);
+	void removeJugador(JuegoEventsController *);
 	void setTablero(ZonaTablero *);
-	void dibujar(list<JuegoEventsController*>& jugadores);
+	void dibujar();
 
 };
 
