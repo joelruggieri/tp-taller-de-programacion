@@ -22,28 +22,33 @@ void DrawController::setTablero(ZonaTablero* t) {
 }
 
 void DrawController::dibujar(list<JuegoEventsController*>& jugadores) {
-	JuegoEventsController* front = jugadores.front();
-	list<ViewMsj*> msjs;
-	list<ViewMsj*> msjs2;
-	front->dibujarse(msjs);
-	front->dibujarse(msjs2);
-	tablero->dibujarse(msjs);
-	tablero->dibujarse(msjs2);
-	list<ViewMsj*>::iterator it;
-	list<NetworkMensaje*>nwm;
-	if (msjs.size() > 0) {
-		for(it=msjs.begin() ; it != msjs.end(); ++it){
-			(*it)->setDestinatario(0);
-			nwm.push_back(*it);
-		}
-		for(it=msjs2.begin() ; it != msjs2.end(); ++it){
-			(*it)->setDestinatario(1);
-			nwm.push_back(*it);
-		}
+	list<ViewMsj*> dumpTablero;
+	tablero->dibujarse(dumpTablero);
 
-		salida->push(nwm);
+	list<NetworkMensaje*> salidaFinal;
+
+	list<JuegoEventsController*>::iterator itJugadores;
+	list<ViewMsj*>::iterator itDump;
+	ViewMsj * nuevo;
+	for (itDump = dumpTablero.begin(); itDump != dumpTablero.end(); ++itDump) {
+		for (itJugadores = jugadores.begin(); itJugadores != jugadores.end(); ++itJugadores) {
+			//POR CADA JUGADOR PASO EL DUMP A LA SALIDA.
+			nuevo = (*itDump)->clone((*itJugadores)->getNumeroJugador());
+			salidaFinal.push_back(nuevo);
+		}
+		delete (*itDump);
 	}
-
+	list<JuegoEventsController*>::iterator itJugadores2;
+	for (itJugadores = jugadores.begin(); itJugadores != jugadores.end(); ++itJugadores) {
+		nuevo = (*itJugadores)->dibujarEdicion();
+		if (nuevo != NULL) {
+			for (itJugadores2 = jugadores.begin(); itJugadores2 != jugadores.end(); ++itJugadores2) {
+				salidaFinal.push_back(nuevo->clone((*itJugadores2)->getNumeroJugador()));
+			}
+			delete nuevo;
+		}
+	}
+	salida->push(salidaFinal);
 }
 
 DrawController::~DrawController() {

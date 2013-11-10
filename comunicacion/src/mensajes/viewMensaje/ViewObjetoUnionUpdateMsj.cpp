@@ -57,4 +57,9 @@ void ViewObjetoUnionUpdateMsj::acept(ViewMsjVisitor*v) {
 	v->visit(this);
 }
 
+ViewMsj* ViewObjetoUnionUpdateMsj::clone(int dest) {
+	ViewMsj * msj = new ViewObjetoUnionUpdateMsj(x,y,xHasta,yHasta,id,selector);
+	msj->setDestinatario(dest);
+	return msj;
 
+}

@@ -19,8 +19,8 @@ public:
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 	string getTag();
 	void getMensaje();
+	ViewMsj * clone(int dest);
 	void acept(ViewMsjVisitor *);
-
 	float getXHasta() const {
 		return xHasta;
 	}

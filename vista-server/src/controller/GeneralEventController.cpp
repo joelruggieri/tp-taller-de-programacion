@@ -89,13 +89,9 @@ void GeneralEventController::visit(JugadorListo * m) {
 
 void GeneralEventController::visit(DrawEvent*) {
 	list<JuegoEventsController*> lista;
-	std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(0);
-	if(jugador != controllers.end()){
-//		cout << "encontro" << endl;
-		lista.push_back(jugador->second);
-
-	} else {
-//		cout<< "no encontro"<<endl;
+	map <int, JuegoEventsController * >::iterator it;
+	for(it = controllers.begin(); it!=controllers.end(); ++it ){
+		lista.push_back((*it).second);
 	}
 	drawController->dibujar(lista);
 }

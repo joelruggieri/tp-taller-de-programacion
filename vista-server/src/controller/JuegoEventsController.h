@@ -19,7 +19,7 @@
 #include "zonaDragAndDrop/ZonaTablero.h"
 
 //ENTREGA3 HAY QUE ADEMAS DARLE UNA ZONA DONDE SI SE SALE QUE NO TENGA EFECTO EL EVENTO DE SCROLL O PICKUP/DROP. PARA ESO SE PUEDE USAR EL OBJETO CUADRADO DE LA VISTA
-class JuegoEventsController:public Dibujable, public FlujoDeJuegoController {
+class JuegoEventsController: public FlujoDeJuegoController {
 private:
 	ZonaTablero * tablero;
 	ZonaCreacion * creacion;
@@ -39,7 +39,7 @@ public:
 	bool rightClickUp(float,float);
 	void crearVista(string, float, float);
 	void setZonas(ZonaTablero *tablero, ZonaCreacion * creacion);
-	void dibujarse(list<ViewMsj*> & lista);
+	ViewMsj* dibujarEdicion();
 	void start();
 	void stop();
 	void paso();

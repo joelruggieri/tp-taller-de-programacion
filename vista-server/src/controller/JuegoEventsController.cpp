@@ -143,15 +143,6 @@ bool JuegoEventsController::rightClickUp(float x, float y) {
 	}
 	return true;
 }
-void JuegoEventsController::dibujarse(list<ViewMsj*> & lista) {
-//	tablero->dibujarse(lista);
-//	creacion->dibujarse(lista);
-	if (editor != NULL) {
-		editor->setCtrl(this->control);
-		editor->setShift(this->shift);
-		editor->dibujarEdicion(lista);
-	}
-}
 
 void JuegoEventsController::start() {
 	this->modeloController->start();
@@ -211,4 +202,15 @@ void JuegoEventsController::crearVista(string tag, float x, float y) {
 
 	}
 	///ELSE NO HAGO NADA
+}
+
+ViewMsj* JuegoEventsController::dibujarEdicion() {
+	if (editor != NULL) {
+		editor->setCtrl(this->control);
+		editor->setShift(this->shift);
+		list<ViewMsj*> msjs;
+		editor->dibujarEdicion(msjs);
+		return msjs.front();
+	}
+	return NULL;
 }
