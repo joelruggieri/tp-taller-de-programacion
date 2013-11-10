@@ -15,7 +15,7 @@
 #include "src/ConstantesComunicacion.h"
 using namespace std;
 
-class ViewFiguraFactory {
+class ViewFiguraFactory: public Observer {
 protected:
 	DropController * controller;
 	int cantidadDisponible;
@@ -32,6 +32,7 @@ public:
 	virtual string getTagRemoto() = 0;
 	FiguraView * crearTemplate(float,float);
 	virtual ViewFiguraFactory* clone(int) = 0;
+	void notify(Observable*, event_type);
 
 };
 

@@ -35,7 +35,7 @@ FiguraView::FiguraView(float x, float y,DropController * controller ): View(x,y)
 }
 
 FiguraView::~FiguraView(){
-
+	this->notifY(DESTRUIR_VISTA);
 }
 
 
