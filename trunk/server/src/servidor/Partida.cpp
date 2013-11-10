@@ -79,7 +79,6 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		msjs.push_back(&msj);
 		msjs.push_back(mensaje);
 		serializador.escribir(msjs, socketDesc);
-		delete mensaje;
 		//status->lock();
 		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(), status, socketDesc,
 				status->getNroJugador());
@@ -90,6 +89,8 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 
 		status->unlock();
 		jugadorNuevo->run();
+		usleep(10000);
+		delete mensaje;
 	}
 
 }
