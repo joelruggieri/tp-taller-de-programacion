@@ -10,16 +10,19 @@
 #include "Disponibilidad.h"
 #include "src/threading/ThreadPTM.h"
 #include "src/Logger.h"
+#include "src/threading/ColaEventos.h"
 class ThreadCleanerParams {
 private:
 	Disponibilidad * disponibilidad;
 	int segundos;
 	Logger log;
+	ColaEventos * entrada;
 public:
-	ThreadCleanerParams(Disponibilidad*, int seg);
+	ThreadCleanerParams(Disponibilidad*,ColaEventos * entrada, int seg);
 	virtual ~ThreadCleanerParams();
 	Disponibilidad* getDisponibilidad() ;
 	int getSegundos();
+	ColaEventos * getEntrada();
 };
 
 class ThreadCleaner {
@@ -27,9 +30,10 @@ private:
 	Disponibilidad * disponibilidad;
 	ThreadPTM * th;
 	ThreadCleanerParams * params;
+	ColaEventos * entrada;
 	void deleteAll();
 public:
-	ThreadCleaner(Disponibilidad * dispo);
+	ThreadCleaner(Disponibilidad * dispo,ColaEventos * entrada);
 	virtual ~ThreadCleaner();
 	void run (int segundos);
 	void cancel();

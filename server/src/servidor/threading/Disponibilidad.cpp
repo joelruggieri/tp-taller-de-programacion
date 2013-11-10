@@ -66,3 +66,13 @@ void Disponibilidad::cleanDeaths() {
 //	}
 //	return encontrado;
 //}
+
+list<ThreadStatus*> Disponibilidad::getStatuses() {
+	map<int,ThreadStatus*>::iterator it;
+	list<ThreadStatus*>result;
+	for(it=relaciones.begin(); it!=relaciones.end(); ++it){
+		result.push_back(it->second);
+	}
+	return result;
+
+}

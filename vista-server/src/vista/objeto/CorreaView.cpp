@@ -54,7 +54,7 @@ void CorreaView::dibujarse(list<ViewMsj*> & lista){
 //
 //	}
 //
-//	this->dibujarseEstatica(renderer);
+//	this->dibujarseCirculoEstatico(renderer);
 
 //void CorreaView::update(){
 //	super::update();

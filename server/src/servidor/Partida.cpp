@@ -27,7 +27,7 @@ Partida::Partida(Nivel* n, int socket) {
 	colaIn = new ColaEventos();
 	colaOut = new ColaEventos();
 	this->socket = socket;
-	cleaner = new ThreadCleaner(dispo);
+	cleaner = new ThreadCleaner(dispo,colaIn);
 	iniciarGeneralEventController();
 	drawingService = new DrawThread(colaIn);
 	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
@@ -86,7 +86,6 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		ConexionUsuario * aceptado = new ConexionUsuario(true);
 		aceptado->setDestinatario(status->getNroJugador());
 		colaIn->push(aceptado);
-
 		status->unlock();
 		jugadorNuevo->run();
 		usleep(10000);
@@ -112,7 +111,7 @@ void Partida::iniciarGeneralEventController() {
 
 void Partida::run(int fdJugador1) {
 	Serializador serializador(0);
-	cleaner->run(5);
+//	cleaner->run(5);
 	dispatcher->run();
 	receiver->run();
 	drawingService->run();

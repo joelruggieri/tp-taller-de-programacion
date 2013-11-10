@@ -11,6 +11,8 @@
 #include "JuegoEventsController.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
 #include <list>
+#include "src/objeto/Plataforma.h"
+#include "../vista/objeto/PlataformaView.h"
 using namespace std;
 
 class DrawController {
@@ -19,6 +21,7 @@ private:
 	ZonaTablero * tablero;
 	ColaEventos * salida;
 	int angulo;
+	PlataformaView * plat;
 public:
 	DrawController(ColaEventos * salida);
 	virtual ~DrawController();

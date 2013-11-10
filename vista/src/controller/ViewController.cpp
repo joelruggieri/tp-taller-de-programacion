@@ -136,6 +136,7 @@ bool ViewController::update(ViewMsj* mje) {
 	bool result = false;
 	map<int, View*>::iterator it = vistas.find(mje->getId());
 	if (it != vistas.end()) {
+		cout << "Update "<< mje->getId() << endl;
 		(*it).second->update(mje);
 		(*it).second->resizear();
 		result = true;
@@ -160,6 +161,7 @@ View* ViewController::getForUpdate(int id) {
 	if (it == vistas.end()) {
 		return NULL;
 	}
+
 	return it->second;
 }
 
@@ -169,6 +171,7 @@ void ViewController::endUpdate() {
 
 
 void ViewController::addViewPrivado(int id, View*v) {
+	cout << "Agregado "<< id << endl;
 	vistas.insert(pair<int, View *>(id, v));
 	vistasList.push_back(v);
 	v->setTl(tl);

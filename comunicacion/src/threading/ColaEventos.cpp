@@ -59,6 +59,10 @@ void ColaEventos::push(list<NetworkMensaje*> msjsin) {
 
 void ColaEventos::getAll(list<NetworkMensaje*>& salida) {
 	lock();
-	salida.splice(salida.begin(), this->msjs);
+	list<NetworkMensaje*>::iterator it;
+	for(it=msjs.begin(); it != msjs.end(); ++it){
+		salida.push_back(*it);
+	}
+	msjs.clear();
 	unlock();
 }

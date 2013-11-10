@@ -22,6 +22,7 @@ public:
 	virtual ~Disponibilidad();
 //	bool exist(int socket);
 	ThreadStatus * getStatus(int jugador);
+	list<ThreadStatus*> getStatuses();
 	ThreadStatus * getNextFree();
 	void cleanDeaths();
 };
