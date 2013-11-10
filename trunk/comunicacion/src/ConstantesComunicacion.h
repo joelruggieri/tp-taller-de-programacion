@@ -10,7 +10,6 @@
 #define OBJ_SIMPLE_S_GLOBO 'g'
 #define OBJ_CON_ANCHO_S_PLATAFORMA 't'
 #define OBJ_CON_ANCHO_S_CINTA 'c'
-#define OBJ_UNION_S_SOGA_ESTATICA 's'
 #define OBJ_UNION_S_CORREA_ESTATICA 'e'
 #define OBJ_UNION_S_SOGA 'x'
 #define OBJ_UNION_S_CORREA 'y'

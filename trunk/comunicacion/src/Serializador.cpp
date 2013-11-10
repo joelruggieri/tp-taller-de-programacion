@@ -14,7 +14,7 @@
 #define MAX_BUFFER 1024
 Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0, 0,'a')));
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0, 0, 'a')));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MSJ_PLANO), new MensajePlano("")));
 	this->mensajes.insert(
 			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_CON_ANCHO),
@@ -24,7 +24,7 @@ Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CLICK), new ClickMsj(0, 0, 0, 0, 0, 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(MSJ_CONFIG_JUGADOR), new ConfiguracionNivelMsj()));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MOUSE_MOTION), new MouseMotionMsj(0, 0, 0, 0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CREACION_OBJETO), new CreacionMsj("", 0,0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CREACION_OBJETO), new CreacionMsj("", 0, 0)));
 	this->destinatario = destinatario;
 }
 
@@ -43,21 +43,30 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 	int longitudTotal;
 	int longRecibida;
 	int recibidos = 0;
-	read(sock, &longitudTotal, sizeof(int));
+
+	//
+	int result = read(sock, &longitudTotal, sizeof(int));
+	if (result == -1) {
+		ManejadorErrores::manejarWriteError(errno);
+		throw SerializacionException("No se pudo recibir el mensaje del host");
+	}
 
 	while (recibidos < longitudTotal) {
-		read(sock, &longRecibida, sizeof(int));
-		recibidos += recv(sock, &bufferAux, longRecibida, 0);
-//		errno;
-
-		if (recibidos == -1){
-			//TODO CHEQUEAR ERRNO PARA VER QUE ACCION TOMAR:   http://www.cisco.com/en/US/docs/ios/sw_upgrades/interlink/r2_0/unpremsg/mucsock.html
-			if ( ManejadorErrores::manejarReadError(errno) < 0)
-			throw SerializacionException("No se pudo recibir el mensaje al host");
-
+		result = read(sock, &longRecibida, sizeof(int));
+		if (result == -1) {
+			ManejadorErrores::manejarWriteError(errno);
+			throw SerializacionException("No se pudo recibir el mensaje del host");
 		}
+		result = recv(sock, &bufferAux, longRecibida, 0);
+
+		if (result == -1) {
+			ManejadorErrores::manejarWriteError(errno);
+			throw SerializacionException("No se pudo recibir el mensaje del host");
+		}
+		recibidos += result;
 		strcat(buffer, bufferAux);
 	}
+
 	string clave;
 
 	string aux = buffer;
@@ -81,7 +90,7 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 		}
 
 		if (tagEncontrado) {
-
+//			cout << clave<<endl;
 			std::map<string, NetworkMensaje*>::iterator msjCreator = this->mensajes.find(clave);
 			if (msjCreator != mensajes.end()) {
 				try {
@@ -115,20 +124,35 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 //	 const char * str = envio.str().c_str();
 	int len = strlen(envio.str().c_str());
 	int longEnviada;
-	send(socket, &len, sizeof(int), 0);	//envio longitud total
+
+	int result = send(socket, &len, sizeof(int), 0);	//envio longitud total
+	if (result == -1) {
+		ManejadorErrores::manejarWriteError(errno);
+		throw SerializacionException("No se pudo enviar el mensaje al host");
+	}
 	while (enviados < len) {
 		longEnviada = len - enviados;
-		send(socket, &(longEnviada), sizeof(int), 0);
-		//ENTREGA3 CHEQUEAR ESTO PORQUE NO ESTA PROBADO.
-		enviados += send(socket, envio.str().substr(enviados, len).c_str(), longEnviada, 0);
-		if (enviados < 0)
-		{
+		//Primero mando la lingutud de lo que falta enviar ( en la primera iteracion lo que falta estodo)
+		result = send(socket, &(longEnviada), sizeof(int), 0);
+
+		//Si da error tiro exception y loggeo el errorn.
+		if (result == -1) {
 			ManejadorErrores::manejarWriteError(errno);
-		}
-		//TODO CHEQUEAR ERRNO PARA VER QUE ACCION TOMAR:   http://www.cisco.com/en/US/docs/ios/sw_upgrades/interlink/r2_0/unpremsg/mucsock.html
-		if (enviados == -1) {
 			throw SerializacionException("No se pudo enviar el mensaje al host");
 		}
+		//ENTREGA3 CHEQUEAR ESTO PORQUE NO ESTA PROBADO.
+
+		//Ahora intento enviar lo restante.
+		result = send(socket, envio.str().substr(enviados, len).c_str(), longEnviada, 0);
+
+		//Si da error cancelo
+		if (result == -1) {
+			ManejadorErrores::manejarWriteError(errno);
+			throw SerializacionException("No se pudo enviar el mensaje al host");
+		}
+
+		//Sumo a los enviados lo que envié.
+		enviados += result;
 	}
 }
 

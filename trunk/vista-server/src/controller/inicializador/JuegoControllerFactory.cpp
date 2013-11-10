@@ -89,11 +89,9 @@ JuegoEventsController* JuegoControllerFactory::crearConfiguracionJugador(Jugador
 	for(it = configuracionFactories.begin(); it != configuracionFactories.end(); ++it){
 		std::map<std::string,ViewFiguraFactory*>::iterator iter = this->factoriesDelJuego.find((*it).first);
 		if(iter != this->factoriesDelJuego.end()){
-			cout<< "clona" << endl;
 			viewFiguraClone = iter->second->clone((*it).second);
 			factories.push_back(viewFiguraClone);
 		} else {
-			cout<< "no clona" << endl;
 		}
 	}
 	ZonaCreacion* zona = new ZonaCreacion(factories);

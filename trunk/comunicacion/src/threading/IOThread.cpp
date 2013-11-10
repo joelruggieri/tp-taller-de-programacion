@@ -64,6 +64,9 @@ void * func_salida(void * arg) {
 			}
 
 		} catch (SerializacionException & e) {
+			for(it= lectura.begin(); it!= lectura.end(); ++it){
+				delete (*it);
+			}
 			cout << e.what() << endl;
 			status->kill();
 		}
