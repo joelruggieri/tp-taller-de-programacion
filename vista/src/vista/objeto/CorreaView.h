@@ -15,8 +15,8 @@ namespace CLIENTE {
 class CorreaView: public UnionView {
 private:
 //	double v1iX,v1iY,v1fX,v1fY,v2iX,v2iY,v2fX,v2fY;
-	float v1xl, v1yl,v2xl,v2yl;
-	float v1xp, v1yp,v2xp,v2yp;
+	float v1xl, v1yl,v2xl,v2yl, radioil,radiofl;
+	float v1xp, v1yp,v2xp,v2yp, radioip,radiofp;
 	typedef UnionView super;
 	SDL_Color color;
 	void calcularVectoresLogicos();
