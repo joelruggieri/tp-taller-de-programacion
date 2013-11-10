@@ -27,7 +27,7 @@ FiguraFactory::~FiguraFactory() {
 
 
 Figura* FiguraFactory::crearMotor(float x, float y, int numeroJugador){
-	Figura* figura = new Motor(x,y,5);
+	Figura* figura = new Motor(x,y,RADIO_MOTOR);
 	figura->setNumeroJugador(numeroJugador);
 	return figura;
 }

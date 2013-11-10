@@ -31,8 +31,8 @@ void SogaView::dibujarse(list<ViewMsj *> & lista) {
 	Soga* figura = (Soga*) this->getModelo();
 	ViewObjetoUnionUpdateMsj* viewMensaje;
 	if(figura != NULL)
-		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),this->getId(), this->selector);
-	else
-		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), this->selector);
+		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),0,0,0,figura->getRadio(),this->getId(), this->selector);
+//	else	idem correaView
+//		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 }

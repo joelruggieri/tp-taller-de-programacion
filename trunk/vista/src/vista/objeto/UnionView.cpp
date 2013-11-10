@@ -53,28 +53,28 @@ void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
 
 void UnionView::update(ViewMsj *mje){
 	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) mje;
-	this->xHasta = mjeCurrent->getXHasta();
-	this->xDesde = mjeCurrent->getX();
-	this->yHasta = mjeCurrent->getYHasta();
-	this->yDesde = mjeCurrent->getY();
+//	this->xHasta = mjeCurrent->getXHasta();
+//	this->xDesde = mjeCurrent->getX();
+//	this->yHasta = mjeCurrent->getYHasta();
+//	this->yDesde = mjeCurrent->getY();
 
 //	super::update();
 //	Union* un = (Union*)this->getModelo();
-//	tl.setVector(un->getXInicial(),un->getYInicial());
-//	float xDesde;
-//	float yDesde;
-//	tl.getResultadoInverso(xDesde,yDesde);
-//	this->xDesde = xDesde;
-//	this->yDesde = yDesde;
-//	tl.setVector(un->getXFinal(),un->getYFinal());
-//	float xHasta;
-//	float yHasta;
-//	tl.getResultadoInverso(xHasta,yHasta);
-//	this->xHasta =xHasta;
-//	this->yHasta =yHasta;
-//	tl.setVector(un->getX(), un->getY());
-//	tl.getResultadoInverso(xHasta, yHasta);
-//
+	tl->setVector(mjeCurrent->getX(),mjeCurrent->getY());
+	float xDesde;
+	float yDesde;
+	tl->getResultadoInverso(xDesde,yDesde);
+	this->xDesde = xDesde;
+	this->yDesde = yDesde;
+	tl->setVector(mjeCurrent->getXHasta(),mjeCurrent->getYHasta());
+	float xHasta;
+	float yHasta;
+	tl->getResultadoInverso(xHasta,yHasta);
+	this->xHasta =xHasta;
+	this->yHasta =yHasta;
+	tl->setVector(mjeCurrent->getX(), mjeCurrent->getY());
+	tl->getResultadoInverso(xHasta, yHasta);
+
 //	this->setXc(xHasta);
 //	this->setYc(yHasta);
 
