@@ -17,7 +17,7 @@ private:
 	typedef ObjetoView super;
 //	void dibujarse(SDL_Renderer* renderer, SDL_Rect& src, SDL_Rect& dest);
 protected:
-	int xDesde,yDesde,xHasta,yHasta;
+	float xDesde,yDesde,xHasta,yHasta;
 	void dibujarse(SDL_Renderer * ren,Uint8 r,Uint8 g,Uint8 b);
 	void dibujarseEstatica(SDL_Renderer* ren);
 public:
