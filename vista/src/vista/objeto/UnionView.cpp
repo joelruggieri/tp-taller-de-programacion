@@ -10,12 +10,14 @@
 #include "../../ConstantesVista.h"
 #include "../CargadorDeTextures.h"
 namespace CLIENTE {
-UnionView::UnionView(float x,float y, SDL_Texture * textura):ObjetoView(x,y,20,20,CargadorDeTextures::Instance()->cargarTexture(PATH_EDICION_UNION)) {
-	xDesde = 0;
-	yDesde = 0;
-	xHasta = 0;
-	yHasta = 0;
-
+UnionView::UnionView(float xDesde,float yDesde,float xHasta, float yHasta,float radio, SDL_Texture * textura):ObjetoView(xDesde,yDesde,20,20,CargadorDeTextures::Instance()->cargarTexture(PATH_EDICION_UNION)) {
+	xHastal = xHasta;
+	yHastal = yHasta;
+	radiol = radio;
+	xHastap = 0;
+	yHastap = 0;
+	radiop = 0;
+	estatica = true;
 }
 
 UnionView::~UnionView() {
@@ -24,10 +26,10 @@ UnionView::~UnionView() {
 //	}
 }
 
-void UnionView::dibujarseEstatica(SDL_Renderer* ren){
+void UnionView::dibujarseCirculoEstatico(SDL_Renderer* ren){
 //	Union* u = (Union *)this->getModelo();
 //
-//	if(u->estaEstatica()){
+	if(this->estatica){
 //		SDL_Rect dest;
 //		float wi,hi;
 //		float xi,yi;
@@ -40,48 +42,32 @@ void UnionView::dibujarseEstatica(SDL_Renderer* ren){
 //		dest.y = yi - hi/2;
 //		SDL_RenderCopyEx(ren,this->getTexture(), NULL, &dest,this->getModelo()->getRotacion(),NULL,SDL_FLIP_NONE);
 //		SDL_RenderCopy(ren,this->getTexture(),NULL,&dest);
-//	}
+	}
 }
 
 void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
-//	SDL_SetRenderDrawColor(ren,r,g,b,0);
-//	SDL_RenderDrawLine(ren,this->xDesde,this->yDesde,this->xHasta,this->yHasta);
-//
-//	this->dibujarseEstatica(ren);
+	SDL_SetRenderDrawColor(ren,r,g,b,0);
+	SDL_RenderDrawLine(ren,this->xp,this->yp,this->xHastap,this->yHastap);
+	this->dibujarseCirculoEstatico(ren);
 
 }
 
-void UnionView::update(ViewMsj *mje){
-	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) mje;
-//	this->xHasta = mjeCurrent->getXHasta();
-//	this->xDesde = mjeCurrent->getX();
-//	this->yHasta = mjeCurrent->getYHasta();
-//	this->yDesde = mjeCurrent->getY();
-
-//	super::update();
-//	Union* un = (Union*)this->getModelo();
-	tl->setVector(mjeCurrent->getX(),mjeCurrent->getY());
-	float xDesde;
-	float yDesde;
-	tl->getResultadoInverso(xDesde,yDesde);
-	this->xDesde = xDesde;
-	this->yDesde = yDesde;
-	tl->setVector(mjeCurrent->getXHasta(),mjeCurrent->getYHasta());
-	float xHasta;
-	float yHasta;
-	tl->getResultadoInverso(xHasta,yHasta);
-	this->xHasta =xHasta;
-	this->yHasta =yHasta;
-	tl->setVector(mjeCurrent->getX(), mjeCurrent->getY());
-	tl->getResultadoInverso(xHasta, yHasta);
-
-//	this->setXc(xHasta);
-//	this->setYc(yHasta);
-
+void UnionView::update(ViewMsj*m) {
+	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*)m;
+	this->xl = mjeCurrent->getX();
+	this->yl= mjeCurrent->getY();
+	this->xHastal = mjeCurrent->getXHasta();
+	this->yHastal = mjeCurrent->getYHasta();
+	estatica = mjeCurrent->isEstatico();
 }
 
 void UnionView::resizear() {
-	super::resizear();
+	tl->setVector(xl,yl);
+	float xaux,yaux;
+	tl->getResultadoInverso(xaux,yaux);
+	xp = round(xaux);
+	yp = round (yaux);
+	radiop = round(tl->escalarInversaEnX(radiol));
 }
 
 int UnionView::getLayer() {
