@@ -17,11 +17,14 @@ private:
 	typedef ObjetoView super;
 //	void dibujarse(SDL_Renderer* renderer, SDL_Rect& src, SDL_Rect& dest);
 protected:
-	float xDesde,yDesde,xHasta,yHasta;
+	float xHastal,yHastal, radiol;
+	int xHastap, yHastap, radiop;
+	bool estatica;
+
+	void dibujarseCirculoEstatico(SDL_Renderer* ren);
 	void dibujarse(SDL_Renderer * ren,Uint8 r,Uint8 g,Uint8 b);
-	void dibujarseEstatica(SDL_Renderer* ren);
 public:
-	UnionView(float x, float y,  SDL_Texture * textura);
+	UnionView(float xDesde,float yDesde,float xHasta, float yHasta,float radio, SDL_Texture * textura);
 	virtual ~UnionView();
 	void update(ViewMsj *);
 	void resizear();
