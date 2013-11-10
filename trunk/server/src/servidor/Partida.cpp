@@ -13,6 +13,7 @@
 #include "src/threading/IOThread.h"
 #include "threading/ThreadStatus.h"
 #include "src/mensajes/MensajePlano.h"
+#include "src/mensajes/internos/ConexionUsuario.h"
 #include "src/mensajes/ConfiguracionNivelMsj.h"
 #include "src/Serializador.h"
 #include "src/ManejadorErrores.h"
@@ -83,6 +84,10 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(), status, socketDesc,
 				status->getNroJugador());
 		status->setThread(jugadorNuevo);
+		ConexionUsuario * aceptado = new ConexionUsuario(true);
+		aceptado->setDestinatario(status->getNroJugador());
+		colaIn->push(aceptado);
+
 		status->unlock();
 		jugadorNuevo->run();
 	}

@@ -88,12 +88,7 @@ void GeneralEventController::visit(JugadorListo * m) {
 }
 
 void GeneralEventController::visit(DrawEvent*) {
-	list<JuegoEventsController*> lista;
-	map <int, JuegoEventsController * >::iterator it;
-	for(it = controllers.begin(); it!=controllers.end(); ++it ){
-		lista.push_back((*it).second);
-	}
-	drawController->dibujar(lista);
+	drawController->dibujar();
 }
 
 void GeneralEventController::visit(CreacionMsj* m) {
@@ -110,5 +105,15 @@ void GeneralEventController::visit(CreacionMsj* m) {
 		log.debug(lg);
 	} else {
 		jugador->second->crearVista(m->getTagObjeto(), m->getX(), m->getY());
+	}
+}
+
+void GeneralEventController::visit(ConexionUsuario* c) {
+	map<int,JuegoEventsController*>::iterator it = controllers.find(c->getDestinatario());
+	JuegoEventsController * j = (*it).second;
+	if(c->isConectado()){
+		drawController->addJugador(j);
+	} else {
+		drawController->removeJugador(j);
 	}
 }

@@ -17,6 +17,9 @@ public:
 	ConexionUsuario(bool on);
 	virtual ~ConexionUsuario();
 	bool isConectado() const;
+	void acept(MensajeInternoVisitor *);
+	void serialize(YAML::Node * nodo);
+	NetworkMensaje * deserialize(YAML::const_iterator &);
 };
 
 #endif /* CONEXIONUSUARIO_H_ */

@@ -34,7 +34,6 @@ DistribuidorMensajes::~DistribuidorMensajes() {
 
 void DistribuidorMensajes::visit(UserEventMsj* m) {
 	if (user != NULL) {
-		log.debug("Se pocesa mensaje de usuario");
 		m->acept(user);
 	}
 

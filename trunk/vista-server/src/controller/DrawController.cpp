@@ -14,14 +14,15 @@ DrawController::DrawController(ColaEventos* salida) {
 	angulo = 0;
 }
 
-void DrawController::addJugador(JuegoEventsController*) {
+void DrawController::addJugador(JuegoEventsController* c) {
+	controllers.push_back(c);
 }
 
 void DrawController::setTablero(ZonaTablero* t) {
 	this->tablero = t;
 }
 
-void DrawController::dibujar(list<JuegoEventsController*>& jugadores) {
+void DrawController::dibujar() {
 	list<ViewMsj*> dumpTablero;
 	tablero->dibujarse(dumpTablero);
 
@@ -31,7 +32,7 @@ void DrawController::dibujar(list<JuegoEventsController*>& jugadores) {
 	list<ViewMsj*>::iterator itDump;
 	ViewMsj * nuevo;
 	for (itDump = dumpTablero.begin(); itDump != dumpTablero.end(); ++itDump) {
-		for (itJugadores = jugadores.begin(); itJugadores != jugadores.end(); ++itJugadores) {
+		for (itJugadores = controllers.begin(); itJugadores != controllers.end(); ++itJugadores) {
 			//POR CADA JUGADOR PASO EL DUMP A LA SALIDA.
 			nuevo = (*itDump)->clone((*itJugadores)->getNumeroJugador());
 			salidaFinal.push_back(nuevo);
@@ -39,10 +40,10 @@ void DrawController::dibujar(list<JuegoEventsController*>& jugadores) {
 		delete (*itDump);
 	}
 	list<JuegoEventsController*>::iterator itJugadores2;
-	for (itJugadores = jugadores.begin(); itJugadores != jugadores.end(); ++itJugadores) {
+	for (itJugadores = controllers.begin(); itJugadores != controllers.end(); ++itJugadores) {
 		nuevo = (*itJugadores)->dibujarEdicion();
 		if (nuevo != NULL) {
-			for (itJugadores2 = jugadores.begin(); itJugadores2 != jugadores.end(); ++itJugadores2) {
+			for (itJugadores2 = controllers.begin(); itJugadores2 != controllers.end(); ++itJugadores2) {
 				salidaFinal.push_back(nuevo->clone((*itJugadores2)->getNumeroJugador()));
 			}
 			delete nuevo;
@@ -55,3 +56,6 @@ DrawController::~DrawController() {
 
 }
 
+void DrawController::removeJugador(JuegoEventsController* c) {
+	controllers.remove(c);
+}
