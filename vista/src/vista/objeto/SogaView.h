@@ -7,7 +7,7 @@
 
 #ifndef SOGAVIEW_H_
 #define SOGAVIEW_H_
-
+#include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 #include "UnionView.h"
 namespace CLIENTE {
 
@@ -18,8 +18,10 @@ public:
 	void dibujarse(SDL_Renderer * renderer);
 	void dibujarse(SDL_Renderer * renderer, SDL_Rect & dest);
 	void update(ViewMsj *);
+	void resizear();
 private:
 	typedef UnionView super;
+	float xDesdeP, xHastap, yDesdep, yHastaP;
 };
 }
 #endif /* SOGAVIEW_H_ */

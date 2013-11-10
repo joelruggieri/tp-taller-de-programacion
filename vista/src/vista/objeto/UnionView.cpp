@@ -54,9 +54,9 @@ void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
 void UnionView::update(ViewMsj *mje){
 	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) mje;
 	this->xHasta = mjeCurrent->getXHasta();
-	this->xl = mjeCurrent->getX();
+	this->xDesde = mjeCurrent->getX();
 	this->yHasta = mjeCurrent->getYHasta();
-	this->yl = mjeCurrent->getY();
+	this->yDesde = mjeCurrent->getY();
 
 //	super::update();
 //	Union* un = (Union*)this->getModelo();

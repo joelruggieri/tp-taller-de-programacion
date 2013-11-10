@@ -35,7 +35,9 @@ return viewResult;
 }
 
 View* ViewObjetoUnionFactory::crearSoga(ViewObjetoUnionUpdateMsj* o) {
+
 	return new SogaView(o->getX(), o->getY(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CUERDA));
+
 }
 
 //View* ViewObjetoUnionFactory::crearSogaEstatica(ViewObjetoUnionUpdateMsj* o) {
