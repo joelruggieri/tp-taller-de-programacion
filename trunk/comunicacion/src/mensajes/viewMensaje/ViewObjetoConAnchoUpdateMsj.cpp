@@ -55,3 +55,9 @@ void ViewObjetoConAnchoUpdateMsj::acept(ViewMsjVisitor* v) {
 float ViewObjetoConAnchoUpdateMsj::getAncho() const {
 	return ancho;
 }
+
+ViewMsj* ViewObjetoConAnchoUpdateMsj::clone(int destinatario) {
+	ViewObjetoConAnchoUpdateMsj* msj = new ViewObjetoConAnchoUpdateMsj(x, y, angulo, ancho, id, selector);
+	msj->setDestinatario(destinatario);
+	return msj;
+}

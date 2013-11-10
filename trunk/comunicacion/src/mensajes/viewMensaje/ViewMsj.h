@@ -18,6 +18,7 @@ public:
 	virtual ~ViewMsj();
 	void acept(MensajeVisitor *);
 	virtual void acept(ViewMsjVisitor *)=0;
+	virtual ViewMsj * clone(int destinatario) = 0;
 	char getSelector();
 		int getId();
 };

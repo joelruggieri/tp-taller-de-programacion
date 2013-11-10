@@ -22,6 +22,7 @@ public:
 	float getAngulo() const;
 	float getX() const;
 	float getY() const;
+	ViewMsj * clone(int dest);
 
 protected:
 	float x,y, angulo;

@@ -69,3 +69,9 @@ float ViewObjetoUpdateMsj::getX() const {
 float ViewObjetoUpdateMsj::getY() const {
 	return y;
 }
+
+ViewMsj* ViewObjetoUpdateMsj::clone(int dest) {
+	ViewMsj* msj = new ViewObjetoUpdateMsj(x, y, angulo, id,selector);
+	msj->setDestinatario(dest);
+	return msj;
+}

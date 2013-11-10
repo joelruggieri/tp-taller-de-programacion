@@ -24,6 +24,7 @@ public:
 	void getMensaje();
 	string getTag();
 	void acept(ViewMsjVisitor *);
+	ViewMsj* clone(int destinatario);
 	float getAncho() const;
 };
 
