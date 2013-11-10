@@ -46,7 +46,9 @@ void CorreaView::calcularVectoresLogicos() {
 
 void CorreaView::update(ViewMsj *m){
 	super::update(m);
-
+	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*)m;
+	radiofl = mjeCurrent->getRadioFinal();
+	radioil = mjeCurrent->getRadioInicial();
 	//	super::update(m);
 ////	super::update();
 //	ViewObjetoUnionUpdateMsj* mje = (ViewObjetoUnionUpdateMsj*) m ;
