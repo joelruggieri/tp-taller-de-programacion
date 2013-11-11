@@ -35,11 +35,11 @@ Jugadores:
   - Area:
       x: 50
       y: 50
-      ancho: 100
-      alto: 100
+      ancho: 50
+      alto: 50
     numero: 0
     ParametrosFactories:
-      - nombre: FB
+      - nombre: FE
         cantidad: 2
       - nombre: FL
         cantidad: 34
@@ -55,10 +55,10 @@ Jugadores:
         cantidad: 3
   - numero: 1
     Area:
-      x: 50
+      x: 30
       y: 50
-      ancho: 100
-      alto: 100
+      ancho: 50
+      alto: 50
     ParametrosFactories:
       - nombre: FG
         cantidad: 7
@@ -68,10 +68,10 @@ Jugadores:
         cantidad: 1
   - numero: 2
     Area:
-      x: 50
-      y: 50
-      ancho: 100
-      alto: 100
+      x: 80
+      y: 80
+      ancho: 20
+      alto: 20
     ParametrosFactories:
       - nombre: FP
         cantidad: 1
