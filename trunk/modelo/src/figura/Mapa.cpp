@@ -80,7 +80,9 @@ public:
 };
 
 Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
-	if (!isAdentro(x, y)) {
+	std::map<int,Area*>::iterator it = this->areasDeJugadores.find(numeroJugador);
+	if (!isAdentro(x, y)|| !(it->second->isAdentro1D(x,it->second->getX(),it->second->getAncho()))
+			|| !(it->second->isAdentro1D(y,it->second->getY(),it->second->getAlto()))) {
 		return NULL;
 	}
 	b2Vec2 p(x, y);
@@ -233,7 +235,10 @@ void Mapa::despertar() {
 }
 
 bool Mapa::addFigura(Figura* figura) {
-	if (!isAdentro(figura->getX(), figura->getY())) {
+	int numero = figura->getNumeroJugador();
+	std::map<int,Area*>::iterator it = this->areasDeJugadores.find(numero);
+	if (!isAdentro(figura->getX(), figura->getY()) || !(it->second->isAdentro1D(figura->getX(),it->second->getX(),it->second->getAncho()))
+			|| !(it->second->isAdentro1D(figura->getY(),it->second->getY(),it->second->getAlto()))) {
 		return false;
 	}
 	figura->setWorld(myWorld, groundBody);
@@ -255,7 +260,12 @@ bool Mapa::removeFigura(Figura* figura) {
 }
 
 bool Mapa::addUnion(Union* u) {
-	if (!isAdentro(u->getX(), u->getY())) {
+	int numero = u->getNumeroJugador();
+	std::map<int,Area*>::iterator it = this->areasDeJugadores.find(numero);
+	Area* area = it->second;
+	if (!isAdentro(u->getX(), u->getY()) || !(area->isAdentro1D(u->getXInicial(),area->getX(),area->getAncho())) ||
+			!(area->isAdentro1D(u->getXFinal(),area->getX(),area->getAncho())) || !(area->isAdentro1D(u->getYInicial(),area->getY(),area->getAlto())) ||
+			!(area->isAdentro1D(u->getYFinal(),area->getY(),area->getAlto()))) {
 		return false;
 	}
 	u->setWorld(myWorld, groundBody);
@@ -304,4 +314,8 @@ void Mapa::cleanDeletes() {
 	}
 //	cout << "deletea los deleteables el mapa " << endl;
 	figurasBorrar.clear();
+}
+
+void Mapa::addArea(Area* area, int numeroJugador){
+	this->areasDeJugadores.insert(pair<int,Area*>(numeroJugador,area));
 }

@@ -9,8 +9,10 @@
 #define MAPA_H_
 
 #include <list>
+#include <map>
 #include "Box2D/Box2D.h"
 #include "../observer/ObserverModelo.h"
+#include "../Area.h"
 using namespace std;
 
 class Union;
@@ -29,6 +31,7 @@ private:
 	void inicializar(float  x, float y, float w, float h,float32 hz, int32 velocityIterations,int32 positionIterations);
 	void crearMundo();
 	b2Body* groundBody;
+	map<int,Area*> areasDeJugadores;
 public:
 	Mapa(float  x, float y, float w, float h,float32 hz, int32 velocityIterations,int32 positionIterations);
 	Mapa(float  x, float y, float w, float h);
@@ -54,6 +57,7 @@ public:
 	void despertar();
 	void notifyEvent(ObservableModelo*, Evento_type);
 	void cleanDeletes();
+	void addArea(Area* area, int numeroJugador);
 };
 
 #endif /* MAPA_H_ */
