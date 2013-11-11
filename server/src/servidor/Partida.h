@@ -18,6 +18,7 @@
 #include "src/controller/GeneralEventController.h"
 #include "src/controller/inicializador/InicializadorJuego.h"
 #include "threading/DrawThread.h"
+#include "threading/StepModeloThread.h"
 #include "src/controller/inicializador/JuegoControllerFactory.h"
 #include "src/controller/zonaDragAndDrop/ZonaTablero.h"
 using namespace std;
@@ -34,6 +35,7 @@ private:
 	ThreadCleaner * cleaner;
 	GeneralEventController * generalController;
 	DrawThread * drawingService;
+	StepModeloThread * fisicaService;
 	JuegoControllerFactory * controllersFactory;
 	ZonaTablero * tablero;
 	ModeloController * modeloController;

@@ -9,11 +9,13 @@
 #define MENSAJEINTERNOVISITOR_H_
 class DrawEvent;
 class ConexionUsuario;
+class StepModelo;
 class MensajeInternoVisitor {
 public:
 	virtual ~MensajeInternoVisitor(){}
 	virtual void visit(DrawEvent *) =0;
 	virtual void visit (ConexionUsuario*)=0;
+	virtual void visit (StepModelo*)=0;
 };
 
 #endif /* MENSAJEINTERNOVISITOR_H_ */

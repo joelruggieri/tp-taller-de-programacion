@@ -19,7 +19,7 @@ ZonaPlay::ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola) {
 	salida = cola;
 	controller = vc;
 	crearVista(vc);
-
+	iniciado = false;
 //	boton = new BotonSwitch(lx,ly,w,h,USREVENT_START, USREVENT_STOP,text1,text2);
 }
 
@@ -31,8 +31,8 @@ bool ZonaPlay::click(float x, float y) {
 		BotonSwitch * boton = (BotonSwitch *) controller->getForUpdate(ID_BOTON_PLAY);
 		boton->click();
 		controller->endUpdate();
-
-		JugadorListo* mje = new JugadorListo(true);
+		iniciado = !iniciado;
+		JugadorListo* mje = new JugadorListo(iniciado);
 		salida->push(mje);
 		return true;
 	}

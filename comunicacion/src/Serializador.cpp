@@ -10,6 +10,7 @@
 #include "mensajes/userEvents/ClickMsj.h"
 #include "mensajes/ConfiguracionNivelMsj.h"
 #include "src/ManejadorErrores.h"
+#include "mensajes/userEvents/JugadorListo.h"
 #include <errno.h>
 #define MAX_BUFFER 1024
 Serializador::Serializador(int destinatario) {
@@ -25,7 +26,9 @@ Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(MSJ_CONFIG_JUGADOR), new ConfiguracionNivelMsj()));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MOUSE_MOTION), new MouseMotionMsj(0, 0, 0, 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CREACION_OBJETO), new CreacionMsj("", 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_JUGADOR_LISTO), new JugadorListo(false)));
 	this->destinatario = destinatario;
+
 }
 
 Serializador::~Serializador() {
@@ -46,10 +49,10 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 
 	//
 	int result = read(sock, &longitudTotal, sizeof(int));
-	Logger log;
-	string mje= "bytes ";
-	log.concatenar(mje, longitudTotal);
-	log.debug(mje);
+//	Logger log;
+//	string mje= "bytes ";
+//	log.concatenar(mje, longitudTotal);
+//	log.debug(mje);
 	if (result == -1) {
 		ManejadorErrores::manejarWriteError(errno);
 		throw SerializacionException("No se pudo recibir el mensaje del host");

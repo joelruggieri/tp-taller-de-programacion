@@ -49,6 +49,7 @@ void ReglasContactoSolver::visit(Correa*) {
 }
 
 void ReglasContactoSolver::procesarContacto(CintaTransportadora* c, Figura* f,b2Contact* contact, const b2Manifold* oldManifold) {
+	cout<< "chocaCon bola"<<endl;
 	float velocidad = c->getVelocidadCinta();
 	float signo = 1;
 	if(contact->GetFixtureB()->GetUserData() == c){
