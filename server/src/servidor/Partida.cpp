@@ -106,6 +106,8 @@ void Partida::iniciarGeneralEventController() {
 	list<Jugador*>::iterator it;
 	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
 		generalController->addJugador(controllersFactory->crearConfiguracionJugador((*it)));
+		//ENTREGA3 VERIFICAR ESTO.
+		modeloController->addArea((*it)->getArea(),(*it)->getNumero());
 	}
 }
 

@@ -81,3 +81,7 @@ bool ModeloController::crearUnion(Union* figura) {
 void ModeloController::cleanDeletes() {
 	mapa->cleanDeletes();
 }
+
+void ModeloController::addArea(Area* area, int numeroJugador){
+	this->mapa->addArea(area,numeroJugador);
+}
