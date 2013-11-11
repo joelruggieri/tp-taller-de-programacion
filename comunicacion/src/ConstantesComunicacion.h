@@ -12,6 +12,7 @@
 #define OBJ_CON_ANCHO_S_CINTA 'c'
 #define OBJ_UNION_S_CORREA_ESTATICA 'e'
 #define OBJ_UNION_S_SOGA 'x'
+#define OBJ_UNION_S_SOGA_ESTATICA 'i'
 #define OBJ_UNION_S_CORREA 'y'
 #define OBJ_CON_ANCHO_S_ENGRANAJE 'j'
 #define OBJ_SIMPLE_S_MOTOR 'm'

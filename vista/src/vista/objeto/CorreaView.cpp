@@ -23,7 +23,16 @@ CorreaView::~CorreaView() {
 
 
 void CorreaView::dibujarse(SDL_Renderer* renderer){
-	dibujarseCirculoEstatico(renderer);
+//	dibujarseCirculoEstatico(renderer);
+	v1xp = v1oXp * radioip  ;
+	v1yp = v1oYp * radioip  ;
+	v2xp = v1oXp * radiofp ;
+	v2yp = v1oYp * radiofp ;
+//calcular v2 qe es el inverso de v1
+//v1 y v2 hay que moverlo a los puntos
+//multiplico por el radio (final o inicial segun corresponda)
+
+	SDL_RenderDrawLine(renderer, v1xp+xp, v1yp+yp, v2xp+xHastap, v2yp+yHastap);
 
 //	SDL_SetRenderDrawColor(renderer,10,10,10,0);
 //	SDL_RenderDrawLine(renderer,this->xp + v1iX,this->yp + v1iY,this->xHastap + v1fX,this->yHastap + v1fY);
@@ -46,25 +55,34 @@ void CorreaView::calcularVectoresLogicos() {
 
 void CorreaView::update(ViewMsj *m){
 	super::update(m);
+//calcular v1xl, v1yl,v2xl,v2yl;
 	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*)m;
 	radiofl = mjeCurrent->getRadioFinal();
 	radioil = mjeCurrent->getRadioInicial();
 	//	super::update(m);
 ////	super::update();
+	this->radioil = mjeCurrent->getRadioInicial();
+	this->radiofl = mjeCurrent->getRadioFinal();
+
 //	ViewObjetoUnionUpdateMsj* mje = (ViewObjetoUnionUpdateMsj*) m ;
 //	this->estatica = mje->isEstatico();
 //	this->x = mje->getX();
 //	this->y = mje->getY();
 //	this->radio = mje->getRadio();
-//	this->angulo = mje->getAngulo();
-//	double xHastaRespectoXDesde = (float)this->xHasta - (float)this->xDesde;
-//	double yHastaRespectoYDesde = (float)this->yHasta - (float)this->yDesde;
-//	double norma = sqrt((xHastaRespectoXDesde*xHastaRespectoXDesde) + (yHastaRespectoYDesde*yHastaRespectoYDesde));
-//	xHastaRespectoXDesde = xHastaRespectoXDesde / norma;
-//	yHastaRespectoYDesde = yHastaRespectoYDesde / norma;
+//	this->angulo = mje->g	etAngulo();
+	double xHastaRespectoXDesde = (float)this->xHastal - (float)this->xl;	//director
+	double yHastaRespectoYDesde = (float)this->yHastal - (float)this->yl;	//director
+	double norma = sqrt((xHastaRespectoXDesde*xHastaRespectoXDesde) + (yHastaRespectoYDesde*yHastaRespectoYDesde));
+	xHastaRespectoXDesde = xHastaRespectoXDesde / norma;
+	yHastaRespectoYDesde = yHastaRespectoYDesde / norma;
 //	//V1o
-//	float v1oX = (-yHastaRespectoYDesde);
-//	float v1oY = xHastaRespectoXDesde;
+	 v1oX = (-yHastaRespectoYDesde);	//ya ahi esta v1 en el origen
+	 v1oY = xHastaRespectoXDesde;
+//	this->v1xl = v1oX + this->xl;
+//	this->v1yl = v1oY+ this->yl;
+//	this->v2xl = v1oX+ this->xHastal;
+//	this->v2xl = v1oY+ this->yHastal;
+
 ////
 ////	if(this->getModelo() == NULL){
 ////		 v1iX = v1oX *((float)this->getW()/2);
@@ -90,7 +108,36 @@ void CorreaView::update(ViewMsj *m){
 //	v2fY = -v1fY;
 
 }
+
+void CLIENTE::CorreaView::resizear() {
+	tl->setVector(v1oX,v1oY);
+	float xaux,yaux;
+	tl->getResultadoInverso(xaux,yaux);
+	v1oXp = round(xaux);
+	v1oYp = round (yaux);
+	tl->setVector(xHastal,yHastal);
+	tl->getResultadoInverso(xaux,yaux);
+	xHastap = round(xaux);
+	yHastap = round (yaux);
+	tl->setVector(xl,yl);
+	tl->getResultadoInverso(xaux,yaux);
+	xp = round(xaux);
+	yp = round (yaux);
+
+
+	tl->setVector(radioil,xaux);
+	tl->getResultadoInverso(radioip,yaux);
+	tl->setVector(radiofl,xaux);
+	tl->getResultadoInverso(radiofp,yaux);
+//	radioip = round(tl->escalarInversaEnX(radioil));
+//	radiofp = round(tl->escalarInversaEnX(radiofl));
+
 }
+}
+
+
+
+
 
 //void CLIENTE::CorreaView::dibujarseCirculoEstatico(SDL_Renderer* ren, bool estatica) {
 //	SDL_Rect dest;

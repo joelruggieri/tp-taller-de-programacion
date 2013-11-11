@@ -48,7 +48,7 @@ void UnionView::dibujarseCirculoEstatico(SDL_Renderer* ren){
 void UnionView::dibujarse(SDL_Renderer* ren, Uint8 r, Uint8 g, Uint8 b) {
 	SDL_SetRenderDrawColor(ren,r,g,b,0);
 	SDL_RenderDrawLine(ren,this->xp,this->yp,this->xHastap,this->yHastap);
-	this->dibujarseCirculoEstatico(ren);
+//	this->dibujarseCirculoEstatico(ren);
 
 }
 
