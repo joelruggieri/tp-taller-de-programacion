@@ -157,6 +157,9 @@ void Mapa::inicializar(float x, float y, float w, float h, float32 hz, int32 vel
 	this->frecuencia = hz;
 	this->velocidad = velocityIterations;
 	this->posicion = positionIterations;
+
+	//ENTREGA3 LEAK DONDE SE ELIMINA ESTA Y EL RESTO DE LAS AREAS?
+	this->addArea(new Area(x,y,w,h),-1);
 	crearMundo();
 }
 
