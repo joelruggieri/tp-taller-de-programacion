@@ -129,7 +129,8 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	envio << nodo;
 	int enviados = 0;
 //	 const char * str = envio.str().c_str();
-	int len = strlen(envio.str().c_str());
+	string salida = envio.str();
+	int len = strlen(salida.c_str());
 	int longEnviada;
 
 	int result = send(socket, &len, sizeof(int), 0);	//envio longitud total
@@ -150,7 +151,7 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 		//ENTREGA3 CHEQUEAR ESTO PORQUE NO ESTA PROBADO.
 
 		//Ahora intento enviar lo restante.
-		result = send(socket, envio.str().substr(enviados, len).c_str(), longEnviada, 0);
+		result = send(socket, salida.substr(enviados, len).c_str(), longEnviada, 0);
 
 		//Si da error cancelo
 		if (result == -1) {
