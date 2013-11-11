@@ -17,6 +17,8 @@
 #include "SDL2/SDL.h"
 #include "../modelo/Observable.h"
 #include "src/mensajes/viewMensaje/ViewMsjVisitor.h"
+#include "../vista/AreaView.h"
+#include "../modelo/Cuadrado.h"
 #include <map>
 using namespace std;
 namespace CLIENTE {
@@ -25,6 +27,7 @@ class ViewController: public ObjetoCompartido, public DrawController, public Res
 //ADEMAS PERMITE ACTUALIZAR UNA VISTA
 //PERMITE AGREGAR UNA VISTA MANUALMENTE TAMBIEN.
 private:
+	AreaView* areaVista;
 	map<int, View*> vistas;
 	list<View*> vistasList;
 	list<View*> vistasScrolleables;
@@ -35,7 +38,8 @@ private:
 	void addViewPrivado(int id, View *);
 	typedef ObjetoCompartido super;
 public:
-	ViewController(SDL_Renderer *,Transformacion * tl);
+	void generarVistaArea(float, float  ,float ,float);
+	ViewController(SDL_Renderer *,Transformacion * tl, Cuadrado cuadradoArea);
 	void visit(ViewObjetoConAnchoUpdateMsj*);
 	void visit(ViewObjetoUpdateMsj*);
 	void visit(ViewObjetoUnionUpdateMsj*);

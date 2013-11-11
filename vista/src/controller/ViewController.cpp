@@ -26,11 +26,13 @@ bool comparar_layersViews(View * first, View * second) {
 	return first->getLayer() < second->getLayer();
 }
 
-ViewController::ViewController(SDL_Renderer * r, Transformacion * tl) {
+ViewController::ViewController(SDL_Renderer * r, Transformacion * tl, Cuadrado cuadradoArea) {
 	this->renderer = r;
 	this->tl = NULL;
 	resize(tl);
 	crearPantalla();
+//	this->areaVista = new AreaView(cuadradoArea.getX(),cuadradoArea.getY(),cuadradoArea.getAncho(),cuadradoArea.getAlto(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA));
+	addView(ID_AREA, new AreaView(cuadradoArea.getX(),cuadradoArea.getY(),cuadradoArea.getAncho(),cuadradoArea.getAlto(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA)));
 }
 
 void ViewController::addView(int id, View* v) {
@@ -45,12 +47,14 @@ void ViewController::dibujar() {
 	for (it = vistasList.begin(); it != vistasList.end(); ++it) {
 		(*it)->dibujarse(renderer);
 	}
+//	this->areaVista->dibujarse(renderer);
 	SDL_RenderPresent(renderer);
 	unlock();
 }
 
 ViewController::~ViewController() {
 	delete tl;
+	//delete areaVista;
 }
 
 void ViewController::crearPantalla() {
@@ -107,6 +111,8 @@ void ViewController::resize(Transformacion * tl) {
 		(*it)->setTl(tl);
 		(*it)->resizear();
 	}
+//	this->areaVista->setTl(tl);
+//	this->areaVista->resizear();
 	unlock();
 }
 
@@ -140,6 +146,7 @@ bool ViewController::update(ViewMsj* mje) {
 		(*it).second->markUpdated();
 		result = true;
 	}
+//	this->areaVista->resizear();
 	return result;
 
 }
@@ -184,6 +191,12 @@ void ViewController::lock() {
 void ViewController::unlock() {
 	super::unlock();
 }
+void ViewController::generarVistaArea(float x, float y, float w,
+		float h) {
+	this->areaVista = new AreaView(x,y,w,h,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA));
+}
+
+
 
 void ViewController::visit(FinDibujado* m) {
 	View* elemento;

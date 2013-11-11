@@ -62,7 +62,9 @@ int MainController::run(list<string> & factories) {
 	SDL_Init(SDL_INIT_VIDEO);
 	ventana = SDL_CreateWindow("The Incredible Machine LAN", 300, 100, TAMANIO_PANTALLA, TAMANIO_PANTALLA, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
-	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
+	Cuadrado cuadrado = Cuadrado(this->xArea, this->yArea, this->wArea,this->hArea);
+	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA), cuadrado);
+//	viewController->generarVistaArea(this->xArea, this->yArea, this->wArea,this->hArea);
 	GeneralEventController * eventController = crearGeneralEventController(factories);
 	eventController->setDrawController(viewController);
 	eventController->addResizerController(viewController);
@@ -100,5 +102,13 @@ GeneralEventController* MainController::crearGeneralEventController(list<string>
 ViewController* MainController::getviewController() {
 	return viewController;
 }
-
+void MainController::setCoordenadasArea(float float1, float float2,
+		float float3, float float4) {
+	this->xArea = float1;
+	this->yArea= float2;
+	this->wArea = float3;
+	this->hArea = float4;
 }
+}
+
+
