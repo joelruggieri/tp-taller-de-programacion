@@ -111,7 +111,7 @@ void Partida::iniciarGeneralEventController() {
 
 void Partida::run(int fdJugador1) {
 	Serializador serializador(0);
-//	cleaner->run(5);
+	cleaner->run(5);
 	dispatcher->run();
 	receiver->run();
 	drawingService->run();

@@ -58,7 +58,6 @@ void * cleanDeaths(void * arg) {
 				msj = new ConexionUsuario(false);
 				msj->setDestinatario(status->getNroJugador());
 				//TODO POR LAS DUDAS LO PONGO A VER SI PROCESA LA SALIDA.
-				usleep(5000);
 				status->getColaSalida()->clear();
 			}
 			status->unlock();

@@ -44,9 +44,9 @@ Jugadores:
       - nombre: FL
         cantidad: 34
       - nombre: FA
-        cantidad: 5
+        cantidad: 100
       - nombre: FC
-        cantidad: 4
+        cantidad: 60
   - numero: 1
     Area:
       x: 50

@@ -38,8 +38,8 @@ Serializador::~Serializador() {
 void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 
 //	string buffer;
-	char buffer[1024] = "";
-	char bufferAux[1024] = "";
+	char buffer[8192] = "";
+	char bufferAux[8192] = "";
 	int longitudTotal;
 	int longRecibida;
 	int recibidos = 0;
