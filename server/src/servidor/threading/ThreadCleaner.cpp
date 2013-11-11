@@ -44,12 +44,12 @@ void * cleanDeaths(void * arg) {
 		dispo->unlock();
 		list<ThreadStatus*>::iterator it;
 		ThreadStatus * status;
-		ConexionUsuario * msj= NULL;
-				for (it = statuses.begin(); it != statuses.end(); ++it) {
-			status=*it;
+		ConexionUsuario * msj = NULL;
+		for (it = statuses.begin(); it != statuses.end(); ++it) {
+			status = *it;
 			status->lock();
 
-			if(status->getThread() && !status->isAlive()){
+			if (status->getThread() && !status->isAlive()) {
 				log.debug("Status : Liberando thread");
 				status->getThread()->cancel();
 				delete status->getThread();
@@ -61,11 +61,10 @@ void * cleanDeaths(void * arg) {
 				status->getColaSalida()->clear();
 			}
 			status->unlock();
-			if(msj != NULL){
+			if (msj != NULL) {
 				entrada->push(msj);
 			}
 		}
-
 
 	}
 	pthread_exit(NULL);
