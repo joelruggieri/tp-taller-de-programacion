@@ -17,8 +17,8 @@ private:
 	typedef ObjetoView super;
 //	void dibujarse(SDL_Renderer* renderer, SDL_Rect& src, SDL_Rect& dest);
 protected:
-	float xHastal,yHastal, radiol;
-	int xHastap, yHastap, radiop;
+	float xHastal,yHastal, radiol, xcl, ycl;
+	int xHastap, yHastap, radiop, xcp, ycp;
 	bool estatica;
 
 	void dibujarseCirculoEstatico(SDL_Renderer* ren);
