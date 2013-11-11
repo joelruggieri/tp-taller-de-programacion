@@ -30,7 +30,7 @@ void DrawController::dibujar() {
 	list<ViewMsj*> dumpTablero;
 	tablero->dibujarse(dumpTablero);
 
-//	list<NetworkMensaje*> salidaFinal;
+	list<NetworkMensaje*> salidaFinal;
 
 	list<JuegoEventsController*>::iterator itJugadores;
 	list<ViewMsj*>::iterator itDump;
@@ -39,8 +39,8 @@ void DrawController::dibujar() {
 		for (itJugadores = controllers.begin(); itJugadores != controllers.end(); ++itJugadores) {
 			//POR CADA JUGADOR PASO EL DUMP A LA SALIDA.
 			nuevo = (*itDump)->clone((*itJugadores)->getNumeroJugador());
-			salida->push(nuevo);
-//			salidaFinal.push_back(nuevo);
+//			salida->push(nuevo);
+			salidaFinal.push_back(nuevo);
 		}
 		delete (*itDump);
 	}
@@ -49,13 +49,13 @@ void DrawController::dibujar() {
 		nuevo = (*itJugadores)->dibujarEdicion();
 		if (nuevo != NULL) {
 			for (itJugadores2 = controllers.begin(); itJugadores2 != controllers.end(); ++itJugadores2) {
-//				salidaFinal.push_back(nuevo->clone((*itJugadores2)->getNumeroJugador()));
-				salida->push(nuevo->clone((*itJugadores2)->getNumeroJugador()));
+				salidaFinal.push_back(nuevo->clone((*itJugadores2)->getNumeroJugador()));
+//				salida->push(nuevo->clone((*itJugadores2)->getNumeroJugador()));
 			}
 			delete nuevo;
 		}
 	}
-//	salida->push(salidaFinal);
+	salida->push(salidaFinal);
 }
 
 DrawController::~DrawController() {
