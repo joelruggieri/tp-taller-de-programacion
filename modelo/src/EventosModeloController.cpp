@@ -62,13 +62,21 @@ bool ModeloController::crearUnion(Union* figura) {
 
 		Figura* fInicial = this->pickUp(figura->getXInicial(),
 				figura->getYInicial(), figura->getMascaraExtremos(),figura->getNumeroJugador());
+
 		if(fInicial == NULL) {
-			return false;
+			fInicial = this->pickUp(figura->getXInicial(),
+					figura->getYInicial(), figura->getMascaraExtremos(),NUMERO_JUGADOR_DEFECTO);
+			if(fInicial == NULL)
+				return false;
 		}
 		Figura* fFinal = this->pickUp(figura->getXFinal(),
 				figura->getYFinal(), figura->getMascaraExtremos(),figura->getNumeroJugador());
+
 		if(fFinal == NULL) {
-			return false;
+			fFinal = this->pickUp(figura->getXFinal(),
+				figura->getYFinal(), figura->getMascaraExtremos(),NUMERO_JUGADOR_DEFECTO);
+			if(fFinal == NULL)
+				return false;
 		}
 		if (fFinal == fInicial)
 			return false;
