@@ -41,11 +41,11 @@ void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
 	dest.y = yp;
 
 	if (angulo) {
-//		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
-//		dest.x = xizqp;
-//		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
-//		dest.x = xderp;
-//		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
+		dest.x = xizqp;
+		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
+		dest.x = xderp;
+		SDL_RenderCopyEx(r, rueda, NULL, &dest, angulo, NULL, SDL_FLIP_NONE);
 	} else {
 		SDL_RenderCopy(r, rueda, NULL, &dest);
 		dest.x = xizqp;

@@ -67,6 +67,10 @@ void UnionView::resizear() {
 	tl->getResultadoInverso(xaux,yaux);
 	xp = round(xaux);
 	yp = round (yaux);
+	tl->setVector(xHastal,yHastal);
+	tl->getResultadoInverso(xaux,yaux);
+	xHastap = round(xaux);
+	yHastap = round (yaux);
 	radiop = round(tl->escalarInversaEnX(radiol));
 }
 

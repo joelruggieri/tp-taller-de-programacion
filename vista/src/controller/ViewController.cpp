@@ -44,7 +44,6 @@ void ViewController::dibujar() {
 	list<View*>::iterator it;
 	for (it = vistasList.begin(); it != vistasList.end(); ++it) {
 		(*it)->dibujarse(renderer);
-		(*it)->invalidate();
 	}
 	SDL_RenderPresent(renderer);
 	unlock();
@@ -196,6 +195,7 @@ void ViewController::visit(FinDibujado* m) {
 			it = vistas.find(elemento->getId());
 			vistas.erase(it); // advance before iterator become invalid
 		} else {
+			(*i)->invalidate();
 			++i;
 		}
 	}

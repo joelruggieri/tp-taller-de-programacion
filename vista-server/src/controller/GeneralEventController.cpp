@@ -83,15 +83,7 @@ void GeneralEventController::addJugador(JuegoEventsController* j) {
 }
 
 void GeneralEventController::visit(JugadorListo * m) {
-	if(m->isListo()){
-		flowController->start();
-	} else {
-		flowController->stop();
-	}
-
-//	bool listo = m->isListo();
-
-//	ENTREGA3 AVISAR A ALGUIEN QUE EL JUGADOR ESTA LISTO O NO, DEPENDE EL BOOL DEL MENSAJE.
+	flowController->cambiarEstadoJugador(m->getDestinatario(),m->isListo());
 }
 
 void GeneralEventController::visit(DrawEvent*) {
@@ -107,8 +99,6 @@ void GeneralEventController::visit(CreacionMsj* m) {
 	if (jugador == controllers.end()) {
 		lg = "Jugador no encontrado ";
 		log.concatenar(lg, nroJugador);
-		//		log.concatenar(lg, m->getX());
-		//		log.concatenar(lg,m->getY());
 		log.debug(lg);
 	} else {
 		jugador->second->crearVista(m->getTagObjeto(), m->getX(), m->getY());
