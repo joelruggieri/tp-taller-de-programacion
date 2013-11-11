@@ -47,6 +47,12 @@ Jugadores:
         cantidad: 100
       - nombre: FC
         cantidad: 60
+      - nombre: FG
+        cantidad: 7
+      - nombre: FS
+        cantidad: 7
+      - nombre: FM
+        cantidad: 3
   - numero: 1
     Area:
       x: 50

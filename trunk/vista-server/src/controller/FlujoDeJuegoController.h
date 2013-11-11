@@ -7,16 +7,20 @@
 
 #ifndef FLUJODEJUEGOCONTROLLER_H_
 #define FLUJODEJUEGOCONTROLLER_H_
+#include "src/ModeloController.h"
 
 class FlujoDeJuegoController {
+private:
+	ModeloController * modeloController;
+	bool iniciado;
 public:
-	virtual ~FlujoDeJuegoController(){
-
-	};
-	virtual void start() = 0;
-	virtual void stop() = 0;
-	virtual void paso() = 0;
-	virtual bool corriendo()=0;
+	FlujoDeJuegoController(ModeloController * c);
+	virtual ~FlujoDeJuegoController();
+	void cambiarEstadoJugador(int, bool);
+	void start();
+	void stop();
+	void paso();
+	bool corriendo();
 };
 
 #endif /* FLUJODEJUEGOCONTROLLER_H_ */

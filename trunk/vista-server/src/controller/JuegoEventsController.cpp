@@ -156,7 +156,6 @@ void JuegoEventsController::stop() {
 
 void JuegoEventsController::paso() {
 	if (iniciado) {
-
 		this->modeloController->step();
 	}
 }

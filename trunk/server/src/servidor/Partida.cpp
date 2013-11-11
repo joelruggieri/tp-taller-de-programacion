@@ -18,6 +18,7 @@
 #include "src/Serializador.h"
 #include "src/ManejadorErrores.h"
 #include "src/controller/DrawController.h"
+#include "src/controller/FlujoDeJuegoController.h"
 using namespace std;
 
 Partida::Partida(Nivel* n, int socket) {
@@ -32,6 +33,7 @@ Partida::Partida(Nivel* n, int socket) {
 	drawingService = new DrawThread(colaIn);
 	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
 	dispatcher = new EventDispatcherThread(colaOut, dispo);
+	fisicaService = new StepModeloThread(colaIn);
 }
 
 Partida::~Partida() {
@@ -39,6 +41,7 @@ Partida::~Partida() {
 	cleaner->cancel();
 	drawingService->cancel();
 	dispatcher->cancel();
+	fisicaService->cancel();
 	delete dispo;
 	delete colaIn;
 	delete colaOut;
@@ -101,8 +104,8 @@ void Partida::iniciarGeneralEventController() {
 	this->controllersFactory = new JuegoControllerFactory(tablero, modeloController);
 	DrawController * dc = new DrawController(colaOut);
 	dc->setTablero(tablero);
-	generalController = new GeneralEventController(dc);
-
+	FlujoDeJuegoController * fcontroller = new FlujoDeJuegoController(modeloController);
+	generalController = new GeneralEventController(dc,fcontroller);
 	list<Jugador*>::iterator it;
 	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
 		generalController->addJugador(controllersFactory->crearConfiguracionJugador((*it)));
@@ -117,6 +120,7 @@ void Partida::run(int fdJugador1) {
 	dispatcher->run();
 	receiver->run();
 	drawingService->run();
+	fisicaService->run();
 	procesarRequest(fdJugador1, serializador);
 	while (true) {
 		sleep(2);

@@ -17,23 +17,23 @@
 #include "src/mensajes/internos/MensajeInternoVisitor.h"
 #include "src/mensajes/internos/MensajeInterno.h"
 #include "src/mensajes/internos/ConexionUsuario.h"
+#include "src/mensajes/internos/StepModelo.h"
 #include "src/mensajes/userEvents/CreacionMsj.h"
 #include "JuegoEventsController.h"
+#include "FlujoDeJuegoController.h"
 #include "src/Logger.h"
 #include "src/Jugador.h"
 #include <map>
 using namespace std;
 
-
-
-//ENTREGA3 REFACTOR HAY QUE HACER QUE TENGA LOS 4 JUEGOS EVENT CONTROLLERS Y YA OLVIDARSE DE LA GENERALIDAD YA QUE SACAMOS TODA BARRA DE CAMBIAR FONDO Y DEMAS
 class GeneralEventController: public UserEventVisitor, public MensajeInternoVisitor {
 private:
 	DrawController * drawController;
+	FlujoDeJuegoController * flowController;
 	map <int, JuegoEventsController * > controllers;
 	Logger log;
 public:
-	GeneralEventController(DrawController * dController);
+	GeneralEventController(DrawController * dController, FlujoDeJuegoController * fcontroller);
 	virtual ~GeneralEventController();
 	void procesarEventos(UserEventMsj *);
 	void addJugador(JuegoEventsController *);
@@ -44,6 +44,7 @@ public:
 	void visit(DrawEvent *);
 	void visit(CreacionMsj*);
 	void visit(ConexionUsuario*);
+	void visit(StepModelo*);
 	//ENTREGA3 AGREGAR AL VISITOR EL USEREVENT DE CREACION.
 	//EN ESE METODO HAY QUE LLAMAR  AL CREARVISTA DEL JUEGOEVENTCONTROLLER.
 };

@@ -22,7 +22,7 @@ void * func_entrada(void * arg) {
 	zona->setDatosLiberables((void*) serializador);
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
-//		usleep(15000);
+		usleep(5000);
 		list<NetworkMensaje*> lectura;
 		try {
 			serializador->leer(socket, lectura);

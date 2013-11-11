@@ -18,11 +18,13 @@
 #include "userEvents/KeyEvent.h"
 #include "src/Logger.h"
 
-GeneralEventController::GeneralEventController(DrawController * dController) {
+GeneralEventController::GeneralEventController(DrawController * dController, FlujoDeJuegoController * fcontroller) {
+	flowController = fcontroller;
 	this->drawController = dController;
 }
 GeneralEventController::~GeneralEventController() {
 	delete drawController;
+	delete flowController;
 }
 
 void GeneralEventController::procesarEventos(UserEventMsj* m) {
@@ -74,7 +76,6 @@ void GeneralEventController::visit(KeyMsj* m) {
 		KeyEvent key(m->getTecla(), m->isPresionada());
 		key.keyPressed(jugador->second);
 	}
-	//ENTREGA3 PASAR AL JUGADOR QUE CORRESPONDA SEGUN EL DESTINATARIO QUE TRAIGA EL MSJ. HACER jugador.key(mouse)
 }
 
 void GeneralEventController::addJugador(JuegoEventsController* j) {
@@ -82,6 +83,12 @@ void GeneralEventController::addJugador(JuegoEventsController* j) {
 }
 
 void GeneralEventController::visit(JugadorListo * m) {
+	if(m->isListo()){
+		flowController->start();
+	} else {
+		flowController->stop();
+	}
+
 //	bool listo = m->isListo();
 
 //	ENTREGA3 AVISAR A ALGUIEN QUE EL JUGADOR ESTA LISTO O NO, DEPENDE EL BOOL DEL MENSAJE.
@@ -116,4 +123,8 @@ void GeneralEventController::visit(ConexionUsuario* c) {
 	} else {
 		drawController->removeJugador(j);
 	}
+}
+
+void GeneralEventController::visit(StepModelo*) {
+	flowController->paso();
 }
