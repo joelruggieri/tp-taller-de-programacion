@@ -46,7 +46,10 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 
 	//
 	int result = read(sock, &longitudTotal, sizeof(int));
-	cout << longitudTotal << endl;
+	Logger log;
+	string mje= "bytes ";
+	log.concatenar(mje, longitudTotal);
+	log.debug(mje);
 	if (result == -1) {
 		ManejadorErrores::manejarWriteError(errno);
 		throw SerializacionException("No se pudo recibir el mensaje del host");
