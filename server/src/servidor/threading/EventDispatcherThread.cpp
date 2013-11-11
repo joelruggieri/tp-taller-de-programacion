@@ -36,7 +36,7 @@ void * funcThread(void * arg) {
 	list<NetworkMensaje*>::iterator it;
 //	TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
-		usleep(10000);
+		usleep(15000);
 		list<NetworkMensaje*> msjs;
 		cola->getAll(msjs);
 		for(it= msjs.begin(); it != msjs.end(); ++it){

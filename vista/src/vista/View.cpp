@@ -16,6 +16,8 @@ View::View(float x, float y, float w, float h) {
 	yp = 0;
 	wp=0;
 	hp = 0;
+	updated = true;
+	id = -1;
 }
 
 View::~View() {
@@ -81,4 +83,14 @@ void View::setYp(int yp) {
 
 }
 
+bool CLIENTE::View::isUpdated() {
+	return updated;
+}
 
+void CLIENTE::View::markUpdated() {
+	updated = true;
+}
+
+void CLIENTE::View::invalidate() {
+	updated = false;
+}

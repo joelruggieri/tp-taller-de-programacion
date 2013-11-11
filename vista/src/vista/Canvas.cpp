@@ -61,4 +61,8 @@ int Canvas::getLayer() {
 	return layer;
 }
 
+
+bool Canvas::isUpdated() {
+	return true;
+}
 }

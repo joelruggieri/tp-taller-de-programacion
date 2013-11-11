@@ -35,6 +35,7 @@ public:
 	    int g;
 	    int b;
 	} RGB;
+	bool isUpdated();
 };
 
 const struct FactoryView::RGBFactory CBORDE_EXTERNO = {94,139,0};

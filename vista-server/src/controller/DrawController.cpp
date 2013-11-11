@@ -6,7 +6,7 @@
  */
 
 #include "DrawController.h"
-#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
+#include "src/mensajes/viewMensaje/FinDibujado.h"
 #include <src/ConstantesComunicacion.h>
 DrawController::DrawController(ColaEventos* salida) {
 	this->salida = salida;
@@ -45,6 +45,7 @@ void DrawController::dibujar() {
 		delete (*itDump);
 	}
 	list<JuegoEventsController*>::iterator itJugadores2;
+	ViewMsj*  fin;
 	for (itJugadores = controllers.begin(); itJugadores != controllers.end(); ++itJugadores) {
 		nuevo = (*itJugadores)->dibujarEdicion();
 		if (nuevo != NULL) {
@@ -54,6 +55,9 @@ void DrawController::dibujar() {
 			}
 			delete nuevo;
 		}
+		fin = new FinDibujado();
+		fin->setDestinatario((*itJugadores)->getNumeroJugador());
+		salidaFinal.push_back(fin);
 	}
 	salida->push(salidaFinal);
 }

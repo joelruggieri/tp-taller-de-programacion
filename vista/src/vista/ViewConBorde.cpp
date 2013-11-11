@@ -122,6 +122,12 @@ void ViewConBorde::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
 }
 
 void ViewConBorde::update(ViewMsj*) {
+
+}
+
+
+bool CLIENTE::ViewConBorde::isUpdated() {
+	return true;
 }
 
 }

@@ -20,6 +20,8 @@ protected:
 	int wp,hp;
 	int xp, yp;
 	float xl,yl,wl,hl;
+	bool updated;
+	int id;
 public:
 	View(float x, float y, float w, float h);
 	virtual ~View();
@@ -29,6 +31,9 @@ public:
 	virtual void update(ViewMsj *) = 0;
 	virtual void setYL(float yl);
 	virtual float getYL();
+	virtual bool isUpdated();
+	virtual void markUpdated();
+	virtual void invalidate();
 	int getHp() const;
 	void setHp(int hp);
 	int getWp() const;
@@ -68,6 +73,14 @@ public:
 
 	void setYl(float yl) {
 		this->yl = yl;
+	}
+
+	int getId() const {
+		return id;
+	}
+
+	void setId(int id) {
+		this->id = id;
 	}
 };
 
