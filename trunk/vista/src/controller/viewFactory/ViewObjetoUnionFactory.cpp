@@ -36,7 +36,7 @@ View* ViewObjetoUnionFactory::crearSoga(ViewObjetoUnionUpdateMsj* o) {
 
 
 View* ViewObjetoUnionFactory::crearCorrea(ViewObjetoUnionUpdateMsj* o) {
-	return new CorreaView(o->getX(), o->getY(),o->getXHasta(),o->getYHasta(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CORREA));
+	return new CorreaView(o->getX(), o->getY(),o->getXHasta(),o->getYHasta(), o->getRadioInicial(), o->getRadioFinal(), CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CORREA));
 }
 
 

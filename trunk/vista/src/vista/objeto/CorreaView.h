@@ -15,13 +15,12 @@ namespace CLIENTE {
 class CorreaView: public UnionView {
 private:
 //	double v1iX,v1iY,v1fX,v1fY,v2iX,v2iY,v2fX,v2fY;
-	float v1xl, v1yl,v2xl,v2yl, radioil,radiofl, v1oX, v1oY;
-	float v1xp, v1yp,v2xp,v2yp, radioip,radiofp, v1oXp, v1oYp;
+	float v1xil, v1yil,v2xil,v2yil,v1xfl, v1yfl,v2xfl,v2yfl, radioil,radiofl;
+	float v1xip, v1yip,v2xip,v2yip,v1xfp, v1yfp,v2xfp,v2yfp;
 	typedef UnionView super;
 	SDL_Color color;
-	void calcularVectoresLogicos();
 public:
-	CorreaView(float xDesde, float yDesde,float xHasta, float yHasta, SDL_Texture * textura);
+	CorreaView(float xDesde, float yDesde,float xHasta, float yHasta, float radioi, float radiof, SDL_Texture * textura);
 	virtual ~CorreaView();
 	void dibujarse(SDL_Renderer*);
 	void update();

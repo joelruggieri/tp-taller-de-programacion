@@ -20,7 +20,6 @@ void FlujoDeJuegoController::stop() {
 void FlujoDeJuegoController::paso() {
 	if (iniciado) {
 		Logger log;
-		log.debug("paso");
 		this->modeloController->step();
 	}
 }

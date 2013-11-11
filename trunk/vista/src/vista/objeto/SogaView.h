@@ -16,8 +16,6 @@ public:
 	SogaView(float xDesde, float yDesde,float xHasta, float yHasta, SDL_Texture * textura);
 	virtual ~SogaView();
 	void dibujarse(SDL_Renderer * renderer);
-	void resizear();
-//	void dibujarse(SDL_Renderer * renderer, SDL_Rect & dest);
 private:
 	typedef UnionView super;
 };
