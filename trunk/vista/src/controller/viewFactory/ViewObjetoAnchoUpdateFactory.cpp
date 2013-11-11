@@ -16,7 +16,7 @@ View* ViewObjetoAnchoUpdateFactory::crearEngranaje(
 
 View* ViewObjetoAnchoUpdateFactory::crearPlataforma(
 		ViewObjetoConAnchoUpdateMsj* o) {
-	return new PlataformaView(o->getX(), o->getY(), o->getAncho(), ANCHO_PLATAFORMA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_PLATAFORMA));
+	return new PlataformaView(o->getX(), o->getY(), o->getAncho(), ALTO_PLATAFORMA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_PLATAFORMA));
 }
 
 View* ViewObjetoAnchoUpdateFactory::crearCinta(ViewObjetoConAnchoUpdateMsj* o ) {
