@@ -29,12 +29,6 @@ void CorreaView::dibujarse(SDL_Renderer* renderer) {
 
 	int v1xf = v1xip * radiofl;
 	int v1yf = v1yip * radiofl;
-//calcular v2 qe es el inverso de v1
-//v1 y v2 hay que moverlo a los puntos
-//multiplico por el radio (final o inicial segun corresponda)
-
-
-
 
 	SDL_SetRenderDrawColor(renderer,10,10,10,0);
 	SDL_RenderDrawLine(renderer,xp + v1xi, yp + v1yi, xHastap + v1xf, yHastap + v1yf);
@@ -46,8 +40,8 @@ void CorreaView::dibujarse(SDL_Renderer* renderer) {
 		SDL_RenderDrawLine(renderer,xp - v1xi*longitud, yp - v1yi*longitud, xHastap - v1xf*longitud, yHastap - v1yf*longitud);
 
 	}
-//
-//	this->dibujarseCirculoEstatico(renderer, estatica);
+
+	this->dibujarseCirculoEstatico(renderer);
 
 }
 

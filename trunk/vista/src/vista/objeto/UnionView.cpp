@@ -30,18 +30,12 @@ void UnionView::dibujarseCirculoEstatico(SDL_Renderer* ren){
 //	Union* u = (Union *)this->getModelo();
 //
 	if(this->estatica){
-//		SDL_Rect dest;
-//		float wi,hi;
-//		float xi,yi;
-//		Resizer::Instance()->adaptarDimensionLogica(u->getRadio()*2,u->getRadio()*2,wi,hi);
-//		tl.setVector(u->getX(),u->getY());
-//		tl.getResultadoInverso(xi,yi);
-//		dest.h = hi;
-//		dest.w = wi;
-//		dest.x = xi - wi/2;
-//		dest.y = yi - hi/2;
-//		SDL_RenderCopyEx(ren,this->getTexture(), NULL, &dest,this->getModelo()->getRotacion(),NULL,SDL_FLIP_NONE);
-//		SDL_RenderCopy(ren,this->getTexture(),NULL,&dest);
+		SDL_Rect dest;
+		dest.h = radiop*2;
+		dest.w = radiop*2;
+		dest.x = xcp - radiop;
+		dest.y = ycp - radiop;
+		SDL_RenderCopy(ren,this->getTexture(),NULL,&dest);
 	}
 }
 
@@ -58,12 +52,14 @@ void UnionView::update(ViewMsj*m) {
 	this->yl= mjeCurrent->getY();
 	this->xHastal = mjeCurrent->getXHasta();
 	this->yHastal = mjeCurrent->getYHasta();
+	xcl = (xl + xHastal) / 2.0;
+	ycl = (yl + yHastal) / 2.0;
 	estatica = mjeCurrent->isEstatico();
 }
 
 void UnionView::resizear() {
-	tl->setVector(xl,yl);
 	float xaux,yaux;
+	tl->setVector(xl,yl);
 	tl->getResultadoInverso(xaux,yaux);
 	xp = round(xaux);
 	yp = round (yaux);
@@ -72,6 +68,12 @@ void UnionView::resizear() {
 	xHastap = round(xaux);
 	yHastap = round (yaux);
 	radiop = round(tl->escalarInversaEnX(radiol));
+	tl->setVector(xcl,ycl);
+	tl->getResultadoInverso(xaux,yaux);
+	xcp = round(xaux);
+	ycp = round (yaux);
+
+
 }
 
 int UnionView::getLayer() {
