@@ -7,7 +7,7 @@
 
 #include "FlechaScrollView.h"
 namespace CLIENTE {
-FlechaScrollView::FlechaScrollView(float x, float y, float w, float h, SDL_Texture * flecha,int sleep) :
+FlechaScrollView::FlechaScrollView(float x, float y, float w, float h, SDL_Texture * flecha, int sleep) :
 		View(x, y, w, h) {
 	inicializar(flecha, false, sleep);
 }
@@ -18,9 +18,9 @@ void FlechaScrollView::inicializar(SDL_Texture* flecha, bool abajo, int sleep) {
 	this->sleep = sleep;
 }
 
-FlechaScrollView::FlechaScrollView(float x, float y, float w, float h, SDL_Texture* flecha,int sleep,
-		bool abajo):View(x,y,w,h) {
-	inicializar(flecha,abajo,sleep);
+FlechaScrollView::FlechaScrollView(float x, float y, float w, float h, SDL_Texture* flecha, int sleep, bool abajo) :
+		View(x, y, w, h) {
+	inicializar(flecha, abajo, sleep);
 }
 
 FlechaScrollView::~FlechaScrollView() {
@@ -28,8 +28,8 @@ FlechaScrollView::~FlechaScrollView() {
 }
 
 void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
-	if(presionado && contAbajo++ == sleep){
-		presionado =false;
+	if (presionado && contAbajo++ == sleep) {
+		presionado = false;
 	}
 	SDL_Rect dest;
 	dest.x = xp;
@@ -41,27 +41,26 @@ void FlechaScrollView::dibujarse(SDL_Renderer* renderer) {
 
 void FlechaScrollView::dibujarse(SDL_Renderer* renderer, SDL_Rect& dest) {
 	int ancho = dest.w * 0.3;
-	int alto = dest.h*0.5;
+	int alto = dest.h * 0.5;
 
 	//dibujo el fondo:
-	int corrPresion = 0;//px
+	int corrPresion = 0; //px
 
-	if(this->presionado){
+	if (this->presionado) {
 		corrPresion = 1;
 		SDL_SetRenderDrawColor(renderer, 0, 70, 0, 0);
 	} else {
 		SDL_SetRenderDrawColor(renderer, 0, 50, 0, 0);
 	}
 	SDL_RenderFillRect(renderer, &dest);
-	dest.x = dest.x + dest.w/2 - ancho/2;
-	dest.y = dest. y +(dest.h - alto) /2;
-	dest.h= alto;
+	dest.x = dest.x + dest.w / 2 - ancho / 2;
+	dest.y = dest.y + (dest.h - alto) / 2;
+	dest.h = alto;
 	dest.w = ancho;
 
 	if (this->abajo) {
-		dest.y = dest.y - 2 +corrPresion;
-		SDL_RenderCopyEx(renderer, this->textura, NULL, &dest, 180, NULL,
-				SDL_FLIP_NONE);
+		dest.y = dest.y - 2 + corrPresion;
+		SDL_RenderCopyEx(renderer, this->textura, NULL, &dest, 180, NULL, SDL_FLIP_NONE);
 	} else {
 		dest.y = dest.y + 2 + corrPresion;
 		SDL_RenderCopy(renderer, this->textura, NULL, &dest);
@@ -75,6 +74,10 @@ void FlechaScrollView::accionar() {
 }
 
 void FlechaScrollView::update(ViewMsj*) {
+}
+
+bool FlechaScrollView::isUpdated() {
+	return true;
 }
 }
 
