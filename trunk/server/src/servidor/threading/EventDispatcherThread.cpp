@@ -33,12 +33,14 @@ void * funcThread(void * arg) {
 	EventDispatcherThreadParams * params = (EventDispatcherThreadParams*) (zona->getParams());
 	ColaEventos* cola = params->getCola();
 	Disponibilidad * disponibilidad = params->getDispo();
+	list<NetworkMensaje*>::iterator it;
 //	TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(10000);
-		while(cola->hasNext()){
-			//a repartir mijo.
-			NetworkMensaje* front = cola->front();
+		list<NetworkMensaje*> msjs;
+		cola->getAll(msjs);
+		for(it= msjs.begin(); it != msjs.end(); ++it){
+			NetworkMensaje* front = *it;
 			disponibilidad->lock();
 			ThreadStatus* destinatario = disponibilidad->getStatus(front->getDestinatario());
 			disponibilidad->unlock();
@@ -47,6 +49,8 @@ void * funcThread(void * arg) {
 			destinatario->unlock();
 			colaEvento->push(front);
 		}
+
+			//a repartir mijo.
 	}
 	pthread_exit(NULL);
 }
