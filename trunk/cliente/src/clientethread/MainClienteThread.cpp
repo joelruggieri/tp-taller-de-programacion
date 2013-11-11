@@ -48,6 +48,7 @@ void MainClienteThread::run() {
 			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
 			thread->run();
 			MainController controller(colaEntrada,colaSalida);
+			controller.setCoordenadasArea(config->getXArea(), config->getYArea(), config->getAnchoArea(), config->getAltoArea());
 			controller.run(config->getFactoriresTags());
 		}
 		if (SERVIDOR_ERROR == result) {

@@ -19,6 +19,7 @@ using namespace std;
 namespace CLIENTE {
 class MainController: public DrawController {
 private:
+	float xArea,yArea,wArea,hArea;
 	SDL_Renderer * render;
 	JuegoEventsController * juegoController;
 	GeneralEventController * crearGeneralEventController(list<string> & factories);
@@ -26,12 +27,12 @@ private:
 	ColaEventos * salida;
 	ViewController * viewController;
 public:
-
 	MainController(ColaEventos* entrada,ColaEventos * salida);
 	virtual ~MainController();
 	int run(list<string> & factories);
 	void dibujar();
 	ViewController * getviewController();
+	void setCoordenadasArea(float, float, float ,float);
 };
 }
 #endif /* MAINCONTROLLER_H_ */

@@ -36,6 +36,7 @@ namespace CLIENTE {
 #define PATH_VISTA_PLATAFORMA_F "resource/plataforma_f.png"
 #define PATH_VISTA_PLATAFORMA "resource/plataforma.png"
 #define PATH_VISTA_GLOBO "resource/globo.png"
+#define PATH_VISTA_AREA "resource/area.png"
 #define PATH_VISTA_PELOTA "resource/pelota.png"
 #define PATH_VISTA_BOLA "resource/bolaBoliche.png"
 #define PATH_VISTA_CINTA "resource/cinta.png"
@@ -54,7 +55,7 @@ namespace CLIENTE {
 #define PATH_FONDO "resource/fondo.jpg"
 #define PATH_VISTA_FLECHA_SCROLL "resource/flecha.png"
 
-#define LAYER_DEFAULT 0
+#define LAYER_DEFAULT 1
 #define LAYER_UNIONES 1
 #define LAYER_ENGRANAJES 2
 #define LAYER_CINTA 3
@@ -71,7 +72,7 @@ namespace CLIENTE {
 #define ID_BORDE_RELLENO 8
 #define ID_SCROLL_ARRIBA 9
 #define ID_SCROLL_ABAJO 10
-
+#define ID_AREA 11
 #define ID_FACTORY_BALANCIN 50
 #define ID_FACTORY_BOLA 51
 #define ID_FACTORY_CINTA 52
