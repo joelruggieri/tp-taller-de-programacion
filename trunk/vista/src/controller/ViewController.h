@@ -39,6 +39,7 @@ public:
 	void visit(ViewObjetoConAnchoUpdateMsj*);
 	void visit(ViewObjetoUpdateMsj*);
 	void visit(ViewObjetoUnionUpdateMsj*);
+	void visit(FinDibujado*);
 	void addView(int id, View *);
 	void addViewScrolleable(int id, View *);
 	void scrollUnidadesLogicas(float unidadesLogicas);

@@ -40,4 +40,8 @@ void BotonSwitch::click() {
 void BotonSwitch::update(ViewMsj*) {
 }
 
+
+bool BotonSwitch::isUpdated() {
+	return true;
+}
 }

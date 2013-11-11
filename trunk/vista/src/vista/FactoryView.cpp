@@ -138,4 +138,8 @@ int FactoryView::getLayer() {
 	return -5;
 }
 
+
+bool FactoryView::isUpdated() {
+	return true;
+}
 }

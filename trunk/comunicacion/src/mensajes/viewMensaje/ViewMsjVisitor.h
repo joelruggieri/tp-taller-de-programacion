@@ -11,6 +11,7 @@
 class ViewObjetoConAnchoUpdateMsj;
 class ViewObjetoUnionUpdateMsj;
 class ViewObjetoUpdateMsj;
+class FinDibujado;
 
 class ViewMsjVisitor {
 public:
@@ -18,6 +19,7 @@ public:
 	virtual void visit(ViewObjetoConAnchoUpdateMsj*) = 0;
 	virtual void visit(ViewObjetoUpdateMsj*) = 0;
 	virtual void visit(ViewObjetoUnionUpdateMsj*) = 0;
+	virtual void visit(FinDibujado*) = 0;
 };
 
 #endif /* VIEWMSJVISITOR_H_ */

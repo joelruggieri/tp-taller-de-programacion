@@ -16,6 +16,7 @@
 #include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
+#include "src/mensajes/viewMensaje/FinDibujado.h"
 #include "viewFactory/ViewObjetoSimpleFactory.h"
 #include "viewFactory/ViewObjetoAnchoUpdateFactory.h"
 #include "viewFactory/ViewObjetoUnionFactory.h"
@@ -43,6 +44,7 @@ void ViewController::dibujar() {
 	list<View*>::iterator it;
 	for (it = vistasList.begin(); it != vistasList.end(); ++it) {
 		(*it)->dibujarse(renderer);
+		(*it)->invalidate();
 	}
 	SDL_RenderPresent(renderer);
 	unlock();
@@ -68,7 +70,6 @@ void ViewController::crearPantalla() {
 	cargador->cargarTexture(PATH_EDICION_UNION);
 	cargador->cargarTexture(PATH_ERROR_IMG);
 
-
 	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
 	PATH_ZONA_CREACION);
 	View * view = new Canvas(60, -10, 120, 20, 0, text);
@@ -80,7 +81,7 @@ void ViewController::crearPantalla() {
 
 void ViewController::addViewScrolleable(int id, View* v) {
 	lock();
-	this->addViewPrivado(id,v);
+	this->addViewPrivado(id, v);
 	this->vistasScrolleables.push_back(v);
 	unlock();
 }
@@ -89,8 +90,7 @@ void ViewController::scrollUnidadesLogicas(float unidadesLogicas) {
 	lock();
 	list<View*>::iterator it;
 	View* vista;
-	for (it = vistasScrolleables.begin(); it != vistasScrolleables.end();
-			++it) {
+	for (it = vistasScrolleables.begin(); it != vistasScrolleables.end(); ++it) {
 		vista = *it;
 		vista->setYL(vista->getYL() + unidadesLogicas);
 	}
@@ -138,6 +138,7 @@ bool ViewController::update(ViewMsj* mje) {
 	if (it != vistas.end()) {
 		(*it).second->update(mje);
 		(*it).second->resizear();
+		(*it).second->markUpdated();
 		result = true;
 	}
 	return result;
@@ -168,13 +169,12 @@ void ViewController::endUpdate() {
 	unlock();
 }
 
-
 void ViewController::addViewPrivado(int id, View*v) {
-	cout << "Agregado "<< id << endl;
 	vistas.insert(pair<int, View *>(id, v));
 	vistasList.push_back(v);
 	v->setTl(tl);
 	v->resizear();
+	v->setId(id);
 	vistasList.sort(comparar_layersViews);
 }
 
@@ -186,4 +186,18 @@ void ViewController::unlock() {
 	super::unlock();
 }
 
+void ViewController::visit(FinDibujado* m) {
+	View* elemento;
+	map<int,View*>::iterator it;
+	for (std::list<View*>::iterator i = vistasList.begin(); i != vistasList.end();) {
+		if (!(*i)->isUpdated()) {
+			elemento = *i;
+			vistasList.erase(i++);
+			it = vistas.find(elemento->getId());
+			vistas.erase(it); // advance before iterator become invalid
+		} else {
+			++i;
+		}
+	}
+}
 }

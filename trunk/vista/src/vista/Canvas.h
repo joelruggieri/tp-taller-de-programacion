@@ -32,6 +32,7 @@ public:
 	void ModificarFondo(SDL_Texture* nuevaImagen);
 	void update(ViewMsj *);
 	int getLayer();
+	bool isUpdated();
 };
 
 }
