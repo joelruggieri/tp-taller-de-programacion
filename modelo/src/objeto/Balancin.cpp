@@ -23,8 +23,8 @@ Balancin::Balancin(): Objeto() {
 Balancin::Balancin(float x, float y, float ancho, float alto): Objeto(x,y) {
 	this->ancho = ancho;
 	this->alto = alto;
-	Enganche* engancheDerecho = new Enganche(this, -1* ancho/2,0);
-	Enganche* engancheIzquierdo = new Enganche(this, ancho/2, 0 );
+	Enganche* engancheDerecho = new Enganche(this, -0.9* ancho/2.0,0);
+	Enganche* engancheIzquierdo = new Enganche(this,0.9*ancho/2.0, 0 );
 	enganches.push_back(engancheIzquierdo);
 	enganches.push_back(engancheDerecho);
 }
