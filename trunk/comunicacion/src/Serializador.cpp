@@ -38,14 +38,15 @@ Serializador::~Serializador() {
 void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 
 //	string buffer;
-	char buffer[8192] = "";
-	char bufferAux[8192] = "";
+	char buffer[25000] = "";
+	char bufferAux[25000] = "";
 	int longitudTotal;
 	int longRecibida;
 	int recibidos = 0;
 
 	//
 	int result = read(sock, &longitudTotal, sizeof(int));
+	cout << longitudTotal << endl;
 	if (result == -1) {
 		ManejadorErrores::manejarWriteError(errno);
 		throw SerializacionException("No se pudo recibir el mensaje del host");
