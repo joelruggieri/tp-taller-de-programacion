@@ -27,6 +27,7 @@ public:
 	void dibujarse(SDL_Renderer*, SDL_Rect & dest);
 	void accionar();
 	void update(ViewMsj*);
+	bool isUpdated();
 };
 }
 #endif /* FLECHASCROLLVIEW_H_ */
