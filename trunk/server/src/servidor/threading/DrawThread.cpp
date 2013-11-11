@@ -12,7 +12,7 @@ void * drawFunc(void * arg) {
 	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
 	ColaEventos * cola = (ColaEventos*) zona->getParams();
 	while (true) {
-		usleep(50000);
+		usleep(30000);
 		cola->push(new DrawEvent());
 	}
 	pthread_exit(NULL);
