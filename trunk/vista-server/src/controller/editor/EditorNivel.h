@@ -22,7 +22,9 @@ public:
 		ctrl = false;
 		numeroJugadorDuenio = -1;
 	}
-	virtual ~EditorNivel() {};
+	virtual ~EditorNivel() {
+	}
+	;
 	virtual void clickDown(float x, float y) = 0;
 	virtual void clickUp(float x, float y) = 0;
 	virtual void rightClickUp(float x, float y) = 0;
@@ -35,7 +37,7 @@ public:
 	bool isShift() const;
 	void setShift(bool shift);
 	virtual EditorNivel * clone()=0;
-		void setNumeroJugador(int numero){
+	void setNumeroJugador(int numero) {
 		this->numeroJugadorDuenio = numero;
 	}
 };

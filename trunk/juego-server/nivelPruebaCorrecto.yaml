@@ -33,10 +33,10 @@ Objetos:
       ancho: 8
 Jugadores:
   - Area:
-      x: 2
-      y: 78.6
-      ancho: 5
-      alto: 976
+      x: 50
+      y: 50
+      ancho: 100
+      alto: 100
     numero: 0
     ParametrosFactories:
       - nombre: FB
@@ -50,9 +50,9 @@ Jugadores:
   - numero: 1
     Area:
       x: 50
-      y: 69
-      ancho: 4
-      alto: 45
+      y: 50
+      ancho: 100
+      alto: 100
     ParametrosFactories:
       - nombre: FG
         cantidad: 7
@@ -62,10 +62,10 @@ Jugadores:
         cantidad: 1
   - numero: 2
     Area:
-      x: 0
-      y: 6
-      ancho: 1
-      alto: 7
+      x: 50
+      y: 50
+      ancho: 100
+      alto: 100
     ParametrosFactories:
       - nombre: FP
         cantidad: 1
