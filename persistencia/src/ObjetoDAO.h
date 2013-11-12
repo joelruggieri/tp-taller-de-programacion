@@ -41,6 +41,7 @@ public:
 	void visit (Engranaje* engranaje);
 	void visit (Correa* correa);
 	void visit (Soga* correa);
+	void visit (Gancho*);
 private:
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);
