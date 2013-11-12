@@ -57,23 +57,19 @@ void * func_salida(void * arg) {
 		colaSalida->getAll(lectura);
 		try {
 			if (lectura.size()>0) {
-				cout<< "comenzando envio" << endl;
 				serializador->escribir(lectura,socketDesc);
 				for(it= lectura.begin(); it!= lectura.end(); ++it){
 					delete (*it);
 				}
-				cout << "envio finalizado"<< endl;
 			}
 			pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
 		} catch (SerializacionException & e) {
-			cout<< "antes de killear size: "<<  lectura.size() << endl;
 			for(it= lectura.begin(); it!= lectura.end(); ++it){
 				delete (*it);
 			}
 			pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 			cout << e.what() << endl;
-			cout << "killea salida" << endl;
 			status->kill();
 		}
 		status->lock();
