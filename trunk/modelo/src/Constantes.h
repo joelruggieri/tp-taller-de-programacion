@@ -20,6 +20,7 @@
 /*
  * FACTORY FIGURAS
  */
+#define RADIO_GANCHO 1.0
 #define RADIO_PELOTA 3.0
 #define RADIO_BOLA 3.0
 #define RADIO_GLOBO 3.5

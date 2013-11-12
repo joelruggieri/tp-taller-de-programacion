@@ -16,6 +16,7 @@
 #include "../objeto/Engranaje.h"
 #include "../objeto/Soga.h"
 #include "../objeto/Correa.h"
+#include "../objeto/Gancho.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory() {
 
@@ -25,6 +26,11 @@ FiguraFactory::~FiguraFactory() {
 	// TODO Auto-generated destructor stub
 }
 
+Figura* FiguraFactory::crearGancho(float x, float y, int numeroJugador){
+	Figura* figura = new Gancho(x,y,RADIO_GANCHO);
+	figura->setNumeroJugador(numeroJugador);
+	return figura;
+}
 
 Figura* FiguraFactory::crearMotor(float x, float y, int numeroJugador){
 	Figura* figura = new Motor(x,y,RADIO_MOTOR);
@@ -108,6 +114,13 @@ Figura* FiguraFactory::crear(PelotaJuego* c) {
 		t->setRotacion(c->getRotacion());
 		t->setReg(c->getReg());
 		return t;
+}
+
+Figura* FiguraFactory::crear(Gancho*c) {
+	Figura* t = this->crearGancho(c->getX(), c->getY(),c->getNumeroJugador());
+		t->setRotacion(0);
+		//t->setReg(c->getReg());
+	return t;
 }
 
 Figura* FiguraFactory::crear(GloboHelio*c) {
