@@ -68,3 +68,16 @@ void ColaEventos::getAll(list<NetworkMensaje*>& salida) {
 	msjs.clear();
 	unlock();
 }
+
+void ColaEventos::habilitar() {
+	lock();
+	habilitada = true;
+	unlock();
+
+}
+
+void ColaEventos::deshabilitada() {
+}
+
+bool ColaEventos::isHabilitada() {
+}
