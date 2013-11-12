@@ -188,6 +188,12 @@ void Mapa::restoreBackUp() {
 	}
 	delete myWorld;
 	crearMundo();
+	for (it2 = uniones.begin(); it2!= uniones.end(); ++it2) {
+		(*it2)->setWorld(NULL, NULL);
+	}
+	for (it = figuras.begin(); it != figuras.end(); ++it) {
+		(*it)->setWorld(NULL, NULL);
+	}
 	for (it = figuras.begin(); it != figuras.end(); ++it) {
 		(*it)->setWorld(myWorld, groundBody);
 		(*it)->crearFisicaEstatica();
