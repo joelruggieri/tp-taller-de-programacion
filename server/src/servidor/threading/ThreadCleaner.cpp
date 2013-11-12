@@ -63,6 +63,7 @@ void * cleanDeaths(void * arg) {
 			status->unlock();
 			if (msj != NULL) {
 				entrada->push(msj);
+				msj = NULL;
 			}
 		}
 

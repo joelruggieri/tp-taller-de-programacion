@@ -8,9 +8,6 @@
 #include "IOThread.h"
 #include "../Serializador.h"
 
-#include <unistd.h>
-
-
 void * func_entrada(void * arg) {
 	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
 	IOThreadParams * params = (IOThreadParams *) (zona->getParams());
@@ -26,9 +23,11 @@ void * func_entrada(void * arg) {
 		list<NetworkMensaje*> lectura;
 		try {
 			serializador->leer(socket, lectura);
-			colaEntrada->push(lectura);
+			if(status->isAlive()){
+				colaEntrada->push(lectura);
+				status->refresh();
+			}
 			//refrezco el status para que no muera el thread
-			status->refresh();
 		} catch (SerializacionException & e) {
 			status->kill();
 		}
@@ -54,20 +53,27 @@ void * func_salida(void * arg) {
 	while (continuar) {
 		usleep(30000);
 		list<NetworkMensaje*> lectura;
+		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
 		colaSalida->getAll(lectura);
 		try {
 			if (lectura.size()>0) {
+				cout<< "comenzando envio" << endl;
 				serializador->escribir(lectura,socketDesc);
 				for(it= lectura.begin(); it!= lectura.end(); ++it){
 					delete (*it);
 				}
+				cout << "envio finalizado"<< endl;
 			}
+			pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
 		} catch (SerializacionException & e) {
+			cout<< "antes de killear size: "<<  lectura.size() << endl;
 			for(it= lectura.begin(); it!= lectura.end(); ++it){
 				delete (*it);
 			}
+			pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 			cout << e.what() << endl;
+			cout << "killea salida" << endl;
 			status->kill();
 		}
 		status->lock();
@@ -128,6 +134,7 @@ Status* IOThreadParams::getStatus() {
 
 void IOThread::cancel() {
 	if (thEntrada) {
+		cout<< "Cancela Thread"<<endl;
 		//cancelo solo el de entrada, ya que es el que puede estar muerto esperando, el de salida puede dar error y matar el mismo al cliente
 		log.debug("Cancelando Thread");
 		thEntrada->cancel();
@@ -135,7 +142,7 @@ void IOThread::cancel() {
 		thSalida->cancel();
 		log.debug("Cancelada Salida");
 		log.debug("Thread Cancelado");
-		close(param1->getSocketDesc());
+//		close(param1->getSocketDesc());
 		deleteAll();
 	}
 

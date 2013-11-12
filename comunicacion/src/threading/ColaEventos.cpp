@@ -25,8 +25,8 @@ void ColaEventos::push(NetworkMensaje* msj) {
 NetworkMensaje* ColaEventos::front() {
 	this->lock();
 	NetworkMensaje * msj = NULL;
-	if(msjs.size() != 0) {
-		msj=this->msjs.front();
+	if (msjs.size() != 0) {
+		msj = this->msjs.front();
 		this->msjs.pop_front();
 	}
 	this->unlock();
@@ -36,7 +36,7 @@ NetworkMensaje* ColaEventos::front() {
 void ColaEventos::clear() {
 	this->lock();
 	list<NetworkMensaje*>::iterator it;
-	for(it= this->msjs.begin(); it != this->msjs.end(); ++it){
+	for (it = this->msjs.begin(); it != this->msjs.end(); ++it) {
 		delete (*it);
 	}
 	msjs.clear();
@@ -52,7 +52,7 @@ bool ColaEventos::hasNext() {
 
 void ColaEventos::push(list<NetworkMensaje*> msjsin) {
 	list<NetworkMensaje*>::iterator it;
-	for(it=msjsin.begin(); it!= msjsin.end(); ++it){
+	for (it = msjsin.begin(); it != msjsin.end(); ++it) {
 		push(*it);
 	}
 }
@@ -60,8 +60,10 @@ void ColaEventos::push(list<NetworkMensaje*> msjsin) {
 void ColaEventos::getAll(list<NetworkMensaje*>& salida) {
 	lock();
 	list<NetworkMensaje*>::iterator it;
-	for(it=msjs.begin(); it != msjs.end(); ++it){
-		salida.push_back(*it);
+	if (msjs.size() > 0) {
+		for (it = msjs.begin(); it != msjs.end(); ++it) {
+			salida.push_back(*it);
+		}
 	}
 	msjs.clear();
 	unlock();

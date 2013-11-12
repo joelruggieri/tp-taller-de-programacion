@@ -25,20 +25,7 @@ void VistaEngranaje::update(ViewMsj *mje) {
 	this->setYl(mjeCurrent->getY());
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setWl(mjeCurrent->getAncho());
-//		super::update();
-//		Engranaje* e = (Engranaje*) this->getModelo();
-//		float y = 0 ;
-//		tl.setVector(e->getRadio()*2,0);
-//		float nuevoRadio;
-//		tl.getResultadoInverso(nuevoRadio,y);
-//		this->setW(nuevoRadio);
-//		this->setH(nuevoRadio);
-
-//		float a,b;
-//		tl.getResultadoInverso(a,b);
-//		cout << a << " " << b << endl;
-//				this->setW(a);
-//				this->setH(b);
+	this->setHl(mjeCurrent->getAncho());
 }
 
 int VistaEngranaje::getLayer() {
