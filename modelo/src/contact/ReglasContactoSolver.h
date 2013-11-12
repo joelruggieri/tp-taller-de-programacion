@@ -21,6 +21,7 @@ private:
 	void colisionar(b2Contact * 	contact,
 			const b2Manifold * 	oldManifold);
 public:
+	void visit(Gancho*);
 	void visit(Motor*);
 	void visit(Plataforma*);
 	void visit(Balancin*);

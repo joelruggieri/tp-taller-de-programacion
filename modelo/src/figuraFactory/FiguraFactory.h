@@ -12,6 +12,7 @@ class FiguraFactory {
 public:
 	FiguraFactory();
 	virtual ~FiguraFactory();
+	Figura * crearGancho(float x,float y,int numeroJugador);
 	Figura * crearMotor(float x,float y,int numeroJugador);
 	Figura * crearPlataforma(float x, float y,int numeroJugador);
 	Figura*  crearGloboHelio(float x, float y, int numeroJugador);
@@ -22,6 +23,7 @@ public:
 	Figura* crearEngranaje(float x, float y, int numeroJugador);
 	Figura* crearSoga(float x, float y, int numeroJugador);
 	Figura* crearCorrea(float x, float y, int numeroJugador);
+	Figura * crear(Gancho*);
 	Figura * crear(Plataforma*);
 	Figura * crear(Engranaje*);
 	Figura * crear(Balancin*);

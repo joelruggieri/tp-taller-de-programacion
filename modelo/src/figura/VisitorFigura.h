@@ -18,12 +18,14 @@ class PelotaJuego;
 class GloboHelio;
 class Soga;
 class Correa;
+class Gancho;
 
 class VisitorFigura {
 public:
 	virtual ~VisitorFigura() {
 
 	}
+	virtual void visit(Gancho*) = 0;
 	virtual void visit(Motor*) = 0;
 	virtual void visit(Plataforma*) = 0;
 	virtual void visit(Balancin*) = 0;

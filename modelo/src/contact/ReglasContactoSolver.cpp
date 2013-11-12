@@ -17,6 +17,9 @@ ReglasContactoSolver::ReglasContactoSolver() {
 	clean();
 }
 
+void ReglasContactoSolver::visit(Gancho*) {
+}
+
 void ReglasContactoSolver::visit(Motor*) {
 }
 
