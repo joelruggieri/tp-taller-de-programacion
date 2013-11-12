@@ -12,26 +12,29 @@
 #include "../SerializacionException.h"
 #include "Status.h"
 #include "src/Logger.h"
-class IOThreadParams{
+class IOThreadParams {
 private:
 	ColaEventos * cola;
-	int  socketDesc;
+	int socketDesc;
 	Status * status;
 	int jugador;
 
 public:
-	IOThreadParams(ColaEventos * cola,Status * status, int socketDesc, int jugador);
+	IOThreadParams(ColaEventos * cola, Status * status, int socketDesc, int jugador);
 	virtual ~IOThreadParams();
 	ColaEventos* getCola();
 	int getSocketDesc();
 	Status* getStatus();
 	int getJugador();
+	bool sigpipe_pending;
+	bool sigpipe_unblock;
+	sigset_t signal_mask;
+	sigset_t sigpipe_mask;
 };
-
 
 class IOThread {
 public:
-	IOThread(ColaEventos* , ColaEventos* , Status *, int, int );
+	IOThread(ColaEventos*, ColaEventos*, Status *, int, int);
 	virtual ~IOThread();
 	void run();
 	void cancel();

@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <list>
+#include <src/Logger.h>
 using namespace std;
 class Serializador {
 public:
@@ -39,6 +40,7 @@ public:
 private:
 	map<string, NetworkMensaje*> mensajes;
 	int destinatario;
+	Logger log;
 };
 
 #endif /* SERIALIZADOR_H_ */

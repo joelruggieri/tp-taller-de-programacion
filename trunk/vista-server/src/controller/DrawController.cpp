@@ -8,6 +8,7 @@
 #include "DrawController.h"
 #include "src/mensajes/viewMensaje/FinDibujado.h"
 #include <src/ConstantesComunicacion.h>
+#include <src/Logger.h>
 DrawController::DrawController(ColaEventos* salida) {
 	this->salida = salida;
 	tablero = NULL;
@@ -26,7 +27,8 @@ void DrawController::setTablero(ZonaTablero* t) {
 }
 
 void DrawController::dibujar() {
-
+	Logger log;
+//	log.debug("Iniciando dibujado");
 	list<ViewMsj*> dumpTablero;
 	tablero->dibujarse(dumpTablero);
 
@@ -60,6 +62,7 @@ void DrawController::dibujar() {
 		salidaFinal.push_back(fin);
 	}
 	salida->push(salidaFinal);
+//	log.debug("Finalizando dibujado");
 }
 
 DrawController::~DrawController() {

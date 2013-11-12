@@ -50,8 +50,7 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 	int recibidos = 0;
 
 	//
-	int result = read(sock, &longitudTotal, sizeof(int));
-//	Logger log;
+	int result = recv(sock, &longitudTotal, sizeof(int),MSG_NOSIGNAL);
 //	string mje= "bytes ";
 //	log.concatenar(mje, longitudTotal);
 //	log.debug(mje);
@@ -61,12 +60,12 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 	}
 
 	while (recibidos < longitudTotal) {
-		result = read(sock, &longRecibida, sizeof(int));
+		result = recv(sock, &longRecibida, sizeof(int),MSG_NOSIGNAL);
 		if (result == -1) {
 			ManejadorErrores::manejarWriteError(errno);
 			throw SerializacionException("No se pudo recibir el mensaje del host");
 		}
-		result = recv(sock, &bufferAux, longRecibida, 0);
+		result = recv(sock, &bufferAux, longRecibida, MSG_NOSIGNAL);
 
 		if (result == -1) {
 			ManejadorErrores::manejarWriteError(errno);
@@ -93,6 +92,7 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 				it++;
 			} catch (YAML::Exception &exc) {
 				//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
+				log.debug("Error de yaml");
 				tagEncontrado = false;
 				it++;
 			}
@@ -108,9 +108,11 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 					lista.push_back(msj);
 				} catch (YAML::Exception &exc) {
 					//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
+					log.debug("Error de yaml 2");
 					it++;
 				}
 			} else {
+				log.debug(("No encontro tag"));
 				//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
 				it++;
 			}
@@ -135,7 +137,7 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	int len = strlen(salida.c_str());
 	int longEnviada;
 
-	int result = send(socket, &len, sizeof(int), 0);	//envio longitud total
+	int result = send(socket, &len, sizeof(int), MSG_NOSIGNAL);	//envio longitud total
 	if (result == -1) {
 		ManejadorErrores::manejarWriteError(errno);
 		throw SerializacionException("No se pudo enviar el mensaje al host");
@@ -143,7 +145,7 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	while (enviados < len) {
 		longEnviada = len - enviados;
 		//Primero mando la lingutud de lo que falta enviar ( en la primera iteracion lo que falta estodo)
-		result = send(socket, &(longEnviada), sizeof(int), 0);
+		result = send(socket, &(longEnviada), sizeof(int), MSG_NOSIGNAL);
 
 		//Si da error tiro exception y loggeo el errorn.
 		if (result == -1) {
@@ -153,7 +155,7 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 		//ENTREGA3 CHEQUEAR ESTO PORQUE NO ESTA PROBADO.
 
 		//Ahora intento enviar lo restante.
-		result = send(socket, salida.substr(enviados, len).c_str(), longEnviada, 0);
+		result = send(socket, salida.substr(enviados, len).c_str(), longEnviada, MSG_NOSIGNAL);
 
 		//Si da error cancelo
 		if (result == -1) {

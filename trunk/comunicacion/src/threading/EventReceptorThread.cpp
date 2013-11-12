@@ -6,8 +6,8 @@
  */
 
 #include "EventReceptorThread.h"
-
-EventReceptorThread::EventReceptorThread(ColaEventos * in, UserEventVisitor* u, ViewMsjVisitor * v, MensajePlanoVisitor * m, MensajeInternoVisitor* i) {
+EventReceptorThread::EventReceptorThread(ColaEventos * in, UserEventVisitor* u, ViewMsjVisitor * v,
+		MensajePlanoVisitor * m, MensajeInternoVisitor* i) {
 	th = NULL;
 	this->colaIn = in;
 	this->params = NULL;
@@ -16,19 +16,24 @@ EventReceptorThread::EventReceptorThread(ColaEventos * in, UserEventVisitor* u, 
 
 void * recibir(void *arg) {
 	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
-	EventReceptorThreadParams * params =
-			(EventReceptorThreadParams *) (zona->getParams());
+	EventReceptorThreadParams * params = (EventReceptorThreadParams *) (zona->getParams());
 	ColaEventos * colaEntrada = params->getColaIn();
 	DistribuidorMensajes * ejecutor = params->getDistribuidor();
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
+	list<NetworkMensaje*> msjs;
+	list<NetworkMensaje*>::iterator it;
 	while (true) {
 		usleep(10000);
-		while (colaEntrada->hasNext()) {
-			NetworkMensaje* pop = colaEntrada->front();
-			if (pop != NULL) {
-				ejecutor->procesar(pop);
+		colaEntrada->getAll(msjs);
+		if (msjs.size() > 0) {
+			for (it = msjs.begin(); it != msjs.end(); ++it) {
+//				YAML::Node node;
+//				(*it)->serialize(&node);
+//				cout << node << endl;
+				ejecutor->procesar(*it);
 			}
 		}
+		msjs.clear();
 	}
 	pthread_exit(NULL);
 
@@ -67,8 +72,7 @@ ColaEventos* EventReceptorThreadParams::getColaIn() {
 	return colaIn;
 }
 
-EventReceptorThreadParams::EventReceptorThreadParams(DistribuidorMensajes* c,
-		ColaEventos* cola) {
+EventReceptorThreadParams::EventReceptorThreadParams(DistribuidorMensajes* c, ColaEventos* cola) {
 	this->distribuidor = c;
 	this->colaIn = cola;
 }
