@@ -121,3 +121,6 @@ void ObjetoDAO::guardar(Engranaje* objeto, YAML::Node* nodoRaiz) {
 void ObjetoDAO::guardar(Motor* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Motores"].push_back(*objeto);
 }
+
+void ObjetoDAO::visit(Gancho*) {
+}

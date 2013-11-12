@@ -198,3 +198,6 @@ void InicializadorJuego::visit(Soga* c) {
 		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_SOGA);
 		this->agregarUnion(iter->second, (Soga*)fig);
 }
+
+void InicializadorJuego::visit(Gancho*) {
+}

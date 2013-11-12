@@ -13,7 +13,7 @@
 #include <map>
 #include "../../modelo/Cuadrado.h"
 
-
+#include "src/objeto/Gancho.h"
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
@@ -56,6 +56,7 @@ public:
 	void visit(Engranaje*);
 	void visit(Correa*);
 	void visit(Soga*);
+	void visit(Gancho*);
 	ZonaTablero* crearTablero();
 };
 
