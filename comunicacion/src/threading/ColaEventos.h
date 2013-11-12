@@ -21,6 +21,7 @@ class ColaEventos: public ObjetoCompartido {
 private:
 	list<NetworkMensaje*> msjs;
 	Logger log;
+	bool habilitada;
 public:
 	ColaEventos();
 	void push(NetworkMensaje * msj);
@@ -30,6 +31,9 @@ public:
 	bool hasNext();
 	virtual ~ColaEventos();
 	void clear();
+	void habilitar();
+	void deshabilitada();
+	bool isHabilitada();
 };
 
 #endif /* COLAEVENTOS_H_ */

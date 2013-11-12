@@ -46,8 +46,8 @@ void * funcThread(void * arg) {
 			disponibilidad->unlock();
 			destinatario->lock();
 			ColaEventos* colaEvento = destinatario->getColaSalida();
-			destinatario->unlock();
 			colaEvento->push(front);
+			destinatario->unlock();
 		}
 
 			//a repartir mijo.
