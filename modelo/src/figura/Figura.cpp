@@ -1,4 +1,3 @@
-
 /*
  * Figura.cpp
  *
@@ -22,15 +21,15 @@ double Figura::getRotacion() const {
 	return rotacion;
 }
 
-void Figura::setX(float x){
+void Figura::setX(float x) {
 	this->x = x;
 }
 
-void Figura::setY(float y){
+void Figura::setY(float y) {
 	this->y = y;
 }
 
-void Figura::setRotacion(double rotation){
+void Figura::setRotacion(double rotation) {
 //	int signo;
 //	if(rotation <= -180 ){
 //		signo = +1;
@@ -49,7 +48,7 @@ void Figura::setRotacion(double rotation){
 //		}
 //	}
 
-	//	this->rotacion = rotation;
+//	this->rotacion = rotation;
 //	if(this->rotacion < 0){
 //		this->rotacion =  this->rotacion * -1;
 //		this->rotacion = 360 - (int)this->rotacion % 360;
@@ -57,19 +56,17 @@ void Figura::setRotacion(double rotation){
 //		this->rotacion = (int)this->rotacion % 360;
 //	}
 
-
-
 }
 
 Figura::Figura() {
-	x= 0;
-	y=0;
+	x = 0;
+	y = 0;
 	rotacion = 0;
-	vista= 0;
-	this->body =0;
+	vista = 0;
+	this->body = 0;
 	xb = x;
 	yb = y;
-	rotacionb =0;
+	rotacionb = 0;
 	traccionable = false;
 	numeroJugadorDuenio = -1;
 }
@@ -79,25 +76,24 @@ Figura::Figura(float x, float y) {
 	this->x = x;
 	this->y = y;
 	this->rotacion = 0;
-	vista= 0;
-	this->body =0;
+	vista = 0;
+	this->body = 0;
 	xb = x;
 	yb = y;
-	rotacionb =0;
+	rotacionb = 0;
 	numeroJugadorDuenio = -1;
 }
 
-
 Figura::~Figura() {
 	Lista_Enganches::iterator it;
-	for(it= this->enganches.begin(); it!= enganches.end(); ++it){
+	for (it = this->enganches.begin(); it != enganches.end(); ++it) {
 		delete *it;
 	}
 	notify(DESPUES_DESTRUCCION);
 
 }
 
- Vista* Figura::getVista(){
+Vista* Figura::getVista() {
 	return vista;
 }
 
@@ -105,22 +101,20 @@ void Figura::setVista(Vista* vista) {
 	this->vista = vista;
 }
 
-
-b2Body* Figura::getBody(){
+b2Body* Figura::getBody() {
 	return this->body;
 }
 
-void Figura::setBody(b2Body* b){
+void Figura::setBody(b2Body* b) {
 	body = b;
 }
 
-
 void Figura::updateModelo() {
-	if(this->body != 0){
+	if (this->body != 0) {
 		const b2Vec2 p = body->GetPosition();
 		this->setX(p.x);
 		this->setY(p.y);
-		this->rotacion = -1*radianesAGrados(body->GetAngle());
+		this->rotacion = -1 * radianesAGrados(body->GetAngle());
 	}
 }
 
@@ -129,22 +123,22 @@ double Figura::radianesAGrados(float r) {
 }
 
 double Figura::gradosARadianes(float g) {
-	return g*3.14/180;
+	return g * 3.14 / 180;
 }
 
 void Figura::makeBackUp() {
 	xb = x;
-	yb =y;
+	yb = y;
 	rotacionb = rotacion;
 }
 
 void Figura::restoreBackUp() {
-	x= xb;
+	x = xb;
 	y = yb;
 	rotacion = rotacionb;
 }
 
-Lista_Enganches & Figura::getEnganches(){
+Lista_Enganches & Figura::getEnganches() {
 	return this->enganches;
 }
 
@@ -166,31 +160,35 @@ void Figura::modificarSentido() {
 }
 
 void Figura::crearFisicaEstaticaTemplate() {
-   this->crearFisica();
+	this->crearFisica();
 }
 
 bool Figura::crearFisicaEstatica() {
-	this->crearFisicaEstaticaTemplate();
-	bool hayContacto = false;
-	for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
-		if (b != this->body && b->GetFixtureList()!= NULL  && b->GetFixtureList()->GetShape() != NULL){
-			if(validarContacto(this->body, b)){
-				hayContacto = true;
-				break;
+	if (myWorld != NULL) {
+		this->crearFisicaEstaticaTemplate();
+		bool hayContacto = false;
+		for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
+			if (b != this->body && b->GetFixtureList() != NULL && b->GetFixtureList()->GetShape() != NULL) {
+				if (validarContacto(this->body, b)) {
+					hayContacto = true;
+					break;
+				}
 			}
 		}
-	}
-	if(hayContacto) {
-		removerFisica();
+		if (hayContacto) {
+			removerFisica();
+		} else {
+			notify(FISICA_E_CREADA);
+		}
+		return !hayContacto;
 	} else {
-	   notify(FISICA_E_CREADA);
+		return false;
 	}
-	return !hayContacto;
 }
 
 void Figura::removerFisica() {
 
-	if(body != NULL){
+	if (body != NULL) {
 		notify(FISICA_REMOVIDA);
 		myWorld->DestroyBody(this->getBody());
 	}
@@ -198,14 +196,13 @@ void Figura::removerFisica() {
 }
 
 bool Figura::validarContacto(b2Body * verf, b2Body * b) {
-		uint16 catA = verf->GetFixtureList()->GetFilterData().categoryBits;
-		uint16 maskA = verf->GetFixtureList()->GetFilterData().maskBits;
-		uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
-		uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
+	uint16 catA = verf->GetFixtureList()->GetFilterData().categoryBits;
+	uint16 maskA = verf->GetFixtureList()->GetFilterData().maskBits;
+	uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
+	uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
 
-		return b2TestOverlap(verf->GetFixtureList()->GetShape(), 0,
-				b->GetFixtureList()->GetShape(), 0, verf->GetTransform(),
-				b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
+	return b2TestOverlap(verf->GetFixtureList()->GetShape(), 0, b->GetFixtureList()->GetShape(), 0,
+			verf->GetTransform(), b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
 
 }
 
@@ -223,7 +220,6 @@ Figura::Figura(const Figura& fig) {
 bool Figura::esTraccionable() {
 	return this->traccionable;
 }
-
 
 bool Figura::agregar(Mapa* m) {
 	return m->addFigura(this);
@@ -244,10 +240,10 @@ void Figura::setPosicion(float x, float y) {
 	notify(CAMBIO_ESPACIAL_FORZADO);
 }
 
-void Figura::setNumeroJugador(int jugadorDuenio){
+void Figura::setNumeroJugador(int jugadorDuenio) {
 	this->numeroJugadorDuenio = jugadorDuenio;
 }
 
-int Figura::getNumeroJugador(){
+int Figura::getNumeroJugador() {
 	return numeroJugadorDuenio;
 }

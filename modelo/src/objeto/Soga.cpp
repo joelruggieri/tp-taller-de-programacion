@@ -28,6 +28,7 @@ bool Soga::crearFisicaEstatica() {
 	if (figuraInicio == figuraFin) {
 		return false;
 	}
+	if(myWorld == NULL) return false;
 	origen->ocupar();
 	destino->ocupar();
 	this->crearFisicaEstaticaTemplate();

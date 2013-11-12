@@ -66,7 +66,11 @@ bool Correa::crearFisicaEstatica() {
 	if(this->figuraFin == this->figuraInicio){
 		return false;
 	}
-	this->crearFisicaEstaticaTemplate();
+	if(myWorld != NULL){
+		this->crearFisicaEstaticaTemplate();
+	} else {
+		return false;
+	}
 
 	((Engranaje *)figuraInicio)->ocupar();
 	((Engranaje *)figuraFin)->ocupar();
