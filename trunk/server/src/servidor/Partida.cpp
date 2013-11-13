@@ -107,8 +107,11 @@ void Partida::iniciarGeneralEventController() {
 	FlujoDeJuegoController * fcontroller = new FlujoDeJuegoController(modeloController);
 	generalController = new GeneralEventController(dc,fcontroller);
 	list<Jugador*>::iterator it;
+	JuegoEventsController * jugador;
 	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
-		generalController->addJugador(controllersFactory->crearConfiguracionJugador((*it)));
+		jugador = controllersFactory->crearConfiguracionJugador((*it));
+		generalController->addJugador(jugador);
+		fcontroller->addJugador(jugador);
 		//ENTREGA3 VERIFICAR ESTO.
 		modeloController->addArea((*it)->getArea(),(*it)->getNumero());
 	}
