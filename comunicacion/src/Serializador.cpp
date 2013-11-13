@@ -112,7 +112,8 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 					it++;
 				}
 			} else {
-				log.debug(("No encontro tag"));
+				log.debug(("No encontro tag"+clave));
+
 				//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
 				it++;
 			}

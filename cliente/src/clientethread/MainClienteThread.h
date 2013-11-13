@@ -20,10 +20,11 @@ enum RESULTADO_CONEXION {SERVIDOR_ERROR, SERVIDOR_OCUPADO, SERVIDOR_CONECTADO};
 
 class MainClienteThread {
 public:
-	MainClienteThread();
+	MainClienteThread(string ip);
 	virtual ~MainClienteThread();
 	void run();
 private:
+	string ip;
 	ConfiguracionNivelMsj * config;
 	IOThread * thread;
 	Logger log;
