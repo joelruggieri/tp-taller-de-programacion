@@ -188,7 +188,9 @@ Figura* FiguraFactory::crear(Soga* c) {
 }
 
 Figura* FiguraFactory::crearYunque(float x, float y, int numeroJugador) {
-return new Yunque(x,y,ANCHO_YUNQUE, ALTO_YUNQUE);
+	Figura* figura = new Yunque(x,y, ANCHO_YUNQUE,ANCHO_YUNQUE);
+	figura->setNumeroJugador(numeroJugador);
+	return figura;
 }
 
 Figura* FiguraFactory::crear(Yunque* c) {

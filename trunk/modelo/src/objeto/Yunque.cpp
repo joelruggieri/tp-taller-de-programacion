@@ -13,6 +13,7 @@ Yunque::Yunque() : Objeto() {
 	this->alto = 0;
 	this->anchoBack = 0 ;
 	// TODO Auto-generated constructor stub
+//	this->enganches.push_back(new Enganche(this,0,this->alto));
 
 }
 
@@ -20,6 +21,7 @@ Yunque::Yunque(float x, float y, float w, float h) : Objeto(x,y){
 	this->ancho = w;
 	this->alto = h;
 	this->anchoBack = this->ancho;
+	this->enganches.push_back(new Enganche(this,0,this->alto / 2));
 }
 
 Yunque::~Yunque() {
@@ -27,41 +29,37 @@ Yunque::~Yunque() {
 }
 
 Yunque::Yunque(const Yunque& figura) {
+	this->enganches.push_back(new Enganche(this,0,this->alto));
 }
 
 void Yunque::crearFisica() {
 	float x = this->getX();
-	float y = this->getY();
-	b2Vec2 centro(x, y);
-	b2PolygonShape * polygon = new b2PolygonShape();
+		float y = this->getY();
+		b2Vec2 centro(x, y);
+		b2PolygonShape shape;
 
-	b2MassData masa;
-	/*masa.center = centro;
-	 masa.mass = 100.00;
-	 masa.I = 0.00;
-	 polygon->ComputeMass(&masa,3);*/
-	polygon->SetAsBox(this->ancho / 2, this->alto / 2);
+		b2BodyDef bodyDef;
+		bodyDef.type = b2_dynamicBody;
+		bodyDef.position.Set(centro.x, centro.y);
+		bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
+		b2Body* body = myWorld->CreateBody(&bodyDef);
+//		shape.m_radius = this->radio;
+		shape.SetAsBox(this->ancho / 2, this->alto / 2);
+		b2FixtureDef bodyPelota;
+		bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
+		bodyPelota.filter.maskBits = CATEGORIA_FIGURAS;
+		bodyPelota.shape = &shape;
+		bodyPelota.density = 200.0f;
+		bodyPelota.friction = 0.3f;
+		bodyPelota.restitution = 0.0f;	//mucho coeficiente de restitucion
+		body->CreateFixture(&bodyPelota)->SetUserData(this);
+	//		b2MassData masa;
+	//		masa.mass = 50.0f; //chequear la cantidad de masa
+	//		masa.I = 0.04; // chequear inercia rotacional
+	//		body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
+		body->SetUserData(this);
+		this->setBody(body);
 
-	b2FixtureDef fixture;
-	fixture.density = 200.00f;
-	fixture.shape = polygon;
-	fixture.friction = 1.0f;
-	fixture.restitution = 0.00f;
-	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
-	fixture.filter.maskBits = CATEGORIA_FIGURAS;
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(x, y);
-	bodyDef.fixedRotation = true;
-
-	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
-	bodyDef.angle = rotacionRad;
-	b2Body* body = myWorld->CreateBody(&bodyDef);
-	//body->CreateFixture(polygon, 10.0f);
-	body->CreateFixture(&fixture);
-	body->SetUserData(this);
-	this->setBody(body);
-	b2DistanceJointDef jd;
 }
 
 void Yunque::acept(VisitorFigura* v) {
