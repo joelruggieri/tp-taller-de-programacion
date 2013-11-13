@@ -23,7 +23,7 @@ public:
 	void setAncho(float ancho);
 
 private:
-	float ancho, alto, anchoBack;
+	float ancho, alto;
 };
 
 #endif /* YUNQUE_H_ */

@@ -23,6 +23,7 @@ public:
 	void click();
 	void update(ViewMsj *);
 	bool isUpdated();
+	bool isPresionado();
 };
 }
 #endif /* BOTONSWITCH_H_ */

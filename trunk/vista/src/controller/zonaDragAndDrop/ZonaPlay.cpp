@@ -12,6 +12,7 @@
 #include "../../vista/ViewConFondo.h"
 #include "SDL2/SDL.h"
 #include "../../ConstantesVista.h"
+#include "src/ConstantesComunicacion.h"
 namespace CLIENTE {
 ZonaPlay::ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola) {
 	//ENTREGA3 PONERLO DONDE CORRESPONDA.
@@ -19,8 +20,6 @@ ZonaPlay::ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola) {
 	salida = cola;
 	controller = vc;
 	crearVista(vc);
-	iniciado = false;
-//	boton = new BotonSwitch(lx,ly,w,h,USREVENT_START, USREVENT_STOP,text1,text2);
 }
 
 ZonaPlay::~ZonaPlay() {
@@ -28,10 +27,10 @@ ZonaPlay::~ZonaPlay() {
 
 bool ZonaPlay::click(float x, float y) {
 	if (cuerpo->contacto(x, y)) {
+		bool iniciado;
 		BotonSwitch * boton = (BotonSwitch *) controller->getForUpdate(ID_BOTON_PLAY);
-		boton->click();
+		iniciado = !boton->isPresionado();
 		controller->endUpdate();
-		iniciado = !iniciado;
 		JugadorListo* mje = new JugadorListo(iniciado);
 		salida->push(mje);
 		return true;

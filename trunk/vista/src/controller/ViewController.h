@@ -10,6 +10,7 @@
 #include <src/threading/ColaEventos.h>
 #include <src/mensajes/userEvents/UserEventMsj.h>
 #include <src/mensajes/viewMensaje/ViewMsj.h>
+#include <src/mensajes/viewMensaje/ViewBotonStartMsj.h>
 #include <src/threading/ObjetoCompartido.h>
 #include "ResizerController.h"
 #include "DrawController.h"
@@ -44,6 +45,7 @@ public:
 	void visit(ViewObjetoUpdateMsj*);
 	void visit(ViewObjetoUnionUpdateMsj*);
 	void visit(FinDibujado*);
+	void visit(ViewBotonStartMsj*);
 	void addView(int id, View *);
 	void addViewScrolleable(int id, View *);
 	void scrollUnidadesLogicas(float unidadesLogicas);

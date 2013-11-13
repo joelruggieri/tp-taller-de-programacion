@@ -8,6 +8,7 @@
 #include "DrawController.h"
 #include "src/mensajes/viewMensaje/FinDibujado.h"
 #include <src/ConstantesComunicacion.h>
+#include "src/mensajes/viewMensaje/ViewBotonStartMsj.h"
 #include <src/Logger.h>
 DrawController::DrawController(ColaEventos* salida) {
 	this->salida = salida;
@@ -60,6 +61,9 @@ void DrawController::dibujar() {
 		fin = new FinDibujado();
 		fin->setDestinatario((*itJugadores)->getNumeroJugador());
 		salidaFinal.push_back(fin);
+		nuevo =new ViewBotonStartMsj(ID_BOTON_PLAY,(*itJugadores)->isIniciado());
+		nuevo->setDestinatario((*itJugadores)->getNumeroJugador());
+		salidaFinal.push_back(nuevo);
 	}
 	salida->push(salidaFinal);
 //	log.debug("Finalizando dibujado");
