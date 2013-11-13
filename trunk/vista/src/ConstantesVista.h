@@ -86,8 +86,9 @@ namespace CLIENTE {
 #define ID_FACTORY_PLATAFORMA 58
 #define ID_FACTORY_SOGA 59
 #define ID_FACTORY_YUNQUE 60
+#define ID_FACTORY_GANCHO 61
 //////////// Constantes de dibujo /////////
-
+#define RADIO_GANCHO 1.0
 #define RADIO_PELOTA 3.0
 #define RADIO_BOLA 3.0
 #define RADIO_GLOBO 3.5

@@ -71,6 +71,7 @@ void ViewController::crearPantalla() {
 	cargador->cargarTexture(PATH_VISTA_ENGRANAJE);
 	cargador->cargarTexture(PATH_VISTA_MOTOR);
 	cargador->cargarTexture(PATH_VISTA_YUNQUE);
+	cargador->cargarTexture(PATH_VISTA_GANCHO);
 	cargador->cargarTexture(PATH_EDICION_UNION);
 	cargador->cargarTexture(PATH_ERROR_IMG);
 
