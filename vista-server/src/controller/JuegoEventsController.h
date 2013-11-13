@@ -14,7 +14,6 @@
 
 #include "../vista/Dibujable.h"
 #include "../vista/Dragueable.h"
-#include "FlujoDeJuegoController.h"
 #include "zonaDragAndDrop/ZonaCreacion.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
 
@@ -40,10 +39,8 @@ public:
 	void crearVista(string, float, float);
 	void setZonas(ZonaTablero *tablero, ZonaCreacion * creacion);
 	ViewMsj* dibujarEdicion();
-	void start();
-	void stop();
-	void paso();
-	bool corriendo();
+	void setIniciado(bool);
+	bool isIniciado();
 	bool isCtrl() const;
 	bool isShift() const;
 	void setControl(bool);

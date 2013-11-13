@@ -27,6 +27,7 @@ JuegoEventsController::JuegoEventsController(ZonaTablero* tablero, ModeloControl
 	editor = NULL;
 	iniciado = false;
 	this->numeroJugador = numero;
+	iniciado = false;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -144,25 +145,6 @@ bool JuegoEventsController::rightClickUp(float x, float y) {
 	return true;
 }
 
-void JuegoEventsController::start() {
-	this->modeloController->start();
-	this->iniciado = true;
-}
-
-void JuegoEventsController::stop() {
-	modeloController->stop();
-	this->iniciado = false;
-}
-
-void JuegoEventsController::paso() {
-	if (iniciado) {
-		this->modeloController->step();
-	}
-}
-
-bool JuegoEventsController::corriendo() {
-	return iniciado;
-}
 
 bool JuegoEventsController::isCtrl() const {
 	return this->control;
@@ -210,4 +192,12 @@ ViewMsj* JuegoEventsController::dibujarEdicion() {
 		return msjs.front();
 	}
 	return NULL;
+}
+
+void JuegoEventsController::setIniciado(bool iniciado) {
+	this->iniciado = iniciado;
+}
+
+bool JuegoEventsController::isIniciado() {
+	return iniciado;
 }
