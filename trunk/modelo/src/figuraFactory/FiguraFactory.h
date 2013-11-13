@@ -23,6 +23,7 @@ public:
 	Figura* crearEngranaje(float x, float y, int numeroJugador);
 	Figura* crearSoga(float x, float y, int numeroJugador);
 	Figura* crearCorrea(float x, float y, int numeroJugador);
+	Figura* crearYunque(float x, float y, int numeroJugador);
 	Figura * crear(Gancho*);
 	Figura * crear(Plataforma*);
 	Figura * crear(Engranaje*);
@@ -34,6 +35,7 @@ public:
 	Figura* crear(Motor*);
 	Figura* crear(Correa*);
 	Figura* crear(Soga*);
+	Figura* crear(Yunque*);
 };
 
 #endif /* FIGURAFACTORY_H_ */

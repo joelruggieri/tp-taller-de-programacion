@@ -29,6 +29,7 @@ using namespace std;
 #include "../viewFactory/ViewCorreaFactory.h"
 #include "../viewFactory/ViewCorreaDinamicaFactory.h"
 #include "../viewFactory/ViewSogaDinamicaFactory.h"
+#include "../viewFactory/ViewYunqueFactory.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "../RutasArchivos.h"
@@ -43,7 +44,7 @@ const string KEY_PELOTA_JUEGO = "PELOTA";
 const string KEY_ENGRANAJE = "ENGRANAJE";
 const string KEY_MOTOR = "MOTOR";
 const string KEY_CORREA = "CORREA";
-
+const string KEY_YUNQUE = "YUNQUE";
 InicializadorJuego::InicializadorJuego(Nivel* nivel, ModeloController * modeloController) {
 	this->modeloController = modeloController;
 	this->factory = new FiguraFactory();
@@ -154,7 +155,8 @@ ZonaTablero* InicializadorJuego::crearTablero() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_SOGA,viewFactory));
 	viewFactory = new ViewCorreaDinamicaFactory(NULL,0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CORREA,viewFactory));
-
+	viewFactory = new ViewYunqueFactory(NULL,0);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_YUNQUE,viewFactory));
 	list<Figura*>& figurasNivel = this->nivel->getFiguras();
 	list<Figura*>::iterator it;
 	for(it = figurasNivel.begin() ; it != figurasNivel.end() ; ++it){
@@ -200,4 +202,10 @@ void InicializadorJuego::visit(Soga* c) {
 }
 
 void InicializadorJuego::visit(Gancho*) {
+}
+
+void InicializadorJuego::visit(Yunque* c) {
+	Figura * fig = this->factory->crear(c);
+		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_YUNQUE);
+		this->agregarFigura(iter->second, fig);
 }

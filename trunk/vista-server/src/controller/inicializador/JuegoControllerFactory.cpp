@@ -16,6 +16,7 @@
 #include "../viewFactory/ViewPelotaJuegoFactory.h"
 #include "../viewFactory/VistaEngranajeFactory.h"
 #include "../viewFactory/ViewCorreaFactory.h"
+#include "../viewFactory/ViewYunqueFactory.h"
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/EditorUnion.h"
 #include "../editor/SimpleEditorOrientacionCambiable.h"
@@ -31,6 +32,7 @@ const string KEY_PELOTA_JUEGO = TAG_FACTORY_PELOTA;
 const string KEY_ENGRANAJE = TAG_FACTORY_ENGRANAJE;
 const string KEY_MOTOR = TAG_FACTORY_MOTOR;
 const string KEY_CORREA = TAG_FACTORY_CORREA;
+const string KEY_YUNQUE = TAG_FACTORY_YUNQUE;
 
 JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloController* modeloController) {
 	this->tablero = tablero;
@@ -77,6 +79,8 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_ENGRANAJE,viewFactory));
 	viewFactory = new ViewMotorFactory(editorOrientacionCambiable,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_MOTOR,viewFactory));
+	viewFactory = new ViewYunqueFactory(editorSimpleAnguloFijo1,0);
+	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_YUNQUE,viewFactory));
 
 }
 

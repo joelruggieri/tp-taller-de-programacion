@@ -27,6 +27,7 @@ public:
 	void dropNuevaFigura(GloboHelioView*);
 	void dropNuevaFigura(PelotaJuegoView*);
 	void dropNuevaFigura(VistaEngranaje*);
+	void dropNuevaFigura(YunqueView*);
 	EditorNivel * clone();
 };
 

@@ -53,6 +53,10 @@ ViewObjetoSimpleFactory::~ViewObjetoSimpleFactory() {
 	// TODO Auto-generated destructor stub
 }
 
+View* ViewObjetoSimpleFactory::crearYunque(ViewObjetoUpdateMsj* o) {
+	return new YunqueView(o->getX(), o->getY(),ANCHO_YUNQUE, ANCHO_YUNQUE,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_YUNQUE));
+}
+
 View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	View* viewRetorn;
 	switch(a->getSelector())
@@ -77,6 +81,9 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 		break;
 	case OBJ_UNION_S_CORREA_ESTATICA:
 		viewRetorn = this->crearCorreaEstatica(a);
+		break;
+	case OBJ_SIMPLE_S_YUNQUE:
+		viewRetorn = this->crearYunque(a);
 		break;
 	}
 

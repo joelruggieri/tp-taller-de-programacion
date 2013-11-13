@@ -18,6 +18,7 @@
 #include "../../vista/objeto/BolaBolicheView.h"
 #include "../../vista/objeto/SogaEstaticaView.h"
 #include "../../vista/objeto/CorreaEstaticaView.h"
+#include "../../vista/objeto/YunqueView.h"
 #include "../../ConstantesVista.h"
 namespace CLIENTE {
 
@@ -31,6 +32,7 @@ private:
 	View * crearBalancin(ViewObjetoUpdateMsj * );
 	View* crearSogaEstatica(ViewObjetoUpdateMsj*);
 	View* crearCorreaEstatica(ViewObjetoUpdateMsj*);
+	View* crearYunque(ViewObjetoUpdateMsj*);
 public:
 	ViewObjetoSimpleFactory();
 	virtual ~ViewObjetoSimpleFactory();

@@ -18,6 +18,7 @@
 #include "src/objeto/Correa.h"
 #include "src/objeto/Soga.h"
 #include "src/objeto/Engranaje.h"
+#include "src/objeto/Yunque.h"
 #include "src/Logger.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
@@ -530,3 +531,5 @@ void NivelDAO::obtenerEngranajes(std::list<Figura*>& lista,
 	}
 }
 
+void NivelDAO::obtenerYunques(std::list<Figura*>& lista, YAML::Node objetos) {
+}

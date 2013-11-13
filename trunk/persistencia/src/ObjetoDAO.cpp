@@ -21,6 +21,7 @@
 #include "src/objeto/Motor.h"
 #include "src/objeto/Correa.h"
 #include "src/objeto/Soga.h"
+#include "src/objeto/Yunque.h"
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -123,4 +124,12 @@ void ObjetoDAO::guardar(Motor* objeto, YAML::Node* nodoRaiz) {
 }
 
 void ObjetoDAO::visit(Gancho*) {
+}
+
+void ObjetoDAO::visit(Yunque* objeto) {
+	guardar(objeto, nodo);
+}
+
+void ObjetoDAO::guardar(Yunque* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Yunques"].push_back(*objeto);
 }

@@ -16,6 +16,7 @@
 #define OBJ_UNION_S_CORREA 'y'
 #define OBJ_CON_ANCHO_S_ENGRANAJE 'j'
 #define OBJ_SIMPLE_S_MOTOR 'm'
+#define OBJ_SIMPLE_S_YUNQUE 'y'
 
 #define TAG_JUGADOR_LISTO "JL"
 #define TAG_MSJ_NOTIMEOUT "NTO"
@@ -35,7 +36,7 @@
 #define TAG_FACTORY_PELOTA "FO"
 #define TAG_FACTORY_SOGA "FS"
 #define TAG_FACTORY_PLATAFORMA "FP"
-
+#define TAG_FACTORY_YUNQUE "FY"
 
 
 
