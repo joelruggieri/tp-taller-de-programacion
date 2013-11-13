@@ -25,11 +25,15 @@
 #include "src/controller/MainController.h"
 using namespace std;
 using namespace CLIENTE;
-MainClienteThread::MainClienteThread() {
+MainClienteThread::MainClienteThread(string ip) {
 	colaEntrada = new ColaEventos();
 	colaSalida = new ColaEventos();
 	thread = 0;
 	config = NULL;
+	if (ip == "0")
+		this->ip = "127.0.0.1";
+	else
+		this->ip = ip;
 }
 
 MainClienteThread::~MainClienteThread() {
@@ -107,7 +111,7 @@ list<NetworkMensaje*> MainClienteThread::tryConnect(int& socketfd) {
 	// Ordenación de máquina
 	dest_addr.sin_port = htons(6000);
 	// short, Ordenación de la red
-	dest_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+	dest_addr.sin_addr.s_addr = inet_addr(this->ip.c_str());
 	memset(&(dest_addr.sin_zero), '\0', 8); // Poner a cero el resto de la estructura
 	int st = connect(socketfd, (struct sockaddr *) &dest_addr, sizeof(struct sockaddr));
 	if (st == -1) {

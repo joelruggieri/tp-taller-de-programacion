@@ -11,8 +11,12 @@
 #include "src/LoggingService.h"
 using namespace std;
 
-int main() {
+int main(int arg, char** argv) {
 	LOG::LoggingService loggingService;
-	MainClienteThread main;
+	string ip ;
+	if (arg == 1) ip = "0";
+	else
+	ip = argv[1];
+	MainClienteThread main(ip);
 	main.run();
 }
