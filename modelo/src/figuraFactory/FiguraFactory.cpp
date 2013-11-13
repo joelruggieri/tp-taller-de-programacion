@@ -17,6 +17,7 @@
 #include "../objeto/Soga.h"
 #include "../objeto/Correa.h"
 #include "../objeto/Gancho.h"
+#include "../objeto/Yunque.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory() {
 
@@ -184,4 +185,16 @@ Figura* FiguraFactory::crear(Soga* c) {
 	t->setYFinal(c->getYFinal());
 	t->setReg(c->getReg());
 	return t;
+}
+
+Figura* FiguraFactory::crearYunque(float x, float y, int numeroJugador) {
+return new Yunque(x,y,ANCHO_YUNQUE, ALTO_YUNQUE);
+}
+
+Figura* FiguraFactory::crear(Yunque* c) {
+	Yunque* y = (Yunque*)this->crearYunque(c->getX(), c->getY(),c->getNumeroJugador());
+		y->setRotacion(c->getRotacion());
+		y->setAncho(c->getAncho());
+		y->setReg(c->getReg());
+		return y;
 }

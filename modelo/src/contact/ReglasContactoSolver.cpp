@@ -11,6 +11,7 @@
 #include "../objeto/BolaBoliche.h"
 #include "../objeto/PelotaJuego.h"
 #include "../objeto/GloboHelio.h"
+#include "../objeto/Yunque.h"
 using namespace std;
 
 ReglasContactoSolver::ReglasContactoSolver() {
@@ -78,6 +79,10 @@ void ReglasContactoSolver::colisionar(b2Contact* contact, const b2Manifold* oldM
 	   procesarContacto(cinta, globo,contact,oldManifold);
    }
 
+   if(cinta != NULL && yunque != NULL){
+	   procesarContacto(cinta,yunque,contact,oldManifold);
+   }
+
 }
 
 ReglasContactoSolver::~ReglasContactoSolver() {
@@ -87,6 +92,10 @@ ReglasContactoSolver::~ReglasContactoSolver() {
 }
 
 void ReglasContactoSolver::visit(Soga*) {
+}
+
+void ReglasContactoSolver::visit(Yunque* y) {
+	yunque = y;
 }
 
 void ReglasContactoSolver::PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {

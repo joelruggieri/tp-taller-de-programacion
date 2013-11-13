@@ -24,11 +24,13 @@
 #include "../vista/objeto/CorreaEstaticaView.h"
 #include "../vista/objeto/CintaTransportadoraView.h"
 #include "../vista/objeto/VistaEngranaje.h"
+#include "../vista/objeto/YunqueView.h"
 
 
 #include <list>
 
 using namespace std;
+class YunqueView;
 class MotorView;
 class GloboHelioView;
 class PlataformaView;

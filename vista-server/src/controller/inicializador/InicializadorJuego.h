@@ -25,6 +25,7 @@
 #include "src/objeto/Correa.h"
 #include "src/objeto/Union.h"
 #include "src/objeto/Soga.h"
+#include "src/objeto/Yunque.h"
 #include "src/Nivel.h"
 #include "src/ModeloController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -57,6 +58,7 @@ public:
 	void visit(Correa*);
 	void visit(Soga*);
 	void visit(Gancho*);
+	void visit(Yunque*);
 	ZonaTablero* crearTablero();
 };
 

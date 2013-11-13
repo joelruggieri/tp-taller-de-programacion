@@ -38,6 +38,7 @@ namespace CLIENTE {
 #define PATH_VISTA_GLOBO "resource/globo.png"
 #define PATH_VISTA_AREA "resource/area.png"
 #define PATH_VISTA_PELOTA "resource/pelota.png"
+#define PATH_VISTA_YUNQUE "resource/yunque.png"
 #define PATH_VISTA_BOLA "resource/bolaBoliche.png"
 #define PATH_VISTA_CINTA "resource/cinta.png"
 #define PATH_VISTA_CINTA_PLATAF "resource/baseCinta.png"
@@ -83,7 +84,7 @@ namespace CLIENTE {
 #define ID_FACTORY_PELOTA 57
 #define ID_FACTORY_PLATAFORMA 58
 #define ID_FACTORY_SOGA 59
-
+#define ID_FACTORY_YUNQUE 60
 //////////// Constantes de dibujo /////////
 
 #define RADIO_PELOTA 3.0
@@ -95,6 +96,7 @@ namespace CLIENTE {
 #define ANCHO_UNION_ESTATICA 10.0
 #define RADIO_CORREA_ESTATICA 2.0
 #define RADIO_SOGA_ESTATICA 1.0
+#define ANCHO_YUNQUE 6.0
 
 
 #define ANCHO_BALANCIN 15.0
