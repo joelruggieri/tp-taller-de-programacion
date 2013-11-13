@@ -57,6 +57,10 @@ View* ViewObjetoSimpleFactory::crearYunque(ViewObjetoUpdateMsj* o) {
 	return new YunqueView(o->getX(), o->getY(),ANCHO_YUNQUE, ANCHO_YUNQUE,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_YUNQUE));
 }
 
+View* ViewObjetoSimpleFactory::crearGancho(ViewObjetoUpdateMsj* o) {
+	return new GanchoView(o->getX(), o->getY(),2*RADIO_GANCHO,2*RADIO_GANCHO,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_GANCHO));
+}
+
 View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	View* viewRetorn;
 	switch(a->getSelector())
@@ -84,6 +88,9 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 		break;
 	case OBJ_SIMPLE_S_YUNQUE:
 		viewRetorn = this->crearYunque(a);
+		break;
+	case OBJ_SIMPLE_S_GANCHO:
+		viewRetorn = this->crearGancho(a);
 		break;
 	}
 
