@@ -7,6 +7,7 @@
 
 #include "BotonSwitch.h"
 #include "../controller/UserEventCreator.h"
+#include "src/mensajes/viewMensaje/ViewBotonStartMsj.h"
 namespace CLIENTE {
 BotonSwitch::BotonSwitch(float x,float y,float w,float h, SDL_Texture * text1, SDL_Texture * text2):View(x,y,w,h) {
 	this->presionado = false;
@@ -37,11 +38,18 @@ void BotonSwitch::click() {
 	presionado = !presionado;
 }
 
-void BotonSwitch::update(ViewMsj*) {
+void BotonSwitch::update(ViewMsj* m) {
+	ViewBotonStartMsj * msj = (ViewBotonStartMsj *)m;
+	this->presionado = msj->isListo();
 }
 
 
 bool BotonSwitch::isUpdated() {
 	return true;
 }
+
+bool BotonSwitch::isPresionado() {
+	return presionado;
+}
+
 }

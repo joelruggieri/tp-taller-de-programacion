@@ -11,16 +11,11 @@
 Yunque::Yunque() : Objeto() {
 	this->ancho = 0;
 	this->alto = 0;
-	this->anchoBack = 0 ;
-	// TODO Auto-generated constructor stub
-//	this->enganches.push_back(new Enganche(this,0,this->alto));
-
 }
 
 Yunque::Yunque(float x, float y, float w, float h) : Objeto(x,y){
 	this->ancho = w;
 	this->alto = h;
-	this->anchoBack = this->ancho;
 	this->enganches.push_back(new Enganche(this,0,this->alto / 2));
 }
 
@@ -28,8 +23,10 @@ Yunque::~Yunque() {
 	// TODO Auto-generated destructor stub
 }
 
-Yunque::Yunque(const Yunque& figura) {
+Yunque::Yunque(const Yunque& figura):Objeto(figura) {
 	this->enganches.push_back(new Enganche(this,0,this->alto));
+	alto = figura.alto;
+	ancho = figura.ancho;
 }
 
 void Yunque::crearFisica() {

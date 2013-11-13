@@ -58,6 +58,8 @@ Jugadores:
         cantidad: 7
       - nombre: FM
         cantidad: 3
+      - nombre: FY
+        cantidad: 3
   - numero: 1
     Area:
       x: 30

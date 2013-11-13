@@ -21,7 +21,6 @@ private:
 	ColaEventos * salida;
 	void crearVista(ViewController * vc);
 	ViewController * controller;
-	bool iniciado;
 public:
 	ZonaPlay(ViewController * vc, float x, float y,ColaEventos * cola);
 	virtual ~ZonaPlay();

@@ -201,6 +201,7 @@ void ViewController::generarVistaArea(float x, float y, float w,
 
 
 void ViewController::visit(FinDibujado* m) {
+	lock();
 	View* elemento;
 	map<int,View*>::iterator it;
 	for (std::list<View*>::iterator i = vistasList.begin(); i != vistasList.end();) {
@@ -214,5 +215,12 @@ void ViewController::visit(FinDibujado* m) {
 			++i;
 		}
 	}
+	unlock();
+}
+
+void ViewController::visit(ViewBotonStartMsj* m) {
+	lock();
+	update(m);
+	unlock();
 }
 }
