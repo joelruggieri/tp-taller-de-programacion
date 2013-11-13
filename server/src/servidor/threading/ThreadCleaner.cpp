@@ -57,8 +57,6 @@ void * cleanDeaths(void * arg) {
 				status->setThread(NULL);
 				msj = new ConexionUsuario(false);
 				msj->setDestinatario(status->getNroJugador());
-				//TODO POR LAS DUDAS LO PONGO A VER SI PROCESA LA SALIDA.
-				status->getColaSalida()->clear();
 			}
 			status->unlock();
 			if (msj != NULL) {
