@@ -109,11 +109,11 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 				} catch (YAML::Exception &exc) {
 					//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
 					log.debug("Error de yaml 2");
+					cout << exc.what()<< endl;
 					it++;
 				}
 			} else {
-				log.debug(("No encontro tag"+clave));
-
+				log.debug(("No encontro tag " + clave));
 				//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
 				it++;
 			}

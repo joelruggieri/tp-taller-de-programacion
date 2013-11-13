@@ -29,15 +29,14 @@ void CorreaView::dibujarse(SDL_Renderer* renderer) {
 
 	int v1xf = v1xip * radiofl;
 	int v1yf = v1yip * radiofl;
-
 	SDL_SetRenderDrawColor(renderer,10,10,10,0);
-	SDL_RenderDrawLine(renderer,xp + v1xi, yp + v1yi, xHastap + v1xf, yHastap + v1yf);
-	SDL_RenderDrawLine(renderer,xp - v1xi, yp - v1yi, xHastap - v1xf, yHastap - v1yf);
+//	SDL_RenderDrawLine(renderer,xp + v1xi, yp - v1yi, xHastap + v1xf, yHastap - v1yf);
+//	SDL_RenderDrawLine(renderer,xp - v1xi, yp + v1yi, xHastap - v1xf, yHastap + v1yf);
 	float longitud = 0.9;
 	for (int i = 0; i < 9; ++i) {
 		longitud += 0.01;
-		SDL_RenderDrawLine(renderer,xp + v1xi*longitud, yp + v1yi*longitud, xHastap + v1xf*longitud, yHastap + v1yf*longitud);
-		SDL_RenderDrawLine(renderer,xp - v1xi*longitud, yp - v1yi*longitud, xHastap - v1xf*longitud, yHastap - v1yf*longitud);
+		SDL_RenderDrawLine(renderer,xp + v1xi*longitud, yp - v1yi*longitud, xHastap + v1xf*longitud, yHastap - v1yf*longitud);
+		SDL_RenderDrawLine(renderer,xp - v1xi*longitud, yp + v1yi*longitud, xHastap - v1xf*longitud, yHastap + v1yf*longitud);
 
 	}
 

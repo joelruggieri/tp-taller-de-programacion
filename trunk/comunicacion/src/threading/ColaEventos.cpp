@@ -80,5 +80,5 @@ void ColaEventos::deshabilitada() {
 }
 
 bool ColaEventos::isHabilitada() {
-	return true;
+	return habilitada;
 }
