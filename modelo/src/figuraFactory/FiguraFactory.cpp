@@ -120,7 +120,7 @@ Figura* FiguraFactory::crear(PelotaJuego* c) {
 Figura* FiguraFactory::crear(Gancho*c) {
 	Figura* t = this->crearGancho(c->getX(), c->getY(),c->getNumeroJugador());
 		t->setRotacion(0);
-		//t->setReg(c->getReg());
+		t->setReg(c->getReg());
 	return t;
 }
 

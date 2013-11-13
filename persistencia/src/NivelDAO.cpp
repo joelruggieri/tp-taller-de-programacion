@@ -12,6 +12,7 @@
 #include "src/objeto/Balancin.h"
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
+#include "src/objeto/Gancho.h"
 #include "src/objeto/GloboHelio.h"
 #include "src/objeto/PelotaJuego.h"
 #include "src/objeto/Motor.h"
@@ -527,6 +528,27 @@ void NivelDAO::obtenerEngranajes(std::list<Figura*>& lista,
 			std::string mensaje = "Error al leer Engranajes: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje,  engranajes[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerGanchos(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node ganchos = objetos["Ganchos"];
+	if(ganchos.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Ganchos";
+		logg.info(mensaje);
+		}
+	for (std::size_t i = 0; i < ganchos.size(); i++) {
+		try {
+			Gancho obj = ganchos[i].as<Gancho>();
+//			bool salir = validar(obj, globos, i);
+//			if(!salir ) continue;
+			lista.push_back( new Gancho(obj));
+			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Globos: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  ganchos[i].Mark() );
 		}
 	}
 }

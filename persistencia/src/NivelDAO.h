@@ -33,6 +33,7 @@ private:
 	void obtenerCintas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerBolasDeBoliche(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerGlobosHelio(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerGanchos(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerPelotasJuego(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerEngranajes(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerMotores(std::list<Figura*> &lista, YAML::Node objetos);

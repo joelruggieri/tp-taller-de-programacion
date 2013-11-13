@@ -147,6 +147,27 @@ struct convert<GloboHelio> {
 };
 
 template<>
+struct convert<Gancho> {
+	static Node encode(const Gancho& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		return node;
+	}
+
+	static bool decode(const Node& node, Gancho& objeto) {
+		if (node.size() != 2) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		Mark marca = node.Mark();
+		Registro & reg = objeto.getReg();
+		reg.setLinea(marca.line);
+		reg.setEtiqueta("Gancho");
+		return true;
+	}
+};
+
+template<>
 struct convert<PelotaJuego> {
 	static Node encode(const PelotaJuego& objeto) {
 		Node node;

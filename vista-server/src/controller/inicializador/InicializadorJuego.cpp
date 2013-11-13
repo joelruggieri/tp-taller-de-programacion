@@ -17,6 +17,7 @@
 using namespace std;
 #include <list>
 #include "../../vista/figura/FiguraView.h"
+#include "../viewFactory/ViewGanchoFactory.h"
 #include "../viewFactory/ViewGloboFactory.h"
 #include "../viewFactory/ViewMotorFactory.h"
 #include "../viewFactory/ViewSogaFactory.h"
@@ -44,6 +45,7 @@ const string KEY_PELOTA_JUEGO = "PELOTA";
 const string KEY_ENGRANAJE = "ENGRANAJE";
 const string KEY_MOTOR = "MOTOR";
 const string KEY_CORREA = "CORREA";
+const string KEY_GANCHO = "GANCHO";
 const string KEY_YUNQUE = "YUNQUE";
 InicializadorJuego::InicializadorJuego(Nivel* nivel, ModeloController * modeloController) {
 	this->modeloController = modeloController;
@@ -134,6 +136,8 @@ ZonaTablero* InicializadorJuego::crearTablero() {
 	}
 	ViewFiguraFactory * viewFactory;
 
+	viewFactory = new ViewGanchoFactory(NULL,0);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GANCHO,viewFactory));
 	viewFactory = new ViewGloboFactory(NULL,0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
 	viewFactory = new ViewPlataformaFactory(NULL,0);
@@ -201,7 +205,10 @@ void InicializadorJuego::visit(Soga* c) {
 		this->agregarUnion(iter->second, (Soga*)fig);
 }
 
-void InicializadorJuego::visit(Gancho*) {
+void InicializadorJuego::visit(Gancho* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_GANCHO);
+	this->agregarFigura(iter->second, fig);
 }
 
 void InicializadorJuego::visit(Yunque* c) {
