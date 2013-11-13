@@ -15,6 +15,7 @@ class Engranaje;
 class Motor;
 class Plataforma;
 class Balancin;
+class Gancho;
 class CintaTransportadora;
 class BolaBoliche;
 class PelotaJuego;
@@ -55,6 +56,7 @@ private:
 	void guardar(Motor* objeto, YAML::Node* nodoRaiz);
 	void guardar(Correa* objeto, YAML::Node* nodoRaiz);
 	void guardar(Soga* objeto, YAML::Node* nodoRaiz);
+	void guardar(Gancho* objeto, YAML::Node* nodoRaiz);
 	void guardar(Yunque* objeto, YAML::Node* nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;

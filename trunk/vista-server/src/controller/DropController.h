@@ -19,6 +19,7 @@
 #include "../vista/objeto/CorreaView.h"
 #include "../vista/objeto/GloboHelioView.h"
 #include "../vista/objeto/MotorView.h"
+#include "../vista/objeto/GanchoView.h"
 #include "../vista/objeto/PelotaJuegoView.h"
 #include "../vista/objeto/SogaEstaticaView.h"
 #include "../vista/objeto/CorreaEstaticaView.h"
@@ -41,6 +42,7 @@ class PelotaJuegoView;
 class VistaEngranaje;
 class CorreaEstaticaView;
 class SogaEstaticaView;
+class GanchoView;
 class DropController {
 
 public:

@@ -16,6 +16,7 @@
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
 #include "src/objeto/GloboHelio.h"
+#include "src/objeto/Gancho.h"
 #include "src/objeto/PelotaJuego.h"
 #include "src/objeto/Engranaje.h"
 #include "src/objeto/Motor.h"
@@ -63,6 +64,10 @@ void ObjetoDAO::visit(Soga* soga){
 	guardar(soga,nodo);
 }
 
+void ObjetoDAO::visit(Gancho* gancho) {
+	guardar(gancho,nodo);
+}
+
 
 void ObjetoDAO::guardar(Plataforma* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Plataformas"].push_back(*objeto);
@@ -78,6 +83,10 @@ void ObjetoDAO::guardar(Correa* objeto, YAML::Node* nodoRaiz) {
 
 void ObjetoDAO::guardar(Soga* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Sogas"].push_back(*objeto);
+}
+
+void ObjetoDAO::guardar(Gancho* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Ganchos"].push_back(*objeto);
 }
 
 void ObjetoDAO::visit(CintaTransportadora* cinta) {
@@ -123,8 +132,7 @@ void ObjetoDAO::guardar(Motor* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Motores"].push_back(*objeto);
 }
 
-void ObjetoDAO::visit(Gancho*) {
-}
+
 
 void ObjetoDAO::visit(Yunque* objeto) {
 	guardar(objeto, nodo);

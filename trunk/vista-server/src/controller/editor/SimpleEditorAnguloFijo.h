@@ -25,6 +25,7 @@ public:
 	void dropNuevaFigura(BalancinView*);
 	void dropNuevaFigura(BolaBolicheView*);
 	void dropNuevaFigura(GloboHelioView*);
+	void dropNuevaFigura(GanchoView*);
 	void dropNuevaFigura(PelotaJuegoView*);
 	void dropNuevaFigura(VistaEngranaje*);
 	void dropNuevaFigura(YunqueView*);

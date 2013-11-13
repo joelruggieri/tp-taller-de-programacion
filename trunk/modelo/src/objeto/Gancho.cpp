@@ -22,7 +22,7 @@ Gancho::Gancho(const Gancho& figura){
 	this->y = figura.getY();
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
-	//this->reg = figura.reg;
+	this->reg = figura.reg;
 	this->enganches.push_back(new Enganche(this,0,0));
 }
 

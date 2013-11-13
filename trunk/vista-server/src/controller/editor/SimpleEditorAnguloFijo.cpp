@@ -127,6 +127,11 @@ void SimpleEditorAnguloFijo::dropNuevaFigura(VistaEngranaje* view) {
 	dropear(view, this->figurasFactory->crearEngranaje(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
+void SimpleEditorAnguloFijo::dropNuevaFigura(GanchoView* view) {
+
+	dropear(view, this->figurasFactory->crearGancho(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
+}
+
 EditorNivel* SimpleEditorAnguloFijo::clone() {
 	return new SimpleEditorAnguloFijo(modeloController, tablero, figurasFactory,yMaxDrag,angulosPermitidos);
 }

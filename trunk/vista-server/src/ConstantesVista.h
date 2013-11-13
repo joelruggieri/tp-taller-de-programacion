@@ -29,6 +29,7 @@
 #define PATH_VISTA_PLATAFORMA "resource/plataforma.png"
 #define PATH_VISTA_GLOBO "resource/globo.png"
 #define PATH_VISTA_PELOTA "resource/pelota.png"
+#define PATH_VISTA_GANCHO "resource/arandela.png"
 #define PATH_VISTA_BOLA "resource/bolaBoliche.png"
 #define PATH_VISTA_CINTA "resource/cinta.png"
 #define PATH_VISTA_CINTA_PLATAF "resource/baseCinta.png"
