@@ -49,12 +49,11 @@ void DistribuidorMensajes::visit(ViewMsj* m) {
 
 void DistribuidorMensajes::visit(MensajePlano* m) {
 	//Puede venir un mensaje por timeout generado por comunicacion, en ese caso lo deleteo.
-	if (m->getTag() != TAG_MSJ_NOTIMEOUT) {
+	if (m->getMensaje() != TAG_MSJ_NOTIMEOUT) {
 		if (planos != NULL) {
 //			log.debug("Se pocesa mensaje plano");
 			m->acept(planos);
 		}
-
 	}
 }
 
