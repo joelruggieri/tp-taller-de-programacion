@@ -16,7 +16,6 @@ public:
 	VistaEngranaje(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~VistaEngranaje();
 	void  update(ViewMsj* );
-	int getLayer();
 };
 }
 #endif /* VISTAENGRANAJE_H_ */

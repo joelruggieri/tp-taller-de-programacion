@@ -7,11 +7,15 @@
 
 #include "Dibujable.h"
 #include "../ConstantesVista.h"
+#include <iostream>
+using namespace std;
+
 
 namespace CLIENTE {
 
-Dibujable::Dibujable() {
-
+Dibujable::Dibujable(int l) {
+	layer =l;
+	highlight = false;
 }
 
 Dibujable::~Dibujable() {
@@ -19,7 +23,14 @@ Dibujable::~Dibujable() {
 }
 
 int Dibujable::getLayer() {
-	return LAYER_DEFAULT;
+	if(highlight){
+		return LAYER_HIGHLIGHT;
+	}
+	return layer;
 }
 
+
+void CLIENTE::Dibujable::higlight(bool h) {
+	highlight = h;
+}
 }

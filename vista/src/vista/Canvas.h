@@ -22,7 +22,6 @@ class Canvas: public View {
 private:
 	SDL_Texture* imagenCanvas;
 	bool border;
-	int layer;
 	void generarSinBorde(SDL_Rect & dest);
 public:
 	Canvas(float x, float y, float h, float w,int layer,  SDL_Texture* textura);
@@ -31,7 +30,6 @@ public:
 	virtual ~Canvas();
 	void ModificarFondo(SDL_Texture* nuevaImagen);
 	void update(ViewMsj *);
-	int getLayer();
 	bool isUpdated();
 };
 

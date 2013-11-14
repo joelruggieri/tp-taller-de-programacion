@@ -34,6 +34,7 @@ void * funcThread(void * arg) {
 	ColaEventos* cola = params->getCola();
 	Disponibilidad * disponibilidad = params->getDispo();
 	list<NetworkMensaje*>::iterator it;
+	Logger log;
 //	TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(15000);
@@ -44,10 +45,15 @@ void * funcThread(void * arg) {
 			disponibilidad->lock();
 			ThreadStatus* destinatario = disponibilidad->getStatus(front->getDestinatario());
 			disponibilidad->unlock();
-			destinatario->lock();
-			ColaEventos* colaEvento = destinatario->getColaSalida();
-			colaEvento->push(front);
-			destinatario->unlock();
+			if(destinatario != NULL){
+				destinatario->lock();
+				ColaEventos* colaEvento = destinatario->getColaSalida();
+				colaEvento->push(front);
+				destinatario->unlock();
+			} else {
+				log.error("Mensaje enviado a un destinatario inexistente");
+				delete front;
+			}
 		}
 
 			//a repartir mijo.

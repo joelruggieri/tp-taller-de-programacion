@@ -7,8 +7,7 @@
 
 #include "ViewConBorde.h"
 namespace CLIENTE {
-//ENTREGA3 COMPLETAR
-ViewConBorde::ViewConBorde(float x, float y, float w, float h): View(x,y,w,h){// :
+ViewConBorde::ViewConBorde(float x, float y, float w, float h): View(x,y,w,h,LAYER_BORDES){// :
 //		View(view->getXCentro(), view->getYCentro(), view->getW(), view->getH()) {
 }
 

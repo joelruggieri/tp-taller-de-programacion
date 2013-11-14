@@ -11,6 +11,7 @@
 #include <src/mensajes/userEvents/UserEventMsj.h>
 #include <src/mensajes/viewMensaje/ViewMsj.h>
 #include <src/mensajes/viewMensaje/ViewBotonStartMsj.h>
+#include <src/mensajes/viewMensaje/Highlight.h>
 #include <src/threading/ObjetoCompartido.h>
 #include "ResizerController.h"
 #include "DrawController.h"
@@ -28,6 +29,8 @@ class ViewController: public ObjetoCompartido, public DrawController, public Res
 //ADEMAS PERMITE ACTUALIZAR UNA VISTA
 //PERMITE AGREGAR UNA VISTA MANUALMENTE TAMBIEN.
 private:
+	int highlightsActual;
+	int highlightsAnterior;
 	AreaView* areaVista;
 	map<int, View*> vistas;
 	list<View*> vistasList;
@@ -38,6 +41,7 @@ private:
 	Transformacion * tl;
 	void addViewPrivado(int id, View *);
 	typedef ObjetoCompartido super;
+	bool ordenar, huboHighLighT;
 public:
 	void generarVistaArea(float, float  ,float ,float);
 	ViewController(SDL_Renderer *,Transformacion * tl, Cuadrado cuadradoArea);
@@ -46,6 +50,7 @@ public:
 	void visit(ViewObjetoUnionUpdateMsj*);
 	void visit(FinDibujado*);
 	void visit(ViewBotonStartMsj*);
+	void visit(Highlight*);
 	void addView(int id, View *);
 	void addViewScrolleable(int id, View *);
 	void scrollUnidadesLogicas(float unidadesLogicas);

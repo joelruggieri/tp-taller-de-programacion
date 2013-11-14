@@ -10,7 +10,7 @@
 
 namespace CLIENTE {
 FactoryView::FactoryView(float x, float y, float w, float h, SDL_Texture * textura) :
-		View(x, y, w, h) {
+		View(x, y, w, h, LAYER_FACTORIES) {
 	this->textura = textura;
 
 }
@@ -132,10 +132,6 @@ void FactoryView::generarConBorde(SDL_Rect & dest) {
 	dest.w = wp - 12;
 	dest.x = xp + 6;
 	dest.y = yp + 6;
-}
-
-int FactoryView::getLayer() {
-	return -5;
 }
 
 

@@ -20,7 +20,6 @@ public:
 	 void dibujarse(SDL_Renderer*, SDL_Rect&);
 	 void update(ViewMsj *);
 	 void resize();
-	 int getLayer();
 	 bool isUpdated();
 
 };

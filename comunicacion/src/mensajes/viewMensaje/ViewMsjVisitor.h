@@ -13,6 +13,8 @@ class ViewObjetoUnionUpdateMsj;
 class ViewObjetoUpdateMsj;
 class FinDibujado;
 class ViewBotonStartMsj;
+class Highlight;
+
 class ViewMsjVisitor {
 public:
 	virtual ~ViewMsjVisitor(){};
@@ -21,6 +23,7 @@ public:
 	virtual void visit(ViewObjetoUnionUpdateMsj*) = 0;
 	virtual void visit(FinDibujado*) = 0;
 	virtual void visit(ViewBotonStartMsj*) = 0;
+	virtual void visit(Highlight*) = 0;
 };
 
 #endif /* VIEWMSJVISITOR_H_ */

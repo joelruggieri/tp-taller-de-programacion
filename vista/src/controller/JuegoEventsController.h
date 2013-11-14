@@ -22,7 +22,7 @@
 namespace CLIENTE {
 //ENTREGA3 APARENTEMENTE YA RECIBE COMO PARAMETRO UNA ZONAPLAY ASI QUE HABRÍA QUE VER QUE FUNCIONEN N EN SIMULTANEO (MISMO THREAD)
 //ENTREGA3 HAY QUE ADEMAS DARLE UNA ZONA DONDE SI SE SALE QUE NO TENGA EFECTO EL EVENTO DE SCROLL O PICKUP/DROP. PARA ESO SE PUEDE USAR EL OBJETO CUADRADO DE LA VISTA
-class JuegoEventsController: public MouseEventController, public Dibujable, public ResizerController {
+class JuegoEventsController: public MouseEventController, public ResizerController {
 private:
 	ZonaTablero * tablero;
 	ZonaCreacion * creacion;
@@ -37,8 +37,6 @@ public:
 	bool rightClickDown(int,int);
 	bool rightClickUp(int,int);
 	bool mouseWheelMoved(int, int, int);
-	void dibujarse(SDL_Renderer *);
-	void dibujarse(SDL_Renderer *, SDL_Rect &);
 	void resize(Transformacion * tl);
 };
 }

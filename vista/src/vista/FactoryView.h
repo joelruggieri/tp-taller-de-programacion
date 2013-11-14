@@ -29,7 +29,6 @@ public:
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void update(ViewMsj *);
-	int getLayer();
 	typedef struct RGBFactory{
 	    int r;
 	    int g;

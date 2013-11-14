@@ -22,10 +22,6 @@ MotorView::~MotorView() {
 }
 
 
-int MotorView::getLayer() {
-	return LAYER_ENGRANAJES;
-}
-
 void MotorView::update(ViewMsj* mje) {
 	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*)mje;
 	this->setXl(mjeCurrent->getX());

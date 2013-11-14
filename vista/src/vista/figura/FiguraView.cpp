@@ -9,7 +9,7 @@ namespace CLIENTE {
  * FIGURAVIEW
 
  ********************************************************/
-FiguraView::FiguraView(float x, float y, float w, float h,SDL_Texture* textura): View(x,y,w,h) {
+FiguraView::FiguraView(float x, float y, float w, float h,int layer, SDL_Texture* textura): View(x,y,w,h, layer) {
 //	this->tl = Resizer::Instance()->getTransformacionToModelo();
 	this->angulo = 0;
 	this->textura = textura;

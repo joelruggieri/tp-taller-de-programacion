@@ -36,7 +36,7 @@ void ZonaCreacion::crearVista(ViewController* vc) {
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
 	canvasTexture = texturas->cargarTexture(PATH_ZONA_CREACION);
-	View * view = new Canvas(110, 40, 20, 80, -10, canvasTexture);
+	View * view = new Canvas(110, 40, 20, 80, LAYER_CANVAS_CREACION, canvasTexture);
 	vc->addView(ID_CANVAS_CREAC, view);
 	view = new ViewConBorde(110, 40, 20, 80);
 	vc->addView(ID_BORDE_CANVAS_CREAC, view);

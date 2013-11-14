@@ -19,7 +19,6 @@ public:
 	MotorView(float x, float y,float w,float h, SDL_Texture * textura);
 	void update(ViewMsj *);
 	virtual ~MotorView();
-	int getLayer();
 };
 }
 

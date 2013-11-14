@@ -36,7 +36,7 @@ Objetos:
       ancho: 8
 Jugadores:
   - Area:
-      x: 50
+      x: 90
       y: 50
       ancho: 50
       alto: 50
@@ -62,7 +62,7 @@ Jugadores:
         cantidad: 3
   - numero: 1
     Area:
-      x: 30
+      x: 20
       y: 50
       ancho: 50
       alto: 50
