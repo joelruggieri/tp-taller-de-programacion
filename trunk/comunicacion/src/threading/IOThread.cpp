@@ -7,6 +7,7 @@
 
 #include "IOThread.h"
 #include "../Serializador.h"
+#include "../mensajes/MensajePlano.h"
 
 void * func_entrada(void * arg) {
 	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
@@ -79,6 +80,33 @@ void * func_salida(void * arg) {
 	pthread_exit(NULL);
 }
 
+
+void * func_mantener_vivo(void * arg) {
+	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
+	IOThreadParams * params = (IOThreadParams *) (zona->getParams());
+	ColaEventos* colaSalida = params->getCola();
+	int nroJugador= params->getJugador();
+	Status * status = params->getStatus();
+	status->lock();
+	bool continuar = status->isAlive();
+	status->unlock();
+	int tiempoMuerto = TIMEOUT *0.8;
+	list<NetworkMensaje*>::iterator it;
+	NetworkMensaje * msje;
+	Logger log;
+	while (continuar) {
+		sleep(tiempoMuerto);
+		log.debug("Encolando mensaje para mantener viva la conexion");
+		msje=new MensajePlano(TAG_MSJ_NOTIMEOUT);
+		msje->setDestinatario(nroJugador);
+		colaSalida->push(msje);
+		status->lock();
+		continuar = status->isAlive();
+		status->unlock();
+	}
+	pthread_exit(NULL);
+}
+
 void * clean(void * arg) {
 	//esto se va a ejecutar si se llama al cancel de los threads.
 	Serializador * ser = (Serializador*) arg;
@@ -86,7 +114,7 @@ void * clean(void * arg) {
 	return 0;
 }
 
-IOThread::IOThread(ColaEventos* a, ColaEventos* b, Status * status, int socket, int jugador) {
+IOThread::IOThread(ColaEventos* a, ColaEventos* b, Status * status, int socket, int jugador, bool mantenervivo) {
 	this->colaEntrada = a;
 	this->colaSalida = b;
 	this->jugador = jugador;
@@ -96,6 +124,9 @@ IOThread::IOThread(ColaEventos* a, ColaEventos* b, Status * status, int socket, 
 	this->socket = socket;
 	param1 = NULL;
 	param2 = NULL;
+	param3 = NULL;
+	thMantenerVivo = NULL;
+	mantenerVivo = mantenervivo;
 }
 
 void IOThread::run() {
@@ -105,6 +136,10 @@ void IOThread::run() {
 
 		this->param2 = new IOThreadParams(this->colaSalida, status, this->socket, jugador);
 		thSalida = new ThreadPTM(func_salida, clean, (void *) param2);
+		if(mantenerVivo){
+			this->param3 = new IOThreadParams(this->colaSalida, status, this->socket, jugador);
+			thMantenerVivo = new ThreadPTM(func_mantener_vivo, clean, (void *) param2);
+		}
 	}
 }
 
@@ -136,6 +171,10 @@ void IOThread::cancel() {
 		log.debug("Cancelada Entrada");
 		thSalida->cancel();
 		log.debug("Cancelada Salida");
+		if(mantenerVivo){
+			thMantenerVivo->cancel();
+			log.debug("Cancelado refresco de timeouts");
+		}
 		log.debug("Thread Cancelado");
 //		close(param1->getSocketDesc());
 		deleteAll();
@@ -149,10 +188,16 @@ void IOThread::deleteAll() {
 	delete thSalida;
 	delete param1;
 	delete param2;
+	if(mantenerVivo){
+		delete thMantenerVivo;
+		delete param3;
+	}
 	thEntrada = NULL;
 	thSalida = NULL;
+	thMantenerVivo = NULL;
 	param1 = NULL;
 	param2 = NULL;
+	param3 = NULL;
 }
 
 IOThread::~IOThread() {

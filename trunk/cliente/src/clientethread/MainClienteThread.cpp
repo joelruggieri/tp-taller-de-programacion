@@ -49,7 +49,7 @@ void MainClienteThread::run() {
 		if (SERVIDOR_CONECTADO == result) {
 			log.info("Conectado con servidor");
 			Status* status = new Status(TIMEOUT);
-			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
+			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0,true);
 			thread->run();
 			MainController controller(colaEntrada,colaSalida, status);
 			controller.setCoordenadasArea(config->getXArea(), config->getYArea(), config->getAnchoArea(), config->getAltoArea());
