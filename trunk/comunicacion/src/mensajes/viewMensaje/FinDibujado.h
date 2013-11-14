@@ -14,7 +14,7 @@ class FinDibujado: public ViewMsj {
 public:
 	FinDibujado();
 	virtual ~FinDibujado();
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 	void acept(ViewMsjVisitor *);
 	ViewMsj* clone(int destinatario);

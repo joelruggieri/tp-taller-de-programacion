@@ -17,9 +17,9 @@ ViewObjetoConAnchoUpdateMsj::~ViewObjetoConAnchoUpdateMsj() {
 	// TODO Auto-generated destructor stub
 }
 
-void ViewObjetoConAnchoUpdateMsj::serialize(YAML::Node* nodo) {
-	super::serialize(nodo);
-	nodo->push_back(this->ancho);
+void ViewObjetoConAnchoUpdateMsj::serialize(YAML::Emitter & out) {
+	super::serialize(out);
+	out<< ancho;
 
 }
 

@@ -75,6 +75,13 @@ void DrawController::dibujar() {
 		msjeEstadoJuego->setDestinatario((*itJugadores)->getNumeroJugador());
 		salidaFinal.push_back(msjeEstadoJuego);
 	}
+//	YAML::Emitter o;
+//	o << YAML::BeginSeq;
+//	list<NetworkMensaje*>::iterator it = salidaFinal.begin();
+//	while (it != salidaFinal.end()) {
+//		(*it)->serialize(o);
+//		it++;
+//	}
 	salida->push(salidaFinal);
 }
 

@@ -15,7 +15,7 @@ public:
 	StepModelo();
 	virtual ~StepModelo();
 	void acept(MensajeInternoVisitor *);
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator &);
 };
 

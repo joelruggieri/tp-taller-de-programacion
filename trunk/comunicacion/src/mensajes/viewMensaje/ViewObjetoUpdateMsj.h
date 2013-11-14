@@ -14,7 +14,7 @@ class ViewObjetoUpdateMsj : public ViewMsj {
 public:
 	ViewObjetoUpdateMsj(float x, float y, float angulo, int id, char sel);
 	virtual ~ViewObjetoUpdateMsj();
-	virtual void serialize(YAML::Node * nodo);
+	virtual void serialize(YAML::Emitter & out);
 	virtual NetworkMensaje * deserialize(YAML::const_iterator & it);
 	virtual void getMensaje();
 	virtual string getTag();

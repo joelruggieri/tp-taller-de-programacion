@@ -23,9 +23,11 @@ void ConexionUsuario::acept(MensajeInternoVisitor* v) {
 	v->visit(this);
 }
 
-void ConexionUsuario::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_INTERNO_CONEXION);
-	nodo->push_back(this->conectado);
+void ConexionUsuario::serialize(YAML::Emitter & out) {
+	out<< TAG_INTERNO_CONEXION;
+	out << this->conectado;
+//	nodo->push_back(TAG_INTERNO_CONEXION);
+//	nodo->push_back(this->conectado);
 }
 
 NetworkMensaje* ConexionUsuario::deserialize(YAML::const_iterator& it) {

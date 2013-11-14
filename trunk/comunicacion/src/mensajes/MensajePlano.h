@@ -20,7 +20,7 @@ private:
 public:
 	MensajePlano(string m);
 	virtual ~MensajePlano();
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 	string getMensaje();
 	string getTag();

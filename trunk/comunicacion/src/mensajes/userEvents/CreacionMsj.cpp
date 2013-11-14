@@ -22,11 +22,11 @@ void CreacionMsj::acept(UserEventVisitor* v) {
 	v->visit(this);
 }
 
-void CreacionMsj::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_CREACION_OBJETO);
-	nodo->push_back(this->tagObjeto);
-	nodo->push_back(this->x);
-	nodo->push_back(this->y);
+void CreacionMsj::serialize(YAML::Emitter & out) {
+	out << TAG_CREACION_OBJETO;
+	out << this->tagObjeto;
+	out << this->x;
+	out << this->y;
 }
 
 NetworkMensaje* CreacionMsj::deserialize(YAML::const_iterator& it) {

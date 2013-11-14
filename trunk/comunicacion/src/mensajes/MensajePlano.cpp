@@ -14,9 +14,9 @@ MensajePlano::MensajePlano(string m) {
 MensajePlano::~MensajePlano() {
 }
 
-void MensajePlano::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_MSJ_PLANO);
-	nodo->push_back(msj);
+void MensajePlano::serialize(YAML::Emitter & out) {
+	out << TAG_MSJ_PLANO;
+	out << msj;
 }
 
 NetworkMensaje* MensajePlano::deserialize(YAML::const_iterator & it) {

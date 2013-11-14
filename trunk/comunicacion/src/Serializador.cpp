@@ -128,17 +128,19 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	list<NetworkMensaje*>::iterator it = lista.begin();
 	YAML::Node nodo;
-	stringstream envio;
-
+	YAML::Emitter o;
+	o<< YAML::BeginSeq;
 	while (it != lista.end()) {
-		(*it)->serialize(&nodo);
+		(*it)->serialize(o);
 		it++;
 
 	}
-	envio << nodo;
+	o << YAML::EndSeq;
+
 	int enviados = 0;
 //	 const char * str = envio.str().c_str();
-	string salida = envio.str();
+	//ENTREGA3 EZE ESTO SE USA SOLO PARA EL SUBSTRING DEL STRING, SEGURO HAY UNA FUNCION DE C QUE LO HACE. CAMBIARLO
+	string salida = o.c_str();
 	int len = strlen(salida.c_str());
 	int longEnviada;
 

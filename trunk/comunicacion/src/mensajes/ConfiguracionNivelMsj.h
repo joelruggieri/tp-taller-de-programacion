@@ -25,7 +25,7 @@ public:
 	void setAltoArea(float alto);
 	void agregarTagFactory (std::string tag);
 	std::list<std::string>& getFactoriresTags();
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje* deserialize(YAML::const_iterator& it);
 	void acept(MensajeVisitor *);
 	virtual ~ConfiguracionNivelMsj();

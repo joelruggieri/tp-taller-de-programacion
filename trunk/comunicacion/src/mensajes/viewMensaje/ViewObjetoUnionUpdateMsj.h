@@ -16,7 +16,7 @@ private:
 public:
 	ViewObjetoUnionUpdateMsj(float xD, float yD, float xH,float yH, float radioInicial,float radioFinal,bool esEstatico,float radio,int id, char sel);
 	virtual ~ViewObjetoUnionUpdateMsj();
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 	string getTag();
 	void getMensaje();

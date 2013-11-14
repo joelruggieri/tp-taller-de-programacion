@@ -20,13 +20,13 @@ ViewObjetoUpdateMsj::~ViewObjetoUpdateMsj() {
 	//TODO
 }
 
-void ViewObjetoUpdateMsj::serialize(YAML::Node* nodo) {
-	nodo->push_back(this->getTag());
-	nodo->push_back(this->id);
-	nodo->push_back(this->selector);
-	nodo->push_back(this->x);
-	nodo->push_back(this->y);
-	nodo->push_back(this->angulo);
+void ViewObjetoUpdateMsj::serialize(YAML::Emitter & out) {
+	out << this->getTag();
+	out << this->id;
+	out << this->selector;
+	out << this->x;
+	out << this->y;
+	out << this->angulo;
 }
 
 NetworkMensaje* ViewObjetoUpdateMsj::deserialize(YAML::const_iterator& it) {

@@ -28,12 +28,12 @@ float MouseMotionMsj::getY() {
 	return y;
 }
 
-void MouseMotionMsj::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_MOUSE_MOTION);
-	nodo->push_back(this->isShift());
-	nodo->push_back(this->isCtrl());
-	nodo->push_back(this->x);
-	nodo->push_back(this->y);
+void MouseMotionMsj::serialize(YAML::Emitter & out) {
+	out << TAG_MOUSE_MOTION;
+	out << this->isShift();
+	out << this->isCtrl();
+	out << this->x;
+	out << this->y;
 }
 
 NetworkMensaje* MouseMotionMsj::deserialize(YAML::const_iterator& it) {
