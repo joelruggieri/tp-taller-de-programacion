@@ -56,7 +56,6 @@ void ViewController::addView(int id, View* v) {
 void ViewController::dibujar() {
 	lock();
 	if(ordenar){
-		cout << " ordenar "<< endl;
 		vistasList.sort(comparar_layersViews);
 		ordenar = false;
 	}

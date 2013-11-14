@@ -23,7 +23,7 @@ private:
 	float xArea,yArea,wArea,hArea;
 	SDL_Renderer * render;
 	JuegoEventsController * juegoController;
-	GeneralEventController * crearGeneralEventController(list<string> & factories);
+	GeneralEventController * crearGeneralEventController(list<string> & factories,StatusJuego & statusjuego);
 	ColaEventos * entrada;
 	ColaEventos * salida;
 	ViewController * viewController;

@@ -11,19 +11,16 @@
 #include <src/threading/ObjetoCompartido.h>
 #include <src/mensajes/MensajePlanoVisitor.h>
 #include "src/ConstantesComunicacion.h"
+#include "StatusJuego.h"
 namespace CLIENTE {
 
-class FinDeJuegoController: public ObjetoCompartido, public MensajePlanoVisitor {
+class MensajesServerReceptor: public ObjetoCompartido, public MensajePlanoVisitor {
 private:
-	bool terminado;
-	bool ganado;
+	StatusJuego * status;
 public:
-	FinDeJuegoController();
+	MensajesServerReceptor(StatusJuego * status);
 	void visit (MensajePlano * m);
-	virtual ~FinDeJuegoController();
-	bool isTerminado();
-	bool isGanado();
-
+	virtual ~MensajesServerReceptor();
 };
 
 } /* namespace CLIENTE */
