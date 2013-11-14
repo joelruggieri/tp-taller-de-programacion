@@ -13,7 +13,6 @@
 #include <list>
 #include "../../vista/Canvas.h"
 #include "../../modelo/Scroll.h"
-#include "../../vista/ScrollView.h"
 #include "../../vista/ViewConBorde.h"
 #include "../../modelo/Cuadrado.h"
 #include <list>

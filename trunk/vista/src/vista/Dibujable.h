@@ -13,14 +13,16 @@
 namespace CLIENTE {
 
 class Dibujable{
-
+private:
+	int layer;
+	bool highlight;
 public:
-	Dibujable();
+	Dibujable(int layer);
 	virtual ~Dibujable();
-	virtual int getLayer();
+	int getLayer();
 	virtual void dibujarse(SDL_Renderer *) = 0;
 	virtual void dibujarse(SDL_Renderer *, SDL_Rect& destino) = 0;
-
+	void higlight(bool);
 };
 
 }

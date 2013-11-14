@@ -15,8 +15,8 @@ namespace CLIENTE {
 #define RADTODEG 57.295779513082320876f
 
 CintaTransportadoraView::CintaTransportadoraView(float x, float y, float w,
-		float h, SDL_Texture* textura) :
-		ObjetoView(x, y, w, h, textura) {
+		float h,SDL_Texture* textura) :
+		ObjetoView(x, y, w, h, LAYER_CINTA, textura) {
 	rueda = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_ENGRANAJE);
 	altocintal = 1;
 }
@@ -80,7 +80,4 @@ void CintaTransportadoraView::update(ViewMsj* mje) {
 	resizear();
 }
 
-int CintaTransportadoraView::getLayer() {
-	return LAYER_CINTA;
-}
 }

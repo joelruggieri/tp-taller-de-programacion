@@ -22,7 +22,7 @@ private:
 protected:
 	float angulo;
 public:
-	FiguraView(float x, float y, float w, float h, SDL_Texture* textura);
+	FiguraView(float x, float y, float w, float h,int layer, SDL_Texture* textura);
 	virtual ~FiguraView();
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);

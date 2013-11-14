@@ -21,18 +21,30 @@
 #include "viewFactory/ViewObjetoAnchoUpdateFactory.h"
 #include "viewFactory/ViewObjetoUnionFactory.h"
 #include "SDL2/SDL.h"
+#include <set>
+
+static const int ID_NO_HIGHLIGHT = -20;
+
 namespace CLIENTE {
 bool comparar_layersViews(View * first, View * second) {
 	return first->getLayer() < second->getLayer();
 }
 
-ViewController::ViewController(SDL_Renderer * r, Transformacion * tl, Cuadrado cuadradoArea) {
+ViewController::ViewController(SDL_Renderer * r, Transformacion * tl,
+		Cuadrado cuadradoArea) {
 	this->renderer = r;
 	this->tl = NULL;
 	resize(tl);
 	crearPantalla();
-//	this->areaVista = new AreaView(cuadradoArea.getX(),cuadradoArea.getY(),cuadradoArea.getAncho(),cuadradoArea.getAlto(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA));
-	addView(ID_AREA, new AreaView(cuadradoArea.getX(),cuadradoArea.getY(),cuadradoArea.getAncho(),cuadradoArea.getAlto(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA)));
+	addView(ID_AREA,
+			new AreaView(cuadradoArea.getX(), cuadradoArea.getY(),
+					cuadradoArea.getAncho(), cuadradoArea.getAlto(),
+					CargadorDeTextures::Instance()->cargarTexture(
+					PATH_VISTA_AREA)));
+	highlightsActual = ID_NO_HIGHLIGHT;
+	highlightsAnterior = ID_NO_HIGHLIGHT;
+	ordenar = false;
+	huboHighLighT = false;
 }
 
 void ViewController::addView(int id, View* v) {
@@ -43,6 +55,10 @@ void ViewController::addView(int id, View* v) {
 
 void ViewController::dibujar() {
 	lock();
+	if(ordenar){
+		vistasList.sort(comparar_layersViews);
+		ordenar = false;
+	}
 	list<View*>::iterator it;
 	for (it = vistasList.begin(); it != vistasList.end(); ++it) {
 		(*it)->dibujarse(renderer);
@@ -77,7 +93,7 @@ void ViewController::crearPantalla() {
 
 	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
 	PATH_ZONA_CREACION);
-	View * view = new Canvas(60, -10, 120, 20, 0, text);
+	View * view = new Canvas(60, -10, 120, 20, LAYER_CANVAS_RELLENO, text);
 	addViewPrivado(ID_CANVAS_RELLENO, view);
 	view = new ViewConBorde(60, -10, 120, 20);
 	addViewPrivado(ID_BORDE_RELLENO, view);
@@ -95,7 +111,8 @@ void ViewController::scrollUnidadesLogicas(float unidadesLogicas) {
 	lock();
 	list<View*>::iterator it;
 	View* vista;
-	for (it = vistasScrolleables.begin(); it != vistasScrolleables.end(); ++it) {
+	for (it = vistasScrolleables.begin(); it != vistasScrolleables.end();
+			++it) {
 		vista = *it;
 		vista->setYL(vista->getYL() + unidadesLogicas);
 	}
@@ -183,7 +200,7 @@ void ViewController::addViewPrivado(int id, View*v) {
 	v->setTl(tl);
 	v->resizear();
 	v->setId(id);
-	vistasList.sort(comparar_layersViews);
+	ordenar = true;
 }
 
 void ViewController::lock() {
@@ -193,18 +210,17 @@ void ViewController::lock() {
 void ViewController::unlock() {
 	super::unlock();
 }
-void ViewController::generarVistaArea(float x, float y, float w,
-		float h) {
-	this->areaVista = new AreaView(x,y,w,h,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA));
+void ViewController::generarVistaArea(float x, float y, float w, float h) {
+	this->areaVista = new AreaView(x, y, w, h,
+			CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA));
 }
-
-
 
 void ViewController::visit(FinDibujado* m) {
 	lock();
 	View* elemento;
-	map<int,View*>::iterator it;
-	for (std::list<View*>::iterator i = vistasList.begin(); i != vistasList.end();) {
+	map<int, View*>::iterator it;
+	for (std::list<View*>::iterator i = vistasList.begin();
+			i != vistasList.end();) {
 		if (!(*i)->isUpdated()) {
 			elemento = *i;
 			vistasList.erase(i++);
@@ -215,6 +231,32 @@ void ViewController::visit(FinDibujado* m) {
 			++i;
 		}
 	}
+
+	if(huboHighLighT){
+		if(highlightsActual != highlightsAnterior){
+			it = vistas.find(highlightsAnterior);
+			if(it != vistas.end()){
+				(*it).second->higlight(false);
+			}
+			it = vistas.find(highlightsActual);
+			if(it != vistas.end()){
+				(*it).second->higlight(true);
+			}
+			highlightsAnterior = highlightsActual;
+			ordenar= true;
+		}
+	} else {
+		if(highlightsAnterior != ID_NO_HIGHLIGHT){
+			it = vistas.find(highlightsAnterior);
+			if(it != vistas.end()){
+				(*it).second->higlight(false);
+				ordenar = true;
+			}
+		}
+		highlightsActual = ID_NO_HIGHLIGHT;
+		highlightsAnterior = highlightsActual;
+	}
+	huboHighLighT = false;
 	unlock();
 }
 
@@ -223,4 +265,18 @@ void ViewController::visit(ViewBotonStartMsj* m) {
 	update(m);
 	unlock();
 }
+
+void ViewController::visit(Highlight* h) {
+	lock();
+	highlightsActual = h->getId();
+	huboHighLighT = true;
+//	if(highlightsActual != highlightsAnterior){
+//			std::map<int, View*>::iterator it = vistas.find(h->getId());
+//			if (it != vistas.end()) {
+//				it->second->higlight(true);
+//			}
+//	}
+	unlock();
+}
+
 }

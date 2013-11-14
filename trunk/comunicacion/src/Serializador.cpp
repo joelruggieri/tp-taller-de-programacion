@@ -13,6 +13,7 @@
 #include "mensajes/userEvents/JugadorListo.h"
 #include "mensajes/viewMensaje/FinDibujado.h"
 #include "mensajes/viewMensaje/ViewBotonStartMsj.h"
+#include "mensajes/viewMensaje/Highlight.h"
 #include <errno.h>
 #define MAX_BUFFER 1024
 Serializador::Serializador(int destinatario) {
@@ -31,6 +32,7 @@ Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_JUGADOR_LISTO), new JugadorListo(false)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_FIN_DIBUJADO), new FinDibujado()));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_BOTON_LISTO), new ViewBotonStartMsj(0,false)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_HIGHLIGHT), new Highlight(0)));
 	this->destinatario = destinatario;
 
 }

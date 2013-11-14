@@ -119,24 +119,7 @@ bool JuegoEventsController::rightClickUp(int x, int y) {
 	tablero->rightClickUp(xf, yf);
 	return true;
 }
-void JuegoEventsController::dibujarse(SDL_Renderer* renderer) {
-//	tablero->dibujarse(renderer);
-//	creacion->dibujarse(renderer);
-//	zplay->dibujarse(renderer);
-//	if (editor != NULL) {
-//		editor->dibujarEdicion(renderer);
-//	}
-}
 
-void JuegoEventsController::dibujarse(SDL_Renderer*renderer, SDL_Rect& dest) {
-//	tablero->dibujarse(renderer, dest);
-//	creacion->dibujarse(renderer, dest);
-//	zplay->dibujarse(renderer);
-//	if (editor != NULL) {
-//		editor->dibujarEdicion(renderer);
-//	}
-
-}
 
 void JuegoEventsController::resize(Transformacion* tl) {
 	if (this->tl != NULL) {

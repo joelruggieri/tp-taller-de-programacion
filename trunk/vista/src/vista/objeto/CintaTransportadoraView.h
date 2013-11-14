@@ -25,7 +25,6 @@ private:
 	SDL_Texture * rueda;
 	void recalcular();
 	void resizear();
-	int getLayer();
 };
 }
 #endif /* VISTACINTATRANSPORTADORA_H_ */

@@ -10,7 +10,7 @@
 #include "../../ConstantesVista.h"
 #include "../CargadorDeTextures.h"
 namespace CLIENTE {
-UnionView::UnionView(float xDesde,float yDesde,float xHasta, float yHasta,float radio, SDL_Texture * textura):ObjetoView(xDesde,yDesde,20,20,CargadorDeTextures::Instance()->cargarTexture(PATH_EDICION_UNION)) {
+UnionView::UnionView(float xDesde,float yDesde,float xHasta, float yHasta,float radio, SDL_Texture * textura):ObjetoView(xDesde,yDesde,20,20,LAYER_UNIONES,CargadorDeTextures::Instance()->cargarTexture(PATH_EDICION_UNION)) {
 	xHastal = xHasta;
 	yHastal = yHasta;
 	radiol = radio;
@@ -74,10 +74,6 @@ void UnionView::resizear() {
 	ycp = round (yaux);
 
 
-}
-
-int UnionView::getLayer() {
-	return LAYER_UNIONES;
 }
 
 

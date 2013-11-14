@@ -15,7 +15,6 @@
 #include <new>
 #include "src/ConstantesComunicacion.h"
 #include "../vista/CargadorDeTextures.h"
-#include "../vista/DraggingView.h"
 #include "GeneralEventController.h"
 #include "JuegoEventsController.h"
 #include "Resizer.h"
@@ -50,12 +49,6 @@ Uint32 my_callbackfunc(Uint32 interval, void *param) {
 	return (interval);
 }
 
-void MainController::dibujar() {
-	SDL_SetRenderDrawColor(render, 1, 1, 1, 1);
-	SDL_RenderClear(render);
-	juegoController->dibujarse(render);
-	SDL_RenderPresent(render);
-}
 int MainController::run(list<string> & factories) {
 	SDL_Window *ventana = NULL;
 	bool terminar = false;;

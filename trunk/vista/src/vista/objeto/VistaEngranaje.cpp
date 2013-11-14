@@ -28,7 +28,4 @@ void VistaEngranaje::update(ViewMsj *mje) {
 	this->setHl(mjeCurrent->getAncho());
 }
 
-int VistaEngranaje::getLayer() {
-	return LAYER_ENGRANAJES;
-}
 }

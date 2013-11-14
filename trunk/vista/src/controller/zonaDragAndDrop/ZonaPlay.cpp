@@ -9,7 +9,6 @@
 #include "../UserEventCreator.h"
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConBorde.h"
-#include "../../vista/ViewConFondo.h"
 #include "SDL2/SDL.h"
 #include "../../ConstantesVista.h"
 #include "src/ConstantesComunicacion.h"
@@ -48,7 +47,7 @@ void CLIENTE::ZonaPlay::crearVista(ViewController* vc) {
 	vc->addView(ID_BOTON_PLAY, view);
 	view = new ViewConBorde(110, 90, 20, 20);
 	vc->addView(ID_BOTON_PLAY_BORDE, view);
-	view = new Canvas(110, 90, 20, 20,-1, canvasTexture);
+	view = new Canvas(110, 90, 20, 20,LAYER_CANVAS_PLAY, canvasTexture);
 	vc->addView(ID_BOTON_PLAY_FONDO, view);
 }
 

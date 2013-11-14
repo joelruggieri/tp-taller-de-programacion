@@ -13,7 +13,7 @@
 #include "src/mensajes/viewMensaje/ViewMsj.h"
 #include "../modelo/Observer.h"
 #include "../modelo/Observable.h"
-
+#include "../ConstantesVista.h"
 namespace CLIENTE {
 class View : public Dibujable, public Resizeable{
 protected:
@@ -23,7 +23,7 @@ protected:
 	bool updated;
 	int id;
 public:
-	View(float x, float y, float w, float h);
+	View(float x, float y, float w, float h, int layer);
 	virtual ~View();
 	virtual void dibujarse(SDL_Renderer*)=0;
 	virtual void dibujarse(SDL_Renderer*, SDL_Rect&)=0;

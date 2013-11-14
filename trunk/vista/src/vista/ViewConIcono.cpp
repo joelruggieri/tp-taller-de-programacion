@@ -7,7 +7,7 @@
 
 #include "ViewConIcono.h"
 namespace CLIENTE {
-ViewConIcono::ViewConIcono(View * view, SDL_Texture * t, int esquina) {
+ViewConIcono::ViewConIcono(View * view, SDL_Texture * t, int esquina):Dibujable(LAYER_HIGHLIGHT) {
 	vista = view;
 	textura = t;
 	this->esquina = esquina;

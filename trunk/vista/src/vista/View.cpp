@@ -7,7 +7,7 @@
 
 #include "View.h"
 namespace CLIENTE {
-View::View(float x, float y, float w, float h) {
+View::View(float x, float y, float w, float h, int layer):Dibujable(layer) {
 	this->wl = w;
 	this->hl = h;
 	this->xl= x;

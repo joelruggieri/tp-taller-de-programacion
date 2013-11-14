@@ -30,7 +30,6 @@ public:
 	MainController(ColaEventos* entrada,ColaEventos * salida);
 	virtual ~MainController();
 	int run(list<string> & factories);
-	void dibujar();
 	ViewController * getviewController();
 	void setCoordenadasArea(float, float, float ,float);
 };

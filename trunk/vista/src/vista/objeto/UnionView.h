@@ -28,7 +28,6 @@ public:
 	virtual ~UnionView();
 	void update(ViewMsj *);
 	void resizear();
-	int getLayer();
 
 };
 }

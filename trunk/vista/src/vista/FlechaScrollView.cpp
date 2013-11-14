@@ -8,7 +8,7 @@
 #include "FlechaScrollView.h"
 namespace CLIENTE {
 FlechaScrollView::FlechaScrollView(float x, float y, float w, float h, SDL_Texture * flecha, int sleep) :
-		View(x, y, w, h) {
+		View(x, y, w, h,LAYER_FLECHAS) {
 	inicializar(flecha, false, sleep);
 }
 void FlechaScrollView::inicializar(SDL_Texture* flecha, bool abajo, int sleep) {
@@ -19,7 +19,7 @@ void FlechaScrollView::inicializar(SDL_Texture* flecha, bool abajo, int sleep) {
 }
 
 FlechaScrollView::FlechaScrollView(float x, float y, float w, float h, SDL_Texture* flecha, int sleep, bool abajo) :
-		View(x, y, w, h) {
+		View(x, y, w, h,LAYER_FLECHAS) {
 	inicializar(flecha, abajo, sleep);
 }
 

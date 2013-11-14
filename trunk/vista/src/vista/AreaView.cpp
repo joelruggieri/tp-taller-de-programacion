@@ -6,10 +6,10 @@
  */
 
 #include "AreaView.h"
-
+#include "../ConstantesVista.h"
 namespace CLIENTE {
 
-AreaView::AreaView(float x, float y, float w, float h, SDL_Texture* textura) : View(x,y,w,h){
+AreaView::AreaView(float x, float y, float w, float h, SDL_Texture* textura) : View(x,y,w,h,LAYER_AREA){
 this->textura = textura;
 }
 
@@ -56,9 +56,6 @@ void CLIENTE::AreaView::resize() {
 	yp = 100;
 }
 
-int AreaView::getLayer() {
-	return 1;
-}
 bool AreaView::isUpdated() {
 	return true;
 }

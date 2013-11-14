@@ -48,17 +48,12 @@ void Canvas::dibujarse(SDL_Renderer * renderer, SDL_Rect& dest) {
 }
 
 Canvas::Canvas(float x, float y, float w, float h, int layer, SDL_Texture* textura) :
-		View(x, y, w, h) {
+		View(x, y, w, h,layer) {
 	this->imagenCanvas = textura;
 	this->border = false;
-	this->layer = layer;
 }
 
 void Canvas::update(ViewMsj*) {
-}
-
-int Canvas::getLayer() {
-	return layer;
 }
 
 

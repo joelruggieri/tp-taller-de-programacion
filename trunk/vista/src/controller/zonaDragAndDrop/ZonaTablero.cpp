@@ -21,7 +21,7 @@ namespace CLIENTE {
 void ZonaTablero::crearVista(ViewController* vc) {
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
-	View * view = new Canvas(50, 50, 100, 100, 0, canvasTexture);
+	View * view = new Canvas(50, 50, 100, 100, LAYER_CANVAS_TABLERO, canvasTexture);
 	vc->addView(ID_CANVAS, view);
 	view = new ViewConBorde(50, 50, 100, 100);
 	vc->addView(ID_BORDE_CANVAS, view);

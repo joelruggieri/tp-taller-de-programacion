@@ -9,6 +9,7 @@
 #include "src/mensajes/viewMensaje/FinDibujado.h"
 #include <src/ConstantesComunicacion.h>
 #include "src/mensajes/viewMensaje/ViewBotonStartMsj.h"
+#include "src/mensajes/viewMensaje/Highlight.h"
 #include <src/Logger.h>
 DrawController::DrawController(ColaEventos* salida) {
 	this->salida = salida;
@@ -42,7 +43,6 @@ void DrawController::dibujar() {
 		for (itJugadores = controllers.begin(); itJugadores != controllers.end(); ++itJugadores) {
 			//POR CADA JUGADOR PASO EL DUMP A LA SALIDA.
 			nuevo = (*itDump)->clone((*itJugadores)->getNumeroJugador());
-//			salida->push(nuevo);
 			salidaFinal.push_back(nuevo);
 		}
 		delete (*itDump);
@@ -54,9 +54,11 @@ void DrawController::dibujar() {
 		if (nuevo != NULL) {
 			for (itJugadores2 = controllers.begin(); itJugadores2 != controllers.end(); ++itJugadores2) {
 				salidaFinal.push_back(nuevo->clone((*itJugadores2)->getNumeroJugador()));
-//				salida->push(nuevo->clone((*itJugadores2)->getNumeroJugador()));
 			}
 			delete nuevo;
+			nuevo = new Highlight(nuevo->getId());
+			nuevo->setDestinatario((*itJugadores)->getNumeroJugador());
+			salidaFinal.push_back(nuevo);
 		}
 		fin = new FinDibujado();
 		fin->setDestinatario((*itJugadores)->getNumeroJugador());
@@ -66,7 +68,6 @@ void DrawController::dibujar() {
 		salidaFinal.push_back(nuevo);
 	}
 	salida->push(salidaFinal);
-//	log.debug("Finalizando dibujado");
 }
 
 DrawController::~DrawController() {
