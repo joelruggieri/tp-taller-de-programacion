@@ -84,7 +84,7 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		serializador.escribir(msjs, socketDesc);
 		//status->lock();
 		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(), status, socketDesc,
-				status->getNroJugador());
+				status->getNroJugador(),false);
 		status->setThread(jugadorNuevo);
 		ConexionUsuario * aceptado = new ConexionUsuario(true);
 		aceptado->setDestinatario(status->getNroJugador());

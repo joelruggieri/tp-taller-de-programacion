@@ -26,15 +26,11 @@ public:
 	int getSocketDesc();
 	Status* getStatus();
 	int getJugador();
-	bool sigpipe_pending;
-	bool sigpipe_unblock;
-	sigset_t signal_mask;
-	sigset_t sigpipe_mask;
 };
 
 class IOThread {
 public:
-	IOThread(ColaEventos*, ColaEventos*, Status *, int, int);
+	IOThread(ColaEventos*, ColaEventos*, Status *, int, int, bool mantenervivo);
 	virtual ~IOThread();
 	void run();
 	void cancel();
@@ -44,10 +40,13 @@ private:
 	void deleteAll();
 	ThreadPTM* thEntrada;
 	ThreadPTM* thSalida;
+	ThreadPTM* thMantenerVivo;
+	bool mantenerVivo;
 	ColaEventos* colaEntrada;
 	ColaEventos* colaSalida;
 	IOThreadParams* param1;
 	IOThreadParams* param2;
+	IOThreadParams* param3;
 	int socket;
 	int jugador;
 };
