@@ -45,6 +45,7 @@ namespace CLIENTE {
 #define PATH_VISTA_CUERDA "resource/cuerda.png"
 #define PATH_VISTA_ENGRANAJE "resource/engranaje1.png"
 #define PATH_VISTA_MOTOR "resource/mot.png"
+#define PATH_VISTA_CLAVO "resource/clavo.png"
 #define PATH_VISTA_GANCHO "resource/arandela.png"
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
@@ -95,7 +96,8 @@ namespace CLIENTE {
 #define ID_FACTORY_PLATAFORMA 58
 #define ID_FACTORY_SOGA 59
 #define ID_FACTORY_YUNQUE 60
-#define ID_FACTORY_GANCHO 61
+#define ID_FACTORY_CLAVO 61
+#define ID_FACTORY_GANCHO 62
 //////////// Constantes de dibujo /////////
 #define RADIO_GANCHO 1.0
 #define RADIO_PELOTA 3.0
@@ -112,6 +114,9 @@ namespace CLIENTE {
 
 #define ANCHO_BALANCIN 15.0
 #define ALTO_BALANCIN 1.6
+
+#define ANCHO_CLAVO 6.0
+#define ALTO_CLAVO 3.0
 
 #define ALTO_CINTA 5
 #define ANCHO_CINTA 20

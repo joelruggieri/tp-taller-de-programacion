@@ -12,6 +12,7 @@
 #include "../objeto/PelotaJuego.h"
 #include "../objeto/GloboHelio.h"
 #include "../objeto/Yunque.h"
+#include "../objeto/Clavo.h"
 using namespace std;
 
 ReglasContactoSolver::ReglasContactoSolver() {
@@ -97,6 +98,11 @@ void ReglasContactoSolver::visit(Soga*) {
 void ReglasContactoSolver::visit(Yunque* y) {
 	yunque = y;
 }
+
+void ReglasContactoSolver::visit(Clavo* c) {
+	clavo = c;
+}
+
 
 void ReglasContactoSolver::PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
 	b2Fixture* fixtureA = contact->GetFixtureA();

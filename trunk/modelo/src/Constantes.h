@@ -28,6 +28,9 @@
 #define ALTO_PLATAFORMA 2.5
 #define ANCHO_YUNQUE 6.0
 #define ALTO_YUNQUE 6.0
+#define ANCHO_CLAVO 6.0
+#define ALTO_CLAVO 3.0
+
 
 #define ANCHO_BALANCIN 15.0
 #define ALTO_BALANCIN 1.6

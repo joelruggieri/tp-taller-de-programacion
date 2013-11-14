@@ -115,6 +115,12 @@ bool ValidadorEstatico::isValido() {
 	 return this->ultimaValidacion;
 }
 
+void ValidadorEstatico::visit(Yunque*) {
+}
+
+void ValidadorEstatico::visit(Clavo*) {
+}
+
 void ValidadorEstatico::validar(Figura* f) {
 	f->acept(this);
 }

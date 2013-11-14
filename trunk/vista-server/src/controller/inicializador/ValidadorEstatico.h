@@ -23,6 +23,8 @@ using namespace std;
 #include "src/objeto/Engranaje.h"
 #include "src/objeto/Correa.h"
 #include "src/objeto/Soga.h"
+#include "src/objeto/Yunque.h"
+#include "src/objeto/Clavo.h"
 //Esta clase valida cosas como ancho de una figura, angulos validos, radios predefinidos, etc,etc
 //Las validaciones mas complejas como si estan solapadas dos figuras o bien un enganche invalido
 //las debería hacer el mapa.
@@ -47,6 +49,8 @@ public:
 	void visit (Engranaje*);
 	void visit (Correa*);
 	void visit(Soga*);
+	void visit(Yunque*);
+	void visit(Clavo*);
 	string getErrorValidacion();
 	bool isValido();
 	void validar(Figura *);

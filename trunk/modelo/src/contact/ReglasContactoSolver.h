@@ -17,6 +17,7 @@ private:
 	PelotaJuego * pelota;
 	BolaBoliche * bola;
 	GloboHelio * globo;
+	Clavo* clavo;
 	Yunque* yunque;
 	void clean();
 	void colisionar(b2Contact * 	contact,
@@ -34,6 +35,7 @@ public:
 	void visit(Correa*);
 	void visit(Soga*);
 	void visit(Yunque*);
+	void visit(Clavo*);
 	void procesarContacto(CintaTransportadora * c, Figura *,b2Contact* contact, const b2Manifold* oldManifold);
 	ReglasContactoSolver();
 	virtual ~ReglasContactoSolver();

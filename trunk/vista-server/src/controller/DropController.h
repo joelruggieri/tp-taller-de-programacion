@@ -26,7 +26,7 @@
 #include "../vista/objeto/CintaTransportadoraView.h"
 #include "../vista/objeto/VistaEngranaje.h"
 #include "../vista/objeto/YunqueView.h"
-
+#include "../vista/objeto/ClavoView.h"
 
 #include <list>
 
@@ -43,6 +43,7 @@ class VistaEngranaje;
 class CorreaEstaticaView;
 class SogaEstaticaView;
 class GanchoView;
+class ClavoView;
 class DropController {
 
 public:

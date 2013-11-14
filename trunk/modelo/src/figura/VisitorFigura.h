@@ -20,6 +20,7 @@ class Soga;
 class Correa;
 class Gancho;
 class Yunque;
+class Clavo;
 class VisitorFigura {
 public:
 	virtual ~VisitorFigura() {
@@ -37,6 +38,7 @@ public:
 	virtual void visit(Correa*) = 0;
 	virtual void visit(Soga*) = 0;
 	virtual void visit(Yunque*)=0;
+	virtual void visit(Clavo*)=0;
 };
 
 #endif /* VISITORFIGURA_H_ */

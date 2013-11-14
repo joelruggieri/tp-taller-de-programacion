@@ -23,6 +23,7 @@
 #include "src/objeto/Correa.h"
 #include "src/objeto/Soga.h"
 #include "src/objeto/Yunque.h"
+#include "src/objeto/Clavo.h"
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -140,4 +141,13 @@ void ObjetoDAO::visit(Yunque* objeto) {
 
 void ObjetoDAO::guardar(Yunque* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Yunques"].push_back(*objeto);
+}
+
+void ObjetoDAO::visit(Clavo* c) {
+	guardar(c,nodo);
+
+}
+
+void ObjetoDAO::guardar(Clavo* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Clavos"].push_back(*objeto);
 }
