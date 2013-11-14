@@ -15,8 +15,9 @@ FinDibujado::~FinDibujado() {
 	// TODO Auto-generated destructor stub
 }
 
-void FinDibujado::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_FIN_DIBUJADO);
+void FinDibujado::serialize(YAML::Emitter & out) {
+	out << TAG_FIN_DIBUJADO;
+//	nodo->push_back(TAG_FIN_DIBUJADO);
 }
 
 NetworkMensaje* FinDibujado::deserialize(YAML::const_iterator& it) {

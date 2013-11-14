@@ -19,9 +19,11 @@ void Highlight::acept(ViewMsjVisitor* v) {
 	v->visit(this);
 }
 
-void Highlight::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_HIGHLIGHT);
-	nodo->push_back(id);
+void Highlight::serialize(YAML::Emitter & out) {
+	out <<TAG_HIGHLIGHT;
+	out <<id;
+//	nodo->push_back();
+//	nodo->push_back(id);
 }
 
 NetworkMensaje* Highlight::deserialize(YAML::const_iterator& it) {

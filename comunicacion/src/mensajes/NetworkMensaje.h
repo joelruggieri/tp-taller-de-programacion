@@ -22,7 +22,7 @@ public:
 	virtual ~NetworkMensaje() ;
 	int getDestinatario();
 	void setDestinatario(int destinatario);
-	virtual void serialize(YAML::Node * nodo) = 0;
+	virtual void serialize(YAML::Emitter & out) = 0;
 	//RECIBE UN ITERADOR DESDE DONDE LEER SUS VALORES, EL TAG DEL MSJ YA ESTA LEIDO A ESTA ALTURA.
 	virtual NetworkMensaje * deserialize(YAML::const_iterator &) = 0;
 	virtual void acept(MensajeVisitor *) = 0;

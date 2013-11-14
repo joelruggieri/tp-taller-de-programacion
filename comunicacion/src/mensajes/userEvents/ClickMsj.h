@@ -22,7 +22,7 @@ public:
 	bool isLeft() const;
 	float getX() const;
 	float getY() const;
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 };
 

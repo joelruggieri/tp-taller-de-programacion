@@ -20,10 +20,13 @@ void ViewBotonStartMsj::acept(ViewMsjVisitor*v) {
 	v->visit(this);
 }
 
-void ViewBotonStartMsj::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_BOTON_LISTO);
-	nodo->push_back(this->id);
-	nodo->push_back(this->listo);
+void ViewBotonStartMsj::serialize(YAML::Emitter & out) {
+	out <<TAG_BOTON_LISTO;
+	out <<this->id;
+	out <<this->listo;
+//	nodo->push_back(TAG_BOTON_LISTO);
+//	nodo->push_back(this->id);
+//	nodo->push_back(this->listo);
 }
 
 NetworkMensaje* ViewBotonStartMsj::deserialize(YAML::const_iterator& it) {

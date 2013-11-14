@@ -19,7 +19,7 @@ public:
 	virtual ~MouseMotionMsj();
 	float getX();
 	float getY();
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 };
 

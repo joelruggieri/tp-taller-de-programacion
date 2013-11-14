@@ -20,8 +20,9 @@ void DrawEvent::acept(MensajeInternoVisitor* v) {
 	v->visit(this);
 }
 
-void DrawEvent::serialize(YAML::Node* nodo) {
-	nodo->push_back(TAG_INTERNO_DRAW);
+void DrawEvent::serialize(YAML::Emitter & out) {
+	out << TAG_INTERNO_DRAW;
+//	nodo->push_back(TAG_INTERNO_DRAW);
 }
 
 NetworkMensaje* DrawEvent::deserialize(YAML::const_iterator& it) {

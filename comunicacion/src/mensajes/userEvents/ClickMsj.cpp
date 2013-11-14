@@ -38,14 +38,14 @@ float ClickMsj::getY() const {
 	return y;
 }
 
-void ClickMsj::serialize(YAML::Node* nodo) {
-		nodo->push_back(TAG_CLICK);
-		nodo->push_back(this->isShift());
-		nodo->push_back(this->isCtrl());
-		nodo->push_back(this->isLeft());
-		nodo->push_back(this->isDown());
-		nodo->push_back(this->x);
-		nodo->push_back(this->y);
+void ClickMsj::serialize(YAML::Emitter & out) {
+		out << TAG_CLICK;
+		out << this->isShift();
+		out << this->isCtrl();
+		out << this->isLeft();
+		out << this->isDown();
+		out << this->x;
+		out << this->y;
 }
 
 NetworkMensaje* ClickMsj::deserialize(YAML::const_iterator& it) {

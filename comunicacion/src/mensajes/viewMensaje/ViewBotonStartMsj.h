@@ -16,7 +16,7 @@ public:
 	ViewBotonStartMsj(int id, bool listo);
 	virtual ~ViewBotonStartMsj();
 	void acept(ViewMsjVisitor *);
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator &);
 	ViewMsj * clone(int destinatario);
 	bool isListo();

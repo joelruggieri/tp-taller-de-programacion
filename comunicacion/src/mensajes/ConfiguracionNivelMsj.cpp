@@ -50,16 +50,16 @@ void ConfiguracionNivelMsj::agregarTagFactory (std::string tag){
 	this->factoriesTags.push_back(tag);
 }
 
-void ConfiguracionNivelMsj::serialize(YAML::Node * nodo){
-	nodo->push_back(MSJ_CONFIG_JUGADOR);
-	nodo->push_back(this->getXArea());
-	nodo->push_back(this->getYArea());
-	nodo->push_back(this->getAnchoArea());
-	nodo->push_back(this->getAltoArea());
-	nodo->push_back(this->getFactoriresTags().size());
+void ConfiguracionNivelMsj::serialize(YAML::Emitter & out){
+	out << MSJ_CONFIG_JUGADOR;
+	out << this->getXArea();
+	out << this->getYArea();
+	out << this->getAnchoArea();
+	out << this->getAltoArea();
+	out << this->getFactoriresTags().size();
 	std::list<std::string>::iterator iterador;
 	for (iterador = this->getFactoriresTags().begin(); iterador != this->getFactoriresTags().end(); ++iterador){
-		nodo->push_back(*iterador);
+		out << *iterador;
 	}
 }
 

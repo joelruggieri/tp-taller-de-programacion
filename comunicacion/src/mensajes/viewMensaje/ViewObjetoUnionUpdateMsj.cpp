@@ -21,18 +21,18 @@ ViewObjetoUnionUpdateMsj::~ViewObjetoUnionUpdateMsj() {
 	// TODO Auto-generated destructor stub
 }
 
-void ViewObjetoUnionUpdateMsj::serialize(YAML::Node* nodo) {
-	nodo->push_back(this->getTag());
-	nodo->push_back(this->id);
-	nodo->push_back(this->selector);
-	nodo->push_back(x);
-	nodo->push_back(y);
-	nodo->push_back(xHasta);
-	nodo->push_back(yHasta);
-	nodo->push_back(radioInicial);
-	nodo->push_back(radioFinal);
-	nodo->push_back(estatico);
-	nodo->push_back(radio);
+void ViewObjetoUnionUpdateMsj::serialize(YAML::Emitter & out) {
+	out << this->getTag();
+	out << this->id;
+	out << this->selector;
+	out << x;
+	out << y;
+	out << xHasta;
+	out << yHasta;
+	out << radioInicial;
+	out << radioFinal;
+	out << estatico;
+	out << radio;
 	}
 
 NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) {

@@ -19,7 +19,7 @@ private:
 public:
 	ViewObjetoConAnchoUpdateMsj(float, float, float, float, int, char);
 	virtual ~ViewObjetoConAnchoUpdateMsj();
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 	void getMensaje();
 	string getTag();

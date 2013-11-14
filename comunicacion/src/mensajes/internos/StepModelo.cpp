@@ -18,7 +18,7 @@ void StepModelo::acept(MensajeInternoVisitor* v) {
 	v->visit(this);
 }
 
-void StepModelo::serialize(YAML::Node* nodo) {
+void StepModelo::serialize(YAML::Emitter & out) {
 }
 
 NetworkMensaje* StepModelo::deserialize(YAML::const_iterator& it) {

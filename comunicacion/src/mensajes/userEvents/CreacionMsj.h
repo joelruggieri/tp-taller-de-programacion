@@ -14,7 +14,7 @@ public:
 	CreacionMsj(string tag, float x, float y);
 	virtual ~CreacionMsj();
 	void acept(UserEventVisitor *);
-	void serialize(YAML::Node * nodo);
+	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
 
 	const string& getTagObjeto() const {
