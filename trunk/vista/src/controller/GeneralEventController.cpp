@@ -153,10 +153,6 @@ void GeneralEventController::resize(int nuevoX, int nuevoY) {
 	for (it = resizers.begin(); it != resizers.end(); ++it) {
 		(*it)->resize(Resizer::crearTransformacionALogica(nuevoX, nuevoY));
 	}
-
-	//ENTREGA3 USAR TL
-	//	Resizer::Instance()->setearResizer(nuevoX, nuevoY);
-//	Resizer::Instance()->resizearResizeables();
 }
 
 bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
@@ -217,10 +213,6 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 			break;
 		case SDL_WINDOWEVENT: {
 			switch (evento.window.event) {
-//TODO IMPLEMENTAR RESIZE
-//			case SDL_WINDOWEVENT_MAXIMIZED:
-//				cout << "maximizada" << endl;
-//				break;
 			case SDL_WINDOWEVENT_RESIZED:
 				//SDL_GetVideoInfo();
 				SDL_GetWindowSize(ventana, &tamNuevoX, &tamNuevoY);
@@ -229,21 +221,9 @@ bool GeneralEventController::procesarEventos(SDL_Window * ventana) {
 				if (tamNuevoY >= MAX_VENTANA)
 					tamNuevoY = MAX_VENTANA;
 				tamNuevoX = tamNuevoY;
-//				if (tamNuevoY <= MAX_VENTANA && tamNuevoY >= MIN_VENTANA_Y) {
 				SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
 				this->resize(tamNuevoX, tamNuevoY);
-//				}
 				break;
-//			case SDL_WINDOWEVENT_MINIMIZED:
-////				SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
-////				this->resize(tamNuevoX, tamNuevoY);
-//				cout << "minimizo"<< endl;
-//				break;
-//			case SDL_WINDOWEVENT_MAXIMIZED:
-////				SDL_SetWindowSize(ventana, tamNuevoX, tamNuevoY);
-////				this->resize(tamNuevoX, tamNuevoY);
-//				cout << "maximizo"<< endl;
-//				break;
 			}
 
 			break;

@@ -51,7 +51,7 @@ void MainClienteThread::run() {
 			Status* status = new Status(TIMEOUT);
 			thread = new IOThread(colaEntrada, colaSalida, status, sockfd, 0);
 			thread->run();
-			MainController controller(colaEntrada,colaSalida);
+			MainController controller(colaEntrada,colaSalida, status);
 			controller.setCoordenadasArea(config->getXArea(), config->getYArea(), config->getAnchoArea(), config->getAltoArea());
 			controller.run(config->getFactoriresTags());
 		}
