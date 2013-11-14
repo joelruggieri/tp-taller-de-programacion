@@ -130,7 +130,6 @@ Status* IOThreadParams::getStatus() {
 
 void IOThread::cancel() {
 	if (thEntrada) {
-		cout<< "Cancela Thread"<<endl;
 		//cancelo solo el de entrada, ya que es el que puede estar muerto esperando, el de salida puede dar error y matar el mismo al cliente
 		log.debug("Cancelando Thread");
 		thEntrada->cancel();

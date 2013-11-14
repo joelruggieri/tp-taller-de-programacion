@@ -17,12 +17,14 @@
 using namespace std;
 namespace CLIENTE {
 
-JuegoEventsController::JuegoEventsController(ZonaPlay * zplay, ZonaTablero *tablero, ZonaCreacion * creacion,
-		Transformacion * tl) {
+JuegoEventsController::JuegoEventsController(ZonaPlay * zplay,
+		ZonaTablero *tablero, ZonaCreacion * creacion,
+		StatusJuego * statusjuego, Transformacion * tl) {
 	this->zplay = zplay;
 	this->tablero = tablero;
 	this->creacion = creacion;
 	this->tl = tl;
+	status = statusjuego;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -58,14 +60,12 @@ bool JuegoEventsController::mouseWheelMoved(int x, int y, int amountScrolled) {
 }
 
 bool JuegoEventsController::mouseMotion(int corrimientoX, int corrimientoY) {
-//	if (editor != NULL && !iniciado) {
-//		editor->mouseMotion(corrimientoX, corrimientoY);
-//		editor = editor->isEnd() ? NULL : editor;
-//	}
-	tl->setVector(corrimientoX, corrimientoY);
-	float xf, yf;
-	tl->getResultado(xf, yf);
-	tablero->mouseMotion(xf, yf);
+	if (!status->isCorriendo()) {
+		tl->setVector(corrimientoX, corrimientoY);
+		float xf, yf;
+		tl->getResultado(xf, yf);
+		tablero->mouseMotion(xf, yf);
+	}
 	return true;
 }
 
@@ -119,7 +119,6 @@ bool JuegoEventsController::rightClickUp(int x, int y) {
 	tablero->rightClickUp(xf, yf);
 	return true;
 }
-
 
 void JuegoEventsController::resize(Transformacion* tl) {
 	if (this->tl != NULL) {

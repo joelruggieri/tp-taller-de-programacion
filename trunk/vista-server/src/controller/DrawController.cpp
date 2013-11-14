@@ -10,6 +10,7 @@
 #include <src/ConstantesComunicacion.h>
 #include "src/mensajes/viewMensaje/ViewBotonStartMsj.h"
 #include "src/mensajes/viewMensaje/Highlight.h"
+#include "src/mensajes/MensajePlano.h"
 #include <src/Logger.h>
 DrawController::DrawController(ColaEventos* salida) {
 	this->salida = salida;
@@ -20,7 +21,6 @@ DrawController::DrawController(ColaEventos* salida) {
 }
 
 void DrawController::addJugador(JuegoEventsController* c) {
-	cout << "agregado " << c->getNumeroJugador() << endl;
 	controllers.push_back(c);
 }
 
@@ -66,6 +66,14 @@ void DrawController::dibujar() {
 		nuevo =new ViewBotonStartMsj(ID_BOTON_PLAY,(*itJugadores)->isIniciado());
 		nuevo->setDestinatario((*itJugadores)->getNumeroJugador());
 		salidaFinal.push_back(nuevo);
+		NetworkMensaje * msjeEstadoJuego;
+		if((*itJugadores)->isIniciado()){
+			msjeEstadoJuego = new MensajePlano(TAG_PLANO_MSJ_JUEGOINICIADO);
+		} else {
+			msjeEstadoJuego = new MensajePlano(TAG_PLANO_MSJ_JUEGOPAUSADO);
+		}
+		msjeEstadoJuego->setDestinatario((*itJugadores)->getNumeroJugador());
+		salidaFinal.push_back(msjeEstadoJuego);
 	}
 	salida->push(salidaFinal);
 }
@@ -75,6 +83,5 @@ DrawController::~DrawController() {
 }
 
 void DrawController::removeJugador(JuegoEventsController* c) {
-	cout << "removido " << c->getNumeroJugador() << endl;
 	controllers.remove(c);
 }

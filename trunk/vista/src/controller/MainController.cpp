@@ -23,7 +23,7 @@
 #include "../ConstantesVista.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
 #include "src/threading/EventReceptorThread.h"
-#include "FinDeJuegoController.h"
+#include "MensajesServerReceptor.h"
 #include <string>
 #include <list>
 using namespace std;
@@ -58,44 +58,51 @@ int MainController::run(list<string> & factories) {
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
 	Cuadrado cuadrado = Cuadrado(this->xArea, this->yArea, this->wArea,this->hArea);
 	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA), cuadrado);
-	GeneralEventController * eventController = crearGeneralEventController(factories);
+	StatusJuego juegoStatus;
+	GeneralEventController * eventController = crearGeneralEventController(factories,juegoStatus);
 	eventController->setDrawController(viewController);
 	eventController->addResizerController(viewController);
-	FinDeJuegoController juego;
+	MensajesServerReceptor juego(&juegoStatus);
 
-	//Creo el thread que se encarga de distribuir los msjs del server
+	//Creo el thread que se encarga de distribuir los msjs que vienen del server server
 	EventReceptorThread receptor(this->entrada, NULL, this->viewController, &juego, NULL);
 	receptor.run();
 	int timerID =SDL_AddTimer(1000/VELOCIDAD_REFRESCO_VISTA, my_callbackfunc, NULL);
 	SDL_SetWindowMaximumSize(ventana, 825,825);
 	SDL_SetWindowPosition(ventana, 300, 100);
-
-	while (!juego.isTerminado() && status->isAlive()) {
+	bool terminar = false;
+	while (!juegoStatus.isTerminado() && status->isAlive() && !terminar) {
 		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
-		eventController->procesarEventos(ventana);
+		terminar = eventController->procesarEventos(ventana);
 	}
-	if(juego.isTerminado()){
-		if (juego.isGanado()) {
-			log.info("Juego Ganado!");
-		} else {
-			log.info("Juego Perdido");
-		}
+	if(terminar){
+		log.info("Finalizando Juego");
 	} else {
-		log.error("El server no responde, finalizando juego");
+		if(juegoStatus.isTerminado()){
+			if (juegoStatus.isGanado()) {
+				log.info("Juego Ganado!");
+			} else {
+				log.info("Juego Perdido");
+			}
+		} else {
+			log.error("El server no responde, finalizando juego");
+		}
+
 	}
 	receptor.cancel();
 	sleep(3);
 	SDL_RemoveTimer(timerID);
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(ventana);
+	delete eventController;
 	return 0;
 }
 
-GeneralEventController* MainController::crearGeneralEventController(list<string> & factories) {
+GeneralEventController* MainController::crearGeneralEventController(list<string> & factories, StatusJuego & statusjuego) {
 	ZonaTablero * tablero = new ZonaTablero(viewController,this->salida);
 	ZonaPlay * zp = new ZonaPlay(viewController,110, 90, this->salida);
 	ZonaCreacion* zonaCreacion = new ZonaCreacion(viewController, factories, 110, 80, salida);
-	JuegoEventsController * juegoController = new JuegoEventsController(zp,tablero, zonaCreacion,Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
+	JuegoEventsController * juegoController = new JuegoEventsController(zp,tablero, zonaCreacion,&statusjuego,Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA));
 	GeneralEventController * generalEventController = new GeneralEventController();
 	generalEventController->addMouseController(juegoController, 1, 1);
 	generalEventController->addResizerController(juegoController);
