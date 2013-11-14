@@ -380,6 +380,28 @@ struct convert<Yunque> {
 	}
 };
 
+template<>
+struct convert<Clavo> {
+	static Node encode(const Clavo& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["rotacion"] = objeto.getRotacion();
+		return node;
+	}
+
+	static bool decode(const Node& node, Clavo& objeto) {
+		if (node.size() != 2) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
+		Mark marca = node.Mark();
+		Registro & reg = objeto.getReg();
+		reg.setLinea(marca.line);
+		reg.setEtiqueta("Clavo");
+		return true;
+	}
+};
 
 }
 

@@ -132,6 +132,10 @@ void SimpleEditorAnguloFijo::dropNuevaFigura(GanchoView* view) {
 	dropear(view, this->figurasFactory->crearGancho(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
+void SimpleEditorAnguloFijo::dropNuevaFigura(ClavoView* view) {
+	dropear(view, this->figurasFactory->crearClavo(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
+}
+
 EditorNivel* SimpleEditorAnguloFijo::clone() {
 	return new SimpleEditorAnguloFijo(modeloController, tablero, figurasFactory,yMaxDrag,angulosPermitidos);
 }
@@ -139,3 +143,4 @@ EditorNivel* SimpleEditorAnguloFijo::clone() {
 void SimpleEditorAnguloFijo::dropNuevaFigura(YunqueView* view) {
 	dropear(view, this->figurasFactory->crearYunque(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
+

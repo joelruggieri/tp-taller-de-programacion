@@ -90,6 +90,7 @@ void ViewController::crearPantalla() {
 	cargador->cargarTexture(PATH_VISTA_GANCHO);
 	cargador->cargarTexture(PATH_EDICION_UNION);
 	cargador->cargarTexture(PATH_ERROR_IMG);
+	cargador->cargarTexture(PATH_VISTA_CLAVO);
 
 	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
 	PATH_ZONA_CREACION);

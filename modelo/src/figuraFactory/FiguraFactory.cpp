@@ -18,6 +18,7 @@
 #include "../objeto/Correa.h"
 #include "../objeto/Gancho.h"
 #include "../objeto/Yunque.h"
+#include "../objeto/Clavo.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory() {
 
@@ -195,6 +196,20 @@ Figura* FiguraFactory::crearYunque(float x, float y, int numeroJugador) {
 
 Figura* FiguraFactory::crear(Yunque* c) {
 	Yunque* y = (Yunque*)this->crearYunque(c->getX(), c->getY(),c->getNumeroJugador());
+		y->setRotacion(c->getRotacion());
+		y->setAncho(c->getAncho());
+		y->setReg(c->getReg());
+		return y;
+}
+
+Figura* FiguraFactory::crearClavo(float x, float y, int numeroJugador) {
+	Figura* figura = new Clavo(x,y, ANCHO_CLAVO,ALTO_CLAVO);
+	figura->setNumeroJugador(numeroJugador);
+	return figura;
+}
+
+Figura* FiguraFactory::crear(Clavo* c) {
+	Clavo* y = (Clavo*)this->crearClavo(c->getX(), c->getY(),c->getNumeroJugador());
 		y->setRotacion(c->getRotacion());
 		y->setAncho(c->getAncho());
 		y->setReg(c->getReg());

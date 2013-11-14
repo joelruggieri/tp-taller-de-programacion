@@ -18,6 +18,7 @@
 #include "../viewFactory/VistaEngranajeFactory.h"
 #include "../viewFactory/ViewCorreaFactory.h"
 #include "../viewFactory/ViewYunqueFactory.h"
+#include "../viewFactory/viewClavoFactory.h"
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/EditorUnion.h"
 #include "../editor/SimpleEditorOrientacionCambiable.h"
@@ -35,7 +36,7 @@ const string KEY_ENGRANAJE = TAG_FACTORY_ENGRANAJE;
 const string KEY_MOTOR = TAG_FACTORY_MOTOR;
 const string KEY_CORREA = TAG_FACTORY_CORREA;
 const string KEY_YUNQUE = TAG_FACTORY_YUNQUE;
-
+const string KEY_CLAVO = TAG_FACTORY_CLAVO;
 JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloController* modeloController) {
 	this->tablero = tablero;
 	this->modeloController = modeloController;
@@ -44,11 +45,18 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	/////// creo el mapa de todas las factories que va a tener el juego/////
 	list<float> angulosPermitidos1;
 	list<float> angulosPermitidos2;
+	list<float> angulosPermitidos3;
+	angulosPermitidos3.push_back(0.0);
+	angulosPermitidos3.push_back(90.0);
+	angulosPermitidos3.push_back(180.0);
+	angulosPermitidos3.push_back(270.0);
 	angulosPermitidos2.push_back(-45.0);
 	angulosPermitidos2.push_back(0.0);
 	angulosPermitidos2.push_back(45.0);
 	SimpleEditorCambiarRadio* editorCambiarRadio = new SimpleEditorCambiarRadio(modeloController,tablero,this->factory, 100);
 	editores.push_back(editorCambiarRadio);
+	SimpleEditorAnguloFijo* editorSimpleAnguloFijo3 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos3);
+	editores.push_back(editorSimpleAnguloFijo3);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo1 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos1);
 	editores.push_back(editorSimpleAnguloFijo1);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo2 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos2);
@@ -85,7 +93,8 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_MOTOR,viewFactory));
 	viewFactory = new ViewYunqueFactory(editorSimpleAnguloFijo1,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_YUNQUE,viewFactory));
-
+	viewFactory = new viewClavoFactory(editorSimpleAnguloFijo3,0);
+	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_CLAVO,viewFactory));
 }
 
 JuegoEventsController* JuegoControllerFactory::crearConfiguracionJugador(Jugador* jugador){

@@ -89,6 +89,9 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	case OBJ_SIMPLE_S_YUNQUE:
 		viewRetorn = this->crearYunque(a);
 		break;
+	case OBJ_SIMPLE_S_CLAVO:
+		viewRetorn = this->crearClavo(a);
+		break;
 	case OBJ_SIMPLE_S_GANCHO:
 		viewRetorn = this->crearGancho(a);
 		break;
@@ -99,8 +102,11 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 }
 
 
+View* ViewObjetoSimpleFactory::crearClavo(ViewObjetoUpdateMsj* o) {
+	ClavoView* viewReturn = new ClavoView(o->getX(), o->getY(),ANCHO_CLAVO, ALTO_CLAVO,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CLAVO));
+	return viewReturn;
+}
 
 
 } /* namespace CLIENTE */
-
 

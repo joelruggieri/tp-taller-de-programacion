@@ -23,6 +23,7 @@ class GloboHelio;
 class Correa;
 class Soga;
 class Yunque;
+class Clavo;
 #include "src/Jugador.h"
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
@@ -45,6 +46,7 @@ public:
 	void visit (Soga* correa);
 	void visit (Gancho*);
 	void visit (Yunque*);
+	void visit (Clavo*);
 private:
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);
@@ -58,6 +60,7 @@ private:
 	void guardar(Soga* objeto, YAML::Node* nodoRaiz);
 	void guardar(Gancho* objeto, YAML::Node* nodoRaiz);
 	void guardar(Yunque* objeto, YAML::Node* nodoRaiz);
+	void guardar(Clavo* objeto, YAML::Node* nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };

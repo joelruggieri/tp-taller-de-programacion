@@ -20,6 +20,7 @@
 #include "../../vista/objeto/CorreaEstaticaView.h"
 #include "../../vista/objeto/GanchoView.h"
 #include "../../vista/objeto/YunqueView.h"
+#include "../../vista/objeto/ClavoView.h"
 #include "../../ConstantesVista.h"
 namespace CLIENTE {
 
@@ -34,6 +35,7 @@ private:
 	View* crearSogaEstatica(ViewObjetoUpdateMsj*);
 	View* crearCorreaEstatica(ViewObjetoUpdateMsj*);
 	View* crearYunque(ViewObjetoUpdateMsj*);
+	View* crearClavo(ViewObjetoUpdateMsj*);
 	View* crearGancho(ViewObjetoUpdateMsj*);
 public:
 	ViewObjetoSimpleFactory();

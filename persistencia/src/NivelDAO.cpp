@@ -20,6 +20,7 @@
 #include "src/objeto/Soga.h"
 #include "src/objeto/Engranaje.h"
 #include "src/objeto/Yunque.h"
+#include "src/objeto/Clavo.h"
 #include "src/Logger.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
@@ -555,4 +556,43 @@ void NivelDAO::obtenerGanchos(std::list<Figura*> &lista, YAML::Node objetos){
 }
 
 void NivelDAO::obtenerYunques(std::list<Figura*>& lista, YAML::Node objetos) {
+	YAML::Node yunques = objetos["Yunques"];
+	if(yunques.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Yunques";
+		logg.info(mensaje);
+		}
+	for (std::size_t i = 0; i < yunques.size(); i++) {
+		try {
+			Yunque obj = yunques[i].as<Yunque>();
+//			bool salir = validar(obj, globos, i);
+//			if(!salir ) continue;
+			lista.push_back( new Yunque(obj));
+			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Yunque: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  yunques[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerClavos(std::list<Figura*>& lista, YAML::Node objetos) {
+	YAML::Node clavos = objetos["Clavos"];
+	if(clavos.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Clavos";
+		logg.info(mensaje);
+		}
+	for (std::size_t i = 0; i < clavos.size(); i++) {
+		try {
+			Clavo obj = clavos[i].as<Clavo>();
+//			bool salir = validar(obj, globos, i);
+//			if(!salir ) continue;
+			lista.push_back( new Clavo(obj));
+			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Clavo: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  clavos[i].Mark() );
+		}
+	}
 }
