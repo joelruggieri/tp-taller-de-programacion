@@ -33,9 +33,9 @@ Jugadores:
     numero: 0
     ParametrosFactories:
       - nombre: FF
-        cantidad: 1
+        cantidad: 5
       - nombre: FE
-        cantidad: 2
+        cantidad: 5
       - nombre: FL
         cantidad: 34
       - nombre: FA
@@ -43,7 +43,7 @@ Jugadores:
       - nombre: FC
         cantidad: 60
       - nombre: FG
-        cantidad: 7
+        cantidad: 5
       - nombre: FS
         cantidad: 7
       - nombre: FM
@@ -62,7 +62,7 @@ Jugadores:
       - nombre: FM
         cantidad: 3
       - nombre: FO
-        cantidad: 1
+        cantidad: 5
   - numero: 2
     Area:
       x: 80
@@ -71,4 +71,14 @@ Jugadores:
       alto: 20
     ParametrosFactories:
       - nombre: FP
-        cantidad: 1
+        cantidad: 5
+      - nombre: FC
+        cantidad: 60
+      - nombre: FG
+        cantidad: 5
+      - nombre: FS
+        cantidad: 7
+      - nombre: FM
+        cantidad: 3
+      - nombre: FY
+        cantidad: 3

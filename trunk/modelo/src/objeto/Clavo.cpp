@@ -10,10 +10,14 @@
 Clavo::Clavo(const Clavo& figura) {
 	this->x = figura.getX();
 	this->y = figura.getY();
-	this->rotacion = figura.getRotacion();
+	body = figura.body;
+		vista = figura.vista;
+		rotacion = figura.getRotacion();
+    alto = figura.getAlto();
+    ancho = figura.getAncho();
+	this->reg = figura.reg;
 //	this->setRadio(figura.getRadio());
 
-		this->reg = figura.reg;
 }
 
 Clavo::~Clavo() {
@@ -38,18 +42,32 @@ void Clavo::crearFisica() {
 		shape.SetAsBox(this->ancho / 2, this->alto / 2);
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_staticBody;
-		bodyDef.position.Set(centro.x, centro.y);
+		bodyDef.position.Set(x, y);
 		bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 		b2Body* body = myWorld->CreateBody(&bodyDef);
 //		shapeCircle.m_radius = this->radio;
-		b2FixtureDef bodyPelota;
-		bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
-		bodyPelota.filter.maskBits = CATEGORIA_FIGURAS;
-		bodyPelota.shape = &shape;
-		bodyPelota.density = 10.0f;
-		bodyPelota.friction = 0.3f;
-		bodyPelota.restitution = 0.6f;	//mucho coeficiente de restitucion
-		body->CreateFixture(&bodyPelota)->SetUserData(this);
+		b2FixtureDef bodyClavo;
+		bodyClavo.filter.categoryBits = CATEGORIA_FIGURAS;
+		bodyClavo.filter.maskBits = CATEGORIA_FIGURAS;
+		bodyClavo.shape = &shape;
+		bodyClavo.density = 10.0f;
+		bodyClavo.friction = 0.3f;
+		bodyClavo.restitution = 0.6f;	//mucho coeficiente de restitucion
+		body->CreateFixture(&bodyClavo)->SetUserData(this);
+//		body->SetUserData(this);
+//		shape.SetAsBox(this->ancho/5, this->alto/2);
+//		b2BodyDef bodyDefPunta;
+//		bodyDefPunta.type = b2_staticBody;
+//		bodyDefPunta.position.Set(x + ( this->ancho / 2 ), y);
+//		bodyDefPunta.angle = this->getRotacion() * -3.14 / 180.0;
+//		b2Body* bodyPunta = myWorld->CreateBody(&bodyDef);
+//		b2FixtureDef bodyClavoPunta;
+//		bodyClavoPunta.filter.categoryBits = CATEGORIA_FIGURAS;
+//		bodyClavoPunta.filter.maskBits = CATEGORIA_FIGURAS;
+//		bodyClavoPunta.shape = &shape;
+//		bodyPunta->CreateFixture(&bodyClavoPunta)->SetUserData(this);
+
+
 	//		b2MassData masa;
 	//		masa.mass = 50.0f; //chequear la cantidad de masa
 	//		masa.I = 0.04; // chequear inercia rotacional
@@ -59,7 +77,7 @@ void Clavo::crearFisica() {
 }
 
 Clavo::Clavo() {
-	this->x = 0;
-	this->y = 0;
+	this->ancho = 0;
+	this->alto = 0;
 	this->rotacion = 0 ;
 }

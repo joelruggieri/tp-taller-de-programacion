@@ -25,6 +25,14 @@ public:
 		this->ancho = ancho;
 	}
 
+	float getAlto() const {
+		return alto;
+	}
+
+	void setAlto(float alto) {
+		this->alto = alto;
+	}
+
 private:
 	float ancho, alto;
 };

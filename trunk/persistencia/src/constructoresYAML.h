@@ -391,7 +391,7 @@ struct convert<Clavo> {
 	}
 
 	static bool decode(const Node& node, Clavo& objeto) {
-		if (node.size() != 2) return false;
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
 		objeto.setRotacion(node["rotacion"].as<float>());

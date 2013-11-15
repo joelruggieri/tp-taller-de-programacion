@@ -65,6 +65,12 @@ void ReglasContactoSolver::procesarContacto(CintaTransportadora* c, Figura* f,b2
 }
 
 void ReglasContactoSolver::clean() {
+	 cinta = NULL;
+	 pelota= NULL;
+	 bola= NULL;
+	 globo= NULL;
+	 clavo= NULL;
+	 yunque= NULL;
 }
 
 void ReglasContactoSolver::colisionar(b2Contact* contact, const b2Manifold* oldManifold) {
@@ -87,9 +93,7 @@ void ReglasContactoSolver::colisionar(b2Contact* contact, const b2Manifold* oldM
 }
 
 ReglasContactoSolver::~ReglasContactoSolver() {
-	cinta = NULL;
-	bola = NULL;
-	pelota = NULL;
+	clean();
 }
 
 void ReglasContactoSolver::visit(Soga*) {
