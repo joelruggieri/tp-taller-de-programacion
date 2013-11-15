@@ -24,9 +24,15 @@ Yunque::~Yunque() {
 }
 
 Yunque::Yunque(const Yunque& figura):Objeto(figura) {
-	this->enganches.push_back(new Enganche(this,0,this->alto));
-	alto = figura.alto;
-	ancho = figura.ancho;
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->enganches.push_back(new Enganche(this,0,this->alto / 2));
+//	alto = figura.alto;
+
+	this->ancho = (figura.getAncho());
+	this->alto = (figura.getAlto());
+//	ancho = figura.ancho;
+	this->reg = figura.reg;
 }
 
 void Yunque::crearFisica() {

@@ -217,6 +217,8 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerCorreas(lista,objetos);
 			this->obtenerSogas(lista,objetos);
 			this->obtenerGanchos(lista,objetos);
+			this->obtenerClavos(lista, objetos);
+			this->obtenerYunques(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
