@@ -90,6 +90,12 @@ void ReglasContactoSolver::colisionar(b2Contact* contact, const b2Manifold* oldM
 	   procesarContacto(cinta,yunque,contact,oldManifold);
    }
 
+   if(globo != NULL && clavo !=NULL)
+   {
+	   cout << "PROCESAR EXPLOSION GLOBO" << endl;
+   }
+   clean();
+
 }
 
 ReglasContactoSolver::~ReglasContactoSolver() {
