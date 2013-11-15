@@ -30,6 +30,7 @@ public:
 	void addArea(Area* area, int numeroJugador);
 	list<Figura*>& getFiguras();
 	Figura * pickUp(float, float, uint16 mascara,int numeroJugador);
+	Figura * pickUpParaUnir(float, float, uint16 mascara,int numeroJugador);
 	void start();
 	void step();
 	void stop();

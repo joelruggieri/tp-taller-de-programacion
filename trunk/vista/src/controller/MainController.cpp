@@ -90,7 +90,7 @@ int MainController::run(list<string> & factories) {
 
 	}
 	receptor.cancel();
-	sleep(3);
+	sleep(1);
 	SDL_RemoveTimer(timerID);
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(ventana);

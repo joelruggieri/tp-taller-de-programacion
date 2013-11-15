@@ -45,6 +45,16 @@ Figura* ModeloController::pickUp(float x, float y, uint16 mascara, int numeroJug
 	return mapa->pickUp(x,y, mascara, numeroJugador);
 }
 
+Figura* ModeloController::pickUpParaUnir(float x, float y, uint16 mascara, int numeroJugador) {
+	Figura* figura = mapa->pickUp(x,y, mascara, numeroJugador);
+
+	if(figura == NULL) {
+		figura = mapa->pickUp(x,y, mascara, NUMERO_JUGADOR_DEFECTO);
+	}
+
+	return figura;
+}
+
 void ModeloController::step() {
 	mapa->step();
 }
@@ -60,24 +70,10 @@ void ModeloController::stop() {
 
 bool ModeloController::crearUnion(Union* figura) {
 
-		Figura* fInicial = this->pickUp(figura->getXInicial(),
+		Figura* fInicial = this->pickUpParaUnir(figura->getXInicial(),
 				figura->getYInicial(), figura->getMascaraExtremos(),figura->getNumeroJugador());
-
-		if(fInicial == NULL) {
-			fInicial = this->pickUp(figura->getXInicial(),
-					figura->getYInicial(), figura->getMascaraExtremos(),NUMERO_JUGADOR_DEFECTO);
-			if(fInicial == NULL)
-				return false;
-		}
-		Figura* fFinal = this->pickUp(figura->getXFinal(),
+		Figura* fFinal = this->pickUpParaUnir(figura->getXFinal(),
 				figura->getYFinal(), figura->getMascaraExtremos(),figura->getNumeroJugador());
-
-		if(fFinal == NULL) {
-			fFinal = this->pickUp(figura->getXFinal(),
-				figura->getYFinal(), figura->getMascaraExtremos(),NUMERO_JUGADOR_DEFECTO);
-			if(fFinal == NULL)
-				return false;
-		}
 		if (fFinal == fInicial)
 			return false;
 
