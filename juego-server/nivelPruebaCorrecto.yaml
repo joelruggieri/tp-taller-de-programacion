@@ -11,29 +11,19 @@ Objetos:
     - x: 20
       y: 40
   Balancines:
-    - x: 3
-      y: 3
+    - x: 90
+      y: 50
       rotacion: 0
   Ganchos:
     - x: 20
       y: 60
-  Correas:
-    - xDesde: 0
-      yDesde: 0
-      xHasta: 0
-      yHasta: 0
-  Sogas:
-    - xDesde: 0
-      yDesde: 0
-      xHasta: 0
-      yHasta: 0
   PelotasJuego:
     - x: 75
       y: 3
   Cintas:
     - x: 6
       y: 7
-      ancho: 8
+      ancho: 20
 Jugadores:
   - Area:
       x: 90
