@@ -99,8 +99,6 @@ void Balancin::crearFisica(){
 
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(ground,body,centro);
-//	rjd.motorSpeed = 1.0f * b2_pi;
-//	rjd.maxMotorTorque = 10000.0f;
 	rjd.collideConnected = true;
 
 	if(this->getRotacion() == 0){

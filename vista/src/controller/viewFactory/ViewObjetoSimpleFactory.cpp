@@ -66,6 +66,10 @@ View* ViewObjetoSimpleFactory::crearGancho(ViewObjetoUpdateMsj* o) {
 	return new GanchoView(o->getX(), o->getY(),2*RADIO_GANCHO,2*RADIO_GANCHO,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_GANCHO));
 }
 
+View* ViewObjetoSimpleFactory::crearPolea(ViewObjetoUpdateMsj* o) {
+	return new PoleaView(o->getX(), o->getY(),2*RADIO_POLEA,2*RADIO_POLEA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_POLEA));
+}
+
 View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	View* viewRetorn;
 	switch(a->getSelector())
@@ -100,11 +104,13 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	case OBJ_SIMPLE_S_GANCHO:
 		viewRetorn = this->crearGancho(a);
 		break;
+	case OBJ_SIMPLE_S_POLEA:
+		viewRetorn = this->crearPolea(a);
+		break;
 	case OBJ_SIMPLE_S_CARRITO:
-			viewRetorn = this->crearCarrito(a);
-			break;
+		viewRetorn = this->crearCarrito(a);
+		break;
 	}
-
 	return viewRetorn;
 
 }
@@ -117,4 +123,5 @@ View* ViewObjetoSimpleFactory::crearClavo(ViewObjetoUpdateMsj* o) {
 
 
 } /* namespace CLIENTE */
+
 

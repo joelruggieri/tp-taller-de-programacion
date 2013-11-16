@@ -18,6 +18,7 @@ private:
 	bool ocupado;
 	b2Vec2 pos;
 	Figura* centro;
+	bool requiereEslabon;
 public:
 	Enganche(Figura* centro, float posX, float posY);
 	virtual ~Enganche();
@@ -28,6 +29,10 @@ public:
 	bool estaOcupado();
 	void ocupar();
 	void liberar();
+	b2Body * getBody();
+	bool getRequiereEslabon();
+	void setRequiereEslabon( bool );
+
 };
 
 typedef list<Enganche*> Lista_Enganches; //OJO que se viene typedef Switch() Ezequiel()

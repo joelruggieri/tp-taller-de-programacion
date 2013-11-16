@@ -35,6 +35,7 @@ void ZonaCreacion::crearVista(ViewController* vc) {
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_YUNQUE),ConfigFactory(ID_FACTORY_YUNQUE, TAG_FACTORY_YUNQUE, PATH_VISTA_YUNQUE)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CLAVO),ConfigFactory(ID_FACTORY_CLAVO, TAG_FACTORY_CLAVO, PATH_VISTA_CLAVO)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_GANCHO),ConfigFactory(ID_FACTORY_GANCHO, TAG_FACTORY_GANCHO, PATH_VISTA_GANCHO)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_POLEA),ConfigFactory(ID_FACTORY_POLEA, TAG_FACTORY_POLEA, PATH_VISTA_POLEA)));
 	CargadorDeTextures * texturas = CargadorDeTextures::Instance();
 	SDL_Texture* canvasTexture = texturas->cargarTexture(PATH_FONDO);
 	canvasTexture = texturas->cargarTexture(PATH_ZONA_CREACION);

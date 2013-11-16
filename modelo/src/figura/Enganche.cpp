@@ -11,6 +11,7 @@ Enganche::Enganche(Figura * centro, float posX, float posY) {
 	this->pos = b2Vec2(posX,posY);
 	this->ocupado = false;
 	this->centro = centro;
+	requiereEslabon = false;
 }
 
 Enganche::~Enganche() {
@@ -47,4 +48,17 @@ b2Vec2 Enganche::getWorldPos() {
 	b2Rot rotacion(-1 * radianes);
 	b2Vec2 rotado = b2Mul(rotacion, pos);
 	return rotado + centroVec;
+}
+
+b2Body* Enganche::getBody() {
+	return centro->getBody();
+}
+
+bool Enganche::getRequiereEslabon() {
+	return requiereEslabon;
+}
+
+void Enganche::setRequiereEslabon(bool r) {
+	requiereEslabon = r;
+
 }

@@ -23,6 +23,7 @@
 #define RADIO_GANCHO 1.0
 #define RADIO_PELOTA 3.0
 #define RADIO_BOLA 3.0
+#define RADIO_POLEA 4.0
 #define RADIO_GLOBO 3.5
 #define ANCHO_PLATAFORMA 10.0
 #define ALTO_PLATAFORMA 2.5

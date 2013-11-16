@@ -18,6 +18,7 @@ using namespace std;
 #include <list>
 #include "../../vista/figura/FiguraView.h"
 #include "../viewFactory/ViewGanchoFactory.h"
+#include "../viewFactory/ViewPoleaFactory.h"
 #include "../viewFactory/ViewGloboFactory.h"
 #include "../viewFactory/ViewMotorFactory.h"
 #include "../viewFactory/ViewSogaFactory.h"
@@ -51,6 +52,7 @@ const string KEY_CORREA = "CORREA";
 const string KEY_GANCHO = "GANCHO";
 const string KEY_YUNQUE = "YUNQUE";
 const string KEY_CLAVO = "CLAVO";
+const string KEY_POLEA = "POLEA";
 InicializadorJuego::InicializadorJuego(Nivel* nivel, ModeloController * modeloController) {
 	this->modeloController = modeloController;
 	this->factory = new FiguraFactory();
@@ -148,6 +150,10 @@ ZonaTablero* InicializadorJuego::crearTablero() {
 
 	viewFactory = new ViewGanchoFactory(NULL,0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GANCHO,viewFactory));
+
+	viewFactory = new ViewPoleaFactory(NULL,0);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_POLEA,viewFactory));
+
 	viewFactory = new ViewGloboFactory(NULL,0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
 	viewFactory = new ViewPlataformaFactory(NULL,0);
@@ -175,6 +181,7 @@ ZonaTablero* InicializadorJuego::crearTablero() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_YUNQUE,viewFactory));
 	viewFactory = new viewClavoFactory(NULL,0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CLAVO,viewFactory));
+
 
 	list<Figura*>& figurasNivel = this->nivel->getFiguras();
 	list<Figura*>::iterator it;
@@ -235,5 +242,11 @@ void InicializadorJuego::visit(Yunque* c) {
 void InicializadorJuego::visit(Clavo* c) {
 	Figura * fig = this->factory->crear(c);
 		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CLAVO);
+		this->agregarFigura(iter->second, fig);
+}
+
+void InicializadorJuego::visit(Polea* c) {
+	Figura * fig = this->factory->crear(c);
+		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_POLEA);
 		this->agregarFigura(iter->second, fig);
 }

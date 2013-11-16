@@ -21,7 +21,7 @@ SogaView::~SogaView() {
 //}
 
 void SogaView::dibujarse(SDL_Renderer* renderer) {
-	//ENTREGA 3 FALTA HACER SDL_RENDERCOLOR O ALGO ASI PARA CAMBIAR EL COLOR
+	//ENTREGA3 FALTA HACER SDL_RENDERCOLOR O ALGO ASI PARA CAMBIAR EL COLOR y ademas no se esta renderizando el circulo del diome.
 	SDL_RenderDrawLine(renderer, this->xp, this->yp, this->xHastap, this->yHastap);
 	dibujarseCirculoEstatico(renderer);
 }

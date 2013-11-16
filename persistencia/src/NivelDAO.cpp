@@ -22,6 +22,7 @@
 #include "src/objeto/Engranaje.h"
 #include "src/objeto/Yunque.h"
 #include "src/objeto/Clavo.h"
+#include "src/objeto/Polea.h"
 #include "src/Logger.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
@@ -221,6 +222,7 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerGanchos(lista,objetos);
 			this->obtenerClavos(lista, objetos);
 			this->obtenerYunques(lista,objetos);
+			this->obtenerPoleas(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
@@ -573,7 +575,27 @@ void NivelDAO::obtenerGanchos(std::list<Figura*> &lista, YAML::Node objetos){
 			lista.push_back( new Gancho(obj));
 			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
-			std::string mensaje = "Error al leer Globos: ";
+			std::string mensaje = "Error al leer Ganchos: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje,  ganchos[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerPoleas(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node ganchos = objetos["Poleas"];
+	if(ganchos.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Poleas";
+		logg.info(mensaje);
+		}
+	for (std::size_t i = 0; i < ganchos.size(); i++) {
+		try {
+			Polea obj = ganchos[i].as<Polea>();
+//			bool salir = validar(obj, globos, i);
+//			if(!salir ) continue;
+			lista.push_back( new Polea(obj));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Poleas: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje,  ganchos[i].Mark() );
 		}

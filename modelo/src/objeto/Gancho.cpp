@@ -41,17 +41,12 @@ void Gancho::crearFisica(){
 	bodyDef.position.Set(centro.x, centro.y);
 	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 	bodyDef.fixedRotation = true;
-	//bodyDef.linearDamping = 0.15;
-
 	b2Body* body = myWorld->CreateBody(&bodyDef);
 	shapeCircle.m_radius = this->radio;
 	b2FixtureDef bodyGancho;
 	bodyGancho.shape = &shapeCircle;
 	bodyGancho.filter.categoryBits = CATEGORIA_FIGURAS;
 	bodyGancho.filter.maskBits = CATEGORIA_FIGURAS;
-	//bodyGancho.density = 1.0f;	//poca densidad, la densidad del aire cual es ?
-	//bodyGancho.friction = 0.2f;
-	//bodyGancho.restitution = 0.3f;
 	body->CreateFixture(&bodyGancho)->SetUserData(this);
 	body->SetUserData(this);
 	this->setBody(body);

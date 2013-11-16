@@ -25,6 +25,7 @@
 #include "src/objeto/Soga.h"
 #include "src/objeto/Yunque.h"
 #include "src/objeto/Clavo.h"
+#include "src/objeto/Polea.h"
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -159,4 +160,12 @@ void ObjetoDAO::visit(Clavo* c) {
 
 void ObjetoDAO::guardar(Clavo* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Clavos"].push_back(*objeto);
+}
+
+void ObjetoDAO::visit(Polea*c) {
+	guardar(c,nodo);
+}
+
+void ObjetoDAO::guardar(Polea* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Poleas"].push_back(*objeto);
 }

@@ -211,7 +211,7 @@ bool Figura::validarContacto(b2Body * verf, b2Body * b) {
 	uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
 
 	return b2TestOverlap(verf->GetFixtureList()->GetShape(), 0, b->GetFixtureList()->GetShape(), 0,
-			verf->GetTransform(), b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0;
+			verf->GetTransform(), b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0 && verf->GetUserData() != b->GetUserData();
 
 }
 
@@ -231,6 +231,7 @@ Figura::Figura(const Figura& fig) {
 	vista = NULL;
 	traccionable = fig.traccionable;
 	accionado = false;
+	viva = true;
 }
 
 bool Figura::esTraccionable() {

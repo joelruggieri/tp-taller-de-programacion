@@ -9,7 +9,6 @@
 #define SIMPLEEDITORANGULOFIJO_H_
 
 #include "SimpleEditorNivel.h"
-class BalancinView;
 class SimpleEditorAnguloFijo: public SimpleEditorNivel {
 private:
    typedef SimpleEditorNivel super;
@@ -30,6 +29,7 @@ public:
 	void dropNuevaFigura(VistaEngranaje*);
 	void dropNuevaFigura(YunqueView*);
 	void dropNuevaFigura(ClavoView*);
+	void dropNuevaFigura(PoleaView*);
 	EditorNivel * clone();
 };
 
