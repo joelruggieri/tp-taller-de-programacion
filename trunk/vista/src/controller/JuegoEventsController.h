@@ -21,8 +21,6 @@
 #include "src/mensajes/userEvents/MouseMotionMsj.h"
 #include "StatusJuego.h"
 namespace CLIENTE {
-//ENTREGA3 APARENTEMENTE YA RECIBE COMO PARAMETRO UNA ZONAPLAY ASI QUE HABRÍA QUE VER QUE FUNCIONEN N EN SIMULTANEO (MISMO THREAD)
-//ENTREGA3 HAY QUE ADEMAS DARLE UNA ZONA DONDE SI SE SALE QUE NO TENGA EFECTO EL EVENTO DE SCROLL O PICKUP/DROP. PARA ESO SE PUEDE USAR EL OBJETO CUADRADO DE LA VISTA
 class JuegoEventsController: public MouseEventController, public ResizerController {
 private:
 	ZonaTablero * tablero;

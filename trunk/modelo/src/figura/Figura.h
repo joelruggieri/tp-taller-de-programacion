@@ -13,11 +13,10 @@
 #include "../Vista.h"
 #include "Enganche.h"
 #include "Registro.h"
-
-
+#include "../interaccion/ValidadorInteraccion.h"
+#include "../Area.h"
 //ENTREGA3 HAY QUE AGREGAR UN ATRIBUTO QUE SEA "SELECCIONABLE" Y ADEMAS UN JUGADOR ASIGNADO PARA QUE NO PUEDA SER ELEGIDA POR CUALQUIERA
 // EL SEGUNDO SE PUEDE IMPLEMENTAR COMO UNA MASCARA IGUAL QUE BOX2D O UN INT XD
-//ENTREGA3 AGREGAR UN ATRIBUTO COMO "ESTAVIVO" PORQUE AHORA VA A HABER COSAS QUE NO ESTEN MAS VIVAS DURANTE LA EJECUCION.
 #include "../observer/ObservableModelo.h"
 #include "../observer/Evento.h"
 
@@ -32,27 +31,34 @@ protected:
 	float xb,yb;
 	double rotacionb;
 	Registro reg;
-
 	b2World * myWorld;
 	b2Body * ground;
-
 	Lista_Enganches enganches;
-
 	Vista * vista;
 	b2Body * body;
 	double radianesAGrados(float r);
     virtual void crearFisicaEstaticaTemplate();
     bool validarContacto(b2Body * verf, b2Body * b);
+
+    //Cosas tercera entrega
+
+    bool viva;
+    //es el que valida para una interaccion.
+	ValidadorInteraccion * validador;
+
+	//Este metodo se llama una vez q la interaccion fue validada por el validador
+	virtual void interactuarTemplate();
+	bool accionado;
 public:
 	static double gradosARadianes(float g);
 	Figura();
 	Figura(float x, float y);
+	Figura(float x, float y, ValidadorInteraccion * validador);
 	Figura(const Figura & fig);
 	virtual ~Figura();
 	virtual bool contacto(float, float)= 0;
 	float getX() const;
 	float getY() const;
-//	float getRadio() const;
 	double getRotacion() const;
 	//actualiza a quienes estan observando la figura
 	void setPosicion(float, float);
@@ -70,23 +76,24 @@ public:
 	void setVista(Vista* vista);
 	b2Body * getBody();
 	void setBody(b2Body *);
-
 	virtual void updateModelo();
 	virtual void updateVista();
-
 	virtual void makeBackUp();
 	virtual void restoreBackUp();
-
 	virtual Lista_Enganches& getEnganches();
 	Registro & getReg();
 	void setReg(Registro r) ;
-
-
 	virtual void modificarSentido();
-
 	virtual bool agregar(Mapa *);
 	virtual bool remover(Mapa *);
 	void setWorld(b2World * w, b2Body * ground);
+
+	bool isViva();
+	//cosas de la tercera parte
+	//interactuar es el metodo usado para la accion del jugador sobre un objeto. Por defecto se llama a interactuar template.
+	virtual void  interactuar(Area & area, int jugador);
+	//accionar es la accion que sucede cuando choca contra otro objeto que lo hace ejecutar su accion: ejemplo el globo rebentar.
+	virtual void accionar();
 };
 
 #endif /* FIGURA_H_ */

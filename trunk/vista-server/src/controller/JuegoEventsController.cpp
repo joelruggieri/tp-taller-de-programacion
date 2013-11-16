@@ -20,7 +20,7 @@
 #include "src/Constantes.h"
 using namespace std;
 
-JuegoEventsController::JuegoEventsController(ZonaTablero* tablero, ModeloController *modeloController, ZonaCreacion* zona, int numero) {
+JuegoEventsController::JuegoEventsController(ZonaTablero* tablero, ModeloController *modeloController, ZonaCreacion* zona,Area* a, int numero) {
 	this->tablero = tablero;
 	this->creacion = zona;
 	this->modeloController = modeloController;
@@ -28,6 +28,9 @@ JuegoEventsController::JuegoEventsController(ZonaTablero* tablero, ModeloControl
 	iniciado = false;
 	this->numeroJugador = numero;
 	iniciado = false;
+	area = a;
+	shift = false;
+	control = false;
 }
 
 JuegoEventsController::~JuegoEventsController() {
@@ -36,12 +39,14 @@ JuegoEventsController::~JuegoEventsController() {
 bool JuegoEventsController::clickDown(float x, float y) {
 	//ENTREGA3 SI ESTA INICIADO TIENE QUE LLAMAR ALGUN METODO DEL MODELO QUE LE SIRVA PARA INTERACTUAR CON LAS COSAS EN EL ESCENARIO.
 	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
+	if (iniciado) {
+		modeloController->interactuar(*area, this->numeroJugador,x,y);
+		return true;
+	}
+
 	if (editor == NULL) {
-		if (!iniciado) {
-			//ENTREGA3 DAR VUELTA EL SISTEMA DE COORDENADAS DE LA TOOLBAR DERECHA
 			FiguraView * view = NULL;
 			Figura * fig = this->modeloController->pickUp(x, y, CATEGORIA_UNION | CATEGORIA_FIGURAS,this->numeroJugador);
-			//ENTREGA3, no se va a buscar mas a la zona de creacion, ya que ahora viene por otro lado el evento de creacion
 			if (fig != NULL) {
 				view = (FiguraView *) fig->getVista();
 			}
@@ -60,7 +65,6 @@ bool JuegoEventsController::clickDown(float x, float y) {
 					editor = NULL;
 				}
 				return false;
-			}
 		}
 	} else {
 		editor->setCtrl(this->control);
@@ -173,7 +177,6 @@ void JuegoEventsController::setNumeroJugador(int numeroJugador) {
 void JuegoEventsController::crearVista(string tag, float x, float y) {
 	if (editor == NULL && !iniciado) {
 		//si no estoy con un editor activo y no estoy iniciado puedo crear una vista y empezar la edicion (setear el editor de la vista)
-		//ENTREGA3 PEDIRLE A LA ZONA DE CREACION CREARVISTA, si retorna distinta de NULL hay que hacer algo parecido a lo que hace el click down,
 		FiguraView* view = creacion->crearFigura(tag, x , y);
 		if (view != NULL) {
 			editor = view->getEditor();

@@ -7,6 +7,7 @@
 #include "Figura.h"
 #include <iostream>
 #include "Mapa.h"
+#include "../interaccion/ValidadorNoInteraccion.h"
 using namespace std;
 
 float Figura::getX() const {
@@ -30,32 +31,8 @@ void Figura::setY(float y) {
 }
 
 void Figura::setRotacion(double rotation) {
-//	int signo;
-//	if(rotation <= -180 ){
-//		signo = +1;
-//	} else {
-//		signo = -1;
-//	}
 	this->rotacion = rotation;
 	notify(CAMBIO_ESPACIAL_FORZADO);
-////	while(){
-//	if(this->rotacion > 180 || this->rotacion <=  -180){
-//		int multip = (int)this->rotacion % 360;
-//		rotacion = rotacion + 360*signo * multip;
-//		cout << "rotacion fig " << rotacion << endl;
-//		if(this->rotacion > 180){
-//			cout<< "mierda" << endl;
-//		}
-//	}
-
-//	this->rotacion = rotation;
-//	if(this->rotacion < 0){
-//		this->rotacion =  this->rotacion * -1;
-//		this->rotacion = 360 - (int)this->rotacion % 360;
-//	} else if(this->rotacion >= 360){
-//		this->rotacion = (int)this->rotacion % 360;
-//	}
-
 }
 
 Figura::Figura() {
@@ -69,6 +46,11 @@ Figura::Figura() {
 	rotacionb = 0;
 	traccionable = false;
 	numeroJugadorDuenio = -1;
+	validador = new ValidadorNoInteraccion(this);
+	ground = NULL;
+	myWorld = NULL;
+	accionado =false;
+	viva = true;
 }
 
 Figura::Figura(float x, float y) {
@@ -82,6 +64,30 @@ Figura::Figura(float x, float y) {
 	yb = y;
 	rotacionb = 0;
 	numeroJugadorDuenio = -1;
+	validador = new ValidadorNoInteraccion(this);
+	ground = NULL;
+	myWorld = NULL;
+	accionado = false;
+	viva = true;
+}
+
+
+Figura::Figura(float x, float y, ValidadorInteraccion* validador) {
+	traccionable = false;
+	this->x = x;
+	this->y = y;
+	this->rotacion = 0;
+	vista = 0;
+	this->body = 0;
+	xb = x;
+	yb = y;
+	rotacionb = 0;
+	numeroJugadorDuenio = -1;
+	this->validador = validador;
+	ground = NULL;
+	myWorld = NULL;
+	accionado = false;
+	viva = true;
 }
 
 Figura::~Figura() {
@@ -90,6 +96,7 @@ Figura::~Figura() {
 		delete *it;
 	}
 	notify(DESPUES_DESTRUCCION);
+	delete validador;
 
 }
 
@@ -136,6 +143,8 @@ void Figura::restoreBackUp() {
 	x = xb;
 	y = yb;
 	rotacion = rotacionb;
+	accionado = false;
+	viva = true;
 }
 
 Lista_Enganches & Figura::getEnganches() {
@@ -215,6 +224,13 @@ Figura::Figura(const Figura& fig) {
 	this->rotacion = fig.rotacion;
 	this->rotacionb = fig.rotacion;
 	this->numeroJugadorDuenio = fig.numeroJugadorDuenio;
+	ground = fig.ground;
+	myWorld = fig.myWorld;
+	validador = fig.validador->clone(this);
+	body = fig.body ;
+	vista = NULL;
+	traccionable = fig.traccionable;
+	accionado = false;
 }
 
 bool Figura::esTraccionable() {
@@ -246,4 +262,22 @@ void Figura::setNumeroJugador(int jugadorDuenio) {
 
 int Figura::getNumeroJugador() {
 	return numeroJugadorDuenio;
+}
+
+void Figura::interactuarTemplate() {
+	this->accionar();
+}
+
+void Figura::accionar() {
+}
+
+void Figura::interactuar(Area& area, int jugador) {
+	if(validador->validar(area,jugador)){
+		interactuarTemplate();
+		accionado = true;
+	}
+}
+
+bool Figura::isViva() {
+	return viva;
 }

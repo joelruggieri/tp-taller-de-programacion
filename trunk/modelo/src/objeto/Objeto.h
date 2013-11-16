@@ -13,7 +13,9 @@ class Objeto: public Figura {
 public:
 	Objeto();
 	Objeto(float x, float y);
+	Objeto(float x, float y, ValidadorInteraccion * v);
 	Objeto(const Objeto & obj);
+
 	virtual ~Objeto();
 	bool contieneCentro(Posicionable *);
 	//estos metodos devuelven el tamaño del cuadrado contenedor;

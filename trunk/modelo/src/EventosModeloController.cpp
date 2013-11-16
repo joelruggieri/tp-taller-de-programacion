@@ -8,8 +8,9 @@
 #include "ModeloController.h"
 
 ModeloController::ModeloController() {
-	mapa = new Mapa(50,50,100,100);
+	mapa = new Mapa(50, 50, 100, 100);
 
+	iniciado = false;
 }
 
 ModeloController::~ModeloController() {
@@ -28,64 +29,81 @@ bool ModeloController::removerFigura(Figura* figura) {
 
 list<Figura*>& ModeloController::getFiguras() {
 	this->figuras.clear();
-	std::list<Figura*>figurasMapa = mapa->getFiguras();
+	std::list<Figura*> figurasMapa = mapa->getFiguras();
 	list<Figura*>::iterator it;
-	for(it= figurasMapa.begin(); it!= figurasMapa.end(); ++it){
+	for (it = figurasMapa.begin(); it != figurasMapa.end(); ++it) {
 		figuras.push_back(*it);
 	}
-	std::list<Union*>unionesMapa = mapa->getUniones();
+	std::list<Union*> unionesMapa = mapa->getUniones();
 	list<Union*>::iterator it2;
-	for(it2= unionesMapa.begin(); it2!= unionesMapa.end(); ++it2){
+	for (it2 = unionesMapa.begin(); it2 != unionesMapa.end(); ++it2) {
 		figuras.push_back(*it2);
 	}
 	return this->figuras;
 }
 
-Figura* ModeloController::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
-	return mapa->pickUp(x,y, mascara, numeroJugador);
+Figura* ModeloController::pickUp(float x, float y, uint16 mascara,
+		int numeroJugador) {
+	return mapa->pickUp(x, y, mascara, numeroJugador);
 }
 
-Figura* ModeloController::pickUpParaUnir(float x, float y, uint16 mascara, int numeroJugador) {
-	Figura* figura = mapa->pickUp(x,y, mascara, numeroJugador);
+Figura* ModeloController::pickUpConEstaticos(float x, float y, uint16 mascara,
+		int numeroJugador) {
+	Figura* figura = mapa->pickUp(x, y, mascara, numeroJugador);
 
-	if(figura == NULL) {
-		figura = mapa->pickUp(x,y, mascara, NUMERO_JUGADOR_DEFECTO);
+	if (figura == NULL) {
+		figura = mapa->pickUp(x, y, mascara, NUMERO_JUGADOR_DEFECTO);
 	}
 
 	return figura;
 }
 
 void ModeloController::step() {
-	mapa->step();
+	if (iniciado) {
+		mapa->step();
+	}
 }
 
 void ModeloController::start() {
 	mapa->makeBackUp();
 	mapa->despertar();
+	iniciado = true;
 }
 
 void ModeloController::stop() {
 	mapa->restoreBackUp();
+	iniciado = false;
 }
 
 bool ModeloController::crearUnion(Union* figura) {
 
-		Figura* fInicial = this->pickUpParaUnir(figura->getXInicial(),
-				figura->getYInicial(), figura->getMascaraExtremos(),figura->getNumeroJugador());
-		Figura* fFinal = this->pickUpParaUnir(figura->getXFinal(),
-				figura->getYFinal(), figura->getMascaraExtremos(),figura->getNumeroJugador());
-		if (fFinal == fInicial)
-			return false;
+	Figura* fInicial = this->pickUpConEstaticos(figura->getXInicial(),
+			figura->getYInicial(), figura->getMascaraExtremos(),
+			figura->getNumeroJugador());
+	Figura* fFinal = this->pickUpConEstaticos(figura->getXFinal(),
+			figura->getYFinal(), figura->getMascaraExtremos(),
+			figura->getNumeroJugador());
+	if (fFinal == fInicial)
+		return false;
 
-		figura->setExtremos(fInicial,fFinal);
-		//recupero los cuerpos que une, se los seteo y verifico.
-		return mapa->add(figura);
+	figura->setExtremos(fInicial, fFinal);
+	//recupero los cuerpos que une, se los seteo y verifico.
+	return mapa->add(figura);
 }
 
 void ModeloController::cleanDeletes() {
 	mapa->cleanDeletes();
 }
 
-void ModeloController::addArea(Area* area, int numeroJugador){
-	this->mapa->addArea(area,numeroJugador);
+void ModeloController::addArea(Area* area, int numeroJugador) {
+	this->mapa->addArea(area, numeroJugador);
+}
+
+void ModeloController::interactuar(Area&a, int jugador, float x, float y) {
+	if (iniciado) {
+		Figura* pup = mapa->pickUp(x, y, CATEGORIA_FIGURAS);
+		if (pup != NULL)
+			pup->interactuar(a, jugador);
+	}
+
 }

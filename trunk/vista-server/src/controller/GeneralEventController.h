@@ -45,8 +45,6 @@ public:
 	void visit(CreacionMsj*);
 	void visit(ConexionUsuario*);
 	void visit(StepModelo*);
-	//ENTREGA3 AGREGAR AL VISITOR EL USEREVENT DE CREACION.
-	//EN ESE METODO HAY QUE LLAMAR  AL CREARVISTA DEL JUEGOEVENTCONTROLLER.
 };
 
 #endif /* GENERALEVENTCONTROLLER_H_ */

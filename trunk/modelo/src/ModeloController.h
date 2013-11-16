@@ -20,6 +20,7 @@ private:
 	Mapa * mapa;
 	list<Figura*> figuras;
 	map<int,Area*> areasDeJugadores;
+	bool iniciado;
 public:
 	ModeloController();
 	virtual ~ModeloController();
@@ -30,7 +31,8 @@ public:
 	void addArea(Area* area, int numeroJugador);
 	list<Figura*>& getFiguras();
 	Figura * pickUp(float, float, uint16 mascara,int numeroJugador);
-	Figura * pickUpParaUnir(float, float, uint16 mascara,int numeroJugador);
+	Figura * pickUpConEstaticos(float, float, uint16 mascara,int numeroJugador);
+	void interactuar(Area&, int jugador, float x, float y);
 	void start();
 	void step();
 	void stop();
