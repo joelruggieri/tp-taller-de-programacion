@@ -50,30 +50,28 @@ void Clavo::crearFisica() {
 		bodyClavo.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyClavo.filter.maskBits = CATEGORIA_FIGURAS;
 		bodyClavo.shape = &shape;
-		bodyClavo.density = 10.0f;
+		bodyClavo.density = 100.0f;
 		bodyClavo.friction = 0.3f;
 		bodyClavo.restitution = 0.6f;	//mucho coeficiente de restitucion
-		body->CreateFixture(&bodyClavo)->SetUserData(this);
+//		body->CreateFixture(&bodyClavo)->SetUserData(this);
 //		body->SetUserData(this);
 //		shape.SetAsBox(this->ancho/5, this->alto/2);
+		b2PolygonShape shape2;
+		shape2.SetAsBox(this->ancho / 10, this->alto / 10,b2Vec2(this->ancho / 2 - this->ancho / 13, 0),0);
 //		b2BodyDef bodyDefPunta;
 //		bodyDefPunta.type = b2_staticBody;
 //		bodyDefPunta.position.Set(x + ( this->ancho / 2 ), y);
 //		bodyDefPunta.angle = this->getRotacion() * -3.14 / 180.0;
 //		b2Body* bodyPunta = myWorld->CreateBody(&bodyDef);
-//		b2FixtureDef bodyClavoPunta;
-//		bodyClavoPunta.filter.categoryBits = CATEGORIA_FIGURAS;
-//		bodyClavoPunta.filter.maskBits = CATEGORIA_FIGURAS;
-//		bodyClavoPunta.shape = &shape;
-//		bodyPunta->CreateFixture(&bodyClavoPunta)->SetUserData(this);
-
-
-	//		b2MassData masa;
-	//		masa.mass = 50.0f; //chequear la cantidad de masa
-	//		masa.I = 0.04; // chequear inercia rotacional
-	//		body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
+		b2FixtureDef bodyClavoPunta;
+		bodyClavoPunta.filter.categoryBits = CATEGORIA_FIGURAS;
+		bodyClavoPunta.filter.maskBits = CATEGORIA_FIGURAS;
+		bodyClavoPunta.shape = &shape2;
+		body->CreateFixture(&bodyClavoPunta)->SetUserData(this);
+		body->CreateFixture(&bodyClavo);
 		body->SetUserData(this);
 		this->setBody(body);
+
 }
 
 Clavo::Clavo() {
