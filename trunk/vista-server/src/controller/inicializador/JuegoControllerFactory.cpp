@@ -20,6 +20,7 @@
 #include "../viewFactory/ViewCorreaFactory.h"
 #include "../viewFactory/ViewYunqueFactory.h"
 #include "../viewFactory/viewClavoFactory.h"
+#include "../viewFactory/ViewPoleaFactory.h"
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/EditorUnion.h"
 #include "../editor/SimpleEditorOrientacionCambiable.h"
@@ -39,6 +40,7 @@ const string KEY_MOTOR = TAG_FACTORY_MOTOR;
 const string KEY_CORREA = TAG_FACTORY_CORREA;
 const string KEY_YUNQUE = TAG_FACTORY_YUNQUE;
 const string KEY_CLAVO = TAG_FACTORY_CLAVO;
+const string KEY_POLEA = TAG_FACTORY_POLEA;
 JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloController* modeloController) {
 	this->tablero = tablero;
 	this->modeloController = modeloController;
@@ -83,6 +85,10 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_GLOBO,viewFactory));
 	viewFactory = new ViewGanchoFactory(editorSimpleAnguloFijo1,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_GANCHO,viewFactory));
+
+	viewFactory = new ViewPoleaFactory(editorSimpleAnguloFijo1,0);
+	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_POLEA,viewFactory));
+
 	viewFactory = new ViewPlataformaFactory(editorSimpleEstirar,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_PLATAFORMA,viewFactory));
 	viewFactory = new VistaCintaTransportadoraFactory(editorSimpleEstirar,0);

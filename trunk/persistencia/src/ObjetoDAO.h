@@ -10,21 +10,6 @@
 
 #include <list>
 #include <string>
-class Figura;
-class Engranaje;
-class Motor;
-class Plataforma;
-class Balancin;
-class Carrito;
-class Gancho;
-class CintaTransportadora;
-class BolaBoliche;
-class PelotaJuego;
-class GloboHelio;
-class Correa;
-class Soga;
-class Yunque;
-class Clavo;
 #include "src/Jugador.h"
 #include "AdministradorDeArchivos.h"
 #include "src/figura/VisitorFigura.h"
@@ -49,6 +34,7 @@ public:
 	void visit (Gancho*);
 	void visit (Yunque*);
 	void visit (Clavo*);
+	void visit (Polea*);
 private:
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);
@@ -64,6 +50,7 @@ private:
 	void guardar(Gancho* objeto, YAML::Node* nodoRaiz);
 	void guardar(Yunque* objeto, YAML::Node* nodoRaiz);
 	void guardar(Clavo* objeto, YAML::Node* nodoRaiz);
+	void guardar(Polea* objeto, YAML::Node* nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };

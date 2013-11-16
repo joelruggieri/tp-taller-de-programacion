@@ -7,7 +7,6 @@
 #include <cmath>
 #include "SimpleEditorAnguloFijo.h"
 #include "src/Logger.h"
-#include "../../vista/objeto/BalancinView.h"
 SimpleEditorAnguloFijo::SimpleEditorAnguloFijo(ModeloController * c, ZonaTablero *t, FiguraFactory* f, float yMaxDrag,
 		list<float> angulos) :
 		SimpleEditorNivel(c, t, f, yMaxDrag) {
@@ -144,3 +143,6 @@ void SimpleEditorAnguloFijo::dropNuevaFigura(YunqueView* view) {
 	dropear(view, this->figurasFactory->crearYunque(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
+void SimpleEditorAnguloFijo::dropNuevaFigura(PoleaView* view) {
+	dropear(view, this->figurasFactory->crearPolea(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
+}

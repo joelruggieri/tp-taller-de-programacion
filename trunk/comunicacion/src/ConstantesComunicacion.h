@@ -14,6 +14,8 @@
 #define OBJ_SIMPLE_S_BOLABOLICHE 'h'
 #define OBJ_SIMPLE_S_GANCHO 'a'
 #define OBJ_SIMPLE_S_GLOBO 'g'
+#define OBJ_SIMPLE_S_POLEA 'o'
+
 #define OBJ_CON_ANCHO_S_PLATAFORMA 't'
 #define OBJ_CON_ANCHO_S_CINTA 'c'
 #define OBJ_UNION_S_CORREA_ESTATICA 'e'
@@ -53,6 +55,8 @@
 #define TAG_FACTORY_YUNQUE "FY"
 #define TAG_FACTORY_GANCHO "FF"
 #define TAG_FACTORY_CLAVO "FV"
+#define TAG_FACTORY_POLEA "FPO"
+
 
 
 

@@ -7,7 +7,7 @@
 
 #ifndef VISITORFIGURA_H_
 #define VISITORFIGURA_H_
-
+class Figura;
 class Plataforma;
 class Engranaje;
 class Motor;
@@ -22,6 +22,7 @@ class Correa;
 class Gancho;
 class Yunque;
 class Clavo;
+class Polea;
 class VisitorFigura {
 public:
 	virtual ~VisitorFigura() {
@@ -41,6 +42,7 @@ public:
 	virtual void visit(Soga*) = 0;
 	virtual void visit(Yunque*)=0;
 	virtual void visit(Clavo*)=0;
+	virtual void visit(Polea*)=0;
 };
 
 #endif /* VISITORFIGURA_H_ */

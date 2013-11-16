@@ -28,6 +28,7 @@
 #include "../vista/objeto/VistaEngranaje.h"
 #include "../vista/objeto/YunqueView.h"
 #include "../vista/objeto/ClavoView.h"
+#include "../vista/objeto/PoleaView.h"
 
 #include <list>
 
@@ -46,6 +47,7 @@ class CorreaEstaticaView;
 class SogaEstaticaView;
 class GanchoView;
 class ClavoView;
+class PoleaView;
 class DropController {
 
 public:

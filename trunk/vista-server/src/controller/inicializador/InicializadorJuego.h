@@ -28,6 +28,7 @@
 #include "src/objeto/Soga.h"
 #include "src/objeto/Yunque.h"
 #include "src/objeto/Clavo.h"
+#include "src/objeto/Polea.h"
 #include "src/Nivel.h"
 #include "src/ModeloController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
@@ -63,7 +64,9 @@ public:
 	void visit(Gancho*);
 	void visit(Yunque*);
 	void visit(Clavo*);
+	void visit(Polea*);
 	ZonaTablero* crearTablero();
 };
 
 #endif /* INICIALIZADORJUEGO_H_ */
+

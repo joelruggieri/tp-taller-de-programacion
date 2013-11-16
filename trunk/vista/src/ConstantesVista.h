@@ -11,7 +11,7 @@ namespace CLIENTE {
 /*
  * PARAMETRIZACION GENERAL
  */
-#define VELOCIDAD_REFRESCO 40
+#define VELOCIDAD_REFRESCO 30
 #define VELOCIDAD_REFRESCO_VISTA 50.0 //HZ
 
 
@@ -48,6 +48,9 @@ namespace CLIENTE {
 #define PATH_VISTA_MOTOR "resource/mot.png"
 #define PATH_VISTA_CLAVO "resource/clavo.png"
 #define PATH_VISTA_GANCHO "resource/arandela.png"
+#define PATH_VISTA_POLEA "resource/polea.png"
+
+
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
 #define PATH_ROTACION_IMG "resource/rotacion.png"
@@ -99,10 +102,11 @@ namespace CLIENTE {
 #define ID_FACTORY_YUNQUE 60
 #define ID_FACTORY_CLAVO 61
 #define ID_FACTORY_GANCHO 62
-
+#define ID_FACTORY_POLEA 63
 #define ID_FACTORY_CARRITO 63
 //////////// Constantes de dibujo /////////
 #define RADIO_GANCHO 1.0
+#define RADIO_POLEA 4.0
 #define RADIO_PELOTA 3.0
 #define RADIO_BOLA 3.0
 #define RADIO_GLOBO 3.5

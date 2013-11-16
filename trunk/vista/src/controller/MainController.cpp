@@ -72,7 +72,7 @@ int MainController::run(list<string> & factories) {
 	SDL_SetWindowPosition(ventana, 300, 100);
 	bool terminar = false;
 	while (!juegoStatus.isTerminado() && status->isAlive() && !terminar) {
-		SDL_Delay(100.0/VELOCIDAD_REFRESCO);
+		usleep(1000000.0/VELOCIDAD_REFRESCO);
 		terminar = eventController->procesarEventos(ventana);
 	}
 	if(terminar){

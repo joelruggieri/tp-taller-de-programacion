@@ -13,6 +13,7 @@
 #include "../objeto/GloboHelio.h"
 #include "../objeto/Yunque.h"
 #include "../objeto/Clavo.h"
+#include "../objeto/Polea.h"
 using namespace std;
 
 ReglasContactoSolver::ReglasContactoSolver() {
@@ -56,6 +57,8 @@ void ReglasContactoSolver::visit(Engranaje*) {
 void ReglasContactoSolver::visit(Correa*) {
 }
 
+void ReglasContactoSolver::visit(Polea*) {
+}
 void ReglasContactoSolver::procesarContacto(CintaTransportadora* c, Figura* f,b2Contact* contact, const b2Manifold* oldManifold) {
 	float velocidad = c->getVelocidadCinta();
 	float signo = 1;

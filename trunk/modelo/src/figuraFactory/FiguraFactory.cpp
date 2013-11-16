@@ -20,6 +20,7 @@
 #include "../objeto/Gancho.h"
 #include "../objeto/Yunque.h"
 #include "../objeto/Clavo.h"
+#include "../objeto/Polea.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory() {
 
@@ -225,6 +226,20 @@ Figura* FiguraFactory::crear(Clavo* c) {
 	Clavo* y = (Clavo*)this->crearClavo(c->getX(), c->getY(),c->getNumeroJugador());
 		y->setRotacion(c->getRotacion());
 		y->setAncho(c->getAncho());
+		y->setReg(c->getReg());
+		return y;
+}
+
+Figura* FiguraFactory::crearPolea(float x, float y, int numeroJugador) {
+	Figura* figura = new Polea(x,y, RADIO_POLEA);
+	figura->setNumeroJugador(numeroJugador);
+	return figura;
+}
+
+Figura* FiguraFactory::crear(Polea*c) {
+	Polea* y = (Polea*)this->crearPolea(c->getX(), c->getY(),c->getNumeroJugador());
+		y->setRotacion(c->getRotacion());
+		y->setRadio(c->getRadio());
 		y->setReg(c->getReg());
 		return y;
 }

@@ -22,6 +22,7 @@
 #include "../../vista/objeto/GanchoView.h"
 #include "../../vista/objeto/YunqueView.h"
 #include "../../vista/objeto/ClavoView.h"
+#include "../../vista/objeto/PoleaView.h"
 #include "../../ConstantesVista.h"
 namespace CLIENTE {
 
@@ -39,6 +40,7 @@ private:
 	View* crearYunque(ViewObjetoUpdateMsj*);
 	View* crearClavo(ViewObjetoUpdateMsj*);
 	View* crearGancho(ViewObjetoUpdateMsj*);
+	View* crearPolea(ViewObjetoUpdateMsj*);
 public:
 	ViewObjetoSimpleFactory();
 	virtual ~ViewObjetoSimpleFactory();
