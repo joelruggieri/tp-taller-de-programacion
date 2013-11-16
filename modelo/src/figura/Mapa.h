@@ -44,7 +44,8 @@ public:
 	bool removeUnion(Union*);
 	list<Figura*> & getFiguras();
 	list<Union*> & getUniones();
-	Figura * pickUp(float x, float y, uint16 mascara, int numeroJugador);
+	//este chequea por el numero de jugador y si estaticos tambien
+	Figura * pickUp(float x, float y, uint16 mascara, int numeroJugador, bool estaticos);
 	Figura * pickUp(float x, float y, uint16 mascara);
 	float getX() const;
 	void setX(float x);

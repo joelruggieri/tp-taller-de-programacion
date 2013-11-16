@@ -83,6 +83,10 @@ void GeneralEventController::addJugador(JuegoEventsController* j) {
 }
 
 void GeneralEventController::visit(JugadorListo * m) {
+	std::map<int, JuegoEventsController *>::iterator jugador = this->controllers.find(m->getDestinatario());
+	if (jugador == controllers.end() || jugador->second->isEditando()) {
+		return;
+	}
 	flowController->cambiarEstadoJugador(m->getDestinatario(),m->isListo());
 }
 
@@ -101,7 +105,9 @@ void GeneralEventController::visit(CreacionMsj* m) {
 		log.concatenar(lg, nroJugador);
 		log.debug(lg);
 	} else {
-		jugador->second->crearVista(m->getTagObjeto(), m->getX(), m->getY());
+		if(!jugador->second->isEditando()){
+			jugador->second->crearVista(m->getTagObjeto(), m->getX(), m->getY());
+		}
 	}
 }
 

@@ -44,17 +44,14 @@ list<Figura*>& ModeloController::getFiguras() {
 
 Figura* ModeloController::pickUp(float x, float y, uint16 mascara,
 		int numeroJugador) {
-	return mapa->pickUp(x, y, mascara, numeroJugador);
+	//entrega3 un pickup q tome solo los del jugador
+	return mapa->pickUp(x, y, mascara, numeroJugador,false);
 }
 
 Figura* ModeloController::pickUpConEstaticos(float x, float y, uint16 mascara,
 		int numeroJugador) {
-	Figura* figura = mapa->pickUp(x, y, mascara, numeroJugador);
-
-	if (figura == NULL) {
-		figura = mapa->pickUp(x, y, mascara, NUMERO_JUGADOR_DEFECTO);
-	}
-
+	//UN PICKUP QUE TOME EL JUGADOR ESTATICO O EL ELEGIDO. dentro del area.
+	Figura* figura = mapa->pickUp(x, y, mascara, numeroJugador,true );
 	return figura;
 }
 
@@ -76,7 +73,7 @@ void ModeloController::stop() {
 }
 
 bool ModeloController::crearUnion(Union* figura) {
-
+	//UN PICKUP QUE TOME EL JUGADOR ESTATICO O EL ELEGIDO. dentro del area.
 	Figura* fInicial = this->pickUpConEstaticos(figura->getXInicial(),
 			figura->getYInicial(), figura->getMascaraExtremos(),
 			figura->getNumeroJugador());
@@ -101,6 +98,7 @@ void ModeloController::addArea(Area* area, int numeroJugador) {
 
 void ModeloController::interactuar(Area&a, int jugador, float x, float y) {
 	if (iniciado) {
+		//entrega3 un pickup que no chequea ni jugador ni area.
 		Figura* pup = mapa->pickUp(x, y, CATEGORIA_FIGURAS);
 		if (pup != NULL)
 			pup->interactuar(a, jugador);
