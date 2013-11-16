@@ -113,5 +113,4 @@ void GloboHelio::interactuar(Area& area, int jugador) {
 void GloboHelio::accionar() {
 	removerFisica();
 	viva = false;
-	cout << "accionado el globo" << endl;
  }

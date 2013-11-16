@@ -22,6 +22,7 @@ private:
 	void clean();
 	void colisionar(b2Contact * 	contact,
 			const b2Manifold * 	oldManifold);
+	list<Figura *> pendientesAccionar;
 public:
 	void visit(Gancho*);
 	void visit(Motor*);
@@ -37,8 +38,10 @@ public:
 	void visit(Yunque*);
 	void visit(Clavo*);
 	void procesarContacto(CintaTransportadora * c, Figura *,b2Contact* contact, const b2Manifold* oldManifold);
+	void procesarContacto(GloboHelio * c, Clavo *,b2Contact* contact, const b2Manifold* oldManifold);
 	ReglasContactoSolver();
 	virtual ~ReglasContactoSolver();
+	void finalizarAcciones();
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 };
 

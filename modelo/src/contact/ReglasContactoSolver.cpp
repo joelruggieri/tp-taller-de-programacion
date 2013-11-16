@@ -92,7 +92,7 @@ void ReglasContactoSolver::colisionar(b2Contact* contact, const b2Manifold* oldM
 
    if(globo != NULL && clavo !=NULL)
    {
-	   cout << "PROCESAR EXPLOSION GLOBO" << endl;
+	   procesarContacto(globo, clavo, contact, oldManifold);
    }
    clean();
 
@@ -113,6 +113,18 @@ void ReglasContactoSolver::visit(Clavo* c) {
 	clavo = c;
 }
 
+void ReglasContactoSolver::procesarContacto(GloboHelio* g, Clavo* c,
+		b2Contact* contact, const b2Manifold* oldManifold) {
+	pendientesAccionar.push_back(g);
+}
+
+void ReglasContactoSolver::finalizarAcciones() {
+	list<Figura*>::iterator it;
+	for(it=pendientesAccionar.begin(); it != pendientesAccionar.end(); ++ it){
+		(*it)->accionar();
+	}
+	pendientesAccionar.clear();
+}
 
 void ReglasContactoSolver::PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
 	b2Fixture* fixtureA = contact->GetFixtureA();
