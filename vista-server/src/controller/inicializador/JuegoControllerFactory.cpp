@@ -112,7 +112,7 @@ JuegoEventsController* JuegoControllerFactory::crearConfiguracionJugador(Jugador
 		}
 	}
 	ZonaCreacion* zona = new ZonaCreacion(factories);
-	JuegoEventsController* juegoEventsController = new JuegoEventsController(this->tablero,this->modeloController,zona, jugador->getNumero());
+	JuegoEventsController* juegoEventsController = new JuegoEventsController(this->tablero,this->modeloController,zona, jugador->getArea(),jugador->getNumero());
 	return juegoEventsController;
 }
 

@@ -16,7 +16,7 @@
 #include "../vista/Dragueable.h"
 #include "zonaDragAndDrop/ZonaCreacion.h"
 #include "zonaDragAndDrop/ZonaTablero.h"
-
+#include "src/Area.h"
 //ENTREGA3 HAY QUE ADEMAS DARLE UNA ZONA DONDE SI SE SALE QUE NO TENGA EFECTO EL EVENTO DE SCROLL O PICKUP/DROP. PARA ESO SE PUEDE USAR EL OBJETO CUADRADO DE LA VISTA
 class JuegoEventsController {
 private:
@@ -28,8 +28,9 @@ private:
 	bool control;
 	EditorNivel * editor;
 	int numeroJugador;
+	Area * area;
 public:
-	JuegoEventsController(ZonaTablero*,ModeloController*,ZonaCreacion*, int numero);
+	JuegoEventsController(ZonaTablero*,ModeloController*,ZonaCreacion*,Area* a, int numero);
 	virtual ~JuegoEventsController();
 	bool clickDown(float,float);
 	bool clickUp(float, float);

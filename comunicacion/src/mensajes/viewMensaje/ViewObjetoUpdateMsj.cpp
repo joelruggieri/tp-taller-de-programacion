@@ -9,7 +9,6 @@
 #include "../../ConstantesComunicacion.h"
 
 
-//ENTREGA3 AGREGAR LA HERENCIA A VIEWMSJ CON ID
 ViewObjetoUpdateMsj::ViewObjetoUpdateMsj(float x , float y, float angulo, int id, char sel): ViewMsj(id, sel){
 this->x = x;
 this->y = y;

@@ -12,7 +12,6 @@
 
 class GloboHelio : public Objeto {
 public:
-	typedef Objeto super;
 	GloboHelio(const GloboHelio&);
 	GloboHelio();
 	GloboHelio(float x, float y, float radio) ;
@@ -22,8 +21,14 @@ public:
 	float getRadio() const;
 	void setRadio(float radio);
 	void updateModelo();
+	void setRebentable(bool);
+
+	void accionar();
+	void  interactuar(Area & area, int jugador);
 private:
+	typedef Objeto super;
 	float radio;
+	bool rebentable;
 };
 
 #endif /* GLOBOHELIO_H_ */

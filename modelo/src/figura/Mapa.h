@@ -45,6 +45,7 @@ public:
 	list<Figura*> & getFiguras();
 	list<Union*> & getUniones();
 	Figura * pickUp(float x, float y, uint16 mascara, int numeroJugador);
+	Figura * pickUp(float x, float y, uint16 mascara);
 	float getX() const;
 	void setX(float x);
 	float getY() const;

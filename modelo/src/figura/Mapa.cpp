@@ -12,6 +12,7 @@
 #include "../figura/Figura.h"
 #include "../contact/ReglasContactoSolver.h"
 using namespace std;
+#define JUGADOR_OFF -20
 //#include "src/Logger.h"
 Mapa::Mapa(float x, float y, float w, float h, float32 hz, int32 velocityIterations, int32 positionIterations) {
 	inicializar(x, y, w, h, hz, velocityIterations, positionIterations);
@@ -60,7 +61,7 @@ public:
 			if (inside
 					&& ((fixture->GetFilterData().categoryBits & m_mascara) != 0)) {
 				Figura* fig = (Figura*)body->GetUserData();
-				if(fig != NULL && fig->getNumeroJugador() == m_numero){
+				if(fig != NULL && (JUGADOR_OFF== m_numero || fig->getNumeroJugador() == m_numero)){
 					m_fixture = fixture;
 	//				log.debug("La figura confirma la colision");
 					// We are done, terminate the query.
@@ -95,13 +96,33 @@ Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
 	myWorld->QueryAABB(&callback, aabb);
 	if (callback.m_fixture) {
 		b2Body* body = callback.m_fixture->GetBody();
-		// TODO SI HUBIERA JOINTS HABRÍA QUE VER COMO MANEJARLAS, quizas no dejar draguear si hay un joint de soga o algo asi.
+		Figura* figura = (Figura*) (body->GetUserData());
+		return figura;
+	}
+	return NULL;
+}
+
+Figura* Mapa::pickUp(float x, float y, uint16 mascara) {
+	if (!isAdentro(x, y)) {
+		return NULL;
+	}
+	b2Vec2 p(x, y);
+	b2AABB aabb;
+	b2Vec2 d;
+	d.Set(0.001f, 0.001f);
+	aabb.lowerBound = p - d;
+	aabb.upperBound = p + d;
+	QueryCallback callback(p, mascara, JUGADOR_OFF);
+	myWorld->QueryAABB(&callback, aabb);
+	if (callback.m_fixture) {
+		b2Body* body = callback.m_fixture->GetBody();
 		Figura* figura = (Figura*) (body->GetUserData());
 		return figura;
 	}
 	return NULL;
 
 }
+
 bool Mapa::isAdentro1D(float pos, float posCentro, float ancho) {
 	return (pos <= (posCentro + ancho / 2)) && (pos >= posCentro - ancho / 2);
 

@@ -7,11 +7,16 @@
 
 #include "GloboHelio.h"
 #include "../Constantes.h"
+#include "../interaccion/ValidadorEnArea.h"
+#include <iostream>
+using namespace std;
+
 GloboHelio::GloboHelio(float x, float y, float radio) :
-		Objeto(x, y) {
+		Objeto(x, y, new ValidadorEnArea(this)) {
 	this->radio = radio;
 	this->setRotacion(0);
 	this->enganches.push_back(new Enganche(this,0, -1 * radio));
+	rebentable = true;
 }
 
 GloboHelio::~GloboHelio() {
@@ -56,13 +61,15 @@ GloboHelio::GloboHelio(const GloboHelio& figura) {
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
 	this->reg = figura.reg;
-//	this->enganches.push_back(new Enganche((int)x, (int)y - (int)radio));
 	this->enganches.push_back(new Enganche(this,0, -1 * radio));
+	rebentable = false;
+	radio = figura.radio;
 }
 
 GloboHelio::GloboHelio() :
 		Objeto() {
 	this->radio = 0;
+	rebentable = false;
 }
 
 float GloboHelio::getRadio() const {
@@ -92,3 +99,19 @@ void GloboHelio::updateModelo() {
 	}
 
 }
+
+void GloboHelio::setRebentable(bool reb) {
+	rebentable = reb;
+}
+
+void GloboHelio::interactuar(Area& area, int jugador) {
+	if(rebentable){
+		super::interactuar(area,jugador);
+	}
+}
+
+void GloboHelio::accionar() {
+	removerFisica();
+	viva = false;
+	cout << "accionado el globo" << endl;
+ }

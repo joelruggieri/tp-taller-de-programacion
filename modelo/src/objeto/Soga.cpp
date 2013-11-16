@@ -67,6 +67,7 @@ void Soga::crearLazo(b2World* w) {
 	ropeJoint.localAnchorB = destino->getPos();
 
 	joint = w->CreateJoint(&ropeJoint);
+	body = NULL;
 
 }
 
@@ -93,8 +94,12 @@ Enganche* Soga::getEngancheMasCercano(Figura* figura, float x, float y, bool des
 }
 
 void Soga::updatePosicionesFiguras() {
-	this->inicio = this->figuraInicio->getBody()->GetWorldPoint(origen->getPos());
-	this->fin = this->figuraFin->getBody()->GetWorldPoint(destino->getPos());
+	if(this->figuraInicio->getBody()){
+		this->inicio = this->figuraInicio->getBody()->GetWorldPoint(origen->getPos());
+	}
+	if(this->figuraFin->getBody()){
+		this->fin = this->figuraFin->getBody()->GetWorldPoint(destino->getPos());
+	}
 
 }
 
@@ -123,8 +128,12 @@ Soga::Soga() {
 	origen = NULL;
 	destino = NULL;
 }
-
 void Soga::removerFisica() {
+	if(joint != NULL){
+		myWorld->DestroyJoint(joint);
+		joint = NULL;
+		viva = false;
+	}
 	super::removerFisica();
 	if(origen != NULL){
 		origen->liberar();

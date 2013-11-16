@@ -31,3 +31,6 @@ bool Objeto::contacto(float float1, float float2) {
 
 Objeto::Objeto(const Objeto& obj):Figura(obj) {
 }
+
+Objeto::Objeto(float x, float y, ValidadorInteraccion* v):Figura(x,y,v) {
+}
