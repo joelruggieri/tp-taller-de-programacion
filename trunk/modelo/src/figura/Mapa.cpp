@@ -165,7 +165,7 @@ void Mapa::step() {
 		fig->updateModelo();
 		fig->updateVista();
 	}
-
+	contactSolver->finalizarAcciones();
 }
 
 void Mapa::inicializar(float x, float y, float w, float h, float32 hz, int32 velocityIterations,
