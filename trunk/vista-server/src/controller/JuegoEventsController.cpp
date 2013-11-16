@@ -204,3 +204,7 @@ void JuegoEventsController::setIniciado(bool iniciado) {
 bool JuegoEventsController::isIniciado() {
 	return iniciado;
 }
+
+bool JuegoEventsController::isEditando() {
+	return editor != NULL;
+}

@@ -46,6 +46,7 @@ public:
 	bool isShift() const;
 	void setControl(bool);
 	void setShift(bool);
+	bool isEditando();
 	int getNumeroJugador() const;
 	void setNumeroJugador(int numeroJugador);
 };

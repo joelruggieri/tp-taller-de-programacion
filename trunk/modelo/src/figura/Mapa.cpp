@@ -45,31 +45,28 @@ list<Figura*>& Mapa::getFiguras() {
 
 class QueryCallback: public b2QueryCallback {
 public:
-	QueryCallback(const b2Vec2& point,uint16 mascara, int numero) {
+	QueryCallback(const b2Vec2& point,uint16 mascara, int numero, bool estaticos, bool checknumero) {
 		m_point = point;
 		m_fixture = NULL;
 		m_mascara = mascara;
 		m_numero = numero;
+		m_estaticos = estaticos;
+		m_checknumero= checknumero;
 	}
 
 	bool ReportFixture(b2Fixture* fixture) {
-//		Logger log;
-//		log.debug("El world indica que existe colision con el punto");
 		b2Body* body = fixture->GetBody();
 		if (body->GetType() == b2_dynamicBody || body->GetType() == b2_staticBody) {
 			bool inside = fixture->TestPoint(m_point);
 			if (inside
 					&& ((fixture->GetFilterData().categoryBits & m_mascara) != 0)) {
 				Figura* fig = (Figura*)body->GetUserData();
-				if(fig != NULL && (JUGADOR_OFF== m_numero || fig->getNumeroJugador() == m_numero)){
+				if(fig != NULL && ((!m_checknumero || fig->getNumeroJugador() == m_numero )|| (m_estaticos && fig->getNumeroJugador() == NUMERO_JUGADOR_DEFECTO))){
 					m_fixture = fixture;
-	//				log.debug("La figura confirma la colision");
-					// We are done, terminate the query.
 					return false;
 				}
 			}
 		}
-//		log.debug("La figura cancela la colision");
 		// Continue the query.
 		return true;
 	}
@@ -78,9 +75,11 @@ public:
 	b2Fixture* m_fixture;
 	uint16 m_mascara;
 	int m_numero;
+	bool m_estaticos;
+	bool m_checknumero;
 };
 
-Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
+Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador, bool conEstaticos) {
 	std::map<int,Area*>::iterator it = this->areasDeJugadores.find(numeroJugador);
 	if (!isAdentro(x, y)|| !(it->second->isAdentro1D(x,it->second->getX(),it->second->getAncho()))
 			|| !(it->second->isAdentro1D(y,it->second->getY(),it->second->getAlto()))) {
@@ -92,7 +91,9 @@ Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador) {
 	d.Set(0.001f, 0.001f);
 	aabb.lowerBound = p - d;
 	aabb.upperBound = p + d;
-	QueryCallback callback(p, mascara, numeroJugador);
+
+	//trae los que tienen el mismo numero y agrega o no los estaticos
+	QueryCallback callback(p, mascara, numeroJugador,conEstaticos, true);
 	myWorld->QueryAABB(&callback, aabb);
 	if (callback.m_fixture) {
 		b2Body* body = callback.m_fixture->GetBody();
@@ -112,7 +113,8 @@ Figura* Mapa::pickUp(float x, float y, uint16 mascara) {
 	d.Set(0.001f, 0.001f);
 	aabb.lowerBound = p - d;
 	aabb.upperBound = p + d;
-	QueryCallback callback(p, mascara, JUGADOR_OFF);
+	//puede traer cualquier cosa, objetos del escenario de cualquier jugador
+	QueryCallback callback(p, mascara,0, true, false);
 	myWorld->QueryAABB(&callback, aabb);
 	if (callback.m_fixture) {
 		b2Body* body = callback.m_fixture->GetBody();
