@@ -16,6 +16,8 @@ using namespace std;
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
+#include "src/objeto/Balancin.h"
+#include "src/objeto/Carrito.h"
 #include "src/objeto/GloboHelio.h"
 #include "src/objeto/PelotaJuego.h"
 #include "src/objeto/CintaTransportadora.h"
@@ -42,6 +44,7 @@ public:
 	void visit(Motor*);
 	void visit(Plataforma*);
 	void visit(Balancin*);
+	void visit(Carrito*);
 	void visit(CintaTransportadora*);
 	void visit (BolaBoliche*);
 	void visit(PelotaJuego*);

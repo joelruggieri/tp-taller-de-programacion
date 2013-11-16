@@ -28,6 +28,7 @@ public:
 	void visit(Motor*);
 	void visit(Plataforma*);
 	void visit(Balancin*);
+	void visit(Carrito*);
 	void visit(CintaTransportadora*);
 	void visit(BolaBoliche*);
 	void visit(PelotaJuego*);

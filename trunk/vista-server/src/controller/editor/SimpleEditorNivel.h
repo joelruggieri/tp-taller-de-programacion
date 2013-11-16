@@ -44,6 +44,7 @@ public:
 	virtual void dibujarEdicion(list<ViewMsj* > &);
 	virtual void mouseMotion(float x, float y);
 	void dropNuevaFigura(PlataformaView*);
+	void dropNuevaFigura(CarritoView*);
 	EditorNivel * clone();
 //
 	void dropFigura(FiguraView*);

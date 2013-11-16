@@ -14,6 +14,7 @@
 #include "../../vista/objeto/GloboHelioView.h"
 #include "../../vista/objeto/PelotaJuegoView.h"
 #include "../../vista/objeto/BalancinView.h"
+#include "../../vista/objeto/CarritoView.h"
 #include "../../vista/objeto/MotorView.h"
 #include "../../vista/objeto/BolaBolicheView.h"
 #include "../../vista/objeto/SogaEstaticaView.h"
@@ -32,6 +33,7 @@ private:
 	View * crearPelota(ViewObjetoUpdateMsj * );
 	View * crearMotor(ViewObjetoUpdateMsj * );
 	View * crearBalancin(ViewObjetoUpdateMsj * );
+	View * crearCarrito(ViewObjetoUpdateMsj * );
 	View* crearSogaEstatica(ViewObjetoUpdateMsj*);
 	View* crearCorreaEstatica(ViewObjetoUpdateMsj*);
 	View* crearYunque(ViewObjetoUpdateMsj*);

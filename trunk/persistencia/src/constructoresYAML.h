@@ -237,6 +237,29 @@ struct convert<Balancin> {
 };
 
 template<>
+struct convert<Carrito> {
+	static Node encode(const Carrito& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["rotacion"] = objeto.getRotacion();
+		return node;
+	}
+
+	static bool decode(const Node& node, Carrito& objeto) {
+		if (node.size() != 3) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
+		Mark marca = node.Mark();
+		Registro & reg = objeto.getReg();
+		reg.setLinea(marca.line);
+		reg.setEtiqueta("Carrito");
+		return true;
+	}
+};
+
+template<>
 struct convert<CintaTransportadora> {
 	static Node encode(const CintaTransportadora& objeto) {
 		Node node;

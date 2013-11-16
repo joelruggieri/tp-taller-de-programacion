@@ -17,6 +17,7 @@ public:
 	Figura * crearPlataforma(float x, float y,int numeroJugador);
 	Figura*  crearGloboHelio(float x, float y, int numeroJugador);
 	Figura * crearBalancin(float x, float y, int numeroJugador);
+	Figura * crearCarrito(float x, float y, int numeroJugador);
 	Figura * crearCintaTransportadora(float x, float y, int numeroJugador);
 	Figura* crearBolaBoliche(float x, float y, int numeroJugador);
 	Figura* crearPelotaJuego(float x, float y, int numeroJugador);
@@ -29,6 +30,7 @@ public:
 	Figura * crear(Plataforma*);
 	Figura * crear(Engranaje*);
 	Figura * crear(Balancin*);
+	Figura * crear(Carrito*);
 	Figura * crear(CintaTransportadora* cinta);
 	Figura* crear(BolaBoliche*);
 	Figura* crear(PelotaJuego*);

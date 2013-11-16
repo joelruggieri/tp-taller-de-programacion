@@ -15,6 +15,7 @@
 #include "../vista/figura/FiguraView.h"
 #include "../vista/objeto/PlataformaView.h"
 #include "../vista/objeto/BalancinView.h"
+#include "../vista/objeto/CarritoView.h"
 #include "../vista/objeto/BolaBolicheView.h"
 #include "../vista/objeto/CorreaView.h"
 #include "../vista/objeto/GloboHelioView.h"
@@ -36,6 +37,7 @@ class MotorView;
 class GloboHelioView;
 class PlataformaView;
 class BalancinView;
+class CarritoView;
 class CintaTransportadoraView;
 class BolaBolicheView;
 class PelotaJuegoView;

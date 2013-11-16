@@ -10,6 +10,7 @@
 #include "src/figura/Figura.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
+#include "src/objeto/Carrito.h"
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
 #include "src/objeto/Gancho.h"
@@ -209,6 +210,7 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerCintas(lista,objetos);
 			this->obtenerPlataformas(lista,objetos);
 			this->obtenerBalancines(lista,objetos);
+			this->obtenerCarritos(lista,objetos);
 			this->obtenerBolasDeBoliche(lista,objetos);
 			this->obtenerGlobosHelio(lista,objetos);
 			this->obtenerPelotasJuego(lista,objetos);
@@ -437,6 +439,27 @@ void NivelDAO::obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos){
 			std::string mensaje = "Error al leer Balancines: ";
 			mensaje.append(exc.what());
 			imprimirLinea(mensaje, balancines[i].Mark() );
+		}
+	}
+}
+
+void NivelDAO::obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos){
+	YAML::Node carritos = objetos["Carritos"];
+	if(carritos.Mark().line == -1 ){
+		std::string mensaje = "No se encuentrò la etiqueta Carritos";
+		logg.info(mensaje);
+	}
+	for (std::size_t i = 0; i < carritos.size(); i++) {
+		try {
+			Carrito obj = carritos[i].as<Carrito>();
+//			bool salir = validar(obj,balancines, i);
+//			if(!salir ) continue;
+			lista.push_back( new Carrito(obj));
+			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Carritos: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje, carritos[i].Mark() );
 		}
 	}
 }
