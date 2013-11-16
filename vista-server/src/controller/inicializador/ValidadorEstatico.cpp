@@ -28,6 +28,13 @@ void ValidadorEstatico::visit(Plataforma* f) {
 
 }
 
+void ValidadorEstatico::visit(Carrito* f) {
+	if(!validarPosicion(f)){
+		return;
+	}
+
+}
+
 void ValidadorEstatico::visit(Balancin* f) {
 	if(!validarPosicion(f)){
 		return;

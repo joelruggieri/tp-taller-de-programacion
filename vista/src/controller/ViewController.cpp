@@ -76,6 +76,7 @@ ViewController::~ViewController() {
 void ViewController::crearPantalla() {
 	CargadorDeTextures * cargador = CargadorDeTextures::Instance(renderer);
 	cargador->cargarTexture(PATH_VISTA_BALANCIN);
+	cargador->cargarTexture(PATH_VISTA_CARRITO);
 	cargador->cargarTexture(PATH_VISTA_CORREA);
 	cargador->cargarTexture(PATH_VISTA_PLATAFORMA);
 	cargador->cargarTexture(PATH_VISTA_GLOBO);

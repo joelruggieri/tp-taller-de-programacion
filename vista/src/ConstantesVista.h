@@ -33,6 +33,7 @@ namespace CLIENTE {
 #define PATH_VISTA_BALANCIN "resource/balancin.png"
 #define PATH_VISTA_CORREA "resource/correa.png"
 #define PATH_VISTA_BALANCIN_F "resource/balancin_f.png"
+#define PATH_VISTA_CARRITO "resource/rueda4.png"
 #define PATH_VISTA_PLATAFORMA_F "resource/plataforma_f.png"
 #define PATH_VISTA_PLATAFORMA "resource/plataforma.png"
 #define PATH_VISTA_GLOBO "resource/globo.png"
@@ -98,6 +99,8 @@ namespace CLIENTE {
 #define ID_FACTORY_YUNQUE 60
 #define ID_FACTORY_CLAVO 61
 #define ID_FACTORY_GANCHO 62
+
+#define ID_FACTORY_CARRITO 63
 //////////// Constantes de dibujo /////////
 #define RADIO_GANCHO 1.0
 #define RADIO_PELOTA 3.0
@@ -111,7 +114,8 @@ namespace CLIENTE {
 #define RADIO_SOGA_ESTATICA 1.0
 #define ANCHO_YUNQUE 6.0
 
-
+#define ANCHO_CARRITO 20.0
+#define ALTO_CARRITO 10.0
 #define ANCHO_BALANCIN 15.0
 #define ALTO_BALANCIN 1.6
 

@@ -22,6 +22,9 @@ ReglasContactoSolver::ReglasContactoSolver() {
 void ReglasContactoSolver::visit(Gancho*) {
 }
 
+void ReglasContactoSolver::visit(Carrito*) {
+}
+
 void ReglasContactoSolver::visit(Motor*) {
 }
 

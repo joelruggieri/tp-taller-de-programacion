@@ -12,6 +12,7 @@
 #include "../viewFactory/ViewSogaFactory.h"
 #include "../viewFactory/ViewPlataformaFactory.h"
 #include "../viewFactory/ViewBalancinFactory.h"
+#include "../viewFactory/ViewCarritoFactory.h"
 #include "../viewFactory/VistaCintaTransportadoraFactory.h"
 #include "../viewFactory/ViewBolaBolicheFactory.h"
 #include "../viewFactory/ViewPelotaJuegoFactory.h"
@@ -28,6 +29,7 @@ const string KEY_GLOBO = TAG_FACTORY_GLOBO;
 const string KEY_PLATAFORMA = TAG_FACTORY_PLATAFORMA;
 const string KEY_SOGA = TAG_FACTORY_SOGA;
 const string KEY_BALANCIN = TAG_FACTORY_BALANCIN;
+const string KEY_CARRITO = TAG_FACTORY_CARRITO;
 const string KEY_CINTA = TAG_FACTORY_CINTA;
 const string KEY_BOLA_BOLICHE = TAG_FACTORY_BOLA;
 const string KEY_PELOTA_JUEGO = TAG_FACTORY_PELOTA;
@@ -61,7 +63,7 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	editores.push_back(editorSimpleAnguloFijo1);
 	SimpleEditorAnguloFijo * editorSimpleAnguloFijo2 = new SimpleEditorAnguloFijo(modeloController,tablero,this->factory, 100,angulosPermitidos2);
 	editores.push_back(editorSimpleAnguloFijo2);
-	//SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
+	SimpleEditorNivel * editorSimple = new SimpleEditorNivel(modeloController,tablero,this->factory, 100);
 	SimpleEditorEstirar * editorSimpleEstirar = new SimpleEditorEstirar(modeloController,tablero,this->factory, 100);
 //	SimpleEditorEstirar * editorSimpleEstirar2 = (SimpleEditorEstirar *)editorSimpleEstirar->clone();
 	editores.push_back(editorSimpleEstirar);
@@ -71,6 +73,8 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	editores.push_back(editorOrientacionCambiable);
 	viewFactory = new ViewBalancinFactory(editorSimpleAnguloFijo2,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_BALANCIN,viewFactory));
+	viewFactory = new ViewCarritoFactory(editorSimple,0);
+	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_CARRITO,viewFactory));
 	viewFactory = new ViewPelotaJuegoFactory(editorSimpleAnguloFijo1,0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA_JUEGO,viewFactory));
 	viewFactory = new ViewBolaBolicheFactory(editorSimpleAnguloFijo1,0);

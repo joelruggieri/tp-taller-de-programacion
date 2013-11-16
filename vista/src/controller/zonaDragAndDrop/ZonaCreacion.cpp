@@ -22,6 +22,7 @@ namespace CLIENTE {
 void ZonaCreacion::crearVista(ViewController* vc) {
 	map<string, ConfigFactory> factories;
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_BALANCIN), ConfigFactory(ID_FACTORY_BALANCIN, TAG_FACTORY_BALANCIN, PATH_VISTA_BALANCIN_F)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CARRITO), ConfigFactory(ID_FACTORY_CARRITO, TAG_FACTORY_CARRITO, PATH_VISTA_CARRITO)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_BOLA), ConfigFactory(ID_FACTORY_BOLA, TAG_FACTORY_BOLA,	PATH_VISTA_BOLA)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CINTA), ConfigFactory(ID_FACTORY_CINTA, TAG_FACTORY_CINTA,PATH_VISTA_CINTA)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CORREA), ConfigFactory(ID_FACTORY_CORREA, TAG_FACTORY_CORREA,PATH_VISTA_CORREA)));

@@ -39,6 +39,11 @@ View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj* o) {
 	return viewReturn;
 }
 
+View* ViewObjetoSimpleFactory::crearCarrito(ViewObjetoUpdateMsj* o) {
+	CarritoView* viewReturn = new CarritoView(o->getX(), o->getY(),ANCHO_CARRITO, ALTO_CARRITO,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CARRITO));
+	return viewReturn;
+}
+
 View* ViewObjetoSimpleFactory::crearSogaEstatica(ViewObjetoUpdateMsj* o) {
 	return new SogaEstaticaView(o->getX(), o->getY(),ANCHO_UNION_ESTATICA, ALTO_UNION_ESTATICA, CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CUERDA));
 }
@@ -95,6 +100,9 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	case OBJ_SIMPLE_S_GANCHO:
 		viewRetorn = this->crearGancho(a);
 		break;
+	case OBJ_SIMPLE_S_CARRITO:
+			viewRetorn = this->crearCarrito(a);
+			break;
 	}
 
 	return viewRetorn;

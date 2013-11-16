@@ -15,6 +15,7 @@ class Engranaje;
 class Motor;
 class Plataforma;
 class Balancin;
+class Carrito;
 class Gancho;
 class CintaTransportadora;
 class BolaBoliche;
@@ -37,6 +38,7 @@ public:
 	void visit (Motor * motor);
 	void visit (Plataforma * plataforma);
 	void visit (Balancin * balancin);
+	void visit (Carrito* carrito);
 	void visit(CintaTransportadora*);
 	void visit (BolaBoliche* bolaBoliche);
 	void visit (PelotaJuego* PelotaJuego);
@@ -50,6 +52,7 @@ public:
 private:
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);
+	void guardar(Carrito*objeto, YAML::Node *nodoRaiz);
 	void guardar(CintaTransportadora *objeto, YAML::Node *nodoRaiz);
 	void guardar(BolaBoliche *objeto, YAML::Node *nodoRaiz);
 	void guardar(GloboHelio *objeto, YAML::Node *nodoRaiz);

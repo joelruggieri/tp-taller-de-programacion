@@ -17,6 +17,7 @@ class BolaBoliche;
 class PelotaJuego;
 class GloboHelio;
 class Soga;
+class Carrito;
 class Correa;
 class Gancho;
 class Yunque;
@@ -35,6 +36,7 @@ public:
 	virtual void visit(PelotaJuego*) = 0;
 	virtual void visit(GloboHelio*) = 0;
 	virtual void visit(Engranaje*) = 0;
+	virtual void visit(Carrito*) = 0;
 	virtual void visit(Correa*) = 0;
 	virtual void visit(Soga*) = 0;
 	virtual void visit(Yunque*)=0;

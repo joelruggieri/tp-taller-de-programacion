@@ -34,6 +34,9 @@
 
 #define ANCHO_BALANCIN 15.0
 #define ALTO_BALANCIN 1.6
+#define ANCHO_CARRITO 20.0
+#define ALTO_CARRITO 10.0
+#define RADIO_RUEDA_CARRITO 1.7
 
 #define ALTO_CINTA 5
 #define ANCHO_CINTA 20

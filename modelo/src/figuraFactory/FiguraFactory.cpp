@@ -14,6 +14,7 @@
 #include "../objeto/PelotaJuego.h"
 #include "../objeto/Balancin.h"
 #include "../objeto/Engranaje.h"
+#include "../objeto/Carrito.h"
 #include "../objeto/Soga.h"
 #include "../objeto/Correa.h"
 #include "../objeto/Gancho.h"
@@ -58,6 +59,12 @@ Figura* FiguraFactory::crearBalancin(float x, float y, int numeroJugador){
 	return figura;
 }
 
+Figura* FiguraFactory::crearCarrito(float x, float y, int numeroJugador){
+	Figura* figura = new Carrito(x,y,ANCHO_CARRITO,ALTO_CARRITO);
+	figura->setNumeroJugador(numeroJugador);
+	return figura;
+}
+
 Figura* FiguraFactory::crear(Plataforma* c) {
 	Plataforma* y = (Plataforma*)this->crearPlataforma(c->getX(), c->getY(),c->getNumeroJugador());
 	y->setRotacion(c->getRotacion());
@@ -74,6 +81,12 @@ Figura* FiguraFactory::crear(Balancin* c) {
 }
 
 
+Figura* FiguraFactory::crear(Carrito* c) {
+	Figura* y = this->crearCarrito(c->getX(), c->getY(),c->getNumeroJugador());
+	y->setRotacion(c->getRotacion());
+	y->setReg(c->getReg());
+	return y;
+}
 
 
 Figura* FiguraFactory::crearCintaTransportadora(float x, float y, int numeroJugador) {

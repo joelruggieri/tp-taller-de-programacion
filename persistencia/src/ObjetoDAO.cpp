@@ -13,6 +13,7 @@
 #include "src/figura/Figura.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
+#include "src/objeto/Carrito.h"
 #include "src/objeto/CintaTransportadora.h"
 #include "src/objeto/BolaBoliche.h"
 #include "src/objeto/GloboHelio.h"
@@ -57,6 +58,10 @@ void ObjetoDAO::visit(Balancin* balancin){
 	guardar(balancin,nodo);
 }
 
+void ObjetoDAO::visit(Carrito* carrito){
+	guardar(carrito,nodo);
+}
+
 void ObjetoDAO::visit(Correa* correa){
 	guardar(correa,nodo);
 }
@@ -76,6 +81,10 @@ void ObjetoDAO::guardar(Plataforma* objeto, YAML::Node* nodoRaiz) {
 
 void ObjetoDAO::guardar(Balancin* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Balancines"].push_back(*objeto);
+}
+
+void ObjetoDAO::guardar(Carrito* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Carritos"].push_back(*objeto);
 }
 
 void ObjetoDAO::guardar(Correa* objeto, YAML::Node* nodoRaiz) {

@@ -89,6 +89,11 @@ void SimpleEditorNivel::dropNuevaFigura(PlataformaView* view) {
 	dropear(view, this->figurasFactory->crearPlataforma(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
+void SimpleEditorNivel::dropNuevaFigura(CarritoView* view) {
+
+	dropear(view, this->figurasFactory->crearCarrito(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
+}
+
 void SimpleEditorNivel::clickDown(float x, float y) {
 	//si no esta haciendo nada
 	if (!rotando && !finalizado && !dragueando) {
