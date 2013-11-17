@@ -24,7 +24,6 @@ Aspa::Aspa(float x, float y, float ancho, float alto, double rotacion,int numero
 	this->numeroAspa = numero;
 	this->tijera = tijera;
 	this->numeroJugadorDuenio = tijera->getNumeroJugador();
-	float rotacionEnRadianes = this->gradosARadianes(rotacion);
 	//Enganche* enganche= new Enganche(this,cos(rotacionEnRadianes)*ancho/2.0,sin(rotacionEnRadianes)*ancho/2.0);
 	//enganches.push_back(enganche);
 }

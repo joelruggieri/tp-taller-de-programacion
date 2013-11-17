@@ -3,6 +3,7 @@
 #define TAG_VIEW_OBJETO_CON_ANCHO "VO"
 #define TAG_VIEW_OBJETO_UNION "VU"
 #define TAG_BOTON_LISTO "L"
+#define TAG_VIEW_CARRITO "VC"
 
 #define ID_BOTON_PLAY 5
 
@@ -59,8 +60,6 @@
 #define TAG_FACTORY_CLAVO "FV"
 #define TAG_FACTORY_POLEA "FPO"
 #define TAG_FACTORY_CONTROL "FCO"
-
-
 
 
 #define MSJ_JUGADOR_ACEPTADO "MJA"

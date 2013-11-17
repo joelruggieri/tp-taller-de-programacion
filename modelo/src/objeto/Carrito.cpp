@@ -24,21 +24,19 @@ Carrito::Carrito(const Carrito& figura){
 	this->reg = figura.reg;
 	this->ruedaDerecha = figura.ruedaDerecha;
 	this->ruedaIzquierda = figura.ruedaIzquierda;
-
-	Enganche* engancheDerecho = new Enganche(this,ancho/2.0,alto/2.0);
-	Enganche* engancheIzquierdo = new Enganche(this,-1.0*ancho/2.0,alto/2.0);
-	enganches.push_back(engancheIzquierdo);
-	enganches.push_back(engancheDerecho);
 }
 
 Carrito::Carrito(float x, float y, float ancho, float alto): Objeto(x,y) {
 	this->ancho = ancho;
 	this->alto = alto;
-	Enganche* engancheDerecho = new Enganche(this,ancho/2.0,alto/2.0);
-	Enganche* engancheIzquierdo = new Enganche(this,-1.0*ancho/2.0,alto/2.0);
+	Enganche* engancheDerecho = new Enganche(this,ancho/2.0, 0);
+	Enganche* engancheIzquierdo = new Enganche(this,-1.0*ancho/2.0, 0);
 	enganches.push_back(engancheIzquierdo);
 	enganches.push_back(engancheDerecho);
-
+	xi= x -ancho/4.0;
+	yi= y -1 - alto/2;
+	xd= x +ancho/4.0;
+	yd= y -1 - alto/2;
 }
 
 float Carrito::getAlto() const{
@@ -108,29 +106,6 @@ void Carrito::crearFisica(){
 	//body->CreateFixture(shape,1.0);
 	body->SetUserData(this);*/
 	//RUEDAS
-	b2BodyDef bd;
-	b2CircleShape* circle = new b2CircleShape();
-	circle->m_radius = ancho/4;
-	b2FixtureDef fd;
-	fd.filter.categoryBits = CATEGORIA_FIGURAS;
-	fd.filter.maskBits = CATEGORIA_FIGURAS;
-	fd.shape = circle;
-	fd.density = 1.0f;
-	fd.friction = 0.9f;
-
-	bd.position.Set(extremoInferiorIzquierdo.x + fd.shape->m_radius,extremoInferiorIzquierdo.y - (fd.shape->m_radius + 0.01));
-	bd.type = b2_dynamicBody;
-	b2Body* bodyRuedaIzquierda = myWorld->CreateBody(&bd);
-	bodyRuedaIzquierda->CreateFixture(&fd);
-	bodyRuedaIzquierda->SetUserData(this);
-	this->setRuedaIzquierda(bodyRuedaIzquierda);
-
-	bd.position.Set(extremoInferiorDerecho.x - fd.shape->m_radius,extremoInferiorDerecho.y - (fd.shape->m_radius + 0.01));
-	b2Body* bodyRuedaDerecha = myWorld->CreateBody(&bd);
-	bodyRuedaDerecha->CreateFixture(&fd);
-	bodyRuedaDerecha->SetUserData(this);
-	this->setRuedaDerecha(bodyRuedaDerecha);
-
 	//plataforma
 	float x = this->getX();
 	float y = this->getY();
@@ -141,7 +116,7 @@ void Carrito::crearFisica(){
 	polygon->SetAsBox(this->ancho / 2, this->alto / 2);
 
 	b2FixtureDef fixture;
-	fixture.density = 50.00f;
+	fixture.density = 10.00f;
 	fixture.shape = polygon;
 	fixture.friction = 0.4f;
 	fixture.restitution = 0.00f;
@@ -160,24 +135,41 @@ void Carrito::crearFisica(){
 	body->SetUserData(this);
 	this->setBody(body);
 
+	b2BodyDef bd;
+	b2CircleShape* circle = new b2CircleShape();
+	circle->m_radius = 1.0;
+	b2FixtureDef fd;
+	fd.filter.categoryBits = CATEGORIA_FIGURAS;
+	fd.filter.maskBits = CATEGORIA_FIGURAS;
+	fd.shape = circle;
+	fd.density = 1.0f;
+	fd.friction = 10.0f;
+	bd.position =body->GetWorldPoint(b2Vec2(-ancho/4, -1));
+	bd.type = b2_dynamicBody;
+	b2Body* bodyRuedaIzquierda = myWorld->CreateBody(&bd);
+	bodyRuedaIzquierda->CreateFixture(&fd);
+	bodyRuedaIzquierda->SetUserData(this);
+	this->setRuedaIzquierda(bodyRuedaIzquierda);
+
+	bd.position =body->GetWorldPoint(b2Vec2(ancho/4, -1));
+	b2Body* bodyRuedaDerecha = myWorld->CreateBody(&bd);
+	bodyRuedaDerecha->CreateFixture(&fd);
+	bodyRuedaDerecha->SetUserData(this);
+	this->setRuedaDerecha(bodyRuedaDerecha);
+
+
 	//JOINT
 	b2WheelJointDef jd;
-
 	jd.Initialize(body,bodyRuedaIzquierda,bodyRuedaIzquierda->GetPosition(),body->GetPosition());
 	jd.motorSpeed = 0.0f;
 	jd.maxMotorTorque = 20.0f;
-	jd.enableMotor = true;
-	jd.frequencyHz = 4.0;
-	jd.dampingRatio = 0.7;
-	//b2WheelJoint* m_spring1 = (b2WheelJoint*)myWorld->CreateJoint(&jd);
-
-	jd.Initialize(body,bodyRuedaDerecha,bodyRuedaDerecha->GetPosition(),body->GetPosition());
-	jd.motorSpeed = 0.0f;
-	jd.maxMotorTorque = 10.0f;
-	jd.enableMotor = false;
-	jd.frequencyHz = 4.0;
-	jd.dampingRatio = 0.7;
-	//b2WheelJoint* m_spring2 = (b2WheelJoint*)myWorld->CreateJoint(&jd);
+	jd.collideConnected= false;
+	myWorld->CreateJoint(&jd);
+	b2WheelJointDef jd2;
+	jd2.Initialize(body,bodyRuedaDerecha,bodyRuedaDerecha->GetPosition(),body->GetPosition());
+	jd2.maxMotorTorque = 20.0f;
+	jd2.collideConnected= false;
+	myWorld->CreateJoint(&jd2);
 }
 
 Carrito::~Carrito() {
@@ -193,38 +185,131 @@ void Carrito::setRuedaIzquierda(b2Body* bodyRuedaIzquierda){
 }
 
 
-bool Carrito::crearFisicaEstatica() {
-	if (myWorld != NULL) {
-		this->crearFisicaEstaticaTemplate();
-		bool hayContacto = false;
-		for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
-			if (b != this->body && b != this->ruedaDerecha && b != this->ruedaIzquierda && b->GetFixtureList() != NULL && b->GetFixtureList()->GetShape() != NULL) {
-				if (validarContacto(this->body, b) || validarContacto(this->ruedaDerecha, b) || validarContacto(this->ruedaIzquierda, b)) {
-					hayContacto = true;
-					break;
-				}
-			}
-		}
-		if (hayContacto) {
-			removerFisica();
-		} else {
-			notify(FISICA_E_CREADA);
-		}
-		return !hayContacto;
-	} else {
-		return false;
+//bool Carrito::crearFisicaEstatica() {
+//	if (myWorld != NULL) {
+//		this->crearFisicaEstaticaTemplate();
+//		bool hayContacto = false;
+//		for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
+//			if (b != this->body && b != this->ruedaDerecha && b != this->ruedaIzquierda && b->GetFixtureList() != NULL && b->GetFixtureList()->GetShape() != NULL) {
+//				if (validarContacto(this->body, b) || validarContacto(this->ruedaDerecha, b) || validarContacto(this->ruedaIzquierda, b)) {
+//					hayContacto = true;
+//					break;
+//				}
+//			}
+//		}
+//		if (hayContacto) {
+//			removerFisica();
+//		} else {
+//			notify(FISICA_E_CREADA);
+//		}
+//		return !hayContacto;
+//	} else {
+//		return false;
+//	}
+//}
+
+void Carrito::crearFisicaEstaticaTemplate() {
+
+	b2BodyDef bd;
+	b2PolygonShape shape;
+	shape.SetAsBox(this->ancho / 2, this->alto / 2);
+	b2FixtureDef plataformaDef;
+	plataformaDef.filter.categoryBits = CATEGORIA_FIGURAS;
+	plataformaDef.filter.maskBits = CATEGORIA_FIGURAS;
+	plataformaDef.density = 1.0f;
+	plataformaDef.friction = 0.9f;
+	plataformaDef.shape = &shape;
+	bd.position.Set(x,y);
+	bd.angle= -gradosARadianes(this->getRotacion());
+	body = myWorld->CreateBody(&bd);
+	body->CreateFixture(&plataformaDef)->SetUserData(this);
+	body->SetUserData(this);
+
+	b2CircleShape shapeCircle;
+	shapeCircle.m_radius = 1;
+	b2FixtureDef ruedaDef;
+	ruedaDef.filter.categoryBits = CATEGORIA_FIGURAS;
+	ruedaDef.filter.maskBits = CATEGORIA_FIGURAS;
+	ruedaDef.density = 1.0f;
+	ruedaDef.friction = 0.9f;
+	ruedaDef.shape = &shapeCircle;
+	shapeCircle.m_p.Set(-ancho/4.0, -1);
+	body->CreateFixture(&ruedaDef);
+	shapeCircle.m_p.Set(ancho/4.0, -1);
+	body->CreateFixture(&ruedaDef);
+
+}
+
+void Carrito::updateModelo() {
+	super::updateModelo();
+	if (this->body != 0) {
+		const b2Vec2 p = body->GetPosition();
+		this->setX(p.x);
+		this->setY(p.y);
+		this->rotacion = -1 * radianesAGrados(body->GetAngle());
+		const b2Vec2 p2 = ruedaIzquierda->GetPosition();
+		xi = p2.x;
+		yi = p2.y;
+		this->rotI =-1 * radianesAGrados( ruedaIzquierda->GetAngle());
+		const b2Vec2 p3= ruedaDerecha->GetPosition();
+		xd = p3.x;
+		yd = p3.y;
+		this->rotD =-1 * radianesAGrados( ruedaDerecha->GetAngle());
+
 	}
 }
 
-void Carrito::removerFisica(){
-	super::removerFisica();
-	if (this->ruedaDerecha != NULL) {
-			//notify(FISICA_REMOVIDA);
-			myWorld->DestroyBody(this->ruedaDerecha);
-		}
-	this->setRuedaDerecha(NULL);
-	if (this->ruedaIzquierda != NULL) {
-		myWorld->DestroyBody(this->ruedaIzquierda);
-	}
-	this->setRuedaIzquierda(NULL);
+float Carrito::getRotRuedaI() {
+	return rotI;
+}
+
+float Carrito::getRotRuedaD() {
+	return rotD;
+}
+
+float Carrito::getRotD() const {
+	return rotD;
+}
+
+float Carrito::getRotI() const {
+	return rotI;
+}
+
+float Carrito::getXd() const {
+	return xd;
+}
+
+float Carrito::getXi() const {
+	return xi;
+}
+
+float Carrito::getYd() const {
+	return yd;
+}
+
+float Carrito::getYi() const {
+	return yi;
+}
+
+void Carrito::setPosicion(float x, float y) {
+	xi= -ancho/4.0;
+	yi= -1;
+	xd= ancho/4.0;
+	yd= -1;
+	b2Vec2 pos(xi,yi);
+	b2Rot rotacion(-1 * gradosARadianes(getRotacion()));
+	b2Vec2 rotado = b2Mul(rotacion, pos);
+	xi = rotado.x + x ;
+	yi = rotado.y + y;
+	pos.x=xd;
+	pos.y=yd;
+	rotado = b2Mul(rotacion, pos);
+	yd= rotado.y +y ;
+	xd= rotado.x +x;
+	super::setPosicion(x,y);
+}
+
+void Carrito::setRotacion(double rotation) {
+	super::setRotacion(rotation);
+	setPosicion(x,y);
 }

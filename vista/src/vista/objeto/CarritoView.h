@@ -13,13 +13,17 @@
 namespace CLIENTE {
 
 class CarritoView: public ObjetoView {
-//private:
-	//typedef ObjetoView super;
+private:
+	float xil, yil, xdl, ydl;
+	int xip, yip, xdp, ydp, radioRuedaP;
+	typedef ObjetoView super;
+	SDL_Texture * tRueda;
 public:
 	CarritoView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~CarritoView();
 	void update(ViewMsj *);
-	//void dibujarse(SDL_Renderer *);
+	void resizear();
+	void dibujarse(SDL_Renderer *);
 };
 }
 #endif /* CARRITOVIEW_H_ */

@@ -17,6 +17,7 @@ public:
 	virtual ~CarritoView();
 	void dropTemplate();
 	EditorNivel * getEditor();
+	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* CARRITOVIEW_H_ */
