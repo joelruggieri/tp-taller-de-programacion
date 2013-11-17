@@ -8,21 +8,20 @@
 #ifndef TIJERA_H_
 #define TIJERA_H_
 #include "Objeto.h"
+#include "Aspa.h"
+class Aspa;
 class Tijera: public Objeto {
 private:
 	float ancho;
 	float alto;
-	double rotacionAspa2;
-	double rotacionAspa1;
+	//double rotacionAspa2;
+	//double rotacionAspa1;
 	//b2RevoluteJoint * jointAspa1Tierra;
 	//b2RevoluteJoint * jointAspa2Tierra;
 	//b2Body* aspa1;
-	b2Body* aspa2;
+	Aspa* aspa1;
+	Aspa* aspa2;
 	typedef Objeto super;
-	double getRotacionAspa2() const;
-	double getRotacionAspa1() const;
-	void setRotacionAspa1(double rotation);
-	void setRotacionAspa2(double rotation);
 	void crearFisicaEstaticaTemplate(b2World * w, b2Body* ground);
 public:
 	Tijera();
@@ -40,6 +39,11 @@ public:
 	bool crearFisicaEstatica();
 	void removerFisica();
 	void setRotacion(double);
+	void updateModelo();
+	void setPosicion(float x,float y);
+	void setWorld(b2World * w, b2Body * ground);
+	void makeBackUp();
+	void restoreBackUp();
 };
 
 #endif /* TIJERA_H_ */

@@ -27,7 +27,7 @@ public:
 	//Instancia una figura en el modelo y retora true si la operacion fue correcta.
 	bool crearFigura(Figura* figura);
 	bool crearUnion(Union* figura);
-	bool removerFigura(Figura* figura);
+	void removerFigura(Figura* figura);
 	void addArea(Area* area, int numeroJugador);
 	list<Figura*>& getFiguras();
 	Figura * pickUp(float, float, uint16 mascara,int numeroJugador);

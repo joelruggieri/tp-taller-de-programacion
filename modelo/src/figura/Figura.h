@@ -61,7 +61,7 @@ public:
 	float getY() const;
 	double getRotacion() const;
 	//actualiza a quienes estan observando la figura
-	void setPosicion(float, float);
+	virtual void setPosicion(float, float);
 	void setX(float x);
 	void setY(float y);
 	void setNumeroJugador(int numero);
@@ -86,7 +86,7 @@ public:
 	virtual void modificarSentido();
 	virtual bool agregar(Mapa *);
 	virtual bool remover(Mapa *);
-	void setWorld(b2World * w, b2Body * ground);
+	virtual void setWorld(b2World * w, b2Body * ground);
 	virtual void limpiarReferenciasB2D();
 	bool isViva();
 	//cosas de la tercera parte

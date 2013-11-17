@@ -287,12 +287,9 @@ bool Mapa::addFigura(Figura* figura) {
 }
 
 bool Mapa::removeFigura(Figura* figura) {
-	if (figura->getBody() != 0) {
 		figura->removerFisica();
 		this->figuras.remove(figura);
 		return true;
-	}
-	return false;
 }
 
 bool Mapa::addUnion(Union* u) {
