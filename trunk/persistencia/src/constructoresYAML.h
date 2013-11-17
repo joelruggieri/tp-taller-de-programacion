@@ -256,6 +256,34 @@ struct convert<Balancin> {
 	}
 };
 
+
+template<>
+struct convert<Tijera> {
+	static Node encode(const Tijera& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		node["rotacion"] = objeto.getRotacion();
+		node["rotacionAspa1"] = objeto.getRotacionAspa1();
+		node["rotacionAspa2"] = objeto.getRotacionAspa2();
+		return node;
+	}
+
+	static bool decode(const Node& node, Tijera& objeto) {
+		if (node.size() != 5) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		objeto.setRotacion(node["rotacion"].as<float>());
+		objeto.setRotacionAspa1(node["rotacionAspa1"].as<float>());
+		objeto.setRotacionAspa2(node["rotacionAspa2"].as<float>());
+		Mark marca = node.Mark();
+		Registro & reg = objeto.getReg();
+		reg.setLinea(marca.line);
+		reg.setEtiqueta("Tijera");
+		return true;
+	}
+};
+
 template<>
 struct convert<Carrito> {
 	static Node encode(const Carrito& objeto) {

@@ -24,6 +24,11 @@ Carrito::Carrito(const Carrito& figura){
 	this->reg = figura.reg;
 	this->ruedaDerecha = figura.ruedaDerecha;
 	this->ruedaIzquierda = figura.ruedaIzquierda;
+
+	Enganche* engancheDerecho = new Enganche(this,ancho/2.0,alto/2.0);
+	Enganche* engancheIzquierdo = new Enganche(this,-1.0*ancho/2.0,alto/2.0);
+	enganches.push_back(engancheIzquierdo);
+	enganches.push_back(engancheDerecho);
 }
 
 Carrito::Carrito(float x, float y, float ancho, float alto): Objeto(x,y) {
@@ -209,4 +214,17 @@ bool Carrito::crearFisicaEstatica() {
 	} else {
 		return false;
 	}
+}
+
+void Carrito::removerFisica(){
+	super::removerFisica();
+	if (this->ruedaDerecha != NULL) {
+			//notify(FISICA_REMOVIDA);
+			myWorld->DestroyBody(this->ruedaDerecha);
+		}
+	this->setRuedaDerecha(NULL);
+	if (this->ruedaIzquierda != NULL) {
+		myWorld->DestroyBody(this->ruedaIzquierda);
+	}
+	this->setRuedaIzquierda(NULL);
 }

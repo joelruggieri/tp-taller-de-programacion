@@ -24,6 +24,7 @@ using namespace std;
 #include "../viewFactory/ViewSogaFactory.h"
 #include "../viewFactory/ViewPlataformaFactory.h"
 #include "../viewFactory/ViewBalancinFactory.h"
+#include "../viewFactory/ViewTijeraFactory.h"
 #include "../viewFactory/ViewCarritoFactory.h"
 #include "../viewFactory/VistaCintaTransportadoraFactory.h"
 #include "../viewFactory/ViewBolaBolicheFactory.h"
@@ -42,6 +43,7 @@ const string KEY_GLOBO = "GLOBO";
 const string KEY_PLATAFORMA = "PLATAFORMA";
 const string KEY_SOGA = "SOGA";
 const string KEY_BALANCIN = "BALANCIN";
+const string KEY_TIJERA = "TIJERA";
 const string KEY_CARRITO = "CARRITO";
 const string KEY_CINTA = "CINTA";
 const string KEY_BOLA_BOLICHE = "BOLABOLICHE";
@@ -77,6 +79,12 @@ void InicializadorJuego::visit(Plataforma* c) {
 void InicializadorJuego::visit(Balancin* c) {
 	Figura * fig = this->factory->crear(c);
 	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_BALANCIN);
+	this->agregarFigura(iter->second, fig);
+}
+
+void InicializadorJuego::visit(Tijera* c) {
+	Figura * fig = this->factory->crear(c);
+	map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_TIJERA);
 	this->agregarFigura(iter->second, fig);
 }
 
@@ -164,6 +172,8 @@ ZonaTablero* InicializadorJuego::crearTablero() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_PELOTA_JUEGO,viewFactory));
 	viewFactory = new ViewBalancinFactory(NULL,0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BALANCIN,viewFactory));
+	viewFactory = new ViewTijeraFactory(NULL,0);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_TIJERA,viewFactory));
 	viewFactory = new ViewCarritoFactory(NULL,0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CARRITO,viewFactory));
 	viewFactory = new VistaCintaTransportadoraFactory(NULL,0);

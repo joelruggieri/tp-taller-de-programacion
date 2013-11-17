@@ -15,6 +15,7 @@ private:
 	float alto;
 	b2Body* ruedaIzquierda;
 	b2Body* ruedaDerecha;
+	typedef Objeto super;
 public:
 	Carrito();
 	Carrito(const Carrito& figura);
@@ -29,6 +30,7 @@ public:
 	void setRuedaDerecha(b2Body*);
 	void setRuedaIzquierda(b2Body*);
 	bool crearFisicaEstatica();
+	void removerFisica();
 };
 
 #endif /* CARRITO_H_ */

@@ -33,6 +33,7 @@ namespace CLIENTE {
 #define PATH_VISTA_BALANCIN "resource/balancin.png"
 #define PATH_VISTA_CORREA "resource/correa.png"
 #define PATH_VISTA_BALANCIN_F "resource/balancin_f.png"
+#define PATH_VISTA_TIJERA_ABIERTA "resource/tijeras.png"
 #define PATH_VISTA_CARRITO "resource/rueda4.png"
 #define PATH_VISTA_PLATAFORMA_F "resource/plataforma_f.png"
 #define PATH_VISTA_PLATAFORMA "resource/plataforma.png"
@@ -90,6 +91,7 @@ namespace CLIENTE {
 #define ID_SCROLL_ABAJO 10
 #define ID_AREA 11
 #define ID_FACTORY_BALANCIN 50
+#define ID_FACTORY_TIJERA 64
 #define ID_FACTORY_BOLA 51
 #define ID_FACTORY_CINTA 52
 #define ID_FACTORY_CORREA 53
@@ -124,6 +126,9 @@ namespace CLIENTE {
 #define ALTO_CARRITO 10.0
 #define ANCHO_BALANCIN 15.0
 #define ALTO_BALANCIN 1.6
+#define ANCHO_TIJERA 10.61
+#define ALTO_TIJERA 10.61
+
 
 #define ANCHO_CLAVO 6.0
 #define ALTO_CLAVO 3.0

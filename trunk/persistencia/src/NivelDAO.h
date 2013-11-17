@@ -30,6 +30,7 @@ private:
 	YAML::Node getNodoJugadores(YAML::Node nodoRaiz);
 	void obtenerPlataformas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerTijeras(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerCintas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerBolasDeBoliche(std::list<Figura*> &lista, YAML::Node objetos);

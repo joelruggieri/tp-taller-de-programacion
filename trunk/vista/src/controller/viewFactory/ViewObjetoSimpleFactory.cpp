@@ -39,6 +39,11 @@ View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj* o) {
 	return viewReturn;
 }
 
+View* ViewObjetoSimpleFactory::crearTijera(ViewObjetoUpdateMsj* o) {
+	TijeraView* viewReturn = new TijeraView(o->getX(), o->getY(),ANCHO_TIJERA, ALTO_TIJERA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_TIJERA_ABIERTA));
+	return viewReturn;
+}
+
 View* ViewObjetoSimpleFactory::crearCarrito(ViewObjetoUpdateMsj* o) {
 	CarritoView* viewReturn = new CarritoView(o->getX(), o->getY(),ANCHO_CARRITO, ALTO_CARRITO,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CARRITO));
 	return viewReturn;
@@ -79,6 +84,9 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 		break;
 	case OBJ_SIMPLE_S_BALANCIN:
 		viewRetorn = this->crearBalancin(a);
+		break;
+	case OBJ_SIMPLE_S_TIJERA:
+		viewRetorn = this->crearTijera(a);
 		break;
 	case OBJ_SIMPLE_S_GLOBO:
 		viewRetorn = this->crearGlobo(a);

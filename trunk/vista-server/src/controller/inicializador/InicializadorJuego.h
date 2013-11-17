@@ -17,6 +17,7 @@
 #include "src/objeto/Motor.h"
 #include "src/objeto/Plataforma.h"
 #include "src/objeto/Balancin.h"
+#include "src/objeto/Tijera.h"
 #include "src/objeto/Carrito.h"
 #include "src/objeto/GloboHelio.h"
 #include "src/objeto/PelotaJuego.h"
@@ -53,6 +54,7 @@ public:
 	void visit(Motor*);
 	void visit(Plataforma*);
 	void visit(Balancin*);
+	void visit(Tijera*);
 	void visit(Carrito*);
 	void visit(GloboHelio*);
 	void visit(CintaTransportadora*);
