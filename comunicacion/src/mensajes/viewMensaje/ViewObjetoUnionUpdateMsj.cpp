@@ -8,16 +8,20 @@
 #include "ViewObjetoUnionUpdateMsj.h"
 #include "../../ConstantesComunicacion.h"
 
-ViewObjetoUnionUpdateMsj::ViewObjetoUnionUpdateMsj(float x1,float x2, float x3, float x4, float radioInicial, float radioFinal, bool isEstatico, bool conEslabon, float radio, int id, char sel) : ViewObjetoUpdateMsj(x1,x2,0,id, sel) {
+ViewObjetoUnionUpdateMsj::ViewObjetoUnionUpdateMsj(float x1, float x2, float x3, float x4, float radioInicial,
+		float radioFinal, bool isEstatico, bool conEslabon, float radio, int id, char sel) :
+		ViewObjetoUpdateMsj(x1, x2, 0, id, sel) {
 	this->xHasta = x3;
 	this->yHasta = x4;
 	this->radioInicial = radioInicial;
 	this->radioFinal = radioFinal;
 	this->estatico = isEstatico;
-	this->radio = radio ;
+	this->radio = radio;
 	this->conEslabon = conEslabon;
 	xEslb = 0;
 	yEslb = 0;
+	activoPrimerTramo = true;
+	activoSegundoTramo = true;
 }
 
 ViewObjetoUnionUpdateMsj::~ViewObjetoUnionUpdateMsj() {
@@ -37,11 +41,13 @@ void ViewObjetoUnionUpdateMsj::serialize(YAML::Emitter & out) {
 	out << estatico;
 	out << radio;
 	out << conEslabon;
-	if(conEslabon){
+	if (conEslabon) {
 		out << xEslb;
 		out << yEslb;
+		out <<activoPrimerTramo;
+		out <<activoSegundoTramo;
 	}
-	}
+}
 
 NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) {
 	int id = it->as<int>();
@@ -66,14 +72,21 @@ NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) 
 	it++;
 	bool eslabon = it->as<bool>();
 	it++;
-	ViewObjetoUnionUpdateMsj * salida = new ViewObjetoUnionUpdateMsj(xD,yD, xH, yH,radioInicial, radioFinal,estatico,eslabon, radio,id, sel);
-	if(eslabon){
+	ViewObjetoUnionUpdateMsj * salida = new ViewObjetoUnionUpdateMsj(xD, yD, xH, yH, radioInicial, radioFinal, estatico,
+			eslabon, radio, id, sel);
+	if (eslabon) {
 		float xEsl, yEsl;
-		xEsl =	it->as<float>();
+		xEsl = it->as<float>();
 		it++;
 		yEsl = it->as<float>();
 		it++;
-		salida->setPosEslabon(xEsl,yEsl);
+		salida->setPosEslabon(xEsl, yEsl);
+		bool tramo = it->as<bool>();
+		it++;
+		salida->setActivoPrimerTramo(tramo);
+		tramo = it->as<bool>();
+		it++;
+		salida->setActivoSegundoTramo(tramo);
 	}
 	return salida;
 }
@@ -83,7 +96,7 @@ string ViewObjetoUnionUpdateMsj::getTag() {
 }
 
 void ViewObjetoUnionUpdateMsj::getMensaje() {
-	cout << this->x << " " << this->y<< " " << this->xHasta << " " <<  this->yHasta <<  endl;
+	cout << this->x << " " << this->y << " " << this->xHasta << " " << this->yHasta << endl;
 }
 
 void ViewObjetoUnionUpdateMsj::acept(ViewMsjVisitor*v) {
@@ -91,8 +104,11 @@ void ViewObjetoUnionUpdateMsj::acept(ViewMsjVisitor*v) {
 }
 
 ViewMsj* ViewObjetoUnionUpdateMsj::clone(int dest) {
-	ViewObjetoUnionUpdateMsj * msj = new ViewObjetoUnionUpdateMsj(x,y,xHasta,yHasta,radioInicial, radioFinal,estatico,conEslabon,radio,id,selector);
-	msj->setPosEslabon(xEslb,yEslb);
+	ViewObjetoUnionUpdateMsj * msj = new ViewObjetoUnionUpdateMsj(x, y, xHasta, yHasta, radioInicial, radioFinal,
+			estatico, conEslabon, radio, id, selector);
+	msj->setPosEslabon(xEslb, yEslb);
+	msj->setActivoPrimerTramo(activoPrimerTramo);
+	msj->setActivoSegundoTramo(activoSegundoTramo);
 	msj->setDestinatario(dest);
 	return msj;
 
@@ -121,4 +137,29 @@ float ViewObjetoUnionUpdateMsj::getXEslb() const {
 
 float ViewObjetoUnionUpdateMsj::getYEslb() const {
 	return yEslb;
+}
+
+bool ViewObjetoUnionUpdateMsj::isActivoPrimerTramo() const {
+	return activoPrimerTramo;
+}
+
+void ViewObjetoUnionUpdateMsj::setActivoPrimerTramo(bool activoPrimerTramo) {
+	this->activoPrimerTramo = activoPrimerTramo;
+}
+
+bool ViewObjetoUnionUpdateMsj::isActivoSegundoTramo() const {
+	return activoSegundoTramo;
+}
+
+void ViewObjetoUnionUpdateMsj::setActivoSegundoTramo(bool activoSegundoTramo) {
+	this->activoSegundoTramo = activoSegundoTramo;
+}
+
+bool ViewObjetoUnionUpdateMsj::isEstatico() const {
+	return estatico;
+}
+
+
+float ViewObjetoUnionUpdateMsj::getRadio() const {
+	return radio;
 }

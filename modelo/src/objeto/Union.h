@@ -73,6 +73,7 @@ protected:
 	void updateModelo();
 	typedef Figura super;
 	b2Joint * joint;
+	bool estatica;
 };
 
 #endif /* UNION_H_ */

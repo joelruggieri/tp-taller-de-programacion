@@ -34,6 +34,8 @@ public:
 	void limpiarReferenciasB2D();
 	void desactivarJoint(Enganche *);
 	void notifyEvent(Evento_type);
+	bool activoPrimerTramo();
+	bool activoSegundoTramo();
 protected:
 	void crearLazo(b2World*);
 	void updatePosicionesFiguras();
@@ -46,6 +48,7 @@ private:
 	b2Body * eslabon;
 	b2Vec2 posEslabon;
 	b2Joint * joint2;
+	bool primerTramoOn, segundoTramoOn;
 	typedef Union super;
 	b2Vec2 determinarPosEslabon();
 };

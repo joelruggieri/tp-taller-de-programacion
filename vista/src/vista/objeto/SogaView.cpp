@@ -12,6 +12,8 @@ namespace CLIENTE {
 SogaView::SogaView(float xDesde, float yDesde, float xHasta, float yHasta, SDL_Texture * textura) :
 		UnionView(xDesde, yDesde, xHasta, yHasta, RADIO_SOGA_ESTATICA, textura) {
 	texturaEslabon = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_GANCHO);
+	primerTramo = true;
+	segundoTramo = true;
 }
 
 SogaView::~SogaView() {
@@ -25,8 +27,12 @@ SogaView::~SogaView() {
 void SogaView::dibujarse(SDL_Renderer* renderer) {
 	//ENTREGA3 FALTA HACER SDL_RENDERCOLOR O ALGO ASI PARA CAMBIAR EL COLOR y ademas no se esta renderizando el circulo del diome.
 	if (conEslabon) {
-		SDL_RenderDrawLine(renderer, this->xp, this->yp, this->xEslabonp, this->yEslabonp);
-		SDL_RenderDrawLine(renderer, this->xEslabonp, this->yEslabonp, this->xHastap, this->yHastap);
+		if(primerTramo){
+			SDL_RenderDrawLine(renderer, this->xp, this->yp, this->xEslabonp, this->yEslabonp);
+		}
+		if(segundoTramo){
+			SDL_RenderDrawLine(renderer, this->xEslabonp, this->yEslabonp, this->xHastap, this->yHastap);
+		}
 		SDL_Rect dest;
 		dest.h = this->anchoEslabonP;
 		dest.w = this->anchoEslabonP;
@@ -45,6 +51,8 @@ void SogaView::update(ViewMsj*m) {
 	if (conEslabon) {
 		xEslabonl = mjeCurrent->getXEslb();
 		yEslabonl = mjeCurrent->getYEslb();
+		primerTramo = mjeCurrent->isActivoPrimerTramo();
+		segundoTramo = mjeCurrent->isActivoSegundoTramo();
 	}
 }
 

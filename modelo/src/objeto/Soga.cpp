@@ -36,6 +36,8 @@ bool Soga::crearFisicaEstatica() {
 		return false;
 	origen->ocupar(this);
 	destino->ocupar(this);
+	primerTramoOn = true;
+	segundoTramoOn = true;
 	this->crearFisicaEstaticaTemplate();
 	return true;
 }
@@ -46,6 +48,7 @@ void Soga::acept(VisitorFigura*v) {
 
 void Soga::crearFisica() {
 	this->crearLazo(myWorld);
+	estatica = false;
 }
 
 void Soga::setearPuntoInicial(Figura* f) {
@@ -186,20 +189,21 @@ Soga::Soga() {
 	destino = NULL;
 	eslabon = NULL;
 	joint2 = NULL;
+	primerTramoOn = true;
+	segundoTramoOn = true;
 }
 void Soga::removerFisica() {
-	if (joint != NULL) {
-		myWorld->DestroyJoint(joint);
-		joint = NULL;
-		viva = false;
-	}
-	if (eslabon != NULL) {
-		if (joint2 != NULL) {
-			myWorld->DestroyJoint(joint2);
-		}
-		myWorld->DestroyBody(eslabon);
-		eslabon = NULL;
-	}
+//	if (joint != NULL) {
+//		myWorld->DestroyJoint(joint);
+//		joint = NULL;
+//	}
+//	if (eslabon != NULL) {
+//		if (joint2 != NULL) {
+//			myWorld->DestroyJoint(joint2);
+//		}
+//		myWorld->DestroyBody(eslabon);
+//		eslabon = NULL;
+//	}
 	super::removerFisica();
 	if (origen != NULL) {
 		origen->liberar();
@@ -249,9 +253,13 @@ void Soga::desactivarJoint(Enganche* e) {
 			myWorld->DestroyJoint(joint2);
 			joint2 = NULL;
 		}
+		if(joint == NULL && joint2==NULL){
+			viva = false;
+		}
 	} else {
 		myWorld->DestroyJoint(joint);
 		joint = NULL;
+		viva = false;
 	}
 }
 
@@ -278,15 +286,21 @@ void Soga::notifyEvent(Evento_type enumEvento) {
 			if (figuraInicio == o && joint) {
 				myWorld->DestroyJoint(joint);
 				joint = NULL;
+				primerTramoOn = false;
 			}
 			if (figuraFin == o && joint2) {
 				myWorld->DestroyJoint(joint2);
 				joint2 = NULL;
+				segundoTramoOn = false;
+			}
+			if(!segundoTramoOn && !primerTramoOn){
+				viva = false;
 			}
 		} else {
 			if(joint){
 				myWorld->DestroyJoint(joint);
 				joint = NULL;
+				viva = false;
 			}
 		}
 	}
@@ -331,4 +345,12 @@ float Soga::getYEslabon() {
 	}
 
 	return posEslabon.y;
+}
+
+bool Soga::activoPrimerTramo() {
+	return primerTramoOn;
+}
+
+bool Soga::activoSegundoTramo() {
+	return segundoTramoOn;
 }
