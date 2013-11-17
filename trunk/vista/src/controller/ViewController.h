@@ -12,6 +12,7 @@
 #include <src/mensajes/viewMensaje/ViewMsj.h>
 #include <src/mensajes/viewMensaje/ViewBotonStartMsj.h>
 #include <src/mensajes/viewMensaje/Highlight.h>
+#include <src/mensajes/viewMensaje/ViewCarritoMsj.h>
 #include <src/threading/ObjetoCompartido.h>
 #include "ResizerController.h"
 #include "DrawController.h"
@@ -51,6 +52,7 @@ public:
 	void visit(FinDibujado*);
 	void visit(ViewBotonStartMsj*);
 	void visit(Highlight*);
+	void visit(ViewCarritoMsj*);
 	void addView(int id, View *);
 	void addViewScrolleable(int id, View *);
 	void scrollUnidadesLogicas(float unidadesLogicas);

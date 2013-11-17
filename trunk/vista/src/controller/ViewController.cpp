@@ -274,12 +274,20 @@ void ViewController::visit(Highlight* h) {
 	lock();
 	highlightsActual = h->getId();
 	huboHighLighT = true;
-//	if(highlightsActual != highlightsAnterior){
-//			std::map<int, View*>::iterator it = vistas.find(h->getId());
-//			if (it != vistas.end()) {
-//				it->second->higlight(true);
-//			}
-//	}
+	unlock();
+}
+
+
+void ViewController::visit(ViewCarritoMsj* m) {
+	lock();
+	if (!update(m)) {
+		SDL_Texture * t= CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CINTA_PLATAF);
+		View * v = new CarritoView(0,0,ANCHO_CARRITO,ALTO_CARRITO,t);
+		v->update(m);
+		addViewPrivado(m->getId(), v);
+	}
+
+
 	unlock();
 }
 
