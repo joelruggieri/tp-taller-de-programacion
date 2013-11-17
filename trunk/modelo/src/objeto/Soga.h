@@ -28,7 +28,10 @@ public:
 	void extraerPosFinal(Figura * f, float x, float y);
 	void updatePosicionesFigurasSinFisica();
 	void removerFisica();
-//	void notifyEvent(ObservableModelo*, Evento_type);
+	bool conEslabon();
+	void calcularCentroCuadrado();
+	void limpiarReferenciasB2D();
+	void desactivarJoint(Enganche *);
 protected:
 	void crearLazo(b2World*);
 	void updatePosicionesFiguras();
@@ -37,6 +40,10 @@ protected:
 private:
 	Enganche * getEngancheMasCercano(Figura* figura, float x, float y, bool desocupado);
 	Enganche *origen, *destino;
+	b2Body * eslabon;
+	b2Vec2 posEslabon;
+	b2Joint * joint2;
+	typedef Union super;
 };
 
 #endif /* SOGA_H_ */

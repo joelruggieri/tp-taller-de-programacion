@@ -29,10 +29,10 @@ Objetos:
       ancho: 20
 Jugadores:
   - Area:
-      x: 90
+      x: 50
       y: 50
-      ancho: 50
-      alto: 50
+      ancho: 70
+      alto: 70
     numero: 0
     ParametrosFactories:
       - nombre: FF

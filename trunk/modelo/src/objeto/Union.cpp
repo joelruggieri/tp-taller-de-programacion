@@ -116,22 +116,6 @@ void Union::calcularAnchoCuadrado() {
 }
 
 void Union::crearFisicaEstaticaTemplate() {
-//	b2Vec2 centro(x, y);
-//	b2PolygonShape shape;
-//	b2BodyDef bodyDef;
-//
-////	bodyDef.type = b2_dynamicBody;	//dynamic??
-//	bodyDef.position = centro;
-//	bodyDef.angle = this->rotacion;
-//	bodyDef.fixedRotation = true;
-//	body = myWorld->CreateBody(&bodyDef);
-//	shape.m_radius = this->getRadio();
-//	b2FixtureDef fixture;
-//	fixture.shape = &shape;
-//	fixture.filter.categoryBits = CATEGORIA_UNION;
-//	fixture.filter.maskBits = 0;
-//	body->CreateFixture(&fixture);
-//	body->SetUserData(this);
 	joint = NULL;
 	float x = this->getX();
 	float y = this->getY();

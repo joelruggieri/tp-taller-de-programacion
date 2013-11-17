@@ -7,11 +7,14 @@
 
 #include "Enganche.h"
 #include "Figura.h"
+#include "../objeto/Soga.h"
 Enganche::Enganche(Figura * centro, float posX, float posY) {
 	this->pos = b2Vec2(posX,posY);
 	this->ocupado = false;
 	this->centro = centro;
 	requiereEslabon = false;
+	eslabon= NULL;
+	soga =NULL;
 }
 
 Enganche::~Enganche() {
@@ -30,12 +33,15 @@ bool Enganche::estaOcupado() {
 	return this->ocupado;
 }
 
-void Enganche::ocupar() {
+void Enganche::ocupar(Soga * s) {
 	this->ocupado = true;
+	soga = s;
 }
 
 void Enganche::liberar() {
 	this->ocupado = false;
+	eslabon = NULL;
+	soga = NULL;
 }
 
 b2Vec2& Enganche::getPos() {
@@ -61,4 +67,18 @@ bool Enganche::getRequiereEslabon() {
 void Enganche::setRequiereEslabon(bool r) {
 	requiereEslabon = r;
 
+}
+
+void Enganche::setEslabon(b2Body* b) {
+	eslabon = b;
+}
+
+b2Body* Enganche::getEslabon() {
+	return eslabon;
+}
+
+void Enganche::desprender() {
+	if(soga){
+		soga->desactivarJoint(this);
+	}
 }
