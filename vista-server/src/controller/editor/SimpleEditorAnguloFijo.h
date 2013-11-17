@@ -22,6 +22,7 @@ public:
 	void mouseMotion(float x, float y);
 	void setFigura(FiguraView *);
 	void dropNuevaFigura(BalancinView*);
+	void dropNuevaFigura(TijeraView*);
 	void dropNuevaFigura(BolaBolicheView*);
 	void dropNuevaFigura(GloboHelioView*);
 	void dropNuevaFigura(GanchoView*);

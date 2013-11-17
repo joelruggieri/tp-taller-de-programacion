@@ -23,6 +23,7 @@ class Gancho;
 class Yunque;
 class Clavo;
 class Polea;
+class Tijera;
 class VisitorFigura {
 public:
 	virtual ~VisitorFigura() {
@@ -43,6 +44,7 @@ public:
 	virtual void visit(Yunque*)=0;
 	virtual void visit(Clavo*)=0;
 	virtual void visit(Polea*)=0;
+	virtual void visit(Tijera*) =0;
 };
 
 #endif /* VISITORFIGURA_H_ */

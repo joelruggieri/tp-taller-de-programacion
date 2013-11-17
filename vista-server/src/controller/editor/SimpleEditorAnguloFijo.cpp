@@ -107,6 +107,10 @@ void SimpleEditorAnguloFijo::dropNuevaFigura(BalancinView* view) {
 	dropear(view, this->figurasFactory->crearBalancin(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
 }
 
+void SimpleEditorAnguloFijo::dropNuevaFigura(TijeraView* view) {
+	dropear(view, this->figurasFactory->crearTijera(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
+}
+
 void SimpleEditorAnguloFijo::dropNuevaFigura(BolaBolicheView* view) {
 
 	dropear(view, this->figurasFactory->crearBolaBoliche(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));

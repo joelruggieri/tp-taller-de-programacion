@@ -42,6 +42,13 @@ void ValidadorEstatico::visit(Balancin* f) {
 
 }
 
+void ValidadorEstatico::visit(Tijera* f) {
+	if(!validarPosicion(f)){
+		return;
+	}
+
+}
+
 void ValidadorEstatico::visit(CintaTransportadora* f) {
 	if(!validarPosicion(f)){
 		return;

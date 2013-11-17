@@ -45,6 +45,7 @@ public:
 	virtual void mouseMotion(float x, float y);
 	void dropNuevaFigura(PlataformaView*);
 	void dropNuevaFigura(CarritoView*);
+	//void dropNuevaFigura(TijeraView*);
 	EditorNivel * clone();
 //
 	void dropFigura(FiguraView*);

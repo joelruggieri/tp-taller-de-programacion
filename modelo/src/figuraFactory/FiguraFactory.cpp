@@ -16,6 +16,7 @@
 #include "../objeto/Engranaje.h"
 #include "../objeto/Carrito.h"
 #include "../objeto/Soga.h"
+#include "../objeto/Tijera.h"
 #include "../objeto/Correa.h"
 #include "../objeto/Gancho.h"
 #include "../objeto/Yunque.h"
@@ -60,6 +61,12 @@ Figura* FiguraFactory::crearBalancin(float x, float y, int numeroJugador){
 	return figura;
 }
 
+Figura* FiguraFactory::crearTijera(float x, float y, int numeroJugador){
+	Figura* figura = new Tijera(x,y,ANCHO_TIJERA,ALTO_TIJERA);
+	figura->setNumeroJugador(numeroJugador);
+	return figura;
+}
+
 Figura* FiguraFactory::crearCarrito(float x, float y, int numeroJugador){
 	Figura* figura = new Carrito(x,y,ANCHO_CARRITO,ALTO_CARRITO);
 	figura->setNumeroJugador(numeroJugador);
@@ -76,6 +83,13 @@ Figura* FiguraFactory::crear(Plataforma* c) {
 
 Figura* FiguraFactory::crear(Balancin* c) {
 	Figura* y = this->crearBalancin(c->getX(), c->getY(),c->getNumeroJugador());
+	y->setRotacion(c->getRotacion());
+	y->setReg(c->getReg());
+	return y;
+}
+
+Figura* FiguraFactory::crear(Tijera* c) {
+	Figura* y = this->crearTijera(c->getX(), c->getY(),c->getNumeroJugador());
 	y->setRotacion(c->getRotacion());
 	y->setReg(c->getReg());
 	return y;

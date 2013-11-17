@@ -26,6 +26,7 @@
 #define PATH_VISTA_CARRITO "resource/rueda4.png"
 #define PATH_VISTA_CORREA "resource/correa.png"
 #define PATH_VISTA_BALANCIN_F "resource/balancin_f.png"
+#define PATH_VISTA_TIJERA_ABIERTA "resource/tijeras.png"
 #define PATH_VISTA_PLATAFORMA_F "resource/plataforma_f.png"
 #define PATH_VISTA_PLATAFORMA "resource/plataforma.png"
 #define PATH_VISTA_GLOBO "resource/globo.png"

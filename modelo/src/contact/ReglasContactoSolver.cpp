@@ -35,6 +35,10 @@ void ReglasContactoSolver::visit(Plataforma*) {
 void ReglasContactoSolver::visit(Balancin*) {
 }
 
+//TODO ENTREGA3 HAY QUE SOLCIONAR EL TEMA DEL CONTACTO DE LA TIJERA CON LA SOGA
+void ReglasContactoSolver::visit(Tijera*) {
+}
+
 void ReglasContactoSolver::visit(CintaTransportadora* c) {
 	cinta = c;
 }

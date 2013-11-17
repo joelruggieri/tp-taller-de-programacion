@@ -70,6 +70,8 @@ Jugadores:
         cantidad: 3
       - nombre: FO
         cantidad: 5
+      - nombre: FH
+        cantidad: 2
   - numero: 2
     Area:
       x: 80
@@ -89,3 +91,5 @@ Jugadores:
         cantidad: 3
       - nombre: FY
         cantidad: 3
+      - nombre: FT
+        cantidad: 1
