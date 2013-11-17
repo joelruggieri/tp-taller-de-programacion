@@ -16,6 +16,8 @@ ViewObjetoUnionUpdateMsj::ViewObjetoUnionUpdateMsj(float x1,float x2, float x3, 
 	this->estatico = isEstatico;
 	this->radio = radio ;
 	this->conEslabon = conEslabon;
+	xEslb = 0;
+	yEslb = 0;
 }
 
 ViewObjetoUnionUpdateMsj::~ViewObjetoUnionUpdateMsj() {
@@ -35,6 +37,10 @@ void ViewObjetoUnionUpdateMsj::serialize(YAML::Emitter & out) {
 	out << estatico;
 	out << radio;
 	out << conEslabon;
+	if(conEslabon){
+		out << xEslb;
+		out << yEslb;
+	}
 	}
 
 NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) {
@@ -60,7 +66,15 @@ NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) 
 	it++;
 	bool eslabon = it->as<bool>();
 	it++;
-	NetworkMensaje * salida = new ViewObjetoUnionUpdateMsj(xD,yD, xH, yH,radioInicial, radioFinal,estatico,eslabon, radio,id, sel);
+	ViewObjetoUnionUpdateMsj * salida = new ViewObjetoUnionUpdateMsj(xD,yD, xH, yH,radioInicial, radioFinal,estatico,eslabon, radio,id, sel);
+	if(eslabon){
+		float xEsl, yEsl;
+		xEsl =	it->as<float>();
+		it++;
+		yEsl = it->as<float>();
+		it++;
+		salida->setPosEslabon(xEsl,yEsl);
+	}
 	return salida;
 }
 
@@ -77,7 +91,8 @@ void ViewObjetoUnionUpdateMsj::acept(ViewMsjVisitor*v) {
 }
 
 ViewMsj* ViewObjetoUnionUpdateMsj::clone(int dest) {
-	ViewMsj * msj = new ViewObjetoUnionUpdateMsj(x,y,xHasta,yHasta,radioInicial, radioFinal,conEslabon, estatico,radio,id,selector);
+	ViewObjetoUnionUpdateMsj * msj = new ViewObjetoUnionUpdateMsj(x,y,xHasta,yHasta,radioInicial, radioFinal,estatico,conEslabon,radio,id,selector);
+	msj->setPosEslabon(xEslb,yEslb);
 	msj->setDestinatario(dest);
 	return msj;
 
@@ -89,4 +104,21 @@ float ViewObjetoUnionUpdateMsj::getRadioFinal() const {
 
 float ViewObjetoUnionUpdateMsj::getRadioInicial() const {
 	return radioInicial;
+}
+
+void ViewObjetoUnionUpdateMsj::setPosEslabon(float x, float y) {
+	xEslb = x;
+	yEslb = y;
+}
+
+bool ViewObjetoUnionUpdateMsj::isConEslabon() const {
+	return conEslabon;
+}
+
+float ViewObjetoUnionUpdateMsj::getXEslb() const {
+	return xEslb;
+}
+
+float ViewObjetoUnionUpdateMsj::getYEslb() const {
+	return yEslb;
 }

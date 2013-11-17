@@ -19,7 +19,7 @@ private:
 protected:
 	float xHastal,yHastal, radiol, xcl, ycl;
 	int xHastap, yHastap, radiop, xcp, ycp;
-	bool estatica;
+	bool estatica, conEslabon;
 
 	void dibujarseCirculoEstatico(SDL_Renderer* ren);
 	void dibujarse(SDL_Renderer * ren,Uint8 r,Uint8 g,Uint8 b);

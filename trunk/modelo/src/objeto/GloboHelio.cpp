@@ -111,6 +111,7 @@ void GloboHelio::interactuar(Area& area, int jugador) {
 }
 
 void GloboHelio::accionar() {
-	removerFisica();
+	notify(DESACTIVADO);
+	myWorld->DestroyBody(this->getBody());
 	viva = false;
  }
