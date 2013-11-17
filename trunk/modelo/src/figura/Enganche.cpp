@@ -91,3 +91,7 @@ void Enganche::desenganchado() {
 void Enganche::matarSoga() {
 	soga->romper(this);
 }
+
+Figura* Enganche::getFigura() {
+	return centro;
+}

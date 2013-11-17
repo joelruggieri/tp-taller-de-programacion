@@ -21,9 +21,8 @@ bool ModeloController::crearFigura(Figura* figura) {
 	return this->mapa->add(figura);;
 }
 
-bool ModeloController::removerFigura(Figura* figura) {
-	bool result = this->mapa->remove(figura);
-	return result;;
+void ModeloController::removerFigura(Figura* figura) {
+	this->mapa->remove(figura);
 
 }
 

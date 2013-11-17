@@ -54,14 +54,14 @@ void Soga::crearFisica() {
 void Soga::setearPuntoInicial(Figura* f) {
 	this->figuraInicio = f;
 	this->origen = getEngancheMasCercano(f, inicio.x, inicio.y, true);
-	this->inicio = f->getBody()->GetWorldPoint(origen->getPos());
+	this->inicio = origen->getFigura()->getBody()->GetWorldPoint(origen->getPos());
 
 }
 
 void Soga::setearPuntoFinal(Figura* f) {
 	this->figuraFin = f;
 	this->destino = getEngancheMasCercano(f, fin.x, fin.y, true);
-	this->fin = f->getBody()->GetWorldPoint(destino->getPos());
+	this->fin = destino->getFigura()->getBody()->GetWorldPoint(destino->getPos());
 }
 
 void Soga::crearLazo(b2World* w) {
@@ -89,7 +89,7 @@ void Soga::crearLazo(b2World* w) {
 		//y ahora hago las uniones.
 		//primero el inicio al eslabon.
 		b2RopeJointDef ropeJoint;
-		ropeJoint.bodyA = this->figuraInicio->getBody();
+		ropeJoint.bodyA = this->origen->getFigura()->getBody();
 		ropeJoint.bodyB = eslabon;
 		ropeJoint.collideConnected = true;
 		b2Vec2 dif = inicio - posEslabon;
@@ -102,7 +102,7 @@ void Soga::crearLazo(b2World* w) {
 //		//luego el eslabon al fin
 		b2RopeJointDef ropeJoint2;
 		ropeJoint2.bodyA = eslabon;
-		ropeJoint2.bodyB = this->figuraFin->getBody();
+		ropeJoint2.bodyB = this->destino->getFigura()->getBody();
 		ropeJoint2.collideConnected = true;
 		b2Vec2 dif2 = posEslabon - fin;
 		ropeJoint2.maxLength = dif2.Length(); // el maximo sale del calculo de la distancia en union
@@ -116,8 +116,8 @@ void Soga::crearLazo(b2World* w) {
 
 	} else {
 		b2RopeJointDef ropeJoint;
-		ropeJoint.bodyA = this->figuraInicio->getBody();
-		ropeJoint.bodyB = this->figuraFin->getBody();
+		ropeJoint.bodyA = this->origen->getFigura()->getBody();
+		ropeJoint.bodyB = this->destino->getFigura()->getBody();
 		ropeJoint.collideConnected = true;
 		b2Vec2 dif = inicio - fin;
 		ropeJoint.maxLength = dif.Length(); // el maximo sale del calculo de la distancia en union
@@ -135,7 +135,7 @@ Enganche* Soga::getEngancheMasCercano(Figura* figura, float x, float y, bool des
 	Lista_Enganches::iterator it;
 	b2Vec2 pos(x, y);
 	for (it = figura->getEnganches().begin(); it != figura->getEnganches().end(); ++it) {
-		b2Body* bd = figura->getBody();
+		b2Body* bd = (*it)->getFigura()->getBody();
 
 		b2Vec2 posicionEnganche = bd->GetWorldPoint(b2Vec2((*it)->getPosX(), (*it)->getPosY()));
 
@@ -151,11 +151,11 @@ Enganche* Soga::getEngancheMasCercano(Figura* figura, float x, float y, bool des
 }
 
 void Soga::updatePosicionesFiguras() {
-	if (this->figuraInicio->getBody()) {
-		this->inicio = this->figuraInicio->getBody()->GetWorldPoint(origen->getPos());
+	if (this->origen->getFigura()->getBody()) {
+		this->inicio = this->origen->getFigura()->getBody()->GetWorldPoint(origen->getPos());
 	}
-	if (this->figuraFin->getBody()) {
-		this->fin = this->figuraFin->getBody()->GetWorldPoint(destino->getPos());
+	if (this->destino->getFigura()->getBody()) {
+		this->fin = this->destino->getFigura()->getBody()->GetWorldPoint(destino->getPos());
 	}
 	if (conEslabon()) {
 		posEslabon = determinarPosEslabon();
@@ -175,12 +175,12 @@ bool Soga::isFinValido(Figura* f, float x, float y) {
 
 void Soga::extraerPosInicial(Figura* f, float x, float y) {
 	Enganche * en = getEngancheMasCercano(f, x, y, true);
-	this->inicio = f->getBody()->GetWorldPoint(en->getPos());
+	this->inicio = en->getFigura()->getBody()->GetWorldPoint(en->getPos());
 }
 
 void Soga::extraerPosFinal(Figura* f, float x, float y) {
 	Enganche * en = getEngancheMasCercano(f, x, y, true);
-	this->fin = f->getBody()->GetWorldPoint(en->getPos());
+	this->fin = en->getFigura()->getBody()->GetWorldPoint(en->getPos());
 
 }
 

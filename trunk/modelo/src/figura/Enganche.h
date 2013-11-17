@@ -40,6 +40,7 @@ public:
 	void desprenderDeSoga();
 	void matarSoga();
 	void desenganchado();
+	Figura * getFigura();
 };
 
 typedef list<Enganche*> Lista_Enganches; //OJO que se viene typedef Switch() Ezequiel()
