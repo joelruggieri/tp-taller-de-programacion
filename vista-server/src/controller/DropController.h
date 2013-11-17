@@ -30,7 +30,7 @@
 #include "../vista/objeto/YunqueView.h"
 #include "../vista/objeto/ClavoView.h"
 #include "../vista/objeto/PoleaView.h"
-
+#include "../vista/objeto/ControlRemotoView.h"
 #include <list>
 
 using namespace std;
@@ -50,6 +50,7 @@ class SogaEstaticaView;
 class GanchoView;
 class ClavoView;
 class PoleaView;
+class ControlRemotoView;
 class DropController {
 
 public:

@@ -31,6 +31,7 @@ public:
 	void dropNuevaFigura(YunqueView*);
 	void dropNuevaFigura(ClavoView*);
 	void dropNuevaFigura(PoleaView*);
+	void dropNuevaFigura(ControlRemotoView*);
 	EditorNivel * clone();
 };
 

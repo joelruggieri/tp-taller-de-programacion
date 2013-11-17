@@ -47,10 +47,10 @@ namespace CLIENTE {
 #define PATH_VISTA_CUERDA "resource/cuerda.png"
 #define PATH_VISTA_ENGRANAJE "resource/engranaje1.png"
 #define PATH_VISTA_MOTOR "resource/mot.png"
-#define PATH_VISTA_CLAVO "resource/clavo.png"
+#define PATH_VISTA_CLAVO "resource/clavo_final.png"
 #define PATH_VISTA_GANCHO "resource/arandela.png"
 #define PATH_VISTA_POLEA "resource/polea.png"
-
+#define PATH_VISTA_CONTROL "resource/control.jpg"
 
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
@@ -106,7 +106,7 @@ namespace CLIENTE {
 #define ID_FACTORY_GANCHO 62
 #define ID_FACTORY_POLEA 63
 #define ID_FACTORY_CARRITO 63
-
+#define ID_FACTORY_CONTROL 64
 //////////// Constantes de dibujo /////////
 #define RADIO_GANCHO 1.0
 #define RADIO_POLEA 4.0
@@ -132,7 +132,8 @@ namespace CLIENTE {
 
 #define ANCHO_CLAVO 6.0
 #define ALTO_CLAVO 3.0
-
+#define ANCHO_CONTROL 4.0
+#define ALTO_CONTROL 4.0
 #define ALTO_CINTA 5
 #define ANCHO_CINTA 20
 #define RADIO_EJE_CINTA 3.0

@@ -27,6 +27,7 @@
 #include "src/objeto/Yunque.h"
 #include "src/objeto/Clavo.h"
 #include "src/objeto/Polea.h"
+#include "src/objeto/ControlRemoto.h"
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -61,7 +62,7 @@ void ObjetoDAO::visit(Balancin* balancin){
 }
 
 void ObjetoDAO::visit(Tijera* tijera){
-	guardar(tijera,nodo);
+//	guardar(tijera,nodo);
 }
 
 void ObjetoDAO::visit(Carrito* carrito){
@@ -90,7 +91,7 @@ void ObjetoDAO::guardar(Balancin* objeto, YAML::Node* nodoRaiz) {
 }
 
 void ObjetoDAO::guardar(Tijera* objeto, YAML::Node* nodoRaiz) {
-	(*nodoRaiz)["Tijeras"].push_back(*objeto);
+//	(*nodoRaiz)["Tijeras"].push_back(*objeto);
 }
 
 void ObjetoDAO::guardar(Carrito* objeto, YAML::Node* nodoRaiz) {
@@ -177,4 +178,7 @@ void ObjetoDAO::visit(Polea*c) {
 
 void ObjetoDAO::guardar(Polea* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Poleas"].push_back(*objeto);
+}
+
+void ObjetoDAO::visit(ControlRemoto*) {
 }

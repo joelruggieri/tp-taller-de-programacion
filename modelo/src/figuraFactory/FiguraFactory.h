@@ -28,6 +28,8 @@ public:
 	Figura* crearYunque(float x, float y, int numeroJugador);
 	Figura* crearClavo(float x, float y, int numeroJugador);
 	Figura* crearPolea(float x, float y, int numeroJugador);
+	Figura* crearControlRemoto(float x, float y, int numeroJugador);
+	Figura* crear(ControlRemoto*);
 	Figura * crear(Gancho*);
 	Figura * crear(Plataforma*);
 	Figura * crear(Engranaje*);

@@ -36,6 +36,7 @@ public:
 	void visit (Yunque*);
 	void visit (Clavo*);
 	void visit (Polea*);
+	void visit(ControlRemoto*);
 private:
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);

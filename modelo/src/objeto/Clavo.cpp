@@ -57,7 +57,7 @@ void Clavo::crearFisica() {
 //		body->SetUserData(this);
 //		shape.SetAsBox(this->ancho/5, this->alto/2);
 		b2PolygonShape shape2;
-		shape2.SetAsBox(this->ancho / 10, this->alto / 10,b2Vec2(this->ancho / 2 - this->ancho / 13, 0),0);
+		shape2.SetAsBox(this->ancho / 10, this->alto / 10,b2Vec2(this->ancho / 2 - this->ancho / 15, 0),0);
 //		b2BodyDef bodyDefPunta;
 //		bodyDefPunta.type = b2_staticBody;
 //		bodyDefPunta.position.Set(x + ( this->ancho / 2 ), y);
