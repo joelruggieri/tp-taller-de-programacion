@@ -77,8 +77,17 @@ b2Body* Enganche::getEslabon() {
 	return eslabon;
 }
 
-void Enganche::desprender() {
+void Enganche::desprenderDeSoga() {
 	if(soga){
 		soga->desactivarJoint(this);
 	}
+}
+
+void Enganche::desenganchado() {
+	centro->desenganchado(this);
+
+}
+
+void Enganche::matarSoga() {
+	soga->romper(this);
 }

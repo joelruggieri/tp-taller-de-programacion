@@ -290,3 +290,6 @@ void Figura::limpiarReferenciasB2D() {
 
 void Figura::accionesPostFisica() {
 }
+
+void Figura::desenganchado(Enganche*) {
+}
