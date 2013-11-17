@@ -264,6 +264,10 @@ void Mapa::despertar() {
 		(*it2)->crearFisica();
 	}
 
+	for (it = figuras.begin(); it != figuras.end(); ++it) {
+		(*it)->accionesPostFisica();
+	}
+
 }
 
 bool Mapa::addFigura(Figura* figura) {

@@ -87,13 +87,14 @@ public:
 	virtual bool agregar(Mapa *);
 	virtual bool remover(Mapa *);
 	void setWorld(b2World * w, b2Body * ground);
-
+	virtual void limpiarReferenciasB2D();
 	bool isViva();
 	//cosas de la tercera parte
 	//interactuar es el metodo usado para la accion del jugador sobre un objeto. Por defecto se llama a interactuar template.
 	virtual void  interactuar(Area & area, int jugador);
 	//accionar es la accion que sucede cuando choca contra otro objeto que lo hace ejecutar su accion: ejemplo el globo rebentar.
 	virtual void accionar();
+	virtual void accionesPostFisica();
 };
 
 #endif /* FIGURA_H_ */

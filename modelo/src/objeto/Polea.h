@@ -21,8 +21,17 @@ public:
 	void acept(VisitorFigura*);
 	float getRadio() const;
 	void setRadio(float radio);
+	void removerFisica();
+	void accionesPostFisica();
+	void limpiarReferenciasB2D();
 private:
+	void crearEnganches();
+	Enganche * izq;
+	Enganche * der;
 	float radio;
+	b2Joint * joint;
+	b2Body * radioAccion;
+	typedef Objeto super;
 };
 
 #endif /* POLEA_H_ */

@@ -50,7 +50,7 @@ public:
 	//estos son para poder indicar donde esta el cuerpo.
 	bool estaEstatica();
 	float getRadio();
-	void calcularCentroCuadrado();
+	virtual void calcularCentroCuadrado();
 
 protected:
 	void crearFisicaEstaticaTemplate();

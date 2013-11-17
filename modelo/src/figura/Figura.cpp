@@ -249,6 +249,7 @@ bool Figura::remover(Mapa*m) {
 void Figura::setWorld(b2World* w, b2Body * g) {
 	this->myWorld = w;
 	this->ground = g;
+	limpiarReferenciasB2D();
 }
 
 void Figura::setPosicion(float x, float y) {
@@ -281,4 +282,11 @@ void Figura::interactuar(Area& area, int jugador) {
 
 bool Figura::isViva() {
 	return viva;
+}
+
+void Figura::limpiarReferenciasB2D() {
+//	setBody(NULL);
+}
+
+void Figura::accionesPostFisica() {
 }

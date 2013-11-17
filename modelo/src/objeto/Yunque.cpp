@@ -52,7 +52,7 @@ void Yunque::crearFisica() {
 		bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyPelota.filter.maskBits = CATEGORIA_FIGURAS;
 		bodyPelota.shape = &shape;
-		bodyPelota.density = 200.0f;
+		bodyPelota.density = 25.0f;
 		bodyPelota.friction = 0.3f;
 		bodyPelota.restitution = 0.0f;	//mucho coeficiente de restitucion
 		body->CreateFixture(&bodyPelota)->SetUserData(this);
