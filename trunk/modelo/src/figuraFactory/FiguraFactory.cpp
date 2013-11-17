@@ -239,7 +239,6 @@ Figura* FiguraFactory::crearPolea(float x, float y, int numeroJugador) {
 Figura* FiguraFactory::crear(Polea*c) {
 	Polea* y = (Polea*)this->crearPolea(c->getX(), c->getY(),c->getNumeroJugador());
 		y->setRotacion(c->getRotacion());
-		y->setRadio(c->getRadio());
 		y->setReg(c->getReg());
 		return y;
 }
