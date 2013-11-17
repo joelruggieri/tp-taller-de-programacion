@@ -18,7 +18,7 @@ private:
 	Nivel *n;
 	Logger log;
 public:
-	MainServerThread();
+	MainServerThread(const char* nivel);
 	void run();
 	virtual ~MainServerThread();
 };

@@ -23,12 +23,12 @@ using namespace std;
 //#define PUERTO 6005
 //#define PUERTO 6006
 #define PUERTO 6000
-MainServerThread::MainServerThread() {
+MainServerThread::MainServerThread(const char* nivel) {
 	PersistenciaManager bbdd;
 	//n = bbdd.getNivel();
 	//bbdd.liberarNivel();*/
 	NivelDAO* dao = new NivelDAO();
-	n = dao->leerNivel("nivelPruebaCorrecto.yaml");
+	n = dao->leerNivel(nivel);
 
 }
 
