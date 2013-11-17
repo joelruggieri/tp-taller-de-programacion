@@ -104,12 +104,14 @@ namespace CLIENTE {
 #define ID_FACTORY_GANCHO 62
 #define ID_FACTORY_POLEA 63
 #define ID_FACTORY_CARRITO 63
+
 //////////// Constantes de dibujo /////////
 #define RADIO_GANCHO 1.0
 #define RADIO_POLEA 4.0
 #define RADIO_PELOTA 3.0
 #define RADIO_BOLA 3.0
 #define RADIO_GLOBO 3.5
+#define ANCHO_ESLABON_SOGA 1
 #define ANCHO_PLATAFORMA 10.0
 #define ALTO_PLATAFORMA 2.5
 #define ALTO_UNION_ESTATICA 10.0

@@ -21,7 +21,8 @@ public:
 	bool crearFisicaEstatica();
 	void crearFisica();
 	void acept(VisitorFigura*);
-
+	float getXEslabon();
+	float getYEslabon();
 	bool isInicioValido(Figura * f, float x, float y);
 	bool isFinValido(Figura * f, float x, float y);
 	void extraerPosInicial(Figura * f, float x, float y);
@@ -32,11 +33,13 @@ public:
 	void calcularCentroCuadrado();
 	void limpiarReferenciasB2D();
 	void desactivarJoint(Enganche *);
+	void notifyEvent(Evento_type);
 protected:
 	void crearLazo(b2World*);
 	void updatePosicionesFiguras();
 	void setearPuntoInicial(Figura*f);
 	void setearPuntoFinal(Figura *f);
+	void updatePosicionesSinFisica();
 private:
 	Enganche * getEngancheMasCercano(Figura* figura, float x, float y, bool desocupado);
 	Enganche *origen, *destino;
@@ -44,6 +47,7 @@ private:
 	b2Vec2 posEslabon;
 	b2Joint * joint2;
 	typedef Union super;
+	b2Vec2 determinarPosEslabon();
 };
 
 #endif /* SOGA_H_ */

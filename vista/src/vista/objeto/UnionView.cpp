@@ -55,6 +55,7 @@ void UnionView::update(ViewMsj*m) {
 	xcl = (xl + xHastal) / 2.0;
 	ycl = (yl + yHastal) / 2.0;
 	estatica = mjeCurrent->isEstatico();
+	conEslabon = mjeCurrent->isConEslabon();
 }
 
 void UnionView::resizear() {

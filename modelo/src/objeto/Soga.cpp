@@ -64,23 +64,23 @@ void Soga::setearPuntoFinal(Figura* f) {
 void Soga::crearLazo(b2World* w) {
 
 	if (conEslabon()) {
-		float x = this->getX();
-		float y = this->getY();
-		b2Vec2 centro(x, y);
-		b2CircleShape shapeCircle;
 
+		b2Vec2 posEslabon = determinarPosEslabon();
+
+		b2CircleShape shapeCircle;
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
-		bodyDef.position.Set(centro.x, centro.y);
-		bodyDef.linearDamping = 1;
+		bodyDef.position.Set(posEslabon.x, posEslabon.y);
+		bodyDef.gravityScale= 0;
 		eslabon = myWorld->CreateBody(&bodyDef);
 		shapeCircle.m_radius = 1;
+
 		b2FixtureDef bodyBolaBoliche;
 		bodyBolaBoliche.filter.categoryBits = CATEGORIA_ESLABON;
 		bodyBolaBoliche.filter.maskBits = CATEGORIA_ESLABON;
 		bodyBolaBoliche.shape = &shapeCircle;
 		//ENTREGA3 CUANDO FUNCIONE LA POLEA VER ESTO PARA EL GLOBO.
-		bodyBolaBoliche.density = 5.0f;
+		bodyBolaBoliche.density = 50.0f;
 		eslabon->CreateFixture(&bodyBolaBoliche)->SetUserData(this);
 
 		//y ahora hago las uniones.
@@ -89,7 +89,7 @@ void Soga::crearLazo(b2World* w) {
 		ropeJoint.bodyA = this->figuraInicio->getBody();
 		ropeJoint.bodyB = eslabon;
 		ropeJoint.collideConnected = true;
-		b2Vec2 dif = inicio - centro;
+		b2Vec2 dif = inicio - posEslabon;
 		ropeJoint.maxLength = dif.Length(); // el maximo sale del calculo de la distancia en union
 		ropeJoint.localAnchorA = origen->getPos();
 		ropeJoint.localAnchorB = b2Vec2(0, 0);
@@ -101,9 +101,9 @@ void Soga::crearLazo(b2World* w) {
 		ropeJoint2.bodyA = eslabon;
 		ropeJoint2.bodyB = this->figuraFin->getBody();
 		ropeJoint2.collideConnected = true;
-		b2Vec2 dif2 =  centro - fin;
+		b2Vec2 dif2 = posEslabon - fin;
 		ropeJoint2.maxLength = dif2.Length(); // el maximo sale del calculo de la distancia en union
-		ropeJoint2.localAnchorA = b2Vec2(0,0);
+		ropeJoint2.localAnchorA = b2Vec2(0, 0);
 		ropeJoint2.localAnchorB = destino->getPos();
 		joint2 = w->CreateJoint(&ropeJoint2);
 		destino->setEslabon(eslabon);
@@ -154,6 +154,9 @@ void Soga::updatePosicionesFiguras() {
 	if (this->figuraFin->getBody()) {
 		this->fin = this->figuraFin->getBody()->GetWorldPoint(destino->getPos());
 	}
+	if(conEslabon()){
+		posEslabon = determinarPosEslabon();
+	}
 
 }
 
@@ -191,7 +194,9 @@ void Soga::removerFisica() {
 		viva = false;
 	}
 	if (eslabon != NULL) {
-		myWorld->DestroyJoint(joint2);
+		if (joint2 != NULL) {
+			myWorld->DestroyJoint(joint2);
+		}
 		myWorld->DestroyBody(eslabon);
 		eslabon = NULL;
 	}
@@ -207,14 +212,13 @@ void Soga::removerFisica() {
 void Soga::updatePosicionesFigurasSinFisica() {
 	this->inicio = this->origen->getWorldPos();
 	this->fin = this->destino->getWorldPos();
+	this->posEslabon = determinarPosEslabon();
 }
 
 bool Soga::conEslabon() {
 	bool result = false;
-	if (origen) {
+	if(origen && destino ){
 		result = result || origen->getRequiereEslabon();
-	}
-	if (destino) {
 		result = result || destino->getRequiereEslabon();
 	}
 	return result;
@@ -223,7 +227,7 @@ bool Soga::conEslabon() {
 void Soga::calcularCentroCuadrado() {
 	super::calcularCentroCuadrado();
 	if (conEslabon()) {
-		posEslabon.Set(this->x, this->y);
+		posEslabon = determinarPosEslabon();
 	}
 }
 
@@ -249,4 +253,82 @@ void Soga::desactivarJoint(Enganche* e) {
 		myWorld->DestroyJoint(joint);
 		joint = NULL;
 	}
+}
+
+b2Vec2 Soga::determinarPosEslabon() {
+	b2Vec2 posOrigen = inicio;
+	b2Vec2 posDestino = fin;
+	if (origen && destino && origen->getRequiereEslabon() && destino->getRequiereEslabon()) {
+		return b2Vec2((posOrigen.x + posDestino.x) / 2.0, (posOrigen.y + posDestino.y) / 2.0);
+	}
+	if (origen && origen->getRequiereEslabon()) {
+		return posDestino;
+	}
+	if (destino && destino->getRequiereEslabon()) {
+		return posOrigen;
+	}
+	return b2Vec2((posOrigen.x + posDestino.x) / 2.0, (posOrigen.y + posDestino.y) / 2.0);
+}
+
+void Soga::notifyEvent(Evento_type enumEvento) {
+	Figura * o = (Figura *) this->eventHelper->getLastObservable();
+	if (enumEvento== DESACTIVADO) {
+		if (conEslabon()) {
+
+			if (figuraInicio == o && joint) {
+				myWorld->DestroyJoint(joint);
+				joint = NULL;
+			}
+			if (figuraFin == o && joint2) {
+				myWorld->DestroyJoint(joint2);
+				joint2 = NULL;
+			}
+		} else {
+			if(joint){
+				myWorld->DestroyJoint(joint);
+				joint = NULL;
+			}
+		}
+	}
+	if(enumEvento == DESPUES_DESTRUCCION &&(o == figuraFin || o == figuraInicio)){
+		if(o == figuraFin){
+			figuraFin = NULL;
+		}
+		if(o == figuraInicio){
+			figuraInicio = NULL;
+		}
+//		cout << "la union se entera de la destruccion del extremo y solicita su destruccion" << endl;
+		notify(DESTRUCCION_FORZADA);
+	}
+	if(enumEvento == FISICA_REMOVIDA){
+//		cout << "me entere remocion fisica" << endl;
+		this->removerFisica();
+	}
+	if(enumEvento == CAMBIO_ESPACIAL_FORZADO){
+//		cout << "me entere cambio espacial forzado" << endl;
+		updatePosicionesFigurasSinFisica();
+		calcularCentroCuadrado();
+//		vista->update();
+	}
+	if(enumEvento == FISICA_E_CREADA){
+//		cout << "me entere creacion fisica" << endl;
+		updateCaracteristicas();
+		this->crearFisicaEstatica();
+//		vista->update();
+	}
+}
+
+float Soga::getXEslabon() {
+	if(eslabon){
+		return eslabon->GetPosition().x;
+	}
+	return posEslabon.x;
+}
+
+float Soga::getYEslabon() {
+	if(eslabon){
+		return eslabon->GetPosition().y;
+	}
+
+	return posEslabon.y;
 }

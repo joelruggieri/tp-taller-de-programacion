@@ -11,7 +11,7 @@
 
 class ViewObjetoUnionUpdateMsj: public ViewObjetoUpdateMsj {
 private:
-	float xHasta,yHasta,radioInicial, radioFinal, radio;
+	float xHasta,yHasta,radioInicial, radioFinal, radio, xEslb, yEslb;
 	bool estatico;
 	bool conEslabon;
 public:
@@ -49,6 +49,10 @@ public:
 	float getRadio() const {
 		return radio;
 	}
+	void setPosEslabon(float x, float y);
+	bool isConEslabon() const;
+	float getXEslb() const;
+	float getYEslb() const;
 };
 
 #endif /* VIEWOBJETOUNIONUPDATEMSJ_H_ */

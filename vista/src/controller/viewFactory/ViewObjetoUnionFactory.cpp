@@ -29,8 +29,12 @@ return viewResult;
 }
 
 View* ViewObjetoUnionFactory::crearSoga(ViewObjetoUnionUpdateMsj* o) {
-
-	return new SogaView(o->getX(), o->getY(),o->getXHasta(),o->getYHasta(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CUERDA));
+	SogaView * v = new SogaView(o->getX(), o->getY(),o->getXHasta(),o->getYHasta(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CUERDA));
+	v->update(o);
+	if(o->isConEslabon()){
+		v->setPosEslabonL(o->getXEslb(), o->getYEslb());
+	}
+	return v;
 
 }
 
