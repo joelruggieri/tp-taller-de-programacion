@@ -44,6 +44,7 @@ Correa::~Correa() {
 
 void Correa::crearFisica() {
 	crearLazo((Engranaje*) this->figuraInicio, (Engranaje*) this->figuraFin, myWorld);
+	estatica= false;
 }
 
 void Correa::crearLazo(Engranaje * a, Engranaje* b, b2World* w) {

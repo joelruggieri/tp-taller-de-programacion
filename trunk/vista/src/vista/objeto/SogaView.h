@@ -24,6 +24,7 @@ private:
 	typedef UnionView super;
 	float xEslabonl, yEslabonl;
 	int xEslabonp,xEslabonDibp , yEslabonp,yEslabonDibp, anchoEslabonP;
+	bool primerTramo, segundoTramo;
 };
 }
 #endif /* SOGAVIEW_H_ */

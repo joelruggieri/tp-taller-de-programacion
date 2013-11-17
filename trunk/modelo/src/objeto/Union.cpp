@@ -17,6 +17,7 @@ Union::Union(float x, float y, float h) :
 	this->hB = this->h;
 	eventHelper = new ObserverFiguraHelper(this);
 	joint = NULL;
+	estatica = true;
 }
 
 Union::Union() :
@@ -25,6 +26,7 @@ Union::Union() :
 	figuraFin = NULL;
 	eventHelper = new ObserverFiguraHelper(this);
 	joint = NULL;
+	estatica = true;
 }
 
 Union::~Union() {
@@ -133,6 +135,7 @@ void Union::crearFisicaEstaticaTemplate() {
 	body->CreateFixture(&bodyBolaBoliche);
 	body->SetUserData(this);
 	this->setBody(body);
+	estatica = true;
 
 }
 
@@ -204,6 +207,7 @@ Union::Union(const Union& figura): Objeto(figura) {
 	this->hB = this->h;
 	joint = NULL;
 	eventHelper = new ObserverFiguraHelper(this);
+	estatica = true;
 }
 
 uint16 Union::getMascaraExtremos() {
@@ -248,7 +252,7 @@ void Union::updatePosicionesFigurasSinFisica() {
 }
 
 bool Union::estaEstatica() {
-	return joint == NULL;
+	return estatica;
 }
 
 float Union::getRadio() {
