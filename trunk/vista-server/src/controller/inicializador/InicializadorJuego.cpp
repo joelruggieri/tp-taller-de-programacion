@@ -35,6 +35,7 @@ using namespace std;
 #include "../viewFactory/ViewSogaDinamicaFactory.h"
 #include "../viewFactory/ViewYunqueFactory.h"
 #include "../viewFactory/viewClavoFactory.h"
+#include "../viewFactory/ViewControlRemotoFactory.h"
 #include "../zonaDragAndDrop/ZonaCreacion.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "../RutasArchivos.h"
@@ -55,6 +56,7 @@ const string KEY_GANCHO = "GANCHO";
 const string KEY_YUNQUE = "YUNQUE";
 const string KEY_CLAVO = "CLAVO";
 const string KEY_POLEA = "POLEA";
+const string KEY_CONTROL_REMOTO = "CONTROL";
 InicializadorJuego::InicializadorJuego(Nivel* nivel, ModeloController * modeloController) {
 	this->modeloController = modeloController;
 	this->factory = new FiguraFactory();
@@ -191,8 +193,8 @@ ZonaTablero* InicializadorJuego::crearTablero() {
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_YUNQUE,viewFactory));
 	viewFactory = new viewClavoFactory(NULL,0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CLAVO,viewFactory));
-
-
+	viewFactory = new ViewControlRemotoFactory(NULL,0);
+	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_CONTROL_REMOTO,viewFactory));
 	list<Figura*>& figurasNivel = this->nivel->getFiguras();
 	list<Figura*>::iterator it;
 	for(it = figurasNivel.begin() ; it != figurasNivel.end() ; ++it){
@@ -258,5 +260,11 @@ void InicializadorJuego::visit(Clavo* c) {
 void InicializadorJuego::visit(Polea* c) {
 	Figura * fig = this->factory->crear(c);
 		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_POLEA);
+		this->agregarFigura(iter->second, fig);
+}
+
+void InicializadorJuego::visit(ControlRemoto* c) {
+	Figura * fig = this->factory->crear(c);
+		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CONTROL_REMOTO);
 		this->agregarFigura(iter->second, fig);
 }

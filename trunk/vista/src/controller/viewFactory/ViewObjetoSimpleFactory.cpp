@@ -118,7 +118,11 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	case OBJ_SIMPLE_S_CARRITO:
 		viewRetorn = this->crearCarrito(a);
 		break;
+	case OBJ_SIMPLE_S_CONTROL:
+		viewRetorn = this->crearControlRemoto(a);
+		break;
 	}
+
 	return viewRetorn;
 
 }
@@ -129,7 +133,10 @@ View* ViewObjetoSimpleFactory::crearClavo(ViewObjetoUpdateMsj* o) {
 	return viewReturn;
 }
 
+View* ViewObjetoSimpleFactory::crearControlRemoto(ViewObjetoUpdateMsj* o) {
+	ControlRemotoView* viewReturn = new ControlRemotoView(o->getX(), o->getY(),ANCHO_CONTROL, ALTO_CONTROL,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CONTROL));
+				return viewReturn;
+}
 
 } /* namespace CLIENTE */
-
 

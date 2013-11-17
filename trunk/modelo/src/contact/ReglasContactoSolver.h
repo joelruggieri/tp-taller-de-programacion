@@ -40,6 +40,7 @@ public:
 	void visit(Yunque*);
 	void visit(Clavo*);
 	void visit(Polea*);
+	void visit(ControlRemoto*);
 	void procesarContacto(CintaTransportadora * c, Figura *,b2Contact* contact, const b2Manifold* oldManifold);
 	void procesarContacto(GloboHelio * c, Clavo *,b2Contact* contact, const b2Manifold* oldManifold);
 	ReglasContactoSolver();

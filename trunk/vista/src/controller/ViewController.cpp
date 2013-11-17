@@ -94,6 +94,7 @@ void ViewController::crearPantalla() {
 	cargador->cargarTexture(PATH_ERROR_IMG);
 	cargador->cargarTexture(PATH_VISTA_CLAVO);
 	cargador->cargarTexture(PATH_VISTA_POLEA);
+	cargador->cargarTexture(PATH_VISTA_CONTROL);
 	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
 	PATH_ZONA_CREACION);
 	View * view = new Canvas(60, -10, 120, 20, LAYER_CANVAS_RELLENO, text);

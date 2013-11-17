@@ -22,6 +22,7 @@
 #include "../objeto/Yunque.h"
 #include "../objeto/Clavo.h"
 #include "../objeto/Polea.h"
+#include "../objeto/ControlRemoto.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory() {
 
@@ -255,4 +256,19 @@ Figura* FiguraFactory::crear(Polea*c) {
 		y->setRotacion(c->getRotacion());
 		y->setReg(c->getReg());
 		return y;
+}
+
+Figura* FiguraFactory::crearControlRemoto(float x, float y, int numeroJugador) {
+	Figura* figura = new ControlRemoto(x,y,ANCHO_CONTROL_REMOTO, ALTO_CONTROL_REMOTO);
+		figura->setNumeroJugador(numeroJugador);
+		return figura;
+}
+
+Figura* FiguraFactory::crear(ControlRemoto* o) {
+	ControlRemoto* y = (ControlRemoto*)this->crearControlRemoto(o->getX(), o->getY(), o->getNumeroJugador());
+//	y->setRotacion(c->getRotacion());
+	y->setRotacion(o->getRotacion());
+		y->setAncho(o->getAncho());
+		y->setReg(o->getReg());
+			return y;
 }

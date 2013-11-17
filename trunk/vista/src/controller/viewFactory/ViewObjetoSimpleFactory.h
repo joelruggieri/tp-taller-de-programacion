@@ -24,6 +24,7 @@
 #include "../../vista/objeto/YunqueView.h"
 #include "../../vista/objeto/ClavoView.h"
 #include "../../vista/objeto/PoleaView.h"
+#include "../../vista/objeto/ControlRemotoView.h"
 #include "../../ConstantesVista.h"
 namespace CLIENTE {
 
@@ -43,6 +44,7 @@ private:
 	View* crearClavo(ViewObjetoUpdateMsj*);
 	View* crearGancho(ViewObjetoUpdateMsj*);
 	View* crearPolea(ViewObjetoUpdateMsj*);
+	View* crearControlRemoto(ViewObjetoUpdateMsj*);
 public:
 	ViewObjetoSimpleFactory();
 	virtual ~ViewObjetoSimpleFactory();
