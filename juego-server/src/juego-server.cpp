@@ -25,8 +25,10 @@ int main(int argc, char *argv[]) {
 		char * nivel = argv[1];
 		AdministradorDeArchivos::registrar(nivel);
 	}
-	MainServerThread contr;
+	string nivel = argv[1];
+	MainServerThread contr(nivel.c_str());
 	try{
+
 	contr.run();
 	}catch (ConexionException & e) {
 //		log.error("No se ha podido realizar la partida por un problema de conexion");
