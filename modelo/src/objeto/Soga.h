@@ -32,10 +32,16 @@ public:
 	bool conEslabon();
 	void calcularCentroCuadrado();
 	void limpiarReferenciasB2D();
+
+	// SOLO DESACTIVA EL JOINT UNIDO AL ENGANCHE PERO NO ELIMINA LA SOGA EN NINGUN CASO.
 	void desactivarJoint(Enganche *);
 	void notifyEvent(Evento_type);
+	//INDICA SI EL PRIMER TRAMO ESTA ACTIVO, PUEDE NO EXISTIR EL JOINT Y ESTAR ACTIVO TBN
 	bool activoPrimerTramo();
+	//INDICA SI EL PRIMER TRAMO ESTA ACTIVO, PUEDE NO EXISTIR EL JOINT Y ESTAR ACTIVO TBN
 	bool activoSegundoTramo();
+	//ROMPE LA SOGA Y PROPAGA EL EVENTO HACIA EL OTRO ESTREMO
+	void romper(Enganche *);
 protected:
 	void crearLazo(b2World*);
 	void updatePosicionesFiguras();

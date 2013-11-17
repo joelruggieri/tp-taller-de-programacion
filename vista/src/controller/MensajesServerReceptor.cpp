@@ -16,7 +16,7 @@ MensajesServerReceptor::MensajesServerReceptor(StatusJuego * status) {
 }
 
 void MensajesServerReceptor::visit(MensajePlano* m) {
-	lock();
+//	lock();
 	if(m->getMensaje() == TAG_PLANO_MSJ_JUEGOTERMINADOPERDIDO){
 		status->perder();
 	}
@@ -32,8 +32,7 @@ void MensajesServerReceptor::visit(MensajePlano* m) {
 	if(m->getMensaje() == TAG_PLANO_MSJ_JUEGOPAUSADO){
 		status->parar();
 	}
-
-	unlock();
+//	unlock();
 }
 
 MensajesServerReceptor::~MensajesServerReceptor() {

@@ -74,7 +74,7 @@ void Soga::crearLazo(b2World* w) {
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(posEslabon.x, posEslabon.y);
-		bodyDef.gravityScale= 0;
+		bodyDef.gravityScale = 0;
 		eslabon = myWorld->CreateBody(&bodyDef);
 		shapeCircle.m_radius = 1;
 
@@ -157,7 +157,7 @@ void Soga::updatePosicionesFiguras() {
 	if (this->figuraFin->getBody()) {
 		this->fin = this->figuraFin->getBody()->GetWorldPoint(destino->getPos());
 	}
-	if(conEslabon()){
+	if (conEslabon()) {
 		posEslabon = determinarPosEslabon();
 	}
 
@@ -221,7 +221,7 @@ void Soga::updatePosicionesFigurasSinFisica() {
 
 bool Soga::conEslabon() {
 	bool result = false;
-	if(origen && destino ){
+	if (origen && destino) {
 		result = result || origen->getRequiereEslabon();
 		result = result || destino->getRequiereEslabon();
 	}
@@ -253,13 +253,10 @@ void Soga::desactivarJoint(Enganche* e) {
 			myWorld->DestroyJoint(joint2);
 			joint2 = NULL;
 		}
-		if(joint == NULL && joint2==NULL){
-			viva = false;
-		}
 	} else {
 		myWorld->DestroyJoint(joint);
 		joint = NULL;
-		viva = false;
+//		viva = false;
 	}
 }
 
@@ -280,51 +277,57 @@ b2Vec2 Soga::determinarPosEslabon() {
 
 void Soga::notifyEvent(Evento_type enumEvento) {
 	Figura * o = (Figura *) this->eventHelper->getLastObservable();
-	if (enumEvento== DESACTIVADO) {
-		if (conEslabon()) {
-
-			if (figuraInicio == o && joint) {
-				myWorld->DestroyJoint(joint);
-				joint = NULL;
-				primerTramoOn = false;
-			}
-			if (figuraFin == o && joint2) {
-				myWorld->DestroyJoint(joint2);
-				joint2 = NULL;
-				segundoTramoOn = false;
-			}
-			if(!segundoTramoOn && !primerTramoOn){
-				viva = false;
-			}
-		} else {
-			if(joint){
-				myWorld->DestroyJoint(joint);
-				joint = NULL;
-				viva = false;
-			}
+	if (enumEvento == DESACTIVADO) {
+//		if (conEslabon()) {
+//
+//			if (figuraInicio == o && joint) {
+//				myWorld->DestroyJoint(joint);
+//				joint = NULL;
+//				primerTramoOn = false;
+//			}
+//			if (figuraFin == o && joint2) {
+//				myWorld->DestroyJoint(joint2);
+//				joint2 = NULL;
+//				segundoTramoOn = false;
+//			}
+//			if (!segundoTramoOn && !primerTramoOn) {
+//				viva = false;
+//			}
+//		} else {
+//			if (joint) {
+//				myWorld->DestroyJoint(joint);
+//				joint = NULL;
+//				viva = false;
+//			}
+//		}
+		if(o == figuraInicio){
+			romper(origen);
+		}
+		if(o == figuraFin){
+			romper(destino);
 		}
 	}
-	if(enumEvento == DESPUES_DESTRUCCION &&(o == figuraFin || o == figuraInicio)){
-		if(o == figuraFin){
+	if (enumEvento == DESPUES_DESTRUCCION && (o == figuraFin || o == figuraInicio)) {
+		if (o == figuraFin) {
 			figuraFin = NULL;
 		}
-		if(o == figuraInicio){
+		if (o == figuraInicio) {
 			figuraInicio = NULL;
 		}
 //		cout << "la union se entera de la destruccion del extremo y solicita su destruccion" << endl;
 		notify(DESTRUCCION_FORZADA);
 	}
-	if(enumEvento == FISICA_REMOVIDA){
+	if (enumEvento == FISICA_REMOVIDA) {
 //		cout << "me entere remocion fisica" << endl;
 		this->removerFisica();
 	}
-	if(enumEvento == CAMBIO_ESPACIAL_FORZADO){
+	if (enumEvento == CAMBIO_ESPACIAL_FORZADO) {
 //		cout << "me entere cambio espacial forzado" << endl;
 		updatePosicionesFigurasSinFisica();
 		calcularCentroCuadrado();
 //		vista->update();
 	}
-	if(enumEvento == FISICA_E_CREADA){
+	if (enumEvento == FISICA_E_CREADA) {
 //		cout << "me entere creacion fisica" << endl;
 		updateCaracteristicas();
 		this->crearFisicaEstatica();
@@ -333,14 +336,14 @@ void Soga::notifyEvent(Evento_type enumEvento) {
 }
 
 float Soga::getXEslabon() {
-	if(eslabon){
+	if (eslabon) {
 		return eslabon->GetPosition().x;
 	}
 	return posEslabon.x;
 }
 
 float Soga::getYEslabon() {
-	if(eslabon){
+	if (eslabon) {
 		return eslabon->GetPosition().y;
 	}
 
@@ -353,4 +356,35 @@ bool Soga::activoPrimerTramo() {
 
 bool Soga::activoSegundoTramo() {
 	return segundoTramoOn;
+}
+
+void Soga::romper(Enganche * e) {
+	if (e == origen || e == destino) {
+		if (joint) {
+			myWorld->DestroyJoint(joint);
+			joint = NULL;
+		}
+		if(joint2){
+			myWorld->DestroyJoint(joint2);
+			joint2 = NULL;
+
+		}
+
+		if(e==origen){
+			destino->desenganchado();
+		}
+		if(e==destino){
+			origen->desenganchado();
+		}
+
+		if(conEslabon() && eslabon){
+			myWorld->DestroyBody(eslabon);
+			eslabon = NULL;
+		}
+
+		viva = false;
+
+
+	}
+
 }

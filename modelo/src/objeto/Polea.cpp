@@ -113,8 +113,8 @@ void Polea::accionesPostFisica() {
 	if(eslabonIzq && eslabonDer){
 		b2Vec2 anchor1 = eslabonIzq->GetWorldCenter();
 		b2Vec2 anchor2 = eslabonDer->GetWorldCenter();
-		izq->desprender();
-		der->desprender();
+		izq->desprenderDeSoga();
+		der->desprenderDeSoga();
 		b2Vec2 groundAnchor1(izq->getWorldPos());
 		b2Vec2 groundAnchor2(der->getWorldPos());
 		float32 ratio = 1.0f;
@@ -136,4 +136,19 @@ void Polea::crearEnganches() {
 
 void Polea::limpiarReferenciasB2D() {
 	joint = NULL;
+}
+
+void Polea::desenganchado(Enganche* e) {
+	if(joint && (e==izq || e ==der)){
+		myWorld->DestroyJoint(joint);
+		joint = NULL;
+		if(e == izq){
+			der->matarSoga();
+		} else {
+			izq->matarSoga();
+		}
+	}
+
+
+
 }

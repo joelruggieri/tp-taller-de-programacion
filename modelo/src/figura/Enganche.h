@@ -37,7 +37,9 @@ public:
 	void setRequiereEslabon( bool );
 	void setEslabon(b2Body * b);
 	b2Body * getEslabon();
-	void desprender();
+	void desprenderDeSoga();
+	void matarSoga();
+	void desenganchado();
 };
 
 typedef list<Enganche*> Lista_Enganches; //OJO que se viene typedef Switch() Ezequiel()

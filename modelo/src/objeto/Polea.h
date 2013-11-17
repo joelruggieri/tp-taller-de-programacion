@@ -24,6 +24,7 @@ public:
 	void removerFisica();
 	void accionesPostFisica();
 	void limpiarReferenciasB2D();
+	void desenganchado(Enganche*);
 private:
 	void crearEnganches();
 	Enganche * izq;
