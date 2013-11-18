@@ -23,6 +23,7 @@
 #include "../viewFactory/viewClavoFactory.h"
 #include "../viewFactory/ViewPoleaFactory.h"
 #include "../viewFactory/ViewControlRemotoFactory.h"
+#include "../viewFactory/ViewBombaFactory.h"
 #include "../editor/SimpleEditorEstirar.h"
 #include "../editor/EditorUnion.h"
 #include "../editor/SimpleEditorOrientacionCambiable.h"
@@ -45,6 +46,7 @@ const string KEY_YUNQUE = TAG_FACTORY_YUNQUE;
 const string KEY_CLAVO = TAG_FACTORY_CLAVO;
 const string KEY_POLEA = TAG_FACTORY_POLEA;
 const string KEY_CONTROL = TAG_FACTORY_CONTROL;
+const string KEY_BOMBA = TAG_FACTORY_BOMBA;
 JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloController* modeloController) {
 	this->tablero = tablero;
 	this->modeloController = modeloController;
@@ -113,6 +115,8 @@ JuegoControllerFactory::JuegoControllerFactory(ZonaTablero* tablero, ModeloContr
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_CLAVO,viewFactory));
 	viewFactory = new ViewControlRemotoFactory(editorSimpleAnguloFijo1, 0);
 	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_CONTROL,viewFactory));
+	viewFactory = new ViewBombaFactory(editorSimpleAnguloFijo1, 0);
+	this->factoriesDelJuego.insert(pair<string, ViewFiguraFactory*>(KEY_BOMBA,viewFactory));
 }
 
 JuegoEventsController* JuegoControllerFactory::crearConfiguracionJugador(Jugador* jugador){

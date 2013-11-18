@@ -69,6 +69,7 @@ public:
 	void visit(Clavo*);
 	void visit(Polea*);
 	void visit(ControlRemoto*);
+	void visit(Bomba*);
 	ZonaTablero* crearTablero();
 };
 

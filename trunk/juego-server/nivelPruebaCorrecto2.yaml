@@ -41,7 +41,7 @@ Jugadores:
         cantidad: 5
       - nombre: FL
         cantidad: 34
-      - nombre: FA
+      - nombre: FB
         cantidad: 100
       - nombre: FC
         cantidad: 60
@@ -55,5 +55,5 @@ Jugadores:
         cantidad: 3
       - nombre: FCO
         cantidad: 3
-      - nombre: FPO
+      - nombre: FBO
         cantidad: 3

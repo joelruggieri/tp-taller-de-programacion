@@ -121,6 +121,9 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 	case OBJ_SIMPLE_S_CONTROL:
 		viewRetorn = this->crearControlRemoto(a);
 		break;
+	case OBJ_SIMPLE_S_BOMBA:
+		viewRetorn = this->crearBomba(a);
+		break;
 	}
 
 	return viewRetorn;
@@ -138,5 +141,11 @@ View* ViewObjetoSimpleFactory::crearControlRemoto(ViewObjetoUpdateMsj* o) {
 				return viewReturn;
 }
 
+View* ViewObjetoSimpleFactory::crearBomba(ViewObjetoUpdateMsj* o) {
+	BombaView* viewReturn = new BombaView(o->getX(), o->getY(),2*RADIO_PELOTA, 2*RADIO_PELOTA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_BOMBA));
+			return viewReturn;
+}
 } /* namespace CLIENTE */
+
+
 

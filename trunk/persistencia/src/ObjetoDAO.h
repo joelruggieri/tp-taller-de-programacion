@@ -37,6 +37,7 @@ public:
 	void visit (Clavo*);
 	void visit (Polea*);
 	void visit(ControlRemoto*);
+	void visit(Bomba*);
 private:
 	void guardar(Plataforma *objeto, YAML::Node *nodoRaiz);
 	void guardar(Balancin *objeto, YAML::Node *nodoRaiz);

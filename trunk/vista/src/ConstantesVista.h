@@ -51,7 +51,7 @@ namespace CLIENTE {
 #define PATH_VISTA_GANCHO "resource/arandela.png"
 #define PATH_VISTA_POLEA "resource/polea.png"
 #define PATH_VISTA_CONTROL "resource/control.jpg"
-
+#define PATH_VISTA_BOMBA "resource/bomba2.png"
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
 #define PATH_ROTACION_IMG "resource/rotacion.png"
@@ -107,6 +107,7 @@ namespace CLIENTE {
 #define ID_FACTORY_POLEA 63
 #define ID_FACTORY_CARRITO 63
 #define ID_FACTORY_CONTROL 64
+#define ID_FACTORY_BOMBA 65
 //////////// Constantes de dibujo /////////
 #define RADIO_GANCHO 1.0
 #define RADIO_POLEA 4.0

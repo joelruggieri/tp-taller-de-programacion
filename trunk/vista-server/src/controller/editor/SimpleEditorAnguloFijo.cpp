@@ -143,6 +143,10 @@ void SimpleEditorAnguloFijo::dropNuevaFigura(ControlRemotoView* c) {
 	dropear(c, this->figurasFactory->crearControlRemoto(c->getXCentro(),c->getYCentro(), this->numeroJugadorDuenio));
 }
 
+void SimpleEditorAnguloFijo::dropNuevaFigura(BombaView* view) {
+	dropear(view, this->figurasFactory->crearBomba(view->getXCentro(), view->getYCentro(),this->numeroJugadorDuenio));
+}
+
 EditorNivel* SimpleEditorAnguloFijo::clone() {
 	return new SimpleEditorAnguloFijo(modeloController, tablero, figurasFactory,yMaxDrag,angulosPermitidos);
 }

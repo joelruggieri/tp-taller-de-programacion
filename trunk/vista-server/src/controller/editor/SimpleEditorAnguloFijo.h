@@ -32,6 +32,7 @@ public:
 	void dropNuevaFigura(ClavoView*);
 	void dropNuevaFigura(PoleaView*);
 	void dropNuevaFigura(ControlRemotoView*);
+	void dropNuevaFigura(BombaView*);
 	EditorNivel * clone();
 };
 

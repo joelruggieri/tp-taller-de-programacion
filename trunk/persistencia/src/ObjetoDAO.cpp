@@ -182,3 +182,6 @@ void ObjetoDAO::guardar(Polea* objeto, YAML::Node* nodoRaiz) {
 
 void ObjetoDAO::visit(ControlRemoto*) {
 }
+
+void ObjetoDAO::visit(Bomba*) {
+}

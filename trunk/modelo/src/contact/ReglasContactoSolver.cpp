@@ -139,6 +139,9 @@ void ReglasContactoSolver::finalizarAcciones() {
 void ReglasContactoSolver::visit(ControlRemoto*) {
 }
 
+void ReglasContactoSolver::visit(Bomba*) {
+}
+
 void ReglasContactoSolver::PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
 	b2Fixture* fixtureA = contact->GetFixtureA();
 	b2Fixture* fixtureB = contact->GetFixtureB();

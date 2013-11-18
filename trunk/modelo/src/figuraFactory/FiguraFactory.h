@@ -29,6 +29,7 @@ public:
 	Figura* crearClavo(float x, float y, int numeroJugador);
 	Figura* crearPolea(float x, float y, int numeroJugador);
 	Figura* crearControlRemoto(float x, float y, int numeroJugador);
+	Figura* crearBomba(float x, float y, int numeroJugador);
 	Figura* crear(ControlRemoto*);
 	Figura * crear(Gancho*);
 	Figura * crear(Plataforma*);
@@ -46,6 +47,7 @@ public:
 	Figura* crear(Yunque*);
 	Figura* crear(Clavo*);
 	Figura* crear(Polea*);
+	Figura* crear(Bomba*);
 };
 
 #endif /* FIGURAFACTORY_H_ */
