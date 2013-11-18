@@ -33,8 +33,8 @@ Tijera::Tijera(float x, float y, float ancho, float alto): Objeto(x,y) {
 //	b2Vec2 pos(1,0);
 //	b2Vec2 eng1 = b2Mul(rot,pos);
 //	b2Vec2 eng2 = b2Mul(rot2,pos);
-	Enganche* enganche1 = new Enganche(this->aspa1, ancho/2.0,0);
-	Enganche* enganche2 = new Enganche(this->aspa2, ancho/2.0,0);
+	Enganche* enganche1 = new Enganche(this->aspa1, 0.9 * ancho/2.0,0);
+	Enganche* enganche2 = new Enganche(this->aspa2, 0.9 * ancho/2.0,0);
 	enganches.push_back(enganche1);
 	enganches.push_back(enganche2);
 }

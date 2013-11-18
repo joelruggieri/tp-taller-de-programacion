@@ -17,6 +17,7 @@ private:
 	b2Body* ruedaDerecha;
 	typedef Objeto super;
 	float rotI, rotD, xi,yi,xd,yd;
+	float rotIb, rotDb, xib,yib,xdb,ydb;
 public:
 	Carrito();
 	Carrito(const Carrito& figura);
@@ -31,8 +32,6 @@ public:
 	void setRuedaDerecha(b2Body*);
 	void setRuedaIzquierda(b2Body*);
 	void crearFisicaEstaticaTemplate();
-	float getRotRuedaI();
-	float getRotRuedaD();
 	void updateModelo();
 	void setRotacion(double rotation);
 	float getRotD() const;
@@ -42,6 +41,8 @@ public:
 	float getYd() const;
 	float getYi() const;
 	void setPosicion(float,float);
+	void makeBackUp();
+	void restoreBackUp();
 };
 
 #endif /* CARRITO_H_ */

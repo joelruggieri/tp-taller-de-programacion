@@ -28,6 +28,7 @@ void CLIENTE::CarritoView::update(ViewMsj* mje) {
 	yil = mjeCurrent->getYi();
 	xdl = mjeCurrent->getXd();
 	ydl = mjeCurrent->getYd();
+	rotR = mjeCurrent->getRotRuedaD();
 }
 
 void CLIENTE::CarritoView::resizear() {
@@ -55,10 +56,10 @@ void CLIENTE::CarritoView::dibujarse(SDL_Renderer* r) {
 	dest.w = this->radioRuedaP *2;
 	dest.x = this->xip;
 	dest.y = this->yip;
-	SDL_RenderCopyEx(r,this->tRueda, NULL, &dest,this->angulo,NULL,SDL_FLIP_NONE);
+	SDL_RenderCopyEx(r,this->tRueda, NULL, &dest,this->rotR* 180 / 3.14,NULL,SDL_FLIP_NONE);
 
 	dest.x = this->xdp;
 	dest.y = this->ydp;
-	SDL_RenderCopyEx(r,this->tRueda, NULL, &dest,this->angulo,NULL,SDL_FLIP_NONE);
+	SDL_RenderCopyEx(r,this->tRueda, NULL, &dest,this->rotR * 180 / 3.14,NULL,SDL_FLIP_NONE);
 
 }

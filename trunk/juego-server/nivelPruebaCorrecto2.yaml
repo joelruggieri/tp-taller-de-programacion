@@ -37,6 +37,8 @@ Jugadores:
     ParametrosFactories:
       - nombre: FF
         cantidad: 5
+      - nombre: FP
+        cantidad: 5
       - nombre: FE
         cantidad: 5
       - nombre: FL
@@ -56,4 +58,8 @@ Jugadores:
       - nombre: FCO
         cantidad: 3
       - nombre: FBO
+        cantidad: 3
+      - nombre: FT
+        cantidad: 3
+      - nombre: FH
         cantidad: 3

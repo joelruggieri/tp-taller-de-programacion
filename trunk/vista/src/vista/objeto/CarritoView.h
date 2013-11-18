@@ -14,7 +14,7 @@ namespace CLIENTE {
 
 class CarritoView: public ObjetoView {
 private:
-	float xil, yil, xdl, ydl;
+	float xil, yil, xdl, ydl,rotR;
 	int xip, yip, xdp, ydp, radioRuedaP;
 	typedef ObjetoView super;
 	SDL_Texture * tRueda;

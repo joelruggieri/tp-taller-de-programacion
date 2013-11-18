@@ -25,14 +25,14 @@ void CarritoView::dibujarse(list<ViewMsj*> & lista){
 	ViewCarritoMsj* viewMensaje;
 	if(figura == NULL){
 		float xi= getXCentro() -ANCHO_CARRITO/4.0;
-		float yi= getYCentro() -1;
+		float yi= getYCentro() - ALTO_CARRITO/2.0;
 		float xd= getXCentro() + ANCHO_CARRITO/4.0;
-		float yd= getYCentro() -1;
+		float yd= getYCentro() - ALTO_CARRITO/2.0;
 		viewMensaje = new ViewCarritoMsj(this->getXCentro(),this->getYCentro(),xi,yi,xd,yd,0,0,0, this->getId());
 		lista.push_back(viewMensaje);
 	} else {
 		if(figura->isViva()){
-		viewMensaje = new ViewCarritoMsj(figura->getX(),figura->getY(),figura->getXi(),figura->getYi(),figura->getXd(),figura->getYd(),figura->getRotacion(),figura->getRotRuedaI(),figura->getRotRuedaD(),this->getId());
+		viewMensaje = new ViewCarritoMsj(figura->getX(),figura->getY(),figura->getXi(),figura->getYi(),figura->getXd(),figura->getYd(),figura->getRotacion(),figura->getRotI(),figura->getRotD(),this->getId());
 		lista.push_back(viewMensaje);
 		}
 	}
