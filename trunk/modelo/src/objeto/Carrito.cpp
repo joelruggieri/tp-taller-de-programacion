@@ -312,3 +312,7 @@ void Carrito::restoreBackUp() {
 	yd=ydb;
 
 }
+
+void Carrito::recibirImpacto(b2Vec2 direccion) {
+	this->realizarImpacto(direccion);
+}

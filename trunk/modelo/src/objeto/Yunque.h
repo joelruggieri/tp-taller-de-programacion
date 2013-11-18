@@ -21,7 +21,7 @@ public:
 	void setAlto(float alto);
 	float getAncho() const;
 	void setAncho(float ancho);
-
+	void recibirImpacto(b2Vec2 direccion);
 private:
 	float ancho, alto;
 };

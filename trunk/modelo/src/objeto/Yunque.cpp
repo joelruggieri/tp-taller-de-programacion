@@ -46,6 +46,7 @@ void Yunque::crearFisica() {
 		bodyDef.position.Set(centro.x, centro.y);
 		bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 		b2Body* body = myWorld->CreateBody(&bodyDef);
+		bodyDef.fixedRotation = false;
 //		shape.m_radius = this->radio;
 		shape.SetAsBox(this->ancho / 2, this->alto / 2);
 		b2FixtureDef bodyPelota;
@@ -83,4 +84,8 @@ float Yunque::getAncho() const {
 
 void Yunque::setAncho(float ancho) {
 	this->ancho = ancho;
+}
+
+void Yunque::recibirImpacto(b2Vec2 direccion) {
+	this->realizarImpacto(direccion);
 }

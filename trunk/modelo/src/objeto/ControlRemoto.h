@@ -24,6 +24,7 @@ public:
 
 private:
 	float ancho, alto;
+	void accionar();
 };
 
 #endif /* CONTROLREMOTO_H_ */

@@ -114,4 +114,8 @@ void GloboHelio::accionar() {
 	notify(DESACTIVADO);
 	myWorld->DestroyBody(this->getBody());
 	viva = false;
- }
+}
+
+void GloboHelio::recibirImpacto(b2Vec2 direccion) {
+this->realizarImpacto(direccion);
+}

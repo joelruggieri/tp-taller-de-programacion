@@ -43,6 +43,7 @@ public:
 	void setPosicion(float,float);
 	void makeBackUp();
 	void restoreBackUp();
+	void recibirImpacto(b2Vec2 direccion);
 };
 
 #endif /* CARRITO_H_ */

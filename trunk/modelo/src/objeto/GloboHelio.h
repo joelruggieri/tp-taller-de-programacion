@@ -22,7 +22,7 @@ public:
 	void setRadio(float radio);
 	void updateModelo();
 	void setRebentable(bool);
-
+	void recibirImpacto(b2Vec2 direccion);
 	void accionar();
 	void  interactuar(Area & area, int jugador);
 private:
