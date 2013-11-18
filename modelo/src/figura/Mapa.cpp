@@ -98,6 +98,10 @@ Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador, bool c
 	if (callback.m_fixture) {
 		b2Body* body = callback.m_fixture->GetBody();
 		Figura* figura = (Figura*) (body->GetUserData());
+		if(figura == NULL) {
+			figura = NULL;
+		}
+
 		return figura;
 	}
 	return NULL;

@@ -64,7 +64,7 @@ public:
 	virtual void setPosicion(float, float);
 	void setX(float x);
 	void setY(float y);
-	void setNumeroJugador(int numero);
+	virtual void setNumeroJugador(int numero);
 	int getNumeroJugador();
 	virtual void setRotacion(double rotation);
 	virtual void crearFisica() = 0;
@@ -74,7 +74,7 @@ public:
 	bool esTraccionable();
 	Vista* getVista();
 	void setVista(Vista* vista);
-	b2Body * getBody();
+	virtual b2Body * getBody();
 	void setBody(b2Body *);
 	virtual void updateModelo();
 	virtual void updateVista();
