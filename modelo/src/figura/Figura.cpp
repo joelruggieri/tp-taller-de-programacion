@@ -293,3 +293,25 @@ void Figura::accionesPostFisica() {
 
 void Figura::desenganchado(Enganche*) {
 }
+
+void Figura::explotar() {
+}
+
+void Figura::recibirImpacto(b2Vec2 direccion) {
+}
+
+void Figura::interactuarNoArea(Area& area, int jugador) {
+	if(!validador->validar(area,jugador)){
+		interactuarTemplate();
+		accionado = true;
+	}
+}
+
+void Figura::realizarImpacto(b2Vec2 direccion) {
+	b2Vec2 centro(this->getX(), this->getY());
+	b2Vec2 versor = (centro - direccion);
+	float modulo = (centro - direccion).Length();
+	versor.x = versor.x / modulo;
+	versor.y = versor.y / modulo;
+	this->body->ApplyLinearImpulse(7500*versor, b2Vec2(this->getX(), this->getY()));
+}

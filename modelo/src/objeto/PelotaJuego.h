@@ -20,6 +20,7 @@ public:
 	void acept(VisitorFigura* visitor);
 	float getRadio() const;
 	void setRadio(float radio);
+    void recibirImpacto(b2Vec2 direccion);
 private:
 	float radio;
 };

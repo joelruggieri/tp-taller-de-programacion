@@ -7,7 +7,7 @@
 
 #include "ControlRemoto.h"
 #include "../Constantes.h"
-
+#include <iostream>
 ControlRemoto::ControlRemoto(const ControlRemoto&) {
 	// TODO Auto-generated constructor stub
 
@@ -67,3 +67,11 @@ void ControlRemoto::setAncho(float ancho) {
 	this->ancho = ancho;
 }
 
+void ControlRemoto::accionar() {
+	cout << "accionar" << endl;
+	for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
+	Figura* figura = (Figura*) b->GetUserData();
+	figura->explotar();
+
+	}
+}

@@ -75,3 +75,6 @@ void BolaBoliche::setRadio(float radio) {
 	this->radio = radio;
 }
 
+void BolaBoliche::recibirImpacto(b2Vec2 direccion) {
+	this->realizarImpacto(direccion);
+}

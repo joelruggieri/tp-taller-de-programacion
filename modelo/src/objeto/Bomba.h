@@ -18,9 +18,14 @@ public:
 	virtual ~Bomba();
 	float getRadio() const;
 	void setRadio(float radio);
-
+	void accionar();
+	void crearFisicaRadio(b2Vec2 centro);
+	bool validarContactoBomba(b2Body * verf, b2Body * b);
+	void  interactuar(Area & area, int jugador);
 private:
 	float radio;
+	b2Body* radioAccion;
+	typedef Objeto super;
 };
 
 #endif /* BOMBA_H_ */

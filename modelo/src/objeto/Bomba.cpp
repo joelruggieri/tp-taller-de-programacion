@@ -7,6 +7,8 @@
 
 #include "Bomba.h"
 #include "../Constantes.h"
+#include "../interaccion/ValidadorEnArea.h"
+#include <iostream>
 Bomba::Bomba() {
 this->radio = 0;
 }
@@ -19,7 +21,7 @@ Bomba::Bomba(const Bomba& figura) {
 	this->reg = figura.reg;
 }
 
-Bomba::Bomba(float x, float y, float radio) : Objeto(x,y) {
+Bomba::Bomba(float x, float y, float radio) : Objeto(x,y, new ValidadorEnArea(this)) {
 	this->radio = radio;
 }
 
@@ -49,6 +51,8 @@ void Bomba::crearFisica() {
 	//		body->SetMassData(&masa);	//centro de masa esta en el centro de la esfera por defecto
 		body->SetUserData(this);
 		this->setBody(body);
+
+		crearFisicaRadio(centro);
 }
 
 void Bomba::acept(VisitorFigura* v) {
@@ -65,4 +69,56 @@ float Bomba::getRadio() const {
 
 void Bomba::setRadio(float radio) {
 	this->radio = radio;
+}
+
+void Bomba::accionar() {
+	for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
+		if (b!= this->body && b!= this->radioAccion && b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
+//			//solo da que si cuando golpea con otro radio de accion
+			if (validarContactoBomba(this->radioAccion, b)) {
+				Figura* fig = (Figura*)b->GetUserData();
+				fig->recibirImpacto(b2Vec2(this->getX(), this->getY()));
+			}
+
+		}
+	}
+	notify(DESACTIVADO);
+	myWorld->DestroyBody(this->getBody());
+	viva = false;
+}
+
+void Bomba::crearFisicaRadio(b2Vec2 centro) {
+
+	//definicion cuerpo radio de accion
+
+	b2CircleShape shapeAccion;
+	shapeAccion.m_radius = this->radio + 20.0;
+	b2FixtureDef fixtureAccion;
+	fixtureAccion.filter.categoryBits = CATEGORIA_RANGO_BOMBA;
+	fixtureAccion.filter.maskBits = CATEGORIA_RANGO_BOMBA;
+	fixtureAccion.density = 1.00f;
+	fixtureAccion.shape = &shapeAccion;
+	fixtureAccion.friction = 0.01f;
+	fixtureAccion.restitution = 0.00f;
+	b2BodyDef bodyDefAccion;
+	bodyDefAccion.type = b2_dynamicBody;
+	bodyDefAccion.position = centro;
+	radioAccion = myWorld->CreateBody(&bodyDefAccion);
+	radioAccion->CreateFixture(&fixtureAccion);
+	radioAccion->SetUserData(this);
+
+	//joint radio de accion con la tierra;
+	b2RevoluteJointDef rjd2;
+	rjd2.Initialize(ground, radioAccion, centro);
+	rjd2.collideConnected = false;
+	myWorld->CreateJoint(&rjd2);
+}
+
+bool Bomba::validarContactoBomba(b2Body* verf, b2Body* b) {
+	return b2TestOverlap(verf->GetFixtureList()->GetShape(), 0, b->GetFixtureList()->GetShape(), 0,
+				verf->GetTransform(), b->GetTransform());
+}
+
+void Bomba::interactuar(Area& area, int jugador) {
+	super::interactuarNoArea(area,jugador);
 }

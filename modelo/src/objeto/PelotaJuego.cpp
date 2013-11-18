@@ -7,6 +7,7 @@
 
 #include "PelotaJuego.h"
 #include "../Constantes.h"
+#include <iostream>
 PelotaJuego::PelotaJuego(float x, float y, float radio) :
 		Objeto(x, y) {
 	this->radio = radio;
@@ -68,3 +69,12 @@ void PelotaJuego::setRadio(float radio) {
 	this->radio = radio;
 }
 
+void PelotaJuego::recibirImpacto(b2Vec2 direccion) {
+//	b2Vec2 centro(this->getX(), this->getY());
+//	b2Vec2 versor = (centro - direccion);
+//	float modulo = (centro - direccion).Length();
+//	versor.x = versor.x / modulo;
+//	versor.y = versor.y / modulo;
+//	this->body->ApplyLinearImpulse(7500*versor, b2Vec2(this->getX(), this->getY()));
+	this->realizarImpacto(direccion);
+}
