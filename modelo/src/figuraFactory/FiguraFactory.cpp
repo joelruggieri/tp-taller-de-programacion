@@ -281,7 +281,7 @@ Figura* FiguraFactory::crearBomba(float x, float y, int numeroJugador) {
 }
 
 Figura* FiguraFactory::crear(Bomba* c) {
-	Figura* t = this->crearPelotaJuego(c->getX(), c->getY(),c->getNumeroJugador());
+	Figura* t = this->crearBomba(c->getX(), c->getY(),c->getNumeroJugador());
 		t->setRotacion(c->getRotacion());
 		t->setReg(c->getReg());
 		return t;

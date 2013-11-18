@@ -276,6 +276,6 @@ void InicializadorJuego::visit(ControlRemoto* c) {
 
 void InicializadorJuego::visit(Bomba* c) {
 	Figura * fig = this->factory->crear(c);
-		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_CONTROL_REMOTO);
+		map<string, ViewFiguraFactory*>::iterator iter = this->figuraFactory.find(KEY_BOMBA);
 		this->agregarFigura(iter->second, fig);
 }
