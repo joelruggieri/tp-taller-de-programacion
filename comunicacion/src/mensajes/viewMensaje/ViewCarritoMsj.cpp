@@ -25,12 +25,11 @@ void ViewCarritoMsj::serialize(YAML::Emitter& out) {
 	out<< xd;
 	out<< yd;
 	out << rotCarrito;
-	out << rotRuedaI;
 	out << rotRuedaD;
 }
 
 NetworkMensaje* ViewCarritoMsj::deserialize(YAML::const_iterator& it) {
-	float x,y,xi,yi,xd, yd,rotCarrito, rotRuedaI, rotRuedaD;
+	float x,y,xi,yi,xd, yd,rotCarrito, rotRuedaD;
 	int id = it->as<int> ();
 	it++;
 	x = it->as<float>();
@@ -47,11 +46,9 @@ NetworkMensaje* ViewCarritoMsj::deserialize(YAML::const_iterator& it) {
 	it++;
 	rotCarrito = it->as<float>();
 	it++;
-	rotRuedaI= it->as<float>();
-	it++;
 	rotRuedaD = it->as<float>();
 	it++;
-	return new ViewCarritoMsj(x,y,xi,yi,xd, yd,rotCarrito,rotRuedaI,rotRuedaD,id);
+	return new ViewCarritoMsj(x,y,xi,yi,xd, yd,rotCarrito,rotRuedaD,rotRuedaD,id);
 }
 
 ViewMsj* ViewCarritoMsj::clone(int destinatario) {

@@ -28,6 +28,7 @@ void EditorUnion::clickDown(float x, float y) {
 	}
 	if (primerClick) {
 		super::clickDown(x, y);
+//		cout<< " Editor" << un->getc
 	} else {
 		Union * un = (Union *) editado->getModelo();
 		Figura* figFinal = modeloController->pickUpConEstaticos(un->getXFinal(), un->getYFinal(), un->getMascaraExtremos(),un->getNumeroJugador());
@@ -102,6 +103,7 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 		editado = vista;
 		primerClick = false;
 		un->extraerPosInicial(figInicial, this->clickDownX, this->clickDownY);
+		cout<< "Editor arranque " << un->getXInicial() << " " << un->getYInicial()<<endl;
 		un->extraerPosFinal(figInicial, this->clickDownX, this->clickDownY);
 //		vista->update();
 	} else {
