@@ -23,6 +23,7 @@
 #include "../objeto/Clavo.h"
 #include "../objeto/Polea.h"
 #include "../objeto/ControlRemoto.h"
+#include "../objeto/Bomba.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory() {
 
@@ -271,4 +272,17 @@ Figura* FiguraFactory::crear(ControlRemoto* o) {
 		y->setAncho(o->getAncho());
 		y->setReg(o->getReg());
 			return y;
+}
+
+Figura* FiguraFactory::crearBomba(float x, float y, int numeroJugador) {
+	Figura* figura = new Bomba(x, y, RADIO_PELOTA);
+		figura->setNumeroJugador(numeroJugador);
+		return figura;
+}
+
+Figura* FiguraFactory::crear(Bomba* c) {
+	Figura* t = this->crearPelotaJuego(c->getX(), c->getY(),c->getNumeroJugador());
+		t->setRotacion(c->getRotacion());
+		t->setReg(c->getReg());
+		return t;
 }

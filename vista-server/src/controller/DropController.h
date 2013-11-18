@@ -31,6 +31,7 @@
 #include "../vista/objeto/ClavoView.h"
 #include "../vista/objeto/PoleaView.h"
 #include "../vista/objeto/ControlRemotoView.h"
+#include "../vista/objeto/BombaView.h"
 #include <list>
 
 using namespace std;
@@ -51,6 +52,7 @@ class GanchoView;
 class ClavoView;
 class PoleaView;
 class ControlRemotoView;
+class BombaView;
 class DropController {
 
 public:
