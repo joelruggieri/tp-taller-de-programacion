@@ -32,7 +32,7 @@ void Bomba::crearFisica() {
 		b2CircleShape shapeCircle;
 
 		b2BodyDef bodyDef;
-		bodyDef.type = b2_staticBody;
+		bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(centro.x, centro.y);
 		bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 		b2Body* body = myWorld->CreateBody(&bodyDef);

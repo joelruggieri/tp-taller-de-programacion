@@ -24,6 +24,7 @@
 #include "src/objeto/Yunque.h"
 #include "src/objeto/Clavo.h"
 #include "src/objeto/Polea.h"
+#include "src/objeto/Bomba.h"
 #include "src/Logger.h"
 #include "constructoresYAML.h"
 #include "ObjetoDAO.h"
@@ -225,6 +226,7 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerClavos(lista, objetos);
 			this->obtenerYunques(lista,objetos);
 			this->obtenerPoleas(lista,objetos);
+			this->obtenerBombas(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
 			mensaje.append(exc.what());
@@ -666,4 +668,25 @@ void NivelDAO::obtenerClavos(std::list<Figura*>& lista, YAML::Node objetos) {
 			imprimirLinea(mensaje,  clavos[i].Mark() );
 		}
 	}
+}
+
+void NivelDAO::obtenerBombas(std::list<Figura*>& lista, YAML::Node objetos) {
+	YAML::Node bombas = objetos["Bombas"];
+		if(bombas.Mark().line == -1 ){
+			std::string mensaje = "No se encuentrò la etiqueta Bombas";
+			logg.info(mensaje);
+			}
+		for (std::size_t i = 0; i < bombas.size(); i++) {
+			try {
+				Bomba obj = bombas[i].as<Bomba>();
+	//			bool salir = validar(obj, globos, i);
+	//			if(!salir ) continue;
+				lista.push_back( new Bomba(obj));
+				//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
+			} catch (YAML::Exception &exc) {
+				std::string mensaje = "Error al leer Bomba: ";
+				mensaje.append(exc.what());
+				imprimirLinea(mensaje,  bombas[i].Mark() );
+			}
+		}
 }
