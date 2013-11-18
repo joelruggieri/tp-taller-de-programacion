@@ -50,7 +50,7 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 
 //	string buffer;
 	char buffer[25000] = "";
-	char bufferAux[25000] = "";
+//	char bufferAux[25000] = "";
 	int longitudTotal;
 	int longRecibida;
 	int recibidos = 0;
@@ -71,14 +71,14 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 			ManejadorErrores::manejarWriteError(errno);
 			throw SerializacionException("No se pudo recibir el mensaje del host");
 		}
-		result = recv(sock, &bufferAux, longRecibida, MSG_NOSIGNAL);
+		result = recv(sock, &(buffer[recibidos]), longRecibida, MSG_NOSIGNAL);
 
 		if (result == -1) {
 			ManejadorErrores::manejarWriteError(errno);
 			throw SerializacionException("No se pudo recibir el mensaje del host");
 		}
 		recibidos += result;
-		strcat(buffer, bufferAux);
+//		strcat(buffer, bufferAux);s
 	}
 
 	string clave;
@@ -142,8 +142,8 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	int enviados = 0;
 //	 const char * str = envio.str().c_str();
 	//ENTREGA3 EZE ESTO SE USA SOLO PARA EL SUBSTRING DEL STRING, SEGURO HAY UNA FUNCION DE C QUE LO HACE. CAMBIARLO
-	string salida = o.c_str();
-	int len = strlen(salida.c_str());
+//	string salida = o.c_str();
+	int len = strlen(o.c_str());
 	int longEnviada;
 
 	int result = send(socket, &len, sizeof(int), MSG_NOSIGNAL);	//envio longitud total
@@ -164,7 +164,7 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 		//ENTREGA3 CHEQUEAR ESTO PORQUE NO ESTA PROBADO.
 
 		//Ahora intento enviar lo restante.
-		result = send(socket, salida.substr(enviados, len).c_str(), longEnviada, MSG_NOSIGNAL);
+		result = send(socket,  &(o.c_str()[enviados]), longEnviada, MSG_NOSIGNAL);
 
 		//Si da error cancelo
 		if (result == -1) {
