@@ -7,6 +7,8 @@
 
 #include "Carrito.h"
 #include "../Constantes.h"
+#include <iostream>
+using namespace std;
 
 Carrito::Carrito(): Objeto(){
 	ancho = 0;
@@ -116,9 +118,9 @@ void Carrito::crearFisica(){
 	polygon->SetAsBox(this->ancho / 2, this->alto / 2);
 
 	b2FixtureDef fixture;
-	fixture.density = 10.00f;
+	fixture.density = 15.00f;
 	fixture.shape = polygon;
-	fixture.friction = 10.0f;
+	fixture.friction = 20.0f;
 	fixture.restitution = 0.00f;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;
@@ -142,7 +144,7 @@ void Carrito::crearFisica(){
 	fd.filter.categoryBits = CATEGORIA_FIGURAS;
 	fd.filter.maskBits = CATEGORIA_FIGURAS;
 	fd.shape = circle;
-	fd.density = 5.0f;
+	fd.density = 10.0f;
 	fd.friction = 10.0f;
 	bd.position =body->GetWorldPoint(b2Vec2(-ancho/4, -alto/2.0));
 	bd.type = b2_dynamicBody;
@@ -269,6 +271,7 @@ float Carrito::getYi() const {
 }
 
 void Carrito::setPosicion(float x, float y) {
+	super::setPosicion(x,y);
 	xi= -ancho/4.0;
 	yi= -alto/2;
 	xd= ancho/4.0;
@@ -283,7 +286,7 @@ void Carrito::setPosicion(float x, float y) {
 	rotado = b2Mul(rotacion, pos);
 	yd= rotado.y +y ;
 	xd= rotado.x +x;
-	super::setPosicion(x,y);
+	cout<< "xd " << xd << endl;
 }
 
 void Carrito::setRotacion(double rotation) {

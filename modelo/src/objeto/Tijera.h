@@ -21,6 +21,7 @@ private:
 	//b2Body* aspa1;
 	Aspa* aspa1;
 	Aspa* aspa2;
+	bool accionada;
 	typedef Objeto super;
 	void crearFisicaEstaticaTemplate(b2World * w, b2Body* ground);
 public:
@@ -34,8 +35,6 @@ public:
 	void setAncho(float ancho);
 	void crearFisica();
 	void acept(VisitorFigura*);
-	void setBodyAspa2(b2Body* body);
-	b2Body* getbodyAspa2();
 	bool crearFisicaEstatica();
 	void removerFisica();
 	void setRotacion(double);
@@ -45,6 +44,7 @@ public:
 	void makeBackUp();
 	void restoreBackUp();
 	void setNumeroJugador(int);
+	void accionar();
 	b2Body * getBody();
 };
 

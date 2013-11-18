@@ -42,6 +42,8 @@ public:
 	bool activoSegundoTramo();
 	//ROMPE LA SOGA Y PROPAGA EL EVENTO HACIA EL OTRO ESTREMO
 	void romper(Enganche *);
+	//Corta la soga directamente.
+	void cortar(b2Body *);
 protected:
 	void crearLazo(b2World*);
 	void updatePosicionesFiguras();

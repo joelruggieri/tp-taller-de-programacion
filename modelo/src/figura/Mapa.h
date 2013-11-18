@@ -60,6 +60,7 @@ public:
 	void notifyEvent(ObservableModelo*, Evento_type);
 	void cleanDeletes();
 	void addArea(Area* area, int numeroJugador);
+	void cortarUniones(b2Body *);
 };
 
 #endif /* MAPA_H_ */

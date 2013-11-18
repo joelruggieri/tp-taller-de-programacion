@@ -22,7 +22,7 @@ Union::Union(float x, float y, float h) :
 
 Union::Union() :
 		Objeto() {
-	figuraInicio= NULL;
+	figuraInicio = NULL;
 	figuraFin = NULL;
 	eventHelper = new ObserverFiguraHelper(this);
 	joint = NULL;
@@ -31,10 +31,10 @@ Union::Union() :
 
 Union::~Union() {
 	//RESPONSABILIDAD DE LA CLASE HIJA QUE LO USA DE SACARLO DE DONDE SEA, SINO VUELA TODO CUANDO SE DELETEA LA UNION.
-	if(figuraInicio != NULL){
+	if (figuraInicio != NULL) {
 		figuraInicio->removeObserver(eventHelper);
 	}
-	if(figuraFin!= NULL){
+	if (figuraFin != NULL) {
 		figuraFin->removeObserver(eventHelper);
 	}
 
@@ -127,10 +127,10 @@ void Union::crearFisicaEstaticaTemplate() {
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(centro.x, centro.y);
 	b2Body* body = myWorld->CreateBody(&bodyDef);
-	shapeCircle.m_radius = this->h/2;
+	shapeCircle.m_radius = this->h / 2;
 	b2FixtureDef bodyBolaBoliche;
 	bodyBolaBoliche.filter.categoryBits = CATEGORIA_UNION;
-		bodyBolaBoliche.filter.maskBits = 0;
+	bodyBolaBoliche.filter.maskBits = 0;
 	bodyBolaBoliche.shape = &shapeCircle;
 	body->CreateFixture(&bodyBolaBoliche);
 	body->SetUserData(this);
@@ -192,7 +192,8 @@ bool Union::remover(Mapa* m) {
 	return m->removeUnion(this);
 }
 
-Union::Union(const Union& figura): Objeto(figura) {
+Union::Union(const Union& figura) :
+		Objeto(figura) {
 	this->inicio = figura.inicio;
 	this->fin = figura.fin;
 	this->calcularCentroCuadrado();
@@ -216,33 +217,33 @@ uint16 Union::getMascaraExtremos() {
 
 void Union::notifyEvent(Evento_type enumEvento) {
 	ObservableModelo * o = this->eventHelper->getLastObservable();
-	if(enumEvento == DESPUES_DESTRUCCION &&(o == figuraFin || o == figuraInicio)){
-		if(o == figuraFin){
+	if (enumEvento == DESPUES_DESTRUCCION
+			&& (o == figuraFin || o == figuraInicio)) {
+		if (o == figuraFin) {
 			figuraFin = NULL;
 		}
-		if(o == figuraInicio){
+		if (o == figuraInicio) {
 			figuraInicio = NULL;
 		}
 //		cout << "la union se entera de la destruccion del extremo y solicita su destruccion" << endl;
 		notify(DESTRUCCION_FORZADA);
 	}
-	if(enumEvento == FISICA_REMOVIDA){
+	if (enumEvento == FISICA_REMOVIDA) {
 //		cout << "me entere remocion fisica" << endl;
 		this->removerFisica();
 	}
-	if(enumEvento == CAMBIO_ESPACIAL_FORZADO){
+	if (enumEvento == CAMBIO_ESPACIAL_FORZADO) {
 //		cout << "me entere cambio espacial forzado" << endl;
 		updatePosicionesFigurasSinFisica();
 		calcularCentroCuadrado();
 //		vista->update();
 	}
-	if(enumEvento == FISICA_E_CREADA){
+	if (enumEvento == FISICA_E_CREADA) {
 //		cout << "me entere creacion fisica" << endl;
 		updateCaracteristicas();
 		this->crearFisicaEstatica();
 //		vista->update();
 	}
-
 
 }
 
@@ -256,5 +257,55 @@ bool Union::estaEstatica() {
 }
 
 float Union::getRadio() {
-	return this->h/2;
+	return this->h / 2;
+}
+
+void Union::cortar(b2Body*) {
+	//por defecto ninguna union se corta.
+}
+
+bool Union::bodyEntre(b2Body* b, b2Vec2 inicio, b2Vec2 fin) {
+	//Creo un cuerpo fake
+//	b2Vec2 segmento = fin - inicio;
+//	float norma = segmento.Length();
+//	//calculo el director ya con el ancho del cuerpo prueba.
+//	b2Vec2 director(segmento.x/ norma, segmento.y/norma);
+//	director= b2Vec2(director.x*0.1, director.y*0.1);
+//	b2Vec2 v1(-director.y, director.x);
+//	b2Vec2 v2( v1.x * -1, v1.y * -1);
+//
+	b2Vec2 centro = inicio + fin;
+	centro= b2Vec2(centro.x/2,centro.y/2);
+//
+//	b2Vec2 vertices[4];
+//	vertices[0] = v2 + inicio - centro;
+//	vertices[1] = v2 + fin - centro;
+//	vertices[2] = v1 + fin -centro;
+//	vertices[3] = v1 + inicio- centro ;
+
+//	b2PolygonShape polygon;
+//	polygon.Set(vertices, 4);
+
+	b2EdgeShape polygon;
+	polygon.Set(inicio, fin);
+
+	b2FixtureDef fixture;
+	fixture.filter.categoryBits = CATEGORIA_CUERPO_CORTE_TIJERA;
+	fixture.filter.maskBits = CATEGORIA_CUERPO_CORTE_TIJERA;
+	fixture.shape = &polygon;
+	b2BodyDef bodyDef;
+//	bodyDef.type = b2_dynamicBody;
+	bodyDef.position=centro;
+	//bodyDef.fixedRotation = true;
+	bodyDef.angle = 0;
+	b2Body* bodyFake = myWorld->CreateBody(&bodyDef);
+	bodyFake->CreateFixture(&fixture);
+	//testeo el overlap
+
+	bool result = validarContacto(bodyFake,b);
+	myWorld->DestroyBody(bodyFake);
+	return result;
+
+	//deleteo el cuerpo fake.
+
 }

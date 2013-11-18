@@ -9,6 +9,11 @@
 #include <math.h>
 #include "../figura/Registro.h"
 #include "../Constantes.h"
+#include "../figura/Mapa.h"
+#include "../interaccion/ValidadorEnArea.h"
+#include <iostream>
+using namespace std;
+
 //#include <stdio.h>
 
 
@@ -19,14 +24,16 @@ Tijera::Tijera(): Objeto() {
 	ancho = 0;
 	aspa1 = new Aspa();
 	aspa2 = new Aspa();
+	accionada = false;
 }
 
 
-Tijera::Tijera(float x, float y, float ancho, float alto): Objeto(x,y) {
+Tijera::Tijera(float x, float y, float ancho, float alto): Objeto(x,y, new ValidadorEnArea(this)) {
 	this->ancho = ancho;
 	this->alto = alto;
 	aspa1 = new Aspa(x, y,ancho, alto,-45,1,this);
 	aspa2 = new Aspa(x,y, ancho,alto,45,2,this);
+	accionada = false;
 
 //	b2Rot rot(- b2_pi/4.0);
 //	bRot rot2(b2_pi/4.0);
@@ -53,7 +60,7 @@ Tijera::Tijera(const Tijera& tijera){
 	this->reg = tijera.reg;
 	aspa1 = new Aspa(x,y,ancho,alto,-45,1,this);
 	aspa2 = new Aspa(x,y,ancho,alto,45,2,this);
-
+	accionada = false;
 	/*Enganche* enganche1 = new Enganche(this, (cos(PI/4.0))* ancho/2.0,(sin(PI/4.0))* ancho/2.0);
 	Enganche* enganche2 = new Enganche(this, (cos(PI/4.0))* ancho/2.0, -(sin(PI/4.0))* ancho/2.0);
 	enganches.push_back(enganche1);
@@ -309,6 +316,7 @@ void Tijera::makeBackUp() {
 void Tijera::restoreBackUp() {
 	aspa1->restoreBackUp();
 	aspa2->restoreBackUp();
+	accionada = false;
 }
 
 void Tijera::setNumeroJugador(int int1) {
@@ -319,4 +327,37 @@ void Tijera::setNumeroJugador(int int1) {
 
 b2Body* Tijera::getBody() {
 	return super::getBody();
+}
+
+void Tijera::accionar() {
+	Mapa * m = (Mapa*)ground->GetUserData();
+	cout<< "accionada la tijera" << endl;
+
+	// creo un body para poder enviar el corte.
+	b2PolygonShape * shape= new b2PolygonShape();
+//	shape->SetAsBox(this->ancho/4,this->alto/2);
+	shape->SetAsBox(this->ancho/2,this->alto/2);
+	b2FixtureDef fixture;
+	fixture.filter.categoryBits = CATEGORIA_CUERPO_CORTE_TIJERA;
+	fixture.filter.maskBits = CATEGORIA_CUERPO_CORTE_TIJERA;
+	fixture.density = 2.00f;
+	fixture.shape = shape;
+	fixture.friction = 0.01f;
+	fixture.restitution = 0.00f;
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+	b2Vec2 posRelativa(- ancho/4.0,0 );
+//	b2Rot rotacion(this->getRotacion() * -1*b2_pi / 180.0);
+//	b2Vec2 posAbsoluta = b2MulT(rotacion, posRelativa);
+//	posAbsoluta= b2Vec2(posAbsoluta.x +x, posAbsoluta.y +y);
+//	bodyDef.position = posAbsoluta;
+	bodyDef.position.Set(this->x,this->y);
+	//bodyDef.fixedRotation = true;
+//	double rotacionRad = this->getRotacion() * -1*b2_pi / 180.0;
+//	bodyDef.angle = rotacionRad;
+	b2Body* body = myWorld->CreateBody(&bodyDef);
+	body->CreateFixture(&fixture);
+	m->cortarUniones(body);
+	myWorld->DestroyBody(body);
+
 }

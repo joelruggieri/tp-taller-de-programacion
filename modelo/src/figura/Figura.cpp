@@ -299,7 +299,7 @@ void Figura::explotar() {
 
 void Figura::recibirImpacto(b2Vec2 direccion) {
 }
-
+//ENTREGA3 EZE PASANDOSE POR LAS BOLAS EL STRATEGY DE VALIDACION
 void Figura::interactuarNoArea(Area& area, int jugador) {
 	if(!validador->validar(area,jugador)){
 		interactuarTemplate();

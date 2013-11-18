@@ -243,7 +243,7 @@ void Mapa::crearMundo() {
 	// from a pool and creates the ground box shape (also from a pool).
 	// The body is also added to the world.
 	groundBody = myWorld->CreateBody(&groundBodyDef);
-
+	groundBody->SetUserData(this);
 	// Define the ground box shape.
 //	b2PolygonShape groundBox;
 
@@ -355,4 +355,14 @@ void Mapa::cleanDeletes() {
 
 void Mapa::addArea(Area* area, int numeroJugador){
 	this->areasDeJugadores.insert(pair<int,Area*>(numeroJugador,area));
+}
+
+void Mapa::cortarUniones(b2Body*b) {
+	list<Union*>::iterator it2;
+	Union * fig;
+	for (it2 = this->uniones.begin(); it2 != this->uniones.end(); ++it2) {
+		fig = *it2;
+		fig->cortar(b);
+	}
+
 }
