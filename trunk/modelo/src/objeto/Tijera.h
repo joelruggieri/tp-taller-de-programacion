@@ -44,6 +44,8 @@ public:
 	void setWorld(b2World * w, b2Body * ground);
 	void makeBackUp();
 	void restoreBackUp();
+	void setNumeroJugador(int);
+	b2Body * getBody();
 };
 
 #endif /* TIJERA_H_ */

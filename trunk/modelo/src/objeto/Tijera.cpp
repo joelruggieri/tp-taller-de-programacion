@@ -310,3 +310,13 @@ void Tijera::restoreBackUp() {
 	aspa1->restoreBackUp();
 	aspa2->restoreBackUp();
 }
+
+void Tijera::setNumeroJugador(int int1) {
+	super::setNumeroJugador(int1);
+	aspa1->setNumeroJugador(int1);
+	aspa2->setNumeroJugador(int1);
+}
+
+b2Body* Tijera::getBody() {
+	return super::getBody();
+}
