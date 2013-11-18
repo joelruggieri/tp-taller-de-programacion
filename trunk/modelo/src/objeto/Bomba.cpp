@@ -109,7 +109,7 @@ void Bomba::crearFisicaRadio(b2Vec2 centro) {
 
 	//joint radio de accion con la tierra;
 	b2RevoluteJointDef rjd2;
-	rjd2.Initialize(ground, radioAccion, centro);
+	rjd2.Initialize(this->body, radioAccion, centro);
 	rjd2.collideConnected = false;
 	myWorld->CreateJoint(&rjd2);
 }
