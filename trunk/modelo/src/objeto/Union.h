@@ -45,13 +45,11 @@ public:
     void makeBackUp();
 	void restoreBackUp();
 	void notifyEvent(Evento_type);
-
-
 	//estos son para poder indicar donde esta el cuerpo.
 	bool estaEstatica();
 	float getRadio();
 	virtual void calcularCentroCuadrado();
-
+	virtual void cortar(b2Body *);
 protected:
 	void crearFisicaEstaticaTemplate();
 	b2Vec2 inicio;
@@ -74,6 +72,7 @@ protected:
 	typedef Figura super;
 	b2Joint * joint;
 	bool estatica;
+	bool bodyEntre(b2Body*b, b2Vec2 inicio, b2Vec2 fin);
 };
 
 #endif /* UNION_H_ */

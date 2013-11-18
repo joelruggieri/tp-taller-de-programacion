@@ -388,3 +388,10 @@ void Soga::romper(Enganche * e) {
 	}
 
 }
+
+void Soga::cortar(b2Body*b) {
+	if(this->bodyEntre(b, inicio,fin)){
+		romper(origen);
+		romper(destino);
+	}
+}
