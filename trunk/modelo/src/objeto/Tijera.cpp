@@ -202,7 +202,7 @@ void Tijera::accionar() {
 	// creo un body para poder enviar el corte.
 	b2PolygonShape * shape= new b2PolygonShape();
 //	shape->SetAsBox(this->ancho/4,this->alto/2);
-	shape->SetAsBox(this->ancho/2,this->alto/2);
+	shape->SetAsBox(0.8*this->ancho/4,this->alto/2);
 	b2FixtureDef fixture;
 	fixture.filter.categoryBits = CATEGORIA_CUERPO_CORTE_TIJERA;
 	fixture.filter.maskBits = CATEGORIA_CUERPO_CORTE_TIJERA;
@@ -212,14 +212,15 @@ void Tijera::accionar() {
 	fixture.restitution = 0.00f;
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-//	b2Vec2 posAbsoluta = b2MulT(rotacion, posRelativa);
-//	posAbsoluta= b2Vec2(posAbsoluta.x +x, posAbsoluta.y +y);
-//	bodyDef.position = posAbsoluta;
-	bodyDef.position.Set(this->x,this->y);
-	bodyDef.angle = 0;
-	//bodyDef.fixedRotation = true;
-//	double rotacionRad = this->getRotacion() * -1*b2_pi / 180.0;
-//	bodyDef.angle = rotacionRad;
+
+
+	b2Vec2 posRelativa(-ancho/4.0- 0.2*ancho/4.0,0);
+	float angulo = this->getRotacion() * -1*b2_pi / 180.0;
+	b2Rot rota(angulo);
+	b2Vec2 posAbsoluta = b2MulT(rota, posRelativa);
+	bodyDef.position.Set(posAbsoluta.x+x, posAbsoluta.y+y);
+	bodyDef.angle = angulo;
+	bodyDef.fixedRotation = true;
 	b2Body* body = myWorld->CreateBody(&bodyDef);
 	body->CreateFixture(&fixture);
 	body->SetUserData(this);
