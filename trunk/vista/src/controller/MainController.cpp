@@ -80,9 +80,15 @@ int MainController::run(list<string> & factories) {
 	} else {
 		if(juegoStatus.isTerminado()){
 			if (juegoStatus.isGanado()) {
-				log.info("Juego Ganado!");
+				AreaMensajes* m =(AreaMensajes*) this->viewController->getForUpdate(ID_CARTEL);
+				if (m !=NULL){
+				m->setMensaje("JUEGO GANADO");
+				this->viewController->endUpdate();}
 			} else {
-				log.info("Juego Perdido");
+				AreaMensajes* m =(AreaMensajes*) this->viewController->getForUpdate(ID_CARTEL);
+				if(m != NULL){
+				m->setMensaje("JUEGO PERDIDO");
+				this->viewController->endUpdate();}
 			}
 		} else {
 			log.error("El server no responde, finalizando juego");

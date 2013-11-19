@@ -94,3 +94,4 @@ void CLIENTE::View::markUpdated() {
 void CLIENTE::View::invalidate() {
 	updated = false;
 }
+
