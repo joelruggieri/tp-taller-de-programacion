@@ -72,16 +72,20 @@ void Aspa::crearFisica() {
 	rjd.bodyB = bodyAspa;
 	rjd.collideConnected = false;
 	rjd.enableLimit = true;
-	rjd.referenceAngle = 0;
 	rjd.localAnchorA = b2Vec2(x,y);
 	rjd.localAnchorB = b2Vec2_zero;
+
+
+//	aspa1 = new Aspa(x, y,ancho, alto,-35,1,this);
+//	aspa2 = new Aspa(x,y, ancho,alto,35,2,this);
+
+	rjd.referenceAngle = 0;
 	if (numeroAspa == 1) {
-		rjd.lowerAngle = -35 * b2_pi / 180.0;
+		rjd.lowerAngle = 36 * b2_pi / 180.0;
 		rjd.upperAngle = 0;
 	} else {
-		rjd.lowerAngle = 0;
-		rjd.upperAngle = 35 * b2_pi / 180.0;
-
+		rjd.lowerAngle = -36 * b2_pi / 180.0;
+		rjd.upperAngle = 0;
 	}
 
 	this->jointCuerpoTierra = (b2RevoluteJoint*) myWorld->CreateJoint(&rjd);
@@ -122,7 +126,7 @@ void Aspa::crearShapes() {
 	polygon.SetAsBox(this->ancho / 2, this->alto / 2);
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;
-	fixture.density = 2.00f;
+	fixture.density = 10.00f;
 	fixture.shape = &polygon;
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
