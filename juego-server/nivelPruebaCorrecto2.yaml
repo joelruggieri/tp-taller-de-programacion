@@ -39,6 +39,8 @@ Jugadores:
         cantidad: 5
       - nombre: FP
         cantidad: 5
+      - nombre: FV
+        cantidad: 5
       - nombre: FE
         cantidad: 5
       - nombre: FL

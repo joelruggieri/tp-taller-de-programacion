@@ -287,22 +287,25 @@ bool Union::bodyEntre(b2Body* b, b2Vec2 inicio, b2Vec2 fin) {
 //	polygon.Set(vertices, 4);
 
 	b2EdgeShape polygon;
-	polygon.Set(inicio, fin);
+	polygon.Set(inicio- centro , fin-centro);
+
+
+
 
 	b2FixtureDef fixture;
 	fixture.filter.categoryBits = CATEGORIA_CUERPO_CORTE_TIJERA;
 	fixture.filter.maskBits = CATEGORIA_CUERPO_CORTE_TIJERA;
 	fixture.shape = &polygon;
 	b2BodyDef bodyDef;
-//	bodyDef.type = b2_dynamicBody;
 	bodyDef.position=centro;
-	//bodyDef.fixedRotation = true;
 	bodyDef.angle = 0;
 	b2Body* bodyFake = myWorld->CreateBody(&bodyDef);
 	bodyFake->CreateFixture(&fixture);
+	bodyFake->SetUserData(this);
 	//testeo el overlap
 
 	bool result = validarContacto(bodyFake,b);
+
 	myWorld->DestroyBody(bodyFake);
 	return result;
 
