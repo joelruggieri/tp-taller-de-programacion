@@ -9,8 +9,8 @@
 #include "../CargadorDeTextures.h"
 namespace CLIENTE {
 
-TijeraView::TijeraView(float x, float y, float w, float h, SDL_Texture* textura): ObjetoView(x, y, w, h,textura) {
-	t2 = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_TIJERA2);
+TijeraView::TijeraView(float x, float y, float w, float h, SDL_Texture* textura1, SDL_Texture* textura2): ObjetoView(x, y, w, h,textura1) {
+	t2 = textura2;
 }
 
 void TijeraView::dibujarse(SDL_Renderer* r) {
@@ -19,18 +19,17 @@ void TijeraView::dibujarse(SDL_Renderer* r) {
 	dest.w = this->wp;
 	dest.x = this->xp;
 	dest.y = this->yp;
-	SDL_RenderCopyEx(r,this->getTexture(), NULL, &dest,this->getAngulo() +30,NULL,SDL_FLIP_NONE);
-	SDL_RenderCopyEx(r,this->t2, NULL, &dest,this->getAngulo()-30,NULL,SDL_FLIP_NONE);
+	SDL_RenderCopyEx(r,this->getTexture(), NULL, &dest,angulo2,NULL,SDL_FLIP_NONE);
+	SDL_RenderCopyEx(r,this->t2, NULL, &dest,angulo1,NULL,SDL_FLIP_NONE);
 
 }
 
 void TijeraView::update(ViewMsj* mje) {
-	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*)mje;
+	ViewTijeraMsj* mjeCurrent = (ViewTijeraMsj*)mje;
 	this->setXl(mjeCurrent->getX());
 	this->setYl(mjeCurrent->getY());
-
-	this->setAngulo(mjeCurrent->getAngulo());
-	resizear();
+	angulo1= mjeCurrent->getRotacionAspa1();
+	angulo2= mjeCurrent->getRotacionAspa2();
 }
 
 TijeraView::~TijeraView() {

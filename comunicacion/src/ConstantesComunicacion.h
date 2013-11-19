@@ -4,6 +4,7 @@
 #define TAG_VIEW_OBJETO_UNION "VU"
 #define TAG_BOTON_LISTO "L"
 #define TAG_VIEW_CARRITO "VC"
+#define TAG_VIEW_TIJERA "VT"
 
 #define ID_BOTON_PLAY 5
 

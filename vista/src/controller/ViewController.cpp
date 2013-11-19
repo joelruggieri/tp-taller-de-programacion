@@ -13,6 +13,7 @@
 #include "../vista/Canvas.h"
 #include "../vista/ViewConBorde.h"
 #include "../vista/BotonSwitch.h"
+#include "../vista/objeto/TijeraView.h"
 #include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
@@ -298,6 +299,21 @@ void ViewController::visit(ViewCarritoMsj* m) {
 
 
 	unlock();
+}
+
+
+void ViewController::visit(ViewTijeraMsj*m) {
+	lock();
+	if (!update(m)) {
+		SDL_Texture * t= CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_TIJERA1);
+		SDL_Texture * t2= CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_TIJERA2);
+		View * v = new TijeraView(0,0,ANCHO_TIJERA,ALTO_TIJERA,t,t2);
+		v->update(m);
+		addViewPrivado(m->getId(), v);
+	}
+
+	unlock();
+
 }
 
 }

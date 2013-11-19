@@ -7,6 +7,7 @@
 
 #include "TijeraView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
+#include <src/mensajes/viewMensaje/ViewTijeraMsj.h>
 #include "src/objeto/Tijera.h"
 
 TijeraView::TijeraView(float x, float y, SimpleEditorAnguloFijo* editor): ObjetoView(x,y,editor,OBJ_SIMPLE_S_TIJERA) {
@@ -19,8 +20,6 @@ TijeraView::~TijeraView() {
 }
 
 void TijeraView::dropTemplate(){
-
-
 	((SimpleEditorAnguloFijo* )this->controller)->dropNuevaFigura(this);
 }
 
@@ -30,3 +29,17 @@ EditorNivel * TijeraView::getEditor(){
 	return editor;
 }
 
+void TijeraView::dibujarse(list<ViewMsj*>& mjes) {
+	Tijera* figura = (Tijera*)this->getModelo();
+	ViewTijeraMsj* viewMensaje;
+	if(figura == NULL){
+
+		viewMensaje = new ViewTijeraMsj(this->getXCentro(),this->getYCentro(),-ANGULO_DEFECTO_ASPA,ANGULO_DEFECTO_ASPA, this->getId());
+		mjes.push_back(viewMensaje);
+	} else {
+		if(figura->isViva()){
+		viewMensaje = new ViewTijeraMsj(figura->getX(),figura->getY(),figura->getRotacionAspa1(),figura->getRotacionAspa2(),this->getId());
+		mjes.push_back(viewMensaje);
+		}
+	};
+}
