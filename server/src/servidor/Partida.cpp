@@ -71,6 +71,7 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		mensaje->setYArea(status->getJugador()->getArea()->getY());
 		mensaje->setAnchoArea(status->getJugador()->getArea()->getAncho());
 		mensaje->setAltoArea(status->getJugador()->getArea()->getAlto());
+		mensaje->setObjetivo("JONY COME TRABAS DE 20 PESOS");
 		std::list<std::string> tags;
 		status->getJugador()->recibirTags(tags);
 		std::list<std::string>::iterator it;

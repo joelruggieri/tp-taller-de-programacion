@@ -21,6 +21,7 @@ namespace CLIENTE {
 class MainController {
 private:
 	float xArea,yArea,wArea,hArea;
+	string objetivo;
 	SDL_Renderer * render;
 	JuegoEventsController * juegoController;
 	GeneralEventController * crearGeneralEventController(list<string> & factories,StatusJuego & statusjuego);
@@ -35,6 +36,7 @@ public:
 	int run(list<string> & factories);
 	ViewController * getviewController();
 	void setCoordenadasArea(float, float, float ,float);
+	void setObjetivo(const string& objetivo);
 };
 }
 #endif /* MAINCONTROLLER_H_ */

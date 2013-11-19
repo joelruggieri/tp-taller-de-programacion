@@ -57,7 +57,7 @@ int MainController::run(list<string> & factories) {
 	ventana = SDL_CreateWindow("The Incredible Machine LAN", 300, 100, TAMANIO_PANTALLA, TAMANIO_PANTALLA, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
 	Cuadrado cuadrado = Cuadrado(this->xArea, this->yArea, this->wArea,this->hArea);
-	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA), cuadrado);
+	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA), cuadrado, this->objetivo);
 	StatusJuego juegoStatus;
 	GeneralEventController * eventController = crearGeneralEventController(factories,juegoStatus);
 	eventController->setDrawController(viewController);
@@ -119,6 +119,8 @@ void MainController::setCoordenadasArea(float float1, float float2,
 	this->wArea = float3;
 	this->hArea = float4;
 }
+void MainController::setObjetivo(const string& objetivo) {
+	this->objetivo = objetivo;
 }
-
+}
 
