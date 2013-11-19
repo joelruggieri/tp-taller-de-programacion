@@ -21,18 +21,18 @@ public:
 	void update(ViewMsj *);
 //		 void resize();
 		 bool isUpdated();
+	void setMensaje(string mensaje);
+	void resizear();
 
-	void setTexto(const string& texto) {
-		this->texto = texto;
-	}
 
 private:
+	float tamanoFuente;
 	SDL_Texture* textura ;
 	TTF_Font* fuente ;
 	 string texto ;
 	 SDL_Surface* surfaceTexto;
 	 SDL_Color color;
-
+	 typedef View super;
 };
 
 } /* namespace CLIENTE */

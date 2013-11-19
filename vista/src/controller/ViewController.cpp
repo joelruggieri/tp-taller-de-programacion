@@ -43,7 +43,7 @@ ViewController::ViewController(SDL_Renderer * r, Transformacion * tl,
 					cuadradoArea.getAncho(), cuadradoArea.getAlto(),
 					CargadorDeTextures::Instance()->cargarTexture(
 					PATH_VISTA_AREA)));
-	addView(ID_CARTEL, new AreaMensajes(50, -10, 95, 10,CargadorDeTextures::Instance()->cargarTexture(
+	addView(ID_CARTEL, new AreaMensajes(60, -10, 110, 10,CargadorDeTextures::Instance()->cargarTexture(
 			PATH_VISTA_CARTEL), objetivo));
 	highlightsActual = ID_NO_HIGHLIGHT;
 	highlightsAnterior = ID_NO_HIGHLIGHT;
