@@ -41,7 +41,7 @@ void Bomba::crearFisica() {
 		bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyPelota.filter.maskBits = CATEGORIA_FIGURAS;
 		bodyPelota.shape = &shapeCircle;
-		bodyPelota.density = 10.0f;
+		bodyPelota.density = 1.0f;
 		bodyPelota.friction = 0.3f;
 		bodyPelota.restitution = 0.6f;	//mucho coeficiente de restitucion
 		body->CreateFixture(&bodyPelota)->SetUserData(this);
@@ -52,7 +52,7 @@ void Bomba::crearFisica() {
 		body->SetUserData(this);
 		this->setBody(body);
 
-		crearFisicaRadio(centro);
+//		crearFisicaRadio(centro);
 }
 
 void Bomba::acept(VisitorFigura* v) {
@@ -72,6 +72,7 @@ void Bomba::setRadio(float radio) {
 }
 
 void Bomba::accionar() {
+	crearFisicaRadio(b2Vec2(this->getX(), this->getY()));
 	for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
 		if (b!= this->body && b!= this->radioAccion && b->GetFixtureList()!= NULL && b->GetFixtureList()->GetShape() != NULL) {
 //			//solo da que si cuando golpea con otro radio de accion
@@ -84,6 +85,7 @@ void Bomba::accionar() {
 	}
 	notify(DESACTIVADO);
 	myWorld->DestroyBody(this->getBody());
+	myWorld->DestroyBody(this->radioAccion);
 	viva = false;
 }
 
