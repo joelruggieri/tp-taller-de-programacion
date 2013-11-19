@@ -17,6 +17,7 @@ private:
 	b2RevoluteJoint * jointCuerpoTierra;
 	int numeroAspa;
 	Tijera* tijera;
+	void crearShapes();
 public:
 	Aspa();
 	Aspa(float,float,float,float,double,int,Tijera*);

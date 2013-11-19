@@ -15,6 +15,7 @@ namespace CLIENTE {
 class TijeraView: public ObjetoView {
 private:
 	typedef ObjetoView super;
+	SDL_Texture * t2;
 public:
 	TijeraView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~TijeraView();

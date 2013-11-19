@@ -31,8 +31,8 @@ Tijera::Tijera(): Objeto() {
 Tijera::Tijera(float x, float y, float ancho, float alto): Objeto(x,y, new ValidadorEnArea(this)) {
 	this->ancho = ancho;
 	this->alto = alto;
-	aspa1 = new Aspa(x, y,ancho, alto,-45,1,this);
-	aspa2 = new Aspa(x,y, ancho,alto,45,2,this);
+	aspa1 = new Aspa(x, y,ancho, alto,-35,1,this);
+	aspa2 = new Aspa(x,y, ancho,alto,35,2,this);
 	accionada = false;
 
 //	b2Rot rot(- b2_pi/4.0);
@@ -40,8 +40,8 @@ Tijera::Tijera(float x, float y, float ancho, float alto): Objeto(x,y, new Valid
 //	b2Vec2 pos(1,0);
 //	b2Vec2 eng1 = b2Mul(rot,pos);
 //	b2Vec2 eng2 = b2Mul(rot2,pos);
-	Enganche* enganche1 = new Enganche(this->aspa1, 0.9 * ancho/2.0,0);
-	Enganche* enganche2 = new Enganche(this->aspa2, 0.9 * ancho/2.0,0);
+	Enganche* enganche1 = new Enganche(this->aspa1, 0.9 * ancho/2.0,0.1*alto/2.0);
+	Enganche* enganche2 = new Enganche(this->aspa2, 0.9 * ancho/2.0,0.1*alto/2.0);
 	enganches.push_back(enganche1);
 	enganches.push_back(enganche2);
 }
@@ -94,14 +94,14 @@ void Tijera::crearFisica(){
 	//rjd.enableLimit = true;
 	//b2RevoluteJoint* jointAspa2ATierra = (b2RevoluteJoint*) myWorld->CreateJoint(&rjd2);*/
 
-	//gearJoint entre las aspas
-	b2GearJointDef gear_joint;
-	gear_joint.bodyA = this->aspa1->getBody();
-	gear_joint.bodyB = this->aspa2->getBody();
-	gear_joint.joint1 = this->aspa1->getJoint();//jointAspa1ATierra;
-	gear_joint.joint2 = this->aspa1->getJoint();//jointAspa2ATierra;
-	gear_joint.ratio =  -1;
-	myWorld->CreateJoint(&gear_joint);
+//	//gearJoint entre las aspas
+//	b2GearJointDef gear_joint;
+//	gear_joint.bodyA = this->aspa1->getBody();
+//	gear_joint.bodyB = this->aspa2->getBody();
+//	gear_joint.joint1 = this->aspa1->getJoint();//jointAspa1ATierra;
+//	gear_joint.joint2 = this->aspa1->getJoint();//jointAspa2ATierra;
+//	gear_joint.ratio =  -1;
+//	myWorld->CreateJoint(&gear_joint);
 
 }
 

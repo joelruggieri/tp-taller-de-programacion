@@ -40,7 +40,7 @@ View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj* o) {
 }
 
 View* ViewObjetoSimpleFactory::crearTijera(ViewObjetoUpdateMsj* o) {
-	TijeraView* viewReturn = new TijeraView(o->getX(), o->getY(),ANCHO_TIJERA, ALTO_TIJERA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_TIJERA_ABIERTA));
+	TijeraView* viewReturn = new TijeraView(o->getX(), o->getY(),ANCHO_TIJERA, ALTO_TIJERA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_TIJERA1));
 	return viewReturn;
 }
 
