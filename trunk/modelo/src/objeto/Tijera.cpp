@@ -35,11 +35,6 @@ Tijera::Tijera(float x, float y, float ancho, float alto): Objeto(x,y, new Valid
 	aspa2 = new Aspa(x,y, ancho,alto,ANGULO_DEFECTO_ASPA,2,this);
 	accionada = false;
 
-//	b2Rot rot(- b2_pi/4.0);
-//	bRot rot2(b2_pi/4.0);
-//	b2Vec2 pos(1,0);
-//	b2Vec2 eng1 = b2Mul(rot,pos);
-//	b2Vec2 eng2 = b2Mul(rot2,pos);
 	Enganche* enganche1 = new Enganche(this->aspa1, 0.8 * ancho/2.0,0);
 	Enganche* enganche2 = new Enganche(this->aspa2, 0.8 * ancho/2.0,0);
 	enganches.push_back(enganche1);
@@ -99,15 +94,6 @@ void Tijera::crearFisica(){
 	rjd.localAnchorA = b2Vec2_zero;
 	rjd.localAnchorB = b2Vec2_zero;
 	myWorld->CreateJoint(&rjd);
-//	//gearJoint entre las aspas
-	b2GearJointDef gear_joint;
-//	gear_joint.bodyA = this->aspa1->getBody();
-//	gear_joint.bodyB = this->aspa2->getBody();
-//	gear_joint.joint1 = this->aspa1->getJoint();//jointAspa1ATierra;
-//	gear_joint.joint2 = this->aspa1->getJoint();//jointAspa2ATierra;
-//	gear_joint.ratio =  -1;
-//	myWorld->CreateJoint(&gear_joint);
-
 }
 
 void Tijera::acept(VisitorFigura* visitor){
@@ -197,8 +183,6 @@ b2Body* Tijera::getBody() {
 
 void Tijera::accionar() {
 	Mapa * m = (Mapa*)ground->GetUserData();
-	cout<< "accionada la tijera" << endl;
-
 	// creo un body para poder enviar el corte.
 	b2PolygonShape * shape= new b2PolygonShape();
 //	shape->SetAsBox(this->ancho/4,this->alto/2);
@@ -226,7 +210,8 @@ void Tijera::accionar() {
 	body->SetUserData(this);
 	m->cortarUniones(body);
 	myWorld->DestroyBody(body);
-
+	aspa1->trabar();
+	aspa2->trabar();
 }
 
 float Tijera::getRotacionAspa1() {
