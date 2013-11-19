@@ -61,6 +61,7 @@ void ConfiguracionNivelMsj::serialize(YAML::Emitter & out){
 	for (iterador = this->getFactoriresTags().begin(); iterador != this->getFactoriresTags().end(); ++iterador){
 		out << *iterador;
 	}
+	out << this->getObjetivo();
 }
 
 NetworkMensaje* ConfiguracionNivelMsj::deserialize(YAML::const_iterator& it) {
@@ -86,6 +87,9 @@ NetworkMensaje* ConfiguracionNivelMsj::deserialize(YAML::const_iterator& it) {
 		salida->agregarTagFactory(tag);
 		it++;
 	}
+	string objetivo = it->as<string>();
+	salida->setObjetivo(objetivo);
+	it++;
 	return salida;
 }
 
@@ -97,3 +101,10 @@ ConfiguracionNivelMsj::~ConfiguracionNivelMsj() {
 	// TODO Auto-generated destructor stub
 }
 
+const string& ConfiguracionNivelMsj::getObjetivo() const {
+	return objetivo;
+}
+
+void ConfiguracionNivelMsj::setObjetivo(const string& objetivo) {
+	this->objetivo = objetivo;
+}

@@ -39,6 +39,7 @@ namespace CLIENTE {
 #define PATH_VISTA_PLATAFORMA "resource/plataforma.png"
 #define PATH_VISTA_GLOBO "resource/globo.png"
 #define PATH_VISTA_AREA "resource/area.png"
+#define PATH_VISTA_CARTEL "resource/textbox.png"
 #define PATH_VISTA_PELOTA "resource/pelota.png"
 #define PATH_VISTA_YUNQUE "resource/yunque.png"
 #define PATH_VISTA_BOLA "resource/bolaBoliche.png"
@@ -93,6 +94,7 @@ namespace CLIENTE {
 #define ID_SCROLL_ARRIBA 9
 #define ID_SCROLL_ABAJO 10
 #define ID_AREA 11
+#define ID_CARTEL 12
 #define ID_FACTORY_BALANCIN 50
 #define ID_FACTORY_TIJERA 64
 #define ID_FACTORY_BOLA 51

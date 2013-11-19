@@ -22,6 +22,7 @@
 #include "src/mensajes/viewMensaje/ViewMsjVisitor.h"
 #include "../vista/AreaView.h"
 #include "../modelo/Cuadrado.h"
+#include "../vista/AreaMensajes.h"
 #include <map>
 using namespace std;
 namespace CLIENTE {
@@ -32,7 +33,9 @@ class ViewController: public ObjetoCompartido, public DrawController, public Res
 private:
 	int highlightsActual;
 	int highlightsAnterior;
-	AreaView* areaVista;
+//	AreaView* areaVista;
+//	AreaMensajes* areaMensajes;
+	string objetivo;
 	map<int, View*> vistas;
 	list<View*> vistasList;
 	list<View*> vistasScrolleables;
@@ -45,7 +48,7 @@ private:
 	bool ordenar, huboHighLighT;
 public:
 	void generarVistaArea(float, float  ,float ,float);
-	ViewController(SDL_Renderer *,Transformacion * tl, Cuadrado cuadradoArea);
+	ViewController(SDL_Renderer *,Transformacion * tl, Cuadrado cuadradoArea, string objetivo);
 	void visit(ViewObjetoConAnchoUpdateMsj*);
 	void visit(ViewObjetoUpdateMsj*);
 	void visit(ViewObjetoUnionUpdateMsj*);

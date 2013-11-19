@@ -31,7 +31,8 @@ bool comparar_layersViews(View * first, View * second) {
 }
 
 ViewController::ViewController(SDL_Renderer * r, Transformacion * tl,
-		Cuadrado cuadradoArea) {
+		Cuadrado cuadradoArea, string objetivo) {
+	this->objetivo = objetivo;
 	this->renderer = r;
 	this->tl = NULL;
 	resize(tl);
@@ -41,6 +42,8 @@ ViewController::ViewController(SDL_Renderer * r, Transformacion * tl,
 					cuadradoArea.getAncho(), cuadradoArea.getAlto(),
 					CargadorDeTextures::Instance()->cargarTexture(
 					PATH_VISTA_AREA)));
+	addView(ID_CARTEL, new AreaMensajes(50, -10, 95, 10,CargadorDeTextures::Instance()->cargarTexture(
+			PATH_VISTA_CARTEL), objetivo));
 	highlightsActual = ID_NO_HIGHLIGHT;
 	highlightsAnterior = ID_NO_HIGHLIGHT;
 	ordenar = false;
@@ -70,6 +73,8 @@ void ViewController::dibujar() {
 
 ViewController::~ViewController() {
 	delete tl;
+//	delete areaVista;
+//	delete areaMensajes;
 	//delete areaVista;
 }
 
@@ -98,6 +103,7 @@ void ViewController::crearPantalla() {
 	cargador->cargarTexture(PATH_VISTA_BOMBA);
 	cargador->cargarTexture(PATH_VISTA_TIJERA1);
 	cargador->cargarTexture(PATH_VISTA_TIJERA2);
+	cargador->cargarTexture(PATH_VISTA_CARTEL);
 	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
 	PATH_ZONA_CREACION);
 	View * view = new Canvas(60, -10, 120, 20, LAYER_CANVAS_RELLENO, text);
@@ -218,8 +224,8 @@ void ViewController::unlock() {
 	super::unlock();
 }
 void ViewController::generarVistaArea(float x, float y, float w, float h) {
-	this->areaVista = new AreaView(x, y, w, h,
-			CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA));
+//	this->areaVista = new AreaView(x, y, w, h,
+//			CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_AREA));
 }
 
 void ViewController::visit(FinDibujado* m) {

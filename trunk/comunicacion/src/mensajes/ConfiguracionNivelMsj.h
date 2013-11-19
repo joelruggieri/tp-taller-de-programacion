@@ -12,6 +12,7 @@
 class ConfiguracionNivelMsj: public NetworkMensaje {
 	std::list<std::string> factoriesTags;
 	float xArea, yArea, anchoArea, altoArea;
+	string objetivo;
 
 public:
 	ConfiguracionNivelMsj();
@@ -29,6 +30,8 @@ public:
 	NetworkMensaje* deserialize(YAML::const_iterator& it);
 	void acept(MensajeVisitor *);
 	virtual ~ConfiguracionNivelMsj();
+	const string& getObjetivo() const;
+	void setObjetivo(const string& objetivo);
 };
 
 #endif /* CONFIGURACIONNIVELMSJ_H_ */
