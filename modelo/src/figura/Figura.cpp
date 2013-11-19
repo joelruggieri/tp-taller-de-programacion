@@ -204,17 +204,6 @@ void Figura::removerFisica() {
 	this->setBody(NULL);
 }
 
-bool Figura::validarContacto(b2Body * verf, b2Body * b) {
-	uint16 catA = verf->GetFixtureList()->GetFilterData().categoryBits;
-	uint16 maskA = verf->GetFixtureList()->GetFilterData().maskBits;
-	uint16 catB = b->GetFixtureList()->GetFilterData().categoryBits;
-	uint16 maskB = b->GetFixtureList()->GetFilterData().maskBits;
-
-	return b2TestOverlap(verf->GetFixtureList()->GetShape(), 0, b->GetFixtureList()->GetShape(), 0,
-			verf->GetTransform(), b->GetTransform()) && (catA & maskB) != 0 && (catB & maskA) != 0 && verf->GetUserData() != b->GetUserData();
-
-}
-
 Figura::Figura(const Figura& fig) {
 	this->reg = fig.reg;
 	this->x = fig.x;
@@ -314,4 +303,37 @@ void Figura::realizarImpacto(b2Vec2 direccion) {
 	versor.x = versor.x / modulo;
 	versor.y = versor.y / modulo;
 	this->body->ApplyLinearImpulse(7500*versor, b2Vec2(this->getX(), this->getY()));
+}
+
+bool Figura::validarContacto(b2Fixture* prim,const b2Transform& trfprim, b2Fixture* sec, const b2Transform& trfsec) {
+	uint16 catA = prim->GetFilterData().categoryBits;
+	uint16 maskA = prim->GetFilterData().maskBits;
+	uint16 catB = sec->GetFilterData().categoryBits;
+	uint16 maskB = sec->GetFilterData().maskBits;
+	return b2TestOverlap(prim->GetShape(), 0, sec->GetShape(), 0,
+			trfprim, trfsec) && (catA & maskB) != 0 && (catB & maskA) != 0;
+
+
+}
+
+
+bool Figura::validarContacto(b2Body * verf, b2Body * b) {
+	if( verf->GetUserData() == b->GetUserData() && b->GetUserData() != NULL){
+		return false;
+	}
+	b2Fixture* prim = verf->GetFixtureList();
+	b2Fixture* sec;
+	while(prim != NULL){
+		sec = b->GetFixtureList();
+		while(sec != NULL){
+			if(validarContacto(prim, verf->GetTransform(), sec, b->GetTransform())){
+				return true;
+			}
+			sec = sec->GetNext();
+		}
+		prim = prim->GetNext();
+	}
+
+	return false;
+
 }
