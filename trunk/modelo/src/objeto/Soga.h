@@ -40,10 +40,9 @@ public:
 	bool activoPrimerTramo();
 	//INDICA SI EL PRIMER TRAMO ESTA ACTIVO, PUEDE NO EXISTIR EL JOINT Y ESTAR ACTIVO TBN
 	bool activoSegundoTramo();
-	//ROMPE LA SOGA Y PROPAGA EL EVENTO HACIA EL OTRO ESTREMO
-	void romper(Enganche *);
 	//Corta la soga directamente.
 	void cortar(b2Body *);
+	void cortar(Enganche *);
 protected:
 	void crearLazo(b2World*);
 	void updatePosicionesFiguras();
@@ -51,6 +50,7 @@ protected:
 	void setearPuntoFinal(Figura *f);
 	void updatePosicionesSinFisica();
 private:
+	//ROMPE LA SOGA Y PROPAGA EL EVENTO HACIA EL OTRO ESTREMO
 	Enganche * getEngancheMasCercano(Figura* figura, float x, float y, bool desocupado);
 	Enganche *origen, *destino;
 	b2Body * eslabon;

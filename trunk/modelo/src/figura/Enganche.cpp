@@ -89,7 +89,7 @@ void Enganche::desenganchado() {
 }
 
 void Enganche::matarSoga() {
-	soga->romper(this);
+	soga->cortar(this);
 }
 
 Figura* Enganche::getFigura() {

@@ -91,79 +91,6 @@ void Tijera::setAncho(float ancho){
 void Tijera::crearFisica(){
 	this->aspa1->crearFisica();
 	this->aspa2->crearFisica();
-	/*float x = this->getX();
-	float y = this->getY();
-	b2Vec2 centro(x,y);
-	b2PolygonShape * polygon= new b2PolygonShape();
-
-	polygon->SetAsBox(this->ancho/2,this->alto/2);
-
-	b2FixtureDef fixture;
-	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
-	fixture.filter.maskBits = CATEGORIA_FIGURAS;
-	fixture.density = 50.00f;
-	fixture.shape = polygon;
-	fixture.friction = 0.01f;
-	fixture.restitution = 0.00f;
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(x,y);
-	//bodyDef.fixedRotation = true;
-	double rotacionRad = this->getRotacionAspa1() * -1*b2_pi / 180.0;
-	bodyDef.angle = rotacionRad;
-	b2Body* bodyAspa1 = myWorld->CreateBody(&bodyDef);
-	bodyAspa1->CreateFixture(&fixture);
-	bodyAspa1->SetUserData(this);
-	this->setBody(bodyAspa1);
-
-	b2RevoluteJointDef rjd;
-	rjd.Initialize(ground,bodyAspa1,centro);
-//	rjd.motorSpeed = 1.0f * b2_pi;
-//	rjd.maxMotorTorque = 10000.0f;
-	//rjd.collideConnected = false;
-	//aspa1
-	double anguloAspa1 = this->aspa1->getRotacion();
-	b2RevoluteJoint* revoluteJoint1 = (b2RevoluteJoint*)(this->aspa1->getJoint());
-	if((anguloAspa1 == 0) || (anguloAspa1 == -90) || (anguloAspa1 == -180) || (anguloAspa1 == -270)){
-		revoluteJoint1->m_lowerAngle = 0;
-		(b2RevoluteJoint*)(this->aspa1->getJoint())->m_upperAngle= 0.25f * b2_pi;
-	}else if((anguloAspa1 == -45) || (anguloAspa1 == -135) || (anguloAspa1 == -225) || (anguloAspa1 == -315)  ){
-		(b2RevoluteJoint*)(this->aspa1->getJoint())->m_lowerAngle = -0.25f * b2_pi;
-		(b2RevoluteJoint*)(this->aspa1->getJoint())->m_upperAngle = 0;
-	}
-	rjd.enableLimit = true;
-	b2RevoluteJoint* jointAspa1ATierra = (b2RevoluteJoint*) myWorld->CreateJoint(&rjd);
-
-	// aspa2
-	b2PolygonShape * polygon2= new b2PolygonShape();
-	polygon2->SetAsBox(this->ancho/2,this->alto/2);
-	b2FixtureDef fixture2;
-	fixture2.filter.categoryBits = CATEGORIA_FIGURAS;
-	fixture2.filter.maskBits = CATEGORIA_FIGURAS;
-	fixture2.density = 50.00f;
-	fixture2.shape = polygon2;
-	fixture2.friction = 0.01f;
-	fixture2.restitution = 0.00f;
-	b2BodyDef bodyDef2;
-	bodyDef2.type = b2_dynamicBody;
-	bodyDef2.position.Set(x,y);
-	double rotacionRad2 = this->getRotacionAspa2() * -1*b2_pi / 180.0;
-	bodyDef2.angle = rotacionRad2;
-	b2Body* bodyAspa2 = myWorld->CreateBody(&bodyDef2);
-	bodyAspa2->CreateFixture(&fixture2);
-	bodyAspa2->SetUserData(this);
-	this->setBodyAspa2(bodyAspa2);
-	b2RevoluteJointDef rjd2;
-	rjd2.Initialize(ground,bodyAspa2,centro);
-	rjd2.collideConnected = false;
-	double anguloAspa2 = this->aspa2->getRotacion();
-	if((anguloAspa2 == 0) || (anguloAspa2 == -90) || (anguloAspa2 == -180) || (anguloAspa2 == -270)){
-		(b2RevoluteJoint*)(this->aspa2->getJoint())->m_lowerAngle = -0.25f * b2_pi;
-		(b2RevoluteJoint*)(this->aspa2->getJoint())->m_upperAngle = 0;
-	}else if((anguloAspa2 == 45) || (anguloAspa2 == -45) || (anguloAspa2 == -135) || (anguloAspa2 == -225)){
-		(b2RevoluteJoint*)(this->aspa2->getJoint())->m_lowerAngle = 0;
-		(b2RevoluteJoint*)(this->aspa2->getJoint())->m_upperAngle =  0.25f * b2_pi;
-	}
 	//rjd.enableLimit = true;
 	//b2RevoluteJoint* jointAspa2ATierra = (b2RevoluteJoint*) myWorld->CreateJoint(&rjd2);*/
 
@@ -230,31 +157,6 @@ void Tijera::crearFisicaEstaticaTemplate(b2World * w, b2Body* ground){
 }
 
 
-/*double Tijera::getRotacionAspa2() const {
-	return rotacionAspa2;
-}
-
-double Tijera::getRotacionAspa1() const {
-	return rotacionAspa1;
-}
-
-void Tijera::setBodyAspa2(b2Body* body){
-	this->aspa2 = body;
-}
-
-void Tijera::setRotacionAspa2(double rotation) {
-	this->rotacionAspa2 = rotation;
-	//notify(CAMBIO_ESPACIAL_FORZADO);
-}
-
-void Tijera::setRotacionAspa1(double rotation) {
-	this->rotacionAspa2 = rotation;
-	//notify(CAMBIO_ESPACIAL_FORZADO);
-}
-
-b2Body* Tijera::getbodyAspa2(){
-	return this->aspa2;
-}*/
 
 bool Tijera::crearFisicaEstatica() {
 	if (myWorld != NULL) {
@@ -346,17 +248,19 @@ void Tijera::accionar() {
 	fixture.restitution = 0.00f;
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-	b2Vec2 posRelativa(- ancho/4.0,0 );
+//	b2Vec2 posRelativa(- ancho/4.0,0 );
 //	b2Rot rotacion(this->getRotacion() * -1*b2_pi / 180.0);
 //	b2Vec2 posAbsoluta = b2MulT(rotacion, posRelativa);
 //	posAbsoluta= b2Vec2(posAbsoluta.x +x, posAbsoluta.y +y);
 //	bodyDef.position = posAbsoluta;
 	bodyDef.position.Set(this->x,this->y);
+	bodyDef.angle = 0;
 	//bodyDef.fixedRotation = true;
 //	double rotacionRad = this->getRotacion() * -1*b2_pi / 180.0;
 //	bodyDef.angle = rotacionRad;
 	b2Body* body = myWorld->CreateBody(&bodyDef);
 	body->CreateFixture(&fixture);
+	body->SetUserData(this);
 	m->cortarUniones(body);
 	myWorld->DestroyBody(body);
 

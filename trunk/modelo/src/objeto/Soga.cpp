@@ -278,33 +278,11 @@ b2Vec2 Soga::determinarPosEslabon() {
 void Soga::notifyEvent(Evento_type enumEvento) {
 	Figura * o = (Figura *) this->eventHelper->getLastObservable();
 	if (enumEvento == DESACTIVADO) {
-//		if (conEslabon()) {
-//
-//			if (figuraInicio == o && joint) {
-//				myWorld->DestroyJoint(joint);
-//				joint = NULL;
-//				primerTramoOn = false;
-//			}
-//			if (figuraFin == o && joint2) {
-//				myWorld->DestroyJoint(joint2);
-//				joint2 = NULL;
-//				segundoTramoOn = false;
-//			}
-//			if (!segundoTramoOn && !primerTramoOn) {
-//				viva = false;
-//			}
-//		} else {
-//			if (joint) {
-//				myWorld->DestroyJoint(joint);
-//				joint = NULL;
-//				viva = false;
-//			}
-//		}
 		if(o == figuraInicio){
-			romper(origen);
+			cortar(origen);
 		}
 		if(o == figuraFin){
-			romper(destino);
+			cortar(destino);
 		}
 	}
 	if (enumEvento == DESPUES_DESTRUCCION && (o == figuraFin || o == figuraInicio)) {
@@ -358,40 +336,29 @@ bool Soga::activoSegundoTramo() {
 	return segundoTramoOn;
 }
 
-void Soga::romper(Enganche * e) {
+void Soga::cortar(Enganche * e) {
 	if (e == origen || e == destino) {
-		if (joint) {
-			myWorld->DestroyJoint(joint);
-			joint = NULL;
-		}
-		if(joint2){
-			myWorld->DestroyJoint(joint2);
-			joint2 = NULL;
-
-		}
-
-		if(e==origen){
-			destino->desenganchado();
-		}
-		if(e==destino){
-			origen->desenganchado();
-		}
-
-		if(conEslabon() && eslabon){
+		destino->desenganchado();
+		origen->desenganchado();
+		if (conEslabon() && eslabon) {
 			myWorld->DestroyBody(eslabon);
 			eslabon = NULL;
 		}
-
 		viva = false;
-
-
 	}
 
 }
 
 void Soga::cortar(b2Body*b) {
 	if(this->bodyEntre(b, inicio,fin)){
-		romper(origen);
-		romper(destino);
+//		cortar(origen);
+		destino->desenganchado();
+		origen->desenganchado();
+//		cortar(destino);
+		if (conEslabon() && eslabon) {
+			myWorld->DestroyBody(eslabon);
+			eslabon = NULL;
+		}
+		viva = false;
 	}
 }
