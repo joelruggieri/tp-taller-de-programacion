@@ -64,50 +64,6 @@ void Carrito::acept(VisitorFigura* visitor){
 
 
 void Carrito::crearFisica(){
-	/*float x = this->getX();
-	float y = this->getY();
-	float ancho = this->getAncho();
-	float alto = this->getAlto();
-	//b2Vec2 centro(x,y);
-	b2BodyDef bd;
-	bd.type = b2_dynamicBody;
-	bd.position.Set(x,y);
-	bd.fixedRotation = false;
-	b2FixtureDef fixture;
-	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
-	fixture.filter.maskBits = CATEGORIA_FIGURAS;
-	b2Body* body = myWorld->CreateBody(&bd);
-	b2EdgeShape* shape = new b2EdgeShape();*/
-//	b2Vec2 extremoSuperiorIzquierdo(x -(ancho/2),y + (alto/2));
-//	b2Vec2 extremoInferiorIzquierdo(x -(ancho/2),y - (alto/2));
-//	b2Vec2 extremoSuperiorDerecho(x + (ancho/2),y + (alto/2));
-//	b2Vec2 extremoInferiorDerecho(x + (ancho/2),y - (alto/2));
-	/*shape->Set(extremoSuperiorIzquierdo,extremoInferiorIzquierdo);
-	shape->m_hasVertex3 = true;
-	shape->m_vertex3 = extremoInferiorDerecho;
-	fixture.shape = shape;
-	body->CreateFixture(&fixture);
-	//body->CreateFixture(shape,1.0);
-
-	shape->Set(extremoInferiorIzquierdo,extremoInferiorDerecho);
-	shape->m_hasVertex0 = true;
-	shape->m_hasVertex3 = true;
-	shape->m_vertex0 = extremoSuperiorIzquierdo;
-	shape->m_vertex3 = extremoSuperiorDerecho;
-	fixture.shape = shape;
-	body->CreateFixture(&fixture);
-	//body->CreateFixture(&fixture);
-	//body->CreateFixture(shape,1.0);
-
-	shape->Set(extremoInferiorDerecho,extremoSuperiorDerecho);
-	shape->m_hasVertex0 = true;
-	shape->m_vertex0 = extremoInferiorIzquierdo;
-	fixture.shape = shape;
-	body->CreateFixture(&fixture);
-	//body->CreateFixture(&fixture);
-	//body->CreateFixture(shape,1.0);
-	body->SetUserData(this);*/
-	//RUEDAS
 	//plataforma
 	float x = this->getX();
 	float y = this->getY();
@@ -168,17 +124,6 @@ void Carrito::crearFisica(){
 	rjd2.Initialize(body,bodyRuedaDerecha,bodyRuedaDerecha->GetPosition());
 	rjd2.collideConnected= false;
 	myWorld->CreateJoint(&rjd2);
-	//JOINT
-//	b2WheelJointDef jd;
-//	jd.Initialize(body,bodyRuedaIzquierda,ruedaIzquierda->GetPosition(),b2Vec2(0, 1));
-//	jd.motorSpeed = 0.0f;
-//	jd.maxMotorTorque = 20.0f;
-//	jd.collideConnected= false;
-//	b2WheelJointDef jd2;
-//	jd2.Initialize(body,bodyRuedaDerecha,ruedaDerecha->GetPosition(),b2Vec2(0,1));
-//	jd2.maxMotorTorque = 20.0f;
-//	jd2.collideConnected= false;
-//	myWorld->CreateJoint(&jd2);
 }
 
 Carrito::~Carrito() {

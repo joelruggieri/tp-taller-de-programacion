@@ -52,6 +52,9 @@ namespace CLIENTE {
 #define PATH_VISTA_POLEA "resource/polea.png"
 #define PATH_VISTA_CONTROL "resource/control.jpg"
 #define PATH_VISTA_BOMBA "resource/bomba2.png"
+#define PATH_VISTA_TIJERA1 "resource/tijera.png"
+#define PATH_VISTA_TIJERA2 "resource/tijera2.png"
+
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
 #define PATH_ROTACION_IMG "resource/rotacion.png"
@@ -128,8 +131,8 @@ namespace CLIENTE {
 #define RADIO_RUEDA_CARRITO 1.5
 #define ANCHO_BALANCIN 15.0
 #define ALTO_BALANCIN 1.6
-#define ANCHO_TIJERA 10.61
-#define ALTO_TIJERA 10.61
+#define ANCHO_TIJERA 15.0
+#define ALTO_TIJERA 2.0
 
 
 #define ANCHO_CLAVO 6.0
