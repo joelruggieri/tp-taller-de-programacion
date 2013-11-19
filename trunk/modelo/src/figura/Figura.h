@@ -39,7 +39,7 @@ protected:
 	double radianesAGrados(float r);
     virtual void crearFisicaEstaticaTemplate();
     bool validarContacto(b2Body * verf, b2Body * b);
-
+    bool validarContacto(b2Fixture* prim,const b2Transform& trfprim, b2Fixture* sec,const b2Transform& trfsec);
     //Cosas tercera entrega
 
     bool viva;
