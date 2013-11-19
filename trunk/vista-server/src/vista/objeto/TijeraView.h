@@ -15,6 +15,7 @@ public:
 	virtual ~TijeraView();
 	void dropTemplate();
 	EditorNivel * getEditor();
+	void dibujarse(list<ViewMsj*>& mjes);
 };
 
 #endif /* TIJERAVIEW_H_ */

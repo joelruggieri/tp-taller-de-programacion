@@ -45,6 +45,8 @@ public:
 	void restoreBackUp();
 	void setNumeroJugador(int);
 	void accionar();
+	float getRotacionAspa1();
+	float getRotacionAspa2();
 	b2Body * getBody();
 };
 

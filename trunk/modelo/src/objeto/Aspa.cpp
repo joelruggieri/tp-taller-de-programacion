@@ -58,7 +58,7 @@ void Aspa::crearFisica() {
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(x, y);
-//	bodyDef.angularDamping=1.0;
+	bodyDef.angularDamping=2.0;
 //	bodyDef.gravityScale = 0;
 	//bodyDef.fixedRotation = true;
 	double rotacionRad = this->getRotacion()*-1 * b2_pi / 180.0;
@@ -72,20 +72,51 @@ void Aspa::crearFisica() {
 	rjd.bodyB = bodyAspa;
 	rjd.collideConnected = false;
 	rjd.enableLimit = true;
-	rjd.localAnchorA = b2Vec2(x,y);
+	rjd.localAnchorA = centro;
 	rjd.localAnchorB = b2Vec2_zero;
 
 
 //	aspa1 = new Aspa(x, y,ancho, alto,-35,1,this);
 //	aspa2 = new Aspa(x,y, ancho,alto,35,2,this);
-
 	rjd.referenceAngle = 0;
 	if (numeroAspa == 1) {
-		rjd.lowerAngle = 36 * b2_pi / 180.0;
-		rjd.upperAngle = 0;
+		if(getRotacion() == -ANGULO_DEFECTO_ASPA ){
+			rjd.upperAngle= ANGULO_DEFECTO_ASPA * b2_pi / 180.0;
+			rjd.lowerAngle= 3 * b2_pi / 180.0;
+		}
+		if(getRotacion() == 90 - ANGULO_DEFECTO_ASPA  ){
+			rjd.upperAngle= (ANGULO_DEFECTO_ASPA-90) * b2_pi / 180.0;
+			rjd.lowerAngle= (3 -90)* b2_pi / 180.0;
+		}
+		if(getRotacion() == 180 - ANGULO_DEFECTO_ASPA  ){
+			rjd.upperAngle= (ANGULO_DEFECTO_ASPA-180) * b2_pi / 180.0;
+			rjd.lowerAngle= (3 -180)* b2_pi / 180.0;
+		}
+		if(getRotacion() == 270 - ANGULO_DEFECTO_ASPA  ){
+			rjd.upperAngle= (ANGULO_DEFECTO_ASPA-270) * b2_pi / 180.0;
+			rjd.lowerAngle= (3 -270)* b2_pi / 180.0;
+		}
+
 	} else {
-		rjd.lowerAngle = -36 * b2_pi / 180.0;
-		rjd.upperAngle = 0;
+		if(getRotacion() == ANGULO_DEFECTO_ASPA){
+			rjd.lowerAngle = -ANGULO_DEFECTO_ASPA* b2_pi / 180.0;
+			rjd.upperAngle = -3 * b2_pi / 180.0;;
+		}
+		if(getRotacion() == 90 + ANGULO_DEFECTO_ASPA ){
+			rjd.lowerAngle = (-90-ANGULO_DEFECTO_ASPA)* b2_pi / 180.0;
+			rjd.upperAngle = (-90-3 )* b2_pi / 180.0;;
+		}
+		if(getRotacion() == 180 + ANGULO_DEFECTO_ASPA ){
+			rjd.lowerAngle = (-180-ANGULO_DEFECTO_ASPA)* b2_pi / 180.0;
+			rjd.upperAngle = (-180-3 )* b2_pi / 180.0;;
+		}
+
+		if(getRotacion() == 270 + ANGULO_DEFECTO_ASPA ){
+			rjd.lowerAngle = (-270-ANGULO_DEFECTO_ASPA)* b2_pi / 180.0;
+			rjd.upperAngle = (-270-3 )* b2_pi / 180.0;;
+		}
+
+
 	}
 
 	this->jointCuerpoTierra = (b2RevoluteJoint*) myWorld->CreateJoint(&rjd);
@@ -106,7 +137,7 @@ void Aspa::crearFisicaEstaticaTemplate(b2World * w, b2Body* ground) {
 	bodyDef.position.Set(x, y);
 	bodyDef.fixedRotation = true;
 
-	double rotacionRad = this->getRotacion() * -3.14 / 180.0;
+	double rotacionRad = this->getRotacion() * -1* b2_pi / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = w->CreateBody(&bodyDef);
 //	body->CreateFixture(&fixture);
