@@ -17,6 +17,8 @@
 namespace CLIENTE {
 class FactoryView: public View {
 private:
+	bool debeActualizar;
+	int cantAnterior;
 	SDL_Texture * textura;
 	void dibujarFondo(SDL_Renderer *);
 	void dibujarBorde(SDL_Renderer * renderer);
@@ -27,30 +29,35 @@ private:
 	void generarConBorde(SDL_Rect & dest);
 	void generarSinBorde(SDL_Rect & dest);
 	void dibujarCantidad(SDL_Renderer* renderer);
+
+
+	//texto
 	float tamanoFuente;
-	TTF_Font* fuente ;
-	 string texto ;
-	 SDL_Surface* surfaceTexto;
-	 SDL_Color color;
-	 typedef View super;
-	 int xpc, ypc;
+	TTF_Font* fuente;
+	string texto;
+	SDL_Surface* surfaceTexto;
+	SDL_Color color;
+	SDL_Rect dest;
+	SDL_Texture* textureTexto;
+	typedef View super;
+	int xpc, ypc;
 public:
 	FactoryView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~FactoryView();
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void update(ViewMsj *);
-	typedef struct RGBFactory{
-	    int r;
-	    int g;
-	    int b;
+	typedef struct RGBFactory {
+		int r;
+		int g;
+		int b;
 	} RGB;
 	bool isUpdated();
 	void resizear();
 };
 
-const struct FactoryView::RGBFactory CBORDE_EXTERNO = {94,139,0};
-const struct FactoryView::RGBFactory CBORDE_INTERNO = {22, 41, 28};
+const struct FactoryView::RGBFactory CBORDE_EXTERNO = { 94, 139, 0 };
+const struct FactoryView::RGBFactory CBORDE_INTERNO = { 22, 41, 28 };
 }
 #endif /* FACTORYVIEW_H_ */
 

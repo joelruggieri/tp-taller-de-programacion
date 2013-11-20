@@ -23,11 +23,17 @@ EditorNivel* SogaEstaticaView::getEditor() {
 }
 
 SogaEstaticaView::~SogaEstaticaView() {
-	// TODO Auto-generated destructor stub
+
 }
 
 UnionView* SogaEstaticaView::toDinamica() {
-	return new SogaView(this->getXCentro(),this->getYCentro(),(EditorUnion*) this->controller);
+	SogaView * rt = new SogaView(this->getXCentro(),this->getYCentro(),(EditorUnion*) this->controller);
+	list<Observer*>::iterator it;
+	for(it=observers.begin(); it != observers.end(); ++it){
+		rt->addObserver(*it);
+	}
+	observers.clear();
+	return rt;
 }
 
 //void SogaEstaticaView::dibujarse(list<ViewMsj*> & lista){

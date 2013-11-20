@@ -9,7 +9,7 @@
 #include "../../vista/objeto/CorreaEstaticaView.h"
 #include "../../ConstantesVista.h"
 
-ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor, int cantidad): ViewFiguraFactory(editor, cantidad, 0) {
+ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor, int cantidad): ViewFiguraFactory(editor, cantidad, ID_FACTORY_CORREA) {
 
 
 }
@@ -22,17 +22,8 @@ ViewCorreaFactory::~ViewCorreaFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-View* ViewCorreaFactory::crearVistaPropia(){
-	return new FactoryView();
-}
-
 string ViewCorreaFactory::getTagRemoto() {
 	return TAG_FACTORY_CORREA;
-}
-
-View * ViewCorreaFactory::crearVistaPropia(float,float,float,float){
-	return NULL;
-
 }
 
 ViewFiguraFactory* ViewCorreaFactory::clone(int cantidad){

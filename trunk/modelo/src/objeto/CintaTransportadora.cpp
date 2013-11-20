@@ -142,8 +142,10 @@ float CintaTransportadora::getAncho() const{
 
 void CintaTransportadora::removerFisica() {
 	super::removerFisica();
-	myWorld->DestroyBody(this->bodyEngranaje);
-	this->bodyEngranaje = NULL;
+	if(bodyEngranaje){
+		myWorld->DestroyBody(this->bodyEngranaje);
+		this->bodyEngranaje = NULL;
+	}
 }
 
 float CintaTransportadora::getAlto() const {

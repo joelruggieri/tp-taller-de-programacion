@@ -7,6 +7,8 @@
 
 #include "FactoryView.h"
 #include "SDL2/SDL.h"
+#include <iostream>
+using namespace std;
 
 namespace CLIENTE {
 FactoryView::FactoryView(float x, float y, float w, float h, SDL_Texture * textura) :
@@ -22,6 +24,10 @@ FactoryView::FactoryView(float x, float y, float w, float h, SDL_Texture * textu
 	this->texto = "";
 	this->xpc = 0;
 	this->ypc = 0;
+	debeActualizar = true;
+	textureTexto = NULL;
+	surfaceTexto = NULL;
+	cantAnterior = -1;
 }
 
 FactoryView::~FactoryView() {
@@ -43,10 +49,13 @@ void FactoryView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest) {
 
 void FactoryView::update(ViewMsj* mje) {
 	MensajeCantidadRestante* m = (MensajeCantidadRestante*) mje;
-//	this->texto = std::to_string(this->cantidadRestante);
 	stringstream s;
-	s << m->getCantidadRestante();
-	this->texto = s.str();
+	if(m->getCantidadRestante() != cantAnterior){
+		debeActualizar = true;
+		cantAnterior = m->getCantidadRestante();
+		s << m->getCantidadRestante();
+		this->texto = s.str();
+	}
 }
 
 void FactoryView::dibujarFondo(SDL_Renderer* r) {
@@ -67,15 +76,13 @@ void FactoryView::dibujarBordeIzquierdo(SDL_Renderer* renderer) {
 	dest.x = dest.x - corrimiento;
 	dest.y = dest.y - corrimiento;
 	dest.h = dest.h + corrimiento * 2;
-	SDL_SetRenderDrawColor(renderer, CBORDE_EXTERNO.r,
-			CBORDE_EXTERNO.g, CBORDE_EXTERNO.b, 1);
+	SDL_SetRenderDrawColor(renderer, CBORDE_EXTERNO.r, CBORDE_EXTERNO.g, CBORDE_EXTERNO.b, 1);
 	SDL_RenderFillRect(renderer, &dest);
 	dest.x = dest.x + 3;
 	dest.y = dest.y + 3;
 	dest.h = dest.h - 6;
 	dest.w = 2;
-	SDL_SetRenderDrawColor(renderer, CBORDE_INTERNO.r,
-			CBORDE_INTERNO.g, CBORDE_INTERNO.b, 1);
+	SDL_SetRenderDrawColor(renderer, CBORDE_INTERNO.r, CBORDE_INTERNO.g, CBORDE_INTERNO.b, 1);
 	SDL_RenderFillRect(renderer, &dest);
 }
 
@@ -84,15 +91,13 @@ void FactoryView::dibujarBordeDerecho(SDL_Renderer* renderer) {
 	this->generarSinBorde(dest);
 	dest.x = dest.x + dest.w - 3;
 	dest.w = 3;
-	SDL_SetRenderDrawColor(renderer, CBORDE_EXTERNO.r,
-			CBORDE_EXTERNO.g, CBORDE_EXTERNO.b, 1);
+	SDL_SetRenderDrawColor(renderer, CBORDE_EXTERNO.r, CBORDE_EXTERNO.g, CBORDE_EXTERNO.b, 1);
 	SDL_RenderFillRect(renderer, &dest);
 	dest.x = dest.x - 2;
 	dest.y = dest.y + 3;
 	dest.h = dest.h - 6;
 	dest.w = 2;
-	SDL_SetRenderDrawColor(renderer, CBORDE_INTERNO.r,
-			CBORDE_INTERNO.g, CBORDE_INTERNO.b, 1);
+	SDL_SetRenderDrawColor(renderer, CBORDE_INTERNO.r, CBORDE_INTERNO.g, CBORDE_INTERNO.b, 1);
 	SDL_RenderFillRect(renderer, &dest);
 }
 
@@ -100,15 +105,13 @@ void FactoryView::dibujarBordeSuperior(SDL_Renderer* renderer) {
 	SDL_Rect dest;
 	this->generarSinBorde(dest);
 	dest.h = 3;
-	SDL_SetRenderDrawColor(renderer, CBORDE_EXTERNO.r,
-			CBORDE_EXTERNO.g, CBORDE_EXTERNO.b, 1);
+	SDL_SetRenderDrawColor(renderer, CBORDE_EXTERNO.r, CBORDE_EXTERNO.g, CBORDE_EXTERNO.b, 1);
 	SDL_RenderFillRect(renderer, &dest);
 	dest.x = dest.x + 3;
 	dest.y = dest.y + 3;
 	dest.w = dest.w - 6;
 	dest.h = 2;
-	SDL_SetRenderDrawColor(renderer, CBORDE_INTERNO.r,
-			CBORDE_INTERNO.g, CBORDE_INTERNO.b, 1);
+	SDL_SetRenderDrawColor(renderer, CBORDE_INTERNO.r, CBORDE_INTERNO.g, CBORDE_INTERNO.b, 1);
 	SDL_RenderFillRect(renderer, &dest);
 }
 
@@ -117,15 +120,13 @@ void FactoryView::dibujarBordeInferior(SDL_Renderer* renderer) {
 	this->generarSinBorde(dest);
 	dest.y = dest.y + dest.h - 3;
 	dest.h = 3;
-	SDL_SetRenderDrawColor(renderer, CBORDE_EXTERNO.r,
-			CBORDE_EXTERNO.g, CBORDE_EXTERNO.b, 1);
+	SDL_SetRenderDrawColor(renderer, CBORDE_EXTERNO.r, CBORDE_EXTERNO.g, CBORDE_EXTERNO.b, 1);
 	SDL_RenderFillRect(renderer, &dest);
 	dest.x = dest.x + 3;
 	dest.y = dest.y - 2;
 	dest.w = dest.w - 6;
 	dest.h = 2;
-	SDL_SetRenderDrawColor(renderer, CBORDE_INTERNO.r,
-			CBORDE_INTERNO.g, CBORDE_INTERNO.b, 1);
+	SDL_SetRenderDrawColor(renderer, CBORDE_INTERNO.r, CBORDE_INTERNO.g, CBORDE_INTERNO.b, 1);
 	SDL_RenderFillRect(renderer, &dest);
 }
 void FactoryView::dibujarBorde(SDL_Renderer * renderer) {
@@ -149,23 +150,27 @@ void FactoryView::generarConBorde(SDL_Rect & dest) {
 	dest.y = yp + 6;
 }
 
-
 bool FactoryView::isUpdated() {
 	return true;
 }
 void FactoryView::dibujarCantidad(SDL_Renderer* renderer) {
-	SDL_Rect dest;
-	dest.x = this->xp+xpc;
-	dest.y = this->yp;
-	dest.w = 50;
-	dest.h = 50;
-	TTF_SizeUTF8(this->fuente, this->texto.c_str(), &(dest.w),  &(dest.h));
-		 this->surfaceTexto = TTF_RenderText_Solid(fuente, this->texto.c_str(), this->color);
-		 SDL_Texture* textureTexto = SDL_CreateTextureFromSurface(renderer, this->surfaceTexto);
-		 SDL_RenderCopy(renderer,textureTexto, NULL, &dest);
-	     SDL_FreeSurface(this->surfaceTexto);
-	      SDL_DestroyTexture(textureTexto);
-
+	if (debeActualizar) {
+		dest.x = this->xp + xpc;
+		dest.y = this->yp;
+		dest.w = 50;
+		dest.h = 50;
+		if (surfaceTexto)
+			SDL_FreeSurface(this->surfaceTexto);
+		if (textureTexto)
+			SDL_DestroyTexture(textureTexto);
+		TTF_SizeUTF8(this->fuente, this->texto.c_str(), &(dest.w), &(dest.h));
+		this->surfaceTexto = TTF_RenderText_Solid(fuente, this->texto.c_str(), this->color);
+		textureTexto = SDL_CreateTextureFromSurface(renderer, this->surfaceTexto);
+		SDL_RenderCopy(renderer, textureTexto, NULL, &dest);
+		debeActualizar = false;
+	} else {
+		SDL_RenderCopy(renderer, textureTexto, NULL, &dest);
+	}
 
 }
 
@@ -176,6 +181,4 @@ void FactoryView::resizear() {
 }
 
 }
-
-
 

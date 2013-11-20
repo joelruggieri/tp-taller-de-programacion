@@ -31,8 +31,8 @@ void ZonaCreacion::crearVista(ViewController* vc) {
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_GLOBO), ConfigFactory(ID_FACTORY_GLOBO, TAG_FACTORY_GLOBO,PATH_VISTA_GLOBO)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_MOTOR), ConfigFactory(ID_FACTORY_MOTOR, TAG_FACTORY_MOTOR,PATH_VISTA_MOTOR)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_PELOTA), ConfigFactory(ID_FACTORY_PELOTA, TAG_FACTORY_PELOTA,PATH_VISTA_PELOTA)));
-	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_SOGA), ConfigFactory(ID_FACTORY_PLATAFORMA, TAG_FACTORY_SOGA,PATH_VISTA_CUERDA)));
-	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_PLATAFORMA),ConfigFactory(ID_FACTORY_SOGA, TAG_FACTORY_PLATAFORMA, PATH_VISTA_PLATAFORMA_F)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_SOGA), ConfigFactory(ID_FACTORY_SOGA, TAG_FACTORY_SOGA,PATH_VISTA_CUERDA)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_PLATAFORMA),ConfigFactory(ID_FACTORY_PLATAFORMA, TAG_FACTORY_PLATAFORMA, PATH_VISTA_PLATAFORMA_F)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_YUNQUE),ConfigFactory(ID_FACTORY_YUNQUE, TAG_FACTORY_YUNQUE, PATH_VISTA_YUNQUE)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CLAVO),ConfigFactory(ID_FACTORY_CLAVO, TAG_FACTORY_CLAVO, PATH_VISTA_CLAVO_F)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_GANCHO),ConfigFactory(ID_FACTORY_GANCHO, TAG_FACTORY_GANCHO, PATH_VISTA_GANCHO)));
