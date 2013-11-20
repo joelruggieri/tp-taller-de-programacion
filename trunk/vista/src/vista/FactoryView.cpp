@@ -13,13 +13,15 @@ FactoryView::FactoryView(float x, float y, float w, float h, SDL_Texture * textu
 		View(x, y, w, h, LAYER_FACTORIES) {
 	this->textura = textura;
 	TTF_Init();
-	this->tamanoFuente = 10;
+	this->tamanoFuente = 12;
 	this->fuente = TTF_OpenFont("resource/times.ttf", tamanoFuente);
 	this->color.a = 0;
 	this->color.b = 255;
 	this->color.g = 255;
 	this->color.r = 0;
 	this->texto = "";
+	this->xpc = 0;
+	this->ypc = 0;
 }
 
 FactoryView::~FactoryView() {
@@ -153,7 +155,7 @@ bool FactoryView::isUpdated() {
 }
 void FactoryView::dibujarCantidad(SDL_Renderer* renderer) {
 	SDL_Rect dest;
-	dest.x = this->xp+55;
+	dest.x = this->xp+xpc;
 	dest.y = this->yp;
 	dest.w = 50;
 	dest.h = 50;
@@ -167,7 +169,11 @@ void FactoryView::dibujarCantidad(SDL_Renderer* renderer) {
 
 }
 
-
+void FactoryView::resizear() {
+	super::resizear();
+	xpc = tl->escalarInversaEnX(10.5);
+	ypc = tl->escalarInversaEnY(5);
+}
 
 }
 

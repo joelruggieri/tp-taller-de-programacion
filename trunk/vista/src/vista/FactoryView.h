@@ -32,6 +32,8 @@ private:
 	 string texto ;
 	 SDL_Surface* surfaceTexto;
 	 SDL_Color color;
+	 typedef View super;
+	 int xpc, ypc;
 public:
 	FactoryView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~FactoryView();
@@ -44,6 +46,7 @@ public:
 	    int b;
 	} RGB;
 	bool isUpdated();
+	void resizear();
 };
 
 const struct FactoryView::RGBFactory CBORDE_EXTERNO = {94,139,0};
