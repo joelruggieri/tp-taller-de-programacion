@@ -198,3 +198,10 @@ void Aspa::crearSwitch() {
 
 
 }
+
+void Aspa::removerFisica() {
+	if(switchContacto){
+		myWorld->DestroyBody(switchContacto);
+		switchContacto = NULL;
+	}
+}

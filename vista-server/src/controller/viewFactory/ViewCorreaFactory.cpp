@@ -41,6 +41,3 @@ ViewFiguraFactory* ViewCorreaFactory::clone(int cantidad){
 	return new ViewCorreaFactory(editor,cantidad);
 }
 
-ViewMsj* ViewCorreaFactory::dibujarse(int int1) {
-	return NULL;
-}

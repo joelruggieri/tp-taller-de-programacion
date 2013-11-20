@@ -34,6 +34,7 @@ public:
 	void acept(VisitorFigura*);
 	void trabar();
 	b2RevoluteJoint* getJoint();
+	void removerFisica();
 };
-
 #endif /* ASPA_H_ */
+
