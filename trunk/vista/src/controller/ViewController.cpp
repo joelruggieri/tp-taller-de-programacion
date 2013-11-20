@@ -105,6 +105,8 @@ void ViewController::crearPantalla() {
 	cargador->cargarTexture(PATH_VISTA_TIJERA1);
 	cargador->cargarTexture(PATH_VISTA_TIJERA2);
 	cargador->cargarTexture(PATH_VISTA_CARTEL);
+	cargador->cargarTexture(PATH_VISTA_RUEDAS);
+	cargador->cargarTexture(PATH_VISTA_CARRITO_CUERPO);
 	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
 	PATH_ZONA_CREACION);
 	View * view = new Canvas(60, -10, 120, 20, LAYER_CANVAS_RELLENO, text);
@@ -291,7 +293,7 @@ void ViewController::visit(Highlight* h) {
 void ViewController::visit(ViewCarritoMsj* m) {
 	lock();
 	if (!update(m)) {
-		SDL_Texture * t= CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CINTA_PLATAF);
+		SDL_Texture * t= CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CARRITO_CUERPO);
 		View * v = new CarritoView(0,0,ANCHO_CARRITO,ALTO_CARRITO,t);
 		v->update(m);
 		addViewPrivado(m->getId(), v);

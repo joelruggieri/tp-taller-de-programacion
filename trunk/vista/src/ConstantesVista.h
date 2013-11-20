@@ -56,7 +56,7 @@ namespace CLIENTE {
 #define PATH_VISTA_BOMBA "resource/bomba2.png"
 #define PATH_VISTA_TIJERA1 "resource/tijera.png"
 #define PATH_VISTA_TIJERA2 "resource/tijera2.png"
-
+#define PATH_VISTA_RUEDAS "resource/ruedaAuto.png"
 #define PATH_EDICION_UNION "resource/seleccionUnion.png"
 #define PATH_AGRANDAR_IMG "resource/agrandar.png"
 #define PATH_ROTACION_IMG "resource/rotacion.png"
@@ -67,7 +67,7 @@ namespace CLIENTE {
 #define IMG_ERROR "error.jpg"
 #define PATH_FONDO "resource/fondo.jpg"
 #define PATH_VISTA_FLECHA_SCROLL "resource/flecha.png"
-
+#define PATH_VISTA_CARRITO_CUERPO "resource/madera.png"
 #define LAYER_DEFAULT 1
 #define LAYER_UNIONES 2
 #define LAYER_ENGRANAJES 2

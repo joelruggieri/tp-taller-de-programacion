@@ -10,7 +10,7 @@
 #include "../CargadorDeTextures.h"
 CLIENTE::CarritoView::CarritoView(float x, float y, float w, float h,
 		SDL_Texture* textura): ObjetoView(x, y, w, h,textura) {
-	tRueda = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_MOTOR);
+	tRueda = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_RUEDAS);
 }
 
 
