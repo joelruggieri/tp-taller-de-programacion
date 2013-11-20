@@ -16,7 +16,7 @@ class ViewBotonStartMsj;
 class ViewCarritoMsj;
 class Highlight;
 class ViewTijeraMsj;
-
+class MensajeCantidadRestante;
 class ViewMsjVisitor {
 public:
 	virtual ~ViewMsjVisitor(){};
@@ -28,6 +28,7 @@ public:
 	virtual void visit(Highlight*) = 0;
 	virtual void visit(ViewCarritoMsj*) = 0;
 	virtual void visit(ViewTijeraMsj*) = 0;
+	virtual void visit(MensajeCantidadRestante*)=0;
 };
 
 #endif /* VIEWMSJVISITOR_H_ */

@@ -22,6 +22,7 @@ public:
 	void crearFisicaRadio(b2Vec2 centro);
 	bool validarContactoBomba(b2Body * verf, b2Body * b);
 	void  interactuar(Area & area, int jugador);
+	void recibirImpacto(b2Vec2 direccion);
 private:
 	float radio;
 	b2Body* radioAccion;
