@@ -316,7 +316,8 @@ void ViewController::visit(ViewTijeraMsj*m) {
 
 }
 
-void ViewController::visit(MensajeCantidadRestante*) {
+void ViewController::visit(MensajeCantidadRestante* m) {
+	update(m);
 }
 
 }

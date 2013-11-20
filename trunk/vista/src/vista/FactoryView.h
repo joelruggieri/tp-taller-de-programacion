@@ -10,7 +10,10 @@
 
 #include "SDL2/SDL.h"
 #include "View.h"
-
+#include <string>
+#include <iostream>
+#include "SDL2/SDL_ttf.h"
+#include "src/mensajes/viewMensaje/MensajeCantidadRestante.h"
 namespace CLIENTE {
 class FactoryView: public View {
 private:
@@ -23,6 +26,12 @@ private:
 	void dibujarBordeInferior(SDL_Renderer* renderer);
 	void generarConBorde(SDL_Rect & dest);
 	void generarSinBorde(SDL_Rect & dest);
+	void dibujarCantidad(SDL_Renderer* renderer);
+	float tamanoFuente;
+	TTF_Font* fuente ;
+	 string texto ;
+	 SDL_Surface* surfaceTexto;
+	 SDL_Color color;
 public:
 	FactoryView(float x, float y, float w, float h, SDL_Texture * textura);
 	virtual ~FactoryView();

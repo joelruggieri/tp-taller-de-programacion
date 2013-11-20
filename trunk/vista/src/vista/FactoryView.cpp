@@ -12,7 +12,14 @@ namespace CLIENTE {
 FactoryView::FactoryView(float x, float y, float w, float h, SDL_Texture * textura) :
 		View(x, y, w, h, LAYER_FACTORIES) {
 	this->textura = textura;
-
+	TTF_Init();
+	this->tamanoFuente = 10;
+	this->fuente = TTF_OpenFont("resource/times.ttf", tamanoFuente);
+	this->color.a = 0;
+	this->color.b = 255;
+	this->color.g = 255;
+	this->color.r = 0;
+	this->texto = "";
 }
 
 FactoryView::~FactoryView() {
@@ -25,13 +32,19 @@ void FactoryView::dibujarse(SDL_Renderer * renderer) {
 	generarConBorde(dest);
 	SDL_RenderCopy(renderer, this->textura, NULL, &dest);
 	dibujarBorde(renderer);
+	dibujarCantidad(renderer);
 }
 
 void FactoryView::dibujarse(SDL_Renderer * renderer, SDL_Rect & dest) {
 
 }
 
-void FactoryView::update(ViewMsj*) {
+void FactoryView::update(ViewMsj* mje) {
+	MensajeCantidadRestante* m = (MensajeCantidadRestante*) mje;
+//	this->texto = std::to_string(this->cantidadRestante);
+	stringstream s;
+	s << m->getCantidadRestante();
+	this->texto = s.str();
 }
 
 void FactoryView::dibujarFondo(SDL_Renderer* r) {
@@ -138,4 +151,25 @@ void FactoryView::generarConBorde(SDL_Rect & dest) {
 bool FactoryView::isUpdated() {
 	return true;
 }
+void FactoryView::dibujarCantidad(SDL_Renderer* renderer) {
+	SDL_Rect dest;
+	dest.x = this->xp+55;
+	dest.y = this->yp;
+	dest.w = 50;
+	dest.h = 50;
+	TTF_SizeUTF8(this->fuente, this->texto.c_str(), &(dest.w),  &(dest.h));
+		 this->surfaceTexto = TTF_RenderText_Solid(fuente, this->texto.c_str(), this->color);
+		 SDL_Texture* textureTexto = SDL_CreateTextureFromSurface(renderer, this->surfaceTexto);
+		 SDL_RenderCopy(renderer,textureTexto, NULL, &dest);
+	     SDL_FreeSurface(this->surfaceTexto);
+	      SDL_DestroyTexture(textureTexto);
+
+
 }
+
+
+
+}
+
+
+
