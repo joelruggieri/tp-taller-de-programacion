@@ -16,8 +16,11 @@ private:
 	float ancho, alto;
 	b2RevoluteJoint * jointCuerpoTierra;
 	int numeroAspa;
+	float anguloTrabado;
 	Tijera* tijera;
+	b2Body * switchContacto;
 	void crearShapes();
+	void crearSwitch();
 public:
 	Aspa();
 	Aspa(float,float,float,float,double,int,Tijera*);
@@ -29,6 +32,7 @@ public:
 	void setAlto(float alto);
 	void setAncho(float ancho);
 	void acept(VisitorFigura*);
+	void trabar();
 	b2RevoluteJoint* getJoint();
 };
 

@@ -16,10 +16,10 @@ using namespace std;
 
 //#include <stdio.h>
 
-
 #define PI 3.14159265
 
-Tijera::Tijera(): Objeto() {
+Tijera::Tijera() :
+		Objeto() {
 	alto = 0;
 	ancho = 0;
 	aspa1 = new Aspa();
@@ -27,21 +27,21 @@ Tijera::Tijera(): Objeto() {
 	accionada = false;
 }
 
-
-Tijera::Tijera(float x, float y, float ancho, float alto): Objeto(x,y, new ValidadorEnArea(this)) {
+Tijera::Tijera(float x, float y, float ancho, float alto) :
+		Objeto(x, y, new ValidadorEnArea(this)) {
 	this->ancho = ancho;
 	this->alto = alto;
-	aspa1 = new Aspa(x, y,ancho, alto,-ANGULO_DEFECTO_ASPA,1,this);
-	aspa2 = new Aspa(x,y, ancho,alto,ANGULO_DEFECTO_ASPA,2,this);
+	aspa1 = new Aspa(x, y, ancho, alto, -ANGULO_DEFECTO_ASPA, 1, this);
+	aspa2 = new Aspa(x, y, ancho, alto, ANGULO_DEFECTO_ASPA, 2, this);
 	accionada = false;
 
-	Enganche* enganche1 = new Enganche(this->aspa1, 0.8 * ancho/2.0,0);
-	Enganche* enganche2 = new Enganche(this->aspa2, 0.8 * ancho/2.0,0);
+	Enganche* enganche1 = new Enganche(this->aspa1, 0.8 * ancho / 2.0, 0);
+	Enganche* enganche2 = new Enganche(this->aspa2, 0.8 * ancho / 2.0, 0);
 	enganches.push_back(enganche1);
 	enganches.push_back(enganche2);
 }
 
-Tijera::Tijera(const Tijera& tijera){
+Tijera::Tijera(const Tijera& tijera) {
 	x = tijera.getX();
 	y = tijera.getY();
 	alto = tijera.getAlto();
@@ -53,13 +53,13 @@ Tijera::Tijera(const Tijera& tijera){
 	//rotacionAspa2 = tijera.getRotacionAspa2();
 	vista = tijera.vista;
 	this->reg = tijera.reg;
-	aspa1 = new Aspa(x,y,ancho,alto,-ANGULO_DEFECTO_ASPA,1,this);
-	aspa2 = new Aspa(x,y,ancho,alto,ANGULO_DEFECTO_ASPA,2,this);
+	aspa1 = new Aspa(x, y, ancho, alto, -ANGULO_DEFECTO_ASPA, 1, this);
+	aspa2 = new Aspa(x, y, ancho, alto, ANGULO_DEFECTO_ASPA, 2, this);
 	accionada = false;
 	/*Enganche* enganche1 = new Enganche(this, (cos(PI/4.0))* ancho/2.0,(sin(PI/4.0))* ancho/2.0);
-	Enganche* enganche2 = new Enganche(this, (cos(PI/4.0))* ancho/2.0, -(sin(PI/4.0))* ancho/2.0);
-	enganches.push_back(enganche1);
-	enganches.push_back(enganche2);*/
+	 Enganche* enganche2 = new Enganche(this, (cos(PI/4.0))* ancho/2.0, -(sin(PI/4.0))* ancho/2.0);
+	 enganches.push_back(enganche1);
+	 enganches.push_back(enganche2);*/
 }
 
 Tijera::~Tijera() {
@@ -67,23 +67,23 @@ Tijera::~Tijera() {
 	delete aspa2;
 }
 
-float Tijera::getAlto() const{
+float Tijera::getAlto() const {
 	return this->alto;
 }
 
-float Tijera::getAncho() const{
+float Tijera::getAncho() const {
 	return this->ancho;
 }
 
-void Tijera::setAlto(float alto){
+void Tijera::setAlto(float alto) {
 	this->alto = alto;
 }
 
-void Tijera::setAncho(float ancho){
+void Tijera::setAncho(float ancho) {
 	this->ancho = ancho;
 }
 
-void Tijera::crearFisica(){
+void Tijera::crearFisica() {
 	this->aspa1->crearFisica();
 	this->aspa2->crearFisica();
 	b2RevoluteJointDef rjd;
@@ -96,25 +96,25 @@ void Tijera::crearFisica(){
 	myWorld->CreateJoint(&rjd);
 }
 
-void Tijera::acept(VisitorFigura* visitor){
+void Tijera::acept(VisitorFigura* visitor) {
 	visitor->visit(this);
 }
 
-
-void Tijera::crearFisicaEstaticaTemplate(b2World * w, b2Body* ground){
-	this->aspa1->crearFisicaEstaticaTemplate(w,ground);
-	this->aspa2->crearFisicaEstaticaTemplate(w,ground);
+void Tijera::crearFisicaEstaticaTemplate(b2World * w, b2Body* ground) {
+	this->aspa1->crearFisicaEstaticaTemplate(w, ground);
+	this->aspa2->crearFisicaEstaticaTemplate(w, ground);
 }
-
-
 
 bool Tijera::crearFisicaEstatica() {
 	if (myWorld != NULL) {
-		this->crearFisicaEstaticaTemplate(this->myWorld,this->ground);
+		this->crearFisicaEstaticaTemplate(this->myWorld, this->ground);
 		bool hayContacto = false;
 		for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
-			if (b != this->aspa1->getBody() && b != this->aspa2->getBody() && b->GetFixtureList() != NULL && b->GetFixtureList()->GetShape() != NULL) {
-				if (validarContacto(this->aspa1->getBody(), b) || validarContacto(this->aspa1->getBody(), b) || validarContacto(this->aspa2->getBody(),b)) {
+			if (b
+					!= this->aspa1->getBody() && b != this->aspa2->getBody() && b->GetFixtureList() != NULL && b->GetFixtureList()->GetShape() != NULL) {
+				if (validarContacto(this->aspa1->getBody(), b)
+						|| validarContacto(this->aspa1->getBody(), b)
+						|| validarContacto(this->aspa2->getBody(), b)) {
 					hayContacto = true;
 					break;
 				}
@@ -131,33 +131,33 @@ bool Tijera::crearFisicaEstatica() {
 	}
 }
 
-void Tijera::removerFisica(){
+void Tijera::removerFisica() {
 	this->aspa1->removerFisica();
 	this->aspa2->removerFisica();
 }
 
-void Tijera::setRotacion(double angulo){
+void Tijera::setRotacion(double angulo) {
 	super::setRotacion(angulo);
 	this->aspa1->setRotacion(this->rotacion - ANGULO_DEFECTO_ASPA);
 	this->aspa2->setRotacion(this->rotacion + ANGULO_DEFECTO_ASPA);
 }
 
-void Tijera::updateModelo(){
+void Tijera::updateModelo() {
 	this->aspa1->updateModelo();
 	this->aspa2->updateModelo();
 }
 
 void Tijera::setPosicion(float x, float y) {
-	super::setPosicion(x,y);
-	aspa1->setPosicion(x,y);
-	aspa2->setPosicion(x,y);
+	super::setPosicion(x, y);
+	aspa1->setPosicion(x, y);
+	aspa2->setPosicion(x, y);
 
 }
 
 void Tijera::setWorld(b2World* w, b2Body* ground) {
-	super::setWorld(w,ground);
-	aspa1->setWorld(w,ground);
-	aspa2->setWorld(w,ground);
+	super::setWorld(w, ground);
+	aspa1->setWorld(w, ground);
+	aspa2->setWorld(w, ground);
 }
 
 void Tijera::makeBackUp() {
@@ -182,36 +182,44 @@ b2Body* Tijera::getBody() {
 }
 
 void Tijera::accionar() {
-	Mapa * m = (Mapa*)ground->GetUserData();
-	// creo un body para poder enviar el corte.
-	b2PolygonShape * shape= new b2PolygonShape();
+	if (!accionada) {
+
+		accionada = true;
+		Mapa * m = (Mapa*) ground->GetUserData();
+		// creo un body para poder enviar el corte.
+		b2PolygonShape * shape = new b2PolygonShape();
 //	shape->SetAsBox(this->ancho/4,this->alto/2);
-	shape->SetAsBox(0.8*this->ancho/4,this->alto/2);
-	b2FixtureDef fixture;
-	fixture.filter.categoryBits = CATEGORIA_CUERPO_CORTE_TIJERA;
-	fixture.filter.maskBits = CATEGORIA_CUERPO_CORTE_TIJERA;
-	fixture.density = 2.00f;
-	fixture.shape = shape;
-	fixture.friction = 0.01f;
-	fixture.restitution = 0.00f;
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-
-
-	b2Vec2 posRelativa(-ancho/4.0- 0.2*ancho/4.0,0);
-	float angulo = this->getRotacion() * -1*b2_pi / 180.0;
-	b2Rot rota(angulo);
-	b2Vec2 posAbsoluta = b2MulT(rota, posRelativa);
-	bodyDef.position.Set(posAbsoluta.x+x, posAbsoluta.y+y);
-	bodyDef.angle = angulo;
-	bodyDef.fixedRotation = true;
-	b2Body* body = myWorld->CreateBody(&bodyDef);
-	body->CreateFixture(&fixture);
-	body->SetUserData(this);
-	m->cortarUniones(body);
-	myWorld->DestroyBody(body);
-	aspa1->trabar();
-	aspa2->trabar();
+		shape->SetAsBox(0.8 * this->ancho / 4, this->alto / 2);
+		b2FixtureDef fixture;
+		fixture.filter.categoryBits = CATEGORIA_CUERPO_CORTE_TIJERA;
+		fixture.filter.maskBits = CATEGORIA_CUERPO_CORTE_TIJERA;
+		fixture.density = 2.00f;
+		fixture.shape = shape;
+		fixture.friction = 0.01f;
+		fixture.restitution = 0.00f;
+		b2BodyDef bodyDef;
+		bodyDef.type = b2_dynamicBody;
+		//QUE LA HISTORIA ME JUZGUE, ALTO IF.
+		b2Vec2 posRelativa;
+		if (getRotacion() == 0 || getRotacion() == 180) {
+			posRelativa = b2Vec2(-ancho / 4.0 - 0.2 * ancho / 4.0, 0);
+		} else {
+			posRelativa = b2Vec2(ancho / 4.0 + 0.2 * ancho / 4.0, 0);
+		}
+		float angulo = this->getRotacion() * -1 * b2_pi / 180.0;
+		b2Rot rota(angulo);
+		b2Vec2 posAbsoluta = b2MulT(rota, posRelativa);
+		bodyDef.position.Set(posAbsoluta.x + x, posAbsoluta.y + y);
+		bodyDef.angle = angulo;
+		bodyDef.fixedRotation = true;
+		b2Body* body = myWorld->CreateBody(&bodyDef);
+		body->CreateFixture(&fixture);
+		body->SetUserData(this);
+		m->cortarUniones(body);
+		myWorld->DestroyBody(body);
+		aspa1->trabar();
+		aspa2->trabar();
+	}
 }
 
 float Tijera::getRotacionAspa1() {

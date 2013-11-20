@@ -352,6 +352,14 @@ void Soga::cortar(Enganche * e) {
 void Soga::cortar(b2Body*b) {
 	if(this->bodyEntre(b, inicio,fin)){
 //		cortar(origen);
+		if(joint){
+			myWorld->DestroyJoint(joint);
+			joint = NULL;
+		}
+		if(joint2){
+			myWorld->DestroyJoint(joint2);
+			joint2 = NULL;
+		}
 		destino->desenganchado();
 		origen->desenganchado();
 //		cortar(destino);

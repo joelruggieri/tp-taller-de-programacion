@@ -19,6 +19,8 @@ private:
 	GloboHelio * globo;
 	Clavo* clavo;
 	Yunque* yunque;
+	Tijera * tijera1;
+	Tijera * tijera2;
 	void clean();
 	void colisionar(b2Contact * 	contact,
 			const b2Manifold * 	oldManifold);

@@ -18,7 +18,8 @@ Aspa::Aspa() :
 
 }
 
-Aspa::Aspa(float x, float y, float ancho, float alto, double rotacion, int numero, Tijera* tijera) :
+Aspa::Aspa(float x, float y, float ancho, float alto, double rotacion,
+		int numero, Tijera* tijera) :
 		Objeto(x, y) {
 	this->ancho = ancho;
 	this->alto = alto;
@@ -54,14 +55,12 @@ void Aspa::crearFisica() {
 	float x = this->getX();
 	float y = this->getY();
 	b2Vec2 centro(x, y);
-
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(x, y);
-	bodyDef.angularDamping=2.0;
-//	bodyDef.gravityScale = 0;
-	//bodyDef.fixedRotation = true;
-	double rotacionRad = this->getRotacion()*-1 * b2_pi / 180.0;
+	bodyDef.angularDamping = 2.0;
+	bodyDef.gravityScale = 0;
+	double rotacionRad = this->getRotacion() * -1 * b2_pi / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* bodyAspa = myWorld->CreateBody(&bodyDef);
 	bodyAspa->SetUserData(this->tijera);
@@ -74,52 +73,53 @@ void Aspa::crearFisica() {
 	rjd.enableLimit = true;
 	rjd.localAnchorA = centro;
 	rjd.localAnchorB = b2Vec2_zero;
-
-
-//	aspa1 = new Aspa(x, y,ancho, alto,-35,1,this);
-//	aspa2 = new Aspa(x,y, ancho,alto,35,2,this);
 	rjd.referenceAngle = 0;
 	if (numeroAspa == 1) {
-		if(getRotacion() == -ANGULO_DEFECTO_ASPA ){
-			rjd.upperAngle= ANGULO_DEFECTO_ASPA * b2_pi / 180.0;
-			rjd.lowerAngle= 3 * b2_pi / 180.0;
+		if (getRotacion() == -ANGULO_DEFECTO_ASPA) {
+			rjd.upperAngle = ANGULO_DEFECTO_ASPA * b2_pi / 180.0;
+			rjd.lowerAngle = 3 * b2_pi / 180.0;
 		}
-		if(getRotacion() == 90 - ANGULO_DEFECTO_ASPA  ){
-			rjd.upperAngle= (ANGULO_DEFECTO_ASPA-90) * b2_pi / 180.0;
-			rjd.lowerAngle= (3 -90)* b2_pi / 180.0;
+		if (getRotacion() == 90 - ANGULO_DEFECTO_ASPA) {
+			rjd.upperAngle = (ANGULO_DEFECTO_ASPA - 90) * b2_pi / 180.0;
+			rjd.lowerAngle = (3 - 90) * b2_pi / 180.0;
 		}
-		if(getRotacion() == 180 - ANGULO_DEFECTO_ASPA  ){
-			rjd.upperAngle= (ANGULO_DEFECTO_ASPA-180) * b2_pi / 180.0;
-			rjd.lowerAngle= (3 -180)* b2_pi / 180.0;
+		if (getRotacion() == 180 - ANGULO_DEFECTO_ASPA) {
+			rjd.upperAngle = (ANGULO_DEFECTO_ASPA - 180) * b2_pi / 180.0;
+			rjd.lowerAngle = (3 - 180) * b2_pi / 180.0;
 		}
-		if(getRotacion() == 270 - ANGULO_DEFECTO_ASPA  ){
-			rjd.upperAngle= (ANGULO_DEFECTO_ASPA-270) * b2_pi / 180.0;
-			rjd.lowerAngle= (3 -270)* b2_pi / 180.0;
+		if (getRotacion() == 270 - ANGULO_DEFECTO_ASPA) {
+			rjd.upperAngle = (ANGULO_DEFECTO_ASPA - 270) * b2_pi / 180.0;
+			rjd.lowerAngle = (3 - 270) * b2_pi / 180.0;
 		}
-
+		anguloTrabado = rjd.lowerAngle;
 	} else {
-		if(getRotacion() == ANGULO_DEFECTO_ASPA){
-			rjd.lowerAngle = -ANGULO_DEFECTO_ASPA* b2_pi / 180.0;
-			rjd.upperAngle = -3 * b2_pi / 180.0;;
+		if (getRotacion() == ANGULO_DEFECTO_ASPA) {
+			rjd.lowerAngle = -ANGULO_DEFECTO_ASPA * b2_pi / 180.0;
+			rjd.upperAngle = -3 * b2_pi / 180.0;
+			;
 		}
-		if(getRotacion() == 90 + ANGULO_DEFECTO_ASPA ){
-			rjd.lowerAngle = (-90-ANGULO_DEFECTO_ASPA)* b2_pi / 180.0;
-			rjd.upperAngle = (-90-3 )* b2_pi / 180.0;;
+		if (getRotacion() == 90 + ANGULO_DEFECTO_ASPA) {
+			rjd.lowerAngle = (-90 - ANGULO_DEFECTO_ASPA) * b2_pi / 180.0;
+			rjd.upperAngle = (-90 - 3) * b2_pi / 180.0;
+			;
 		}
-		if(getRotacion() == 180 + ANGULO_DEFECTO_ASPA ){
-			rjd.lowerAngle = (-180-ANGULO_DEFECTO_ASPA)* b2_pi / 180.0;
-			rjd.upperAngle = (-180-3 )* b2_pi / 180.0;;
-		}
-
-		if(getRotacion() == 270 + ANGULO_DEFECTO_ASPA ){
-			rjd.lowerAngle = (-270-ANGULO_DEFECTO_ASPA)* b2_pi / 180.0;
-			rjd.upperAngle = (-270-3 )* b2_pi / 180.0;;
+		if (getRotacion() == 180 + ANGULO_DEFECTO_ASPA) {
+			rjd.lowerAngle = (-180 - ANGULO_DEFECTO_ASPA) * b2_pi / 180.0;
+			rjd.upperAngle = (-180 - 3) * b2_pi / 180.0;
+			;
 		}
 
+		if (getRotacion() == 270 + ANGULO_DEFECTO_ASPA) {
+			rjd.lowerAngle = (-270 - ANGULO_DEFECTO_ASPA) * b2_pi / 180.0;
+			rjd.upperAngle = (-270 - 3) * b2_pi / 180.0;
+			;
+		}
+		anguloTrabado = rjd.upperAngle;
 
 	}
 
 	this->jointCuerpoTierra = (b2RevoluteJoint*) myWorld->CreateJoint(&rjd);
+	crearSwitch();
 }
 
 b2RevoluteJoint* Aspa::getJoint() {
@@ -137,14 +137,12 @@ void Aspa::crearFisicaEstaticaTemplate(b2World * w, b2Body* ground) {
 	bodyDef.position.Set(x, y);
 	bodyDef.fixedRotation = true;
 
-	double rotacionRad = this->getRotacion() * -1* b2_pi / 180.0;
+	double rotacionRad = this->getRotacion() * -1 * b2_pi / 180.0;
 	bodyDef.angle = rotacionRad;
 	b2Body* body = w->CreateBody(&bodyDef);
-//	body->CreateFixture(&fixture);
 	body->SetUserData(this->tijera);
 	this->setBody(body);
 	crearShapes();
-
 }
 
 void Aspa::acept(VisitorFigura*) {
@@ -153,7 +151,7 @@ void Aspa::acept(VisitorFigura*) {
 
 void Aspa::crearShapes() {
 	b2PolygonShape polygon;
-		b2FixtureDef fixture;
+	b2FixtureDef fixture;
 	polygon.SetAsBox(this->ancho / 2, this->alto / 2);
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;
@@ -162,30 +160,41 @@ void Aspa::crearShapes() {
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
 	body->CreateFixture(&fixture);
-//	float mitadAncho =ancho/2.0;
-//	float mitadAlto =alto/2.0;
-//	b2Vec2 vertices[6];
-//	vertices[0].Set(-mitadAncho, mitadAlto);
-//	vertices[1].Set(-mitadAncho, -mitadAlto);
-//	vertices[2].Set(0, -mitadAlto);
-//	vertices[3].Set(mitadAncho*0.45, -alto/4.0);
-//	vertices[4].Set(mitadAncho, -alto/4.0);
-//	vertices[5].Set(mitadAncho, alto/2.0);
-//	b2PolygonShape polygon;
-//	polygon.Set(vertices, 6);
-//	b2FixtureDef fixture;
-//	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
-//	fixture.filter.maskBits = CATEGORIA_FIGURAS;
-//	fixture.density = 2.00f;
-//	fixture.shape = &polygon;
-//	fixture.friction = 0.01f;
-//	fixture.restitution = 0.00f;
-//	body->CreateFixture(&fixture);
-//
-//
-//	b2CircleShape shapeCircle;
-//	shapeCircle.m_radius = mitadAlto;
-//	shapeCircle.m_p.Set(mitadAncho - mitadAlto, mitadAlto);
-//	fixture.shape= &shapeCircle;
-//	body->CreateFixture(&fixture);
+}
+
+void Aspa::trabar() {
+	jointCuerpoTierra->SetLimits(anguloTrabado, anguloTrabado);
+	myWorld->DestroyBody(switchContacto);
+}
+
+void Aspa::crearSwitch() {
+	//body
+	b2Vec2 pos = body->GetWorldPoint(b2Vec2(-0.4*ancho,0));
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+	bodyDef.position=pos;
+	bodyDef.gravityScale = 0;
+	switchContacto = myWorld->CreateBody(&bodyDef);
+	switchContacto->SetUserData(this->tijera);
+//shape
+	b2CircleShape polygon;
+	b2FixtureDef fixture;
+	polygon.m_radius = (alto/4.0);
+	fixture.filter.categoryBits = CATEGORIA_SWITCH_TIJERA;
+	fixture.filter.maskBits = CATEGORIA_SWITCH_TIJERA;
+	fixture.density = 10.00f;
+	fixture.shape = &polygon;
+	fixture.friction = 0.01f;
+	fixture.restitution = 0.00f;
+	switchContacto->CreateFixture(&fixture)->SetUserData(this->tijera);
+	//joint
+	b2RevoluteJointDef rjd;
+	rjd.bodyA = body;
+	rjd.bodyB = switchContacto;
+	rjd.collideConnected = false;
+	rjd.localAnchorA = b2Vec2(-0.4*ancho,0);
+	rjd.localAnchorB = b2Vec2_zero;
+	myWorld->CreateJoint(&rjd);
+
+
 }
