@@ -17,7 +17,7 @@ private:
 	float ancho;
 	typedef ViewObjetoUpdateMsj super;
 public:
-	ViewObjetoConAnchoUpdateMsj(float, float, float, float, int, char);
+	ViewObjetoConAnchoUpdateMsj(float, float, float, float, int, char,int);
 	virtual ~ViewObjetoConAnchoUpdateMsj();
 	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);
@@ -26,6 +26,7 @@ public:
 	void acept(ViewMsjVisitor *);
 	ViewMsj* clone(int destinatario);
 	float getAncho() const;
+
 };
 
 #endif /* VIEWOBJETOCONANCHOUPDATEMSJ_H_ */

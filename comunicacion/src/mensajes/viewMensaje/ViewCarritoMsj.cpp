@@ -26,6 +26,7 @@ void ViewCarritoMsj::serialize(YAML::Emitter& out) {
 	out<< yd;
 	out << rotCarrito;
 	out << rotRuedaD;
+	out << idEvento;
 }
 
 NetworkMensaje* ViewCarritoMsj::deserialize(YAML::const_iterator& it) {
@@ -48,16 +49,18 @@ NetworkMensaje* ViewCarritoMsj::deserialize(YAML::const_iterator& it) {
 	it++;
 	rotRuedaD = it->as<float>();
 	it++;
-	return new ViewCarritoMsj(x,y,xi,yi,xd, yd,rotCarrito,rotRuedaD,rotRuedaD,id);
+	int idDelEvento = it->as<int>();
+	it++;
+	return new ViewCarritoMsj(x,y,xi,yi,xd, yd,rotCarrito,rotRuedaD,rotRuedaD,id,idDelEvento);
 }
 
 ViewMsj* ViewCarritoMsj::clone(int destinatario) {
-	ViewMsj * msj = new ViewCarritoMsj(x,y,xi,yi,xd, yd,rotCarrito,rotRuedaI,rotRuedaD,this->id);
+	ViewMsj * msj = new ViewCarritoMsj(x,y,xi,yi,xd, yd,rotCarrito,rotRuedaI,rotRuedaD,this->id,this->idEvento);
 	msj->setDestinatario(destinatario);
 	return  msj;
 }
 
-ViewCarritoMsj::ViewCarritoMsj(float x, float y,float xi,float yi,float xd,float yd, float rotCarrito, float rotRuedI, float rotRuedaD,int id):ViewMsj(id, 'a') {
+ViewCarritoMsj::ViewCarritoMsj(float x, float y,float xi,float yi,float xd,float yd, float rotCarrito, float rotRuedI, float rotRuedaD,int id, int idEvent):ViewMsj(id, 'a') {
 	this->x = x;
 	this->y = y;
 	this->rotCarrito = rotCarrito;
@@ -67,6 +70,7 @@ ViewCarritoMsj::ViewCarritoMsj(float x, float y,float xi,float yi,float xd,float
 	this->yi = yi;
 	this->xd = xd;
 	this->yd = yd;
+	this->idEvento = idEvent;
 }
 
 float ViewCarritoMsj::getRotCarrito() const {
@@ -103,4 +107,8 @@ float ViewCarritoMsj::getYd() const {
 
 float ViewCarritoMsj::getYi() const {
 	return yi;
+}
+
+int ViewCarritoMsj::getIdEvento() const {
+	return this->idEvento;
 }

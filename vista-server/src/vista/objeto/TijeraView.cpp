@@ -34,11 +34,11 @@ void TijeraView::dibujarse(list<ViewMsj*>& mjes) {
 	ViewTijeraMsj* viewMensaje;
 	if(figura == NULL){
 
-		viewMensaje = new ViewTijeraMsj(this->getXCentro(),this->getYCentro(),-ANGULO_DEFECTO_ASPA,ANGULO_DEFECTO_ASPA, this->getId());
+		viewMensaje = new ViewTijeraMsj(this->getXCentro(),this->getYCentro(),-ANGULO_DEFECTO_ASPA,ANGULO_DEFECTO_ASPA, this->getId(),this->getNumeroEvento());
 		mjes.push_back(viewMensaje);
 	} else {
 		if(figura->isViva()){
-		viewMensaje = new ViewTijeraMsj(figura->getX(),figura->getY(),figura->getRotacionAspa1(),figura->getRotacionAspa2(),this->getId());
+		viewMensaje = new ViewTijeraMsj(figura->getX(),figura->getY(),figura->getRotacionAspa1(),figura->getRotacionAspa2(),this->getId(),this->getNumeroEvento());
 		mjes.push_back(viewMensaje);
 		}
 	};

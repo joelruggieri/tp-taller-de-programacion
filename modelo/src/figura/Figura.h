@@ -100,6 +100,7 @@ public:
 	virtual void accionar();
 	virtual void accionesPostFisica();
 	virtual void desenganchado(Enganche *);
+	virtual void hacerContacto(int numero);
 };
 
 #endif /* FIGURA_H_ */

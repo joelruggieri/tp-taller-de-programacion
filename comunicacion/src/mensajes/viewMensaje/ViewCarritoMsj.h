@@ -13,8 +13,9 @@
 class ViewCarritoMsj: public ViewMsj {
 private:
 	float x,y,rotCarrito, rotRuedaI, rotRuedaD,xi,yi,xd,yd;
+	int idEvento;
 public:
-	ViewCarritoMsj(float x, float y,float xi,float yi,float xd,float yd, float rotCarrito, float rotRuedI, float rotRuedaD, int id);
+	ViewCarritoMsj(float x, float y,float xi,float yi,float xd,float yd, float rotCarrito, float rotRuedI, float rotRuedaD, int id, int idEvent);
 
 	virtual ~ViewCarritoMsj();
 	void acept(ViewMsjVisitor *);
@@ -30,6 +31,7 @@ public:
 	float getY() const;
 	float getYd() const;
 	float getYi() const;
+	int getIdEvento() const;
 };
 
 #endif /* VIEWCARRITOMSJ_H_ */

@@ -15,7 +15,7 @@ private:
 	bool estatico;
 	bool conEslabon, activoPrimerTramo, activoSegundoTramo;
 public:
-	ViewObjetoUnionUpdateMsj(float xD, float yD, float xH,float yH, float radioInicial,float radioFinal,bool esEstatico, bool conEslabon,float radio,int id, char sel);
+	ViewObjetoUnionUpdateMsj(float xD, float yD, float xH,float yH, float radioInicial,float radioFinal,bool esEstatico, bool conEslabon,float radio,int id, char sel,int idEvent);
 	virtual ~ViewObjetoUnionUpdateMsj();
 	void serialize(YAML::Emitter & out);
 	NetworkMensaje * deserialize(YAML::const_iterator & it);

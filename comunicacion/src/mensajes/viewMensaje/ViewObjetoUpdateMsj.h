@@ -12,7 +12,7 @@
 
 class ViewObjetoUpdateMsj : public ViewMsj {
 public:
-	ViewObjetoUpdateMsj(float x, float y, float angulo, int id, char sel);
+	ViewObjetoUpdateMsj(float x, float y, float angulo, int id, char sel, int idEvent);
 	virtual ~ViewObjetoUpdateMsj();
 	virtual void serialize(YAML::Emitter & out);
 	virtual NetworkMensaje * deserialize(YAML::const_iterator & it);
@@ -22,10 +22,12 @@ public:
 	float getAngulo() const;
 	float getX() const;
 	float getY() const;
+	int getIdEvento() const;
 	ViewMsj * clone(int dest);
 
 protected:
 	float x,y, angulo;
+	int idEvento;
 };
 
 #endif /* VIEWOBJETOUPDATEMSJ_H_ */

@@ -165,6 +165,7 @@ void ReglasContactoSolver::PreSolve(b2Contact* contact,
 	//todo en los tutoriales dice que es mejor agregar a un buffer de colisiones y dsps del step procesarlas, por ahora no es necesario.
 	Figura * figA = (Figura *) fixtureA->GetUserData();
 	Figura * figB = (Figura *) fixtureB->GetUserData();
+	figA->hacerContacto(1);
 	figA->acept(this);
 	figB->acept(this);
 	colisionar(contact, oldManifold);
