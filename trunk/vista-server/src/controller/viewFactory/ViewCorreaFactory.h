@@ -20,6 +20,7 @@ public:
 	string getTagRemoto();
 	View * crearVistaPropia(float,float,float,float);
 	ViewFiguraFactory* clone(int);
+	ViewMsj* dibujarse(int);
 };
 
 #endif /* VIEWCORREAFACTORY_H_ */

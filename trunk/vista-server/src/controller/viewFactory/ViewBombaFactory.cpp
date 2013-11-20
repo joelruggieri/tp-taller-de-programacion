@@ -10,7 +10,7 @@
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
-ViewBombaFactory::ViewBombaFactory(SimpleEditorAnguloFijo * editor, int cantidad) : ViewFiguraFactory(editor, cantidad) {
+ViewBombaFactory::ViewBombaFactory(SimpleEditorAnguloFijo * editor, int cantidad) : ViewFiguraFactory(editor, cantidad,ID_FACTORY_BOMBA) {
 
 }
 

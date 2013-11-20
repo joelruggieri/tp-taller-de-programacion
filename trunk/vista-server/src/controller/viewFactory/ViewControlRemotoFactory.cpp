@@ -10,7 +10,7 @@
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
-ViewControlRemotoFactory::ViewControlRemotoFactory(SimpleEditorAnguloFijo * editor, int cantidad) : ViewFiguraFactory(editor, cantidad)  {
+ViewControlRemotoFactory::ViewControlRemotoFactory(SimpleEditorAnguloFijo * editor, int cantidad) : ViewFiguraFactory(editor, cantidad,ID_FACTORY_CONTROL)  {
 	// TODO Auto-generated constructor stub
 
 }

@@ -9,7 +9,7 @@
 #include "../../vista/objeto/CorreaEstaticaView.h"
 #include "../../ConstantesVista.h"
 
-ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
+ViewCorreaFactory::ViewCorreaFactory(EditorUnion* editor, int cantidad): ViewFiguraFactory(editor, cantidad, 0) {
 
 
 }
@@ -39,4 +39,8 @@ ViewFiguraFactory* ViewCorreaFactory::clone(int cantidad){
 	EditorUnion * editor = ((EditorUnion*) this->controller);
 	editor = (EditorUnion *)editor->clone();
 	return new ViewCorreaFactory(editor,cantidad);
+}
+
+ViewMsj* ViewCorreaFactory::dibujarse(int int1) {
+	return NULL;
 }

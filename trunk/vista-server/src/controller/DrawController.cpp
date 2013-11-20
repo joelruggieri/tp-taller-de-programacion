@@ -60,12 +60,18 @@ void DrawController::dibujar() {
 			nuevo->setDestinatario((*itJugadores)->getNumeroJugador());
 			salidaFinal.push_back(nuevo);
 		}
-		fin = new FinDibujado();
-		fin->setDestinatario((*itJugadores)->getNumeroJugador());
-		salidaFinal.push_back(fin);
 		nuevo =new ViewBotonStartMsj(ID_BOTON_PLAY,(*itJugadores)->isIniciado());
 		nuevo->setDestinatario((*itJugadores)->getNumeroJugador());
 		salidaFinal.push_back(nuevo);
+		//dibujo el estado de las factories.
+		(*itJugadores)->getEstadoCreacion(salidaFinal);
+
+		//mensaje fin dibujado
+		fin = new FinDibujado();
+		fin->setDestinatario((*itJugadores)->getNumeroJugador());
+		salidaFinal.push_back(fin);
+
+		//estado del juego
 		NetworkMensaje * msjeEstadoJuego;
 		if((*itJugadores)->isIniciado()){
 			msjeEstadoJuego = new MensajePlano(TAG_PLANO_MSJ_JUEGOINICIADO);
@@ -74,14 +80,8 @@ void DrawController::dibujar() {
 		}
 		msjeEstadoJuego->setDestinatario((*itJugadores)->getNumeroJugador());
 		salidaFinal.push_back(msjeEstadoJuego);
+
 	}
-//	YAML::Emitter o;
-//	o << YAML::BeginSeq;
-//	list<NetworkMensaje*>::iterator it = salidaFinal.begin();
-//	while (it != salidaFinal.end()) {
-//		(*it)->serialize(o);
-//		it++;
-//	}
 	salida->push(salidaFinal);
 }
 

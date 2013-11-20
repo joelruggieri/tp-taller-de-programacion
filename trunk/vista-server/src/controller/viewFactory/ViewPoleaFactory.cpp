@@ -11,7 +11,7 @@
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
 
-ViewPoleaFactory::ViewPoleaFactory(SimpleEditorAnguloFijo * editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
+ViewPoleaFactory::ViewPoleaFactory(SimpleEditorAnguloFijo * editor, int cantidad): ViewFiguraFactory(editor, cantidad,ID_FACTORY_POLEA) {
 
 }
 

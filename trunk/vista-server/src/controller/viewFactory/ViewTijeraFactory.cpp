@@ -7,7 +7,7 @@
 
 #include "ViewTijeraFactory.h"
 
-ViewTijeraFactory::ViewTijeraFactory(SimpleEditorAnguloFijo* editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
+ViewTijeraFactory::ViewTijeraFactory(SimpleEditorAnguloFijo* editor, int cantidad): ViewFiguraFactory(editor, cantidad, ID_FACTORY_TIJERA) {
 
 }
 

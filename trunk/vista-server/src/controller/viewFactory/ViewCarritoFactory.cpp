@@ -8,7 +8,7 @@
 #include "ViewCarritoFactory.h"
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
-ViewCarritoFactory::ViewCarritoFactory(SimpleEditorNivel* editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
+ViewCarritoFactory::ViewCarritoFactory(SimpleEditorNivel* editor, int cantidad): ViewFiguraFactory(editor, cantidad, ID_FACTORY_CARRITO) {
 
 }
 

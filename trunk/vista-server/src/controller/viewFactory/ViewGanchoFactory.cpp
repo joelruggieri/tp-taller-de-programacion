@@ -11,7 +11,7 @@
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
 
-ViewGanchoFactory::ViewGanchoFactory(SimpleEditorAnguloFijo * editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
+ViewGanchoFactory::ViewGanchoFactory(SimpleEditorAnguloFijo * editor, int cantidad): ViewFiguraFactory(editor, cantidad, ID_FACTORY_GANCHO) {
 
 }
 

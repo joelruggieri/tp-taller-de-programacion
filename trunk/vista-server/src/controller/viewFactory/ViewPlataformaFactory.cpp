@@ -11,7 +11,7 @@
 #include "../../controller/editor/SimpleEditorEstirar.h"
 
 
-ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
+ViewPlataformaFactory::ViewPlataformaFactory(SimpleEditorEstirar * editor, int cantidad): ViewFiguraFactory(editor, cantidad,ID_FACTORY_PLATAFORMA) {
 }
 
 FiguraView* ViewPlataformaFactory::crear(float x, float y) {

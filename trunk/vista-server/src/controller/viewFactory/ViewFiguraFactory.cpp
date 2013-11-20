@@ -6,9 +6,10 @@
  */
 
 #include "ViewFiguraFactory.h"
-ViewFiguraFactory::ViewFiguraFactory(DropController * controller, int cantidadDisponible) {
+ViewFiguraFactory::ViewFiguraFactory(DropController * controller, int cantidadDisponible, int id) {
 	this->controller = controller;
 	this->cantidadDisponible = cantidadDisponible ;
+	this->id = id;
 }
 
 
@@ -39,3 +40,7 @@ void ViewFiguraFactory::notify(Observable* viewFigura, event_type evento){
 
 }
 
+ViewMsj* ViewFiguraFactory::dibujarse(int destinatario) {
+	//ENTREGA3 hacer el envio de msje con el id y la cantidad.
+	return NULL;
+}

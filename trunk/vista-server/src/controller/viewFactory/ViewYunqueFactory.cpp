@@ -10,7 +10,7 @@
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
 #include "../../vista/objeto/YunqueView.h"
-ViewYunqueFactory::ViewYunqueFactory(SimpleEditorAnguloFijo * editor, int cantidad) : ViewFiguraFactory(editor, cantidad) {
+ViewYunqueFactory::ViewYunqueFactory(SimpleEditorAnguloFijo * editor, int cantidad) : ViewFiguraFactory(editor, cantidad,ID_FACTORY_YUNQUE) {
 	// TODO Auto-generated constructor stub
 
 }

@@ -10,7 +10,7 @@
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
-ViewBolaBolicheFactory::ViewBolaBolicheFactory(SimpleEditorAnguloFijo * editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
+ViewBolaBolicheFactory::ViewBolaBolicheFactory(SimpleEditorAnguloFijo * editor, int cantidad): ViewFiguraFactory(editor, cantidad, ID_FACTORY_BOLA) {
 
 }
 

@@ -49,6 +49,6 @@ public:
 	bool isEditando();
 	int getNumeroJugador() const;
 	void setNumeroJugador(int numeroJugador);
-	void getEstadoCreacion(list<ViewMsj*> &,int);
+	void getEstadoCreacion(list<NetworkMensaje*> &);
 };
 #endif /* JuegoEventsController_H_ */

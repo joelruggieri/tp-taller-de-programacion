@@ -14,14 +14,13 @@
 #include <list>
 using namespace std;
 
-class Zona: public Dibujable {
+class Zona {
 protected:
 	Cuadrado *cuerpo;
 	void setCuerpo(Cuadrado * cuerpo);
 public:
 	Zona(Cuadrado* cuadrado);
 	virtual ~Zona();
-	virtual void dibujarse(list<ViewMsj*> & lista) = 0;
 	Cuadrado*& getCuerpo();
 };
 
