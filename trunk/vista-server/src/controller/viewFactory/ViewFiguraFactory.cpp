@@ -42,6 +42,7 @@ void ViewFiguraFactory::notify(Observable* viewFigura, event_type evento){
 }
 
 ViewMsj* ViewFiguraFactory::dibujarse(int destinatario) {
-
-	return NULL;
+	ViewMsj * msje = new MensajeCantidadRestante(id, cantidadDisponible);
+	msje->setDestinatario(destinatario);
+	return msje;
 }
