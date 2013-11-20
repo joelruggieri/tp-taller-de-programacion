@@ -18,7 +18,7 @@ namespace CLIENTE {
 class FactoryView: public View {
 private:
 	bool debeActualizar;
-	int cantAnterior;
+	int cantAnterior, wpAnterior;
 	SDL_Texture * textura;
 	void dibujarFondo(SDL_Renderer *);
 	void dibujarBorde(SDL_Renderer * renderer);
@@ -47,6 +47,7 @@ public:
 	void dibujarse(SDL_Renderer*);
 	void dibujarse(SDL_Renderer*, SDL_Rect&);
 	void update(ViewMsj *);
+	void setYL(float yl);
 	typedef struct RGBFactory {
 		int r;
 		int g;

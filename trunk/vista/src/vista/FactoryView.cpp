@@ -28,6 +28,7 @@ FactoryView::FactoryView(float x, float y, float w, float h, SDL_Texture * textu
 	textureTexto = NULL;
 	surfaceTexto = NULL;
 	cantAnterior = -1;
+	wpAnterior = 0;
 }
 
 FactoryView::~FactoryView() {
@@ -174,10 +175,19 @@ void FactoryView::dibujarCantidad(SDL_Renderer* renderer) {
 
 }
 
+void FactoryView::setYL(float yl) {
+	super::setYL(yl);
+	this->debeActualizar = true;
+}
+
 void FactoryView::resizear() {
 	super::resizear();
 	xpc = tl->escalarInversaEnX(10.5);
 	ypc = tl->escalarInversaEnY(5);
+	if (wpAnterior != wp)
+		{debeActualizar = true ;
+		wpAnterior = wp ;
+		}
 }
 
 }

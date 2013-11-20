@@ -22,6 +22,7 @@ AreaMensajes::AreaMensajes(float x, float y, float w, float h, SDL_Texture* text
 	debeActualizar = true;
 	textureTexto = NULL;
 	surfaceTexto = NULL;
+	wpAnterior = 0;
 }
 
 AreaMensajes::~AreaMensajes() {
@@ -33,8 +34,8 @@ void AreaMensajes::dibujarse(SDL_Renderer* renderer) {
 	if (debeActualizar) {
 		dest.h = this->hp;
 		dest.w = this->wp;
-		dest.x = this->xp + 10;
-		dest.y = this->yp;
+		dest.x = this->xp + xpc;
+		dest.y = this->yp + ypc;
 		if (surfaceTexto)
 			SDL_FreeSurface(this->surfaceTexto);
 		if (textureTexto)
@@ -53,8 +54,7 @@ void AreaMensajes::dibujarse(SDL_Renderer* renderer) {
 		SDL_RenderCopy(renderer, textureTexto, NULL, &dest);
 }
 
-void AreaMensajes::update(ViewMsj*) {
-
+void AreaMensajes::update(ViewMsj* t) {
 }
 
 //void AreaMensajes::resize() {
@@ -74,7 +74,12 @@ void AreaMensajes::setMensaje(string mensaje) {
 
 void AreaMensajes::resizear() {
 	super::resizear();
-
+	xpc = tl->escalarInversaEnX(2);
+	ypc = tl->escalarInversaEnY(2);
+	if (wpAnterior != wp)
+		{debeActualizar = true ;
+		wpAnterior = wp ;
+		}
 }
 
 } /* namespace CLIENTE */
