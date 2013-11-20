@@ -121,8 +121,8 @@ namespace CLIENTE {
 #define ALTO_TIJERA 2.0
 
 
-#define ANCHO_CLAVO 6.0
-#define ALTO_CLAVO 3.0
+#define ANCHO_CLAVO 5
+#define ALTO_CLAVO 2.5
 #define ANCHO_CONTROL 4.0
 #define ALTO_CONTROL 4.0
 #define ALTO_CINTA 5
