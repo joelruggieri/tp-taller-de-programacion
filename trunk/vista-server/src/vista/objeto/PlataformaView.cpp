@@ -43,9 +43,9 @@ void PlataformaView::dibujarse(list<ViewMsj*> & lista){
 	Plataforma* figura = (Plataforma*) this->getModelo();
 	ViewObjetoConAnchoUpdateMsj* viewMensaje;
 	if(figura != NULL)
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId(), this->selector);
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),figura->getAncho(),this->getId(), this->selector,this->getNumeroEvento());
 	else
 		//EL ANGULO SE PASA EN CERO PORQUE LA PLATAFORMA SE CREA CON UN ANGULO EN CERO
-		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId(), this->selector);
+		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId(), this->selector,this->getNumeroEvento());
 	lista.push_back(viewMensaje);
 }

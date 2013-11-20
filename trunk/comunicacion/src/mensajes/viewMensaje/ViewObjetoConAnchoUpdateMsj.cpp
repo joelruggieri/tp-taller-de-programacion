@@ -9,7 +9,7 @@
 #include "../../ConstantesComunicacion.h"
 
 
-ViewObjetoConAnchoUpdateMsj::ViewObjetoConAnchoUpdateMsj(float x, float y, float angulo, float ancho, int id, char sel): ViewObjetoUpdateMsj(x,y,angulo,id, sel){
+ViewObjetoConAnchoUpdateMsj::ViewObjetoConAnchoUpdateMsj(float x, float y, float angulo, float ancho, int id, char sel, int idEvent): ViewObjetoUpdateMsj(x,y,angulo,id, sel,idEvent){
 	this->ancho = ancho;
 }
 
@@ -34,9 +34,11 @@ NetworkMensaje* ViewObjetoConAnchoUpdateMsj::deserialize(YAML::const_iterator & 
 	it++;
 	float angulol = it->as<float>();
 	it++;
+	int idDelEvento = it->as<int>();
+	it++;
 	float anchol = it->as<float>();
 	it++;
-	NetworkMensaje * salida = new ViewObjetoConAnchoUpdateMsj(xl,yl,angulol, anchol, id, sel);
+	NetworkMensaje * salida = new ViewObjetoConAnchoUpdateMsj(xl,yl,angulol, anchol, id, sel,idDelEvento);
 	return salida;
 }
 
@@ -57,7 +59,8 @@ float ViewObjetoConAnchoUpdateMsj::getAncho() const {
 }
 
 ViewMsj* ViewObjetoConAnchoUpdateMsj::clone(int destinatario) {
-	ViewObjetoConAnchoUpdateMsj* msj = new ViewObjetoConAnchoUpdateMsj(x, y, angulo, ancho, id, selector);
+	ViewObjetoConAnchoUpdateMsj* msj = new ViewObjetoConAnchoUpdateMsj(x, y, angulo, ancho, id, selector,idEvento);
 	msj->setDestinatario(destinatario);
 	return msj;
 }
+

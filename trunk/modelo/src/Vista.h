@@ -9,11 +9,19 @@
 #define VISTA_H_
 
 class Vista {
+private:
+	int numeroEvento;
 public:
 	virtual ~Vista(){
 
 	};
-//	virtual void update() = 0;
+	void alertarEvento(int numero){
+		this->numeroEvento = numero;
+	}
+	int getNumeroEvento(){
+		return numeroEvento;
+	}
+
 };
 
 #endif /* VISTA_H_ */

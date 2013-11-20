@@ -20,11 +20,11 @@ void ObjetoView::dibujarse(list<ViewMsj*> & lista){
 	Figura* figura = this->getModelo();
 	ViewObjetoUpdateMsj* viewMensaje;
 	if(figura == NULL){
-		viewMensaje = new ViewObjetoUpdateMsj(getXCentro(),getYCentro(),0,this->getId(), this->selector);
+		viewMensaje = new ViewObjetoUpdateMsj(getXCentro(),getYCentro(),0,this->getId(), this->selector,this->getNumeroEvento());
 		lista.push_back(viewMensaje);
 	} else {
 		if(figura->isViva()){
-		viewMensaje = new ViewObjetoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),this->getId(), this->selector);
+		viewMensaje = new ViewObjetoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),this->getId(), this->selector,this->getNumeroEvento());
 		lista.push_back(viewMensaje);
 		}
 	}

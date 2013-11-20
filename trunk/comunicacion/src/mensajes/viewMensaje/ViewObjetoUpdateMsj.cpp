@@ -9,10 +9,11 @@
 #include "../../ConstantesComunicacion.h"
 
 
-ViewObjetoUpdateMsj::ViewObjetoUpdateMsj(float x , float y, float angulo, int id, char sel): ViewMsj(id, sel){
+ViewObjetoUpdateMsj::ViewObjetoUpdateMsj(float x , float y, float angulo, int id, char sel,int idEvent): ViewMsj(id, sel){
 this->x = x;
 this->y = y;
 this->angulo = angulo;
+this->idEvento = idEvent;
 }
 
 ViewObjetoUpdateMsj::~ViewObjetoUpdateMsj() {
@@ -26,6 +27,7 @@ void ViewObjetoUpdateMsj::serialize(YAML::Emitter & out) {
 	out << this->x;
 	out << this->y;
 	out << this->angulo;
+	out<< this->idEvento;
 }
 
 NetworkMensaje* ViewObjetoUpdateMsj::deserialize(YAML::const_iterator& it) {
@@ -39,8 +41,9 @@ NetworkMensaje* ViewObjetoUpdateMsj::deserialize(YAML::const_iterator& it) {
 	it++;
 	float angulo = it->as<float>();
 	it++;
-
-	NetworkMensaje * salida = new ViewObjetoUpdateMsj(xl,yl, angulo, id, sel);
+	int idDelEvento = it->as<int>();
+	it++;
+	NetworkMensaje * salida = new ViewObjetoUpdateMsj(xl,yl, angulo, id, sel,idDelEvento);
 	return salida;
 }
 
@@ -69,8 +72,13 @@ float ViewObjetoUpdateMsj::getY() const {
 	return y;
 }
 
+int ViewObjetoUpdateMsj::getIdEvento() const {
+	return idEvento;
+}
+
+
 ViewMsj* ViewObjetoUpdateMsj::clone(int dest) {
-	ViewMsj* msj = new ViewObjetoUpdateMsj(x, y, angulo, id,selector);
+	ViewMsj* msj = new ViewObjetoUpdateMsj(x, y, angulo, id,selector,this->idEvento);
 	msj->setDestinatario(dest);
 	return msj;
 }

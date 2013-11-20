@@ -22,6 +22,7 @@ void ViewTijeraMsj::serialize(YAML::Emitter& out) {
 	out<< y;
 	out<< rotacionAspa1;
 	out<< rotacionAspa2;
+	out<< idEvento;
 }
 
 NetworkMensaje* ViewTijeraMsj::deserialize(YAML::const_iterator& it) {
@@ -36,20 +37,23 @@ NetworkMensaje* ViewTijeraMsj::deserialize(YAML::const_iterator& it) {
 	it++;
 	rot2 = it->as<float>();
 	it++;
-	return new ViewTijeraMsj(x,y,rot1,rot2,id);
+	int idDelEvento = it->as<int>();
+	it++;
+	return new ViewTijeraMsj(x,y,rot1,rot2,id,idDelEvento);
 }
 
 ViewMsj* ViewTijeraMsj::clone(int destinatario) {
-	ViewMsj * msj = new ViewTijeraMsj(x,y,rotacionAspa1,rotacionAspa2,this->id);
+	ViewMsj * msj = new ViewTijeraMsj(x,y,rotacionAspa1,rotacionAspa2,this->id,this->idEvento);
 	msj->setDestinatario(destinatario);
 	return  msj;
 }
 
-ViewTijeraMsj::ViewTijeraMsj(float x, float y,float rotAspa1,float rotAspa2, int id):ViewMsj(id, 'a') {
+ViewTijeraMsj::ViewTijeraMsj(float x, float y,float rotAspa1,float rotAspa2, int id,int idEvent):ViewMsj(id, 'a') {
 	this->x = x;
 	this->y = y;
 	this->rotacionAspa1= rotAspa1;
 	this->rotacionAspa2= rotAspa2;
+	this->idEvento = idEvent;
 }
 
 
@@ -67,4 +71,8 @@ float ViewTijeraMsj::getX() const {
 
 float ViewTijeraMsj::getY() const {
 	return y;
+}
+
+int ViewTijeraMsj::getIdEvento() const {
+	return idEvento;
 }

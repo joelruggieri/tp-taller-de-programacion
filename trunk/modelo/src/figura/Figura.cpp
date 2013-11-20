@@ -337,3 +337,7 @@ bool Figura::validarContacto(b2Body * verf, b2Body * b) {
 	return false;
 
 }
+
+void Figura::hacerContacto(int numero){
+	this->vista->alertarEvento(numero);
+}

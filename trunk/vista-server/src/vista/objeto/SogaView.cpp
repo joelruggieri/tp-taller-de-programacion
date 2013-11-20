@@ -32,7 +32,7 @@ void SogaView::dibujarse(list<ViewMsj *> & lista) {
 	ViewObjetoUnionUpdateMsj* viewMensaje;
 
 	if(figura != NULL && figura->isViva()){
-		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),0,0,figura->estaEstatica(),figura->conEslabon(),figura->getRadio(),this->getId(), this->selector);
+		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),0,0,figura->estaEstatica(),figura->conEslabon(),figura->getRadio(),this->getId(), this->selector,this->getNumeroEvento());
 		if(figura->conEslabon()){
 			viewMensaje->setPosEslabon(figura->getXEslabon(),figura->getYEslabon());
 			viewMensaje->setActivoPrimerTramo(figura->activoPrimerTramo());

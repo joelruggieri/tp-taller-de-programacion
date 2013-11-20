@@ -38,7 +38,7 @@ void CorreaView::dibujarse(list<ViewMsj*> & lista) {
 	if (figura != NULL)
 		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(), figura->getYInicial(), figura->getXFinal(),
 				figura->getYFinal(), figura->getRadioInicial(), figura->getRadioFinal(), figura->estaEstatica(),false,
-				figura->getRadio(), this->getId(), this->selector);
+				figura->getRadio(), this->getId(), this->selector,this->getNumeroEvento());
 	lista.push_back(viewMensaje);
 }
 

@@ -9,8 +9,8 @@
 #include "../../ConstantesComunicacion.h"
 
 ViewObjetoUnionUpdateMsj::ViewObjetoUnionUpdateMsj(float x1, float x2, float x3, float x4, float radioInicial,
-		float radioFinal, bool isEstatico, bool conEslabon, float radio, int id, char sel) :
-		ViewObjetoUpdateMsj(x1, x2, 0, id, sel) {
+		float radioFinal, bool isEstatico, bool conEslabon, float radio, int id, char sel, int idEvent) :
+		ViewObjetoUpdateMsj(x1, x2, 0, id, sel,idEvent) {
 	this->xHasta = x3;
 	this->yHasta = x4;
 	this->radioInicial = radioInicial;
@@ -41,6 +41,7 @@ void ViewObjetoUnionUpdateMsj::serialize(YAML::Emitter & out) {
 	out << estatico;
 	out << radio;
 	out << conEslabon;
+	out<< idEvento;
 	if (conEslabon) {
 		out << xEslb;
 		out << yEslb;
@@ -72,8 +73,10 @@ NetworkMensaje* ViewObjetoUnionUpdateMsj::deserialize(YAML::const_iterator& it) 
 	it++;
 	bool eslabon = it->as<bool>();
 	it++;
+	int idDelEvento = it->as<int>();
+	it++;
 	ViewObjetoUnionUpdateMsj * salida = new ViewObjetoUnionUpdateMsj(xD, yD, xH, yH, radioInicial, radioFinal, estatico,
-			eslabon, radio, id, sel);
+			eslabon, radio, id, sel,idDelEvento);
 	if (eslabon) {
 		float xEsl, yEsl;
 		xEsl = it->as<float>();
@@ -105,7 +108,7 @@ void ViewObjetoUnionUpdateMsj::acept(ViewMsjVisitor*v) {
 
 ViewMsj* ViewObjetoUnionUpdateMsj::clone(int dest) {
 	ViewObjetoUnionUpdateMsj * msj = new ViewObjetoUnionUpdateMsj(x, y, xHasta, yHasta, radioInicial, radioFinal,
-			estatico, conEslabon, radio, id, selector);
+			estatico, conEslabon, radio, id, selector,idEvento);
 	msj->setPosEslabon(xEslb, yEslb);
 	msj->setActivoPrimerTramo(activoPrimerTramo);
 	msj->setActivoSegundoTramo(activoSegundoTramo);
@@ -163,3 +166,4 @@ bool ViewObjetoUnionUpdateMsj::isEstatico() const {
 float ViewObjetoUnionUpdateMsj::getRadio() const {
 	return radio;
 }
+
