@@ -209,6 +209,6 @@ bool JuegoEventsController::isEditando() {
 	return editor != NULL;
 }
 
-void JuegoEventsController::getEstadoCreacion(list<ViewMsj*> & salida,
-		int destinatario) {
+void JuegoEventsController::getEstadoCreacion(list<NetworkMensaje*> & salida) {
+	creacion->dibujarse(salida,this->numeroJugador);
 }

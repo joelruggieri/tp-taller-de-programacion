@@ -30,8 +30,15 @@ ZonaCreacion::~ZonaCreacion() {
 }
 
 
-void ZonaCreacion::dibujarse(list<ViewMsj*> & lista){
-	//ENTREGA3 DIBUJAR EL ESTADO DE LAS FACTORIES. (CANTIDADES DISPONIBLES.)
+void ZonaCreacion::dibujarse(list<NetworkMensaje*> & lista, int desti){
+	map<string, ViewFiguraFactory* >::iterator it;
+	ViewMsj* msj;
+	for(it=factories.begin(); it!= factories.end();++it){
+		msj = it->second->dibujarse(desti);
+		if(msj){
+			lista.push_back(msj);
+		}
+	}
 }
 
 FiguraView* ZonaCreacion::crearFigura(string tag, float x, float y) {

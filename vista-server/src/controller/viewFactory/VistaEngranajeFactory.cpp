@@ -10,7 +10,7 @@
 #include "../../vista/objeto/VistaEngranaje.h"
 #include "../../ConstantesVista.h"
 #include "../editor/SimpleEditorCambiarRadio.h"
-VistaEngranajeFactory::VistaEngranajeFactory(SimpleEditorCambiarRadio *editor, int cantidad): ViewFiguraFactory(editor,  cantidad) {
+VistaEngranajeFactory::VistaEngranajeFactory(SimpleEditorCambiarRadio *editor, int cantidad): ViewFiguraFactory(editor,  cantidad,ID_FACTORY_ENGRANAJE) {
 	// TODO Auto-generated constructor stub
 
 }

@@ -10,7 +10,7 @@
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
 #include "src/Constantes.h"
 #include "../../ConstantesVista.h"
-ViewPelotaJuegoFactory::ViewPelotaJuegoFactory(SimpleEditorAnguloFijo * editor, int cantidad) : ViewFiguraFactory(editor, cantidad) {
+ViewPelotaJuegoFactory::ViewPelotaJuegoFactory(SimpleEditorAnguloFijo * editor, int cantidad) : ViewFiguraFactory(editor, cantidad,ID_FACTORY_PELOTA) {
 	// TODO Auto-generated constructor stub
 
 }

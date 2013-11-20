@@ -2,7 +2,7 @@
 #include "../../vista/objeto/CorreaView.h"
 #include "../../ConstantesVista.h"
 
-ViewCorreaDinamicaFactory::ViewCorreaDinamicaFactory(EditorUnion* editor, int cantidad): ViewFiguraFactory(editor, cantidad) {
+ViewCorreaDinamicaFactory::ViewCorreaDinamicaFactory(EditorUnion* editor, int cantidad): ViewFiguraFactory(editor, cantidad,ID_FACTORY_CORREA) {
 
 
 }

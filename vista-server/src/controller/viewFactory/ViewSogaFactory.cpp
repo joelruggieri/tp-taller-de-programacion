@@ -10,7 +10,7 @@
 #include "../../ConstantesVista.h"
 namespace std {
 
-ViewSogaFactory::ViewSogaFactory(EditorUnion* editor, int cantidad):ViewFiguraFactory(editor, cantidad) {
+ViewSogaFactory::ViewSogaFactory(EditorUnion* editor, int cantidad):ViewFiguraFactory(editor, cantidad, ID_FACTORY_SOGA) {
 
 }
 

@@ -10,7 +10,7 @@
 #include "../../ConstantesVista.h"
 
 
-viewClavoFactory::viewClavoFactory(SimpleEditorAnguloFijo* editor, int cantidad):ViewFiguraFactory(editor, cantidad) {
+viewClavoFactory::viewClavoFactory(SimpleEditorAnguloFijo* editor, int cantidad):ViewFiguraFactory(editor, cantidad,ID_FACTORY_CLAVO) {
 	// TODO Auto-generated constructor stub
 
 }

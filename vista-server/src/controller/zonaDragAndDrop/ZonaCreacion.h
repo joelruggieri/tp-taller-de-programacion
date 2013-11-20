@@ -21,7 +21,7 @@ private:
 public:
 	ZonaCreacion(list<ViewFiguraFactory*> &);
 	virtual ~ZonaCreacion();
-	void dibujarse(list<ViewMsj*> & lista);
+	void dibujarse(list<NetworkMensaje*> & lista, int desti);
 
 	//ENTREGA3 esto es para poder crear los elementos
 	FiguraView * crearFigura(string tag, float x, float y);
