@@ -41,7 +41,7 @@ namespace CLIENTE {
 #define PATH_VISTA_AREA "resource/area.png"
 #define PATH_VISTA_CARTEL "resource/textbox.png"
 #define PATH_VISTA_PELOTA "resource/pelota.png"
-#define PATH_VISTA_YUNQUE "resource/yunque.png"
+#define PATH_VISTA_YUNQUE "resource/yunqueM.png"
 #define PATH_VISTA_BOLA "resource/bolaBoliche.png"
 #define PATH_VISTA_CINTA "resource/cinta.png"
 #define PATH_VISTA_CINTA_PLATAF "resource/baseCinta.png"
