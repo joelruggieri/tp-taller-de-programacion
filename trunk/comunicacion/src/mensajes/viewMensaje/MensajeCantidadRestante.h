@@ -7,7 +7,7 @@
 
 #ifndef MENSAJECANTIDADRESTANTE_H_
 #define MENSAJECANTIDADRESTANTE_H_
-#include "viewMensaje/ViewMsj.h"
+#include "ViewMsj.h"
 #include "yaml-cpp/yaml.h"
 class MensajeCantidadRestante : public ViewMsj{
 public:
