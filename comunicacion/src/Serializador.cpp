@@ -16,7 +16,7 @@
 #include "mensajes/viewMensaje/Highlight.h"
 #include "mensajes/viewMensaje/ViewCarritoMsj.h"
 #include "mensajes/viewMensaje/ViewTijeraMsj.h"
-#include "mensajes/MensajeCantidadRestante.h"
+#include "mensajes/viewMensaje/MensajeCantidadRestante.h"
 #include <errno.h>
 #define MAX_BUFFER 1024
 Serializador::Serializador(int destinatario) {
