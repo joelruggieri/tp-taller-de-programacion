@@ -25,6 +25,7 @@ public:
 	void resizear();
 
 private:
+	int wpAnterior, xpc, ypc;
 	float tamanoFuente;
 	SDL_Texture* textura;
 	TTF_Font* fuente;
