@@ -16,6 +16,7 @@
 #include "mensajes/viewMensaje/Highlight.h"
 #include "mensajes/viewMensaje/ViewCarritoMsj.h"
 #include "mensajes/viewMensaje/ViewTijeraMsj.h"
+#include "mensajes/MensajeCantidadRestante.h"
 #include <errno.h>
 #define MAX_BUFFER 1024
 Serializador::Serializador(int destinatario) {
@@ -37,6 +38,7 @@ Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_HIGHLIGHT), new Highlight(0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_CARRITO), new ViewCarritoMsj(0,0,0,0,0,0,0,0,0,0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_TIJERA), new ViewTijeraMsj(0,0,0,0,0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CANTIDAD_RESTANTE), new MensajeCantidadRestante(0,0)));
 
 
 	this->destinatario = destinatario;

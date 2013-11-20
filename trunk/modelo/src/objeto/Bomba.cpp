@@ -124,3 +124,7 @@ bool Bomba::validarContactoBomba(b2Body* verf, b2Body* b) {
 void Bomba::interactuar(Area& area, int jugador) {
 	super::interactuarNoArea(area,jugador);
 }
+
+void Bomba::recibirImpacto(b2Vec2 direccion) {
+	this->realizarImpacto(direccion);
+}

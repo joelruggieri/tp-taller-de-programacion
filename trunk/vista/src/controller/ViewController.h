@@ -14,6 +14,7 @@
 #include <src/mensajes/viewMensaje/Highlight.h>
 #include <src/mensajes/viewMensaje/ViewCarritoMsj.h>
 #include <src/mensajes/viewMensaje/ViewTijeraMsj.h>
+#include "src/mensajes/MensajeCantidadRestante.h"
 #include <src/threading/ObjetoCompartido.h>
 #include "ResizerController.h"
 #include "DrawController.h"
@@ -58,6 +59,7 @@ public:
 	void visit(Highlight*);
 	void visit(ViewCarritoMsj*);
 	void visit(ViewTijeraMsj*);
+	void visit(MensajeCantidadRestante*);
 	void addView(int id, View *);
 	void addViewScrolleable(int id, View *);
 	void scrollUnidadesLogicas(float unidadesLogicas);

@@ -8,6 +8,7 @@
 
 #define ID_BOTON_PLAY 5
 
+#define TAG_CANTIDAD_RESTANTE "CR"
 #define TAG_INTERNO_DRAW "ID"
 #define TAG_INTERNO_CONEXION "IC"
 #define OBJ_SIMPLE_S_BALANCIN 'b'
