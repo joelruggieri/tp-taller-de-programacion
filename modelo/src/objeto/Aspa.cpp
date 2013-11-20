@@ -15,7 +15,7 @@ Aspa::Aspa() :
 	ancho = 0;
 	numeroAspa = 0;
 	tijera = NULL;
-
+	switchContacto = NULL;
 }
 
 Aspa::Aspa(float x, float y, float ancho, float alto, double rotacion,
@@ -27,6 +27,7 @@ Aspa::Aspa(float x, float y, float ancho, float alto, double rotacion,
 	this->numeroAspa = numero;
 	this->tijera = tijera;
 	this->numeroJugadorDuenio = tijera->getNumeroJugador();
+	switchContacto = NULL;
 	//Enganche* enganche= new Enganche(this,cos(rotacionEnRadianes)*ancho/2.0,sin(rotacionEnRadianes)*ancho/2.0);
 	//enganches.push_back(enganche);
 }
