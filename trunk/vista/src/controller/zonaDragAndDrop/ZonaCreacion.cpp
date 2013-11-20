@@ -34,7 +34,7 @@ void ZonaCreacion::crearVista(ViewController* vc) {
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_SOGA), ConfigFactory(ID_FACTORY_PLATAFORMA, TAG_FACTORY_SOGA,PATH_VISTA_CUERDA)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_PLATAFORMA),ConfigFactory(ID_FACTORY_SOGA, TAG_FACTORY_PLATAFORMA, PATH_VISTA_PLATAFORMA_F)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_YUNQUE),ConfigFactory(ID_FACTORY_YUNQUE, TAG_FACTORY_YUNQUE, PATH_VISTA_YUNQUE)));
-	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CLAVO),ConfigFactory(ID_FACTORY_CLAVO, TAG_FACTORY_CLAVO, PATH_VISTA_CLAVO)));
+	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CLAVO),ConfigFactory(ID_FACTORY_CLAVO, TAG_FACTORY_CLAVO, PATH_VISTA_CLAVO_F)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_GANCHO),ConfigFactory(ID_FACTORY_GANCHO, TAG_FACTORY_GANCHO, PATH_VISTA_GANCHO)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_POLEA),ConfigFactory(ID_FACTORY_POLEA, TAG_FACTORY_POLEA, PATH_VISTA_POLEA)));
 	factories.insert(pair<string, ConfigFactory>(string(TAG_FACTORY_CONTROL),ConfigFactory(ID_FACTORY_CONTROL, TAG_FACTORY_CONTROL, PATH_VISTA_CONTROL)));

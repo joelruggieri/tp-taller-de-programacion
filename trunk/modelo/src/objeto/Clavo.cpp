@@ -16,8 +16,6 @@ Clavo::Clavo(const Clavo& figura) {
     alto = figura.getAlto();
     ancho = figura.getAncho();
 	this->reg = figura.reg;
-//	this->setRadio(figura.getRadio());
-
 }
 
 Clavo::~Clavo() {
@@ -39,13 +37,12 @@ void Clavo::crearFisica() {
 		float y = this->getY();
 		b2Vec2 centro(x, y);
 		b2PolygonShape shape;
-		shape.SetAsBox(this->ancho / 2, this->alto / 2);
+		shape.SetAsBox(this->ancho / 2, this->alto / 4.0);
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_staticBody;
 		bodyDef.position.Set(x, y);
 		bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 		b2Body* body = myWorld->CreateBody(&bodyDef);
-//		shapeCircle.m_radius = this->radio;
 		b2FixtureDef bodyClavo;
 		bodyClavo.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyClavo.filter.maskBits = CATEGORIA_FIGURAS;
@@ -53,16 +50,8 @@ void Clavo::crearFisica() {
 		bodyClavo.density = 100.0f;
 		bodyClavo.friction = 0.3f;
 		bodyClavo.restitution = 0.6f;	//mucho coeficiente de restitucion
-//		body->CreateFixture(&bodyClavo)->SetUserData(this);
-//		body->SetUserData(this);
-//		shape.SetAsBox(this->ancho/5, this->alto/2);
 		b2PolygonShape shape2;
 		shape2.SetAsBox(this->ancho / 10, this->alto / 10,b2Vec2(this->ancho / 2 - this->ancho / 15, 0),0);
-//		b2BodyDef bodyDefPunta;
-//		bodyDefPunta.type = b2_staticBody;
-//		bodyDefPunta.position.Set(x + ( this->ancho / 2 ), y);
-//		bodyDefPunta.angle = this->getRotacion() * -3.14 / 180.0;
-//		b2Body* bodyPunta = myWorld->CreateBody(&bodyDef);
 		b2FixtureDef bodyClavoPunta;
 		bodyClavoPunta.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyClavoPunta.filter.maskBits = CATEGORIA_FIGURAS;

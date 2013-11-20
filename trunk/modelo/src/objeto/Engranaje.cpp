@@ -98,8 +98,10 @@ void Engranaje::crearFisicaEstaticaTemplate() {
 
 void Engranaje::removerFisica() {
 	super::removerFisica();
-	myWorld->DestroyBody(this->radioAccion);
-	radioAccion = NULL;
+	if (NULL != radioAccion) {
+		myWorld->DestroyBody(this->radioAccion);
+		radioAccion = NULL;
+	}
 }
 
 void Engranaje::crearLazo(Engranaje * b, b2World* w) {
@@ -115,7 +117,7 @@ void Engranaje::crearLazo(Engranaje * b, b2World* w) {
 	gear_joint.bodyB = b->getDiscoGiro();
 	gear_joint.joint1 = this->getJointATierra();
 	gear_joint.joint2 = b->getJointATierra();
-	gear_joint.ratio =  b->getRadio() / this->getRadio();
+	gear_joint.ratio = b->getRadio() / this->getRadio();
 	w->CreateJoint(&gear_joint);
 
 }
@@ -165,7 +167,8 @@ Engranaje::Engranaje(const Engranaje& engranaje) :
 	this->radio = engranaje.getRadio();
 }
 
-Engranaje::Engranaje():Objeto() {
+Engranaje::Engranaje() :
+		Objeto() {
 	libre = true;
 }
 
@@ -190,11 +193,11 @@ float Engranaje::getRadio() {
 
 void Engranaje::getSiguienteRadio() {
 //	cout << this->radio << endl;
-	if (this->radio == (float)RADIO_ENGRANAJE_CHICO)
+	if (this->radio == (float) RADIO_ENGRANAJE_CHICO)
 		this->radio = RADIO_ENGRANAJE;
-	else if (this->radio == (float)RADIO_ENGRANAJE)
+	else if (this->radio == (float) RADIO_ENGRANAJE)
 		this->radio = RADIO_ENGRANAJE_GRANDE;
-	else if (this->radio == (float)RADIO_ENGRANAJE_GRANDE)
+	else if (this->radio == (float) RADIO_ENGRANAJE_GRANDE)
 		this->radio = RADIO_ENGRANAJE_CHICO;
 }
 
@@ -212,7 +215,7 @@ void Engranaje::ocupar() {
 }
 
 void Engranaje::liberar() {
-	this->libre= true;
+	this->libre = true;
 }
 
 bool Engranaje::estaLibre() {
@@ -237,9 +240,9 @@ float Engranaje::getRadio() const {
 }
 
 void Engranaje::setRadio(float radio) {
-	this->radio = radio ;
+	this->radio = radio;
 }
 
-float Engranaje::getAncho()const {
-	return getRadio()*2;
+float Engranaje::getAncho() const {
+	return getRadio() * 2;
 }
