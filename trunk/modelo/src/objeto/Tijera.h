@@ -14,11 +14,6 @@ class Tijera: public Objeto {
 private:
 	float ancho;
 	float alto;
-	//double rotacionAspa2;
-	//double rotacionAspa1;
-	//b2RevoluteJoint * jointAspa1Tierra;
-	//b2RevoluteJoint * jointAspa2Tierra;
-	//b2Body* aspa1;
 	Aspa* aspa1;
 	Aspa* aspa2;
 	bool accionada;

@@ -23,10 +23,6 @@ Objetos:
   PelotasJuego:
     - x: 75
       y: 3
-  Cintas:
-    - x: 6
-      y: 7
-      ancho: 20
 Jugadores:
   - Area:
       x: 50
