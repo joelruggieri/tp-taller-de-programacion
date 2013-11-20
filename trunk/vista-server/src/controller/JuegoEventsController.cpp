@@ -208,3 +208,7 @@ bool JuegoEventsController::isIniciado() {
 bool JuegoEventsController::isEditando() {
 	return editor != NULL;
 }
+
+void JuegoEventsController::getEstadoCreacion(list<ViewMsj*> & salida,
+		int destinatario) {
+}
