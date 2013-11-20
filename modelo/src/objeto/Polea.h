@@ -25,12 +25,14 @@ public:
 	void accionesPostFisica();
 	void limpiarReferenciasB2D();
 	void desenganchado(Enganche*);
+	void updateModelo();
 private:
 	void crearEnganches();
 	Enganche * izq;
 	Enganche * der;
 	float radio;
-	b2Joint * joint;
+	float distAnterior;
+	b2PulleyJoint * joint;
 	b2Body * radioAccion;
 	typedef Objeto super;
 };

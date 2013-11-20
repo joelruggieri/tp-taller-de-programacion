@@ -28,5 +28,11 @@ EditorNivel* CorreaEstaticaView::getEditor() {
 }
 
 UnionView* CorreaEstaticaView::toDinamica() {
-	return new CorreaView (this->getXCentro(),this->getYCentro(),(EditorUnion*)this->controller);
+	CorreaView * rt = new CorreaView (this->getXCentro(),this->getYCentro(),(EditorUnion*)this->controller);
+	list<Observer*>::iterator it;
+	for(it=observers.begin(); it != observers.end(); ++it){
+		rt->addObserver(*it);
+	}
+	observers.clear();
+	return rt;
 }

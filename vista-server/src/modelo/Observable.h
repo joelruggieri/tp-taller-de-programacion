@@ -12,6 +12,7 @@
 using namespace std;
 
 class Observable {
+protected:
 	list<Observer*> observers;
 public:
 	Observable();

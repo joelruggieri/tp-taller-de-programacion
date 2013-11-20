@@ -77,7 +77,6 @@ void CintaTransportadoraView::update(ViewMsj* mje) {
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setWl(mjeCurrent->getAncho());
 	recalcular();
-	resizear();
 }
 
 }

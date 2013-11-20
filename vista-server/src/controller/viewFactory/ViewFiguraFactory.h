@@ -24,7 +24,6 @@ public:
 	ViewFiguraFactory(DropController * controller, int cant, int id);
 	virtual ~ViewFiguraFactory();
 	virtual FiguraView * crear(float,float)=0;
-	virtual View * crearVistaPropia(float,float,float,float) = 0;
 	virtual string getTagRemoto() = 0;
 	FiguraView * crearTemplate(float,float);
 	virtual ViewFiguraFactory* clone(int) = 0;

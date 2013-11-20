@@ -53,8 +53,6 @@ Jugadores:
         cantidad: 3
       - nombre: FY
         cantidad: 3
-      - nombre: FCO
-        cantidad: 3
       - nombre: FBO
         cantidad: 3
       - nombre: FT
@@ -63,5 +61,7 @@ Jugadores:
         cantidad: 3
       - nombre: FPO
         cantidad: 3
-      - nombre: FT
+      - nombre: FA
+        cantidad: 3
+      - nombre: FO
         cantidad: 3

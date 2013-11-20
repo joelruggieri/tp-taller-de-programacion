@@ -9,7 +9,7 @@
 #include "../Constantes.h"
 #include <iostream>
 using namespace std;
-
+#define RADTOG 57.295779513082320876f
 Polea::Polea(float x, float y, float radio) :
 		Objeto(x, y) {
 	this->radio = radio;
@@ -121,7 +121,8 @@ void Polea::accionesPostFisica() {
 		b2PulleyJointDef jointDef;
 		jointDef.Initialize(eslabonIzq, eslabonDer, groundAnchor1, groundAnchor2, anchor1,
 		anchor2, ratio);
-		joint = myWorld->CreateJoint(&jointDef);
+		joint = (b2PulleyJoint*)myWorld->CreateJoint(&jointDef);
+		distAnterior = joint->GetLengthA();
 	}
 }
 
@@ -148,7 +149,21 @@ void Polea::desenganchado(Enganche* e) {
 			izq->matarSoga();
 		}
 	}
+}
 
-
-
+void Polea::updateModelo() {
+	if(joint && distAnterior != joint->GetLengthA()){
+		float dif = distAnterior -joint->GetLengthA();
+		float modulo = abs(dif);
+		float recorridoRad = atan(modulo/getRadio());
+		distAnterior = joint->GetLengthA();
+		if(isnan(recorridoRad)){
+			recorridoRad= 0.01;
+		}
+		if(dif <0){
+			setRotacion(getRotacion() - 0.9*RADTOG*recorridoRad);
+		} else{
+			setRotacion(getRotacion() + 0.9*RADTOG*recorridoRad);
+		}
+	}
 }
