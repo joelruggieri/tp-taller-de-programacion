@@ -18,8 +18,7 @@ Aspa::Aspa() :
 	switchContacto = NULL;
 }
 
-Aspa::Aspa(float x, float y, float ancho, float alto, double rotacion,
-		int numero, Tijera* tijera) :
+Aspa::Aspa(float x, float y, float ancho, float alto, double rotacion, int numero, Tijera* tijera) :
 		Objeto(x, y) {
 	this->ancho = ancho;
 	this->alto = alto;
@@ -151,16 +150,68 @@ void Aspa::acept(VisitorFigura*) {
 }
 
 void Aspa::crearShapes() {
-	b2PolygonShape polygon;
+	//creo el cuerpo
+	b2CircleShape shapeCircle;
+	shapeCircle.m_radius = this->alto;
+	b2Vec2 vertices[4];
+	if (numeroAspa == 1) {
+		//es La de la aleta para arriba.
+		b2PolygonShape shape;
+		vertices[0].Set(0, alto / 2.0);
+		vertices[1].Set(0, 0);
+		vertices[2].Set(ancho / 2.0, 0);
+		vertices[3].Set(ancho / 2.0, alto / 2.0);
+		shapeCircle.m_p.Set(ancho/2.0- alto,alto);
+	} else {
+		vertices[0].Set(0, 0);
+		vertices[1].Set(0, -alto / 2.0);
+		vertices[2].Set(ancho / 2.0, -alto / 2.0);
+		vertices[3].Set(ancho / 2.0, 0);
+		shapeCircle.m_p.Set(ancho/2- alto,-alto);
+	}
+	b2PolygonShape shapeMango;
 	b2FixtureDef fixture;
-	polygon.SetAsBox(this->ancho / 2, this->alto / 2);
+	shapeMango.Set(vertices, 4);
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;
 	fixture.density = 10.00f;
-	fixture.shape = &polygon;
+	fixture.shape = &shapeMango;
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
 	body->CreateFixture(&fixture);
+
+	b2PolygonShape shapeAspa;
+	shapeAspa.SetAsBox(ancho/4.0, alto/2,b2Vec2(-ancho/4.0, 0),0);
+	fixture.shape = &shapeAspa;
+	body->CreateFixture(&fixture);
+
+	fixture.shape = &shapeCircle;
+	body->CreateFixture(&fixture);
+
+	fixture.shape = &shapeCircle;
+
+	body->CreateFixture(&fixture);
+	//creo el ojal
+//	b2FixtureDef bodyBolaBoliche;
+//	bodyBolaBoliche.filter.categoryBits = CATEGORIA_FIGURAS;
+//		bodyBolaBoliche.filter.maskBits = CATEGORIA_FIGURAS;
+//	bodyBolaBoliche.shape = &shapeCircle;
+//	bodyBolaBoliche.density = 10.0f;
+//	bodyBolaBoliche.friction = 0.3f;
+//	bodyBolaBoliche.restitution = 0.05;	//poco coeficiente de restitucion
+//	body->CreateFixture(&bodyBolaBoliche);
+
+
+//	b2PolygonShape shapeMango;
+//	b2FixtureDef fixture;
+//	shapeMango.SetAsBox(this->ancho / 2, this->alto / 2);
+//	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
+//	fixture.filter.maskBits = CATEGORIA_FIGURAS;
+//	fixture.density = 10.00f;
+//	fixture.shape = &shapeMango;
+//	fixture.friction = 0.01f;
+//	fixture.restitution = 0.00f;
+//	body->CreateFixture(&fixture);
 }
 
 void Aspa::trabar() {
@@ -170,17 +221,17 @@ void Aspa::trabar() {
 
 void Aspa::crearSwitch() {
 	//body
-	b2Vec2 pos = body->GetWorldPoint(b2Vec2(-0.4*ancho,0));
+	b2Vec2 pos = body->GetWorldPoint(b2Vec2(-0.4 * ancho, 0));
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-	bodyDef.position=pos;
+	bodyDef.position = pos;
 	bodyDef.gravityScale = 0;
 	switchContacto = myWorld->CreateBody(&bodyDef);
 	switchContacto->SetUserData(this->tijera);
 //shape
 	b2CircleShape polygon;
 	b2FixtureDef fixture;
-	polygon.m_radius = (alto/4.0);
+	polygon.m_radius = (alto / 4.0);
 	fixture.filter.categoryBits = CATEGORIA_SWITCH_TIJERA;
 	fixture.filter.maskBits = CATEGORIA_SWITCH_TIJERA;
 	fixture.density = 10.00f;
@@ -193,15 +244,15 @@ void Aspa::crearSwitch() {
 	rjd.bodyA = body;
 	rjd.bodyB = switchContacto;
 	rjd.collideConnected = false;
-	rjd.localAnchorA = b2Vec2(-0.4*ancho,0);
+	rjd.localAnchorA = b2Vec2(-0.4 * ancho, 0);
 	rjd.localAnchorB = b2Vec2_zero;
 	myWorld->CreateJoint(&rjd);
-
 
 }
 
 void Aspa::removerFisica() {
-	if(switchContacto){
+	super::removerFisica();
+	if (switchContacto) {
 		myWorld->DestroyBody(switchContacto);
 		switchContacto = NULL;
 	}
@@ -209,6 +260,6 @@ void Aspa::removerFisica() {
 
 void Aspa::limpiarReferenciasB2D() {
 	super::limpiarReferenciasB2D();
-	jointCuerpoTierra=NULL;
+	jointCuerpoTierra = NULL;
 	switchContacto = NULL;
 }

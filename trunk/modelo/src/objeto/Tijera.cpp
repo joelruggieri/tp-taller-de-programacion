@@ -35,8 +35,8 @@ Tijera::Tijera(float x, float y, float ancho, float alto) :
 	aspa2 = new Aspa(x, y, ancho, alto, ANGULO_DEFECTO_ASPA, 2, this);
 	accionada = false;
 
-	Enganche* enganche1 = new Enganche(this->aspa1, 0.8 * ancho / 2.0, 0);
-	Enganche* enganche2 = new Enganche(this->aspa2, 0.8 * ancho / 2.0, 0);
+	Enganche* enganche1 = new Enganche(this->aspa1, 0.8 * ancho / 2.0, ancho*0.1);
+	Enganche* enganche2 = new Enganche(this->aspa2, 0.8 * ancho / 2.0, -ancho*0.1);
 	enganches.push_back(enganche1);
 	enganches.push_back(enganche2);
 }
