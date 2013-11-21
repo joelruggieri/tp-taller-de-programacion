@@ -41,7 +41,7 @@ namespace CLIENTE {
 #define PATH_VISTA_AREA "resource/area.png"
 #define PATH_VISTA_CARTEL "resource/textbox.png"
 #define PATH_VISTA_PELOTA "resource/pelota.png"
-#define PATH_VISTA_YUNQUE "resource/yunqueM.png"
+#define PATH_VISTA_YUNQUE "resource/yunque.png"
 #define PATH_VISTA_BOLA "resource/bolaBoliche.png"
 #define PATH_VISTA_CINTA "resource/cinta.png"
 #define PATH_VISTA_CINTA_PLATAF "resource/baseCinta.png"
@@ -110,7 +110,8 @@ namespace CLIENTE {
 #define ANCHO_UNION_ESTATICA 10.0
 #define RADIO_CORREA_ESTATICA 2.0
 #define RADIO_SOGA_ESTATICA 1.0
-#define ANCHO_YUNQUE 10.0
+#define ANCHO_YUNQUE 8.4
+#define ALTO_YUNQUE 10.0
 
 #define ANCHO_CARRITO 15.0
 #define ALTO_CARRITO 4
