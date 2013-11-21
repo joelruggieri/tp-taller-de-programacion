@@ -42,6 +42,7 @@ public:
 	void accionar();
 	float getRotacionAspa1();
 	float getRotacionAspa2();
+	void limpiarReferenciasB2D();
 	b2Body * getBody();
 };
 

@@ -229,3 +229,9 @@ float Tijera::getRotacionAspa1() {
 float Tijera::getRotacionAspa2() {
 	return aspa2->getRotacion();
 }
+
+void Tijera::limpiarReferenciasB2D() {
+	super::limpiarReferenciasB2D();
+	aspa1->limpiarReferenciasB2D();
+	aspa2->limpiarReferenciasB2D();
+}

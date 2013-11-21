@@ -19,8 +19,8 @@ void TijeraView::dibujarse(SDL_Renderer* r) {
 	dest.w = this->wp;
 	dest.x = this->xp;
 	dest.y = this->yp;
-	SDL_RenderCopyEx(r,this->getTexture(), NULL, &dest,angulo2,NULL,SDL_FLIP_NONE);
 	SDL_RenderCopyEx(r,this->t2, NULL, &dest,angulo1,NULL,SDL_FLIP_NONE);
+	SDL_RenderCopyEx(r,this->getTexture(), NULL, &dest,angulo2,NULL,SDL_FLIP_NONE);
 
 }
 

@@ -274,7 +274,7 @@ bool Figura::isViva() {
 }
 
 void Figura::limpiarReferenciasB2D() {
-//	setBody(NULL);
+	setBody(NULL);
 }
 
 void Figura::accionesPostFisica() {

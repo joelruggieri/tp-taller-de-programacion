@@ -206,3 +206,9 @@ void Aspa::removerFisica() {
 		switchContacto = NULL;
 	}
 }
+
+void Aspa::limpiarReferenciasB2D() {
+	super::limpiarReferenciasB2D();
+	jointCuerpoTierra=NULL;
+	switchContacto = NULL;
+}
