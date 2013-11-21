@@ -12,11 +12,15 @@
 class SimpleEditorAnguloFijo;
 
 class GloboHelioView : public ObjetoView {
+private:
+	typedef ObjetoView super;
 public:
 	GloboHelioView(float x, float y,SimpleEditorAnguloFijo * editor);
 	virtual ~GloboHelioView();
 	void dropTemplate();
 	EditorNivel * getEditor();
+	void seleccionarEventoSonido();
+	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* GLOBOHELIOVIEW_H_ */

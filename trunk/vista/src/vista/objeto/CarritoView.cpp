@@ -29,6 +29,7 @@ void CLIENTE::CarritoView::update(ViewMsj* mje) {
 	xdl = mjeCurrent->getXd();
 	ydl = mjeCurrent->getYd();
 	rotR = mjeCurrent->getRotRuedaD();
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 }
 
 void CLIENTE::CarritoView::resizear() {

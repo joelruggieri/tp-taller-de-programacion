@@ -31,3 +31,15 @@ EditorNivel* MotorView::getEditor() {
 int MotorView::getLayer() {
 	return LAYER_ENGRANAJES;
 }
+
+void MotorView::seleccionarEventoSonido(){
+	if(this->getNumeroEvento() == 1){
+		this->alertarEvento(ID_SONIDO_MOTOR);
+	}
+}
+
+void MotorView::dibujarse(list<ViewMsj*> & lista){
+	this->seleccionarEventoSonido();
+	super::dibujarse(lista);
+}
+

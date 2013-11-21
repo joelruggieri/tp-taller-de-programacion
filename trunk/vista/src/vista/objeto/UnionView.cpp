@@ -56,6 +56,7 @@ void UnionView::update(ViewMsj*m) {
 	ycl = (yl + yHastal) / 2.0;
 	estatica = mjeCurrent->isEstatico();
 	conEslabon = mjeCurrent->isConEslabon();
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 }
 
 void UnionView::resizear() {

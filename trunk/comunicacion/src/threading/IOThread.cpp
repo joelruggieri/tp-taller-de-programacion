@@ -54,7 +54,7 @@ void * func_salida(void * arg) {
 	while (continuar) {
 		usleep(25000);
 		list<NetworkMensaje*> lectura;
-		pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
+		//pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
 		colaSalida->getAll(lectura);
 		try {
 			if (lectura.size()>0) {
@@ -63,13 +63,13 @@ void * func_salida(void * arg) {
 					delete (*it);
 				}
 			}
-			pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+			//pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
 		} catch (SerializacionException & e) {
 			for(it= lectura.begin(); it!= lectura.end(); ++it){
 				delete (*it);
 			}
-			pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+			//pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 			cout << e.what() << endl;
 			status->kill();
 		}

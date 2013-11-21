@@ -10,11 +10,15 @@
 #include "ObjetoView.h"
 class SimpleEditorAnguloFijo;
 class YunqueView : public ObjetoView {
+private:
+	typedef ObjetoView super;
 public:
 	YunqueView(float x, float y,SimpleEditorAnguloFijo * editor);
 	virtual ~YunqueView();
 	void dropTemplate();
 	EditorNivel * getEditor();
+	void seleccionarEventoSonido();
+	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* YUNQUEVIEW_H_ */

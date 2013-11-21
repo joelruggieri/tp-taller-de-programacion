@@ -21,5 +21,6 @@ void BolaBolicheView::update(ViewMsj* mje) {
 	this->setXl(mjeCurrent->getX());
 	this->setYl(mjeCurrent->getY());
 	this->setAngulo(mjeCurrent->getAngulo());
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 }
 }

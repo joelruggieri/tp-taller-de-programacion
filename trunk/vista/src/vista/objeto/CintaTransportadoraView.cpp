@@ -76,6 +76,7 @@ void CintaTransportadoraView::update(ViewMsj* mje) {
 	this->setYl(mjeCurrent->getY());
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setWl(mjeCurrent->getAncho());
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 	recalcular();
 }
 

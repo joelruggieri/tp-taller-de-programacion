@@ -24,3 +24,14 @@ EditorNivel* GloboHelioView::getEditor() {
 	editor->setFigura(this);
 	return editor;
 }
+
+void GloboHelioView::seleccionarEventoSonido(){
+	if(this->getNumeroEvento() == 1){
+		this->alertarEvento(ID_SONIDO_GLOBO);
+	}
+}
+
+void GloboHelioView::dibujarse(list<ViewMsj*> & lista){
+	this->seleccionarEventoSonido();
+	super::dibujarse(lista);
+}

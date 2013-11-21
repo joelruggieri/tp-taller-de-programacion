@@ -32,6 +32,7 @@ void FiguraView::drop() {
 FiguraView::FiguraView(float x, float y,DropController * controller ): View(x,y) {
 	this->modelo = NULL;
 	this->controller = controller;
+	this->numeroEvento = 0;
 }
 
 FiguraView::~FiguraView(){

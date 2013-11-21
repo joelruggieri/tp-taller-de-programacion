@@ -9,7 +9,7 @@
 #define VISTA_H_
 
 class Vista {
-private:
+protected:
 	int numeroEvento;
 public:
 	virtual ~Vista(){

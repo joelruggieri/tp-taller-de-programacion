@@ -27,10 +27,17 @@ SogaView::~SogaView() {
 	// TODO Auto-generated destructor stub
 }
 
+void SogaView::seleccionarEventoSonido(){
+	if(this->getNumeroEvento() == 1){
+		this->alertarEvento(ID_SONIDO_SOGA);
+	}
+}
+
+
 void SogaView::dibujarse(list<ViewMsj *> & lista) {
 	Soga* figura = (Soga*) this->getModelo();
 	ViewObjetoUnionUpdateMsj* viewMensaje;
-
+	this->seleccionarEventoSonido();
 	if(figura != NULL && figura->isViva()){
 		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),0,0,figura->estaEstatica(),figura->conEslabon(),figura->getRadio(),this->getId(), this->selector,this->getNumeroEvento());
 		if(figura->conEslabon()){
@@ -43,3 +50,4 @@ void SogaView::dibujarse(list<ViewMsj *> & lista) {
 	lista.push_back(viewMensaje);
 	}
 }
+

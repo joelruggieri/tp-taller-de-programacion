@@ -28,10 +28,11 @@ Partida::Partida(Nivel* n, int socket) {
 	colaIn = new ColaEventos();
 	colaOut = new ColaEventos();
 	this->socket = socket;
-	cleaner = new ThreadCleaner(dispo,colaIn);
+	cleaner = new ThreadCleaner(dispo, colaIn);
 	iniciarGeneralEventController();
 	drawingService = new DrawThread(colaIn);
-	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
+	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL,
+			generalController);
 	dispatcher = new EventDispatcherThread(colaOut, dispo);
 	fisicaService = new StepModeloThread(colaIn);
 }
@@ -60,7 +61,11 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 	if (status == NULL) {
 		log.info("Se rechaza cliente por maximo de conexiones");
 		MensajePlano msj(MSJ_JUGADOR_RECHAZADO);
-		serializador.escribir(&msj, socketDesc);
+		try {
+			serializador.escribir(&msj, socketDesc);
+		} catch (SerializacionException& e) {
+			log.error("No se pudo enviar mensajes al cliente");
+		}
 		close(socketDesc);
 	} else {
 		log.info("Se acepta nuevo cliente");
@@ -82,17 +87,22 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 		list<NetworkMensaje *> msjs;
 		msjs.push_back(&msj);
 		msjs.push_back(mensaje);
-		serializador.escribir(msjs, socketDesc);
-		//status->lock();
-		IOThread* jugadorNuevo = new IOThread(this->colaIn, status->getColaSalida(), status, socketDesc,
-				status->getNroJugador(),false);
-		status->setThread(jugadorNuevo);
-		ConexionUsuario * aceptado = new ConexionUsuario(true);
-		aceptado->setDestinatario(status->getNroJugador());
-		colaIn->push(aceptado);
-		status->unlock();
-		jugadorNuevo->run();
-		usleep(10000);
+		try {
+			serializador.escribir(msjs, socketDesc);
+			//status->lock();
+			IOThread* jugadorNuevo = new IOThread(this->colaIn,
+					status->getColaSalida(), status, socketDesc,
+					status->getNroJugador(), false);
+			status->setThread(jugadorNuevo);
+			ConexionUsuario * aceptado = new ConexionUsuario(true);
+			aceptado->setDestinatario(status->getNroJugador());
+			colaIn->push(aceptado);
+			status->unlock();
+			jugadorNuevo->run();
+			usleep(10000);
+		} catch (SerializacionException& e) {
+			log.error("No se pudo completar la recepcion del jugador");
+		}
 		delete mensaje;
 	}
 
@@ -100,21 +110,25 @@ void Partida::procesarRequest(int socketDesc, Serializador& serializador) {
 
 void Partida::iniciarGeneralEventController() {
 	this->modeloController = new ModeloController();
-	this->inicializadorJuego = new InicializadorJuego(this->nivel,this->modeloController);
+	this->inicializadorJuego = new InicializadorJuego(this->nivel,
+			this->modeloController);
 	this->tablero = this->inicializadorJuego->crearTablero();
-	this->controllersFactory = new JuegoControllerFactory(tablero, modeloController);
+	this->controllersFactory = new JuegoControllerFactory(tablero,
+			modeloController);
 	DrawController * dc = new DrawController(colaOut);
 	dc->setTablero(tablero);
-	FlujoDeJuegoController * fcontroller = new FlujoDeJuegoController(modeloController);
-	generalController = new GeneralEventController(dc,fcontroller);
+	FlujoDeJuegoController * fcontroller = new FlujoDeJuegoController(
+			modeloController);
+	generalController = new GeneralEventController(dc, fcontroller);
 	list<Jugador*>::iterator it;
 	JuegoEventsController * jugador;
-	for(it= nivel->getJugadores().begin(); it != nivel->getJugadores().end(); ++it){
+	for (it = nivel->getJugadores().begin(); it != nivel->getJugadores().end();
+			++it) {
 		jugador = controllersFactory->crearConfiguracionJugador((*it));
 		generalController->addJugador(jugador);
 		fcontroller->addJugador(jugador);
 		//ENTREGA3 VERIFICAR ESTO.
-		modeloController->addArea((*it)->getArea(),(*it)->getNumero());
+		modeloController->addArea((*it)->getArea(), (*it)->getNumero());
 	}
 }
 

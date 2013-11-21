@@ -26,6 +26,7 @@ private:
 protected:
 	DropController * controller;
 	virtual void dropTemplate() = 0;
+
 public:
 	FiguraView(float x, float y, DropController * controller);
 	virtual ~FiguraView();

@@ -22,6 +22,7 @@ void CorreaEstaticaView::update(ViewMsj* mje) {
 ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) mje;
 this->setXl(mjeCurrent->getX());
 this->setYl(mjeCurrent->getY());
+//this->setIdEventoSonido(mjeCurrent->getIdEvento());
 
 }
 }

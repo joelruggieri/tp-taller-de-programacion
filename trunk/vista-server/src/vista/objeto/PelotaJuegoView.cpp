@@ -24,3 +24,14 @@ EditorNivel* PelotaJuegoView::getEditor() {
 	editor->setFigura(this);
 	return editor;
 }
+
+void PelotaJuegoView::seleccionarEventoSonido(){
+	if(this->getNumeroEvento() == 1){
+		this->alertarEvento(ID_SONIDO_PELOTA);
+	}
+}
+
+void PelotaJuegoView::dibujarse(list<ViewMsj*> & lista){
+	this->seleccionarEventoSonido();
+	super::dibujarse(lista);
+}

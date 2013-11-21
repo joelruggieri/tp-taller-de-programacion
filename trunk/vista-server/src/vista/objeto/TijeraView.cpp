@@ -29,6 +29,7 @@ EditorNivel * TijeraView::getEditor(){
 	return editor;
 }
 
+
 void TijeraView::dibujarse(list<ViewMsj*>& mjes) {
 	Tijera* figura = (Tijera*)this->getModelo();
 	ViewTijeraMsj* viewMensaje;
@@ -43,3 +44,5 @@ void TijeraView::dibujarse(list<ViewMsj*>& mjes) {
 		}
 	};
 }
+
+
