@@ -219,7 +219,7 @@ Figura* FiguraFactory::crear(Soga* c) {
 }
 
 Figura* FiguraFactory::crearYunque(float x, float y, int numeroJugador) {
-	Figura* figura = new Yunque(x,y, ANCHO_YUNQUE,ANCHO_YUNQUE);
+	Figura* figura = new Yunque(x,y, ANCHO_YUNQUE,ALTO_YUNQUE);
 	figura->setNumeroJugador(numeroJugador);
 	return figura;
 }

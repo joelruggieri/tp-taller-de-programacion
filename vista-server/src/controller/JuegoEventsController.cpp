@@ -37,12 +37,11 @@ JuegoEventsController::~JuegoEventsController() {
 }
 
 bool JuegoEventsController::clickDown(float x, float y) {
-	//ENTREGA3 SI ESTA INICIADO TIENE QUE LLAMAR ALGUN METODO DEL MODELO QUE LE SIRVA PARA INTERACTUAR CON LAS COSAS EN EL ESCENARIO.
-	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
 	if (iniciado) {
 		modeloController->interactuar(*area, this->numeroJugador,x,y);
 		return true;
 	}
+	//Si hay un click y no tengo editor, entonces busco una vista y le pido el editor.
 
 	if (editor == NULL) {
 			FiguraView * view = NULL;

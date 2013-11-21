@@ -120,7 +120,6 @@ void ZonaCreacion::agregarEslabon(EslabonCreacion* eslabon) {
 
 bool ZonaCreacion::click(float x, float y) {
 	Cuadrado * cuerpo = scroll != NULL ? scroll->getCuerpo() : this->cuerpo;
-//ENTREGA3 CHEQUEAR SI EL SCROLL RETORNA FALSE, IR A UNA FACTORY Y PEDIR EL TAG QUE TIENE PARA PODER ENVIAR EL MSJ AL SERVER.
 	if (cuerpo->contacto(x, y)) {
 		bool result = scroll == NULL ? false : scroll->click(x, y);
 		float corrimientoScroll = scroll == NULL ? 0 : scroll->getScroll();
@@ -129,10 +128,8 @@ bool ZonaCreacion::click(float x, float y) {
 			if (atender == "") {
 				result = false;
 			} else {
-//				ENTREGA3 ENVIAR MENSAJE CREACION
 				CreacionMsj* mje = new CreacionMsj(atender, x, y);
 				salida->push(mje);
-				cout << "Se clickea en una factory " + atender << endl;
 			}
 		}
 		return result;

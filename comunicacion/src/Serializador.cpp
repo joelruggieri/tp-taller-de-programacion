@@ -145,9 +145,6 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	o << YAML::EndSeq;
 
 	int enviados = 0;
-//	 const char * str = envio.str().c_str();
-	//ENTREGA3 EZE ESTO SE USA SOLO PARA EL SUBSTRING DEL STRING, SEGURO HAY UNA FUNCION DE C QUE LO HACE. CAMBIARLO
-//	string salida = o.c_str();
 	int len = strlen(o.c_str());
 	int longEnviada;
 
@@ -158,15 +155,12 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	}
 	while (enviados < len) {
 		longEnviada = len - enviados;
-		//Primero mando la lingutud de lo que falta enviar ( en la primera iteracion lo que falta estodo)
-//		result = send(socket, &(longEnviada), sizeof(int), MSG_NOSIGNAL);
 
 		//Si da error tiro exception y loggeo el errorn.
 		if (result == -1) {
 			ManejadorErrores::manejarWriteError(errno);
 			throw SerializacionException("No se pudo enviar el mensaje al host");
 		}
-		//ENTREGA3 CHEQUEAR ESTO PORQUE NO ESTA PROBADO.
 
 		//Ahora intento enviar lo restante.
 		result = send(socket,  &(o.c_str()[enviados]), longEnviada, MSG_NOSIGNAL);

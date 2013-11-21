@@ -26,7 +26,6 @@ FiguraView * ZonaTablero::getFiguraTemplate(float x, float y) {
 	std::list<View*>::reverse_iterator it;
 	FiguraView* result = NULL;
 	FiguraView* actual;
-	//TODO ACA SI ANDA MAL HABRÍA QUE HACER UNA DIVISION DE ARBOL PARA IR UBICANDO BINARIO.
 	for (it = canvas.rbegin(); it != canvas.rend(); ++it) {
 	    actual = (FiguraView*)(*it);
 		Figura * c =actual->getModelo();
