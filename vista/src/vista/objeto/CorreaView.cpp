@@ -58,6 +58,7 @@ void CorreaView::update(ViewMsj *m) {
 
 	v1xil = (-yHastaRespectoYDesde);	//ya ahi esta v1 en el origen
 	v1yil = xHastaRespectoXDesde;
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 }
 
 void CLIENTE::CorreaView::resizear() {

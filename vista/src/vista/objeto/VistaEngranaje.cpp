@@ -26,6 +26,7 @@ void VistaEngranaje::update(ViewMsj *mje) {
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setWl(mjeCurrent->getAncho());
 	this->setHl(mjeCurrent->getAncho());
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 }
 
 }

@@ -24,3 +24,17 @@ EditorNivel* BombaView::getEditor() {
 	editor->setFigura(this);
 	return editor;
 }
+
+void BombaView::seleccionarEventoSonido(){
+	if(this->getNumeroEvento() == 1){
+		this->alertarEvento(ID_SONIDO_BOMBA_CONTACTO);
+
+	}else if (this->getNumeroEvento() == 2){
+		this->alertarEvento(ID_SONIDO_BOMBA_EXPLOSION);
+	}
+}
+
+void BombaView::dibujarse(list<ViewMsj*> & lista){
+	this->seleccionarEventoSonido();
+	super::dibujarse(lista);
+}

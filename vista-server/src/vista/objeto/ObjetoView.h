@@ -19,6 +19,7 @@ public:
 
 protected:
 	char selector;
+	virtual void seleccionarEventoSonido();
 };
 
 #endif /* OBJETOVIEW_H_ */

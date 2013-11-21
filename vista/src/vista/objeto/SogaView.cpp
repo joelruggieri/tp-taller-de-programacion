@@ -48,6 +48,7 @@ void SogaView::dibujarse(SDL_Renderer* renderer) {
 void SogaView::update(ViewMsj*m) {
 	super::update(m);
 	ViewObjetoUnionUpdateMsj* mjeCurrent = (ViewObjetoUnionUpdateMsj*) m;
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 	if (conEslabon) {
 		xEslabonl = mjeCurrent->getXEslb();
 		yEslabonl = mjeCurrent->getYEslb();

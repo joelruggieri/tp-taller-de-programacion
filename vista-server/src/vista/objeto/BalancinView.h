@@ -12,11 +12,15 @@
 class SimpleEditorAnguloFijo;
 #include "ObjetoView.h"
 class BalancinView: public ObjetoView {
+private:
+	typedef ObjetoView super;
 public:
 	BalancinView(float x, float y, SimpleEditorAnguloFijo * editor);
 	virtual ~BalancinView();
 	void dropTemplate();
 	EditorNivel * getEditor();
+	void seleccionarEventoSonido();
+	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* BALANCINVIEW_H_ */

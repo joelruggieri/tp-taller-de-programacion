@@ -18,6 +18,7 @@ void BalancinView::update(ViewMsj* mje) {
 	this->setYl(mjeCurrent->getY());
 
 	this->setAngulo(mjeCurrent->getAngulo());
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 	resizear();
 }
 

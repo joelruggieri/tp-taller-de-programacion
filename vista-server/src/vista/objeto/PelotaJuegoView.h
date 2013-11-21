@@ -11,11 +11,15 @@
 class SimpleEditorAnguloFijo;
 
 class PelotaJuegoView : public ObjetoView {
+private:
+	typedef ObjetoView super;
 public:
 	PelotaJuegoView(float x, float y,SimpleEditorAnguloFijo * editor);
 	virtual ~PelotaJuegoView();
 	void dropTemplate();
 	EditorNivel * getEditor();
+	void seleccionarEventoSonido();
+	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* PELOTAJUEGOVIEW_H_ */

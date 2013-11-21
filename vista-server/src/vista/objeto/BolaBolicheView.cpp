@@ -25,3 +25,14 @@ EditorNivel* BolaBolicheView::getEditor() {
 	editor->setFigura(this);
 	return editor;
 }
+
+void BolaBolicheView::seleccionarEventoSonido(){
+	if(this->getNumeroEvento() == 1){
+		this->alertarEvento(ID_SONIDO_BOLA);
+	}
+}
+
+void BolaBolicheView::dibujarse(list<ViewMsj*> & lista){
+	this->seleccionarEventoSonido();
+	super::dibujarse(lista);
+}

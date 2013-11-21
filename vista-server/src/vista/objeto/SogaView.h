@@ -13,12 +13,15 @@
 class EditorUnion;
 
 class SogaView: public UnionView {
+
+
 public:
 	SogaView(float x, float y,EditorUnion * editor);
 	virtual ~SogaView();
 	EditorNivel* getEditor();
 	void dropTemplate();
 	void dibujarse(list<ViewMsj *> &);
+	void seleccionarEventoSonido();
 private:
 	typedef UnionView super;
 };

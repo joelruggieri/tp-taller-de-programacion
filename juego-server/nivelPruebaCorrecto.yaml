@@ -74,6 +74,8 @@ Jugadores:
         cantidad: 5
       - nombre: FH
         cantidad: 2
+      - nombre: FBO
+        cantidad: 2
   - numero: 2
     Area:
       x: 80

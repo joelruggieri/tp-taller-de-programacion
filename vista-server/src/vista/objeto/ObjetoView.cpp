@@ -35,3 +35,7 @@ void ObjetoView::dibujarse(list<ViewMsj*> & lista){
 char ObjetoView::getSelector() const {
 	return selector;
 }
+
+void ObjetoView::seleccionarEventoSonido(){
+
+}

@@ -49,3 +49,5 @@ EditorNivel * CarritoView::getEditor(){
 	editor->setFigura(this);
 	return editor;
 }
+
+

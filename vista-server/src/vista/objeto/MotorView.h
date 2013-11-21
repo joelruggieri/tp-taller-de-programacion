@@ -14,6 +14,8 @@ class SimpleEditorAnguloFijo;
 class SimpleEditorOrientacionCambiable;
 
 class MotorView: public ObjetoView {
+private:
+	typedef ObjetoView super;
 public:
 //	MotorView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
 	MotorView(float x, float y,SimpleEditorOrientacionCambiable * editor);
@@ -22,6 +24,8 @@ public:
 	void dropTemplate();
 	EditorNivel * getEditor();
 	int getLayer();
+	void dibujarse(list<ViewMsj*> & lista);
+	void seleccionarEventoSonido();
 };
 
 #endif /* MOTORVIEW_H_ */

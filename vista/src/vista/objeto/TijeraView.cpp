@@ -30,6 +30,7 @@ void TijeraView::update(ViewMsj* mje) {
 	this->setYl(mjeCurrent->getY());
 	angulo1= mjeCurrent->getRotacionAspa1();
 	angulo2= mjeCurrent->getRotacionAspa2();
+	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 }
 
 TijeraView::~TijeraView() {

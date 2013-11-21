@@ -22,6 +22,7 @@ protected:
 	float xl,yl,wl,hl;
 	bool updated;
 	int id;
+	int idEventoSonido;
 public:
 	View(float x, float y, float w, float h, int layer);
 	virtual ~View();
@@ -81,6 +82,13 @@ public:
 
 	void setId(int id) {
 		this->id = id;
+	}
+	int getIdEventoSonido() const {
+			return idEventoSonido;
+	}
+
+	void setIdEventoSonido(int id) {
+			this->idEventoSonido = id;
 	}
 };
 

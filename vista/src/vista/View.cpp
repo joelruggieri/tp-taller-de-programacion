@@ -18,6 +18,7 @@ View::View(float x, float y, float w, float h, int layer):Dibujable(layer) {
 	hp = 0;
 	updated = true;
 	id = -1;
+	idEventoSonido = 0;
 }
 
 View::~View() {
