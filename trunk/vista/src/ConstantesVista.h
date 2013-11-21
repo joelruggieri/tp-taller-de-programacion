@@ -52,7 +52,7 @@ namespace CLIENTE {
 #define PATH_VISTA_CLAVO_F "resource/clavo_f.png"
 #define PATH_VISTA_GANCHO "resource/arandela.png"
 #define PATH_VISTA_POLEA "resource/polea.png"
-#define PATH_VISTA_CONTROL "resource/control.jpg"
+#define PATH_VISTA_CONTROL "resource/tacho3.png"
 #define PATH_VISTA_BOMBA "resource/bomba2.png"
 #define PATH_VISTA_TIJERA1 "resource/tijeraN2.png"
 #define PATH_VISTA_TIJERA2 "resource/tijeraN.png"
@@ -72,6 +72,7 @@ namespace CLIENTE {
 #define LAYER_UNIONES 2
 #define LAYER_ENGRANAJES 2
 #define LAYER_CINTA 3
+#define LAYER_TACHO 5
 #define LAYER_CANVAS_TABLERO 0
 #define LAYER_AREA 1
 #define LAYER_CANVAS_CREACION 10
@@ -124,8 +125,8 @@ namespace CLIENTE {
 
 #define ANCHO_CLAVO 5
 #define ALTO_CLAVO 2.5
-#define ANCHO_CONTROL 4.0
-#define ALTO_CONTROL 4.0
+#define ANCHO_CONTROL 9.0
+#define ALTO_CONTROL 9.0
 #define ALTO_CINTA 5
 #define ANCHO_CINTA 20
 #define RADIO_EJE_CINTA 3.0
