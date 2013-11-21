@@ -65,7 +65,7 @@ namespace CLIENTE {
 #define PATH_BOTON_PLAY "resource/play.png"
 #define PATH_BOTON_STOP "resource/stop.png"
 #define IMG_ERROR "error.jpg"
-#define PATH_FONDO "resource/fondo.jpg"
+#define PATH_FONDO "resource/fondoNivel1.jpg"
 #define PATH_VISTA_FLECHA_SCROLL "resource/flecha.png"
 #define PATH_VISTA_CARRITO_CUERPO "resource/madera.png"
 #define LAYER_DEFAULT 1
