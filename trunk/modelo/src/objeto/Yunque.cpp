@@ -16,7 +16,7 @@ Yunque::Yunque() : Objeto() {
 Yunque::Yunque(float x, float y, float w, float h) : Objeto(x,y){
 	this->ancho = w;
 	this->alto = h;
-	this->enganches.push_back(new Enganche(this,0,this->alto / 2));
+	this->enganches.push_back(new Enganche(this,0,this->alto * 0.45));
 }
 
 Yunque::~Yunque() {
@@ -26,7 +26,7 @@ Yunque::~Yunque() {
 Yunque::Yunque(const Yunque& figura):Objeto(figura) {
 	this->x = figura.getX();
 	this->y = figura.getY();
-	this->enganches.push_back(new Enganche(this,0,this->alto / 2));
+	this->enganches.push_back(new Enganche(this,0,this->alto * 0.45));
 //	alto = figura.alto;
 
 	this->ancho = (figura.getAncho());
@@ -49,7 +49,7 @@ void Yunque::crearFisica() {
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(centro.x, centro.y);
-		bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
+		bodyDef.angle = this->getRotacion() * -b2_pi / 180.0;
 		b2Body* body = myWorld->CreateBody(&bodyDef);
 		b2FixtureDef bodyPelota;
 		bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;

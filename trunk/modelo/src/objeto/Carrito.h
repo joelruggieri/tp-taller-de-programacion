@@ -44,6 +44,7 @@ public:
 	void makeBackUp();
 	void restoreBackUp();
 	void recibirImpacto(b2Vec2 direccion);
+	void limpiarReferenciasB2D();
 };
 
 #endif /* CARRITO_H_ */

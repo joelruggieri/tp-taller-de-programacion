@@ -136,7 +136,9 @@ void Polea::crearEnganches() {
 }
 
 void Polea::limpiarReferenciasB2D() {
+	super::limpiarReferenciasB2D();
 	joint = NULL;
+	radioAccion = NULL;
 }
 
 void Polea::desenganchado(Enganche* e) {

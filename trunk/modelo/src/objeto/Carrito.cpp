@@ -264,3 +264,8 @@ void Carrito::restoreBackUp() {
 void Carrito::recibirImpacto(b2Vec2 direccion) {
 	this->realizarImpacto(direccion);
 }
+
+void Carrito::limpiarReferenciasB2D() {
+	ruedaIzquierda= NULL;
+	ruedaDerecha = NULL;
+}

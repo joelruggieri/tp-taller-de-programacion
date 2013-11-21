@@ -21,6 +21,7 @@ private:
 	b2Body * switchContacto;
 	void crearShapes();
 	void crearSwitch();
+	typedef Objeto super;
 public:
 	Aspa();
 	Aspa(float,float,float,float,double,int,Tijera*);
@@ -34,6 +35,7 @@ public:
 	void acept(VisitorFigura*);
 	void trabar();
 	b2RevoluteJoint* getJoint();
+	void limpiarReferenciasB2D();
 	void removerFisica();
 };
 #endif /* ASPA_H_ */

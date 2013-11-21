@@ -86,6 +86,8 @@ void Bomba::accionar() {
 	notify(DESACTIVADO);
 	myWorld->DestroyBody(this->getBody());
 	myWorld->DestroyBody(this->radioAccion);
+	radioAccion = NULL;
+	body =NULL;
 	viva = false;
 }
 
@@ -110,10 +112,10 @@ void Bomba::crearFisicaRadio(b2Vec2 centro) {
 	radioAccion->SetUserData(this);
 
 	//joint radio de accion con la tierra;
-	b2RevoluteJointDef rjd2;
-	rjd2.Initialize(this->body, radioAccion, centro);
-	rjd2.collideConnected = false;
-	myWorld->CreateJoint(&rjd2);
+//	b2RevoluteJointDef rjd2;
+//	rjd2.Initialize(this->body, radioAccion, centro);
+//	rjd2.collideConnected = false;
+//	myWorld->CreateJoint(&rjd2);
 }
 
 bool Bomba::validarContactoBomba(b2Body* verf, b2Body* b) {
