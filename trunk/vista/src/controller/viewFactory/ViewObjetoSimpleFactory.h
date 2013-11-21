@@ -31,13 +31,11 @@ namespace CLIENTE {
 
 class ViewObjetoSimpleFactory {
 private:
-	//ENTREGA3 CHEQUEAR SI SON TODAS LAS FIGURAS QUE PUEDEN VENIRLE.
 	View * crearGlobo(ViewObjetoUpdateMsj * );
 	View * crearBola(ViewObjetoUpdateMsj * );
 	View * crearPelota(ViewObjetoUpdateMsj * );
 	View * crearMotor(ViewObjetoUpdateMsj * );
 	View * crearBalancin(ViewObjetoUpdateMsj * );
-	View * crearTijera(ViewObjetoUpdateMsj * );
 	View * crearCarrito(ViewObjetoUpdateMsj * );
 	View* crearSogaEstatica(ViewObjetoUpdateMsj*);
 	View* crearCorreaEstatica(ViewObjetoUpdateMsj*);

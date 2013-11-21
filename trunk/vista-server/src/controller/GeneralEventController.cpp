@@ -60,8 +60,6 @@ void GeneralEventController::visit(ClickMsj* m) {
 		MouseEvent mouse(m->getX(), m->getY(), m->isLeft(), m->isDown(), m->isCtrl(), m->isShift());
 		mouse.mouseClick(jugador->second);
 	}
-//	MouseEvent mouse(m->getX(), m->getY(),m->isLeft(),m->isDown(),m->isCtrl(),m->isShift());
-	//ENTREGA3 PASAR AL JUGADOR QUE CORRESPONDA SEGUN EL DESTINATARIO QUE TRAIGA EL MSJ. HACER jugador.click(mouse)
 }
 
 void GeneralEventController::visit(KeyMsj* m) {

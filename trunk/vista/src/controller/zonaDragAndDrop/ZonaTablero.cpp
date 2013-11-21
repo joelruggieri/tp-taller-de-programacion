@@ -14,8 +14,6 @@
 #include "../../vista/CargadorDeTextures.h"
 #include "../../vista/ViewConBorde.h"
 #include "src/ConstantesComunicacion.h"
-//ENTREGA3 EN REALIDAD PARA NO ENVIAR BOLUDECES AL SERVER ACA HAY QUE SETEAR EL AREA DEL JUGADOR Y ESA POSICION ENTONCES SOLAMENTE SE ENVIAN LAS COSAS QUE CAEN AHI.
-
 namespace CLIENTE {
 
 void ZonaTablero::crearVista(ViewController* vc) {

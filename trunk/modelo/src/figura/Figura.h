@@ -15,8 +15,6 @@
 #include "Registro.h"
 #include "../interaccion/ValidadorInteraccion.h"
 #include "../Area.h"
-//ENTREGA3 HAY QUE AGREGAR UN ATRIBUTO QUE SEA "SELECCIONABLE" Y ADEMAS UN JUGADOR ASIGNADO PARA QUE NO PUEDA SER ELEGIDA POR CUALQUIERA
-// EL SEGUNDO SE PUEDE IMPLEMENTAR COMO UNA MASCARA IGUAL QUE BOX2D O UN INT XD
 #include "../observer/ObservableModelo.h"
 #include "../observer/Evento.h"
 

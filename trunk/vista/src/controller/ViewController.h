@@ -29,7 +29,7 @@
 using namespace std;
 namespace CLIENTE {
 class ViewController: public ObjetoCompartido, public DrawController, public ResizerController, public ViewMsjVisitor {
-//ENTREGA3 ESTA CLASE ES LA QUE TIENE TODAS LAS VISTAS PARA DIBUJARLAS.
+//ESTA CLASE ES LA QUE TIENE TODAS LAS VISTAS PARA DIBUJARLAS.
 //ADEMAS PERMITE ACTUALIZAR UNA VISTA
 //PERMITE AGREGAR UNA VISTA MANUALMENTE TAMBIEN.
 private:
