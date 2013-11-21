@@ -53,7 +53,7 @@ void ControlRemoto::crearFisica() {
 			b2FixtureDef bodyControl ;
 			bodyControl.filter.categoryBits = CATEGORIA_TACHO;
 			bodyControl.filter.maskBits = CATEGORIA_TACHO;
-			bodyControl.density = 10.0f ;
+//			bodyControl.density = 1.0f ;
 			bodyControl.shape = &shape;
 
 		b2PolygonShape shapeDown;
@@ -61,7 +61,7 @@ void ControlRemoto::crearFisica() {
 		b2FixtureDef defDown ;
 		defDown.filter.categoryBits = CATEGORIA_FIGURAS;
 		defDown.filter.maskBits = CATEGORIA_FIGURAS;
-		defDown.density = 10.0f ;
+		defDown.density = 5.0f ;
 		defDown.shape = &shapeDown;
 		body->CreateFixture(&defDown);
 
@@ -70,7 +70,7 @@ void ControlRemoto::crearFisica() {
 		b2FixtureDef defLeft ;
 		defLeft.filter.categoryBits = CATEGORIA_FIGURAS;
 		defLeft.filter.maskBits = CATEGORIA_FIGURAS;
-		defLeft.density = 10.0f ;
+		defLeft.density = 1.0f ;
 		defLeft.shape = &shapeLeft;
 		body->CreateFixture(&defLeft);
 
@@ -79,7 +79,7 @@ void ControlRemoto::crearFisica() {
 		b2FixtureDef defRight ;
 		defRight.filter.categoryBits = CATEGORIA_FIGURAS;
 		defRight.filter.maskBits = CATEGORIA_FIGURAS;
-		defRight.density = 10.0f ;
+		defRight.density = 1.0f ;
 		defRight.shape = &shapeRight;
 		body->CreateFixture(&defRight);
 
