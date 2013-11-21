@@ -260,6 +260,7 @@ void Figura::interactuarTemplate() {
 }
 
 void Figura::accionar() {
+	notify(ACCIONADO);
 }
 
 void Figura::interactuar(Area& area, int jugador) {
