@@ -21,24 +21,71 @@ ControlRemoto::ControlRemoto() {
 }
 
 void ControlRemoto::crearFisica() {
-	float x = this->getX();
-	float y = this->getY();
-	b2Vec2 centro(x,y);
-	b2PolygonShape shape;
-	shape.SetAsBox(this->ancho / 2, this->alto / 2);
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_staticBody;
-	bodyDef.position.Set(centro.x, centro.y);
-	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
-	b2Body* body = myWorld->CreateBody(&bodyDef);
-	b2FixtureDef bodyControl ;
-	bodyControl.filter.categoryBits = CATEGORIA_FIGURAS;
-	bodyControl.filter.maskBits = CATEGORIA_FIGURAS;
-	bodyControl.density = 10.0f ;
-	bodyControl.shape = &shape;
-	body->CreateFixture(&bodyControl);
-	body->SetUserData(this);
-	this->setBody(body);
+//	float x = this->getX();
+//	float y = this->getY();
+//	b2Vec2 centro(x,y);
+//	b2PolygonShape shape;
+//	shape.SetAsBox(this->ancho / 2, this->alto / 2);
+//	b2BodyDef bodyDef;
+//	bodyDef.type = b2_staticBody;
+//	bodyDef.position.Set(centro.x, centro.y);
+//	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
+//	b2Body* body = myWorld->CreateBody(&bodyDef);
+//	b2FixtureDef bodyControl ;
+//	bodyControl.filter.categoryBits = CATEGORIA_FIGURAS;
+//	bodyControl.filter.maskBits = CATEGORIA_FIGURAS;
+//	bodyControl.density = 10.0f ;
+//	bodyControl.shape = &shape;
+//	body->CreateFixture(&bodyControl);
+//	body->SetUserData(this);
+//	this->setBody(body);
+
+		float x = this->getX();
+		float y = this->getY();
+		b2Vec2 centro(x,y);
+		b2PolygonShape shape;
+		shape.SetAsBox(this->ancho / 2, this->alto / 2);
+		b2BodyDef bodyDef;
+		bodyDef.type = b2_staticBody;
+		bodyDef.position.Set(centro.x, centro.y );
+		bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
+		b2Body* body = myWorld->CreateBody(&bodyDef);
+			b2FixtureDef bodyControl ;
+			bodyControl.filter.categoryBits = CATEGORIA_TACHO;
+			bodyControl.filter.maskBits = CATEGORIA_TACHO;
+			bodyControl.density = 10.0f ;
+			bodyControl.shape = &shape;
+
+		b2PolygonShape shapeDown;
+		shapeDown.SetAsBox(this->ancho / 2, this->alto / 20, b2Vec2(0, -this->alto / 2), 0);
+		b2FixtureDef defDown ;
+		defDown.filter.categoryBits = CATEGORIA_FIGURAS;
+		defDown.filter.maskBits = CATEGORIA_FIGURAS;
+		defDown.density = 10.0f ;
+		defDown.shape = &shapeDown;
+		body->CreateFixture(&defDown);
+
+		b2PolygonShape shapeLeft;
+		shapeLeft.SetAsBox(this->ancho / 2, this->alto / 20, b2Vec2(-this->ancho / 2, 0), 90 * -3.14 / 180.0);
+		b2FixtureDef defLeft ;
+		defLeft.filter.categoryBits = CATEGORIA_FIGURAS;
+		defLeft.filter.maskBits = CATEGORIA_FIGURAS;
+		defLeft.density = 10.0f ;
+		defLeft.shape = &shapeLeft;
+		body->CreateFixture(&defLeft);
+
+		b2PolygonShape shapeRight;
+		shapeRight.SetAsBox(this->ancho / 2, this->alto / 20, b2Vec2(this->ancho / 2, 0), 90 * -3.14 / 180.0);
+		b2FixtureDef defRight ;
+		defRight.filter.categoryBits = CATEGORIA_FIGURAS;
+		defRight.filter.maskBits = CATEGORIA_FIGURAS;
+		defRight.density = 10.0f ;
+		defRight.shape = &shapeRight;
+		body->CreateFixture(&defRight);
+
+			body->CreateFixture(&bodyControl);
+			body->SetUserData(this);
+			this->setBody(body);
 
 }
 
@@ -74,4 +121,25 @@ void ControlRemoto::accionar() {
 	figura->explotar();
 
 	}
+}
+
+void ControlRemoto::crearFisicaEstaticaTemplate() {
+	float x = this->getX();
+	float y = this->getY();
+	b2Vec2 centro(x,y);
+	b2PolygonShape shape;
+	shape.SetAsBox(this->ancho / 2, this->alto / 2);
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_staticBody;
+	bodyDef.position.Set(centro.x, centro.y);
+	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
+	b2Body* body = myWorld->CreateBody(&bodyDef);
+	b2FixtureDef bodyControl ;
+	bodyControl.filter.categoryBits = CATEGORIA_FIGURAS;
+	bodyControl.filter.maskBits = CATEGORIA_FIGURAS;
+	bodyControl.density = 10.0f ;
+	bodyControl.shape = &shape;
+	body->CreateFixture(&bodyControl);
+	body->SetUserData(this);
+	this->setBody(body);
 }

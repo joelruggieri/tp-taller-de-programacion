@@ -9,7 +9,7 @@
 
 namespace CLIENTE {
 
-ControlRemotoView::ControlRemotoView(float x, float y, float w, float h, SDL_Texture* textura) : ObjetoView(x,y,w,h,textura) {
+ControlRemotoView::ControlRemotoView(float x, float y, float w, float h, SDL_Texture* textura) : ObjetoView(x,y,w,h,LAYER_TACHO,textura) {
 	// TODO Auto-generated constructor stub
 
 }

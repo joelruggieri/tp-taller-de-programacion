@@ -21,7 +21,7 @@ public:
 	void setAlto(float alto);
 	float getAncho() const;
 	void setAncho(float ancho);
-
+	void crearFisicaEstaticaTemplate();
 private:
 	float ancho, alto;
 	void accionar();
