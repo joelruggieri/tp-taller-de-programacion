@@ -18,7 +18,7 @@
 #include "mensajes/viewMensaje/ViewTijeraMsj.h"
 #include "mensajes/viewMensaje/MensajeCantidadRestante.h"
 #include <errno.h>
-#define MAX_BUFFER 1024
+#define MAX_BUFFER 524288
 Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(
 			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0, 0, 'a',0)));
@@ -55,7 +55,7 @@ Serializador::~Serializador() {
 void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 
 //	string buffer;
-	char buffer[25000] = "";
+	char buffer[MAX_BUFFER] = "";
 //	char bufferAux[25000] = "";
 	int longitudTotal;
 	int recibidos = 0;
