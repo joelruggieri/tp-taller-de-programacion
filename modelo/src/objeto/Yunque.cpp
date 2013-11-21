@@ -43,8 +43,8 @@ void Yunque::crearFisica() {
 		b2Vec2 vertices[4];
 		vertices[0].Set(-ancho/2,-alto/2);
 		vertices[1].Set(ancho/2,-alto/2);
-		vertices[2].Set(ancho*0.4,alto/2);
-		vertices[3].Set(-ancho*0.4,alto/2);
+		vertices[2].Set(ancho*0.30,alto/2);
+		vertices[3].Set(-ancho*0.30,alto/2);
 		shape.Set(vertices, 4);
 		b2BodyDef bodyDef;
 		bodyDef.type = b2_dynamicBody;
