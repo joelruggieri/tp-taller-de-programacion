@@ -60,7 +60,7 @@ ViewObjetoSimpleFactory::~ViewObjetoSimpleFactory() {
 }
 
 View* ViewObjetoSimpleFactory::crearYunque(ViewObjetoUpdateMsj* o) {
-	return new YunqueView(o->getX(), o->getY(),ANCHO_YUNQUE, ANCHO_YUNQUE,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_YUNQUE));
+	return new YunqueView(o->getX(), o->getY(),ANCHO_YUNQUE, ALTO_YUNQUE,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_YUNQUE));
 }
 
 View* ViewObjetoSimpleFactory::crearGancho(ViewObjetoUpdateMsj* o) {

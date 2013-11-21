@@ -58,7 +58,6 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 	char buffer[25000] = "";
 //	char bufferAux[25000] = "";
 	int longitudTotal;
-	int longRecibida;
 	int recibidos = 0;
 
 	//
@@ -72,13 +71,12 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 	}
 
 	while (recibidos < longitudTotal) {
-		result = recv(sock, &longRecibida, sizeof(int),MSG_NOSIGNAL);
+//		result = recv(sock, &longRecibida, sizeof(int),MSG_NOSIGNAL);
 		if (result == -1) {
 			ManejadorErrores::manejarWriteError(errno);
 			throw SerializacionException("No se pudo recibir el mensaje del host");
 		}
-		result = recv(sock, &(buffer[recibidos]), longRecibida, MSG_NOSIGNAL);
-
+		result = recv(sock, &(buffer[recibidos]), longitudTotal-recibidos, MSG_NOSIGNAL);
 		if (result == -1) {
 			ManejadorErrores::manejarWriteError(errno);
 			throw SerializacionException("No se pudo recibir el mensaje del host");
@@ -159,8 +157,8 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	}
 	while (enviados < len) {
 		longEnviada = len - enviados;
-		//Primero mando la lingutud de lo que falta enviar ( en la primera iteracion lo que falta estodo)
-		result = send(socket, &(longEnviada), sizeof(int), MSG_NOSIGNAL);
+//		//Primero mando la lingutud de lo que falta enviar ( en la primera iteracion lo que falta estodo)
+//		result = send(socket, &(longEnviada), sizeof(int), MSG_NOSIGNAL);
 
 		//Si da error tiro exception y loggeo el errorn.
 		if (result == -1) {

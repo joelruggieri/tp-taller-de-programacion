@@ -27,7 +27,7 @@
 #define RADIO_GLOBO 3.5
 #define ANCHO_PLATAFORMA 10.0
 #define ALTO_PLATAFORMA 2.5
-#define ANCHO_YUNQUE 10.0
+#define ANCHO_YUNQUE 8.4
 #define ALTO_YUNQUE 10.0
 #define ANCHO_CLAVO 5.0
 #define ALTO_CLAVO 2.5
