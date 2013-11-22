@@ -15,7 +15,7 @@ class ClavoView : public ObjetoView {
 private:
 	typedef ObjetoView super;
 public:
-	ClavoView(float x, float y, float w, float h, SDL_Texture * textura);
+	ClavoView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~ClavoView();
 	void update(ViewMsj *);
 	void dibujarse(SDL_Renderer *);

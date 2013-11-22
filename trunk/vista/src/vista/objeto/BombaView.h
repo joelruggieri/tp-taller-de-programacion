@@ -13,7 +13,7 @@ namespace CLIENTE {
 
 class BombaView : public ObjetoView {
 public:
-	BombaView(float x, float y, float w, float h, SDL_Texture * textura);
+	BombaView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~BombaView();
 	void update(ViewMsj *);
 };

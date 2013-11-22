@@ -9,7 +9,7 @@
 
 namespace CLIENTE {
 
-PoleaView::PoleaView(float x, float y, float w, float h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
+PoleaView::PoleaView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura): ObjetoView(x, y, w, h,numeroEvent,textura) {
 
 }
 

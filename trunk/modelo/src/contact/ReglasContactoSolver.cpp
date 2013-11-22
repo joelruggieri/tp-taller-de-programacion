@@ -16,6 +16,7 @@
 #include "../objeto/Polea.h"
 #include "../objeto/Tijera.h"
 #include "../objeto/Monitor.h"
+#include "../Constantes.h"
 #include "../objeto/Carrito.h"
 #include "../objeto/Bomba.h"
 using namespace std;
@@ -102,24 +103,28 @@ void ReglasContactoSolver::colisionar(b2Contact* contact,
 		const b2Manifold* oldManifold) {
 	//ACA CHEQUEA TODAS LAS REGLAS POSIBLES.
 
-
 	if(cinta != NULL) {
 		if (yunque != NULL) {
+			yunque->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, yunque, contact, oldManifold);
 		}
 		if (globo != NULL) {
 			procesarContacto(cinta, globo, contact, oldManifold);
 		}
 		if (bola != NULL) {
+			bola->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, bola, contact, oldManifold);
 		}
 		if (pelota != NULL) {
+			pelota->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, pelota, contact, oldManifold);
 		}
 		if(carrito != NULL){
+			carrito->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, carrito, contact, oldManifold);
 		}
 		if(bomba != NULL){
+			bomba->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, carrito, contact, oldManifold);
 		}
 	}
@@ -173,8 +178,8 @@ void ReglasContactoSolver::finalizarAcciones() {
 void ReglasContactoSolver::visit(ControlRemoto*) {
 }
 
-void ReglasContactoSolver::visit(Bomba*b) {
-	bomba= b;
+void ReglasContactoSolver::visit(Bomba* b) {
+	bomba = b;
 }
 
 void ReglasContactoSolver::visit(Monitor* m) {
@@ -192,7 +197,8 @@ void ReglasContactoSolver::PreSolve(b2Contact* contact,
 	//todo en los tutoriales dice que es mejor agregar a un buffer de colisiones y dsps del step procesarlas, por ahora no es necesario.
 	Figura * figA = (Figura *) fixtureA->GetUserData();
 	Figura * figB = (Figura *) fixtureB->GetUserData();
-	figA->hacerContacto(1);
+	figA->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
+	figB->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 	figA->acept(this);
 	figB->acept(this);
 	colisionar(contact, oldManifold);

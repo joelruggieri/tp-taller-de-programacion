@@ -18,7 +18,7 @@ private:
 	SDL_Texture * t2;
 	float angulo1,angulo2;
 public:
-	TijeraView(float x, float y, float w, float h, SDL_Texture* textura1, SDL_Texture* textura2);
+	TijeraView(float x, float y, float w, float h,int numeroEvent, SDL_Texture* textura1, SDL_Texture* textura2);
 	virtual ~TijeraView();
 	void update(ViewMsj *);
 	void dibujarse(SDL_Renderer *);

@@ -13,7 +13,7 @@ class SimpleEditorAnguloFijo;
 namespace CLIENTE {
 class BolaBolicheView : public ObjetoView {
 public:
-	BolaBolicheView(float x, float y, float w, float h, SDL_Texture * textura);
+	BolaBolicheView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~BolaBolicheView();
 	void update(ViewMsj *);
 };

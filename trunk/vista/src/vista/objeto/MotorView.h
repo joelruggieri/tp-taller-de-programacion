@@ -16,7 +16,7 @@ namespace CLIENTE {
 class MotorView: public ObjetoView {
 public:
 //	MotorView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
-	MotorView(float x, float y,float w,float h, SDL_Texture * textura);
+	MotorView(float x, float y,float w,float h,int numeroEvent,SDL_Texture * textura);
 	void update(ViewMsj *);
 	virtual ~MotorView();
 };

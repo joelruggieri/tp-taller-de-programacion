@@ -13,7 +13,7 @@ namespace CLIENTE {
 
 class YunqueView : public ObjetoView {
 public:
-	YunqueView(float x, float y, float w, float h, SDL_Texture * textura);
+	YunqueView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~YunqueView();
 	void update(ViewMsj *);
 };

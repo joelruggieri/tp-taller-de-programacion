@@ -148,5 +148,16 @@ namespace CLIENTE {
 #define ID_SONIDO_CINTA 18
 #define ID_SONIDO_MOTOR 19
 
+//PATH DE SONIDOS
+#define PATH_SONIDO_PELOTA "resource/volleyball_hit.wav"
+#define PATH_SONIDO_BOLA "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_BOMBA_CONTACTO "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_BOMBA_EXPLOSION "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_CINTA "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_GLOBO "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_MOTOR "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_SOGA "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_SUBIBAJA "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_YUNKE "/home/joel/Descargas/volleyball_hit.wav"
 #endif /* CONSTANTESVISTA_H_ */
 }

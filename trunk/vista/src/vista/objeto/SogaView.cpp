@@ -9,8 +9,8 @@
 #include "../CargadorDeTextures.h"
 namespace CLIENTE {
 
-SogaView::SogaView(float xDesde, float yDesde, float xHasta, float yHasta, SDL_Texture * textura) :
-		UnionView(xDesde, yDesde, xHasta, yHasta, RADIO_SOGA_ESTATICA, textura) {
+SogaView::SogaView(float xDesde, float yDesde, float xHasta, float yHasta,int numeroEvent,SDL_Texture * textura) :
+		UnionView(xDesde, yDesde, xHasta, yHasta, RADIO_SOGA_ESTATICA,numeroEvent,textura) {
 	texturaEslabon = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_GANCHO);
 	primerTramo = true;
 	segundoTramo = true;

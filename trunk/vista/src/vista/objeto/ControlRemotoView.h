@@ -14,7 +14,7 @@ namespace CLIENTE {
 
 class ControlRemotoView : public ObjetoView {
 public:
-	ControlRemotoView(float x, float y, float w, float h, SDL_Texture* textura);
+	ControlRemotoView(float x, float y, float w, float h,int numeroEvent,SDL_Texture* textura);
 	virtual ~ControlRemotoView();
 	void update(ViewMsj *);
 };

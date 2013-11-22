@@ -13,7 +13,7 @@
 namespace CLIENTE {
 class CintaTransportadoraView: public ObjetoView {
 public:
-	CintaTransportadoraView(float x, float y, float w, float h, SDL_Texture * textura);
+	CintaTransportadoraView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~CintaTransportadoraView();
 	void update(ViewMsj *);
 	void dibujarse(SDL_Renderer*);

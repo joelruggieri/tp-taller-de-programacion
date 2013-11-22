@@ -13,7 +13,7 @@ namespace CLIENTE {
 //
 //}
 
-MotorView::MotorView(float x, float y, float w, float h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
+MotorView::MotorView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura): ObjetoView(x, y, w, h,numeroEvent,textura) {
 
 }
 

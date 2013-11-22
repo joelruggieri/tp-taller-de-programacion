@@ -11,7 +11,7 @@
 #include <iostream>
 using namespace std;
 namespace CLIENTE {
-VistaEngranaje::VistaEngranaje(float x, float y, float w, float h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
+VistaEngranaje::VistaEngranaje(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura): ObjetoView(x, y, w, h,numeroEvent,textura) {
 	// TODO Auto-generated constructor stub
 
 }

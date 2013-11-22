@@ -10,7 +10,7 @@
 #include "SogaView.h"
 
 namespace CLIENTE {
-SogaEstaticaView::SogaEstaticaView(float x, float y, float w, float h, SDL_Texture * textura): UnionEstaticaView (x, y, w, h,textura) {
+SogaEstaticaView::SogaEstaticaView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura): UnionEstaticaView (x, y, w, h,numeroEvent,textura) {
 	texturaTramo = CargadorDeTextures::Instance()->cargarTexture("resource/eslabon_cinta.png");
 }
 
