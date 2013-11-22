@@ -114,7 +114,6 @@ void GeneralEventController::visit(ConexionUsuario* c) {
 	JuegoEventsController * j = (*it).second;
 	if(c->isConectado()){
 		drawController->addJugador(j);
-
 	} else {
 		drawController->removeJugador(j);
 	}

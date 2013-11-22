@@ -21,6 +21,7 @@
 #include "threading/StepModeloThread.h"
 #include "src/controller/inicializador/JuegoControllerFactory.h"
 #include "src/controller/zonaDragAndDrop/ZonaTablero.h"
+#include "threading/RecepcionClientesThread.h"
 using namespace std;
 
 class Partida {
@@ -40,9 +41,9 @@ private:
 	ZonaTablero * tablero;
 	ModeloController * modeloController;
 	InicializadorJuego* inicializadorJuego;
-	int socket;
+	RecepcionClientesThread* recepcionThread;
 	Logger log;
-	void procesarRequest(int socketDesc, Serializador & serializador);
+//	void procesarRequest(int socketDesc, Serializador & serializador);
 	void iniciarGeneralEventController();
 public:
 	Partida(Nivel * n, int socket);

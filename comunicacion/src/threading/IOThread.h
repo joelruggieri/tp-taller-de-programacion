@@ -12,6 +12,18 @@
 #include "../SerializacionException.h"
 #include "Status.h"
 #include "src/Logger.h"
+#include "../Serializador.h"
+class IOThreadLiberables:ObjetoCompartido {
+private:
+	Serializador * ser;
+	list<NetworkMensaje*> mensajes;
+public:
+	IOThreadLiberables (Serializador*);
+	virtual ~IOThreadLiberables();
+	void cargarMensajes(list<NetworkMensaje*>&);
+	void deleteAlMensajes();
+};
+
 class IOThreadParams {
 private:
 	ColaEventos * cola;

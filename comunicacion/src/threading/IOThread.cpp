@@ -17,14 +17,14 @@ void * func_entrada(void * arg) {
 	int socket = params->getSocketDesc();
 	int destinatario = params->getJugador();
 	Serializador * serializador = new Serializador(destinatario);
-	zona->setDatosLiberables((void*) serializador);
+	zona->setDatosLiberables((void*) new IOThreadLiberables(serializador));
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	while (true) {
 		usleep(20000);
 		list<NetworkMensaje*> lectura;
 		try {
 			serializador->leer(socket, lectura);
-			if(status->isAlive()){
+			if (status->isAlive()) {
 				colaEntrada->push(lectura);
 				status->refresh();
 			}
@@ -42,9 +42,10 @@ void * func_salida(void * arg) {
 	IOThreadParams * params = (IOThreadParams *) (zona->getParams());
 	ColaEventos* colaSalida = params->getCola();
 	int socketDesc = params->getSocketDesc();
-	int nroJugador= params->getJugador();
-	Serializador*  serializador = new Serializador(nroJugador);
-	zona->setDatosLiberables((void *) serializador);
+	int nroJugador = params->getJugador();
+	Serializador* serializador = new Serializador(nroJugador);
+	IOThreadLiberables * liberables = new IOThreadLiberables(serializador);
+	zona->setDatosLiberables((void*) liberables);
 	Status * status = params->getStatus();
 	//TODO VER CONDICION DE CORTE, podría estar en los parametros
 	status->lock();
@@ -53,23 +54,17 @@ void * func_salida(void * arg) {
 	list<NetworkMensaje*>::iterator it;
 	while (continuar) {
 		usleep(25000);
-		list<NetworkMensaje*> lectura;
-		//pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, NULL);
-		colaSalida->getAll(lectura);
+		list<NetworkMensaje*> mensajes;
+		colaSalida->getAll(mensajes);
+		liberables->cargarMensajes(mensajes);
 		try {
-			if (lectura.size()>0) {
-				serializador->escribir(lectura,socketDesc);
-				for(it= lectura.begin(); it!= lectura.end(); ++it){
-					delete (*it);
-				}
+			if (mensajes.size() > 0) {
+				serializador->escribir(mensajes, socketDesc);
+				liberables->deleteAlMensajes();
 			}
-			//pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
 		} catch (SerializacionException & e) {
-			for(it= lectura.begin(); it!= lectura.end(); ++it){
-				delete (*it);
-			}
-			//pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+			liberables->deleteAlMensajes();
 			cout << e.what() << endl;
 			status->kill();
 		}
@@ -80,24 +75,23 @@ void * func_salida(void * arg) {
 	pthread_exit(NULL);
 }
 
-
 void * func_mantener_vivo(void * arg) {
 	ZonaSeguraMemoria * zona = (ZonaSeguraMemoria *) arg;
 	IOThreadParams * params = (IOThreadParams *) (zona->getParams());
 	ColaEventos* colaSalida = params->getCola();
-	int nroJugador= params->getJugador();
+	int nroJugador = params->getJugador();
 	Status * status = params->getStatus();
 	status->lock();
 	bool continuar = status->isAlive();
 	status->unlock();
-	int tiempoMuerto = TIMEOUT *0.8;
+	int tiempoMuerto = TIMEOUT * 0.8;
 	list<NetworkMensaje*>::iterator it;
 	NetworkMensaje * msje;
 	Logger log;
 	while (continuar) {
 		sleep(tiempoMuerto);
 		log.debug("Encolando mensaje para mantener viva la conexion");
-		msje=new MensajePlano(TAG_MSJ_NOTIMEOUT);
+		msje = new MensajePlano(TAG_MSJ_NOTIMEOUT);
 		msje->setDestinatario(nroJugador);
 		colaSalida->push(msje);
 		status->lock();
@@ -109,8 +103,8 @@ void * func_mantener_vivo(void * arg) {
 
 void * clean(void * arg) {
 	//esto se va a ejecutar si se llama al cancel de los threads.
-	Serializador * ser = (Serializador*) arg;
-	delete ser;
+	IOThreadLiberables* t = (IOThreadLiberables*) arg;
+	delete t;
 	return 0;
 }
 
@@ -118,7 +112,7 @@ IOThread::IOThread(ColaEventos* a, ColaEventos* b, Status * status, int socket, 
 	this->colaEntrada = a;
 	this->colaSalida = b;
 	this->jugador = jugador;
-	this->status  = status;
+	this->status = status;
 	thEntrada = NULL;
 	thSalida = NULL;
 	this->socket = socket;
@@ -136,14 +130,14 @@ void IOThread::run() {
 
 		this->param2 = new IOThreadParams(this->colaSalida, status, this->socket, jugador);
 		thSalida = new ThreadPTM(func_salida, clean, (void *) param2);
-		if(mantenerVivo){
+		if (mantenerVivo) {
 			this->param3 = new IOThreadParams(this->colaSalida, status, this->socket, jugador);
 			thMantenerVivo = new ThreadPTM(func_mantener_vivo, clean, (void *) param2);
 		}
 	}
 }
 
-IOThreadParams::IOThreadParams(ColaEventos* cola, Status* status, int socketDesc,  int jugador) {
+IOThreadParams::IOThreadParams(ColaEventos* cola, Status* status, int socketDesc, int jugador) {
 	this->cola = cola;
 	this->status = status;
 	this->socketDesc = socketDesc;
@@ -162,7 +156,6 @@ Status* IOThreadParams::getStatus() {
 	return this->status;
 }
 
-
 void IOThread::cancel() {
 	if (thEntrada) {
 		//cancelo solo el de entrada, ya que es el que puede estar muerto esperando, el de salida puede dar error y matar el mismo al cliente
@@ -171,12 +164,11 @@ void IOThread::cancel() {
 		log.debug("Cancelada Entrada");
 		thSalida->cancel();
 		log.debug("Cancelada Salida");
-		if(mantenerVivo){
+		if (mantenerVivo) {
 			thMantenerVivo->cancel();
 			log.debug("Cancelado refresco de timeouts");
 		}
 		log.debug("Thread Cancelado");
-//		close(param1->getSocketDesc());
 		deleteAll();
 	}
 
@@ -188,7 +180,7 @@ void IOThread::deleteAll() {
 	delete thSalida;
 	delete param1;
 	delete param2;
-	if(mantenerVivo){
+	if (mantenerVivo) {
 		delete thMantenerVivo;
 		delete param3;
 	}
@@ -212,4 +204,37 @@ IOThreadParams::~IOThreadParams() {
 
 int IOThreadParams::getJugador() {
 	return jugador;
+}
+
+IOThreadLiberables::IOThreadLiberables(Serializador* s) {
+	ser = s;
+}
+
+IOThreadLiberables::~IOThreadLiberables() {
+	if (ser) {
+		delete ser;
+	}
+	list<NetworkMensaje*>::iterator it;
+	for (it = mensajes.begin(); it != mensajes.end(); ++it) {
+		delete (*it);
+	}
+}
+
+void IOThreadLiberables::cargarMensajes(list<NetworkMensaje*>& entrada) {
+	lock();
+	list<NetworkMensaje*>::iterator it;
+	for (it = entrada.begin(); it != entrada.end(); ++it) {
+		mensajes.push_back(*it);
+	}
+	unlock();
+}
+
+void IOThreadLiberables::deleteAlMensajes() {
+	lock();
+	list<NetworkMensaje*>::iterator it;
+	for (it = mensajes.begin(); it != mensajes.end(); ++it) {
+		delete (*it);
+	}
+	mensajes.clear();
+	unlock();
 }

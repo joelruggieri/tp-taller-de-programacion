@@ -21,25 +21,28 @@
 #define MAX_BUFFER 524288
 Serializador::Serializador(int destinatario) {
 	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0, 0, 'a',0)));
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_SIMPLE), new ViewObjetoUpdateMsj(0, 0, 0, 0, 'a', 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MSJ_PLANO), new MensajePlano("")));
 	this->mensajes.insert(
 			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_CON_ANCHO),
-					new ViewObjetoConAnchoUpdateMsj(0, 0, 0, 0, 0, 'a',0)));
+					new ViewObjetoConAnchoUpdateMsj(0, 0, 0, 0, 0, 'a', 0)));
 	this->mensajes.insert(
-			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_UNION), new ViewObjetoUnionUpdateMsj(0,0,0,0,0,0,0,0,0,0, 'a',0)));
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_OBJETO_UNION),
+					new ViewObjetoUnionUpdateMsj(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'a', 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CLICK), new ClickMsj(0, 0, 0, 0, 0, 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(MSJ_CONFIG_JUGADOR), new ConfiguracionNivelMsj()));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_MOUSE_MOTION), new MouseMotionMsj(0, 0, 0, 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CREACION_OBJETO), new CreacionMsj("", 0, 0)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_JUGADOR_LISTO), new JugadorListo(false)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_FIN_DIBUJADO), new FinDibujado()));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_BOTON_LISTO), new ViewBotonStartMsj(0,false)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_BOTON_LISTO), new ViewBotonStartMsj(0, false)));
 	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_HIGHLIGHT), new Highlight(0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_CARRITO), new ViewCarritoMsj(0,0,0,0,0,0,0,0,0,0,0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_TIJERA), new ViewTijeraMsj(0,0,0,0,0,0)));
-	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_CANTIDAD_RESTANTE), new MensajeCantidadRestante(0,0)));
-
+	this->mensajes.insert(
+			pair<string, NetworkMensaje*>(string(TAG_VIEW_CARRITO),
+					new ViewCarritoMsj(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)));
+	this->mensajes.insert(pair<string, NetworkMensaje*>(string(TAG_VIEW_TIJERA), new ViewTijeraMsj(0, 0, 0, 0, 0, 0)));
+	this->mensajes.insert(
+			pair<string, NetworkMensaje*>(string(TAG_CANTIDAD_RESTANTE), new MensajeCantidadRestante(0, 0)));
 
 	this->destinatario = destinatario;
 
@@ -61,7 +64,7 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 	int recibidos = 0;
 
 	//
-	int result = recv(sock, &longitudTotal, sizeof(int),MSG_NOSIGNAL);
+	int result = recv(sock, &longitudTotal, sizeof(int), MSG_NOSIGNAL);
 //	string mje= "bytes ";
 //	log.concatenar(mje, longitudTotal);
 //	log.debug(mje);
@@ -120,7 +123,7 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 				} catch (YAML::Exception &exc) {
 					//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
 					log.debug("Error de yaml 2");
-					cout << exc.what()<< endl;
+					cout << exc.what() << endl;
 					it++;
 				}
 			} else {
@@ -136,7 +139,7 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	list<NetworkMensaje*>::iterator it = lista.begin();
 	YAML::Node nodo;
 	YAML::Emitter o;
-	o<< YAML::BeginSeq;
+	o << YAML::BeginSeq;
 	while (it != lista.end()) {
 		(*it)->serialize(o);
 		it++;
@@ -147,32 +150,28 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 	int enviados = 0;
 	int len = strlen(o.c_str());
 	int longEnviada;
-
-	int result = send(socket, &len, sizeof(int), MSG_NOSIGNAL);	//envio longitud total
-	if (result == -1) {
-		ManejadorErrores::manejarWriteError(errno);
-		throw SerializacionException("No se pudo enviar el mensaje al host");
-	}
-	while (enviados < len) {
-		longEnviada = len - enviados;
-
-		//Si da error tiro exception y loggeo el errorn.
+	if (len <= MAX_BUFFER) {
+		int result = send(socket, &len, sizeof(int), MSG_NOSIGNAL);	//envio longitud total
 		if (result == -1) {
 			ManejadorErrores::manejarWriteError(errno);
 			throw SerializacionException("No se pudo enviar el mensaje al host");
 		}
+		while (enviados < len) {
+			longEnviada = len - enviados;
+			//Ahora intento enviar lo restante.
+			result = send(socket, &(o.c_str()[enviados]), longEnviada, MSG_NOSIGNAL);
+			//Si da error cancelo
+			if (result == -1) {
+				ManejadorErrores::manejarWriteError(errno);
+				throw SerializacionException("No se pudo enviar el mensaje al host");
+			}
 
-		//Ahora intento enviar lo restante.
-		result = send(socket,  &(o.c_str()[enviados]), longEnviada, MSG_NOSIGNAL);
-
-		//Si da error cancelo
-		if (result == -1) {
-			ManejadorErrores::manejarWriteError(errno);
-			throw SerializacionException("No se pudo enviar el mensaje al host");
+			//Sumo a los enviados lo que envié.
+			enviados += result;
+//			cout<< "Se enviaron "<< longEnviada<< "restantes  de " << enviados << "/"<<len<<endl;
 		}
-
-		//Sumo a los enviados lo que envié.
-		enviados += result;
+	} else {
+		cout<<"me lo salte porque se fue al choto" << endl;
 	}
 }
 
