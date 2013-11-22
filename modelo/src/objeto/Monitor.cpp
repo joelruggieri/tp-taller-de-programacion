@@ -7,9 +7,10 @@
 
 #include "Monitor.h"
 #include "../Constantes.h"
-Monitor::Monitor(float x , float y, float w, float h): Objeto(x,y){
-this->ancho = w;
-this->alto = h;
+Monitor::Monitor(float x, float y, float w, float h) :
+		Objeto(x, y) {
+	this->ancho = w;
+	this->alto = h;
 }
 
 Monitor::~Monitor() {
@@ -23,7 +24,7 @@ bool Monitor::crearFisicaEstatica() {
 void Monitor::crearFisica() {
 	float x = this->getX();
 	float y = this->getY();
-	b2Vec2 centro(x,y);
+	b2Vec2 centro(x, y);
 	b2PolygonShape shape;
 	shape.SetAsBox(this->ancho / 2, this->alto / 2);
 	b2BodyDef bodyDef;
@@ -31,10 +32,10 @@ void Monitor::crearFisica() {
 	bodyDef.position.Set(centro.x, centro.y);
 	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 	b2Body* body = myWorld->CreateBody(&bodyDef);
-	b2FixtureDef bodyMonitor ;
+	b2FixtureDef bodyMonitor;
 	bodyMonitor.filter.categoryBits = CATEGORIA_MONITOR;
 	bodyMonitor.filter.maskBits = CATEGORIA_MONITOR;
-	bodyMonitor.density = 10.0f ;
+	bodyMonitor.density = 10.0f;
 	bodyMonitor.shape = &shape;
 	body->CreateFixture(&bodyMonitor)->SetUserData(this);
 	body->SetUserData(this);
@@ -49,8 +50,8 @@ void Monitor::setFiguraEsperada(Figura* f) {
 }
 
 void Monitor::contactar(Figura* f) {
-	if(this->figuraEsperada == f)
-	{
-		//TODO realizar acciones si la figura
+	if (this->figuraEsperada == f) {
+		//Esto llama a los observers y les pasa el evento ACCIONADO POR DEFECTO.
+		accionar();
 	}
 }
