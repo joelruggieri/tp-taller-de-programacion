@@ -87,7 +87,7 @@ void Carrito::crearFisica(){
 	bodyDef.angle = rotacionRad;
 	b2Body* body = myWorld->CreateBody(&bodyDef);
 	//body->CreateFixture(polygon, 10.0f);
-	body->CreateFixture(&fixture);
+	body->CreateFixture(&fixture)->SetUserData(this);
 	body->SetUserData(this);
 	this->setBody(body);
 
@@ -103,13 +103,13 @@ void Carrito::crearFisica(){
 	bd.position =body->GetWorldPoint(b2Vec2(-ancho/4, -alto/2.0));
 	bd.type = b2_dynamicBody;
 	b2Body* bodyRuedaIzquierda = myWorld->CreateBody(&bd);
-	bodyRuedaIzquierda->CreateFixture(&fd);
+	bodyRuedaIzquierda->CreateFixture(&fd)->SetUserData(this);
 	bodyRuedaIzquierda->SetUserData(this);
 	this->setRuedaIzquierda(bodyRuedaIzquierda);
 
 	bd.position =body->GetWorldPoint(b2Vec2(ancho/4, -alto/2.0));
 	b2Body* bodyRuedaDerecha = myWorld->CreateBody(&bd);
-	bodyRuedaDerecha->CreateFixture(&fd);
+	bodyRuedaDerecha->CreateFixture(&fd)->SetUserData(this);
 	bodyRuedaDerecha->SetUserData(this);
 	this->setRuedaDerecha(bodyRuedaDerecha);
 

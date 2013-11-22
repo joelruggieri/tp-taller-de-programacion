@@ -22,6 +22,8 @@ private:
 	Tijera * tijera1;
 	Tijera * tijera2;
 	Monitor* monitor;
+	Carrito * carrito;
+	Bomba * bomba;
 	void clean();
 	void colisionar(b2Contact * 	contact,
 			const b2Manifold * 	oldManifold);
@@ -47,6 +49,7 @@ public:
 	void visit(Bomba*);
 	void visit(Monitor*);
 	void procesarContacto(CintaTransportadora * c, Figura *,b2Contact* contact, const b2Manifold* oldManifold);
+//	void procesarContacto(CintaTransportadora * c, Carrito *,b2Contact* contact, const b2Manifold* oldManifold);
 	void procesarContacto(GloboHelio * c, Clavo *,b2Contact* contact, const b2Manifold* oldManifold);
 	ReglasContactoSolver();
 	virtual ~ReglasContactoSolver();
