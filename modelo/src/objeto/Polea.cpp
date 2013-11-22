@@ -48,7 +48,7 @@ void Polea::crearFisica() {
 	b2FixtureDef fixtureAccion;
 	fixtureAccion.filter.categoryBits = CATEGORIA_LIMITE_POLEA;
 	fixtureAccion.filter.maskBits = CATEGORIA_LIMITE_POLEA;
-	fixtureAccion.density = 1.00f;
+	fixtureAccion.density = 10.00f;
 	fixtureAccion.shape = &shapeAccion;
 	fixtureAccion.friction = 0.01f;
 	fixtureAccion.restitution = 0.00f;
@@ -97,11 +97,11 @@ void Polea::setRadio(float radio) {
 
 void Polea::removerFisica() {
 	super::removerFisica();
-	if(radioAccion){
+	if (radioAccion) {
 		myWorld->DestroyBody(this->radioAccion);
 		radioAccion = NULL;
 	}
-	if(joint){
+	if (joint) {
 		myWorld->DestroyJoint(joint);
 		joint = NULL;
 	}
@@ -110,7 +110,7 @@ void Polea::removerFisica() {
 void Polea::accionesPostFisica() {
 	b2Body * eslabonIzq = izq->getEslabon();
 	b2Body * eslabonDer = der->getEslabon();
-	if(eslabonIzq && eslabonDer){
+	if (eslabonIzq && eslabonDer) {
 		b2Vec2 anchor1 = eslabonIzq->GetWorldCenter();
 		b2Vec2 anchor2 = eslabonDer->GetWorldCenter();
 		izq->desprenderDeSoga();
@@ -119,18 +119,17 @@ void Polea::accionesPostFisica() {
 		b2Vec2 groundAnchor2(der->getWorldPos());
 		float32 ratio = 1.0f;
 		b2PulleyJointDef jointDef;
-		jointDef.Initialize(eslabonIzq, eslabonDer, groundAnchor1, groundAnchor2, anchor1,
-		anchor2, ratio);
-		joint = (b2PulleyJoint*)myWorld->CreateJoint(&jointDef);
+		jointDef.Initialize(eslabonIzq, eslabonDer, groundAnchor1, groundAnchor2, anchor1, anchor2, ratio);
+		joint = (b2PulleyJoint*) myWorld->CreateJoint(&jointDef);
 		distAnterior = joint->GetLengthA();
 	}
 }
 
 void Polea::crearEnganches() {
-	izq= new Enganche(this,-radio,0);
+	izq = new Enganche(this, -radio, 0);
 	izq->setRequiereEslabon(true);
 	this->enganches.push_back(izq);
-	der = new Enganche(this,radio,0);
+	der = new Enganche(this, radio, 0);
 	der->setRequiereEslabon(true);
 	this->enganches.push_back(der);
 }
@@ -142,10 +141,10 @@ void Polea::limpiarReferenciasB2D() {
 }
 
 void Polea::desenganchado(Enganche* e) {
-	if(joint && (e==izq || e ==der)){
+	if (joint && (e == izq || e == der)) {
 		myWorld->DestroyJoint(joint);
 		joint = NULL;
-		if(e == izq){
+		if (e == izq) {
 			der->matarSoga();
 		} else {
 			izq->matarSoga();
@@ -154,18 +153,22 @@ void Polea::desenganchado(Enganche* e) {
 }
 
 void Polea::updateModelo() {
-	if(joint && distAnterior != joint->GetLengthA()){
-		float dif = distAnterior -joint->GetLengthA();
+	if (joint && distAnterior != joint->GetLengthA()) {
+
+		float dif = distAnterior - joint->GetLengthA();
 		float modulo = abs(dif);
-		float recorridoRad = atan(modulo/getRadio());
-		distAnterior = joint->GetLengthA();
-		if(isnan(recorridoRad)){
-			recorridoRad= 0.01;
-		}
-		if(dif <0){
-			setRotacion(getRotacion() - 0.9*RADTOG*recorridoRad);
-		} else{
-			setRotacion(getRotacion() + 0.9*RADTOG*recorridoRad);
+		if (modulo > 0.1) {
+			float recorridoRad = atan(modulo / getRadio());
+			distAnterior = joint->GetLengthA();
+			if (isnan(recorridoRad)) {
+				recorridoRad = 0.01;
+			}
+			if (dif < 0) {
+				setRotacion(getRotacion() - 0.9 * RADTOG * recorridoRad);
+			} else {
+				setRotacion(getRotacion() + 0.9 * RADTOG * recorridoRad);
+			}
+
 		}
 	}
 }

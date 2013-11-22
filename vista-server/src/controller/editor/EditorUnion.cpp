@@ -103,7 +103,6 @@ void EditorUnion::dropear(FiguraView* view, Figura* figura) {
 		editado = vista;
 		primerClick = false;
 		un->extraerPosInicial(figInicial, this->clickDownX, this->clickDownY);
-		cout<< "Editor arranque " << un->getXInicial() << " " << un->getYInicial()<<endl;
 		un->extraerPosFinal(figInicial, this->clickDownX, this->clickDownY);
 //		vista->update();
 	} else {

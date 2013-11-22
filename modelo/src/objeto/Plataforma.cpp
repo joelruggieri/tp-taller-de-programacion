@@ -6,7 +6,7 @@
  */
 
 #include "Plataforma.h"
-#include <iostream>
+#include "Densidades.h"
 #include "../Constantes.h"
 using namespace std;
 
@@ -78,7 +78,7 @@ void Plataforma::crearFisica() {
 	polygon->SetAsBox(this->ancho / 2, this->alto / 2);
 
 	b2FixtureDef fixture;
-	fixture.density = 50.00f;
+	fixture.density = DENSIDAD_PLATAFORMA;
 	fixture.shape = polygon;
 	fixture.friction = 1.0f;
 	fixture.restitution = 0.00f;

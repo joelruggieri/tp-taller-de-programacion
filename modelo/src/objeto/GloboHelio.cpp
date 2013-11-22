@@ -8,7 +8,7 @@
 #include "GloboHelio.h"
 #include "../Constantes.h"
 #include "../interaccion/ValidadorEnArea.h"
-#include <iostream>
+#include "Densidades.h"
 using namespace std;
 
 GloboHelio::GloboHelio(float x, float y, float radio) :
@@ -32,17 +32,17 @@ void GloboHelio::crearFisica() {
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(centro.x, centro.y);
-	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
+	bodyDef.angle = this->getRotacion() * -b2_pi/ 180.0;
 	bodyDef.fixedRotation = true;
 	bodyDef.linearDamping = 0.15;
-
+	bodyDef.gravityScale=0;
 	b2Body* body = myWorld->CreateBody(&bodyDef);
 	shapeCircle.m_radius = this->radio;
 	b2FixtureDef bodyBolaBoliche;
 	bodyBolaBoliche.shape = &shapeCircle;
 	bodyBolaBoliche.filter.categoryBits = CATEGORIA_FIGURAS;
 	bodyBolaBoliche.filter.maskBits = CATEGORIA_FIGURAS;
-	bodyBolaBoliche.density = 1.0f;	//poca densidad, la densidad del aire cual es ?
+	bodyBolaBoliche.density = DENSIDAD_GLOBO;	//poca densidad, la densidad del aire cual es ?
 	bodyBolaBoliche.friction = 0.2f;
 	bodyBolaBoliche.restitution = 0.3f;
 	body->CreateFixture(&bodyBolaBoliche)->SetUserData(this);
@@ -82,19 +82,19 @@ void GloboHelio::setRadio(float radio) {
 
 void GloboHelio::updateModelo() {
 	super::updateModelo();
-	if (getBody() != NULL && body->GetLinearVelocity().y < 10) {
+	if (getBody() != NULL && body->GetLinearVelocity().y < 8) {
 		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0f, 2.0f));
-		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 2500.0  ));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(0.0f, 450.0  ));
 		body->ApplyForce(f, p);
 	}
 	if(getBody() != NULL && body->GetLinearVelocity().x > 0.1){
 		b2Vec2 p = body->GetWorldPoint(b2Vec2(0.0, 1.0f));
-		b2Vec2 f = body->GetWorldVector(b2Vec2(-100.0f* body->GetLinearVelocity().x, 0));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(-10.0f* body->GetLinearVelocity().x, 0));
 		body->ApplyForce(f,p);
 	}
 	if(getBody() != NULL && body->GetLinearVelocity().x <  -0.1){
 		b2Vec2 p = body->GetWorldPoint(b2Vec2(-1.0f, 0.0f));
-		b2Vec2 f = body->GetWorldVector(b2Vec2(-100.0f * body->GetLinearVelocity().x, 0));
+		b2Vec2 f = body->GetWorldVector(b2Vec2(-10.0f * body->GetLinearVelocity().x, 0));
 		body->ApplyForce(f,p);
 	}
 

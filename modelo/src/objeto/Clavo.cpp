@@ -7,6 +7,7 @@
 
 #include "Clavo.h"
 #include "../Constantes.h"
+#include "Densidades.h"
 Clavo::Clavo(const Clavo& figura) {
 	this->x = figura.getX();
 	this->y = figura.getY();
@@ -47,7 +48,7 @@ void Clavo::crearFisica() {
 	bodyClavo.filter.categoryBits = CATEGORIA_FIGURAS;
 	bodyClavo.filter.maskBits = CATEGORIA_FIGURAS;
 	bodyClavo.shape = &shape;
-	bodyClavo.density = 1.0f;
+	bodyClavo.density = DENSIDAD_CLAVO;
 	bodyClavo.friction = 0.3f;
 	bodyClavo.restitution = 0.6f;	//mucho coeficiente de restitucion
 	b2PolygonShape shape2;

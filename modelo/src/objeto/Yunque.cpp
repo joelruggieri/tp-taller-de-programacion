@@ -6,7 +6,7 @@
  */
 
 #include "Yunque.h"
-#include <iostream>
+#include "Densidades.h"
 #include "../Constantes.h"
 Yunque::Yunque() : Objeto() {
 	this->ancho = 0;
@@ -55,7 +55,7 @@ void Yunque::crearFisica() {
 		bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyPelota.filter.maskBits = CATEGORIA_FIGURAS;
 		bodyPelota.shape = &shape;
-		bodyPelota.density = 18.0f;
+		bodyPelota.density = DENSIDAD_YUNQUE;
 		bodyPelota.friction = 0.4f;
 		bodyPelota.restitution = 0.0f;	//mucho coeficiente de restitucion
 		body->CreateFixture(&bodyPelota)->SetUserData(this);

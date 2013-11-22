@@ -7,7 +7,7 @@
 
 #include "PelotaJuego.h"
 #include "../Constantes.h"
-#include <iostream>
+#include "Densidades.h"
 PelotaJuego::PelotaJuego(float x, float y, float radio) :
 		Objeto(x, y) {
 	this->radio = radio;
@@ -33,7 +33,7 @@ void PelotaJuego::crearFisica() {
 	bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
 	bodyPelota.filter.maskBits = CATEGORIA_FIGURAS;
 	bodyPelota.shape = &shapeCircle;
-	bodyPelota.density = 10.0f;
+	bodyPelota.density = DENSIDAD_PELOTA;
 	bodyPelota.friction = 0.3f;
 	bodyPelota.restitution = 0.6f;	//mucho coeficiente de restitucion
 	body->CreateFixture(&bodyPelota)->SetUserData(this);
