@@ -16,6 +16,8 @@
 #include "../objeto/Polea.h"
 #include "../objeto/Tijera.h"
 #include "../objeto/Monitor.h"
+#include "../objeto/Carrito.h"
+#include "../objeto/Bomba.h"
 using namespace std;
 
 ReglasContactoSolver::ReglasContactoSolver() {
@@ -25,7 +27,8 @@ ReglasContactoSolver::ReglasContactoSolver() {
 void ReglasContactoSolver::visit(Gancho*) {
 }
 
-void ReglasContactoSolver::visit(Carrito*) {
+void ReglasContactoSolver::visit(Carrito* c) {
+	carrito = c;
 }
 
 void ReglasContactoSolver::visit(Motor*) {
@@ -91,26 +94,35 @@ void ReglasContactoSolver::clean() {
 	tijera1 = NULL;
 	tijera2 = NULL;
 	monitor= NULL;
+	carrito = NULL;
+	bomba = NULL;
 }
 
 void ReglasContactoSolver::colisionar(b2Contact* contact,
 		const b2Manifold* oldManifold) {
 	//ACA CHEQUEA TODAS LAS REGLAS POSIBLES.
-	if (cinta != NULL && pelota != NULL) {
-		procesarContacto(cinta, pelota, contact, oldManifold);
-	}
-	if (cinta != NULL && bola != NULL) {
-		procesarContacto(cinta, bola, contact, oldManifold);
-	}
 
-	if (cinta != NULL && globo != NULL) {
-		procesarContacto(cinta, globo, contact, oldManifold);
-	}
 
-	if (cinta != NULL && yunque != NULL) {
-		procesarContacto(cinta, yunque, contact, oldManifold);
+	if(cinta != NULL) {
+		if (yunque != NULL) {
+			procesarContacto(cinta, yunque, contact, oldManifold);
+		}
+		if (globo != NULL) {
+			procesarContacto(cinta, globo, contact, oldManifold);
+		}
+		if (bola != NULL) {
+			procesarContacto(cinta, bola, contact, oldManifold);
+		}
+		if (pelota != NULL) {
+			procesarContacto(cinta, pelota, contact, oldManifold);
+		}
+		if(carrito != NULL){
+			procesarContacto(cinta, carrito, contact, oldManifold);
+		}
+		if(bomba != NULL){
+			procesarContacto(cinta, carrito, contact, oldManifold);
+		}
 	}
-
 	if (globo != NULL && clavo != NULL) {
 		procesarContacto(globo, clavo, contact, oldManifold);
 	}
@@ -161,7 +173,8 @@ void ReglasContactoSolver::finalizarAcciones() {
 void ReglasContactoSolver::visit(ControlRemoto*) {
 }
 
-void ReglasContactoSolver::visit(Bomba*) {
+void ReglasContactoSolver::visit(Bomba*b) {
+	bomba= b;
 }
 
 void ReglasContactoSolver::visit(Monitor* m) {
