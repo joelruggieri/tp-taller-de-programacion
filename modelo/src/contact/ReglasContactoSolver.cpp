@@ -16,7 +16,6 @@
 #include "../objeto/Polea.h"
 #include "../objeto/Tijera.h"
 #include "../objeto/Monitor.h"
-#include "../Constantes.h"
 #include "../objeto/Carrito.h"
 #include "../objeto/Bomba.h"
 using namespace std;
@@ -103,28 +102,24 @@ void ReglasContactoSolver::colisionar(b2Contact* contact,
 		const b2Manifold* oldManifold) {
 	//ACA CHEQUEA TODAS LAS REGLAS POSIBLES.
 
+
 	if(cinta != NULL) {
 		if (yunque != NULL) {
-			yunque->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, yunque, contact, oldManifold);
 		}
 		if (globo != NULL) {
 			procesarContacto(cinta, globo, contact, oldManifold);
 		}
 		if (bola != NULL) {
-			bola->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, bola, contact, oldManifold);
 		}
 		if (pelota != NULL) {
-			pelota->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, pelota, contact, oldManifold);
 		}
 		if(carrito != NULL){
-			carrito->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, carrito, contact, oldManifold);
 		}
 		if(bomba != NULL){
-			bomba->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 			procesarContacto(cinta, carrito, contact, oldManifold);
 		}
 	}
@@ -178,8 +173,8 @@ void ReglasContactoSolver::finalizarAcciones() {
 void ReglasContactoSolver::visit(ControlRemoto*) {
 }
 
-void ReglasContactoSolver::visit(Bomba* b) {
-	bomba = b;
+void ReglasContactoSolver::visit(Bomba*b) {
+	bomba= b;
 }
 
 void ReglasContactoSolver::visit(Monitor* m) {
@@ -197,8 +192,6 @@ void ReglasContactoSolver::PreSolve(b2Contact* contact,
 	//todo en los tutoriales dice que es mejor agregar a un buffer de colisiones y dsps del step procesarlas, por ahora no es necesario.
 	Figura * figA = (Figura *) fixtureA->GetUserData();
 	Figura * figB = (Figura *) fixtureB->GetUserData();
-	figA->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
-	figB->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 	figA->acept(this);
 	figB->acept(this);
 	colisionar(contact, oldManifold);
@@ -222,4 +215,23 @@ void ReglasContactoSolver::PreSolve(b2Contact* contact,
 //	}
 //	contact->SetSurfaceVelocityModifier(-5.0);
 //	contact->SetEnabled(false);
+}
+
+void ReglasContactoSolver::PostSolve(b2Contact* contact,
+		const b2ContactImpulse* impulso) {
+	b2Fixture* fixtureA = contact->GetFixtureA();
+	b2Fixture* fixtureB = contact->GetFixtureB();
+	//si los shapes no tienen un user data es que no participan de los contactos custom.
+	if (fixtureA->GetUserData() == NULL || fixtureB->GetUserData() == NULL) {
+		return;
+	}
+
+	Figura * figA = (Figura *) fixtureA->GetUserData();
+	Figura * figB = (Figura *) fixtureB->GetUserData();
+	if(figA->hacerContacto(impulso->normalImpulses[0])){
+		pendientesAccionar.push_back(figA);
+	}
+	if(figB->hacerContacto(impulso->normalImpulses[0])){
+		pendientesAccionar.push_back(figB);
+	}
 }

@@ -51,6 +51,7 @@ Figura::Figura() {
 	myWorld = NULL;
 	accionado =false;
 	viva = true;
+	umbralReaccionContacto = 20;
 }
 
 Figura::Figura(float x, float y) {
@@ -69,6 +70,7 @@ Figura::Figura(float x, float y) {
 	myWorld = NULL;
 	accionado = false;
 	viva = true;
+	umbralReaccionContacto = 2;
 }
 
 
@@ -88,6 +90,7 @@ Figura::Figura(float x, float y, ValidadorInteraccion* validador) {
 	myWorld = NULL;
 	accionado = false;
 	viva = true;
+	umbralReaccionContacto = 2;
 }
 
 Figura::~Figura() {
@@ -221,6 +224,7 @@ Figura::Figura(const Figura& fig) {
 	traccionable = fig.traccionable;
 	accionado = false;
 	viva = true;
+	umbralReaccionContacto = 2;
 }
 
 bool Figura::esTraccionable() {
@@ -339,6 +343,13 @@ bool Figura::validarContacto(b2Body * verf, b2Body * b) {
 
 }
 
-void Figura::hacerContacto(int numero){
-	this->vista->alertarEvento(numero);
+bool Figura::hacerContacto(float hit){
+	if(hit > umbralReaccionContacto){
+		this->vista->alertarEvento(1);
+	}
+	return false;
+}
+
+void Figura::serUmbralContacto(float um) {
+	umbralReaccionContacto= um;
 }

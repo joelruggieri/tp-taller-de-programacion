@@ -55,6 +55,7 @@ public:
 	virtual ~ReglasContactoSolver();
 	void finalizarAcciones();
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
+	void PostSolve(b2Contact* conctac, const b2ContactImpulse*impulso);
 };
 
 #endif /* REGLASCONTACTOSOLVER_H_ */

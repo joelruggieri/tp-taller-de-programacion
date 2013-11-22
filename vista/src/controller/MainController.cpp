@@ -6,7 +6,7 @@
  */
 
 #include "MainController.h"
-
+#include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_timer.h>
@@ -56,6 +56,10 @@ int MainController::run(list<string> & factories) {
 	SDL_Init(SDL_INIT_VIDEO);
 	ventana = SDL_CreateWindow("The Incredible Machine LAN", 300, 100, TAMANIO_PANTALLA, TAMANIO_PANTALLA, SDL_WINDOW_RESIZABLE);
 	render = SDL_CreateRenderer(ventana, -1, SDL_RENDERER_ACCELERATED);
+	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ){
+			printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+	}
+
 	Cuadrado cuadrado = Cuadrado(this->xArea, this->yArea, this->wArea,this->hArea);
 	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA), cuadrado, this->objetivo);
 	StatusJuego juegoStatus;

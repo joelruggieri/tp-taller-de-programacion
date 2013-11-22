@@ -39,7 +39,7 @@ protected:
     bool validarContacto(b2Body * verf, b2Body * b);
     bool validarContacto(b2Fixture* prim,const b2Transform& trfprim, b2Fixture* sec,const b2Transform& trfsec);
     //Cosas tercera entrega
-
+    float umbralReaccionContacto;
     bool viva;
     //es el que valida para una interaccion.
 	ValidadorInteraccion * validador;
@@ -98,7 +98,8 @@ public:
 	virtual void accionar();
 	virtual void accionesPostFisica();
 	virtual void desenganchado(Enganche *);
-	virtual void hacerContacto(int numero);
+	virtual bool hacerContacto(float numero);
+	void serUmbralContacto(float);
 };
 
 #endif /* FIGURA_H_ */
