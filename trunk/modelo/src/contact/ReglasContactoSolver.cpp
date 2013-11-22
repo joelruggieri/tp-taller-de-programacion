@@ -93,7 +93,7 @@ void ReglasContactoSolver::clean() {
 	yunque = NULL;
 	tijera1 = NULL;
 	tijera2 = NULL;
-	monitor= NULL;
+	monitor = NULL;
 	carrito = NULL;
 	bomba = NULL;
 }
@@ -102,8 +102,7 @@ void ReglasContactoSolver::colisionar(b2Contact* contact,
 		const b2Manifold* oldManifold) {
 	//ACA CHEQUEA TODAS LAS REGLAS POSIBLES.
 
-
-	if(cinta != NULL) {
+	if (cinta != NULL) {
 		if (yunque != NULL) {
 			procesarContacto(cinta, yunque, contact, oldManifold);
 		}
@@ -116,26 +115,27 @@ void ReglasContactoSolver::colisionar(b2Contact* contact,
 		if (pelota != NULL) {
 			procesarContacto(cinta, pelota, contact, oldManifold);
 		}
-		if(carrito != NULL){
+		if (carrito != NULL) {
 			procesarContacto(cinta, carrito, contact, oldManifold);
 		}
-		if(bomba != NULL){
+		if (bomba != NULL) {
 			procesarContacto(cinta, carrito, contact, oldManifold);
 		}
 	}
 	if (globo != NULL && clavo != NULL) {
 		procesarContacto(globo, clavo, contact, oldManifold);
 	}
-	if(tijera1 && tijera1 == tijera2){
+	if (tijera1 && tijera1 == tijera2) {
 		pendientesAccionar.push_back(tijera1);
 	}
 
-	if(monitor)
-	{
-		if(contact->GetFixtureA()->GetUserData() == monitor)
-		this->monitor->contactar((Figura*)contact->GetFixtureB()->GetUserData());
+	if (monitor) {
+		if (contact->GetFixtureA()->GetUserData() == monitor)
+			this->monitor->contactar(
+					(Figura*) contact->GetFixtureB()->GetUserData());
 		else
-			this->monitor->contactar((Figura*)contact->GetFixtureA()->GetUserData());
+			this->monitor->contactar(
+					(Figura*) contact->GetFixtureA()->GetUserData());
 	}
 	clean();
 
@@ -174,11 +174,11 @@ void ReglasContactoSolver::visit(ControlRemoto*) {
 }
 
 void ReglasContactoSolver::visit(Bomba*b) {
-	bomba= b;
+	bomba = b;
 }
 
 void ReglasContactoSolver::visit(Monitor* m) {
-monitor= m;
+	monitor = m;
 }
 
 void ReglasContactoSolver::PreSolve(b2Contact* contact,
@@ -222,16 +222,18 @@ void ReglasContactoSolver::PostSolve(b2Contact* contact,
 	b2Fixture* fixtureA = contact->GetFixtureA();
 	b2Fixture* fixtureB = contact->GetFixtureB();
 	//si los shapes no tienen un user data es que no participan de los contactos custom.
-	if (fixtureA->GetUserData() == NULL || fixtureB->GetUserData() == NULL) {
-		return;
+	if (fixtureA->GetUserData()) {
+		Figura * figA = (Figura *) fixtureA->GetUserData();
+		if (figA->hacerContacto(impulso->normalImpulses[0])) {
+			pendientesAccionar.push_back(figA);
+		}
 	}
 
-	Figura * figA = (Figura *) fixtureA->GetUserData();
-	Figura * figB = (Figura *) fixtureB->GetUserData();
-	if(figA->hacerContacto(impulso->normalImpulses[0])){
-		pendientesAccionar.push_back(figA);
+	if (fixtureB->GetUserData()) {
+		Figura * figB = (Figura *) fixtureB->GetUserData();
+		if (figB->hacerContacto(impulso->normalImpulses[0])) {
+			pendientesAccionar.push_back(figB);
 	}
-	if(figB->hacerContacto(impulso->normalImpulses[0])){
-		pendientesAccionar.push_back(figB);
+
 	}
 }

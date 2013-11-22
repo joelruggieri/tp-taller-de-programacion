@@ -51,7 +51,7 @@ Figura::Figura() {
 	myWorld = NULL;
 	accionado =false;
 	viva = true;
-	umbralReaccionContacto = 20;
+	umbralReaccionContacto = 2;
 }
 
 Figura::Figura(float x, float y) {
