@@ -115,12 +115,12 @@ void ControlRemoto::setAncho(float ancho) {
 }
 
 void ControlRemoto::accionar() {
-	cout << "accionar" << endl;
-	for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
-	Figura* figura = (Figura*) b->GetUserData();
-	figura->explotar();
-
-	}
+//	cout << "accionar" << endl;
+//	for (b2Body* b = myWorld->GetBodyList(); b; b = b->GetNext()) {
+//	Figura* figura = (Figura*) b->GetUserData();
+//	figura->explotar();
+//
+//	}
 }
 
 void ControlRemoto::crearFisicaEstaticaTemplate() {
