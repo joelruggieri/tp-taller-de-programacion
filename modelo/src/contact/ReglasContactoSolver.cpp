@@ -15,6 +15,7 @@
 #include "../objeto/Clavo.h"
 #include "../objeto/Polea.h"
 #include "../objeto/Tijera.h"
+#include "../objeto/Monitor.h"
 using namespace std;
 
 ReglasContactoSolver::ReglasContactoSolver() {
@@ -89,6 +90,7 @@ void ReglasContactoSolver::clean() {
 	yunque = NULL;
 	tijera1 = NULL;
 	tijera2 = NULL;
+	monitor= NULL;
 }
 
 void ReglasContactoSolver::colisionar(b2Contact* contact,
@@ -114,6 +116,14 @@ void ReglasContactoSolver::colisionar(b2Contact* contact,
 	}
 	if(tijera1 && tijera1 == tijera2){
 		pendientesAccionar.push_back(tijera1);
+	}
+
+	if(monitor)
+	{
+		if(contact->GetFixtureA()->GetUserData() == monitor)
+		this->monitor->contactar((Figura*)contact->GetFixtureB()->GetUserData());
+		else
+			this->monitor->contactar((Figura*)contact->GetFixtureA()->GetUserData());
 	}
 	clean();
 
@@ -152,6 +162,10 @@ void ReglasContactoSolver::visit(ControlRemoto*) {
 }
 
 void ReglasContactoSolver::visit(Bomba*) {
+}
+
+void ReglasContactoSolver::visit(Monitor* m) {
+monitor= m;
 }
 
 void ReglasContactoSolver::PreSolve(b2Contact* contact,

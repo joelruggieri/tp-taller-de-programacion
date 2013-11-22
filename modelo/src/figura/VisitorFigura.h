@@ -26,6 +26,7 @@ class Polea;
 class Tijera;
 class ControlRemoto;
 class Bomba;
+class Monitor;
 class VisitorFigura {
 public:
 	virtual ~VisitorFigura() {

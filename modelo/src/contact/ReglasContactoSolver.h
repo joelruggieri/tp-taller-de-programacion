@@ -21,6 +21,7 @@ private:
 	Yunque* yunque;
 	Tijera * tijera1;
 	Tijera * tijera2;
+	Monitor* monitor;
 	void clean();
 	void colisionar(b2Contact * 	contact,
 			const b2Manifold * 	oldManifold);
@@ -44,6 +45,7 @@ public:
 	void visit(Polea*);
 	void visit(ControlRemoto*);
 	void visit(Bomba*);
+	void visit(Monitor*);
 	void procesarContacto(CintaTransportadora * c, Figura *,b2Contact* contact, const b2Manifold* oldManifold);
 	void procesarContacto(GloboHelio * c, Clavo *,b2Contact* contact, const b2Manifold* oldManifold);
 	ReglasContactoSolver();
