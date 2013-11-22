@@ -18,10 +18,10 @@ PelotaJuegoView::~PelotaJuegoView() {
 }
 
 void PelotaJuegoView::dibujarse(SDL_Renderer* renderer){
-//	CargadorDeSonidos* cargador = CargadorDeSonidos::Instance();
+	CargadorDeSonidos* cargador = CargadorDeSonidos::Instance();
 	if(this->getIdEventoSonido() == ID_SONIDO_PELOTA){
-		//Mix_Chunk* sonido = cargador->getSonido(ID_SONIDO_PELOTA);
-		if(!sonido)	sonido = Mix_LoadWAV(PATH_SONIDO_PELOTA);
+		Mix_Chunk* sonido = cargador->getSonido(ID_SONIDO_PELOTA);
+		//if(!sonido)	sonido = Mix_LoadWAV(PATH_SONIDO_PELOTA);
 		if (sonido == NULL){
 			std::cout << "conchudo" << endl;
 		}
