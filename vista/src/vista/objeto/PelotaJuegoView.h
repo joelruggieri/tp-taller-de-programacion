@@ -12,10 +12,13 @@
 namespace CLIENTE {
 
 class PelotaJuegoView : public ObjetoView {
+private:
+	typedef FiguraView super;
 public:
-	PelotaJuegoView(float x, float y, float w, float h, SDL_Texture * textura);
+	PelotaJuegoView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~PelotaJuegoView();
 	void update(ViewMsj *);
+	void dibujarse(SDL_Renderer*);
 };
 }
 #endif /* PELOTAJUEGOVIEW_H_ */

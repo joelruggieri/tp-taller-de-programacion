@@ -13,7 +13,7 @@ namespace CLIENTE {
 
 class PoleaView: public ObjetoView {
 public:
-	PoleaView(float x, float y, float w, float h, SDL_Texture * textura);
+	PoleaView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~PoleaView();
 	void update(ViewMsj *);
 };

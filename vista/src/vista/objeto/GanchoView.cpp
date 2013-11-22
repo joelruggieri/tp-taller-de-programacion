@@ -9,7 +9,7 @@
 
 namespace CLIENTE {
 
-GanchoView::GanchoView(float x, float y, float w, float h, SDL_Texture * textura): ObjetoView(x, y, w, h,textura) {
+GanchoView::GanchoView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura): ObjetoView(x, y, w, h,numeroEvent,textura) {
 
 }
 

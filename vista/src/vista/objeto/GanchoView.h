@@ -13,7 +13,7 @@ namespace CLIENTE {
 
 class GanchoView: public ObjetoView {
 public:
-	GanchoView(float x, float y, float w, float h, SDL_Texture * textura);
+	GanchoView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~GanchoView();
 	void update(ViewMsj *);
 };

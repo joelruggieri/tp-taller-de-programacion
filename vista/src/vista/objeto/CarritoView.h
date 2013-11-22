@@ -19,7 +19,7 @@ private:
 	typedef ObjetoView super;
 	SDL_Texture * tRueda;
 public:
-	CarritoView(float x, float y, float w, float h, SDL_Texture * textura);
+	CarritoView(float x, float y, float w, float h,int numeroEvent, SDL_Texture * textura);
 	virtual ~CarritoView();
 	void update(ViewMsj *);
 	void resizear();

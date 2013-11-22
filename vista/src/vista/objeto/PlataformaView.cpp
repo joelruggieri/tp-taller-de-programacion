@@ -8,7 +8,7 @@
 #include "PlataformaView.h"
 
 namespace CLIENTE {
-PlataformaView::PlataformaView(float x, float y, float w, float h, SDL_Texture * textura) : ObjetoView(x,y,w,h,textura) {
+PlataformaView::PlataformaView(float x, float y, float w, float h,int numeroEvent, SDL_Texture * textura) : ObjetoView(x,y,w,h,numeroEvent,textura) {
 
 }
 

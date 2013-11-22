@@ -16,7 +16,7 @@ class BalancinView: public ObjetoView {
 private:
 	typedef ObjetoView super;
 public:
-	BalancinView(float x, float y, float w, float h, SDL_Texture * textura);
+	BalancinView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~BalancinView();
 	void update(ViewMsj *);
 	void dibujarse(SDL_Renderer *);

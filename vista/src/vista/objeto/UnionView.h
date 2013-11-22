@@ -24,7 +24,7 @@ protected:
 	void dibujarseCirculoEstatico(SDL_Renderer* ren);
 	void dibujarse(SDL_Renderer * ren,Uint8 r,Uint8 g,Uint8 b);
 public:
-	UnionView(float xDesde,float yDesde,float xHasta, float yHasta,float radio, SDL_Texture * textura);
+	UnionView(float xDesde,float yDesde,float xHasta, float yHasta,float radio,int numeroEvent,SDL_Texture * textura);
 	virtual ~UnionView();
 	void update(ViewMsj *);
 	void resizear();

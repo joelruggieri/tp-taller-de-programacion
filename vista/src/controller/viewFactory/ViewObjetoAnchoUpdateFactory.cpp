@@ -11,16 +11,16 @@ namespace CLIENTE {
 
 View* ViewObjetoAnchoUpdateFactory::crearEngranaje(
 		ViewObjetoConAnchoUpdateMsj* o) {
-	return new VistaEngranaje(o->getX(), o->getY(), o->getAncho(), o->getAncho(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_ENGRANAJE));
+	return new VistaEngranaje(o->getX(), o->getY(), o->getAncho(), o->getAncho(),o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_ENGRANAJE));
 	 }
 
 View* ViewObjetoAnchoUpdateFactory::crearPlataforma(
 		ViewObjetoConAnchoUpdateMsj* o) {
-	return new PlataformaView(o->getX(), o->getY(), o->getAncho(), ALTO_PLATAFORMA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_PLATAFORMA));
+	return new PlataformaView(o->getX(), o->getY(), o->getAncho(),o->getIdEvento(), ALTO_PLATAFORMA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_PLATAFORMA));
 }
 
 View* ViewObjetoAnchoUpdateFactory::crearCinta(ViewObjetoConAnchoUpdateMsj* o ) {
-	View* v = new CintaTransportadoraView(o->getX(), o->getY(), o->getAncho(), ALTO_CINTA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CINTA_PLATAF));
+	View* v = new CintaTransportadoraView(o->getX(), o->getY(), o->getAncho(),o->getIdEvento(), ALTO_CINTA,CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CINTA_PLATAF));
 	v->update(o);
 	return v;
 }

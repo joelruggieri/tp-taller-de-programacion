@@ -9,8 +9,8 @@
 #include <cmath>
 #define PI 3.14159265
 namespace CLIENTE {
-CorreaView::CorreaView(float xDesde, float yDesde, float xHasta, float yHasta, float radioi, float radiof, SDL_Texture * textura) :
-		UnionView(xDesde, yDesde, xHasta, yHasta, RADIO_CORREA_ESTATICA, textura) {
+CorreaView::CorreaView(float xDesde, float yDesde, float xHasta, float yHasta, float radioi, float radiof,int numeroEvent,SDL_Texture * textura) :
+		UnionView(xDesde, yDesde, xHasta, yHasta, RADIO_CORREA_ESTATICA,numeroEvent,textura) {
 
 	//todo inicializar todo en cero.
 	//v1xp, v1yp,v2xp,v2yp;

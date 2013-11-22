@@ -32,7 +32,7 @@ void FiguraView::drop() {
 FiguraView::FiguraView(float x, float y,DropController * controller ): View(x,y) {
 	this->modelo = NULL;
 	this->controller = controller;
-	this->numeroEvento = 0;
+	this->numeroEvento = VALOR_DESACTIVAR_SONIDO;
 }
 
 FiguraView::~FiguraView(){

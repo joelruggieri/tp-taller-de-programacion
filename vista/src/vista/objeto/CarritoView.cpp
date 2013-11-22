@@ -8,8 +8,8 @@
 #include "CarritoView.h"
 #include <src/mensajes/viewMensaje/ViewCarritoMsj.h>
 #include "../CargadorDeTextures.h"
-CLIENTE::CarritoView::CarritoView(float x, float y, float w, float h,
-		SDL_Texture* textura): ObjetoView(x, y, w, h,textura) {
+CLIENTE::CarritoView::CarritoView(float x, float y, float w, float h,int numeroEvent,
+		SDL_Texture* textura): ObjetoView(x, y, w, h,numeroEvent,textura) {
 	tRueda = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_RUEDAS);
 }
 

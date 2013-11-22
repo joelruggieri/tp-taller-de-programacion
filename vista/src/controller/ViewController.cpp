@@ -10,6 +10,7 @@
 #include "../vista/LayerDibujablesComparator.h"
 #include "../ConstantesVista.h"
 #include "../vista/CargadorDeTextures.h"
+#include "../vista/CargadorDeSonidos.h"
 #include "../vista/Canvas.h"
 #include "../vista/ViewConBorde.h"
 #include "../vista/BotonSwitch.h"
@@ -109,6 +110,17 @@ void ViewController::crearPantalla() {
 	cargador->cargarTexture(PATH_VISTA_CARRITO_CUERPO);
 	SDL_Texture * text = CargadorDeTextures::Instance()->cargarTexture(
 	PATH_ZONA_CREACION);
+	CargadorDeSonidos * cargadorSonidos = CargadorDeSonidos::Instance();
+	cargadorSonidos->cargarSonido(ID_SONIDO_PELOTA,PATH_SONIDO_PELOTA);
+	cargadorSonidos->cargarSonido(ID_SONIDO_BOLA,PATH_SONIDO_BOLA);
+	cargadorSonidos->cargarSonido(ID_SONIDO_BOMBA_CONTACTO,PATH_SONIDO_BOMBA_CONTACTO);
+	cargadorSonidos->cargarSonido(ID_SONIDO_BOMBA_EXPLOSION,PATH_SONIDO_BOMBA_EXPLOSION);
+	cargadorSonidos->cargarSonido(ID_SONIDO_CINTA,PATH_SONIDO_CINTA);
+	cargadorSonidos->cargarSonido(ID_SONIDO_GLOBO,PATH_SONIDO_GLOBO);
+	cargadorSonidos->cargarSonido(ID_SONIDO_MOTOR,PATH_SONIDO_MOTOR);
+	cargadorSonidos->cargarSonido(ID_SONIDO_SOGA,PATH_SONIDO_SOGA);
+	cargadorSonidos->cargarSonido(ID_SONIDO_SUBIBAJA,PATH_SONIDO_SUBIBAJA);
+	cargadorSonidos->cargarSonido(ID_SONIDO_YUNKE,PATH_SONIDO_YUNKE);
 	View * view = new Canvas(60, -10, 120, 20, LAYER_CANVAS_RELLENO, text);
 	addViewPrivado(ID_CANVAS_RELLENO, view);
 	view = new ViewConBorde(60, -10, 120, 20);
@@ -294,7 +306,7 @@ void ViewController::visit(ViewCarritoMsj* m) {
 	lock();
 	if (!update(m)) {
 		SDL_Texture * t= CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CARRITO_CUERPO);
-		View * v = new CarritoView(0,0,ANCHO_CARRITO,ALTO_CARRITO,t);
+		View * v = new CarritoView(0,0,ANCHO_CARRITO,ALTO_CARRITO,m->getIdEvento(),t);
 		v->update(m);
 		addViewPrivado(m->getId(), v);
 	}
@@ -309,7 +321,7 @@ void ViewController::visit(ViewTijeraMsj*m) {
 	if (!update(m)) {
 		SDL_Texture * t= CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_TIJERA1);
 		SDL_Texture * t2= CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_TIJERA2);
-		View * v = new TijeraView(0,0,ANCHO_TIJERA,ALTO_TIJERA,t,t2);
+		View * v = new TijeraView(0,0,ANCHO_TIJERA,ALTO_TIJERA,m->getIdEvento(),t,t2);
 		v->update(m);
 		addViewPrivado(m->getId(), v);
 	}

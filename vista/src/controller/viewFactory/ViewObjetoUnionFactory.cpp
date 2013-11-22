@@ -29,7 +29,7 @@ return viewResult;
 }
 
 View* ViewObjetoUnionFactory::crearSoga(ViewObjetoUnionUpdateMsj* o) {
-	SogaView * v = new SogaView(o->getX(), o->getY(),o->getXHasta(),o->getYHasta(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CUERDA));
+	SogaView * v = new SogaView(o->getX(), o->getY(),o->getXHasta(),o->getYHasta(),o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CUERDA));
 	v->update(o);
 	if(o->isConEslabon()){
 		v->setPosEslabonL(o->getXEslb(), o->getYEslb());
@@ -40,7 +40,7 @@ View* ViewObjetoUnionFactory::crearSoga(ViewObjetoUnionUpdateMsj* o) {
 
 
 View* ViewObjetoUnionFactory::crearCorrea(ViewObjetoUnionUpdateMsj* o) {
-	return new CorreaView(o->getX(), o->getY(),o->getXHasta(),o->getYHasta(), o->getRadioInicial(), o->getRadioFinal(), CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CORREA));
+	return new CorreaView(o->getX(), o->getY(),o->getXHasta(),o->getYHasta(), o->getRadioInicial(), o->getRadioFinal(),o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CORREA));
 }
 
 

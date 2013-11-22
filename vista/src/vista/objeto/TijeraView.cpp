@@ -9,7 +9,7 @@
 #include "../CargadorDeTextures.h"
 namespace CLIENTE {
 
-TijeraView::TijeraView(float x, float y, float w, float h, SDL_Texture* textura1, SDL_Texture* textura2): ObjetoView(x, y, w, h,textura1) {
+TijeraView::TijeraView(float x, float y, float w, float h,int numeroEvent,SDL_Texture* textura1, SDL_Texture* textura2): ObjetoView(x, y, w, h,numeroEvent,textura1) {
 	t2 = textura2;
 }
 

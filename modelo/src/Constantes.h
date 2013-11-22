@@ -76,5 +76,9 @@
 //#define
 //#define
 
+//VALORES DE PARA ACTIVAR SONIDO
+#define VALOR_ACTIVAR_SONIDO_DEFECTO 1
+#define VALOR_DESACTIVAR_SONIDO 0
+
 
 #endif /* CONSTANTES_H_ */

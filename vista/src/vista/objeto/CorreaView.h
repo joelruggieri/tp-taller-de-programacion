@@ -20,7 +20,7 @@ private:
 	typedef UnionView super;
 	SDL_Color color;
 public:
-	CorreaView(float xDesde, float yDesde,float xHasta, float yHasta, float radioi, float radiof, SDL_Texture * textura);
+	CorreaView(float xDesde, float yDesde,float xHasta, float yHasta, float radioi, float radiof,int numeroEvent,SDL_Texture * textura);
 	virtual ~CorreaView();
 	void dibujarse(SDL_Renderer*);
 	void update();
