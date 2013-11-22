@@ -7,8 +7,8 @@
 
 #ifndef OBJETIVO_H_
 #define OBJETIVO_H_
-
-class Objetivo {
+#include "../observer/ObserverModelo.h"
+class Objetivo : public ObserverModelo {
 public:
 	Objetivo(float x, float y, int numero);
 	virtual ~Objetivo();

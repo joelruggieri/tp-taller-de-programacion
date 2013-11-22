@@ -53,7 +53,5 @@ void Monitor::contactar(Figura* f) {
 	if (this->figuraEsperada == f) {
 		//Esto llama a los observers y les pasa el evento ACCIONADO en la implementacion de la madre.
 		accionar();
-		//Entrega3 para completar esto lo que hay q hacer es que el objetivo se registre como observer de este monitor, y si el evento es accionado
-		//Entonces pase a estado gando. Podes verlo en ZonaTablero del server como se usa.
 	}
 }
