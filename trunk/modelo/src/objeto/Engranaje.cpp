@@ -7,7 +7,7 @@
 
 #include "Engranaje.h"
 #include "../Constantes.h"
-#include <iostream>
+#include "Densidades.h"
 using namespace std;
 
 //TODO DELETEAR EL GEAR JOINT ANTES DE SACAR CADA ENGRANAJE.
@@ -32,7 +32,7 @@ void Engranaje::crearFisica() {
 	b2CircleShape shapeCuerpo;
 	shapeCuerpo.m_radius = this->radio;
 	b2FixtureDef fixture;
-	fixture.density = 1.00f;
+	fixture.density = DENSIDAD_ENGRANAJE;
 	fixture.shape = &shapeCuerpo;
 	fixture.friction = 0.9f;
 	fixture.restitution = 0.00f;
@@ -58,7 +58,7 @@ void Engranaje::crearFisica() {
 	b2FixtureDef fixtureAccion;
 	fixtureAccion.filter.categoryBits = CATEGORIA_RANGO_ENGRANAJE;
 	fixtureAccion.filter.maskBits = CATEGORIA_RANGO_ENGRANAJE;
-	fixtureAccion.density = 1.00f;
+	fixtureAccion.density = DENSIDAD_ENGRANAJE;
 	fixtureAccion.shape = &shapeAccion;
 	fixtureAccion.friction = 0.01f;
 	fixtureAccion.restitution = 0.00f;

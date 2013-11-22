@@ -8,6 +8,7 @@
 #include "Aspa.h"
 #include <math.h>
 #include "../Constantes.h"
+#include "Densidades.h"
 #define DEGTORAD 0.0174532925199432957f
 Aspa::Aspa() :
 		Objeto() {
@@ -174,7 +175,7 @@ void Aspa::crearShapes() {
 	shapeMango.Set(vertices, 4);
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;
-	fixture.density = 10.00f;
+	fixture.density = DENSIDAD_ASPA;
 	fixture.shape = &shapeMango;
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
@@ -234,7 +235,7 @@ void Aspa::crearSwitch() {
 	polygon.m_radius = (alto / 4.0);
 	fixture.filter.categoryBits = CATEGORIA_SWITCH_TIJERA;
 	fixture.filter.maskBits = CATEGORIA_SWITCH_TIJERA;
-	fixture.density = 10.00f;
+	fixture.density = DENSIDAD_ASPA;
 	fixture.shape = &polygon;
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;

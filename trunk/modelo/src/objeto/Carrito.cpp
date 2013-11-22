@@ -7,9 +7,7 @@
 
 #include "Carrito.h"
 #include "../Constantes.h"
-#include <iostream>
-using namespace std;
-
+#include "Densidades.h"
 Carrito::Carrito(): Objeto(){
 	ancho = 0;
 	alto = 0;
@@ -74,9 +72,9 @@ void Carrito::crearFisica(){
 	polygon->SetAsBox(this->ancho / 2, this->alto / 2);
 
 	b2FixtureDef fixture;
-	fixture.density = 15.00f;
+	fixture.density = DENSIDAD_CARRITO_PLATAFORMA;
 	fixture.shape = polygon;
-	fixture.friction = 20.0f;
+	fixture.friction = 1.0f;
 	fixture.restitution = 0.00f;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;
@@ -100,7 +98,7 @@ void Carrito::crearFisica(){
 	fd.filter.categoryBits = CATEGORIA_FIGURAS;
 	fd.filter.maskBits = CATEGORIA_FIGURAS;
 	fd.shape = circle;
-	fd.density = 10.0f;
+	fd.density = DENSIDAD_CARRITO_RUEDA;
 	fd.friction = 10.0f;
 	bd.position =body->GetWorldPoint(b2Vec2(-ancho/4, -alto/2.0));
 	bd.type = b2_dynamicBody;
@@ -231,7 +229,6 @@ void Carrito::setPosicion(float x, float y) {
 	rotado = b2Mul(rotacion, pos);
 	yd= rotado.y +y ;
 	xd= rotado.x +x;
-	cout<< "xd " << xd << endl;
 }
 
 void Carrito::setRotacion(double rotation) {

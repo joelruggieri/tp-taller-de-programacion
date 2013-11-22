@@ -13,6 +13,7 @@
 #include <cmath>
 #include "../figura/Registro.h"
 #include "../Constantes.h"
+#include "Densidades.h"
 Balancin::Balancin(): Objeto() {
 	alto = 0;
 	ancho = 0;
@@ -82,7 +83,7 @@ void Balancin::crearFisica(){
 	b2FixtureDef fixture;
 	fixture.filter.categoryBits = CATEGORIA_FIGURAS;
 	fixture.filter.maskBits = CATEGORIA_FIGURAS;
-	fixture.density = 50.00f;
+	fixture.density = DENSIDAD_BALANCIN;
 	fixture.shape = polygon;
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
@@ -100,7 +101,7 @@ void Balancin::crearFisica(){
 	b2RevoluteJointDef rjd;
 	rjd.Initialize(ground,body,centro);
 	rjd.collideConnected = true;
-
+	rjd.maxMotorTorque= 20000;
 	if(this->getRotacion() == 0){
 		rjd.lowerAngle = -0.25f * b2_pi;
 		rjd.upperAngle = 0.25f * b2_pi;

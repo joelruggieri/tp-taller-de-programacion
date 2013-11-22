@@ -8,7 +8,7 @@
 #include "Bomba.h"
 #include "../Constantes.h"
 #include "../interaccion/ValidadorEnArea.h"
-#include <iostream>
+#include "Densidades.h"
 Bomba::Bomba() {
 this->radio = 0;
 }
@@ -41,7 +41,7 @@ void Bomba::crearFisica() {
 		bodyPelota.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyPelota.filter.maskBits = CATEGORIA_FIGURAS;
 		bodyPelota.shape = &shapeCircle;
-		bodyPelota.density = 1.0f;
+		bodyPelota.density = DENSIDAD_BOMBA;
 		bodyPelota.friction = 0.3f;
 		bodyPelota.restitution = 0.6f;	//mucho coeficiente de restitucion
 		body->CreateFixture(&bodyPelota)->SetUserData(this);

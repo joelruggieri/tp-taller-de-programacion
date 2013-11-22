@@ -7,7 +7,7 @@
 
 #include "Soga.h"
 #include <cfloat>
-#include  <iostream>
+#include "Densidades.h"
 Soga::Soga(float x, float y) :
 		Union(x, y, 1.5) {
 	joint2 = NULL;
@@ -83,7 +83,7 @@ void Soga::crearLazo(b2World* w) {
 		bodyBolaBoliche.filter.maskBits = CATEGORIA_ESLABON;
 		bodyBolaBoliche.shape = &shapeCircle;
 		//ENTREGA3 CUANDO FUNCIONE LA POLEA VER ESTO PARA EL GLOBO.
-		bodyBolaBoliche.density = 50.0f;
+		bodyBolaBoliche.density = DENSIDAD_ESLABON_SOGA;
 		eslabon->CreateFixture(&bodyBolaBoliche)->SetUserData(this);
 
 		//y ahora hago las uniones.

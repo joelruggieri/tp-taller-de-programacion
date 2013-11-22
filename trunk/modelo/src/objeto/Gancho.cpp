@@ -7,6 +7,7 @@
 
 #include "Gancho.h"
 #include "../Constantes.h"
+#include "Densidades.h"
 Gancho::Gancho(): Objeto() {
 	this->radio = 0;
 }
@@ -47,6 +48,7 @@ void Gancho::crearFisica(){
 	bodyGancho.shape = &shapeCircle;
 	bodyGancho.filter.categoryBits = CATEGORIA_FIGURAS;
 	bodyGancho.filter.maskBits = CATEGORIA_FIGURAS;
+	bodyGancho.density=DENSIDAD_GANCHO;
 	body->CreateFixture(&bodyGancho)->SetUserData(this);
 	body->SetUserData(this);
 	this->setBody(body);

@@ -7,6 +7,7 @@
 
 #include "BolaBoliche.h"
 #include "../Constantes.h"
+#include "Densidades.h"
 BolaBoliche::BolaBoliche(float x, float y, float radio) :
 		Objeto(x, y) {
 //this->x = x ;
@@ -34,7 +35,7 @@ void BolaBoliche::crearFisica() {
 	bodyBolaBoliche.filter.categoryBits = CATEGORIA_FIGURAS;
 		bodyBolaBoliche.filter.maskBits = CATEGORIA_FIGURAS;
 	bodyBolaBoliche.shape = &shapeCircle;
-	bodyBolaBoliche.density = 10.0f;
+	bodyBolaBoliche.density = DENSIDAD_BOLA;
 	bodyBolaBoliche.friction = 0.3f;
 	bodyBolaBoliche.restitution = 0.05;	//poco coeficiente de restitucion
 	body->CreateFixture(&bodyBolaBoliche)->SetUserData(this);

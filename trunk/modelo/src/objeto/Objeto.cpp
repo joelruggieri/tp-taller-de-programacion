@@ -6,7 +6,7 @@
  */
 
 #include "Objeto.h"
-
+#include "Densidades.h"
 Objeto::Objeto(): Figura(){
 
 }

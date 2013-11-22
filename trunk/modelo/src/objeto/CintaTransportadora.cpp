@@ -9,7 +9,7 @@
 #include "CintaTransportadora.h"
 #include "../Constantes.h"
 #include <Box2D/Box2D.h>
-
+#include "Densidades.h"
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
 
@@ -37,7 +37,7 @@ void CintaTransportadora::crearFisica() {
 	b2MassData masa;
 	polygon->SetAsBox(this->ancho / 2, this->alto / 2);
 	b2FixtureDef fixture;
-	fixture.density = 50.00f;
+	fixture.density = DENSIDAD_CINTA_TRANSP;
 	fixture.shape = polygon;
 	fixture.friction = 0.01f;
 	fixture.restitution = 0.00f;
