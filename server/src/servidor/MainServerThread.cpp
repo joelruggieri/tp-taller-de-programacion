@@ -54,7 +54,8 @@ void MainServerThread::run() {
 	serv_addr.sin_addr.s_addr = INADDR_ANY;
 	serv_addr.sin_port = htons(puerto);
 	memset(&(serv_addr.sin_zero), '\0', 8);
-
+	int optval = 1 ;
+	setsockopt(fd1,SOL_SOCKET,SO_REUSEADDR,&optval,sizeof(int));
 	/* Now bind the host address using bind() call.*/
 	if (bind(fd1, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
 		perror("ERROR on binding");
