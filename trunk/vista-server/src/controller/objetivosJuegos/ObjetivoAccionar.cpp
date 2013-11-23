@@ -7,7 +7,7 @@
 
 #include "ObjetivoAccionar.h"
 
-ObjetivoAccionar::ObjetivoAccionar(float x, float y, float numObj) : Objetivo(x,y,numObj) {
+ObjetivoAccionar::ObjetivoAccionar() : ObjetivoJuego() {
 
 }
 

@@ -7,11 +7,17 @@
 
 #ifndef OBJETIVO_H_
 #define OBJETIVO_H_
-#include "../observer/ObserverModelo.h"
-class Objetivo : public ObserverModelo {
+class Objetivo  {
 public:
 	Objetivo(float x, float y, int numero);
 	virtual ~Objetivo();
+	int getNumeroObjetivo() const;
+	void setNumeroObjetivo(int numeroObjetivo);
+	float getXD() const;
+	void setXD(float d);
+	float getYD() const;
+	void setYD(float d);
+
 protected:
 	int numeroObjetivo;
 	float xD,yD;

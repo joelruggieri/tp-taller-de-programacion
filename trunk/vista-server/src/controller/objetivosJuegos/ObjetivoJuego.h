@@ -9,12 +9,16 @@
 #define OBJETIVOJUEGO_H_
 #include "src/Objetivos/Objetivo.h"
 #include "src/figura/Figura.h"
-class ObjetivoJuego {
+#include "src/observer/ObserverModelo.h"
+class ObjetivoJuego : public ObserverModelo{
 public:
 	ObjetivoJuego();
 	virtual ~ObjetivoJuego();
-	void setConfig(Objetivo &);
-	void crearFiguras(std::list<Figura*>&);
+	 virtual void setConfig(Objetivo &);
+	virtual void crearFiguras(std::list<Figura*>&);
+protected:
+	float xD,yD;
+	int estado;
 };
 
 #endif /* OBJETIVOJUEGO_H_ */

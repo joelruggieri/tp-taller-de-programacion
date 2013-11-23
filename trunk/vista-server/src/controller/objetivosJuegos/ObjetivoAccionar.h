@@ -7,11 +7,13 @@
 
 #ifndef OBJETIVOACCIONAR_H_
 #define OBJETIVOACCIONAR_H_
-#include "Objetivo.h"
-class ObjetivoAccionar : public Objetivo{
+#include "ObjetivoJuego.h"
+class ObjetivoAccionar : public ObjetivoJuego{
 public:
-	ObjetivoAccionar(float x, float y, float numObj);
+	ObjetivoAccionar();
 	virtual ~ObjetivoAccionar();
+	  void setConfig(Objetivo &);
+	 void crearFiguras(std::list<Figura*>&);
 };
 
 #endif /* OBJETIVOACCIONAR_H_ */
