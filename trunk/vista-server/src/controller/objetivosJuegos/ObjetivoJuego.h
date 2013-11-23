@@ -10,6 +10,7 @@
 #include "src/Objetivos/Objetivo.h"
 #include "src/figura/Figura.h"
 #include "src/observer/ObserverModelo.h"
+enum ESTADOS { GANADO, PERDIDO , NOTERMINADO };
 class ObjetivoJuego : public ObserverModelo{
 public:
 	ObjetivoJuego();

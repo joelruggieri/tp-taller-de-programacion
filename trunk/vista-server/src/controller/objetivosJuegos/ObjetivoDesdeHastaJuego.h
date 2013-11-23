@@ -10,7 +10,7 @@
 #include "ObjetivoJuego.h"
 #include "src/figura/Figura.h"
 #include "src/Objetivos/ObjetivoDesdeHasta.h"
-enum ESTADOS { GANADO, PERDIDO , NOTERMINADO };
+
 class ObjetivoDesdeHastaJuego : public ObjetivoJuego {
 public:
 	ObjetivoDesdeHastaJuego();
