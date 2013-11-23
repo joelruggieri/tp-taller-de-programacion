@@ -22,6 +22,7 @@ private:
 	ColaEventos * salida;
 	int angulo;
 	PlataformaView * plat;
+	bool ganado;
 public:
 	DrawController(ColaEventos * salida);
 	virtual ~DrawController();
@@ -29,6 +30,7 @@ public:
 	void removeJugador(JuegoEventsController *);
 	void setTablero(ZonaTablero *);
 	void dibujar();
+	void pasarAGanado();
 
 };
 

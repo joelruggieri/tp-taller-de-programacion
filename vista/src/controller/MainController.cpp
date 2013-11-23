@@ -100,7 +100,8 @@ int MainController::run(list<string> & factories) {
 
 	}
 	receptor.cancel();
-	sleep(1);
+	viewController->dibujar();
+	sleep(5);
 	SDL_RemoveTimer(timerID);
 	SDL_DestroyRenderer(render);
 	SDL_DestroyWindow(ventana);

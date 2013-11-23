@@ -8,7 +8,9 @@
 #include "ObjetivoJuego.h"
 
 ObjetivoJuego::ObjetivoJuego() {
-	// TODO Auto-generated constructor stub
+	cumplido = false;
+	xD=0;
+	yD=0;
 
 }
 
@@ -16,7 +18,21 @@ ObjetivoJuego::~ObjetivoJuego() {
 	// TODO Auto-generated destructor stub
 }
 
+bool ObjetivoJuego::isCumplido() {
+	lock();
+	bool c = cumplido;
+	unlock();
+	return c;
+}
+
+void ObjetivoJuego::cumplir() {
+	lock();
+	cumplido=true;
+	unlock();
+}
+
 void ObjetivoJuego::setConfig(Objetivo& o) {
 	this->xD = o.getXD();
 	this->yD = o.getYD();
 }
+

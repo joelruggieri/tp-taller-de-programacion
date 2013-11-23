@@ -24,9 +24,6 @@ using namespace std;
 //#define PUERTO 6006
 #define PUERTO 6000
 MainServerThread::MainServerThread(const char* nivel) {
-	PersistenciaManager bbdd;
-	//n = bbdd.getNivel();
-	//bbdd.liberarNivel();*/
 	NivelDAO* dao = new NivelDAO();
 	n = dao->leerNivel(nivel);
 
@@ -91,10 +88,11 @@ void MainServerThread::run() {
 
 
 		}
-		log.info("Nuevo cliente conectado");
-		log.info("Nueva partida creada");
+		log.info("Cliente conectado");
+		log.info("Partida creada");
 		Partida partida(this->n, fd1);
 		partida.run(fd2);
+		log.info("Partida Finalizada");
 	}
 
 }

@@ -50,6 +50,7 @@ public:
 	virtual void visit(Tijera*) =0;
 	virtual void visit(ControlRemoto*)=0;
 	virtual void visit(Bomba*)=0;
+	virtual void visit(Monitor*) = 0;
 };
 
 #endif /* VISITORFIGURA_H_ */

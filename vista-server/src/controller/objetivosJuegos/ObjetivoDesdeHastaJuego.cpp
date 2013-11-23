@@ -9,10 +9,8 @@
 #include "src/Constantes.h"
 #include "src/objeto/PelotaJuego.h"
 #include "src/objeto/Monitor.h"
-ObjetivoDesdeHastaJuego::ObjetivoDesdeHastaJuego() : ObjetivoJuego() {
-//this->xH = xH;
-//this->yH = yH;
-estado = NOTERMINADO;
+ObjetivoDesdeHastaJuego::ObjetivoDesdeHastaJuego() :
+		ObjetivoJuego() {
 }
 
 ObjetivoDesdeHastaJuego::~ObjetivoDesdeHastaJuego() {
@@ -20,27 +18,22 @@ ObjetivoDesdeHastaJuego::~ObjetivoDesdeHastaJuego() {
 
 void ObjetivoDesdeHastaJuego::crearFiguras(std::list<Figura*>& l) {
 	//ACA VA A DEPENDER EL OBJETO DEL NUMERO DE OBJETIVO ??
-	PelotaJuego* p = new PelotaJuego(xD,yD,RADIO_PELOTA);
+	PelotaJuego* p = new PelotaJuego(xD, yD, RADIO_PELOTA);
 	l.push_back(p);
-	Monitor* m = new Monitor(xH,yH,ANCHO_MONITOR,ALTO_MONITOR);
+	Monitor* m = new Monitor(xH, yH, ANCHO_MONITOR, ALTO_MONITOR);
 	m->setFiguraEsperada(p);
 	m->addObserver(this);
 	l.push_back(m);
 }
 
 void ObjetivoDesdeHastaJuego::notifyEvent(ObservableModelo* o, Evento_type t) {
-	if (t == ACCIONADO)
-	{
-		estado = GANADO ;
-		o->removeObserver(this);
+	if (t == ACCIONADO) {
+		this->cumplir();
 	}
 }
 
 void ObjetivoDesdeHastaJuego::setConfig(Objetivo& o) {
 	super::setConfig(o);
-//	ObjetivoDesdeHasta * obj;
-
-		this->xH = ((ObjetivoDesdeHasta&)o).getXH();
-		this->yH = ((ObjetivoDesdeHasta&)o).getYH();
-//	this->
+	this->xH = ((ObjetivoDesdeHasta&) o).getXH();
+	this->yH = ((ObjetivoDesdeHasta&) o).getYH();
 }

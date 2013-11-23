@@ -49,13 +49,13 @@ public:
 	void visit(Bomba*);
 	void visit(Monitor*);
 	void procesarContacto(CintaTransportadora * c, Figura *,b2Contact* contact, const b2Manifold* oldManifold);
-//	void procesarContacto(CintaTransportadora * c, Carrito *,b2Contact* contact, const b2Manifold* oldManifold);
 	void procesarContacto(GloboHelio * c, Clavo *,b2Contact* contact, const b2Manifold* oldManifold);
 	ReglasContactoSolver();
 	virtual ~ReglasContactoSolver();
 	void finalizarAcciones();
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 	void PostSolve(b2Contact* conctac, const b2ContactImpulse*impulso);
+	void BeginContact(b2Contact* contact);
 };
 
 #endif /* REGLASCONTACTOSOLVER_H_ */

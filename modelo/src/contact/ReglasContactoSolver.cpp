@@ -196,25 +196,6 @@ void ReglasContactoSolver::PreSolve(b2Contact* contact,
 	figB->acept(this);
 	colisionar(contact, oldManifold);
 
-//
-	//check each fixture to see if surface velocity should be applied
-//	b2WorldManifold worldManifold;
-//	contact->GetWorldManifold(&worldManifold);
-//	float surfaceVelocityModifier = 0;
-
-//		b2Vec2 localNormal = fixtureA->GetBody()->GetLocalVector(worldManifold.normal);
-//		float angle = b2Atan2( localNormal.y, localNormal.x );
-//		if (segment->minAngle < angle && angle < segment->maxAngle)
-//			surfaceVelocityModifier += segment->surfaceVelocity;
-//
-//	if (ConveyorSegment* segment = (ConveyorSegment*) fixtureB->GetUserData()) {
-//		b2Vec2 localNormal = fixtureB->GetBody()->GetLocalVector(-worldManifold.normal);
-//		float angle = b2Atan2( localNormal.y, localNormal.x );
-//		if (segment->minAngle < angle && angle < segment->maxAngle)
-//			surfaceVelocityModifier += segment->surfaceVelocity;
-//	}
-//	contact->SetSurfaceVelocityModifier(-5.0);
-//	contact->SetEnabled(false);
 }
 
 void ReglasContactoSolver::PostSolve(b2Contact* contact,
@@ -236,4 +217,26 @@ void ReglasContactoSolver::PostSolve(b2Contact* contact,
 	}
 
 	}
+}
+
+void ReglasContactoSolver::BeginContact(b2Contact* contact) {
+	b2Fixture* fixtureA = contact->GetFixtureA();
+	b2Fixture* fixtureB = contact->GetFixtureB();
+	//si los shapes no tienen un user data es que no participan de los contactos custom.
+	if (fixtureA->GetUserData() == NULL || fixtureB->GetUserData() == NULL) {
+		return;
+	}
+	Figura * figA = (Figura *) fixtureA->GetUserData();
+	Figura * figB = (Figura *) fixtureB->GetUserData();
+	figA->acept(this);
+	figB->acept(this);
+	if (monitor) {
+		if (contact->GetFixtureA()->GetUserData() == monitor)
+			this->monitor->contactar(
+					(Figura*) contact->GetFixtureB()->GetUserData());
+		else
+			this->monitor->contactar(
+					(Figura*) contact->GetFixtureA()->GetUserData());
+	}
+	clean();
 }

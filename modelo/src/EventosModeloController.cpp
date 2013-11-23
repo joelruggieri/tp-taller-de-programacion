@@ -43,7 +43,6 @@ list<Figura*>& ModeloController::getFiguras() {
 
 Figura* ModeloController::pickUp(float x, float y, uint16 mascara,
 		int numeroJugador) {
-	//entrega3 un pickup q tome solo los del jugador
 	return mapa->pickUp(x, y, mascara, numeroJugador,false);
 }
 

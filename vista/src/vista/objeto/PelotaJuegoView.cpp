@@ -19,6 +19,7 @@ PelotaJuegoView::~PelotaJuegoView() {
 }
 
 void PelotaJuegoView::dibujarse(SDL_Renderer* renderer){
+//	CargadorDeSonidos* cargador = CargadorDeSonidos::Instance();
 	if(this->getIdEventoSonido() == ID_SONIDO_PELOTA){
 		std::cout<< "hola pelota" << endl;
 		//Mix_Chunk* sonido = cargador->getSonido(ID_SONIDO_PELOTA);

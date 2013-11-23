@@ -29,6 +29,7 @@
 #include "src/objeto/Polea.h"
 #include "src/objeto/ControlRemoto.h"
 #include "src/objeto/Bomba.h"
+#include "src/objeto/Monitor.h"
 #include "constructoresYAML.h"
 
 ObjetoDAO::ObjetoDAO(){
@@ -190,4 +191,7 @@ void ObjetoDAO::visit(Bomba* c) {
 
 void ObjetoDAO::guardar(Bomba* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Bombas"].push_back(*objeto);
+}
+
+void ObjetoDAO::visit(Monitor*) {
 }

@@ -20,6 +20,7 @@ public:
 	void addObserver(ObserverModelo * o);
 	void removeObserver(ObserverModelo * o);
 	void notify(Evento_type);
+	void getObservers(list<ObserverModelo*>&);
 	virtual ~ObservableModelo();
 };
 

@@ -30,8 +30,10 @@ public:
 	Figura* crearPolea(float x, float y, int numeroJugador);
 	Figura* crearControlRemoto(float x, float y, int numeroJugador);
 	Figura* crearBomba(float x, float y, int numeroJugador);
+	Figura* crearMonitor(float x, float y,float w, float h, int numeroJugador);
 	Figura* crear(ControlRemoto*);
 	Figura * crear(Gancho*);
+	Figura * crear(Monitor*);
 	Figura * crear(Plataforma*);
 	Figura * crear(Engranaje*);
 	Figura * crear(Balancin*);
