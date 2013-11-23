@@ -8,13 +8,14 @@
 #ifndef BALANCINVIEW_H_
 #define BALANCINVIEW_H_
 
-
+#include <SDL2/SDL_mixer.h>
 #include "ObjetoView.h"
 #include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 namespace CLIENTE {
 class BalancinView: public ObjetoView {
 private:
 	typedef ObjetoView super;
+	Mix_Chunk* sonido;
 public:
 	BalancinView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~BalancinView();

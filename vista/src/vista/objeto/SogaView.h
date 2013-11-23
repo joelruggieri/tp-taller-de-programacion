@@ -9,6 +9,7 @@
 #define SOGAVIEW_H_
 #include "src/mensajes/viewMensaje/ViewObjetoUnionUpdateMsj.h"
 #include "UnionView.h"
+#include <SDL2/SDL_mixer.h>
 namespace CLIENTE {
 
 class SogaView: public UnionView {
@@ -25,6 +26,7 @@ private:
 	float xEslabonl, yEslabonl;
 	int xEslabonp,xEslabonDibp , yEslabonp,yEslabonDibp, anchoEslabonP;
 	bool primerTramo, segundoTramo;
+	Mix_Chunk* sonido;
 };
 }
 #endif /* SOGAVIEW_H_ */

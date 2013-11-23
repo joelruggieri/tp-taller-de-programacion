@@ -42,6 +42,7 @@ void CintaTransportadoraView::seleccionarEventoSonido(){
 
 void CintaTransportadoraView::dibujarse(list<ViewMsj*> & lista){
 	CintaTransportadora* figura = (CintaTransportadora*) this->getModelo();
+	this->seleccionarEventoSonido();
 	ViewObjetoConAnchoUpdateMsj* viewMensaje;
 	this->seleccionarEventoSonido();
 	if(figura != NULL)
@@ -49,5 +50,6 @@ void CintaTransportadoraView::dibujarse(list<ViewMsj*> & lista){
 	else //ENTREGA3 CUANDO NO EXISTE EL MODELO, NO SE DE DONDE AGARRAR EL ANGULO, SI QUIREN LO METO EN LA VISTA.
 		viewMensaje = new ViewObjetoConAnchoUpdateMsj(this->getXCentro(),this->getYCentro(),0,this->ancho,this->getId(), this->selector,this->getNumeroEvento());
 	lista.push_back(viewMensaje);
+	this->resetearNumeroEvento();
 }
 

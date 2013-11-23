@@ -27,7 +27,7 @@ EditorNivel* YunqueView::getEditor() {
 }
 
 void YunqueView::seleccionarEventoSonido(){
-	if(this->getNumeroEvento() == 1){
+	if(this->getNumeroEvento() == VALOR_ACTIVAR_SONIDO_DEFECTO){
 		this->alertarEvento(ID_SONIDO_YUNKE);
 	}
 }
@@ -35,4 +35,5 @@ void YunqueView::seleccionarEventoSonido(){
 void YunqueView::dibujarse(list<ViewMsj*> & lista){
 	this->seleccionarEventoSonido();
 	super::dibujarse(lista);
+	this->resetearNumeroEvento();
 }

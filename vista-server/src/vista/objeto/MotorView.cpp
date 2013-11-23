@@ -41,5 +41,6 @@ void MotorView::seleccionarEventoSonido(){
 void MotorView::dibujarse(list<ViewMsj*> & lista){
 	this->seleccionarEventoSonido();
 	super::dibujarse(lista);
+	this->resetearNumeroEvento();
 }
 
