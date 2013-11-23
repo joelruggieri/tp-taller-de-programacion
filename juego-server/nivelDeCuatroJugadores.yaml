@@ -1,0 +1,112 @@
+Nivel:
+  Nombre: nivelPruebaCorrecto
+  Fondo: ""
+  NumeroMaximoDeJugadores: 0
+Objetos:
+  BolasBoliche:
+    - x: 5
+      y: 87
+    - x: 20
+      y: 20
+    - x: 20
+      y: 40
+  Balancines:
+    - x: 90
+      y: 50
+      rotacion: 0
+  Ganchos:
+    - x: 20
+      y: 60
+Jugadores:
+  - Area:
+      x: 50
+      y: 50
+      ancho: 70
+      alto: 70
+    numero: 0
+    ParametrosFactories:
+      - nombre: FBO
+        cantidad: 5
+      - nombre: FO
+        cantidad: 5
+      - nombre: FL
+        cantidad: 34
+      - nombre: FA
+        cantidad: 100
+      - nombre: FC
+        cantidad: 60
+      - nombre: FG
+        cantidad: 5
+      - nombre: FS
+        cantidad: 7
+      - nombre: FM
+        cantidad: 3
+      - nombre: FY
+        cantidad: 3
+      - nombre: FCO
+        cantidad: 3
+      - nombre: FPO
+        cantidad: 3
+      - nombre: FH
+        cantidad: 3
+  - numero: 1
+    Area:
+      x: 75
+      y: 70
+      ancho: 50
+      alto: 50
+    ParametrosFactories:
+      - nombre: FG
+        cantidad: 7
+      - nombre: FM
+        cantidad: 3
+      - nombre: FO
+        cantidad: 5
+      - nombre: FH
+        cantidad: 2
+      - nombre: FV
+        cantidad: 2
+      - nombre: FBO
+        cantidad: 2
+  - numero: 2
+    Area:
+      x: 50
+      y: 50
+      ancho: 65
+      alto: 90
+    ParametrosFactories:
+      - nombre: FO
+        cantidad: 5
+      - nombre: FC
+        cantidad: 60
+      - nombre: FG
+        cantidad: 5
+      - nombre: FS
+        cantidad: 7
+      - nombre: FV
+        cantidad: 3
+      - nombre: FY
+        cantidad: 3
+      - nombre: FT
+        cantidad: 1
+   - numero: 3
+    Area:
+      x: 50
+      y: 50
+      ancho: 65
+      alto: 90
+    ParametrosFactories:
+      - nombre: FO
+        cantidad: 5
+      - nombre: FC
+        cantidad: 60
+      - nombre: FG
+        cantidad: 5
+      - nombre: FS
+        cantidad: 7
+      - nombre: FV
+        cantidad: 3
+      - nombre: FY
+        cantidad: 3
+      - nombre: FT
+        cantidad: 1
