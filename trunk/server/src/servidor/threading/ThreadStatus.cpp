@@ -22,7 +22,6 @@ void ThreadStatus::setThread(IOThread* t) {
 }
 
 ThreadStatus::~ThreadStatus() {
-	// TODO Auto-generated destructor stub
 }
 
 int ThreadStatus::getNroJugador() {

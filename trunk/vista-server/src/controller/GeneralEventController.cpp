@@ -53,8 +53,6 @@ void GeneralEventController::visit(ClickMsj* m) {
 	if (jugador == controllers.end()) {
 		lg = "Jugador no encontrado ";
 		log.concatenar(lg, nroJugador);
-//		log.concatenar(lg, m->getX());
-//		log.concatenar(lg,m->getY());
 		log.debug(lg);
 	} else {
 		MouseEvent mouse(m->getX(), m->getY(), m->isLeft(), m->isDown(), m->isCtrl(), m->isShift());
@@ -89,6 +87,9 @@ void GeneralEventController::visit(JugadorListo * m) {
 }
 
 void GeneralEventController::visit(DrawEvent*) {
+	if(this->flowController->isGanado()){
+		drawController->pasarAGanado();
+	}
 	drawController->dibujar();
 }
 

@@ -55,6 +55,7 @@ public:
 	void visit(Soga*);
 	void visit(Yunque*);
 	void visit(Clavo*);
+	void visit(Monitor*);
 	string getErrorValidacion();
 	bool isValido();
 	void validar(Figura *);

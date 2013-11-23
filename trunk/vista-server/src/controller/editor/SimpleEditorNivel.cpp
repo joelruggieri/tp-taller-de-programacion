@@ -308,3 +308,7 @@ void SimpleEditorNivel::drag(FiguraView* figuras, float x, float y) {
 EditorNivel* SimpleEditorNivel::clone() {
 	return new SimpleEditorNivel(modeloController, tablero, figurasFactory, yMaxDrag);
 }
+
+void SimpleEditorNivel::dropNuevaFigura(MonitorView*) {
+	//no va a pasar nunca.
+}

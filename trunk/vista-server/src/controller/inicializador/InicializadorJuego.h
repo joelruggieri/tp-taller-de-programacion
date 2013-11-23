@@ -31,22 +31,22 @@
 #include "src/objeto/Clavo.h"
 #include "src/objeto/Polea.h"
 #include "src/objeto/ControlRemoto.h"
+#include "src/objeto/Bomba.h"
 #include "src/Nivel.h"
 #include "src/ModeloController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
+#include "../objetivosJuegos/ObjetivoJuego.h"
+#include "src/objeto/Monitor.h"
 using namespace std;
 
 class InicializadorJuego: public VisitorFigura {
 private:
 	ZonaTablero* tablero;
-	map<string, ViewFiguraFactory *> figuraFactory;
 	Nivel* nivel;
-	//JuegoEventsController * juegoController;
-	//GeneralEventController * eventsController;
-	//PersistenciaManager * bbdd;
+	map<string, ViewFiguraFactory *> figuraFactory;
 	ModeloController * modeloController;
 	FiguraFactory * factory;
-	//ValidadorEstatico * validador;
+	bool duplicar;
 	void agregarFigura(ViewFiguraFactory * factory, Figura * modelo);
 	void agregarUnion(ViewFiguraFactory * factory, Union * modelo);
 public:
@@ -69,8 +69,10 @@ public:
 	void visit(Clavo*);
 	void visit(Polea*);
 	void visit(ControlRemoto*);
+	void visit(Monitor*);
 	void visit(Bomba*);
-	ZonaTablero* crearTablero();
+	ZonaTablero* crearTablero(ObjetivoJuego*objetivo);
+	ObjetivoJuego * crearObjetivo();
 };
 
 #endif /* INICIALIZADORJUEGO_H_ */

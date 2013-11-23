@@ -9,6 +9,7 @@
 #define FLUJODEJUEGOCONTROLLER_H_
 #include "src/ModeloController.h"
 #include "JuegoEventsController.h"
+#include "objetivosJuegos/ObjetivoJuego.h"
 #include <map>
 #include <list>
 using namespace std;
@@ -18,11 +19,11 @@ private:
 	ModeloController * modeloController;
 	map<int, JuegoEventsController*> estados;
 	bool iniciado;
-
+	ObjetivoJuego * objetivo;
 	void actualizarEstado();
 
 public:
-	FlujoDeJuegoController(ModeloController * c);
+	FlujoDeJuegoController(ModeloController * c, ObjetivoJuego * objetivo);
 	virtual ~FlujoDeJuegoController();
 	void cambiarEstadoJugador(int, bool);
 	void addJugador(JuegoEventsController *);
@@ -30,6 +31,7 @@ public:
 	void stop();
 	void paso();
 	bool corriendo();
+	bool isGanado();
 };
 
 #endif /* FLUJODEJUEGOCONTROLLER_H_ */

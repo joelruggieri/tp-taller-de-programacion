@@ -21,6 +21,8 @@ public:
 	void acept(VisitorFigura*);
 	void setFiguraEsperada(Figura*);
 	void contactar(Figura*);
+	float getAncho();
+	float getAlto();
 };
 
 #endif /* MONITOR_H_ */

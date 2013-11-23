@@ -39,6 +39,9 @@ IOThread* Status::getThread() {
 }
 
 Status::~Status() {
+	listener->cancel();
+	delete listener;
+
 }
 
 void Status::kill() {

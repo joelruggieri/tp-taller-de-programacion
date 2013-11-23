@@ -30,3 +30,10 @@ void ObservableModelo::notify(Evento_type e) {
 		(*it)->notifyEvent(this, e);
 	}
 }
+
+void ObservableModelo::getObservers(list<ObserverModelo*>& copia) {
+	list<ObserverModelo*>::iterator it;
+	for(it=this->observers.begin(); it!= this->observers.end(); ++it){
+		copia.push_back(*it);
+	}
+}

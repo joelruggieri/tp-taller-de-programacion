@@ -13,6 +13,7 @@
 #include "../DropController.h"
 #include "../zonaDragAndDrop/ZonaTablero.h"
 #include "src/ModeloController.h"
+#include "../../vista/objeto/MonitorView.h"
 #include "../Drag.h"
 #include "../../modelo/Rotacion.h"
 
@@ -26,7 +27,6 @@ protected:
 	bool rotando;
 	ZonaTablero * tablero;
 	void cleanAndDelete();
-
 	FiguraFactory * figurasFactory;
 	Drag * elementoDrag;
 	Rotacion * rot;
@@ -45,6 +45,7 @@ public:
 	virtual void mouseMotion(float x, float y);
 	void dropNuevaFigura(PlataformaView*);
 	void dropNuevaFigura(CarritoView*);
+	void dropNuevaFigura(MonitorView*);
 	//void dropNuevaFigura(TijeraView*);
 	EditorNivel * clone();
 //

@@ -18,7 +18,7 @@ Monitor::~Monitor() {
 }
 
 bool Monitor::crearFisicaEstatica() {
-	return false;
+	return true;
 }
 
 void Monitor::crearFisica() {
@@ -33,8 +33,10 @@ void Monitor::crearFisica() {
 	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 	b2Body* body = myWorld->CreateBody(&bodyDef);
 	b2FixtureDef bodyMonitor;
-	bodyMonitor.filter.categoryBits = CATEGORIA_MONITOR;
-	bodyMonitor.filter.maskBits = CATEGORIA_MONITOR;
+
+	bodyMonitor.filter.categoryBits = CATEGORIA_FIGURAS;
+	bodyMonitor.isSensor= true;
+	bodyMonitor.filter.maskBits = CATEGORIA_FIGURAS;
 	bodyMonitor.density = 10.0f;
 	bodyMonitor.shape = &shape;
 	body->CreateFixture(&bodyMonitor)->SetUserData(this);
@@ -42,7 +44,8 @@ void Monitor::crearFisica() {
 	this->setBody(body);
 }
 
-void Monitor::acept(VisitorFigura*) {
+void Monitor::acept(VisitorFigura*v) {
+	v->visit(this);
 }
 
 void Monitor::setFiguraEsperada(Figura* f) {
@@ -54,4 +57,12 @@ void Monitor::contactar(Figura* f) {
 		//Esto llama a los observers y les pasa el evento ACCIONADO en la implementacion de la madre.
 		accionar();
 	}
+}
+
+float Monitor::getAncho() {
+	return ancho;
+}
+
+float Monitor::getAlto() {
+	return alto;
 }

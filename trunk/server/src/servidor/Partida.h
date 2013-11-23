@@ -22,6 +22,7 @@
 #include "src/controller/inicializador/JuegoControllerFactory.h"
 #include "src/controller/zonaDragAndDrop/ZonaTablero.h"
 #include "threading/RecepcionClientesThread.h"
+#include "src/controller/objetivosJuegos/ObjetivoJuego.h"
 using namespace std;
 
 class Partida {
@@ -42,8 +43,8 @@ private:
 	ModeloController * modeloController;
 	InicializadorJuego* inicializadorJuego;
 	RecepcionClientesThread* recepcionThread;
+	ObjetivoJuego * objetivo;
 	Logger log;
-//	void procesarRequest(int socketDesc, Serializador & serializador);
 	void iniciarGeneralEventController();
 public:
 	Partida(Nivel * n, int socket);

@@ -24,6 +24,7 @@
 #include "../objeto/Polea.h"
 #include "../objeto/ControlRemoto.h"
 #include "../objeto/Bomba.h"
+#include "../objeto/Monitor.h"
 #include "../Constantes.h"
 FiguraFactory::FiguraFactory() {
 
@@ -285,4 +286,22 @@ Figura* FiguraFactory::crear(Bomba* c) {
 		t->setRotacion(c->getRotacion());
 		t->setReg(c->getReg());
 		return t;
+}
+Figura* FiguraFactory::crear(Monitor* c) {
+	Figura* y = this->crearMonitor(c->getX(), c->getY(),c->getAncho(),c->getAlto(), c->getNumeroJugador());
+	y->setRotacion(c->getRotacion());
+	y->setReg(c->getReg());
+	list<ObserverModelo*> obs;
+	c->getObservers(obs);
+	list<ObserverModelo*>::iterator it;
+	for(it=obs.begin(); it!= obs.end(); ++it){
+		y->addObserver(*it);
+	}
+	return y;
+}
+
+Figura* FiguraFactory::crearMonitor(float x, float y,float w, float h, int numeroJugador) {
+	Figura* figura = new Monitor(x, y, w,h);
+		figura->setNumeroJugador(numeroJugador);
+		return figura;
 }
