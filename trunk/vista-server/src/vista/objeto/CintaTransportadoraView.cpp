@@ -34,15 +34,10 @@ EditorNivel* CintaTransportadoraView::getEditor() {
 	return editor;
 }
 
-void CintaTransportadoraView::seleccionarEventoSonido(){
-	if(this->getNumeroEvento() == 1){
-		this->alertarEvento(ID_SONIDO_CINTA);
-	}
-}
+
 
 void CintaTransportadoraView::dibujarse(list<ViewMsj*> & lista){
 	CintaTransportadora* figura = (CintaTransportadora*) this->getModelo();
-	this->seleccionarEventoSonido();
 	ViewObjetoConAnchoUpdateMsj* viewMensaje;
 	this->seleccionarEventoSonido();
 	if(figura != NULL)

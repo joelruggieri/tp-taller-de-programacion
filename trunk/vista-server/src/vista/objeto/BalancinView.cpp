@@ -29,15 +29,5 @@ BalancinView::~BalancinView() {
 	// TODO Auto-generated destructor stub
 }
 
-void BalancinView::seleccionarEventoSonido(){
-	if(this->getNumeroEvento() == 1){
-		this->alertarEvento(ID_SONIDO_SUBIBAJA);
-	}
-}
 
-void BalancinView::dibujarse(list<ViewMsj*> & lista){
-	this->seleccionarEventoSonido();
-	super::dibujarse(lista);
-	this->resetearNumeroEvento();
 
-}

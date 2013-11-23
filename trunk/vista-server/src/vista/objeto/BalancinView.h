@@ -19,8 +19,6 @@ public:
 	virtual ~BalancinView();
 	void dropTemplate();
 	EditorNivel * getEditor();
-	void seleccionarEventoSonido();
-	void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* BALANCINVIEW_H_ */

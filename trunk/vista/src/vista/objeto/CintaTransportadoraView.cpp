@@ -21,7 +21,6 @@ CintaTransportadoraView::CintaTransportadoraView(float x, float y, float w,
 		ObjetoView(x, y, w, h, LAYER_CINTA,numeroEvent,textura) {
 	rueda = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_ENGRANAJE);
 	altocintal = 1;
-	sonido = CargadorDeSonidos::Instance()->getSonido(ID_SONIDO_CINTA);
 }
 
 CintaTransportadoraView::~CintaTransportadoraView() {
@@ -29,14 +28,6 @@ CintaTransportadoraView::~CintaTransportadoraView() {
 }
 
 void CintaTransportadoraView::dibujarse(SDL_Renderer*r) {
-	if(this->getIdEventoSonido() == ID_SONIDO_CINTA){
-		if (sonido == NULL){
-			Logger log;
-			log.error("no se puede reproducir el sonido de la cinta");
-		}
-		Mix_PlayChannel(-1,sonido,0);
-	}
-	this->idEventoSonido = 0;
 	SDL_Rect dest;
 //	calculo el alto donde va a estar la plataforma
 	dest.x = xp + radiop;

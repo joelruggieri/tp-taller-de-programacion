@@ -7,6 +7,7 @@
 
 #include "BalancinView.h"
 #include "../CargadorDeSonidos.h"
+#include "src/Logger.h"
 namespace CLIENTE {
 
 BalancinView::~BalancinView() {
@@ -17,7 +18,6 @@ void BalancinView::update(ViewMsj* mje) {
 	ViewObjetoUpdateMsj* mjeCurrent = (ViewObjetoUpdateMsj*)mje;
 	this->setXl(mjeCurrent->getX());
 	this->setYl(mjeCurrent->getY());
-
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setIdEventoSonido(mjeCurrent->getIdEvento());
 	resizear();
@@ -27,7 +27,6 @@ void BalancinView::update(ViewMsj* mje) {
 
 CLIENTE::BalancinView::BalancinView(float x, float y, float w, float h,int numeroEvent,
 		SDL_Texture* textura): ObjetoView(x, y, w, h,numeroEvent,textura) {
-	this->sonido = CargadorDeSonidos::Instance()->getSonido(ID_SONIDO_SUBIBAJA);
 }
 
 void CLIENTE::BalancinView::dibujarse(SDL_Renderer* r) {

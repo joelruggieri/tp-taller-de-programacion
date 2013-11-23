@@ -15,7 +15,6 @@ namespace CLIENTE {
 class BalancinView: public ObjetoView {
 private:
 	typedef ObjetoView super;
-	Mix_Chunk* sonido;
 public:
 	BalancinView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura);
 	virtual ~BalancinView();

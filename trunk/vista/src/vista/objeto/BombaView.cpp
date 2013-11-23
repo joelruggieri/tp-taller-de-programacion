@@ -25,6 +25,7 @@ void BombaView::update(ViewMsj* mje) {
 	this->setYl(mjeCurrent->getY());
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setIdEventoSonido(mjeCurrent->getIdEvento());
+	cout<<mjeCurrent->getIdEvento()<<endl;
 }
 
 //TODO PODRIA SER QUE LLEGUEN AMBOS EVENTOS REPRODUCIR, LA EXPLOSION Y EL CHOQUE A LA VEZ.
@@ -39,12 +40,13 @@ void BombaView::dibujarse(SDL_Renderer* renderer){
 			cout << "reproduce" << endl;
 		}
 	}if(this->getIdEventoSonido() == ID_SONIDO_BOMBA_EXPLOSION){
-		if(sonidoExplosion == NULL){
+		if(sonidoExplosion == NULL)
 				log.error("no se puede reproducir el sonido de explosion de la bomba");
-		}else
+		else
+
 			Mix_PlayChannel(-1,sonidoExplosion,0);
 	}
-
+	//if(this->getIdEventoSonido() != ID_SONIDO_BOMBA_EXPLOSION)
 	super::dibujarse(renderer);
 	this->idEventoSonido = 0;
 //	Mix_Pause(-1);

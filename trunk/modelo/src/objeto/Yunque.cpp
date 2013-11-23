@@ -17,6 +17,7 @@ Yunque::Yunque(float x, float y, float w, float h) : Objeto(x,y){
 	this->ancho = w;
 	this->alto = h;
 	this->enganches.push_back(new Enganche(this,0,this->alto * 0.45));
+	umbralReaccionContacto = 10;
 }
 
 Yunque::~Yunque() {
