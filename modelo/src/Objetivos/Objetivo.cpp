@@ -18,3 +18,26 @@ Objetivo::~Objetivo() {
 	// TODO Auto-generated destructor stub
 }
 
+int Objetivo::getNumeroObjetivo() const {
+	return numeroObjetivo;
+}
+
+void Objetivo::setNumeroObjetivo(int numeroObjetivo) {
+	this->numeroObjetivo = numeroObjetivo;
+}
+
+float Objetivo::getXD() const {
+	return xD;
+}
+
+void Objetivo::setXD(float d) {
+	xD = d;
+}
+
+float Objetivo::getYD() const {
+	return yD;
+}
+
+void Objetivo::setYD(float d) {
+	yD = d;
+}

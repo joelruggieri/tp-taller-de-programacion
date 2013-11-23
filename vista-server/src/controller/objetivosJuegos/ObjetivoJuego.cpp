@@ -16,3 +16,7 @@ ObjetivoJuego::~ObjetivoJuego() {
 	// TODO Auto-generated destructor stub
 }
 
+void ObjetivoJuego::setConfig(Objetivo& o) {
+	this->xD = o.getXD();
+	this->yD = o.getYD();
+}

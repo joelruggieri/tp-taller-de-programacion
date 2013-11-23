@@ -9,10 +9,10 @@
 #include <iostream>
 using namespace std;
 
-Nivel::Nivel(std::string nombre, int cantJugadores, Objetivo* obj) {
+Nivel::Nivel(std::string nombre, int cantJugadores) {
 	this->nombre = nombre;
 	this->numeroMaximoDeJugadores = cantJugadores;
-	this->objetivoJuego = obj;
+//	this->objetivoJuego = obj;
 }
 
 Nivel::Nivel(std::string nombre){

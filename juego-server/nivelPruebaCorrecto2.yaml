@@ -31,7 +31,7 @@ Jugadores:
       alto: 70
     numero: 0
     ParametrosFactories:
-      - nombre: FF
+      - nombre: FCO
         cantidad: 5
       - nombre: FP
         cantidad: 5

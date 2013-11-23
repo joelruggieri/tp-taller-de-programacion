@@ -13,8 +13,8 @@
 #include <string>
 #include "Jugador.h"
 #include "Objetivos/Objetivo.h"
-#include "Objetivos/ObjetivoAccionar.h"
-#include "Objetivos/ObjetivoDesdeHasta.h"
+//#include "Objetivos/ObjetivoAccionar.h"
+//#include "Objetivos/ObjetivoDesdeHasta.h"
 //ENTREGA3 hay que hacer que tenga:
 //Por lo tanto el nivel consta de:
 //
@@ -31,7 +31,7 @@ class Nivel {
 public:
 	Nivel();
 	Nivel(std::string nombre);
-	Nivel(std::string nombre,int cantJugadores, Objetivo* obj);
+	Nivel(std::string nombre,int cantJugadores);
 	virtual ~Nivel();
 	void agregar(Figura* figura);
 	int cantidadFiguras() const;
@@ -53,7 +53,7 @@ private:
 	std::string fondo;
 	int numeroMaximoDeJugadores;
 	std::list<Jugador*> jugadores;
-	Objetivo* objetivoJuego;
+//	Objetivo* objetivoJuego;
 
 };
 
