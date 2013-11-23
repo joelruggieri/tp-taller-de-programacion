@@ -24,7 +24,6 @@ private:
 	float altocintap;
 	typedef ObjetoView super;
 	SDL_Texture * rueda;
-	Mix_Chunk* sonido;
 	void recalcular();
 	void resizear();
 };

@@ -19,15 +19,15 @@ PelotaJuegoView::~PelotaJuegoView() {
 }
 
 void PelotaJuegoView::dibujarse(SDL_Renderer* renderer){
-	CargadorDeSonidos* cargador = CargadorDeSonidos::Instance();
 	if(this->getIdEventoSonido() == ID_SONIDO_PELOTA){
+		std::cout<< "hola pelota" << endl;
 		//Mix_Chunk* sonido = cargador->getSonido(ID_SONIDO_PELOTA);
 		//if(!sonido)	sonido = Mix_LoadWAV(PATH_SONIDO_PELOTA);
 		if (sonido == NULL){
 			Logger log;
 			log.error("no se puede reproducir el sonido de la pelota");
 		}
-		Mix_PlayChannelTimed(-1,sonido,1,520);
+		Mix_PlayChannel(-1,sonido,0);
 		//cout<< "reprodujo" << std::endl;
 		//usleep(520000);
 	}

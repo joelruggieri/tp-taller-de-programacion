@@ -137,7 +137,7 @@ namespace CLIENTE {
 #define RADIO_MOTOR 3.5
 
 //CONSTANTES DE SONIDOS
-#define ID_SONIDO_SUBIBAJA 10
+#define ID_SONIDO_TIJERA 10
 #define ID_SONIDO_BOLA 11
 #define ID_SONIDO_BOMBA_CONTACTO 12
 #define ID_SONIDO_BOMBA_EXPLOSION 13
@@ -145,7 +145,6 @@ namespace CLIENTE {
 #define ID_SONIDO_PELOTA 15
 #define ID_SONIDO_SOGA 16
 #define ID_SONIDO_YUNKE 17
-#define ID_SONIDO_CINTA 18
 #define ID_SONIDO_MOTOR 19
 #define ID_SONIDO_CARRITO 20
 
@@ -153,13 +152,14 @@ namespace CLIENTE {
 #define PATH_SONIDO_PELOTA "resource/volleyball_hit.wav"
 #define PATH_SONIDO_BOLA "resource/impact_thud_as_if_object_fall_into_large_metal_drum.wav"
 #define PATH_SONIDO_BOMBA_CONTACTO "resource/small_hard_object_strike_large_metal_drum.wav"
-#define PATH_SONIDO_BOMBA_EXPLOSION "resource/explosion_medium_metal_and_glass_debris.wav"
-#define PATH_SONIDO_CINTA "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_BOMBA_EXPLOSION "resource/Explosion3.WAV"
+//#define PATH_SONIDO_CINTA "/home/joel/Descargas/volleyball_hit.wav"
 #define PATH_SONIDO_GLOBO "/home/joel/Descargas/volleyball_hit.wav"
 #define PATH_SONIDO_MOTOR "resource/servo_motor.wav"
 #define PATH_SONIDO_SOGA "resource/plastic_childs_scissors_drop_on_to_pens_and_pencils_in_pencil_case.wav"
-#define PATH_SONIDO_SUBIBAJA "/home/joel/Descargas/volleyball_hit.wav"
+//#define PATH_SONIDO_SUBIBAJA "resource/comedy_slide_whistle_up_001.wav"
 #define PATH_SONIDO_YUNKE "resource/wood_hit_metal_heavy_1.wav"
 #define PATH_SONIDO_CARRITO "resource/vehicle_crash_small_.wav"
+#define PATH_SONIDO_TIJERA "resource/plastic_childs_scissors_drop_on_to_pens_and_pencils_in_pencil_case.wav"
 #endif /* CONSTANTESVISTA_H_ */
 }

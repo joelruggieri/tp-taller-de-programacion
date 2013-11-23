@@ -19,7 +19,6 @@ public:
 	EditorNivel * getEditor();
 //	void update();
 	void dibujarse(list<ViewMsj*> & lista);
-	void seleccionarEventoSonido();
 private:
 	float ancho;
 	typedef ObjetoView super;

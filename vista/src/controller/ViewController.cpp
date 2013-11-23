@@ -115,11 +115,10 @@ void ViewController::crearPantalla() {
 	cargadorSonidos->cargarSonido(ID_SONIDO_BOLA,PATH_SONIDO_BOLA);
 	cargadorSonidos->cargarSonido(ID_SONIDO_BOMBA_CONTACTO,PATH_SONIDO_BOMBA_CONTACTO);
 	cargadorSonidos->cargarSonido(ID_SONIDO_BOMBA_EXPLOSION,PATH_SONIDO_BOMBA_EXPLOSION);
-	cargadorSonidos->cargarSonido(ID_SONIDO_CINTA,PATH_SONIDO_CINTA);
 	cargadorSonidos->cargarSonido(ID_SONIDO_GLOBO,PATH_SONIDO_GLOBO);
 	cargadorSonidos->cargarSonido(ID_SONIDO_MOTOR,PATH_SONIDO_MOTOR);
 	cargadorSonidos->cargarSonido(ID_SONIDO_SOGA,PATH_SONIDO_SOGA);
-	cargadorSonidos->cargarSonido(ID_SONIDO_SUBIBAJA,PATH_SONIDO_SUBIBAJA);
+	cargadorSonidos->cargarSonido(ID_SONIDO_TIJERA,PATH_SONIDO_TIJERA);
 	cargadorSonidos->cargarSonido(ID_SONIDO_YUNKE,PATH_SONIDO_YUNKE);
 	cargadorSonidos->cargarSonido(ID_SONIDO_CARRITO,PATH_SONIDO_CARRITO);
 	View * view = new Canvas(60, -10, 120, 20, LAYER_CANVAS_RELLENO, text);

@@ -16,6 +16,7 @@ namespace CLIENTE {
 
 MotorView::MotorView(float x, float y, float w, float h,int numeroEvent,SDL_Texture * textura): ObjetoView(x, y, w, h,numeroEvent,textura) {
 	sonido = CargadorDeSonidos::Instance()->getSonido(ID_SONIDO_MOTOR);
+	realizarSonido = false;
 }
 
 MotorView::~MotorView() {
@@ -29,15 +30,22 @@ void MotorView::update(ViewMsj* mje) {
 	this->setYl(mjeCurrent->getY());
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setIdEventoSonido(mjeCurrent->getIdEvento());
+	if (mjeCurrent->getAngulo() == 0)
+		realizarSonido = false;
+	else
+		realizarSonido = true;
 }
 
 void MotorView::dibujarse(SDL_Renderer* r){
-	if(this->getIdEventoSonido() == ID_SONIDO_MOTOR){
+	if(/*(this->getIdEventoSonido() == ID_SONIDO_MOTOR) || */realizarSonido){
+		cout << "hola motor" << endl;
 		if (sonido == NULL){
 			Logger log;
 			log.error("no se puede reproducir el sonido de la pelota");
 		}
-		Mix_PlayChannel(-1,sonido,0);
+		Mix_VolumeChunk(sonido,1);
+		Mix_PlayChannel(1,sonido,0);
+
 		//cout<< "reprodujo" << std::endl;
 		//usleep(520000);
 	}
