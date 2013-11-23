@@ -49,5 +49,6 @@ void SogaView::dibujarse(list<ViewMsj *> & lista) {
 //		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 	}
+	this->resetearNumeroEvento();
 }
 

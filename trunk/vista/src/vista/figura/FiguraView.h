@@ -17,7 +17,6 @@ namespace CLIENTE {
 class FiguraView: public View, public Observable{
 private:
 	SDL_Texture * textura;
-	int numeroEvento;
 	typedef View super;
 
 protected:

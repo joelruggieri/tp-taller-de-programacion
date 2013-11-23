@@ -26,10 +26,10 @@ EditorNivel* BombaView::getEditor() {
 }
 
 void BombaView::seleccionarEventoSonido(){
-	if(this->getNumeroEvento() == 1){
+	if(this->getNumeroEvento() == VALOR_ACTIVAR_SONIDO_DEFECTO){
 		this->alertarEvento(ID_SONIDO_BOMBA_CONTACTO);
 
-	}else if (this->getNumeroEvento() == 2){
+	}else if (this->getNumeroEvento() == VALOR_ACTIVAR_SONIDO_DEFECTO2){
 		this->alertarEvento(ID_SONIDO_BOMBA_EXPLOSION);
 	}
 }
@@ -37,4 +37,5 @@ void BombaView::seleccionarEventoSonido(){
 void BombaView::dibujarse(list<ViewMsj*> & lista){
 	this->seleccionarEventoSonido();
 	super::dibujarse(lista);
+	this->resetearNumeroEvento();
 }

@@ -147,17 +147,19 @@ namespace CLIENTE {
 #define ID_SONIDO_YUNKE 17
 #define ID_SONIDO_CINTA 18
 #define ID_SONIDO_MOTOR 19
+#define ID_SONIDO_CARRITO 20
 
 //PATH DE SONIDOS
 #define PATH_SONIDO_PELOTA "resource/volleyball_hit.wav"
-#define PATH_SONIDO_BOLA "/home/joel/Descargas/volleyball_hit.wav"
-#define PATH_SONIDO_BOMBA_CONTACTO "/home/joel/Descargas/volleyball_hit.wav"
-#define PATH_SONIDO_BOMBA_EXPLOSION "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_BOLA "resource/impact_thud_as_if_object_fall_into_large_metal_drum.wav"
+#define PATH_SONIDO_BOMBA_CONTACTO "resource/small_hard_object_strike_large_metal_drum.wav"
+#define PATH_SONIDO_BOMBA_EXPLOSION "resource/explosion_medium_metal_and_glass_debris.wav"
 #define PATH_SONIDO_CINTA "/home/joel/Descargas/volleyball_hit.wav"
 #define PATH_SONIDO_GLOBO "/home/joel/Descargas/volleyball_hit.wav"
-#define PATH_SONIDO_MOTOR "/home/joel/Descargas/volleyball_hit.wav"
-#define PATH_SONIDO_SOGA "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_MOTOR "resource/servo_motor.wav"
+#define PATH_SONIDO_SOGA "resource/plastic_childs_scissors_drop_on_to_pens_and_pencils_in_pencil_case.wav"
 #define PATH_SONIDO_SUBIBAJA "/home/joel/Descargas/volleyball_hit.wav"
-#define PATH_SONIDO_YUNKE "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_YUNKE "resource/wood_hit_metal_heavy_1.wav"
+#define PATH_SONIDO_CARRITO "resource/vehicle_crash_small_.wav"
 #endif /* CONSTANTESVISTA_H_ */
 }

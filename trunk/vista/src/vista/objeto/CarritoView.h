@@ -8,6 +8,7 @@
 #ifndef CARRITOVIEW_H_
 #define CARRITOVIEW_H_
 #include "ObjetoView.h"
+#include <SDL2/SDL_mixer.h>
 #include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 
 namespace CLIENTE {
@@ -18,6 +19,7 @@ private:
 	int xip, yip, xdp, ydp, radioRuedaP;
 	typedef ObjetoView super;
 	SDL_Texture * tRueda;
+	Mix_Chunk* sonido;
 public:
 	CarritoView(float x, float y, float w, float h,int numeroEvent, SDL_Texture * textura);
 	virtual ~CarritoView();

@@ -11,6 +11,7 @@
 PelotaJuego::PelotaJuego(float x, float y, float radio) :
 		Objeto(x, y) {
 	this->radio = radio;
+	this->umbralReaccionContacto = 20;
 }
 
 PelotaJuego::~PelotaJuego() {

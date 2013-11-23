@@ -13,7 +13,7 @@ FiguraView::FiguraView(float x, float y, float w, float h,int layer,int numeroEv
 //	this->tl = Resizer::Instance()->getTransformacionToModelo();
 	this->angulo = 0;
 	this->textura = textura;
-	this->numeroEvento = numeroEvent;
+	this->idEventoSonido = numeroEvent;
 }
 
 FiguraView::~FiguraView(){
@@ -56,7 +56,4 @@ void FiguraView::setAngulo(float angulo) {
 	this->angulo = angulo;
 }
 
-int FiguraView::getNumeroEvento() const{
-	return this->numeroEvento;
-}
 }

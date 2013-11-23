@@ -89,6 +89,7 @@ void Bomba::accionar() {
 	radioAccion = NULL;
 	body =NULL;
 	viva = false;
+	//this->vista->alertarEvento(VALOR_ACTIVAR_SONIDO_DEFECTO2);
 }
 
 void Bomba::crearFisicaRadio(b2Vec2 centro) {

@@ -38,5 +38,6 @@ void BalancinView::seleccionarEventoSonido(){
 void BalancinView::dibujarse(list<ViewMsj*> & lista){
 	this->seleccionarEventoSonido();
 	super::dibujarse(lista);
+	this->resetearNumeroEvento();
 
 }

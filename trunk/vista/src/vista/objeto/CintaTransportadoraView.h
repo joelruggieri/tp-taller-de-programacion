@@ -9,6 +9,7 @@
 #define VISTACINTATRANSPORTADORA_H_
 
 #include "ObjetoView.h"
+#include <SDL2/SDL_mixer.h>
 #include "src/mensajes/viewMensaje/ViewObjetoConAnchoUpdateMsj.h"
 namespace CLIENTE {
 class CintaTransportadoraView: public ObjetoView {
@@ -23,6 +24,7 @@ private:
 	float altocintap;
 	typedef ObjetoView super;
 	SDL_Texture * rueda;
+	Mix_Chunk* sonido;
 	void recalcular();
 	void resizear();
 };

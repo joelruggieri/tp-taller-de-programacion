@@ -7,6 +7,7 @@
 
 #include "SogaView.h"
 #include "../CargadorDeTextures.h"
+#include "../CargadorDeSonidos.h"
 namespace CLIENTE {
 
 SogaView::SogaView(float xDesde, float yDesde, float xHasta, float yHasta,int numeroEvent,SDL_Texture * textura) :
@@ -14,6 +15,7 @@ SogaView::SogaView(float xDesde, float yDesde, float xHasta, float yHasta,int nu
 	texturaEslabon = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_GANCHO);
 	primerTramo = true;
 	segundoTramo = true;
+	sonido = CargadorDeSonidos::Instance()->getSonido(ID_SONIDO_SOGA);
 }
 
 SogaView::~SogaView() {

@@ -35,4 +35,5 @@ void BolaBolicheView::seleccionarEventoSonido(){
 void BolaBolicheView::dibujarse(list<ViewMsj*> & lista){
 	this->seleccionarEventoSonido();
 	super::dibujarse(lista);
+	this->resetearNumeroEvento();
 }
