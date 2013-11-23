@@ -38,6 +38,7 @@ void SimpleEditorNivel::dropear(FiguraView* view, Figura* figura) {
 //	if (this->tablero != NULL && this->creacion != NULL) {
 	bool exitoVista = tablero->agregarFigura(view);
 	bool exitoModelo = this->modeloController->crearFigura(figura);
+	cout << "x: " << figura->getX() << " y: " << figura->getY() << endl;
 	if (!exitoVista || !exitoModelo) {
 //si uno de los dos no tuvo exito probamos rollbackeando.
 		if (exitoVista) {

@@ -307,7 +307,7 @@ void Figura::realizarImpacto(b2Vec2 direccion) {
 	float modulo = (centro - direccion).Length();
 	versor.x = versor.x / modulo;
 	versor.y = versor.y / modulo;
-	this->body->ApplyLinearImpulse(7500*versor, b2Vec2(this->getX(), this->getY()));
+	this->body->ApplyLinearImpulse(750*versor, b2Vec2(this->getX(), this->getY()));
 }
 
 bool Figura::validarContacto(b2Fixture* prim,const b2Transform& trfprim, b2Fixture* sec, const b2Transform& trfsec) {
