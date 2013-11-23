@@ -27,7 +27,7 @@ void ControlRemoto::crearFisica() {
 	b2PolygonShape shape;
 	shape.SetAsBox(this->ancho / 2, this->alto / 2);
 	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
+	bodyDef.type = b2_staticBody;
 	bodyDef.position.Set(centro.x, centro.y);
 //	bodyDef.angle = this->getRotacion() * -3.14 / 180.0;
 	bodyDef.fixedRotation = true;
