@@ -15,6 +15,7 @@
 #include <new>
 #include "src/ConstantesComunicacion.h"
 #include "../vista/CargadorDeTextures.h"
+#include "../vista/CargadorDeSonidos.h"
 #include "GeneralEventController.h"
 #include "JuegoEventsController.h"
 #include "Resizer.h"
@@ -75,9 +76,19 @@ int MainController::run(list<string> & factories) {
 	SDL_SetWindowMaximumSize(ventana, 825,825);
 	SDL_SetWindowPosition(ventana, 300, 100);
 	bool terminar = false;
+	Mix_VolumeMusic(10);
+	Mix_Music* musicaJuego = Mix_LoadMUS(PATH_MUSICA_JUEGO);
+	if (musicaJuego == NULL)
+		log.error("No se puede reproducir el sonido de la musica del juego");
+	else
+		Mix_PlayMusic(musicaJuego,-1);
 	while (!juegoStatus.isTerminado() && status->isAlive() && !terminar) {
 		usleep(1000000.0/VELOCIDAD_REFRESCO);
 		terminar = eventController->procesarEventos(ventana);
+	}
+	if(musicaJuego != NULL){
+		Mix_PauseMusic();
+		Mix_FreeMusic(musicaJuego);
 	}
 	if(terminar){
 		log.info("Finalizando Juego");
@@ -87,6 +98,11 @@ int MainController::run(list<string> & factories) {
 				AreaMensajes* m =(AreaMensajes*) this->viewController->getForUpdate(ID_CARTEL);
 				if (m !=NULL){
 				m->setMensaje("JUEGO GANADO");
+				Mix_Chunk* sonido = CargadorDeSonidos::Instance()->getSonido(ID_SONIDO_JUEGO_TERMINADO);
+				if (sonido == NULL){
+					log.error("No se puede reproducir musica de finalizacion de juego");
+				}else
+					Mix_PlayChannel(-1,sonido,0);
 				this->viewController->endUpdate();}
 			} else {
 				AreaMensajes* m =(AreaMensajes*) this->viewController->getForUpdate(ID_CARTEL);

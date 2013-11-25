@@ -14,6 +14,7 @@ Soga::Soga(float x, float y) :
 	origen = NULL;
 	destino = NULL;
 	eslabon = NULL;
+	umbralReaccionContacto = 0;
 }
 
 Soga::~Soga() {
@@ -345,6 +346,7 @@ void Soga::cortar(Enganche * e) {
 			eslabon = NULL;
 		}
 		viva = false;
+		this->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 	}
 
 }
@@ -368,5 +370,6 @@ void Soga::cortar(b2Body*b) {
 			eslabon = NULL;
 		}
 		viva = false;
+		this->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 	}
 }

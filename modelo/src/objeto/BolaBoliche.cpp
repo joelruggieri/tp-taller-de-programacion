@@ -13,6 +13,7 @@ BolaBoliche::BolaBoliche(float x, float y, float radio) :
 //this->x = x ;
 //this->y = y;
 	this->radio = radio;
+	this->umbralReaccionContacto = 10;
 
 }
 

@@ -8,6 +8,7 @@
 #include "SogaView.h"
 #include "../CargadorDeTextures.h"
 #include "../CargadorDeSonidos.h"
+#include "src/Logger.h"
 namespace CLIENTE {
 
 SogaView::SogaView(float xDesde, float yDesde, float xHasta, float yHasta,int numeroEvent,SDL_Texture * textura) :
@@ -28,6 +29,14 @@ SogaView::~SogaView() {
 
 void SogaView::dibujarse(SDL_Renderer* renderer) {
 	//ENTREGA3 FALTA HACER SDL_RENDERCOLOR O ALGO ASI PARA CAMBIAR EL COLOR y ademas no se esta renderizando el circulo del diome.
+	if(this->getIdEventoSonido() == ID_SONIDO_SOGA){
+		if (sonido == NULL){
+			Logger log;
+			log.error("no se puede reproducir el sonido de la cuerda cortada");
+		}
+		Mix_PlayChannel(-1,sonido,0);
+	}
+	this->idEventoSonido = 0;
 	if (conEslabon) {
 		if(primerTramo){
 			SDL_RenderDrawLine(renderer, this->xp, this->yp, this->xEslabonp, this->yEslabonp);

@@ -121,6 +121,7 @@ void ViewController::crearPantalla() {
 	cargadorSonidos->cargarSonido(ID_SONIDO_TIJERA,PATH_SONIDO_TIJERA);
 	cargadorSonidos->cargarSonido(ID_SONIDO_YUNKE,PATH_SONIDO_YUNKE);
 	cargadorSonidos->cargarSonido(ID_SONIDO_CARRITO,PATH_SONIDO_CARRITO);
+	cargadorSonidos->cargarSonido(ID_SONIDO_JUEGO_TERMINADO,PATH_SONIDO_JUEGO_TERMINADO);
 	View * view = new Canvas(60, -10, 120, 20, LAYER_CANVAS_RELLENO, text);
 	addViewPrivado(ID_CANVAS_RELLENO, view);
 	view = new ViewConBorde(60, -10, 120, 20);
