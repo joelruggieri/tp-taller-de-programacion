@@ -25,7 +25,6 @@ void BombaView::update(ViewMsj* mje) {
 	this->setYl(mjeCurrent->getY());
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setIdEventoSonido(mjeCurrent->getIdEvento());
-	cout<<mjeCurrent->getIdEvento()<<endl;
 }
 
 //TODO PODRIA SER QUE LLEGUEN AMBOS EVENTOS REPRODUCIR, LA EXPLOSION Y EL CHOQUE A LA VEZ.
