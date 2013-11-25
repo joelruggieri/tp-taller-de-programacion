@@ -1,0 +1,86 @@
+Nivel:
+  Nombre: nivelPruebaCorrecto
+  Fondo: ""
+  NumeroMaximoDeJugadores: 0
+Objetos:
+  Plataformas:
+    - x: 10.4
+      y: 70.2
+      ancho: 50
+      rotacion: 0
+    - x: 67
+      y: 70.2
+      ancho: 45
+      rotacion: 0
+    - x: 5.4
+      y: 36
+      ancho: 50
+      rotacion: 90
+    - x: 57.2
+      y: 48.8
+      ancho: 80
+      rotacion: 0
+    - x: 68.2
+      y: 18.2
+      ancho: 15
+      rotacion: 0
+    - x: 99.4
+      y: 74
+      ancho: 45
+      rotacion: 90
+  Ganchos:
+    - x: 40
+      y: 90.4
+    - x: 19.0
+      y: 41.6
+  Pelotas:
+    - x: 13.4
+      y: 77
+  GlobosHelio:
+    - x: 19.0
+      y: 53.6
+  Carritos:
+    - x: 41.8
+      y: 68
+      rotacion: 90
+  Sogas:
+    - xDesde: 40
+      yDesde: 90.4
+      xHasta: 41.8
+      yHasta: 70
+  Controles:
+    - x: 68.2
+      y: 24
+Jugadores:
+  - Area:
+      x: 50
+      y: 50
+      ancho: 100
+      alto: 40
+    numero: 0
+    ParametrosFactories:
+      - nombre: FP
+        cantidad: 2
+      - nombre: FV
+        cantidad: 1
+      - nombre: FE
+        cantidad: 1
+      - nombre: FS
+        cantidad: 2
+  - Area:
+      x: 50
+      y: 85
+      ancho: 100
+      alto: 40
+    numero: 1
+    ParametrosFactories:
+      - nombre: FBO
+        cantidad: 1
+      - nombre: FS
+        cantidad: 1
+      - nombre: FY
+        cantidad: 1
+      - nombre: FG
+        cantidad: 1
+      - nombre: FT
+        cantidad: 1

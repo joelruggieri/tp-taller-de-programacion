@@ -45,6 +45,7 @@ private:
 	void obtenerClavos(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerPoleas(std::list<Figura*> &lista, YAML::Node objetos);
 	void obtenerBombas(std::list<Figura*> &lista, YAML::Node objetos);
+	void obtenerControles(std::list<Figura*> &lista, YAML::Node objetos);
 	void imprimirLinea(std:: string & msj, YAML::Mark marca);
 	Logger logg;
 };

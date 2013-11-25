@@ -13,13 +13,13 @@ using namespace std;
 Nivel::Nivel(std::string nombre, int cantJugadores, Objetivo * obj) {
 	this->nombre = nombre;
 	this->numeroMaximoDeJugadores = cantJugadores;
-	objetivoJuego= new ObjetivoDesdeHasta(50,60,50,50,1);
+	objetivoJuego= new ObjetivoDesdeHasta(50,60,99,99,1);
 }
 
 Nivel::Nivel(std::string nombre){
 	this->nombre = nombre;
 	this->numeroMaximoDeJugadores = 0;
-	objetivoJuego= new ObjetivoDesdeHasta(50,60,50,50,1);
+	objetivoJuego= new ObjetivoDesdeHasta(50,60,99,99,1);
 }
 
 Nivel::~Nivel() {
@@ -60,7 +60,7 @@ std::string Nivel::getFondo() const {
 
 Nivel::Nivel() {
 	numeroMaximoDeJugadores = 0;
-	objetivoJuego= new ObjetivoDesdeHasta(50,60,50,50,1);
+	objetivoJuego= new ObjetivoDesdeHasta(11,85,68.2,20,1);
 }
 
 std::list<Jugador*>& Nivel::getJugadores(){

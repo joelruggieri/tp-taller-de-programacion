@@ -491,6 +491,27 @@ struct convert<Bomba> {
 	}
 };
 
+template<>
+struct convert<ControlRemoto> {
+	static Node encode(const ControlRemoto& objeto) {
+		Node node;
+		node["x"] = objeto.getX();
+		node["y"] = objeto.getY();
+		return node;
+	}
+
+	static bool decode(const Node& node, ControlRemoto& objeto) {
+		if (node.size() != 2) return false;
+		objeto.setX(node["x"].as<float>());
+		objeto.setY(node["y"].as<float>());
+		Mark marca = node.Mark();
+		Registro & reg = objeto.getReg();
+		reg.setLinea(marca.line);
+		reg.setEtiqueta("ControlRemoto");
+		return true;
+	}
+};
+
 }
 
 #endif /* CONSTRUCTORESYAML_H_ */

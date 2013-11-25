@@ -3,67 +3,56 @@ Nivel:
   Fondo: ""
   NumeroMaximoDeJugadores: 0
 Objetos:
-  BolasBoliche:
-    - x: 5
-      y: 87
-    - x: 20
-      y: 20
-    - x: 20
-      y: 40
-  Balancines:
-    - x: 90
-      y: 50
-      rotacion: 0
-  Ganchos:
-    - x: 20
-      y: 60
-  Poleas:
-    - x: 60
-      y: 20
-  PelotasJuego:
-    - x: 75
-      y: 3
 Jugadores:
   - Area:
       x: 50
       y: 50
-      ancho: 70
-      alto: 70
+      ancho: 100
+      alto: 100
     numero: 0
     ParametrosFactories:
       - nombre: FCO
-        cantidad: 5
+        cantidad: 50
       - nombre: FP
-        cantidad: 5
+        cantidad: 50
       - nombre: FV
-        cantidad: 5
+        cantidad: 50
       - nombre: FE
-        cantidad: 5
+        cantidad: 50
       - nombre: FL
-        cantidad: 34
+        cantidad: 50
       - nombre: FB
-        cantidad: 100
+        cantidad: 50
       - nombre: FC
-        cantidad: 60
+        cantidad: 50
       - nombre: FG
-        cantidad: 5
+        cantidad: 50
       - nombre: FS
-        cantidad: 7
+        cantidad: 50
       - nombre: FM
-        cantidad: 3
+        cantidad: 50
       - nombre: FY
-        cantidad: 3
+        cantidad: 50
       - nombre: FBO
-        cantidad: 3
+        cantidad: 50
       - nombre: FT
-        cantidad: 3
+        cantidad: 50
       - nombre: FH
-        cantidad: 3
+        cantidad: 50
       - nombre: FPO
-        cantidad: 3
+        cantidad: 50
       - nombre: FA
-        cantidad: 3
+        cantidad: 50
       - nombre: FO
-        cantidad: 3
+        cantidad: 50
+      - nombre: FF
+        cantidad: 50
+  - Area:
+      x: 5
+      y: 5
+      ancho: 5
+      alto: 5
+    numero: 1
+    ParametrosFactories:
       - nombre: FCO
-        cantidad: 3
+        cantidad: 50
