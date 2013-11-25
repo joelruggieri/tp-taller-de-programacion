@@ -18,6 +18,7 @@ public:
 	void crearFiguras(std::list<Figura*>&);
 	void notifyEvent(ObservableModelo* o, Evento_type t);
 	void setConfig(Objetivo &);
+	string getDescripcion();
 private:
 	float xH,yH;
 	typedef ObjetivoJuego super;

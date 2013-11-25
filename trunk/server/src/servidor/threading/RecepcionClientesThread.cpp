@@ -15,7 +15,7 @@
 #include <arpa/inet.h>
 #include <errno.h>
 #include "src/ManejadorErrores.h"
-void procesarRequestFunc(int socketDesc, Serializador* serializador, Disponibilidad * dispo, ColaEventos * colaIn){
+void procesarRequestFunc(int socketDesc, Serializador* serializador, Disponibilidad * dispo, ColaEventos * colaIn, string desc){
 	ThreadStatus* status = dispo->getNextFree();
 	Logger log;
 	if (status == NULL) {
@@ -36,7 +36,7 @@ void procesarRequestFunc(int socketDesc, Serializador* serializador, Disponibili
 		mensaje->setYArea(status->getJugador()->getArea()->getY());
 		mensaje->setAnchoArea(status->getJugador()->getArea()->getAncho());
 		mensaje->setAltoArea(status->getJugador()->getArea()->getAlto());
-		mensaje->setObjetivo("Incredible Machine");
+		mensaje->setObjetivo(desc);
 		std::list<std::string> tags;
 		status->getJugador()->recibirTags(tags);
 		std::list<std::string>::iterator it;
@@ -75,6 +75,7 @@ void * recepcionClientesThread(void * arg) {
 	int socket = params->getSocketServer();
 	Serializador * serializador = params->getSerializador();
 	ColaEventos * colaIn = params->getCola();
+	string desc= params->getDescripcion();
 	Logger log;
 	while (true) {
 		sleep(2);
@@ -86,20 +87,21 @@ void * recepcionClientesThread(void * arg) {
 			ManejadorErrores::manejarAceptError(errno);
 		} else {
 			log.info("Cliente intentado conectar");
-			procesarRequestFunc(fd2, serializador, dispo,colaIn);
+			procesarRequestFunc(fd2, serializador, dispo,colaIn, desc);
 		}
 	}
 	pthread_exit(NULL);
 }
 
 
-RecepcionClientesThread::RecepcionClientesThread(int serverSocket,ColaEventos * colaEntrada, Disponibilidad * d) {
+RecepcionClientesThread::RecepcionClientesThread(int serverSocket,ColaEventos * colaEntrada, Disponibilidad * d, string descripcion) {
 	colaIn = colaEntrada;
 	th = NULL;
 	dispo = d;
 	this->socket = serverSocket;
 	params = NULL;
 	serializador = new Serializador(-1);
+	this->descripcion = descripcion;
 
 }
 
@@ -119,14 +121,14 @@ void RecepcionClientesThread::deleteAll() {
 
 void RecepcionClientesThread::run() {
 	if (th == NULL) {
-		params = new RecepcionClientesThreadParams(socket,dispo,colaIn,serializador);
+		params = new RecepcionClientesThreadParams(socket,dispo,colaIn,serializador,descripcion);
 		th = new ThreadPTM(recepcionClientesThread, NULL, params);
 	}
 }
 
 void RecepcionClientesThread::procesarRequest(int socketCliente) {
 	if(th== NULL){
-		procesarRequestFunc(socketCliente,serializador,dispo,colaIn);
+		procesarRequestFunc(socketCliente,serializador,dispo,colaIn,descripcion);
 	}
 }
 
@@ -139,11 +141,12 @@ void RecepcionClientesThread::cancel() {
 
 
 RecepcionClientesThreadParams::RecepcionClientesThreadParams(int socketServer, Disponibilidad*d, ColaEventos* cola,
-		Serializador* ser) {
+		Serializador* ser, string desc) {
 	this->socketServer = socketServer;
 	this->disponibilidad = d;
 	this->cola = cola;
 	this->serializador=ser;
+	this->descripcion = desc;
 }
 
 RecepcionClientesThreadParams::~RecepcionClientesThreadParams() {
@@ -163,4 +166,8 @@ Serializador* RecepcionClientesThreadParams::getSerializador()  {
 
 int RecepcionClientesThreadParams::getSocketServer() {
 	return socketServer;
+}
+
+string RecepcionClientesThreadParams::getDescripcion() {
+	return descripcion;
 }

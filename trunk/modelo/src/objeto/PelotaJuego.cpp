@@ -15,7 +15,6 @@ PelotaJuego::PelotaJuego(float x, float y, float radio) :
 }
 
 PelotaJuego::~PelotaJuego() {
-	// TODO Auto-generated destructor stub
 }
 
 void PelotaJuego::crearFisica() {
@@ -56,6 +55,7 @@ PelotaJuego::PelotaJuego(const PelotaJuego& figura) {
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
 	this->reg = figura.reg;
+	this->umbralReaccionContacto = 20;
 }
 
 PelotaJuego::PelotaJuego() {

@@ -20,6 +20,7 @@ public:
 	virtual void crearFiguras(std::list<Figura*>&)=0;
 	bool isCumplido();
 	void cumplir();
+	virtual string getDescripcion() = 0;
 protected:
 	float xD,yD;
 private:

@@ -28,7 +28,7 @@ Partida::Partida(Nivel* n, int socket) {
 	receiver = new EventReceptorThread(colaIn, generalController, NULL, NULL, generalController);
 	dispatcher = new EventDispatcherThread(colaOut, dispo);
 	fisicaService = new StepModeloThread(colaIn);
-	recepcionThread = new RecepcionClientesThread(socket, colaIn, dispo);
+	recepcionThread = new RecepcionClientesThread(socket, colaIn, dispo,objetivo->getDescripcion());
 }
 
 Partida::~Partida() {
