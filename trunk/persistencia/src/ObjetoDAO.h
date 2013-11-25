@@ -57,6 +57,7 @@ private:
 	void guardar(Clavo* objeto, YAML::Node* nodoRaiz);
 	void guardar(Polea* objeto, YAML::Node* nodoRaiz);
 	void guardar(Bomba* objeto, YAML::Node* nodoRaiz);
+	void guardar(ControlRemoto* objeto, YAML::Node* nodoRaiz);
 	AdministradorDeArchivos administradorDeArchivos;
 	YAML::Node *nodo;
 };

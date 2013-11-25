@@ -8,16 +8,24 @@
 #include "ControlRemoto.h"
 #include "../Constantes.h"
 #include "Densidades.h"
-ControlRemoto::ControlRemoto(const ControlRemoto&) {
-	// TODO Auto-generated constructor stub
-
+ControlRemoto::ControlRemoto(const ControlRemoto& figura) {
+	this->x = figura.getX();
+	this->y = figura.getY();
+	this->reg = figura.reg;
+	this->ancho = 9.0;
+	this->alto = 9.0;
+//	this->rotacion = figura.rotacion;
+//	this->ancho =  figura.ancho;
+//	this->alto = figura.alto;
 }
 
 ControlRemoto::~ControlRemoto() {
 	// TODO Auto-generated destructor stub
 }
 
-ControlRemoto::ControlRemoto() {
+ControlRemoto::ControlRemoto() : Objeto() {
+	this->ancho = 0;
+	this->alto = 0 ;
 }
 
 void ControlRemoto::crearFisica() {

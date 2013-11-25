@@ -182,7 +182,8 @@ void ObjetoDAO::guardar(Polea* objeto, YAML::Node* nodoRaiz) {
 	(*nodoRaiz)["Poleas"].push_back(*objeto);
 }
 
-void ObjetoDAO::visit(ControlRemoto*) {
+void ObjetoDAO::visit(ControlRemoto* a) {
+guardar(a, nodo);
 }
 
 void ObjetoDAO::visit(Bomba* c) {
@@ -194,4 +195,8 @@ void ObjetoDAO::guardar(Bomba* objeto, YAML::Node* nodoRaiz) {
 }
 
 void ObjetoDAO::visit(Monitor*) {
+}
+
+void ObjetoDAO::guardar(ControlRemoto* objeto, YAML::Node* nodoRaiz) {
+	(*nodoRaiz)["Controles"].push_back(*objeto);
 }

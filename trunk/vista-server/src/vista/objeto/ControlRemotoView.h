@@ -16,6 +16,7 @@ public:
 	void dropTemplate();
 		EditorNivel * getEditor();
 		int getLayer();
+		void dibujarse(list<ViewMsj*> & lista);
 };
 
 #endif /* CONTROLREMOTOVIEW_H_ */
