@@ -37,3 +37,7 @@ void ObjetivoDesdeHastaJuego::setConfig(Objetivo& o) {
 	this->xH = ((ObjetivoDesdeHasta&) o).getXH();
 	this->yH = ((ObjetivoDesdeHasta&) o).getYH();
 }
+
+string ObjetivoDesdeHastaJuego::getDescripcion() {
+	return "Llevar la pelota al centro del escenario";
+}

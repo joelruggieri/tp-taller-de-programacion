@@ -60,7 +60,6 @@ int MainController::run(list<string> & factories) {
 	if( Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ){
 			printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
-	Mix_AllocateChannels(10);
 	Cuadrado cuadrado = Cuadrado(this->xArea, this->yArea, this->wArea,this->hArea);
 	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA), cuadrado, this->objetivo);
 	StatusJuego juegoStatus;
@@ -97,7 +96,7 @@ int MainController::run(list<string> & factories) {
 			if (juegoStatus.isGanado()) {
 				AreaMensajes* m =(AreaMensajes*) this->viewController->getForUpdate(ID_CARTEL);
 				if (m !=NULL){
-				m->setMensaje("JUEGO GANADO");
+				m->setMensaje("JUEGO GANADO!!!");
 				Mix_Chunk* sonido = CargadorDeSonidos::Instance()->getSonido(ID_SONIDO_JUEGO_TERMINADO);
 				if (sonido == NULL){
 					log.error("No se puede reproducir musica de finalizacion de juego");
@@ -107,7 +106,7 @@ int MainController::run(list<string> & factories) {
 			} else {
 				AreaMensajes* m =(AreaMensajes*) this->viewController->getForUpdate(ID_CARTEL);
 				if(m != NULL){
-				m->setMensaje("JUEGO PERDIDO");
+				m->setMensaje("JUEGO PERDIDO!!");
 				this->viewController->endUpdate();}
 			}
 		} else {

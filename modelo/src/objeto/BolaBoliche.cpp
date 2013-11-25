@@ -13,7 +13,7 @@ BolaBoliche::BolaBoliche(float x, float y, float radio) :
 //this->x = x ;
 //this->y = y;
 	this->radio = radio;
-	this->umbralReaccionContacto = 10;
+	this->umbralReaccionContacto = 40;
 
 }
 
@@ -58,6 +58,7 @@ BolaBoliche::BolaBoliche(const BolaBoliche& figura) {
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
 	this->reg = figura.reg;
+	this->umbralReaccionContacto = 40;
 }
 
 float BolaBoliche::getRadio() {
