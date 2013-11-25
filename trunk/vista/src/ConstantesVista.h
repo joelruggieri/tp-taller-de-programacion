@@ -147,6 +147,7 @@ namespace CLIENTE {
 #define ID_SONIDO_YUNKE 17
 #define ID_SONIDO_MOTOR 19
 #define ID_SONIDO_CARRITO 20
+#define ID_SONIDO_JUEGO_TERMINADO 21
 
 //PATH DE SONIDOS
 #define PATH_SONIDO_PELOTA "resource/volleyball_hit.wav"
@@ -156,10 +157,12 @@ namespace CLIENTE {
 //#define PATH_SONIDO_CINTA "/home/joel/Descargas/volleyball_hit.wav"
 #define PATH_SONIDO_GLOBO "/home/joel/Descargas/volleyball_hit.wav"
 #define PATH_SONIDO_MOTOR "resource/servo_motor.wav"
-#define PATH_SONIDO_SOGA "resource/plastic_childs_scissors_drop_on_to_pens_and_pencils_in_pencil_case.wav"
+#define PATH_SONIDO_SOGA "resource/rope_swinging_and_swishing_through_air.wav"
 //#define PATH_SONIDO_SUBIBAJA "resource/comedy_slide_whistle_up_001.wav"
 #define PATH_SONIDO_YUNKE "resource/wood_hit_metal_heavy_1.wav"
 #define PATH_SONIDO_CARRITO "resource/vehicle_crash_small_.wav"
 #define PATH_SONIDO_TIJERA "resource/plastic_childs_scissors_drop_on_to_pens_and_pencils_in_pencil_case.wav"
+#define PATH_SONIDO_JUEGO_TERMINADO "resource/CrowdPart2.wav"
+#define PATH_MUSICA_JUEGO "resource/mavericks.wav"
 #endif /* CONSTANTESVISTA_H_ */
 }

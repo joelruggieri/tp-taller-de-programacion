@@ -29,8 +29,14 @@ EditorNivel * TijeraView::getEditor(){
 	return editor;
 }
 
+void TijeraView::seleccionarEventoSonido(){
+	if(this->getNumeroEvento() == VALOR_ACTIVAR_SONIDO_DEFECTO){
+		this->alertarEvento(ID_SONIDO_TIJERA);
+	}
+}
 
 void TijeraView::dibujarse(list<ViewMsj*>& mjes) {
+	this->seleccionarEventoSonido();
 	Tijera* figura = (Tijera*)this->getModelo();
 	ViewTijeraMsj* viewMensaje;
 	if(figura == NULL){
@@ -42,7 +48,8 @@ void TijeraView::dibujarse(list<ViewMsj*>& mjes) {
 		viewMensaje = new ViewTijeraMsj(figura->getX(),figura->getY(),figura->getRotacionAspa1(),figura->getRotacionAspa2(),this->getId(),this->getNumeroEvento());
 		mjes.push_back(viewMensaje);
 		}
-	};
+	}
+	this->resetearNumeroEvento();
 }
 
 

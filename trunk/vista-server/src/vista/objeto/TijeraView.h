@@ -16,6 +16,7 @@ public:
 	void dropTemplate();
 	EditorNivel * getEditor();
 	void dibujarse(list<ViewMsj*>& mjes);
+	void seleccionarEventoSonido();
 };
 
 #endif /* TIJERAVIEW_H_ */
