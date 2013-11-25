@@ -346,7 +346,6 @@ void Soga::cortar(Enganche * e) {
 			eslabon = NULL;
 		}
 		viva = false;
-		this->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 	}
 
 }
