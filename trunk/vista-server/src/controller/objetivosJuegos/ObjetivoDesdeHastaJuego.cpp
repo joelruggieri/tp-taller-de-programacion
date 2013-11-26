@@ -39,5 +39,5 @@ void ObjetivoDesdeHastaJuego::setConfig(Objetivo& o) {
 }
 
 string ObjetivoDesdeHastaJuego::getDescripcion() {
-	return "Llevar la pelota al centro del escenario";
+	return "Meter la pelota en el tacho";
 }

@@ -144,6 +144,12 @@ Nivel* NivelDAO::leerNivel(const char *nombre) {
 			std::string msj = "No se pudo cargar el numero de jugadores del nivel: " + string(exc.what());
 			logg.error(msj);
 	}
+	try {
+				n->setObjetivo((nodoRaiz["Nivel"]["Objetivo"].as<int>()));
+			} catch (YAML::BadConversion& exc) {
+				std::string msj = "No se pudo cargar el objetivo: " + string(exc.what());
+				logg.error(msj);
+		}
 
 	std::list<Jugador*> jugadores = leerJugadores(nodoJugadores);
 	std::list<Figura*> figuras = leerFiguras(nodoObjetos);

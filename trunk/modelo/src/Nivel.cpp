@@ -62,7 +62,7 @@ std::string Nivel::getFondo() const {
 Nivel::Nivel() {
 	numeroMaximoDeJugadores = 0;
 //	objetivoJuego= new ObjetivoDesdeHasta(11,85,68.2,20,1);
-	objetivoJuego = new Objetivo(10,77,2);
+//	objetivoJuego = new Objetivo(10,77,2);
 }
 
 std::list<Jugador*>& Nivel::getJugadores(){
@@ -87,4 +87,15 @@ int Nivel::getNumeroJugadores() const{
 
 Objetivo* Nivel::getObjetivo() {
 	return objetivoJuego;
+}
+
+void Nivel::setObjetivo(int obj) {
+	if(obj == 3)
+		objetivoJuego= new ObjetivoDesdeHasta(11,85,68.2,20,3);
+	else if(obj == 2)
+		objetivoJuego = new Objetivo(10,77,2);
+//	else if(obj == 1)
+//		3er objetivo
+//	else
+		//FREESTYLE
 }

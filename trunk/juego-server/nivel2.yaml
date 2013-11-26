@@ -2,6 +2,7 @@ Nivel:
   Nombre: nivelPruebaCorrecto
   Fondo: "resource/fondoNivel1.jpg"
   NumeroMaximoDeJugadores: 0
+  Objetivo: 2
 Objetos:
   Plataformas:
     - x: 27.8

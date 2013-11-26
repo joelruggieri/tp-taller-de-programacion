@@ -381,7 +381,7 @@ void InicializadorJuego::visit(Bomba* c) {
 }
 
 ObjetivoJuego* InicializadorJuego::crearObjetivo() {
-	if (nivel->getObjetivo()->getNumeroObjetivo() == 1) {
+	if (nivel->getObjetivo()->getNumeroObjetivo() == 3) {
 		ObjetivoDesdeHastaJuego * obj = new ObjetivoDesdeHastaJuego();
 		obj->setConfig(*(nivel->getObjetivo()));
 		return obj;
