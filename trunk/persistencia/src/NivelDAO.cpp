@@ -220,7 +220,6 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerCintas(lista,objetos);
 			this->obtenerPlataformas(lista,objetos);
 			this->obtenerBalancines(lista,objetos);
-//			this->obtenerTijeras(lista,objetos);
 			this->obtenerCarritos(lista,objetos);
 			this->obtenerBolasDeBoliche(lista,objetos);
 			this->obtenerGlobosHelio(lista,objetos);
@@ -228,13 +227,13 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 			this->obtenerMotores(lista,objetos);
 			this->obtenerEngranajes(lista,objetos);
 			this->obtenerCorreas(lista,objetos);
-
 			this->obtenerGanchos(lista,objetos);
 			this->obtenerClavos(lista, objetos);
 			this->obtenerYunques(lista,objetos);
 			this->obtenerPoleas(lista,objetos);
 			this->obtenerBombas(lista,objetos);
 			this->obtenerControles(lista,objetos);
+			this->obtenerTijeras(lista,objetos);
 			this->obtenerSogas(lista,objetos);
 		}catch(YAML::BadFile& exc){
 			std::string mensaje = "No se pudo crear/abrir el archivo: ";
@@ -460,24 +459,21 @@ void NivelDAO::obtenerBalancines(std::list<Figura*> &lista, YAML::Node objetos){
 
 
 void NivelDAO::obtenerTijeras(std::list<Figura*> &lista, YAML::Node objetos){
-//	YAML::Node tijeras = objetos["Tijeras"];
-//	if(tijeras.Mark().line == -1 ){
-//		std::string mensaje = "No se encuentrò la etiqueta Tijeras";
-//		logg.info(mensaje);
-//	}
-//	for (std::size_t i = 0; i < tijeras.size(); i++) {
-//		try {
-//			Tijera obj = tijeras[i].as<Tijera>();
-////			bool salir = validar(obj,balancines, i);
-////			if(!salir ) continue;
-//			lista.push_back( new Tijera(obj));
-//			//lista.push_back( new Rueda(obj.getX(), obj.getY(), 0, obj.getRadio()));
-//		} catch (YAML::Exception &exc) {
-//			std::string mensaje = "Error al leer Balancines: ";
-//			mensaje.append(exc.what());
-//			imprimirLinea(mensaje, tijeras[i].Mark() );
-//		}
-//	}
+	YAML::Node tijeras = objetos["Tijeras"];
+	if(tijeras.Mark().line == -1 ){
+		std::string mensaje = "No se encontrò la etiqueta Tijeras";
+		logg.info(mensaje);
+	}
+	for (std::size_t i = 0; i < tijeras.size(); i++) {
+		try {
+			Tijera obj = tijeras[i].as<Tijera>();
+			lista.push_back( new Tijera(obj));
+		} catch (YAML::Exception &exc) {
+			std::string mensaje = "Error al leer Tijeras: ";
+			mensaje.append(exc.what());
+			imprimirLinea(mensaje, tijeras[i].Mark() );
+		}
+	}
 }
 
 void NivelDAO::obtenerCarritos(std::list<Figura*> &lista, YAML::Node objetos){

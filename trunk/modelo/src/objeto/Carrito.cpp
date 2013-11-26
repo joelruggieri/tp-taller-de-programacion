@@ -100,14 +100,14 @@ void Carrito::crearFisica(){
 	fd.shape = circle;
 	fd.density = DENSIDAD_CARRITO_RUEDA;
 	fd.friction = 10.0f;
-	bd.position =body->GetWorldPoint(b2Vec2(-ancho/4, -alto/2.0));
+	bd.position =body->GetWorldPoint(b2Vec2(-ancho/4.0, -alto/2.0));
 	bd.type = b2_dynamicBody;
 	b2Body* bodyRuedaIzquierda = myWorld->CreateBody(&bd);
 	bodyRuedaIzquierda->CreateFixture(&fd)->SetUserData(this);
 	bodyRuedaIzquierda->SetUserData(this);
 	this->setRuedaIzquierda(bodyRuedaIzquierda);
 
-	bd.position =body->GetWorldPoint(b2Vec2(ancho/4, -alto/2.0));
+	bd.position =body->GetWorldPoint(b2Vec2(ancho/4.0, -alto/2.0));
 	b2Body* bodyRuedaDerecha = myWorld->CreateBody(&bd);
 	bodyRuedaDerecha->CreateFixture(&fd)->SetUserData(this);
 	bodyRuedaDerecha->SetUserData(this);
