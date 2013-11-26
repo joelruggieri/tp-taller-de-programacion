@@ -8,6 +8,7 @@
 #include "Nivel.h"
 #include <iostream>
 #include "Objetivos/ObjetivoDesdeHasta.h"
+#include "Objetivos/Objetivo.h"
 using namespace std;
 
 Nivel::Nivel(std::string nombre, int cantJugadores, Objetivo * obj) {
@@ -60,7 +61,8 @@ std::string Nivel::getFondo() const {
 
 Nivel::Nivel() {
 	numeroMaximoDeJugadores = 0;
-	objetivoJuego= new ObjetivoDesdeHasta(11,85,68.2,20,1);
+//	objetivoJuego= new ObjetivoDesdeHasta(11,85,68.2,20,1);
+	objetivoJuego = new Objetivo(10,77,2);
 }
 
 std::list<Jugador*>& Nivel::getJugadores(){

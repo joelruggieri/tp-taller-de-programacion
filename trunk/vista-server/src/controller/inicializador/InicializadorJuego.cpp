@@ -43,6 +43,7 @@ using namespace std;
 #include "../RutasArchivos.h"
 #include "src/figuraFactory/FiguraFactory.h"
 #include "../objetivosJuegos/ObjetivoDesdeHastaJuego.h"
+#include "../objetivosJuegos/ObjetivoAccionarJuego.h"
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PLATAFORMA = "PLATAFORMA";
 const string KEY_SOGA = "SOGA";
@@ -382,6 +383,12 @@ void InicializadorJuego::visit(Bomba* c) {
 ObjetivoJuego* InicializadorJuego::crearObjetivo() {
 	if (nivel->getObjetivo()->getNumeroObjetivo() == 1) {
 		ObjetivoDesdeHastaJuego * obj = new ObjetivoDesdeHastaJuego();
+		obj->setConfig(*(nivel->getObjetivo()));
+		return obj;
+	}
+	if (nivel->getObjetivo()->getNumeroObjetivo() == 2)
+	{
+		ObjetivoAccionarJuego * obj = new ObjetivoAccionarJuego(true);
 		obj->setConfig(*(nivel->getObjetivo()));
 		return obj;
 	}
