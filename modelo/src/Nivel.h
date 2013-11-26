@@ -44,6 +44,7 @@ public:
 	int getNumeroMaximoJugadores() const;
 	int getNumeroJugadores() const;
 	Objetivo* getObjetivo();
+	void setObjetivo(int obj);
 
 private:
 	std::list<Figura*> objetos;

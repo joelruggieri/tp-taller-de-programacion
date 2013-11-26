@@ -50,7 +50,7 @@ string ObjetivoAccionarJuego::getDescripcion() {
 	}
 	else
 	{
-		string ret = "EXPLOTA LA BOMBA";
+		string ret = "Explotar la bomba que viene en al mapa";
 		return ret;
 	}
 }
