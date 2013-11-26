@@ -16,15 +16,13 @@ namespace CLIENTE {
 
 class MotorView: public ObjetoView {
 private:
-	Mix_Chunk* sonido;
 	typedef FiguraView super;
-	bool realizarSonido;
 public:
 //	MotorView(int x, int y, int w, int h, SDL_Texture * textura, SimpleEditorAnguloFijo * editor);
 	MotorView(float x, float y,float w,float h,int numeroEvent,SDL_Texture * textura);
 	void update(ViewMsj *);
 	virtual ~MotorView();
-	void dibujarse(SDL_Renderer*);
+	//void dibujarse(SDL_Renderer*);
 };
 }
 

@@ -49,7 +49,6 @@ void SogaView::dibujarse(list<ViewMsj *> & lista) {
 //		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
 	}else if (this->getNumeroEvento() == ID_SONIDO_SOGA){
-		std::cout << "hola soga" << std::endl;
 		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),0,0,figura->estaEstatica(),figura->conEslabon(),figura->getRadio(),this->getId(), this->selector,this->getNumeroEvento());
 		lista.push_back(viewMensaje);
 	}

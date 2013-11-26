@@ -13,7 +13,6 @@
 CLIENTE::CarritoView::CarritoView(float x, float y, float w, float h,int numeroEvent,
 		SDL_Texture* textura): ObjetoView(x, y, w, h,numeroEvent,textura) {
 	tRueda = CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_RUEDAS);
-	sonido = CargadorDeSonidos::Instance()->getSonido(ID_SONIDO_CARRITO);
 }
 
 
@@ -54,14 +53,6 @@ void CLIENTE::CarritoView::resizear() {
 }
 
 void CLIENTE::CarritoView::dibujarse(SDL_Renderer* r) {
-	if(this->getIdEventoSonido() == ID_SONIDO_CARRITO){
-		if (sonido == NULL){
-			Logger log;
-			log.error("no se puede reproducir el sonido del carrito");
-		}
-		Mix_PlayChannel(-1,sonido,0);
-	}
-	this->idEventoSonido = 0;
 	super::dibujarse(r);
 	SDL_Rect dest;
 	dest.h = this->radioRuedaP *2;
