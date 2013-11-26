@@ -16,6 +16,9 @@ using namespace std;
 #include "src/ConexionException.h"
 #include "src/Logger.h"
 #include "src/NivelInexistenteException.h"
+
+#include <sys/types.h>
+#include <dirent.h>
 int main(int argc, char *argv[]) {
 
 	LOG::LoggingService servicioLog;
@@ -23,7 +26,22 @@ int main(int argc, char *argv[]) {
 	// Carga del nivel por parametro
 	if (argc > 1) {
 		char * nivel = argv[1];
-		AdministradorDeArchivos::registrar(nivel);
+		struct dirent *ent;
+		bool encontrado = false;
+		DIR* resource = opendir("./");
+		while((ent = readdir (resource)) != NULL){
+			if(strcmp(ent->d_name, nivel)== 0){
+				encontrado = true;
+				break;
+			}
+		}
+		if (encontrado)
+			AdministradorDeArchivos::registrar(nivel);
+		else{
+			log.fatal("No existe el archivo yaml del nivel especificado");
+			sleep(1);
+			return -1;
+		}
 	}
 	string nivel = argv[1];
 	try {
