@@ -183,7 +183,6 @@ b2Body* Tijera::getBody() {
 
 void Tijera::accionar() {
 	if (!accionada) {
-		std::cout << "se accionò" << endl;
 		accionada = true;
 		Mapa * m = (Mapa*) ground->GetUserData();
 		// creo un body para poder enviar el corte.

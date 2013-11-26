@@ -11,7 +11,7 @@
 #include "Densidades.h"
 Bomba::Bomba() {
 	this->radio = 0;
-	this->umbralReaccionContacto = 20;
+	this->umbralReaccionContacto = 100;
 }
 
 Bomba::Bomba(const Bomba& figura) {
@@ -20,13 +20,13 @@ Bomba::Bomba(const Bomba& figura) {
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
 	this->reg = figura.reg;
-	this->umbralReaccionContacto = 20;
+	this->umbralReaccionContacto = 100;
 }
 
 Bomba::Bomba(float x, float y, float radio) :
 		Objeto(x, y, new ValidadorEnArea(this)) {
 	this->radio = radio;
-	this->umbralReaccionContacto = 20;
+	this->umbralReaccionContacto = 100;
 }
 
 void Bomba::crearFisica() {

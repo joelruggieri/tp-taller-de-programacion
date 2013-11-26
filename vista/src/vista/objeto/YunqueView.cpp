@@ -22,7 +22,6 @@ YunqueView::~YunqueView() {
 void YunqueView::dibujarse(SDL_Renderer* renderer){
 	if(this->getIdEventoSonido() == ID_SONIDO_YUNKE){
 		if (sonido == NULL){
-			std::cout << "hola" << std::endl;
 			sonido = Mix_LoadWAV(PATH_SONIDO_YUNKE);
 			Logger log;
 			log.error("no se puede reproducir el sonido del Yunque");

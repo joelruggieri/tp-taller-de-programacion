@@ -24,8 +24,6 @@ public:
 	void dropTemplate();
 	EditorNivel * getEditor();
 	int getLayer();
-	void dibujarse(list<ViewMsj*> & lista);
-	void seleccionarEventoSonido();
 };
 
 #endif /* MOTORVIEW_H_ */

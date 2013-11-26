@@ -60,6 +60,7 @@ int MainController::run(list<string> & factories) {
 	if( Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ){
 			printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
 	}
+	Mix_AllocateChannels(200);
 	Cuadrado cuadrado = Cuadrado(this->xArea, this->yArea, this->wArea,this->hArea);
 	viewController = new ViewController(render, Resizer::crearTransformacionALogica(TAMANIO_PANTALLA,TAMANIO_PANTALLA), cuadrado, this->objetivo);
 	StatusJuego juegoStatus;
@@ -75,7 +76,7 @@ int MainController::run(list<string> & factories) {
 	SDL_SetWindowMaximumSize(ventana, 825,825);
 	SDL_SetWindowPosition(ventana, 300, 100);
 	bool terminar = false;
-	Mix_VolumeMusic(10);
+	Mix_VolumeMusic(35);
 	Mix_Music* musicaJuego = Mix_LoadMUS(PATH_MUSICA_JUEGO);
 	if (musicaJuego == NULL)
 		log.error("No se puede reproducir el sonido de la musica del juego");

@@ -18,14 +18,12 @@ TijeraView::TijeraView(float x, float y, float w, float h,int numeroEvent,SDL_Te
 
 void TijeraView::dibujarse(SDL_Renderer* r) {
 	if(this->getIdEventoSonido() == ID_SONIDO_TIJERA){
-		//std::cout << "hola tijera" << endl;
 		if (sonido == NULL){
 			Logger log;
 			log.error("no se puede reproducir el sonido de la tijera");
 		}
 		Mix_PlayChannel(-1,sonido,0);
 	}
-	//std::cout << "hola tijera" << endl;
 	this->idEventoSonido = 0;
 	SDL_Rect dest;
 	dest.h = this->hp;

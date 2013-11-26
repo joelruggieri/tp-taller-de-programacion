@@ -19,7 +19,6 @@ private:
 	int xip, yip, xdp, ydp, radioRuedaP;
 	typedef ObjetoView super;
 	SDL_Texture * tRueda;
-	Mix_Chunk* sonido;
 public:
 	CarritoView(float x, float y, float w, float h,int numeroEvent, SDL_Texture * textura);
 	virtual ~CarritoView();

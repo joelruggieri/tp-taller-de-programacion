@@ -19,15 +19,10 @@ CarritoView::~CarritoView() {
 	// TODO Auto-generated destructor stub
 }
 
-void CarritoView::seleccionarEventoSonido(){
-	if(this->getNumeroEvento() == 1){
-		this->alertarEvento(ID_SONIDO_CARRITO);
-	}
-}
 
 
 void CarritoView::dibujarse(list<ViewMsj*> & lista){
-	this->seleccionarEventoSonido();
+	//this->seleccionarEventoSonido();
 	Carrito* figura = (Carrito*)this->getModelo();
 	ViewCarritoMsj* viewMensaje;
 	if(figura == NULL){
@@ -43,7 +38,7 @@ void CarritoView::dibujarse(list<ViewMsj*> & lista){
 		lista.push_back(viewMensaje);
 		}
 	}
-	this->resetearNumeroEvento();
+	//this->resetearNumeroEvento();
 }
 
 void CarritoView::dropTemplate(){

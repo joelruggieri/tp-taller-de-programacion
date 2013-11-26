@@ -17,7 +17,7 @@ Yunque::Yunque(float x, float y, float w, float h) : Objeto(x,y){
 	this->ancho = w;
 	this->alto = h;
 	this->enganches.push_back(new Enganche(this,0,this->alto * 0.45));
-	umbralReaccionContacto = 10;
+	umbralReaccionContacto = 200;
 }
 
 Yunque::~Yunque() {
@@ -34,6 +34,7 @@ Yunque::Yunque(const Yunque& figura):Objeto(figura) {
 	this->alto = (figura.getAlto());
 //	ancho = figura.ancho;
 	this->reg = figura.reg;
+	umbralReaccionContacto = 200;
 }
 
 void Yunque::crearFisica() {

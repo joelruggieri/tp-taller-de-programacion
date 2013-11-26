@@ -18,7 +18,7 @@ public:
 	void dropTemplate();
 	EditorNivel * getEditor();
 	void dibujarse(list<ViewMsj*> & lista);
-	void seleccionarEventoSonido();
+	//void seleccionarEventoSonido();
 };
 
 #endif /* CARRITOVIEW_H_ */

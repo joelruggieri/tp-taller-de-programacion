@@ -35,19 +35,21 @@ void BombaView::dibujarse(SDL_Renderer* renderer){
 			log.error("no se puede reproducir el sonido de contacto de la bomba");
 		}else{
 			//Mix_Pause(1);
-			Mix_PlayChannel(-1,sonidoContacto,0);
-			cout << "reproduce" << endl;
+			if(Mix_PlayChannel(-1,sonidoContacto,0)> 0){
+				this->idEventoSonido = 0;
+			}
 		}
 	}if(this->getIdEventoSonido() == ID_SONIDO_BOMBA_EXPLOSION){
 		if(sonidoExplosion == NULL)
 				log.error("no se puede reproducir el sonido de explosion de la bomba");
 		else
-
-			Mix_PlayChannel(-1,sonidoExplosion,0);
+			if(Mix_PlayChannel(-1,sonidoExplosion,0) > 0){
+				this->idEventoSonido = 0;
+			}
 	}
 	//if(this->getIdEventoSonido() != ID_SONIDO_BOMBA_EXPLOSION)
 	super::dibujarse(renderer);
-	this->idEventoSonido = 0;
+
 //	Mix_Pause(-1);
 }
 
