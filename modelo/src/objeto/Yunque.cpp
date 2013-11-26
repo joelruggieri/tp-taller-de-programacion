@@ -9,14 +9,14 @@
 #include "Densidades.h"
 #include "../Constantes.h"
 Yunque::Yunque() : Objeto() {
-	this->ancho = 0;
-	this->alto = 0;
+	this->ancho = ANCHO_YUNQUE;
+	this->alto = ALTO_YUNQUE;
 }
 
 Yunque::Yunque(float x, float y, float w, float h) : Objeto(x,y){
 	this->ancho = w;
 	this->alto = h;
-	this->enganches.push_back(new Enganche(this,0,this->alto * 0.45));
+	this->enganches.push_back(new Enganche(this,0,this->alto * 0.40));
 	umbralReaccionContacto = 200;
 }
 
@@ -27,7 +27,7 @@ Yunque::~Yunque() {
 Yunque::Yunque(const Yunque& figura):Objeto(figura) {
 	this->x = figura.getX();
 	this->y = figura.getY();
-	this->enganches.push_back(new Enganche(this,0,this->alto * 0.45));
+	this->enganches.push_back(new Enganche(this,0,this->alto * 0.40));
 //	alto = figura.alto;
 
 	this->ancho = (figura.getAncho());

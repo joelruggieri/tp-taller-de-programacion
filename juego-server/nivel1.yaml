@@ -4,69 +4,108 @@ Nivel:
   NumeroMaximoDeJugadores: 0
 Objetos:
   Plataformas:
-    - x: 50
-      y: 95
-      ancho: 80
+    - x: 27.8
+      y: 90.2
+      ancho: 30
       rotacion: 0
-  BolasBoliche:
-    - x: 5
-      y: 87
+    - x: 1.2
+      y: 70
+      ancho: 40
+      rotacion: 90
+    - x: 11
+      y: 36.6
+      ancho: 55
+      rotacion: 90
+    - x: 29.2
+      y: 23.8
+      ancho: 50
+      rotacion: 0
+    - x: 3.5
+      y: 87.4
+      ancho: 20
+      rotacion: 90
+    - x: 49.2
+      y: 6.2
+      ancho: 95
+      rotacion: 0
+    - x: 40.2
+      y: 23.0
+      ancho: 50
+      rotacion: 0
+  Cintas:
     - x: 20
-      y: 20
-    - x: 20
-      y: 40
+      y: 70
+      ancho: 40
   Balancines:
-    - x: 90
-      y: 50
+    - x: 50.8
+      y: 59.8
       rotacion: 0
-  Ganchos:
-    - x: 20
-      y: 60
-  Poleas:
-    - x: 60
-      y: 20
-  PelotasJuego:
-    - x: 75
-      y: 3
+    - x: 48
+      y: 39.4
+      rotacion: 0
+    - x: 65.8
+      y: 30.6
+      rotacion: -45
+  GlobosHelio:
+    - x: 27
+      y: 96.8
+    - x: 94.8
+      y: 75.4
+  Carritos:
+    - x: 27.6
+      y: 80.6
+      rotacion: 90
+    - x: 88.6
+      y: 36.4
+      rotacion: 0
+  Sogas:
+    - xDesde: 27.6
+      yDesde: 81.6
+      xHasta: 27
+      yHasta: 96.8
+    - xDesde: 90.6
+      yDesde: 36.4
+      xHasta: 94.8
+      yHasta: 75.4
 Jugadores:
   - Area:
       x: 50
-      y: 50
-      ancho: 70
-      alto: 70
+      y: 60
+      ancho: 100
+      alto: 75
     numero: 0
     ParametrosFactories:
-      - nombre: FF
-        cantidad: 5
-      - nombre: FP
-        cantidad: 5
-      - nombre: FV
-        cantidad: 5
-      - nombre: FE
-        cantidad: 5
-      - nombre: FL
-        cantidad: 34
       - nombre: FB
-        cantidad: 100
-      - nombre: FC
-        cantidad: 60
-      - nombre: FG
-        cantidad: 5
-      - nombre: FS
-        cantidad: 7
-      - nombre: FM
-        cantidad: 3
-      - nombre: FY
-        cantidad: 3
+        cantidad: 1
       - nombre: FBO
-        cantidad: 3
-      - nombre: FT
-        cantidad: 3
-      - nombre: FH
-        cantidad: 3
+        cantidad: 1
+      - nombre: FM
+        cantidad: 1
+      - nombre: FC
+        cantidad: 1
+  - Area:
+      x: 55
+      y: 60
+      ancho: 100
+      alto: 75
+    numero: 1
+    ParametrosFactories:
+      - nombre: FG
+        cantidad: 1
+      - nombre: FS
+        cantidad: 1
       - nombre: FPO
-        cantidad: 3
-      - nombre: FA
-        cantidad: 3
-      - nombre: FO
-        cantidad: 3
+        cantidad: 1
+  - Area:
+      x: 50
+      y: 50
+      ancho: 100
+      alto: 100
+    numero: 2
+    ParametrosFactories:
+      - nombre: FY
+        cantidad: 1
+      - nombre: FV
+        cantidad: 2
+      - nombre: FP
+        cantidad: 1

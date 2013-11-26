@@ -640,10 +640,7 @@ void NivelDAO::obtenerYunques(std::list<Figura*>& lista, YAML::Node objetos) {
 	for (std::size_t i = 0; i < yunques.size(); i++) {
 		try {
 			Yunque obj = yunques[i].as<Yunque>();
-//			bool salir = validar(obj, globos, i);
-//			if(!salir ) continue;
 			lista.push_back( new Yunque(obj));
-			//lista.push_back( new Pelota(obj.getX(), obj.getY(), NULL, obj.getRadio()));
 		} catch (YAML::Exception &exc) {
 			std::string mensaje = "Error al leer Yunque: ";
 			mensaje.append(exc.what());
