@@ -30,7 +30,7 @@ void CarritoView::dibujarse(list<ViewMsj*> & lista){
 		float yi= getYCentro() - ALTO_CARRITO/2.0;
 		float xd= getXCentro() + ANCHO_CARRITO/4.0;
 		float yd= getYCentro() - ALTO_CARRITO/2.0;
-		viewMensaje = new ViewCarritoMsj(this->getXCentro(),this->getYCentro(),xi,yi,xd,yd,0,0,0, this->getId(),this->getNumeroEvento());
+		viewMensaje = new ViewCarritoMsj(this->getXCentro(),this->getYCentro(),xi,yi,xd,yd,0,0,0, this->getId(),0);
 		lista.push_back(viewMensaje);
 	} else {
 		if(figura->isViva()){

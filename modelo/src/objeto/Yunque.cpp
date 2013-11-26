@@ -30,8 +30,8 @@ Yunque::Yunque(const Yunque& figura):Objeto(figura) {
 	this->enganches.push_back(new Enganche(this,0,this->alto * 0.40));
 //	alto = figura.alto;
 
-	this->ancho = (figura.getAncho());
-	this->alto = (figura.getAlto());
+	this->ancho = ANCHO_YUNQUE;
+	this->alto = ALTO_YUNQUE;
 //	ancho = figura.ancho;
 	this->reg = figura.reg;
 	umbralReaccionContacto = 200;
