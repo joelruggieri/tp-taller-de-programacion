@@ -218,9 +218,9 @@ std::list<Figura*> NivelDAO::leerFiguras(YAML::Node objetos){
 
 		try{
 			this->obtenerCintas(lista,objetos);
+			this->obtenerCarritos(lista,objetos);
 			this->obtenerPlataformas(lista,objetos);
 			this->obtenerBalancines(lista,objetos);
-			this->obtenerCarritos(lista,objetos);
 			this->obtenerBolasDeBoliche(lista,objetos);
 			this->obtenerGlobosHelio(lista,objetos);
 			this->obtenerPelotasJuego(lista,objetos);
