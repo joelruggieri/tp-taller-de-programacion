@@ -29,11 +29,12 @@ void corroborar_existencia(DIR* resource, bool& existe_fuente, bool& existe_imag
 }
 
 bool inexistenciaDeArchivos(bool existe_fuente, bool existe_imagen_error){
+	Logger log;
 	if(!existe_fuente || !existe_imagen_error){
 		if(!existe_fuente)
-			cout<<"No existe el archivo que proporciona la fuente para el text box en el directorio resource" <<endl;
+			log.fatal("No existe el archivo que proporciona la fuente para el text box en el directorio resource");
 		if(!existe_imagen_error)
-			cout<<"No existe la imagen de error en el directorio resource" <<endl;
+			log.fatal("No existe la imagen de error en el directorio resource");
 		return true;
 	}
 	return false;
@@ -41,16 +42,20 @@ bool inexistenciaDeArchivos(bool existe_fuente, bool existe_imagen_error){
 
 int main(int arg, char** argv) {
 	LOG::LoggingService loggingService;
+	Logger log;
 	DIR* resource = opendir("./resource");
 	bool existe_fuente = false;
 	bool existe_imagen_error = false;
 	if (resource == NULL){
-		cout << "No se encontró el directorio resource, se procede a salir de la aplicacion" <<endl;
+		log.fatal("No se encontró el directorio resource, se procede a salir de la aplicacion");
+		//sleep(1);
 		return -1;
 	}else{
 		corroborar_existencia(resource,existe_fuente,existe_imagen_error);
-		if(inexistenciaDeArchivos(existe_fuente,existe_imagen_error))
+		if(inexistenciaDeArchivos(existe_fuente,existe_imagen_error)){
+			//sleep(1);
 			return -1;
+		}
 	}
 
 	string ip ;

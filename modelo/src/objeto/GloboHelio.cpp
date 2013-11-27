@@ -114,8 +114,13 @@ void GloboHelio::accionar() {
 	notify(DESACTIVADO);
 	myWorld->DestroyBody(this->getBody());
 	viva = false;
+	this->vista->alertarEvento(VALOR_ACTIVAR_SONIDO_DEFECTO);
 }
 
 void GloboHelio::recibirImpacto(b2Vec2 direccion) {
 this->realizarImpacto(direccion);
+}
+
+bool GloboHelio::hacerContacto(float numero){
+	return false;
 }

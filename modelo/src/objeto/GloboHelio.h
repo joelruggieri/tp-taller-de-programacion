@@ -25,6 +25,7 @@ public:
 	void recibirImpacto(b2Vec2 direccion);
 	void accionar();
 	void  interactuar(Area & area, int jugador);
+	bool hacerContacto(float numero);
 private:
 	typedef Objeto super;
 	float radio;

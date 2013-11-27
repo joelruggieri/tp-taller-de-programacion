@@ -7,6 +7,7 @@
 
 #include "GloboHelioView.h"
 #include "../../controller/editor/SimpleEditorAnguloFijo.h"
+#include "src/mensajes/viewMensaje/ViewObjetoUpdateMsj.h"
 GloboHelioView::GloboHelioView(float x, float y,SimpleEditorAnguloFijo * editor): ObjetoView(x, y, editor, OBJ_SIMPLE_S_GLOBO) {
 
 }
@@ -33,6 +34,19 @@ void GloboHelioView::seleccionarEventoSonido(){
 
 void GloboHelioView::dibujarse(list<ViewMsj*> & lista){
 	this->seleccionarEventoSonido();
-	super::dibujarse(lista);
+	Figura* figura = this->getModelo();
+	ViewObjetoUpdateMsj* viewMensaje;
+	if(figura == NULL){
+		viewMensaje = new ViewObjetoUpdateMsj(getXCentro(),getYCentro(),0,this->getId(), this->selector,this->getNumeroEvento());
+		lista.push_back(viewMensaje);
+	} else {
+		if(figura->isViva()){
+		viewMensaje = new ViewObjetoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),this->getId(), this->selector,this->getNumeroEvento());
+		lista.push_back(viewMensaje);
+		}else if (this->getNumeroEvento() == ID_SONIDO_GLOBO){
+			viewMensaje = new ViewObjetoUpdateMsj(figura->getX(),figura->getY(),figura->getRotacion(),this->getId(), this->selector,this->getNumeroEvento());
+			lista.push_back(viewMensaje);
+		}
+	}
 	this->resetearNumeroEvento();
 }
