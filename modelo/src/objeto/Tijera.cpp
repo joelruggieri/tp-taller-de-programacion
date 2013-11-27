@@ -222,7 +222,7 @@ void Tijera::accionar() {
 		myWorld->DestroyBody(body);
 		aspa1->trabar();
 		aspa2->trabar();
-		this->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
+		this->vista->alertarEvento(VALOR_ACTIVAR_SONIDO_DEFECTO);
 	}
 }
 
@@ -238,4 +238,8 @@ void Tijera::limpiarReferenciasB2D() {
 	super::limpiarReferenciasB2D();
 	aspa1->limpiarReferenciasB2D();
 	aspa2->limpiarReferenciasB2D();
+}
+
+bool Tijera::hacerContacto(float numero){
+	return false;
 }

@@ -44,6 +44,7 @@ public:
 	float getRotacionAspa2();
 	void limpiarReferenciasB2D();
 	b2Body * getBody();
+	bool hacerContacto(float numero);
 };
 
 #endif /* TIJERA_H_ */
