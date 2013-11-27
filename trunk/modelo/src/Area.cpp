@@ -71,7 +71,7 @@ bool Area::contieneCentro(Posicionable* posicion) {
 	return this->contacto(posicion->getX(), posicion->getY());
 }
 bool Area::isAdentro1D(float pos, float posCentro, float ancho) {
-	return (pos <= (posCentro + ancho / 2)) && (pos >= posCentro - ancho / 2);
+	return (pos <= (posCentro + ancho / 2.0)) && (pos >= posCentro - ancho / 2.0);
 
 }
 

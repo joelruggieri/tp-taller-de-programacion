@@ -240,15 +240,16 @@ ZonaTablero* InicializadorJuego::crearTablero(ObjetivoJuego*objetivo) {
 	viewFactory = new ViewBombaFactory(NULL, 0);
 	figuraFactory.insert(pair<string, ViewFiguraFactory*>(KEY_BOMBA, viewFactory));
 
-	list<Figura*>& figurasNivel = this->nivel->getFiguras();
-	list<Figura*>::iterator it;
-	for (it = figurasNivel.begin(); it != figurasNivel.end(); ++it) {
-		(*it)->acept(this);
-	}
 	list<Figura*> figurasObjetivo;
+	list<Figura*>::iterator it;
 	objetivo->crearFiguras(figurasObjetivo);
 	duplicar = false;
 	for (it = figurasObjetivo.begin(); it != figurasObjetivo.end(); ++it) {
+		(*it)->acept(this);
+	}
+	duplicar = true;
+	list<Figura*>& figurasNivel = this->nivel->getFiguras();
+	for (it = figurasNivel.begin(); it != figurasNivel.end(); ++it) {
 		(*it)->acept(this);
 	}
 
@@ -393,11 +394,16 @@ ObjetivoJuego* InicializadorJuego::crearObjetivo() {
 		obj->setConfig(*(nivel->getObjetivo()));
 		return obj;
 	}
-	if (nivel->getObjetivo()->getNumeroObjetivo() == 0){
-		ObjetivoFreeStyleJuego* obj = new ObjetivoFreeStyleJuego();
+	if (nivel->getObjetivo()->getNumeroObjetivo() == 1)
+	{
+		ObjetivoAccionarJuego * obj = new ObjetivoAccionarJuego(false);
+		obj->setConfig(*(nivel->getObjetivo()));
 		return obj;
 	}
-	return NULL;
+
+		ObjetivoFreeStyleJuego* obj = new ObjetivoFreeStyleJuego();
+		return obj;
+
 }
 
 void InicializadorJuego::visit(Monitor* c) {

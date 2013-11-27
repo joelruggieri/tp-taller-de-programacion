@@ -16,7 +16,7 @@ GloboHelio::GloboHelio(float x, float y, float radio) :
 	this->radio = radio;
 	this->setRotacion(0);
 	this->enganches.push_back(new Enganche(this,0, -1 * radio));
-	rebentable = true;
+	rebentable = false;
 }
 
 GloboHelio::~GloboHelio() {

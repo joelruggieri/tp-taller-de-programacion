@@ -8,6 +8,9 @@
 #include "Soga.h"
 #include <cfloat>
 #include "Densidades.h"
+#include <iostream>
+using namespace std;
+
 Soga::Soga(float x, float y) :
 		Union(x, y, 1.5) {
 	joint2 = NULL;
@@ -352,7 +355,7 @@ void Soga::cortar(Enganche * e) {
 
 void Soga::cortar(b2Body*b) {
 	if(this->bodyEntre(b, inicio,fin)){
-//		cortar(origen);
+		vista->alertarEvento(VALOR_ACTIVAR_SONIDO_DEFECTO);
 		if(joint){
 			myWorld->DestroyJoint(joint);
 			joint = NULL;
@@ -369,6 +372,5 @@ void Soga::cortar(b2Body*b) {
 			eslabon = NULL;
 		}
 		viva = false;
-		this->hacerContacto(VALOR_ACTIVAR_SONIDO_DEFECTO);
 	}
 }
