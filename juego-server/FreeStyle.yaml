@@ -1,5 +1,5 @@
 Nivel:
-  Nombre: nivelPruebaCorrecto
+  Nombre: FreeStyle
   Fondo: ""
   NumeroMaximoDeJugadores: 0
   Objetivo: 0
@@ -12,24 +12,23 @@ Jugadores:
       alto: 100
     numero: 0
     ParametrosFactories:
-      - nombre: FCO
-        cantidad: 50
+
       - nombre: FP
-        cantidad: 50
+        cantidad: 5
       - nombre: FV
-        cantidad: 50
+        cantidad: 5
       - nombre: FE
-        cantidad: 50
+        cantidad: 5
       - nombre: FL
-        cantidad: 50
+        cantidad: 5
       - nombre: FB
-        cantidad: 50
-      - nombre: FC
-        cantidad: 50
+        cantidad: 5
+      - nombre: FCO
+        cantidad: 5
       - nombre: FG
-        cantidad: 50
+        cantidad: 5
       - nombre: FS
-        cantidad: 50
+        cantidad: 5
   - Area:
       x: 50
       y: 50
@@ -38,20 +37,22 @@ Jugadores:
     numero: 1
     ParametrosFactories:
       - nombre: FM
-        cantidad: 50
+        cantidad: 5
+      - nombre: FC
+        cantidad: 5
       - nombre: FY
-        cantidad: 50
+        cantidad: 5
       - nombre: FBO
-        cantidad: 50
+        cantidad: 5
       - nombre: FT
-        cantidad: 50
+        cantidad: 5
       - nombre: FH
-        cantidad: 50
+        cantidad: 5
       - nombre: FPO
-        cantidad: 50
+        cantidad: 5
       - nombre: FA
-        cantidad: 50
+        cantidad: 5
       - nombre: FO
-        cantidad: 50
+        cantidad: 5
       - nombre: FF
-        cantidad: 50
+        cantidad: 5
