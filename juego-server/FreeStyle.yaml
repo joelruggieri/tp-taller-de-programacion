@@ -1,0 +1,57 @@
+Nivel:
+  Nombre: nivelPruebaCorrecto
+  Fondo: ""
+  NumeroMaximoDeJugadores: 0
+  Objetivo: 0
+Objetos:
+Jugadores:
+  - Area:
+      x: 50
+      y: 50
+      ancho: 100
+      alto: 100
+    numero: 0
+    ParametrosFactories:
+      - nombre: FCO
+        cantidad: 50
+      - nombre: FP
+        cantidad: 50
+      - nombre: FV
+        cantidad: 50
+      - nombre: FE
+        cantidad: 50
+      - nombre: FL
+        cantidad: 50
+      - nombre: FB
+        cantidad: 50
+      - nombre: FC
+        cantidad: 50
+      - nombre: FG
+        cantidad: 50
+      - nombre: FS
+        cantidad: 50
+  - Area:
+      x: 50
+      y: 50
+      ancho: 100
+      alto: 100
+    numero: 1
+    ParametrosFactories:
+      - nombre: FM
+        cantidad: 50
+      - nombre: FY
+        cantidad: 50
+      - nombre: FBO
+        cantidad: 50
+      - nombre: FT
+        cantidad: 50
+      - nombre: FH
+        cantidad: 50
+      - nombre: FPO
+        cantidad: 50
+      - nombre: FA
+        cantidad: 50
+      - nombre: FO
+        cantidad: 50
+      - nombre: FF
+        cantidad: 50
