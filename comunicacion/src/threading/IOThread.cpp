@@ -52,6 +52,7 @@ void * func_salida(void * arg) {
 	bool continuar = status->isAlive();
 	status->unlock();
 	list<NetworkMensaje*>::iterator it;
+	Logger log;
 	while (continuar) {
 		usleep(25000);
 		list<NetworkMensaje*> mensajes;
@@ -65,7 +66,9 @@ void * func_salida(void * arg) {
 
 		} catch (SerializacionException & e) {
 			liberables->deleteAlMensajes();
-			cout << e.what() << endl;
+			string msj ="Error al enviar datos :";
+			msj.append(e.what());
+			log.error(msj);
 			status->kill();
 		}
 		status->lock();

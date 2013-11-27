@@ -73,10 +73,10 @@ void ModeloController::stop() {
 bool ModeloController::crearUnion(Union* figura) {
 	//UN PICKUP QUE TOME EL JUGADOR ESTATICO O EL ELEGIDO. dentro del area.
 
-	cout << figura->getXInicial() << "  " << figura->getYInicial() << endl;
+//	cout << figura->getXInicial() << "  " << figura->getYInicial() << endl;
 	Figura* fInicial = mapa->pickUp(figura->getXInicial(),
 			figura->getYInicial(), figura->getMascaraExtremos());
-	cout << figura->getXFinal() << "  " << figura->getYFinal() << endl;
+//	cout << figura->getXFinal() << "  " << figura->getYFinal() << endl;
 	Figura* fFinal = mapa->pickUp(figura->getXFinal(),
 			figura->getYFinal(), figura->getMascaraExtremos());
 	if (fFinal == fInicial)

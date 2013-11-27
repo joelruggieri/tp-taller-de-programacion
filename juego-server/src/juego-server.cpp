@@ -22,6 +22,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
 
 	LOG::LoggingService servicioLog;
+	Logger::setNivel(INFO_N);
 	Logger log;
 	// Carga del nivel por parametro
 	if (argc > 1) {

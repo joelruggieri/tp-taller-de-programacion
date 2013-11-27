@@ -28,8 +28,8 @@ void FactoryView::dibujarse(list<ViewMsj*> & lista){
 //	dest.x = this->getX();
 //	dest.y = this->getY();
 //	this->dibujarse(renderer, dest);
-	cout << "Factory: ";
-	cout << getXCentro() << " ";
-	cout << getYCentro() << " ";
+//	cout << "Factory: ";
+//	cout << getXCentro() << " ";
+//	cout << getYCentro() << " ";
 }
 

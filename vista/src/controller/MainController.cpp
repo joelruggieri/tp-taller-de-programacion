@@ -34,7 +34,7 @@ using namespace std;
 namespace CLIENTE {
 
 MainController::MainController(ColaEventos* entrada,ColaEventos * salida,Status* st) {
-	Logger::setNivel(DEBUG_N);
+	Logger::setNivel(INFO_N);
 	this->entrada = entrada;
 	this->salida = salida;
 	viewController = NULL;
