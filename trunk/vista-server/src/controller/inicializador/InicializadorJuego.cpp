@@ -44,6 +44,7 @@ using namespace std;
 #include "src/figuraFactory/FiguraFactory.h"
 #include "../objetivosJuegos/ObjetivoDesdeHastaJuego.h"
 #include "../objetivosJuegos/ObjetivoAccionarJuego.h"
+#include "../objetivosJuegos/ObjetivoFreeStyleJuego.h"
 const string KEY_GLOBO = "GLOBO";
 const string KEY_PLATAFORMA = "PLATAFORMA";
 const string KEY_SOGA = "SOGA";
@@ -390,6 +391,10 @@ ObjetivoJuego* InicializadorJuego::crearObjetivo() {
 	{
 		ObjetivoAccionarJuego * obj = new ObjetivoAccionarJuego(true);
 		obj->setConfig(*(nivel->getObjetivo()));
+		return obj;
+	}
+	if (nivel->getObjetivo()->getNumeroObjetivo() == 0){
+		ObjetivoFreeStyleJuego* obj = new ObjetivoFreeStyleJuego();
 		return obj;
 	}
 	return NULL;

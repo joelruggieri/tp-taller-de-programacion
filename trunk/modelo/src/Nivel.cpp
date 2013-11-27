@@ -96,6 +96,7 @@ void Nivel::setObjetivo(int obj) {
 		objetivoJuego = new Objetivo(10,77,2);
 //	else if(obj == 1)
 //		3er objetivo
-//	else
-		//FREESTYLE
+	else if(obj == 0)
+		objetivoJuego = new Objetivo(0,0,0);
+	else objetivoJuego = new Objetivo(0,0,0);
 }
