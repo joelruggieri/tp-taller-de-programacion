@@ -154,7 +154,7 @@ namespace CLIENTE {
 #define PATH_SONIDO_BOLA "resource/impact_thud_as_if_object_fall_into_large_metal_drum.wav"
 #define PATH_SONIDO_BOMBA_CONTACTO "resource/GRENADEIMPACT.WAV"
 #define PATH_SONIDO_BOMBA_EXPLOSION "resource/Explosion3.WAV"
-#define PATH_SONIDO_GLOBO "/home/joel/Descargas/volleyball_hit.wav"
+#define PATH_SONIDO_GLOBO "resource/p02683.wav"
 //#define PATH_SONIDO_MOTOR "resource/servo_motor.wav"
 #define PATH_SONIDO_SOGA "resource/rope_swinging_and_swishing_through_air.wav"
 //#define PATH_SONIDO_SUBIBAJA "resource/comedy_slide_whistle_up_001.wav"
