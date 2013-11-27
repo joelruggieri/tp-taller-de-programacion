@@ -26,7 +26,6 @@ void ClavoView::update(ViewMsj* mje) {
 
 	this->setAngulo(mjeCurrent->getAngulo());
 	this->setIdEventoSonido(mjeCurrent->getIdEvento());
-	resizear();
 }
 
 void ClavoView::dibujarse(SDL_Renderer* r) {
