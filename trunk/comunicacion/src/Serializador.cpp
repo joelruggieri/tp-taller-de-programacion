@@ -122,8 +122,9 @@ void Serializador::leer(int sock, list<NetworkMensaje*> & lista) {
 					lista.push_back(msj);
 				} catch (YAML::Exception &exc) {
 					//AVANZO A VER SI ENCUENTRO ALGO INTERESANTE PARA LEER
-					log.debug("Error de yaml 2");
-					cout << exc.what() << endl;
+					string msj ="Error de serializacion :";
+					msj.append(exc.what());
+					log.error(msj);
 					it++;
 				}
 			} else {
@@ -171,7 +172,8 @@ void Serializador::escribir(list<NetworkMensaje*>& lista, int socket) {
 //			cout<< "Se enviaron "<< longEnviada<< "restantes  de " << enviados << "/"<<len<<endl;
 		}
 	} else {
-		cout<<"me lo salte porque se fue al choto" << endl;
+			Logger log;
+			log.debug("Se omiten mensjaes por exceder el limitedel buffer");
 	}
 }
 
