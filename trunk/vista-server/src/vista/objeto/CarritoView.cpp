@@ -34,7 +34,7 @@ void CarritoView::dibujarse(list<ViewMsj*> & lista){
 		lista.push_back(viewMensaje);
 	} else {
 		if(figura->isViva()){
-		viewMensaje = new ViewCarritoMsj(figura->getX(),figura->getY(),figura->getXi(),figura->getYi(),figura->getXd(),figura->getYd(),figura->getRotacion(),figura->getRotI(),figura->getRotD(),this->getId(),this->getNumeroEvento());
+		viewMensaje = new ViewCarritoMsj(figura->getX(),figura->getY(),figura->getXi(),figura->getYi(),figura->getXd(),figura->getYd(),figura->getRotacion(),figura->getRotI(),figura->getRotD(),this->getId(),0);
 		lista.push_back(viewMensaje);
 		}
 	}

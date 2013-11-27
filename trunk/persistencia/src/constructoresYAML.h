@@ -131,13 +131,15 @@ struct convert<GloboHelio> {
 		Node node;
 		node["x"] = objeto.getX();
 		node["y"] = objeto.getY();
+		node["reventable"] = objeto.isReventable();
 		return node;
 	}
 
 	static bool decode(const Node& node, GloboHelio& objeto) {
-		if (node.size() != 2) return false;
+		if (node.size() != 3) return false;
 		objeto.setX(node["x"].as<float>());
 		objeto.setY(node["y"].as<float>());
+		objeto.setReventable(node["reventable"].as<bool>());
 		Mark marca = node.Mark();
 		Registro & reg = objeto.getReg();
 		reg.setLinea(marca.line);

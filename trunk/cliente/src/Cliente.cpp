@@ -48,12 +48,12 @@ int main(int arg, char** argv) {
 	bool existe_imagen_error = false;
 	if (resource == NULL){
 		log.fatal("No se encontró el directorio resource, se procede a salir de la aplicacion");
-		//sleep(1);
+		sleep(1);
 		return -1;
 	}else{
 		corroborar_existencia(resource,existe_fuente,existe_imagen_error);
 		if(inexistenciaDeArchivos(existe_fuente,existe_imagen_error)){
-			//sleep(1);
+			sleep(1);
 			return -1;
 		}
 	}

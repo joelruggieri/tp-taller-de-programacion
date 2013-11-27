@@ -21,15 +21,17 @@ public:
 	float getRadio() const;
 	void setRadio(float radio);
 	void updateModelo();
-	void setRebentable(bool);
+	void setReventable(bool);
 	void recibirImpacto(b2Vec2 direccion);
 	void accionar();
 	void  interactuar(Area & area, int jugador);
 	bool hacerContacto(float numero);
+	bool isReventable() const;
+
 private:
 	typedef Objeto super;
 	float radio;
-	bool rebentable;
+	bool reventable;
 };
 
 #endif /* GLOBOHELIO_H_ */

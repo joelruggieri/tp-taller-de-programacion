@@ -23,7 +23,7 @@ ObjetivoAccionarJuego::~ObjetivoAccionarJuego() {
 void ObjetivoAccionarJuego::crearFiguras(std::list<Figura*>& allocator) {
 	if (!esBomba) {
 		GloboHelio* g = new GloboHelio(this->xD, this->yD, RADIO_GLOBO);
-		g->setRebentable(true);
+		g->setReventable(true);
 		g->addObserver(this);
 		allocator.push_back(g);
 	} else {

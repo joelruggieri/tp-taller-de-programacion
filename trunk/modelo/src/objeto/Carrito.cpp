@@ -11,6 +11,13 @@
 Carrito::Carrito(): Objeto(){
 	ancho = 0;
 	alto = 0;
+	rotD = 0;
+	rotI =0;
+	xd= 0;
+	yd=0;
+	xi=0;
+	yi=0;
+
 }
 
 Carrito::Carrito(const Carrito& figura){
@@ -37,6 +44,16 @@ Carrito::Carrito(float x, float y, float ancho, float alto): Objeto(x,y) {
 	yi= y - alto/2;
 	xd= x +ancho/4.0;
 	yd= y - alto/2;
+	rotD = 0;
+	rotI=0;
+	rotDb = 0;
+	rotIb = 0;
+	xib= x -ancho/4.0;
+	yib= y - alto/2;
+	xdb= x +ancho/4.0;
+	ydb= y - alto/2;
+	ruedaIzquierda = NULL;
+	ruedaDerecha = NULL;
 }
 
 float Carrito::getAlto() const{
@@ -180,11 +197,12 @@ void Carrito::updateModelo() {
 		xi = p2.x;
 		yi = p2.y;
 		this->rotI =-1 * ruedaIzquierda->GetAngle();
+		if(isnan(rotI)) rotI = 0;
 		const b2Vec2 p3= ruedaDerecha->GetPosition();
 		xd = p3.x;
 		yd = p3.y;
 		this->rotD =-1 * ruedaDerecha->GetAngle();
-
+		if(isnan(rotD)) rotD = 0;
 	}
 }
 
