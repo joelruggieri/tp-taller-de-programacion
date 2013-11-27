@@ -11,13 +11,17 @@ namespace CLIENTE {
 
 View* ViewObjetoAnchoUpdateFactory::crearEngranaje(
 		ViewObjetoConAnchoUpdateMsj* o) {
-	return new VistaEngranaje(o->getX(), o->getY(), o->getAncho(), o->getAncho(),o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_ENGRANAJE));
-	 }
+	View* v =  new VistaEngranaje(o->getX(), o->getY(), o->getAncho(), o->getAncho(),o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_ENGRANAJE));
+	v->update(o);
+	return v;
+}
 
 View* ViewObjetoAnchoUpdateFactory::crearPlataforma(
 		ViewObjetoConAnchoUpdateMsj* o) {
-	return new PlataformaView(o->getX(), o->getY(), o->getAncho(),ALTO_PLATAFORMA,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_PLATAFORMA));
-}
+	View* v = new PlataformaView(o->getX(), o->getY(), o->getAncho(),ALTO_PLATAFORMA,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_PLATAFORMA));
+	v->update(o);
+	return v;
+	}
 
 View* ViewObjetoAnchoUpdateFactory::crearCinta(ViewObjetoConAnchoUpdateMsj* o ) {
 	View* v = new CintaTransportadoraView(o->getX(), o->getY(), o->getAncho(), ALTO_CINTA,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CINTA_PLATAF));

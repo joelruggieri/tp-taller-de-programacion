@@ -35,13 +35,15 @@ View* ViewObjetoSimpleFactory::crearMotor(ViewObjetoUpdateMsj* o) {
 }
 
 View* ViewObjetoSimpleFactory::crearBalancin(ViewObjetoUpdateMsj* o) {
-	BalancinView* viewReturn = new BalancinView(o->getX(), o->getY(),ANCHO_BALANCIN, ALTO_BALANCIN,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_BALANCIN));
-	return viewReturn;
+	View* viewReturn = new BalancinView(o->getX(), o->getY(),ANCHO_BALANCIN, ALTO_BALANCIN,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_BALANCIN));
+//	 viewReturn->update(o);
+	 return viewReturn;
 }
 
 
 View* ViewObjetoSimpleFactory::crearCarrito(ViewObjetoUpdateMsj* o) {
-	CarritoView* viewReturn = new CarritoView(o->getX(), o->getY(),ANCHO_CARRITO, ALTO_CARRITO,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CARRITO));
+	View* viewReturn = new CarritoView(o->getX(), o->getY(),ANCHO_CARRITO, ALTO_CARRITO,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CARRITO));
+	viewReturn->update(o);
 	return viewReturn;
 }
 
@@ -64,11 +66,15 @@ View* ViewObjetoSimpleFactory::crearYunque(ViewObjetoUpdateMsj* o) {
 }
 
 View* ViewObjetoSimpleFactory::crearGancho(ViewObjetoUpdateMsj* o) {
-	return new GanchoView(o->getX(), o->getY(),2*RADIO_GANCHO,2*RADIO_GANCHO,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_GANCHO));
+	View* v =  new GanchoView(o->getX(), o->getY(),2*RADIO_GANCHO,2*RADIO_GANCHO,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_GANCHO));
+	v->update(o);
+	return v;
 }
 
 View* ViewObjetoSimpleFactory::crearPolea(ViewObjetoUpdateMsj* o) {
-	return new PoleaView(o->getX(), o->getY(),2*RADIO_POLEA,2*RADIO_POLEA,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_POLEA));
+	View* v =  new PoleaView(o->getX(), o->getY(),2*RADIO_POLEA,2*RADIO_POLEA,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_POLEA));
+	v->update(o);
+	return v;
 }
 
 View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
@@ -125,18 +131,20 @@ View* ViewObjetoSimpleFactory::crear(ViewObjetoUpdateMsj* a) {
 
 
 View* ViewObjetoSimpleFactory::crearClavo(ViewObjetoUpdateMsj* o) {
-	ClavoView* viewReturn = new ClavoView(o->getX(), o->getY(),ANCHO_CLAVO, ALTO_CLAVO,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CLAVO));
-	return viewReturn;
+	View* v = new ClavoView(o->getX(), o->getY(),ANCHO_CLAVO, ALTO_CLAVO,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CLAVO));
+	v->update(o);
+	return v;
 }
 
 View* ViewObjetoSimpleFactory::crearControlRemoto(ViewObjetoUpdateMsj* o) {
-	ControlRemotoView* viewReturn = new ControlRemotoView(o->getX(), o->getY(),ANCHO_CONTROL, ALTO_CONTROL,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CONTROL));
+	View* viewReturn = new ControlRemotoView(o->getX(), o->getY(),ANCHO_CONTROL, ALTO_CONTROL,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_CONTROL));
 				return viewReturn;
 }
 
 View* ViewObjetoSimpleFactory::crearBomba(ViewObjetoUpdateMsj* o) {
-	BombaView* viewReturn = new BombaView(o->getX(), o->getY(),2*RADIO_PELOTA, 2*RADIO_PELOTA,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_BOMBA));
-			return viewReturn;
+	View* v = new BombaView(o->getX(), o->getY(),2*RADIO_PELOTA, 2*RADIO_PELOTA,o->getIdEvento(),CargadorDeTextures::Instance()->cargarTexture(PATH_VISTA_BOMBA));
+			v->update(o);
+			return v;
 }
 } /* namespace CLIENTE */
 
