@@ -76,9 +76,9 @@ void ReglasContactoSolver::procesarContacto(CintaTransportadora* c, Figura* f,
 		b2Contact* contact, const b2Manifold* oldManifold) {
 	float velocidad = c->getVelocidadCinta();
 	float signo = 1;
-	if (contact->GetFixtureB()->GetUserData() == c) {
-		signo = -1;
-	}
+//	if (contact->GetFixtureB()->GetUserData() == c) {
+//		signo = -1;
+//	}
 	if (velocidad != 0) {
 		contact->SetSurfaceVelocityModifier(signo * velocidad);
 	}
