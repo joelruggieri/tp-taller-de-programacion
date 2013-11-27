@@ -16,7 +16,7 @@ GloboHelio::GloboHelio(float x, float y, float radio) :
 	this->radio = radio;
 	this->setRotacion(0);
 	this->enganches.push_back(new Enganche(this,0, -1 * radio));
-	rebentable = false;
+	reventable = false;
 }
 
 GloboHelio::~GloboHelio() {
@@ -61,15 +61,15 @@ GloboHelio::GloboHelio(const GloboHelio& figura) {
 	this->setRotacion(figura.getRotacion());
 	this->setRadio(figura.getRadio());
 	this->reg = figura.reg;
+	this->reventable = figura.reventable;
 	this->enganches.push_back(new Enganche(this,0, -1 * radio));
-	rebentable = false;
 	radio = figura.radio;
 }
 
 GloboHelio::GloboHelio() :
 		Objeto() {
 	this->radio = 0;
-	rebentable = false;
+	reventable = false;
 }
 
 float GloboHelio::getRadio() const {
@@ -100,12 +100,12 @@ void GloboHelio::updateModelo() {
 
 }
 
-void GloboHelio::setRebentable(bool reb) {
-	rebentable = reb;
+void GloboHelio::setReventable(bool reb) {
+	reventable = reb;
 }
 
 void GloboHelio::interactuar(Area& area, int jugador) {
-	if(rebentable){
+	if(reventable){
 		super::interactuar(area,jugador);
 	}
 }
@@ -123,4 +123,8 @@ this->realizarImpacto(direccion);
 
 bool GloboHelio::hacerContacto(float numero){
 	return false;
+}
+
+bool GloboHelio::isReventable() const {
+	return reventable;
 }

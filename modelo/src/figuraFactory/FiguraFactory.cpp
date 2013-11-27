@@ -157,9 +157,10 @@ Figura* FiguraFactory::crear(Gancho*c) {
 }
 
 Figura* FiguraFactory::crear(GloboHelio*c) {
-	Figura* t = this->crearGloboHelio(c->getX(), c->getY(),c->getNumeroJugador());
+	GloboHelio* t = (GloboHelio*)this->crearGloboHelio(c->getX(), c->getY(),c->getNumeroJugador());
 		t->setRotacion(0);
 		t->setReg(c->getReg());
+		t->setReventable(c->isReventable());
 	return t;
 }
 

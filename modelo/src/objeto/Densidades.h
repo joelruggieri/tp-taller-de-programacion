@@ -23,7 +23,7 @@ static const float DENSIDAD_GLOBO=1.0f;
 static const float DENSIDAD_PELOTA=1.0f;
 static const float DENSIDAD_PLATAFORMA=5.00f;
 static const float DENSIDAD_POLEA=5.00f;
-static const float DENSIDAD_ESLABON_SOGA=2.0f;
+static const float DENSIDAD_ESLABON_SOGA=5.0f;
 static const float DENSIDAD_YUNQUE=3.00f;
 
 

@@ -40,6 +40,7 @@ Objetos:
   GlobosHelio:
     - x: 19.0
       y: 53.6
+      reventable: true
   Controles:
     - x: 68.2
       y: 24

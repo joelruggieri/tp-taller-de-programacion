@@ -79,9 +79,9 @@ void Soga::crearLazo(b2World* w) {
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(posEslabon.x, posEslabon.y);
 		bodyDef.gravityScale = 0;
+		bodyDef.linearDamping = 1.0f;
 		eslabon = myWorld->CreateBody(&bodyDef);
 		shapeCircle.m_radius = 1;
-
 		b2FixtureDef bodyBolaBoliche;
 		bodyBolaBoliche.filter.categoryBits = CATEGORIA_ESLABON;
 		bodyBolaBoliche.filter.maskBits = CATEGORIA_ESLABON;
