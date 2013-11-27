@@ -1,0 +1,145 @@
+Nivel:
+  Nombre: Nivel1
+  Fondo: "resource/fondoNivel1.jpg"
+  NumeroMaximoDeJugadores: 2
+  Objetivo: 1
+Objetos:
+  Plataformas:
+    - x: 50
+      y: 0
+      ancho: 100
+      rotacion: 0
+    - x: 42
+      y: 59
+      ancho: 20
+      rotacion: 0
+    - x: 78.4
+      y: 44.8
+      ancho: 15
+      rotacion: 0
+    - x: 85
+      y: 72.8
+      ancho: 50
+      rotacion: 90
+    - x: 47
+      y: 32.0
+      ancho: 40
+      rotacion: 0
+  Cintas:
+    - x: 45.8
+      y: 44
+      ancho: 40
+  Poleas:
+    - x: 30.6
+      y: 84.8
+    - x: 74.6
+      y: 84.8
+    - x: 21.8
+      y: 37
+    - x: 21.8
+      y: 27
+    - x: 43
+      y: 24
+    - x: 73
+      y: 37
+    - x: 80.8
+      y: 6.4
+  Balancines:
+    - x: 71.4
+      y: 65
+      rotacion: 0
+    - x: 6.12
+      y: 12.6
+      rotacion: 0
+    - x: 39.6
+      y: 5
+      rotacion: 0
+  Yunques:
+    - x: 71.4
+      y: 70.85
+    - x: 93.4
+      y: 31.4
+  Ganchos:
+    - x: 93.2
+      y: 4.8
+  Tijeras:
+    - x: 88.8
+      y: 20.4
+      rotacion: 180
+  Sogas:
+    - xDesde: 76
+      yDesde: 65
+      xHasta: 75
+      yHasta: 84.8
+    - xDesde: 74
+      yDesde: 84.8
+      xHasta: 31
+      yHasta: 84.8
+    - xDesde: 81.8
+      yDesde: 6.4
+      xHasta: 84.7
+      yHasta: 25
+    - xDesde: 77
+      yDesde: 37
+      xHasta: 76.8
+      yHasta: 6.4
+    - xDesde: 25.8
+      yDesde: 37
+      xHasta: 69
+      yHasta: 37
+    - xDesde: 93.2
+      yDesde: 46.2
+      xHasta: 93.2
+      yHasta: 4.8
+    - xDesde: 47
+      yDesde: 24
+      xHasta: 46.35
+      yHasta: 5
+    - xDesde: 25.8
+      yDesde: 27
+      xHasta: 39
+      yHasta: 24
+  BolasBoliche:
+    - x: 14
+      y: 19
+Jugadores:
+  - Area:
+      x: 20
+      y: 90
+      ancho: 40
+      alto: 20
+    numero: 0
+    ParametrosFactories:
+      - nombre: FG
+        cantidad: 1
+      - nombre: FS
+        cantidad: 1
+  - Area:
+      x: 27
+      y: 45
+      ancho: 45
+      alto: 35
+    numero: 1
+    ParametrosFactories:
+      - nombre: FM
+        cantidad: 1
+      - nombre: FC
+        cantidad: 1
+      - nombre: FS
+        cantidad: 1
+  - Area:
+      x: 27
+      y: 20
+      ancho: 45
+      alto: 20
+    numero: 2
+    ParametrosFactories:
+      - nombre: FB
+        cantidad: 1
+  - Area:
+      x: 92.5
+      y: 80
+      ancho: 15
+      alto: 40
+    numero: 3
+    ParametrosFactories:

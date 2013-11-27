@@ -88,7 +88,7 @@ Figura* Mapa::pickUp(float x, float y, uint16 mascara, int numeroJugador, bool c
 	b2Vec2 p(x, y);
 	b2AABB aabb;
 	b2Vec2 d;
-	d.Set(0.001f, 0.001f);
+	d.Set(0.003f, 0.003f);
 	aabb.lowerBound = p - d;
 	aabb.upperBound = p + d;
 
@@ -297,14 +297,14 @@ bool Mapa::removeFigura(Figura* figura) {
 }
 
 bool Mapa::addUnion(Union* u) {
-	int numero = u->getNumeroJugador();
-	std::map<int,Area*>::iterator it = this->areasDeJugadores.find(numero);
-	Area* area = it->second;
-	if (!isAdentro(u->getX(), u->getY()) || !(area->isAdentro1D(u->getXInicial(),area->getX(),area->getAncho())) ||
-			!(area->isAdentro1D(u->getXFinal(),area->getX(),area->getAncho())) || !(area->isAdentro1D(u->getYInicial(),area->getY(),area->getAlto())) ||
-			!(area->isAdentro1D(u->getYFinal(),area->getY(),area->getAlto()))) {
-		return false;
-	}
+//	int numero = u->getNumeroJugador();
+//	std::map<int,Area*>::iterator it = this->areasDeJugadores.find(numero);
+//	Area* area = it->second;
+//	if (!isAdentro(u->getX(), u->getY()) || !(area->isAdentro1D(u->getXInicial(),area->getX(),area->getAncho())) ||
+//			!(area->isAdentro1D(u->getXFinal(),area->getX(),area->getAncho())) || !(area->isAdentro1D(u->getYInicial(),area->getY(),area->getAlto())) ||
+//			!(area->isAdentro1D(u->getYFinal(),area->getY(),area->getAlto()))) {
+//		return false;
+//	}
 	u->setWorld(myWorld, groundBody);
 	bool result = u->crearFisicaEstatica();
 	if (result) {

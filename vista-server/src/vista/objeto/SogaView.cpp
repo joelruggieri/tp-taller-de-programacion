@@ -37,7 +37,13 @@ void SogaView::seleccionarEventoSonido(){
 void SogaView::dibujarse(list<ViewMsj *> & lista) {
 	Soga* figura = (Soga*) this->getModelo();
 	ViewObjetoUnionUpdateMsj* viewMensaje;
-	this->seleccionarEventoSonido();
+//	this->seleccionarEventoSonido();
+//	 if (this->getNumeroEvento() == ID_SONIDO_SOGA){
+//			viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),0,0,figura->estaEstatica(),figura->conEslabon(),figura->getRadio(),this->getId(), this->selector,this->getNumeroEvento());
+//			lista.push_back(viewMensaje);
+//			this->resetearNumeroEvento();
+//			return;
+//	}
 	if(figura != NULL && figura->isViva()){
 		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),0,0,figura->estaEstatica(),figura->conEslabon(),figura->getRadio(),this->getId(), this->selector,this->getNumeroEvento());
 		if(figura->conEslabon()){
@@ -45,12 +51,7 @@ void SogaView::dibujarse(list<ViewMsj *> & lista) {
 			viewMensaje->setActivoPrimerTramo(figura->activoPrimerTramo());
 			viewMensaje->setActivoSegundoTramo(figura->activoSegundoTramo());
 		}
-//	else	idem correaView
-//		viewMensaje = new ViewObjetoUnionUpdateMsj(this->xDesde,this->yDesde,this->xHasta,this->yHasta,this->getId(), this->selector);
 	lista.push_back(viewMensaje);
-	}else if (this->getNumeroEvento() == ID_SONIDO_SOGA){
-		viewMensaje = new ViewObjetoUnionUpdateMsj(figura->getXInicial(),figura->getYInicial(),figura->getXFinal(),figura->getYFinal(),0,0,figura->estaEstatica(),figura->conEslabon(),figura->getRadio(),this->getId(), this->selector,this->getNumeroEvento());
-		lista.push_back(viewMensaje);
 	}
 	this->resetearNumeroEvento();
 }

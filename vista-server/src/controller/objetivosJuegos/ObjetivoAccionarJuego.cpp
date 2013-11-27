@@ -11,8 +11,9 @@
 #include "src/objeto/Monitor.h"
 #include "src/objeto/Bomba.h"
 #include <iostream>
-ObjetivoAccionarJuego::ObjetivoAccionarJuego(bool e) : ObjetivoJuego() {
-this->esBomba = e ;
+ObjetivoAccionarJuego::ObjetivoAccionarJuego(bool e) :
+		ObjetivoJuego() {
+	this->esBomba = e;
 }
 
 ObjetivoAccionarJuego::~ObjetivoAccionarJuego() {
@@ -20,12 +21,12 @@ ObjetivoAccionarJuego::~ObjetivoAccionarJuego() {
 }
 
 void ObjetivoAccionarJuego::crearFiguras(std::list<Figura*>& allocator) {
-	if (!esBomba){
-	GloboHelio* g = new GloboHelio(this->xD, this->yD,RADIO_GLOBO);
-	g->addObserver(this);
-	allocator.push_back(g);}
-	else
-	{
+	if (!esBomba) {
+		GloboHelio* g = new GloboHelio(this->xD, this->yD, RADIO_GLOBO);
+		g->setRebentable(true);
+		g->addObserver(this);
+		allocator.push_back(g);
+	} else {
 		Bomba* b = new Bomba(this->xD, this->yD, RADIO_PELOTA);
 		b->addObserver(this);
 		allocator.push_back(b);
@@ -39,18 +40,15 @@ void ObjetivoAccionarJuego::notifyEvent(ObservableModelo* o, Evento_type t) {
 }
 
 void ObjetivoAccionarJuego::setConfig(Objetivo& o) {
-super::setConfig(o);
+	super::setConfig(o);
 }
 
 string ObjetivoAccionarJuego::getDescripcion() {
-	if (!esBomba)
-	{
-		string ret = "PINCHA EL GLOBO";
+	if (!esBomba) {
+		string ret = "Pinchar el globo";
 		return ret;
-	}
-	else
-	{
-		string ret = "Explotar la bomba que viene en al mapa";
+	} else {
+		string ret = "Explotar la bomba del escenario";
 		return ret;
 	}
 }

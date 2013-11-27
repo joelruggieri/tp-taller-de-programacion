@@ -74,16 +74,17 @@ bool ModeloController::crearUnion(Union* figura) {
 	//UN PICKUP QUE TOME EL JUGADOR ESTATICO O EL ELEGIDO. dentro del area.
 
 	cout << figura->getXInicial() << "  " << figura->getYInicial() << endl;
-	Figura* fInicial = this->pickUpConEstaticos(figura->getXInicial(),
-			figura->getYInicial(), figura->getMascaraExtremos(),
-			figura->getNumeroJugador());
+	Figura* fInicial = mapa->pickUp(figura->getXInicial(),
+			figura->getYInicial(), figura->getMascaraExtremos());
 	cout << figura->getXFinal() << "  " << figura->getYFinal() << endl;
-	Figura* fFinal = this->pickUpConEstaticos(figura->getXFinal(),
-			figura->getYFinal(), figura->getMascaraExtremos(),
-			figura->getNumeroJugador());
+	Figura* fFinal = mapa->pickUp(figura->getXFinal(),
+			figura->getYFinal(), figura->getMascaraExtremos());
 	if (fFinal == fInicial)
 		return false;
-
+	//PROBLEMA DEL PUNTO FINAL O INICIAL BORDE.
+	if(fInicial == NULL || fFinal == NULL){
+		return false;
+	}
 	figura->setExtremos(fInicial, fFinal);
 	//recupero los cuerpos que une, se los seteo y verifico.
 	return mapa->add(figura);
